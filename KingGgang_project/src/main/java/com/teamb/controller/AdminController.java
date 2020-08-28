@@ -2,7 +2,7 @@ package com.teamb.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+//check git
 /*
 이	   름 : AdminController class
 개  발   자 : 김 지 원
