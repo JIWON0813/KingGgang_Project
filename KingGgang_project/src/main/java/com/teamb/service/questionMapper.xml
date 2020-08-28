@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.questionMapper">
+	<select id="listQuest" resultType="QuestionDTO">
+		select * from (select rownum rn, A.* from(select * from ask order by re_group desc, re_step asc)A) where rn between #{start} and #{end}
+	</select>
+	
+	<update id="Q_plusReadcount" parameterType="int">
+		update ask set readcount = readcount + 1
+		where num = #{num}	
+	</update>
+	
+	<select id="getQuest" resultType="QuestionDTO" parameterType="int">
+		select * from ask where num = #{num}	
+	</select>
+	
+	<update id="plusRe_step" parameterType="java.util.Map">
+		update ask set re_step=re_step+1 where re_step>#{re_step} and re_group = #{re_group}
+	</update>
+	
+	<select id="Q_maxNum" resultType="Integer">
+		select max(num) from ask
+	</select>
+	
+	<insert id="insertQuest" parameterType="QuestionDTO">
+		insert into ask values (ask_num.nextval,
+			#{subject},sysdate,0,
+			#{content},#{a_passwd},#{ip}, 
+			#{re_group},#{re_step},#{re_level})  
+	</insert>
+	
+	<select id="questCount" resultType="Integer">
+		select count(*) from ask
+	</select>
+	
+	<delete id="deleteQuest" parameterType="int">
+		delete from ask where num = #{num}
+	</delete>
+	
+	<select id="isPassword" resultType="String" parameterType="int">
+		select a_passwd from ask where num = #{num}	
+	</select>
+	
+	<update id="updateQuest" parameterType="QuestionDTO">
+		update ask set subject=#{subject}, content=#{content}
+		where num = #{num}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
