@@ -40,4 +40,5 @@ target/
 /bin/
 .settings/
 .springBeans
+.DS_Store
 
