@@ -39,4 +39,5 @@ target/
 /target/
 /bin/
 .settings/
+.springBeans
 
