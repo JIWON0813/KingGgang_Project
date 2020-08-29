@@ -3,43 +3,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <html>
 	<head>
-		<title>BigBabyBook</title>
+		<title>낑깡</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
 	</head>
 	
 	
 
-	<body class="is-preload landing">
-		<div id="page-wrapper">
+	<body>
+		<div>
 
 			<!-- Header -->
 				<header id="header">
-					<h1 id="logo"><a href="index.do">BigBabyBook</a></h1>
+					<h1 id="logo"><a href="home.do">낑깡</a></h1>
 					<nav id="nav">
 						<ul>
-							<li><a href="newsfeed.do">News Feed</a></li>
-							<li><a href="B4_writeForm.do">Write</a></li>
+							<li><a href="comm_newsfeed.do">News Feed</a></li>
+							<li><a href="comm_writeForm.do">Write</a></li>
 							<li>
 								<a href="#">Mypage</a>
 								<ul>
-									<li><a href="B4_myPage.do">Mypage</a></li>
-									<li><a href="B4_bookMark.do">BookMark</a></li>
+									<li><a href="comm_myPage.do">Mypage</a></li>
+									<li><a href="comm_bookMark.do">BookMark</a></li>
 									<li>
-									<a href="member_edit.do?memberNum=${memberNum}">Settings</a>
+									<a href="comm_member_edit.do?memberNum=${memberNum}">Settings</a>
 									</li>
 									
 								</ul>
 							</li>
-							<li><a href="memberAll.do">Friends</a></li>
-							<c:if test="${isLogin}">
-							<li><a href="logout.do" class="button primary">로그아웃</a></li>
-							</c:if>
-							<c:if test="${!isLogin}">
-							<li><a href="login.do" class="button primary">로그인 하기</a></li>
-							</c:if>				 
+							<li><a href="comm_memberAll.do">Friends</a></li>
 						</ul>
 					</nav>
 				</header>
-	<br><br><br>

@@ -11,7 +11,7 @@
  <table>
  <tr>
  <td cols="2">
- <img src="http://localhost:9210/img/${roomdto.filename}" width="200" height="200">
+ <img src="http://localhost:9211/img/${roomdto.filename}" width="200" height="200">
  </td>
  </tr>
  <tr>
