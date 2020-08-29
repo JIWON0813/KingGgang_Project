@@ -97,6 +97,14 @@ public class HotelMapper {
 		return sqlSession.delete("deleteRoom", id);
 	}
 
+	public List<HotelDTO> hotelSearchList(int startRow, int endRow, String search) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", startRow);
+		map.put("end", endRow);
+		map.put("search", search);
+		return sqlSession.selectList("searchHotelList", map);
+	}
+
 	
 
 
