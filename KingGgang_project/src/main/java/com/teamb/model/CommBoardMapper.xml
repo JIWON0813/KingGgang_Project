@@ -3,21 +3,21 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		
-<mapper namespace="com.ezen.b4.book.model">
-	<select id="getBoard" resultType="b4_boardDTO" parameterType="int">
+<mapper namespace="com.teamb.model.Comm">
+	<select id="getBoard" resultType="CommboardDTO" parameterType="int">
 		select * from B4_board where boardNum=#{boardNum}
 	</select>
 	
-	<select id="listBoard" resultType="B4_boardDTO">
+	<select id="listBoard" resultType="CommboardDTO">
 		select * from B4_board where memberNum=#{memberNum} order by boardNum desc
 	</select>
 	
-	<select id="allListBoard" resultType="B4_boardDTO">
+	<select id="allListBoard" resultType="CommboardDTO">
 		select * from B4_board
 	</select>
 	
-	<insert id="writeBoard" parameterType="b4_boardDTO">
-		insert into B4_board values(#{memberNum},B4_board_num.nextval, #{file_name}, #{file_size}, 
+	<insert id="writeBoard" parameterType="CommboardDTO">
+		insert into B4_board values(#{memberNum}, commboard_num.nextval, #{file_name}, #{file_size}, 
 		#{content}, #{tag}, #{loc},0,0,0, 0, 0, 0, 0) 
 	</insert>
 	

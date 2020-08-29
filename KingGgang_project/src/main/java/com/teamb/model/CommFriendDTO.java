@@ -1,6 +1,6 @@
 package com.teamb.model;
 
-public class B4_friendDTO {
+public class CommFriendDTO {
 	private int friendNum; // ģ���߰��� ����
 	private int memberNum; // �ش� ����
 	private String f_profile_name;
@@ -51,7 +51,4 @@ public class B4_friendDTO {
 	public void setF_profile_size(int f_profile_size) {
 		this.f_profile_size = f_profile_size;
 	}
-	
-	
-
 }

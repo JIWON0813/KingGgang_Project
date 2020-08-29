@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 
+	이	   름 : B4_writeForm.jsp
+	개  발   자 : 최 인 아
+	설	   명 : 메인 페이지
+ -->
 <%@ include file="../index_top.jsp" %>
 <script type="text/javascript">
 	function check(){
@@ -18,7 +23,7 @@
 </script>
 
 <div align="center">
-	<form name="f" action="writePro.do" method="post" 
+	<form name="f" action="comm_writePro.do" method="post" 
 						onsubmit="return check()" enctype="multipart/form-data">
 		<input type="hidden" name="memberNum" value="${param.memberNum}">
 			<header class="major">

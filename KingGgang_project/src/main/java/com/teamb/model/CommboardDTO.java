@@ -1,6 +1,6 @@
 package com.teamb.model;
 
-public class B4_boardDTO {
+public class CommboardDTO {
 
 	private int memberNum; //foreign key
 	private int boardNum; //primary key

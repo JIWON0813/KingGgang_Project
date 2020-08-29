@@ -6,27 +6,24 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamb.model.B4_boardDTO;
+import com.teamb.model.CommboardDTO;
 @Service
-public class B4_boardMapper implements boardMapper {
+public class CommboardMapper{
 	
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
-	public B4_boardDTO getBoard(int boardNum) {
+	
+	public CommboardDTO getBoard(int boardNum) {
 		return sqlSession.selectOne("getBoard",boardNum);    
 	}
 	
-
-	@Override
 	public void plusReadcount(int num) {
 		sqlSession.update("plusReadcount", num);
 		sqlSession.commit();
 		return;
 	}
 
-	@Override
 	public void likeCount(int bNum,int mNum) {
 		java.util.Map<String,Integer> map = new java.util.Hashtable<String,Integer>();
 		map.put("bNum", bNum);
@@ -50,8 +47,6 @@ public class B4_boardMapper implements boardMapper {
 		else return false;
 	}
 
-
-	@Override
 	public void warnCount(int bNum, int mNum) {
 		
 	}
@@ -60,40 +55,35 @@ public class B4_boardMapper implements boardMapper {
 		return true;
 	}
 
-	@Override
-	public int insertBoard(B4_boardDTO dto) {
+	public int insertBoard(CommboardDTO dto) {
 		int res = sqlSession.insert("insertBoard", dto);
 		return res;
 	}
 	
-	@Override
-	public int writeBoard(B4_boardDTO dto) {
+	public int writeBoard(CommboardDTO dto) {
 		return sqlSession.insert("writeBoard",dto);
 	}
 
-	@Override
 	public int deleteBoard(int boardNum) {	
 
 		int res = sqlSession.insert("deleteBoard",boardNum);
 		return res;
 	}
 
-	@Override
-	public int updateBoard(B4_boardDTO dto) {
+	public int updateBoard(CommboardDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public List<B4_boardDTO> listBoard(int memberNum) {
+	public List<CommboardDTO> listBoard(int memberNum) {
 		return sqlSession.selectList("listBoard",memberNum);
 	}
 	
-	public List<B4_boardDTO> allListBoard() {
+	public List<CommboardDTO> allListBoard() {
 		return sqlSession.selectList("allListBoard");
 
 	}
 
-	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
 		return 0;

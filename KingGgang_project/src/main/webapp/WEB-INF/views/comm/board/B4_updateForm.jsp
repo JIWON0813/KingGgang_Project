@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 
+	이	   름 : B4_updateForm.jsp
+	개  발   자 : 최 인 아
+	설	   명 : 메인 페이지
+-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ include file="../index_top.jsp" %>
 <section id="four" class="wrapper style1 special fade-up">
