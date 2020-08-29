@@ -14,9 +14,11 @@ import com.teamb.model.CommboardDTO;
 import com.teamb.service.CommboardMapper;
 
 
-/*이	   름 : CommNewsfeedController
-개  발   자 : 
-설	   명 : 커뮤니트 뉴스피드 컨트롤러*/
+/*
+ 이	   름 : CommNewsfeedController
+개  발   자 : 이여진
+설	   명 : 커뮤니티 뉴스피드 컨트롤러
+*/
 
 
 @Controller
@@ -30,6 +32,7 @@ public class CommNewsfeedController {
 
 	@RequestMapping("/commhome.comm")
 	public String index(HttpServletRequest req, HttpSession session) {
+		session.setAttribute("id","t");
 		return "comm/index";
 	}
 
@@ -37,23 +40,8 @@ public class CommNewsfeedController {
 
 	@RequestMapping("/comm_newsfeed.do")
 	public String newsFeed(HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		String mbId = (String) session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null)
-			isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-
-		String msg = null, url = null;
-		if (mbId == null) {
-			msg = "로그인을 해주세요.";
-			url = "login.log";
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		}
 		List<CommboardDTO> list = boardMapper.allListBoard();
 		req.setAttribute("boardList", list);
-		return "newsfeed";
+		return "comm/newsfeed";
 	}
 }

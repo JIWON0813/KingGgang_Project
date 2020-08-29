@@ -14,7 +14,7 @@
 
 			<!-- Header -->
 				<header id="header">
-					<h1 id="logo"><a href="home.home">낑깡</a></h1>
+					<h1 id="logo"><a href="home.do">낑깡</a></h1>
 					<nav id="nav">
 						<ul>
 							<li><a href="comm_newsfeed.do">News Feed</a></li>
@@ -31,12 +31,6 @@
 								</ul>
 							</li>
 							<li><a href="comm_memberAll.do">Friends</a></li>
-							<c:if test="${isLogin}">
-							<li><a href="logout.do" class="button primary">로그아웃</a></li>
-							</c:if>
-							<c:if test="${!isLogin}">
-							<li><a href="login.do" class="button primary">로그인 하기</a></li>
-							</c:if>				 
 						</ul>
 					</nav>
 				</header>
