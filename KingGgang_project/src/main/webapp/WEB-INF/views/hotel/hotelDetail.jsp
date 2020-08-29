@@ -11,7 +11,7 @@
 	<table width="1200" border="1">
 		<tr>
 			<td width="15%"><img
-				src="http://localhost:9210/img/${dto.filename}" width="auto"
+				src="http://localhost:9211/img/${dto.filename}" width="auto"
 				height="150">
 			<td colspan="2">숙소 이름</td>
 			<td colspan="3">${dto.name}</td>

@@ -22,6 +22,12 @@
 			<td width="20%" class="catetd"><a href="main.hotel?cate=pension">펜션</a></td>
 		</tr>
 	</table>
+	<div align="center">
+		<form action="main.hotel">
+			<input type="text" name="search" placeholder="검색어입력"> <input
+				type="submit" value="검색">
+		</form>
+	</div>
 </div>
 <div class="content" align="center">
 	<p style="font-size: 20px; font-weight: bold">숙소 목록</p>
@@ -31,7 +37,7 @@
 				<c:if test="${not empty dto.filename}">
 					<td rowspan="6" width="20%">
 					<a href="hotelDetail.hotel?no=${dto.no}">
-					<img src="http://localhost:9210/img/${dto.filename}" width="200" height="200">
+					<img src="http://localhost:9211/img/${dto.filename}" width="200" height="200">
 					</a>
 				</c:if>
 				<c:if test="${empty dto.filename}">
