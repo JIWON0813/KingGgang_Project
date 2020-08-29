@@ -35,8 +35,7 @@
 		<tr>
 			<td align="center" colspan="3">
 				<input type="button" value="글수정"
-
-				onclick="window.location='B4_updateForm.do?boardNum=${getBoard.boardNum}'">
+				onclick="window.location='update.do?boardNum=${getBoard.boardNum}'">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="button" value="글삭제"
 				onclick="window.location='deletePro.do?boardNum=${getBoard.boardNum}'">

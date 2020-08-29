@@ -7,7 +7,7 @@
 <div align="center">
 <table>
    <tr>
-	  	 <td width="120" height="120">
+	  	 <td width="120" heigth="120">
 		      <img src="http://localhost:8080/img/${profile_name}" width="180" height="180">
 		       <h3>${name}</h3>
 	   	</td>

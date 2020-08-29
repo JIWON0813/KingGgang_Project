@@ -1,4 +1,4 @@
-/*package com.teamb.controller;
+package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,11 +45,8 @@ public class Comm_MyBoardController {
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
 		String formattedDate = dateFormat.format(date);
-		
 		model.addAttribute("serverTime", formattedDate );
-		
 		return "index";
 		
 	}
@@ -59,9 +56,6 @@ public class Comm_MyBoardController {
 	      return "index";
 	   }
 
-	
-	// �ξƾ�
-	
 	@RequestMapping(value = "/B4_writeForm.do", method = RequestMethod.GET)
 	public String writeForm(HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -72,7 +66,7 @@ public class Comm_MyBoardController {
 		
 		String msg = null, url = null;
 		if(mbId == null){
-			msg="�α��� �� �̿� �����մϴ�.";
+			msg="로그인 후 이용 가능합니다.";
 			url="login.do";
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
@@ -119,14 +113,10 @@ public class Comm_MyBoardController {
       
        String msg = null, url = null;
        if(res>0){
-
-          msg="�Խù��� ��ϵǾ����ϴ�.";
-          
+          msg="게시물이 등록되었습니다.";
           url="B4_myPage.do";
        }else{
-
-          msg="�Խù� ����� �����Ͽ����ϴ�.";
-
+          msg="게시물 등록이 실패하였습니다.";
           url="B4_writeForm.do";
        }
        req.setAttribute("msg", msg);
@@ -136,7 +126,7 @@ public class Comm_MyBoardController {
 	
 	
 	@RequestMapping("/B4_myPage.do")
-	public String myPage(HttpServletRequest req,HttpSession session) {
+	public String myPage(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		String mbId = (String)session.getAttribute("mbId");
 		boolean isLogin = false;
@@ -145,7 +135,7 @@ public class Comm_MyBoardController {
 		
 		String msg = null, url = null;
 		if(mbId == null){
-			msg="�α��� �� �̿� �����մϴ�.";
+			msg="占싸깍옙占쏙옙 占쏙옙 占싱울옙 占쏙옙占쏙옙占쌌니댐옙.";
 			url="login.do";
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
@@ -193,7 +183,7 @@ public class Comm_MyBoardController {
 			
 		String msg = null, url = null;
 			if(mbId == null){
-				msg="�α��� �� �̿� �����մϴ�.";
+				msg="로그인 후 이용 가능합니다.";
 				url="login.do";
 			req.setAttribute("msg", msg);
 			req.setAttribute("url", url);
@@ -219,7 +209,7 @@ public class Comm_MyBoardController {
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res>0){
-			msg = "�Խñۼ�������!!";
+			msg = "게시글수정성공!!";
 			url = "board/B4_myPage.do";
 		}
 		
@@ -234,7 +224,7 @@ public class Comm_MyBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res>0){
-			msg = "����� ���� �����Ǿ����ϴ�.";
+			msg = "저장된 글이 삭제되었습니다.";
 			url = "board/B4_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -245,4 +235,3 @@ public class Comm_MyBoardController {
 	}
 }
 
-*/

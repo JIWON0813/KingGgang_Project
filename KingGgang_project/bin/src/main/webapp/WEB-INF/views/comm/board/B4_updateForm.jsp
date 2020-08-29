@@ -21,7 +21,7 @@
 		
 		<tr height="80" colspan="3">
 			<td>
-				<textarea name="content" cols="100" rows="5" value="${getBoard.content}"></textarea>
+				<textarea name="content" cols="100" rows="5">${getBoard.content}</textarea>
 			</td>
 		</tr>
 	
@@ -39,7 +39,7 @@
 		<tr>
 			<td align="center" colspan="3">
 				<input type="button" value="글수정"
-				onclick="window.location='update.do?boardNum=${getBoard.boardNum}'">
+				onclick="window.location='updatePro.do?boardNum=${getBoard.boardNum}'">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="button" value="글목록" onclick="window.location='B4_myPage.do'">
 			</td>
