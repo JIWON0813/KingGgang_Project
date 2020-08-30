@@ -5,43 +5,43 @@
 		
 <mapper namespace="com.teamb.model.Comm">
 	<select id="getBoard" resultType="CommboardDTO" parameterType="int">
-		select * from B4_board where boardNum=#{boardNum}
+		select * from commboard where boardNum=#{boardNum}
 	</select>
 	
 	<select id="listBoard" resultType="CommboardDTO">
-		select * from B4_board where memberNum=#{memberNum} order by boardNum desc
+		select * from commboard where id=#{id} order by boardNum desc
 	</select>
 	
 	<select id="allListBoard" resultType="CommboardDTO">
-		select * from B4_board
+		select * from commboard
 	</select>
 	
 	<insert id="writeBoard" parameterType="CommboardDTO">
-		insert into B4_board values(#{memberNum}, commboard_num.nextval, #{file_name}, #{file_size}, 
-		#{content}, #{tag}, #{loc},0,0,0, 0, 0, 0, 0) 
+		insert into commboard values(#{id},commboard_num.nextval, #{file_name}, #{file_size}, 
+		#{content}, #{tag}, #{loc},0,0,0,0,0,0,0) 
 	</insert>
 	
+	<select id="deleteBoard" parameterType="int" resultType="int">
+		delete from commboard where boardNum=#{boardNum} 
+	</select>
+	
 	<update id="plusReadcount" parameterType="int">
-		update B4_board set readcount=readcount+1 where boardNum=#{num}
+		update commboard set readcount=readcount+1 where boardNum=#{num}
 	</update>
 
 	<select id="isLike" resultType="int" parameterType="java.util.Map">
-		select likecount from B4_count where boardNum=#{bNum} and memberNum=#{mNum}
+		select likecount from commboard where boardNum=#{bNum} and memberNum=#{mNum}
 	</select>
 	
 	<update id="plusIsLikecount" parameterType="int">
-		update B4_count set likecount=likecount+1 where boardNum=#{bNum} and memberNum=#{mNum}
+		update commboard set likecount=likecount+1 where boardNum=#{bNum} and memberNum=#{mNum}
 	</update>
 	
 	<update id="plusLikecount" parameterType="int">
-		update B4_board set likecount=likecount+1 where boardNum=#{bNum}
+		update commboard set likecount=likecount+1 where boardNum=#{bNum}
 	</update>
 	
 	<update id="minusLikecount" parameterType="int">
-		update B4_board set likecount=likecount-1 where boardNum=#{bNum}
+		update commboard set likecount=likecount-1 where boardNum=#{bNum}
 	</update>
-	
-	<select id="deleteBoard" parameterType="int" resultType="int">
-	delete from B4_board where boardNum=#{boardNum}
-</select>
 </mapper>

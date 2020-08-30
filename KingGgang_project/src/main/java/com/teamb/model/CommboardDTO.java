@@ -19,7 +19,6 @@ public class CommboardDTO {
 	private String reply;
 
 
-	
 	public String getId() {
 		return id;
 	}

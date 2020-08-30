@@ -2,7 +2,6 @@ package com.teamb.model;
 
 public class MemberDTO {
 
-	
 	private String id;
 	private String name;
 	private String nickname;

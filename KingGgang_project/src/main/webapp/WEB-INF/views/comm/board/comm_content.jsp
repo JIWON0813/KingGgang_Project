@@ -43,9 +43,9 @@
 				onclick="window.location='update.do?boardNum=${getBoard.boardNum}'">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="button" value="글삭제"
-				onclick="window.location='deletePro.do?boardNum=${getBoard.boardNum}'">
+				onclick="window.location='comm_deletePro.do?boardNum=${getBoard.boardNum}'">
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="button" value="글목록" onclick="window.location='B4_myPage.do'">
+				<input type="button" value="글목록" onclick="window.location='comm_myPage.do'">
 			</td>
 		</tr>
 	</table>
