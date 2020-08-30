@@ -32,7 +32,6 @@ public class CommNewsfeedController {
 
 	@RequestMapping("/commhome.comm")
 	public String index(HttpServletRequest req, HttpSession session) {
-		session.setAttribute("id","t");
 		return "comm/index";
 	}
 
