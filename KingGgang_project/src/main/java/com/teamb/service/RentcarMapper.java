@@ -18,6 +18,11 @@ import com.teamb.model.Rentcar_ResDTO;
 @Service
 public class RentcarMapper {
 	
+	/*
+	이	   름 : RentcarMapper class
+	개  발   자 : 정 우 철
+	설	   명 : 렌트카 service class  
+	*/
 	
 	@Autowired
 	private SqlSession sqlSession;

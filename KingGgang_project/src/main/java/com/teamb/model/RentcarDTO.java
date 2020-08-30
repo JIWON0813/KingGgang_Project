@@ -1,6 +1,13 @@
 package com.teamb.model;
 
 public class RentcarDTO {
+	
+	/*
+	이	   름 : RentcarDTO class
+	개  발   자 : 정 우 철
+	설	   명 : 렌트카 DTO
+	*/
+	
 	private int id;
 	private String company;
 	private String type;

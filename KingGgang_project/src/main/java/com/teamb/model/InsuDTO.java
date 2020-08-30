@@ -1,6 +1,14 @@
 package com.teamb.model;
 
 public class InsuDTO {
+	
+	/*
+	이	   름 : InsuDTO class
+	개  발   자 : 정 우 철
+	설	   명 : 렌트카 보험 DTO  
+	*/
+	
+	
 	private int id;
 	private String name;
 	private int price;

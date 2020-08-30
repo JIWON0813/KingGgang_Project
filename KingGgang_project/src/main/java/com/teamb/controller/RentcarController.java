@@ -19,6 +19,12 @@ import com.teamb.model.RentcarDTO;
 import com.teamb.model.Rentcar_ResDTO;
 import com.teamb.service.RentcarMapper;
 
+/*
+이	   름 : RentcarController class
+개  발   자 : 정 우 철
+설	   명 : 렌트카 페이지 컨트롤러  
+*/
+
 @Controller
 public class RentcarController {
 	

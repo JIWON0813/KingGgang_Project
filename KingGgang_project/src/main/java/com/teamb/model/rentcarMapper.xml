@@ -4,6 +4,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="mapper">
+
+<!-- 
+이	   름 : rentcarMapper XML
+개  발   자 : 정 우 철
+설	   명 : 렌트카 맵퍼 XML
+ -->
+ 
 <!-- 렌트카 어드민 CRUD -->
 	
 	<select id="listRentcar" resultType="RentcarDTO">

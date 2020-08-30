@@ -1,7 +1,13 @@
 package com.teamb.model;
 
 public class Rentcar_ResDTO {
-
+	
+	/*
+	이	   름 : Rentcar_ResDTO class
+	개  발   자 : 정 우 철
+	설	   명 : 렌트카 예약 DTO  
+	*/
+	
 	private int res_id;
 	private String member_id;
 	private int r_id;
