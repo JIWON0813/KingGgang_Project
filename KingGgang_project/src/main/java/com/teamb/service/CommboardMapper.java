@@ -75,8 +75,8 @@ public class CommboardMapper{
 		return 0;
 	}
 
-	public List<CommboardDTO> listBoard(int memberNum) {
-		return sqlSession.selectList("listBoard",memberNum);
+	public List<CommboardDTO> listBoard(String id) {
+		return sqlSession.selectList("listBoard",id);
 	}
 	
 	public List<CommboardDTO> allListBoard() {

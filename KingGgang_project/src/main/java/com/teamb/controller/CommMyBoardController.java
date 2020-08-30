@@ -25,7 +25,7 @@ import com.teamb.service.CommboardMapper;
 
 
 /*이	   름 : CommMyBoardController
-개  발   자 : 최 인 아
+개  발   자 : 최 인 아,이 여 진
 설	   명 : 커뮤니트 마이게시판 컨트롤러
 */
 
@@ -68,8 +68,7 @@ public class CommMyBoardController {
 		}
 
 		HttpSession session = req.getSession();
-		int memberNum = (Integer) session.getAttribute("memberNum");
-		MemberDTO member = (MemberDTO) session.getAttribute("member");
+		 MemberDTO member = (MemberDTO)session.getAttribute("login");
 
 		String file_name = "";
 		int file_size = 0;
@@ -84,11 +83,12 @@ public class CommMyBoardController {
 			file_name = file.getOriginalFilename();
 			file_size = (int) file.getSize();
 		}
+		dto.setId(member.getId());
 		dto.setFile_name(file_name);
 		dto.setFile_size(file_size);
-		dto.setMemberNum(memberNum);
-	/*	req.setAttribute("profile_name", member.getProfile_name());*/
-		req.setAttribute("name", member.getName());
+		
+		/*req.setAttribute("profile_name", member.getProfile_name());
+		req.setAttribute("name", member.getName());*/
 
 		int res = boardMapper.writeBoard(dto);
 
@@ -107,33 +107,16 @@ public class CommMyBoardController {
 
 	@RequestMapping("/comm_myPage.do")
 	public String myPage(HttpServletRequest req, HttpSession session) {
-		/*session = req.getSession();
-		String mbId = (String) session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null)
-			isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-
-		String msg = null, url = null;
-		if (mbId == null) {
-			msg = "로그인 후 이용 가능합니다.";
-			url = "login.do";
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		}*/
-
-		MemberDTO member = (MemberDTO) session.getAttribute("member");
-
-		int memberNum = (Integer) session.getAttribute("memberNum");
-
-		List<CommboardDTO> list = boardMapper.listBoard(memberNum);
+		
+		MemberDTO member = (MemberDTO) session.getAttribute("login");
+		String id = member.getId();
+		List<CommboardDTO> list = boardMapper.listBoard(id);  
 
 		req.setAttribute("boardList", list);
 	/*	req.setAttribute("profile_name", member.getProfile_name());*/
 		req.setAttribute("name", member.getName());
 
-		return "board/B4_myPage";
+		return "comm/board/B4_myPage";
 	}
 
 	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
@@ -149,7 +132,7 @@ public class CommMyBoardController {
 			isLogin = true;
 		req.setAttribute("isLogin", isLogin);
 
-		return "board/B4_content";
+		return "comm/board/B4_content";
 	}
 
 	@RequestMapping("/comm_bookMark.do")
@@ -170,7 +153,7 @@ public class CommMyBoardController {
 			return "message";
 		}
 
-		return "board/B4_bookMark";
+		return "comm/board/B4_bookMark";
 	}
 
 	@RequestMapping(value = "/comm_updateForm.do", method = RequestMethod.GET)
@@ -191,7 +174,7 @@ public class CommMyBoardController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "�Խñۼ�������!!";
-			url = "board/B4_myPage.do";
+			url = "comm/board/B4_myPage.do";
 		}
 
 		req.setAttribute("msg", msg);
@@ -206,7 +189,7 @@ public class CommMyBoardController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "����� ���� �����Ǿ����ϴ�.";
-			url = "board/B4_myPage.do";
+			url = "comm/board/B4_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
