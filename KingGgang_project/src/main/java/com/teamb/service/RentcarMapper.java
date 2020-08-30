@@ -99,5 +99,24 @@ public class RentcarMapper {
 		return sqlSession.selectList("findReturnday",r_id);
 	}
 	
+	public List<RentcarDTO> listLowPriceRentcar(){
+		return sqlSession.selectList("listLowPriceRentcar");
+	}
+	
+	public List<RentcarDTO> listCanReservationRentcar(String receiptday,String returnday){
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("receiptday",receiptday);
+		map.put("returnday",returnday);
+		List<Integer> canResCarIdList = sqlSession.selectList("testRentcar",map);
+		List<RentcarDTO> canResCarList = null;
+		for(int i=0;i<canResCarIdList.size();i++){
+			int id = canResCarIdList.get(i);
+			RentcarDTO dto = sqlSession.selectOne("getRentcar",id);
+			canResCarList.add(dto);
+		}
+		return canResCarList;
+	}
+	
+	
 }
 

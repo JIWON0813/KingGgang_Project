@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<form method="post" action="main.rentcar">
+<form method="post" action="main.rentcar?mode=date">
 	<input type="datetime-local" name="receiptday"> ~ <input type="datetime-local" name="returnday"> 
 	<input type="submit" value="조회">
 	<br>
@@ -28,8 +28,9 @@
 	LPG|
 	</a>
 	<a href="main.rentcar?mode=fuel&obj=하이브리드">
-	하이브리드
-	</a>		
+	하이브리드|
+	</a>
+	<a href="main.rentcar?mode=lowPrice">낮은가격순</a>		
 <br>
 <br>
 <table>

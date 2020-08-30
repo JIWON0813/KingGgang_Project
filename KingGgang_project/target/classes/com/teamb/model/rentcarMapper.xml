@@ -63,7 +63,7 @@
 <!-- 렌트카 회원페이지 -->
 	
 	<select id="findRentcar" parameterType="Object" resultType="RentcarDTO">
-		select * from rentcar where ${str} = #{obj} and reservation = 0
+		select * from rentcar where ${str} = #{obj}
 	</select>
 	
 	<insert id="insertRentcar_Res">
@@ -82,4 +82,15 @@
 	<select id="findReturnday" resultType="Rentcar_ResDTO" parameterType="int">
 		select * from rentcar_res where r_id=#{r_id} order by returnday
 	</select>
+	
+	<select id="listLowPriceRentcar" resultType="RentcarDTO">
+		select * from rentcar order by price
+	</select>
+	
+	<select id="testRentcar" resultType="int" parameterType="String">
+		select r_id from rentcar_res where returnday not between 
+		to_date(#{receiptday},'yyyy-mm-dd"T"hh24:mi:ss') and to_date(#{returnday},'yyyy-mm-dd"T"hh24:mi:ss')
+	</select>
+	
+	
 </mapper>

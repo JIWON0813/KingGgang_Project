@@ -259,16 +259,21 @@ public class RentcarController {
 	
 	@RequestMapping(value = "main.rentcar")
 	public String rentcarMain(HttpServletRequest req){
-		
 		String mode = req.getParameter("mode");
 		if (mode == null){
-		List<RentcarDTO> list = rentcarMapper.listNotReservationRentcar();
+		List<RentcarDTO> list = rentcarMapper.listRentcar();
 		req.setAttribute("rentcar",list);
 		}else if(mode.equals("lowPrice")){
-			
+			List<RentcarDTO> list = rentcarMapper.listLowPriceRentcar();
+			req.setAttribute("rentcar",list);
 		}else if(mode.equals("type") || mode.equals("fuel")){
 			Object obj = req.getParameter("obj");
 			List<RentcarDTO> list = rentcarMapper.findRentcar(mode,obj);
+			req.setAttribute("rentcar",list);
+		}else if(mode.equals("date")){
+			String receiptday = req.getParameter("receiptday");
+			String returnday = req.getParameter("returnday");
+			List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
 			req.setAttribute("rentcar",list);
 		}
 		return "rentcar/rentcarMain";
