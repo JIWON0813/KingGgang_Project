@@ -1,7 +1,7 @@
 package com.teamb.model;
 
 public class RentcarDTO {
-	private int r_id;
+	private int id;
 	private String company;
 	private String type;
 	private int price;
@@ -17,11 +17,11 @@ public class RentcarDTO {
 	private String renthp3;
 	private String renttel;
 	
-	public int getR_id() {
-		return r_id;
+	public int getId() {
+		return id;
 	}
-	public void setR_id(int r_id) {
-		this.r_id = r_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getCompany() {
 		return company;
@@ -107,6 +107,4 @@ public class RentcarDTO {
 	public void setRenttel(String renttel) {
 		this.renttel = renttel;
 	}
-	
 }
-

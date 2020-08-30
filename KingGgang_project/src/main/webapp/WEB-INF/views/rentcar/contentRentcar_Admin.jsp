@@ -2,20 +2,12 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<style>
-.max-small {
-    width: auto; height: auto;
-    max-width: 100px;
-    max-height: 100px;
-}
-</style>
-
 <div align="center">
 	<table border="1" width="50%">
 		<caption>차량 상세 보기</caption>
 		<tr>
 			<th width="15%" class="m2">차량 번호</th>
-			<td width="35%" align="center">${rentcar.r_id}</td>
+			<td width="35%" align="center">${rentcar.id}</td>
 			<th width="15%" class="m2">차량 분류</th>
 			<td width="35%" align="center">${rentcar.type}</td>
 		</tr>
@@ -28,7 +20,7 @@
 		<tr>
 			<th width="15%" class="m2">사진</th>
 			<td width="40%" align="center" colspan="3">
-				<img src="${upLoadPath}/${rentcar.filename}" style="width:450px;height:400px auto;">
+				<img src="http://localhost:8080/img/${rentcar.filename}" style="width:450px; height:400px auto;">
 			</td>
 		</tr>
 		<tr>
@@ -44,7 +36,7 @@
 					예약 가능
 				</c:if>
 				<c:if test="${rentcar.reservation == 1}">
-					예약중
+					예약중(~${returnday})
 				</c:if>
 			</td>
 			

@@ -4,6 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="mapper">
+<!-- 렌트카 어드민 CRUD -->
+	
 	<select id="listRentcar" resultType="RentcarDTO">
 		select * from rentcar
 	</select>
@@ -15,18 +17,62 @@
 	</insert>
 	
 	<select id="getRentcar" parameterType="int" resultType="RentcarDTO">
-		select * from rentcar where r_id = #{num}
+		select * from rentcar where id = #{num}
 	</select>
 	
 	<update id="updateRentcar" parameterType="RentcarDTO">
 		update rentcar set company=#{company},type=#{type},price=#{price},name=#{name},filename=#{filename},
 		filesize=#{filesize},contents=#{contents},
 		renthp1=#{renthp1},renthp2=#{renthp2},
-		renthp3=#{renthp3},renttel=#{renttel} where r_id=#{r_id}
+		renthp3=#{renthp3},renttel=#{renttel} where id=#{id}
 	</update>
 	
 	<delete id="deleteRentcar" parameterType="int">
-		delete from rentcar where r_id = #{r_id}
+		delete from rentcar where id = #{id}
 	</delete>
-</mapper>
+	
+<!-- 보험 어드민-->
+	
+	<insert id="insertInsu" parameterType="InsuDTO">
+		insert into rentcar_insu values(rentcar_insu_num.nextval,#{name},#{price},#{company})
+	</insert>
+	
+	<select id="listInsu" resultType="InsuDTO">
+		select * from rentcar_insu
+	</select>
+	
+	<delete id="deleteInsu" parameterType="int">
+		delete from rentcar_insu where id = #{id}
+	</delete>
+	
+	<update id="updateInsu" parameterType="InsuDTO">
+		update rentcar_insu set name=#{name},price=#{price},company=#{company} where id=#{id} 
+	</update>
+	
+	<select id="getInsu" parameterType="int" resultType="InsuDTO">
+		select * from rentcar_insu where id = #{id}
+	</select>
 
+<!-- 렌트카 회원페이지 -->
+	
+	<select id="findRentcar" parameterType="Object" resultType="RentcarDTO">
+		select * from rentcar where ${str} = #{obj} and reservation = 0
+	</select>
+	
+	<insert id="insertRentcar_Res">
+		insert into rentcar_res values(rentcar_res_num.nextval,#{member_id},#{r_id},#{insu_id},sysdate,
+		to_date(#{receiptday},'yyyy-mm-dd"T"hh24:mi:ss'),to_date(#{returnday},'yyyy-mm-dd"T"hh24:mi:ss'),#{price})
+	</insert>
+	
+	<update id="updateRentcar_Reservation" parameterType="int">
+		update rentcar set reservation=1 where id = #{id}
+	</update>
+	
+	<select id="listNotReservationRentcar" resultType="RentcarDTO">
+		select * from rentcar where reservation = 0
+	</select>
+	
+	<select id="findReturnday" resultType="Rentcar_ResDTO" parameterType="int">
+		select * from rentcar_res where r_id=#{r_id} order by returnday
+	</select>
+</mapper>

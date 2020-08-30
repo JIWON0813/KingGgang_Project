@@ -3,7 +3,7 @@
 	<script type="text/javascript">
 		function check(){
 			if (f.name.value==""){
-				alert("차량 이름을 입력  해 주세요!!")
+				alert("차량 이름을 입력 해 주세요!!")
 				f.id.focus()
 				return
 			}
