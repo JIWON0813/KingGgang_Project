@@ -1,4 +1,4 @@
-package com.teamb.service;
+/*package com.teamb.service;
 
 import java.util.List;
 
@@ -6,15 +6,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamb.model.B4_boardDTO;
+import com.teamb.model.CommboardDTO;
 @Service
-public class B4_boardMapper implements boardMapper {
+public class CommboardMapper implements boardMapper {
 	
 	@Autowired
 	private SqlSession sqlSession;
 
 	@Override
-	public B4_boardDTO getBoard(int boardNum) {
+	public CommboardDTO getBoard(int boardNum) {
 		return sqlSession.selectOne("getBoard",boardNum);    
 	}
 	
@@ -61,13 +61,13 @@ public class B4_boardMapper implements boardMapper {
 	}
 
 	@Override
-	public int insertBoard(B4_boardDTO dto) {
+	public int insertBoard(CommboardDTO dto) {
 		int res = sqlSession.insert("insertBoard", dto);
 		return res;
 	}
 	
 	@Override
-	public int writeBoard(B4_boardDTO dto) {
+	public int writeBoard(CommboardDTO dto) {
 		return sqlSession.insert("writeBoard",dto);
 	}
 
@@ -79,16 +79,16 @@ public class B4_boardMapper implements boardMapper {
 	}
 
 	@Override
-	public int updateBoard(B4_boardDTO dto) {
+	public int updateBoard(CommboardDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public List<B4_boardDTO> listBoard(int memberNum) {
+	public List<CommboardDTO> listBoard(int memberNum) {
 		return sqlSession.selectList("listBoard",memberNum);
 	}
 	
-	public List<B4_boardDTO> allListBoard() {
+	public List<CommboardDTO> allListBoard() {
 		return sqlSession.selectList("allListBoard");
 
 	}
@@ -99,4 +99,4 @@ public class B4_boardMapper implements boardMapper {
 		return 0;
 	}
 
-}
+}*/

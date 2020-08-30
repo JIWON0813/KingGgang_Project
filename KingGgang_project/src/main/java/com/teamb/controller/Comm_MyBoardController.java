@@ -2,20 +2,14 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,224 +19,186 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.teamb.model.B4_boardDTO;
-import com.teamb.model.B4_memberDTO;
-import com.teamb.service.B4_boardMapper;
+import com.teamb.model.CommboardDTO;
+import com.teamb.model.MemberDTO;
+import com.teamb.service.CommboardMapper;
+
+
+
+ 이      름 : CommMyBoardController
+개  발   자 : 최인아, 이여진
+설      명 : 커뮤니트 마이게시판 컨트롤러
+
 
 @Controller
 public class Comm_MyBoardController {
-	private static final Logger logger = LoggerFactory.getLogger(Comm_MyBoardController.class);
-	
-	@Autowired
-	private B4_boardMapper boardMapper;
+   @Autowired
+   private CommboardMapper boardMapper;
 
-	@Resource(name="upLoadPath")
-	private String upLoadPath;
-	
-	@RequestMapping(value ={"/"}, method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "index";
-		
-	}
-	
-	   @RequestMapping("/index.do")
-	   public String index(HttpServletRequest req,HttpSession session) {
-	      return "index";
-	   }
+   @Resource(name = "upLoadPath")
+   private String upLoadPath;
 
-	
-	// �ξƾ�
-	
-	@RequestMapping(value = "/B4_writeForm.do", method = RequestMethod.GET)
-	public String writeForm(HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		String mbId = (String)session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null) isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-		
-		String msg = null, url = null;
-		if(mbId == null){
-			msg="�α��� �� �̿� �����մϴ�.";
-			url="login.do";
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";
-	}
-		return "board/B4_writeForm";
-	}
-	
-	
-	@RequestMapping(value = "/writePro.do", method = RequestMethod.POST)
-    public String writePro(HttpServletRequest req, 
-          @ModelAttribute B4_boardDTO dto, BindingResult result) {
-    
-    if (result.hasErrors()){
-          dto.setBoardNum(0);
-          dto.setRe_step(0);
-          dto.setRe_level(0);
-          dto.setRe_group(0);
-       }
-       
-       HttpSession session = req.getSession();
-       int memberNum = (Integer)session.getAttribute("memberNum");
-       B4_memberDTO member = (B4_memberDTO)session.getAttribute("member");
-       
-       String file_name = "";
-       int file_size = 0;
-       MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
-       MultipartFile file =mr.getFile("file_name");
-       File target = new File(upLoadPath, file.getOriginalFilename());
-       if(file.getSize()>0) {
-          try{
-          file.transferTo(target);
-          }catch(IOException e){}
-          file_name = file.getOriginalFilename();
-          file_size = (int)file.getSize();
-       }
-       dto.setFile_name(file_name);
-       dto.setFile_size(file_size);
-       dto.setMemberNum(memberNum);
-       req.setAttribute("profile_name",member.getProfile_name());
-      req.setAttribute("name",member.getName());
-       
-       int res = boardMapper.writeBoard(dto);
+   @RequestMapping(value = "/comm_writeForm.do", method = RequestMethod.GET)
+   public String writeForm(HttpServletRequest req) {
+      HttpSession session = req.getSession();
+      MemberDTO mbId = (MemberDTO) session.getAttribute("login");
+      boolean isLogin = false;
+      if (mbId != null)
+         isLogin = true;
+      req.setAttribute("isLogin", isLogin);
+
+      String msg = null, url = null;
+      if (mbId == null) {
+         msg = "로그인을 해주세요.";
+         url = "login.log";
+         req.setAttribute("msg", msg);
+         req.setAttribute("url", url);
+         return "message";
+      }
+      return "comm/board/B4_writeForm";
+   }
+
+   @RequestMapping(value = "/comm_writePro.do", method = RequestMethod.POST)
+   public String writePro(HttpServletRequest req, @ModelAttribute CommboardDTO dto, BindingResult result) {
+
+      if (result.hasErrors()) {
+         dto.setBoardNum(0);
+         dto.setRe_step(0);
+         dto.setRe_level(0);
+         dto.setRe_group(0);
+      }
+
+      HttpSession session = req.getSession();
       
-       String msg = null, url = null;
-       if(res>0){
+      MemberDTO member = (MemberDTO)session.getAttribute("login");
 
-          msg="�Խù��� ��ϵǾ����ϴ�.";
-          
-          url="B4_myPage.do";
-       }else{
+      String file_name = "";
+      int file_size = 0;
+      MultipartHttpServletRequest mr = (MultipartHttpServletRequest) req;
+      MultipartFile file = mr.getFile("file_name");
+      File target = new File(upLoadPath, file.getOriginalFilename());
+      if (file.getSize() > 0) {
+         try {
+            file.transferTo(target);
+         } catch (IOException e) {
+         }
+         file_name = file.getOriginalFilename();
+         file_size = (int) file.getSize();
+      }
+      dto.setId(member.getId());
+      dto.setFile_name(file_name);
+      dto.setFile_size(file_size);
+      req.setAttribute("profile_name", member.getProfile_name());
+      req.setAttribute("name", member.getName());
 
-          msg="�Խù� ����� �����Ͽ����ϴ�.";
+      int res = boardMapper.writeBoard(dto);
 
-          url="B4_writeForm.do";
-       }
-       req.setAttribute("msg", msg);
-       req.setAttribute("url", url);
-       return "message";
-    }
-	
-	
-	@RequestMapping("/B4_myPage.do")
-	public String myPage(HttpServletRequest req,HttpSession session) {
-		HttpSession session = req.getSession();
-		String mbId = (String)session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null) isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-		
-		String msg = null, url = null;
-		if(mbId == null){
-			msg="�α��� �� �̿� �����մϴ�.";
-			url="login.do";
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";
-	}
+      String msg = null, url = null;
+      if (res > 0) {
 
-		B4_memberDTO member = (B4_memberDTO)session.getAttribute("member");
-		
-		int memberNum = (Integer)session.getAttribute("memberNum");
-		
-		List<B4_boardDTO> list = boardMapper.listBoard(memberNum);
-		
-		req.setAttribute("boardList",list);
-		req.setAttribute("profile_name",member.getProfile_name());
-		//System.out.println(member.getProfile_name());
-		req.setAttribute("name",member.getName());
-		
-		
-		return "board/B4_myPage";
-	}
-	
-	@RequestMapping(value = "/B4_content.do", method = RequestMethod.GET)
-	public String content(HttpServletRequest req, @RequestParam int boardNum){
-		
-		B4_boardDTO dto = boardMapper.getBoard(boardNum);
-		req.setAttribute("getBoard",dto);
-		
-		HttpSession session = req.getSession();
-		String mbId = (String)session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null) isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-		
-		return "board/B4_content";
-	}
-			
-		
-	@RequestMapping("/B4_bookMark.do")
-	public String bookmark(HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		String mbId = (String)session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null) isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-			
-		String msg = null, url = null;
-			if(mbId == null){
-				msg="�α��� �� �̿� �����մϴ�.";
-				url="login.do";
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		}
-			
-			return "board/B4_bookMark";
-		}
-		
-	@RequestMapping(value="/B4_updateForm.do", method=RequestMethod.GET)
-	public ModelAndView updateForm(@RequestParam int boardNum){
-		B4_boardDTO dto = boardMapper.getBoard(boardNum);
-		ModelAndView mav = new ModelAndView("updateForm", "getBoard", dto);
-		return mav;
-	}  
-	
-	@RequestMapping(value="/updatePro.do", method=RequestMethod.POST)
-	public String updatePro(HttpServletRequest req, HttpSession session, @ModelAttribute B4_boardDTO dto, BindingResult result){
-		if(result.hasErrors()) {
-			dto.setBoardNum(0);
-		}
-		dto = (B4_boardDTO)session.getAttribute("getBoard");
-		int res = boardMapper.updateBoard(dto);
-		String msg = null, url = null;
-		if (res>0){
-			msg = "�Խñۼ�������!!";
-			url = "board/B4_myPage.do";
-		}
-		
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		
-		return "messsage";
-	}	
-	
-	@RequestMapping(value = "/deletePro.do")
-	public ModelAndView deletePro(@RequestParam int boardNum) {
-		int res = boardMapper.deleteBoard(boardNum);
-		String msg = null, url = null;
-		if (res>0){
-			msg = "����� ���� �����Ǿ����ϴ�.";
-			url = "board/B4_myPage.do";
-		}
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.addObject("url", url);
-		mav.setViewName("message");
-		return mav;
-	}
-}
+         msg = "등록 완료.";
 
-*/
+         url = "comm_myPage.do";
+      } else {
+
+         msg = "등록 실패 ";
+
+         url = "comm_writeForm.do";
+      }
+      req.setAttribute("msg", msg);
+      req.setAttribute("url", url);
+      return "message";
+   }
+
+   @RequestMapping("/comm_myPage.do")
+   public String myPage(HttpServletRequest req, HttpSession session) {
+
+      MemberDTO member = (MemberDTO) session.getAttribute("login");
+      String id = member.getId();
+      List<CommboardDTO> list = boardMapper.listBoard(id);
+
+      req.setAttribute("boardList", list);
+      req.setAttribute("name", member.getName());
+
+      return "comm/board/B4_myPage";
+   }
+
+   @RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
+   public String content(HttpServletRequest req, @RequestParam int boardNum) {
+
+      CommboardDTO dto = boardMapper.getBoard(boardNum);
+      req.setAttribute("getBoard", dto);
+
+      HttpSession session = req.getSession();
+      String mbId = (String) session.getAttribute("mbId");
+      boolean isLogin = false;
+      if (mbId != null)
+         isLogin = true;
+      req.setAttribute("isLogin", isLogin);
+
+      return "board/B4_content";
+   }
+
+   @RequestMapping("/comm_bookMark.do")
+   public String bookmark(HttpServletRequest req) {
+      HttpSession session = req.getSession();
+      String mbId = (String) session.getAttribute("mbId");
+      boolean isLogin = false;
+      if (mbId != null)
+         isLogin = true;
+      req.setAttribute("isLogin", isLogin);
+
+      String msg = null, url = null;
+      if (mbId == null) {
+         msg = " α        ̿       մϴ .";
+         url = "login.do";
+         req.setAttribute("msg", msg);
+         req.setAttribute("url", url);
+         return "message";
+      }
+
+      return "board/B4_bookMark";
+   }
+
+   @RequestMapping(value = "/comm_updateForm.do", method = RequestMethod.GET)
+   public ModelAndView updateForm(@RequestParam int boardNum) {
+      CommboardDTO dto = boardMapper.getBoard(boardNum);
+      ModelAndView mav = new ModelAndView("updateForm", "getBoard", dto);
+      return mav;
+   }
+
+   @RequestMapping(value = "/comm_updatePro.do", method = RequestMethod.POST)
+   public String updatePro(HttpServletRequest req, HttpSession session, @ModelAttribute CommboardDTO dto,
+         BindingResult result) {
+      if (result.hasErrors()) {
+         dto.setBoardNum(0);
+      }
+      dto = (CommboardDTO) session.getAttribute("getBoard");
+      int res = boardMapper.updateBoard(dto);
+      String msg = null, url = null;
+      if (res > 0) {
+         msg = " Խñۼ       !!";
+         url = "board/B4_myPage.do";
+      }
+
+      req.setAttribute("msg", msg);
+      req.setAttribute("url", url);
+
+      return "messsage";
+   }
+
+   @RequestMapping(value = "/comm_deletePro.do")
+   public ModelAndView deletePro(@RequestParam int boardNum) {
+      int res = boardMapper.deleteBoard(boardNum);
+      String msg = null, url = null;
+      if (res > 0) {
+         msg = "                Ǿ    ϴ .";
+         url = "board/B4_myPage.do";
+      }
+      ModelAndView mav = new ModelAndView();
+      mav.addObject("msg", msg);
+      mav.addObject("url", url);
+      mav.setViewName("message");
+      return mav;
+   }
+}*/
