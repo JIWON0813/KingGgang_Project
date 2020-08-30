@@ -42,7 +42,9 @@
 			</div>
 		</div>
 	</div>
-	<a href="#two" class="goto-next scrolly">Next</a> </section>
+	<div>
+	<a href="">DM</a>
+	</div>
 	<section id="four" class="wrapper style1 special fade-up">
 <div class="box alt">
 		<div class="row gtr-uniform">
@@ -54,7 +56,7 @@
 			</c:if>
 			<c:forEach var="dto" items="${boardList}">		
 				<section class="col-4 col-6-medium col-12-xsmall">
-			<a href="B4_content.do?boardNum=${dto.boardNum}"><img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300"></a>
+			<a href=""><img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300"></a>
 			</section>
 			</c:forEach>
 		</div>

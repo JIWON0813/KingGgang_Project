@@ -2,7 +2,7 @@ package com.teamb.model;
 
 public class CommboardDTO {
 
-	private int memberNum; //foreign key
+	private String id; //foreign key
 	private int boardNum; //primary key
 	private String file_name;
 	private int file_size;
@@ -17,13 +17,12 @@ public class CommboardDTO {
 	private int warnCount;
 	private String reply;
 
-
-	public int getMemberNum() {
-		return memberNum;
+	public String getId() {
+		return id;
 	}
 
-	public void setMemberNum(int memberNum) {
-		this.memberNum = memberNum;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getBoardNum() {

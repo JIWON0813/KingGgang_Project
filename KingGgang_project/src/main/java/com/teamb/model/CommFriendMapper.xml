@@ -5,22 +5,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.ezen.b4.book.model">
     
-    <select id="listFriend" resultType="b4_friendDTO">
-		select * from B4_friend
+    <select id="listFriend" resultType="CommFriendDTO">
+		select * from comm_friend
 	</select>
 	
-    <insert id="insertFriend" parameterType="b4_friendDTO">
-     insert into B4_friend values
+    <insert id="insertFriend" parameterType="CommFriendDTO">
+     insert into comm_friend values
      (B4_friend_num.nextval,#{memberNum},#{f_profile_name},#{f_profile_size},
      #{f_name},#{f_id},#{f_email})
     </insert>
   
-  	<select id="getFriend" parameterType="int" resultType="b4_friendDTO">
-		select * from B4_friend where friendNum = #{friendNum}
+  	<select id="getFriend" parameterType="int" resultType="CommFriendDTO">
+		select * from comm_friend where friendNum = #{friendNum}
 	</select>
   
 	<delete id="deleteFriend" parameterType="int">
-		delete from B4_friend where friendNum = #{friendNum}
+		delete from comm_friend where friendNum = #{friendNum}
 	</delete>  
     
 </mapper>

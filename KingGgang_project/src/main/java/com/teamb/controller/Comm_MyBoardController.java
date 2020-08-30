@@ -1,4 +1,4 @@
-/*package com.teamb.controller;
+package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,9 +25,9 @@ import com.teamb.service.CommboardMapper;
 
 
 
- 이      름 : CommMyBoardController
+/* 이      름 : CommMyBoardController
 개  발   자 : 최인아, 이여진
-설      명 : 커뮤니트 마이게시판 컨트롤러
+설      명 : 커뮤니트 마이게시판 컨트롤러*/
 
 
 @Controller
@@ -88,7 +88,7 @@ public class Comm_MyBoardController {
       dto.setId(member.getId());
       dto.setFile_name(file_name);
       dto.setFile_size(file_size);
-      req.setAttribute("profile_name", member.getProfile_name());
+    //  req.setAttribute("profile_name", member.getProfile_name());
       req.setAttribute("name", member.getName());
 
       int res = boardMapper.writeBoard(dto);
@@ -201,4 +201,4 @@ public class Comm_MyBoardController {
       mav.setViewName("message");
       return mav;
    }
-}*/
+}

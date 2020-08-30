@@ -1,4 +1,4 @@
-/*package com.teamb.service;
+package com.teamb.service;
 
 import java.util.List;
 
@@ -8,25 +8,22 @@ import org.springframework.stereotype.Service;
 
 import com.teamb.model.CommboardDTO;
 @Service
-public class CommboardMapper implements boardMapper {
+public class CommboardMapper {
 	
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
 	public CommboardDTO getBoard(int boardNum) {
 		return sqlSession.selectOne("getBoard",boardNum);    
 	}
 	
 
-	@Override
 	public void plusReadcount(int num) {
 		sqlSession.update("plusReadcount", num);
 		sqlSession.commit();
 		return;
 	}
 
-	@Override
 	public void likeCount(int bNum,int mNum) {
 		java.util.Map<String,Integer> map = new java.util.Hashtable<String,Integer>();
 		map.put("bNum", bNum);
@@ -51,7 +48,6 @@ public class CommboardMapper implements boardMapper {
 	}
 
 
-	@Override
 	public void warnCount(int bNum, int mNum) {
 		
 	}
@@ -60,32 +56,28 @@ public class CommboardMapper implements boardMapper {
 		return true;
 	}
 
-	@Override
 	public int insertBoard(CommboardDTO dto) {
 		int res = sqlSession.insert("insertBoard", dto);
 		return res;
 	}
 	
-	@Override
 	public int writeBoard(CommboardDTO dto) {
 		return sqlSession.insert("writeBoard",dto);
 	}
 
-	@Override
 	public int deleteBoard(int boardNum) {	
 
 		int res = sqlSession.insert("deleteBoard",boardNum);
 		return res;
 	}
 
-	@Override
 	public int updateBoard(CommboardDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public List<CommboardDTO> listBoard(int memberNum) {
-		return sqlSession.selectList("listBoard",memberNum);
+	public List<CommboardDTO> listBoard(String id) {
+		return sqlSession.selectList("listBoard",id);
 	}
 	
 	public List<CommboardDTO> allListBoard() {
@@ -93,10 +85,9 @@ public class CommboardMapper implements boardMapper {
 
 	}
 
-	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-}*/
+}
