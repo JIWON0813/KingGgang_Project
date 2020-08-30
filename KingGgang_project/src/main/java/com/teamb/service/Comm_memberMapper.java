@@ -1,4 +1,5 @@
-// 삭제 예정
+/*package com.teamb.service;
+// �궘�젣 �삁�젙
 
 package com.teamb.service;
 
@@ -97,3 +98,4 @@ public class B4_memberMapper {
 	
 
 }
+*/

@@ -1,5 +1,5 @@
-// 삭제 또는 변경  예정
-/*package com.teamb.controller;
+/*// �궘�젣 �삉�뒗 蹂�寃�  �삁�젙
+package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,15 +26,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.teamb.model.B4_memberDTO;
-import com.teamb.service.B4_memberMapper;
+import com.teamb.model.Comm_memberDTO;
+import com.teamb.service.Comm_memberMapper;
 
 @Controller
 public class Comm_LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(Comm_LoginController.class);
 	
 	@Autowired
-	private B4_memberMapper memberMapper; 
+	private Comm_member memberMapper; 
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
 	
@@ -70,7 +70,7 @@ public class Comm_LoginController {
 	   }
 
 	@RequestMapping(value = "/memberAll.do")
-	public String listMember(HttpServletRequest req,B4_memberDTO dto){
+	public String listMember(HttpServletRequest req,Comm_member dto){
 		
 		HttpSession session = req.getSession();
 		String mbId = (String)session.getAttribute("mbId");
@@ -80,7 +80,7 @@ public class Comm_LoginController {
 			
 		String msg = null, url = null;
 			if(mbId == null){
-				msg="�α��� �� �̿� �����մϴ�.";
+				msg="占싸깍옙占쏙옙 占쏙옙 占싱울옙 占쏙옙占쏙옙占쌌니댐옙.";
 				url="login.do";
 			req.setAttribute("msg", msg);
 			req.setAttribute("url", url);
@@ -135,10 +135,10 @@ public class Comm_LoginController {
 		
 		String msg = null, url = null;
 		if(res>0){
-			msg="ȸ�����Լ���! �α��� �������� �̵��մϴ�.";
+			msg="회占쏙옙占쏙옙占쌉쇽옙占쏙옙! 占싸깍옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占싱듸옙占쌌니댐옙.";
 			url="login.do";
 		}else{
-			msg="ȸ�����Խ���! �������� �̵��մϴ�.";
+			msg="회占쏙옙占쏙옙占쌉쏙옙占쏙옙! 占쏙옙占쏙옙占쏙옙占쏙옙 占싱듸옙占쌌니댐옙.";
 			url="login.do";
 		}
 		req.setAttribute("msg", msg);
@@ -163,23 +163,23 @@ public class Comm_LoginController {
 		String msg = null, url = null;
 		if(mode.equals("search_id")){
 			if(memberMapper.searchMember_id(name, email) != null){
-				msg = "���̵�� "+ memberMapper.searchMember_id(name, email) +" �Դϴ�.";
+				msg = "占쏙옙占싱듸옙占� "+ memberMapper.searchMember_id(name, email) +" 占쌉니댐옙.";
 			}
 			else{
-				msg="��ϵ� ������ �����ϴ�.";
+				msg="占쏙옙溝占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙.";
 			}
 			url="login.do";
 		}else if(mode.equals("pw")){
 			String id = req.getParameter("id");
 			if(memberMapper.searchMember_pw(name, email, id) != null){	
-				msg = "��й�ȣ�� "+ memberMapper.searchMember_pw(name, email, id) +" �Դϴ�.";
+				msg = "占쏙옙橘占싫ｏ옙占� "+ memberMapper.searchMember_pw(name, email, id) +" 占쌉니댐옙.";
 			}
 			else{
-				msg="��ϵ� ������ �����ϴ�.";
+				msg="占쏙옙溝占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙.";
 			}
 			url="login.do";
 		}else{
-			msg ="��ϵ� ������ �����ϴ�.";
+			msg ="占쏙옙溝占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙.";
 			url="login.do";
 		}
 		req.setAttribute("msg", msg);
@@ -220,26 +220,26 @@ public class Comm_LoginController {
 	            session.setAttribute("member",memberMapper.getMember(memberNum));
 
 	            if(dto.getId().equals("admin")) {
-	            msg = "������ ������ �Դϴ�..";
+	            msg = "占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌉니댐옙..";
 	            url = "memberAll.do";
 	            }
 	            else{
-	            msg = "�α����� �Ǿ����ϴ�. �������� �̵��մϴ�.";
+	            msg = "占싸깍옙占쏙옙占쏙옙 占실억옙占쏙옙占싹댐옙. 占쏙옙占쏙옙占쏙옙占쏙옙 占싱듸옙占쌌니댐옙.";
 	            url = "index.do";
 	            }
 	            
 	            break;
 	      
 	      case B4_memberDTO.NOT_ID :
-	         msg = "���� ���̵� �Դϴ�. �ٽ� Ȯ���Ͻð� �Է��� �ּ���!!";
+	         msg = "占쏙옙占쏙옙 占쏙옙占싱듸옙 占쌉니댐옙. 占쌕쏙옙 확占쏙옙占싹시곤옙 占쌉뤄옙占쏙옙 占쌍쇽옙占쏙옙!!";
 	         url = "login.do";
 	         break;
 	      case B4_memberDTO.NOT_PW :
-	         msg = "��й�ȣ�� Ʋ�Ƚ��ϴ�. �ٽ� Ȯ���Ͻð� �Է��� �ּ���!!";
+	         msg = "占쏙옙橘占싫ｏ옙占� 틀占싫쏙옙占싹댐옙. 占쌕쏙옙 확占쏙옙占싹시곤옙 占쌉뤄옙占쏙옙 占쌍쇽옙占쏙옙!!";
 	         url = "login.do";
 	         break;
 	      case B4_memberDTO.ERROR :
-	         msg = "DB���� ���� �߻�!! �����ڿ��� �����ϼ���!!";
+	         msg = "DB占쏙옙占쏙옙 占쏙옙占쏙옙 占쌩삼옙!! 占쏙옙占쏙옙占쌘울옙占쏙옙 占쏙옙占쏙옙占싹쇽옙占쏙옙!!";
 	         url = "index.do";
 	      }
 	      req.setAttribute("msg", msg);
@@ -278,10 +278,10 @@ public class Comm_LoginController {
 		System.out.println(dto.getMemberNum());
 		String msg = null, url = null;
 		if(res>0){
-			msg="ȸ����������! ����������� �̵��մϴ�.";
+			msg="회占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙! 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占� 占싱듸옙占쌌니댐옙.";
 			url="memberAll.do";
 		}else{
-			msg="ȸ����������! ����������� �̵��մϴ�.";
+			msg="회占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙! 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占� 占싱듸옙占쌌니댐옙.";
 			url="memberAll.do";
 		}
 		req.setAttribute("msg", msg);
@@ -294,10 +294,10 @@ public class Comm_LoginController {
 		int res = memberMapper.deleteMember(memberNum);
 		String msg = null, url = null;
 		if(res>0){
-			msg="ȸ����������! ����������� �̵��մϴ�.";
+			msg="회占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙! 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占� 占싱듸옙占쌌니댐옙.";
 			url="memberAll.do";
 		}else{
-			msg="ȸ����������! ����������� �̵��մϴ�.";
+			msg="회占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙! 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占� 占싱듸옙占쌌니댐옙.";
 			url="memberAll.do";
 		}
 		req.setAttribute("msg", msg);

@@ -1,4 +1,5 @@
-// 삭제 또는 변경 예정 
+package com.teamb.model;
+/*// �궘�젣 �삉�뒗 蹂�寃� �삁�젙 
 
 package com.teamb.model;
 
@@ -88,8 +89,8 @@ public class B4_memberDTO {
 		this.birth_d = birrth_d;
 	}
 	public String getAllBirth() {
-		if (birth_y==null) return "������Ͼ���";
-		return birth_y+"��"+birth_m+"��"+birth_d+"��";
+		if (birth_y==null) return "占쏙옙占쏙옙占쏙옙耉占쏙옙占�";
+		return birth_y+"占쏙옙"+birth_m+"占쏙옙"+birth_d+"占쏙옙";
 	}
 	
 	public String getHp1() {
@@ -111,7 +112,7 @@ public class B4_memberDTO {
 		this.hp3 = hp3;
 	}
 	public String getAllHp() {
-		if (hp1==null) return "��ȭ����";
+		if (hp1==null) return "占쏙옙화占쏙옙占쏙옙";
 		return hp1+"-"+hp2+"-"+hp3;
 	}
 	
@@ -128,8 +129,8 @@ public class B4_memberDTO {
 		this.friendCount = friendCount;
 	}
 	
-	public static final int OK = 0;			//�α��� �Ǿ���...
-	public static final int NOT_ID = 1;	//���̵� ����
-	public static final int NOT_PW = 2;//��й�ȣ Ʋ�ȴ�
-	public static final int ERROR = -1;	//SQLException�߻�!!
-}
+	public static final int OK = 0;			//占싸깍옙占쏙옙 占실억옙占쏙옙...
+	public static final int NOT_ID = 1;	//占쏙옙占싱듸옙 占쏙옙占쏙옙
+	public static final int NOT_PW = 2;//占쏙옙橘占싫� 틀占싫댐옙
+	public static final int ERROR = -1;	//SQLException占쌩삼옙!!
+}*/

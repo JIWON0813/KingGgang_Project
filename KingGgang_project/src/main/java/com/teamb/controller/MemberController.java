@@ -31,9 +31,9 @@ import com.teamb.model.MemberDTO;
 import com.teamb.service.MemberMapper;
 
 /*
-이	   름 : MemberController class 
-개  발   자 : 박 준 언
-설	   명 : 회원관리페이지 컨트롤러  
+�씠	   由� : MemberController class 
+媛�  諛�   �옄 : 諛� 以� �뼵
+�꽕	   紐� : �쉶�썝愿�由ы럹�씠吏� 而⑦듃濡ㅻ윭  
 */
 
 @Controller

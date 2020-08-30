@@ -1,4 +1,4 @@
-package com.teamb.model;
+/*package com.teamb.model;
 
 public class B4_bookmarkDTO {
 private	B4_memberDTO memberNum; //foreign key
@@ -18,4 +18,4 @@ public void setBoardNum(CommboardDTO boardNum) {
 }
 
 
-}
+}*/
