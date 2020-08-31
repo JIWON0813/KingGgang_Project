@@ -11,7 +11,7 @@
 	
 	<select id="hotelCateList" parameterType="java.util.Map" resultType="hotelDTO">
 		select * from (select rownum rn, A.* from 
-		(select * from hotel)A)
+		(select * from hotel where category = #{category})A)
 		where rn between #{start} and #{end} and category = #{category}
 	</select>
 	
@@ -25,10 +25,18 @@
 		select count(*) from hotel
 	</select>
 	
+	<select id="getCountCate" parameterType="String" resultType="int">
+		select count(*) from hotel where category = #{category}
+	</select>
+	
+	<select id="getCountSearch" parameterType="String" resultType="int">
+		select count(*) from hotel where name like #{search}
+	</select>
+	
 	<select id="searchHotelList" parameterType="java.util.Map" resultType="hotelDTO">
 		select * from (select rownum rn, A.* from 
-		(select * from hotel)A)
-		where rn between #{start} and #{end} and name = %#{search}%
+		(select * from hotel where name like #{search})A)
+		where rn between #{start} and #{end} and name like #{search}
 	</select>
 	
 	
