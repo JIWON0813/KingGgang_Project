@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import com.teamb.model.MemberDTO;
  
 /*
-이	   름 : MemberMapper class
-개  발   자 : 박 준 언
-설	   명 : 멤버 매퍼  
+�씠	   由� : MemberMapper class
+媛�  諛�   �옄 : 諛� 以� �뼵
+�꽕	   紐� : 硫ㅻ쾭 留ㅽ띁  
 */
 
 @Service
@@ -55,16 +55,16 @@ public class MemberMapper {
 		return res;
 	}
 	
-	public boolean checkPassword(String id, String password) {
+	public boolean checkPasswd(String id, String passwd) {
 		MemberDTO dto = getMember(id);
-		if(dto.getPassword().equals(password)) {
+		if(dto.getPasswd().equals(passwd)) {
 			return true;
 		}
 		return false;
 	}
 	
 	public int updateMember(MemberDTO dto) {
-		boolean isPass = checkPassword(dto.getId(),dto.getPassword());
+		boolean isPass = checkPasswd(dto.getId(),dto.getPasswd());
 		if(isPass) {
 			int res = sqlSession.update("updateMember", dto);
 			return res;
@@ -77,8 +77,22 @@ public class MemberMapper {
 		return res;
 	}
 	
-	public int deleteMember(String id,String password) {
+	public int deleteMember(String id,String passwd) {
 		int res = sqlSession.delete("deleteMember",id);
+		return res;
+	}
+	
+	public int getMemberNum(String id){
+		return sqlSession.selectOne("getMemberNum",id);
+	}
+	
+	public MemberDTO getMember(int memberNum) {
+		MemberDTO dto = sqlSession.selectOne("getMember", memberNum);
+		return dto;
+	}
+	
+	public int comm_updateMember(MemberDTO dto) {
+		int res = sqlSession.update("comm_updateMember", dto);
 		return res;
 	}
 

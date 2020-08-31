@@ -4,9 +4,13 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teamb.model.memberMapper">
 	<insert id="insertMember" parameterType="MemberDTO">
-		insert into member values(#{id},#{name},#{nickname},#{password},
+		<!-- insert into member values(#{id},#{name},#{nickname},#{password},
 		#{email,jdbcType=VARCHAR},0,0,#{hp,jdbcType=VARCHAR},sysdate,
-		#{filename,jdbcType=VARCHAR},#{filesize,jdbcType=INTEGER})
+		#{filename,jdbcType=VARCHAR},#{filesize,jdbcType=INTEGER}) -->
+	insert into member values
+     (member_num.nextval,#{profile_name},#{profile_size},
+     #{name},#{gender},#{id},#{passwd},#{email},
+     #{birth_y},#{birth_m},#{birth_d},#{hp1},#{hp2},#{hp3},#{intro},0,0,sysdate)
 	</insert>
 	<select id="memberList" resultType="memberDTO">
 		select * from member
@@ -17,23 +21,35 @@
  	<select id="viewMember" resultType="memberDTO">
  		select id,nickname,filename from member where id=#{id} and password=#{password}
  	</select>
- 	<select id="getMember" resultType="memberDTO">
- 		select * from member where id=#{id}
+ 	
+ 	<select id="getMember" parameterType="int" resultType="memberDTO">
+ 		select * from member where memberNum = #{memberNum}
  	</select>
  	<select id ="deleteMember"  parameterType="String">
-		delete from member where id = #{id}
+		delete from member where memberNum = #{memberNum}
 	</select>
 	<update id="updateMember" parameterType="MemberDTO">
-		update member set name=#{name}, nickname=#{nickname}, email=#{email,jdbcType=VARCHAR}, point=#{point}, hp=#{hp,jdbcType=VARCHAR}, filename=#{filename,jdbcType=VARCHAR}, filesize=#{filesize,jdbcType=INTEGER} where id = #{id}
+		update member set name=#{name}, nickname=#{nickname}, email=#{email,jdbcType=VARCHAR}, point=#{point}, hp=#{hp,jdbcType=VARCHAR}, filename=#{filename,jdbcType=VARCHAR}, filesize=#{filesize,jdbcType=INTEGER} where memberNum = #{memberNum}
 	</update>
+	
+	<update id="comm_updateMember" parameterType="MemberDTO" >
+		update member set nickname=#{nickname}, 
+		email=#{email} where memberNum=#{memberNum}
+	</update>
+	
 	<select id="checkId" resultType="int">
 		select count(*) from member where id=#{id}
 	</select>
 	<insert id="adminInsertMember" parameterType="MemberDTO">
-		insert into member values(#{id},#{name},#{nickname},#{password},#{email,jdbcType=VARCHAR},#{auth},#{point,jdbcType=INTEGER},#{hp,jdbcType=VARCHAR},sysdate,#{filename,jdbcType=VARCHAR},#{filesize,jdbcType=INTEGER})
+		<!-- insert into member values(#{id},#{name},#{nickname},#{password},#{email,jdbcType=VARCHAR},#{auth},#{point,jdbcType=INTEGER},#{hp,jdbcType=VARCHAR},sysdate,#{filename,jdbcType=VARCHAR},#{filesize,jdbcType=INTEGER}) -->
+	 insert into member values
+     (member_num.nextval,#{profile_name},#{profile_size},
+     #{name},#{gender},#{id},#{passwd},#{email},
+     #{birth_y},#{birth_m},#{birth_d},#{hp1},#{hp2},#{hp3},#{intro},0,0,sysdate)
+	
 	</insert>
 	<update id="adminUpdateMember" parameterType="MemberDTO">
-		update member set name=#{name}, nickname=#{nickname}, email=#{email,jdbcType=VARCHAR}, point=#{point}, hp=#{hp,jdbcType=VARCHAR}, auth=#{auth}, filename=#{filename,jdbcType=VARCHAR}, filesize=#{filesize,jdbcType=INTEGER} where id = #{id}
+		update member set name=#{name}, nickname=#{nickname}, email=#{email,jdbcType=VARCHAR}, point=#{point}, hp=#{hp,jdbcType=VARCHAR}, auth=#{auth}, filename=#{filename,jdbcType=VARCHAR}, filesize=#{filesize,jdbcType=INTEGER} where memberNum = #{memberNum}
 	</update>
 	
 </mapper>

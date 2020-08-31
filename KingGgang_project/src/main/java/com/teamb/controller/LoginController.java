@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.teamb.model.MemberDTO;
 import com.teamb.service.LoginMapper;
+import com.teamb.service.MemberMapper;
 
 /*
-이	   름 : LoginController class
-개  발   자 : 박 준 언
-설	   명 : 로그인 컨트롤러  
+�씠	   由� : LoginController class
+媛�  諛�   �옄 : 諛� 以� �뼵
+�꽕	   紐� : 濡쒓렇�씤 而⑦듃濡ㅻ윭  
 */
 
 @Controller
@@ -24,6 +25,9 @@ public class LoginController {
 
 	@Autowired
 	private LoginMapper loginMapper;
+	
+	@Autowired
+	private MemberMapper memberMapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
@@ -34,32 +38,55 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/loginOk.log")
-	public String loginOk(MemberDTO dto, HttpServletRequest req,HttpServletResponse resp) {
-		HttpSession session = req.getSession();
-		MemberDTO login = loginMapper.login(dto);
-		String msg = null, url = null;
-		if (login == null) {
-			session.setAttribute("login", null);
-			msg = "로그인 실패하였습니다. 아이디와 비밀번호를 확인해 주세요.";
-			url = "login.log";
-		} else {
-			if (login.getFilename() == null) {
-				login.setFilename("default.jpg");
-			}
-			session.setAttribute("login", login);
-			session.setAttribute("upLoadPath", upLoadPath);
-			msg = "로그인 하였습니다";
-			url = "main.mem";
-		}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";
-	}
+	public String loginOk(MemberDTO dto, HttpServletRequest req,HttpSession session) {
+		dto.setId(req.getParameter("id"));
+	    dto.setPasswd(req.getParameter("passwd"));
+	      
+	      int res = loginMapper.loginOk(dto);      
+	      String msg = null, url = null;
+	      switch(res){
+	      case MemberDTO.OK:
+	         session = req.getSession();
+	         session.setAttribute("mbId", dto.getId());
+	         
+	         int memberNum = memberMapper.getMemberNum(dto.getId());
+	            session.setAttribute("memberNum",memberNum);
+	            session.setAttribute("member",memberMapper.getMember(memberNum));
+
+	            if(dto.getId().equals("admin")) {
+	            msg = "관리자만 이용 가능";
+	            url = "main.mem";
+	            }
+	            else{
+	            msg = "회원가입 성공. 메인으로 이동";
+	            url = "main.mem";
+	            }
+	            
+	            break;
+	      
+	      case MemberDTO.NOT_ID :
+	         msg = "ID오류";
+	         url = "main.mem";
+	         break;
+	      case MemberDTO.NOT_PW :
+	         msg = "비밀번호 오류 ";
+	         url = "main.mem";
+	         break;
+	      case MemberDTO.ERROR :
+	         msg = "DB실패!!";
+	         url = "main.mem";
+	      }
+	      req.setAttribute("msg", msg);
+	      req.setAttribute("url", url);
+	      return "message";
+	   }
 
 	@RequestMapping("/logout.log")
 	public String logout(HttpServletRequest req, HttpSession session) {
-		loginMapper.logout(session);
-		String msg = "로그아웃 되었습니다.";
+		session = req.getSession();
+		session.invalidate();
+		
+		String msg = "로그아웃되었습니다.";
 		String url = "main.mem";
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);

@@ -106,12 +106,15 @@
 	   
 	   
 </script>
+
+<section id="four" class="wrapper style1 special fade-up">
+					<div class="container">		
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
-<form name="join" action="insert.mem" enctype="multipart/form-data" method="post">
+<form name="join" method="post" action="comm_member_edit_ok.do" onsubmit="return check()" enctype="multipart/form-data">			
 	    <div class="wrap wd668">
             <div class="container">
                 <div class="form_txtInput">
-                    <h2 class="sub_tit_txt">회원가입</h2>
+                    <h2 class="sub_tit_txt">회원수정</h2>
                     <div class="join_form">
                         <table>
                             <colgroup>
@@ -119,81 +122,34 @@
                                 <col width="auto"/>
                             </colgroup>                           
                             <tbody>
-                                <tr>
-                                    <th><span>아이디</span></th>
-                                    <td><input type="text" name="id" placeholder="ID 를 입력하세요." onkeydown="inputIdCheck()">
-                                	<input type="button" value="중복체크" onclick="idCheck()">
-                                	<input type="hidden" name= "idDuplication" value="idUnCheck"> 
-                                	</td>  
-                                	                             	
-                                </tr>
-                                <tr>
-                                    <th><span>이름</span></th>
-                                    <td><input type="text" name="name" placeholder="이름을 입력하세요."></td>
-                                </tr>
+                            <input type="hidden" name="memberNum" value="${getMember.memberNum}"/>
+                               
                                 <tr>
                                     <th><span>닉네임</span></th>
-                                    <td><input type="text" name="nickname" placeholder="닉네임을 입력하세요."></td>
+                                    <td><input type="text" name="nickname" value="${getMember.nickname}"></td>
                                 </tr>
-                                <tr>
-                                    <th><span>성별</span></th>
-                                    <td><input type="text" name="gender" placeholder="성별을 입력하세요."></td>
-                                </tr>
-                                <tr>
-                                    <th><span>비밀번호</span></th>
-                                    <td><input type="password" name="passwd" placeholder="비밀번호를 입력해주세요."></td>
-                                </tr>
-                                <tr>
-                                    <th><span>비밀번호 확인</span></th>
-                                    <td><input type="password" name="checkpw" placeholder="비밀번호를 확인하세요"></td>
-                                </tr>
-                                <tr>
-                                    <th><span>이메일</span></th>
-                                    <td><input type="text" name="email"></td>
-                                </tr>                    
-                               <tr>
+                           
 					<th><span>생년월일</span></th>
 					<td>
 						<input type="text" name="birth_y" 
-													size="4" maxlength="4"> 년
+													size="4" maxlength="4" value="${getMember.birth_y}"> 년
 						<input type="text" name="birth_m" class="box"
-													size="2" maxlength="2"> 월
+													size="2" maxlength="2" value="${getMember.birth_m}"> 월
 						<input type="text" name="birth_d" class="box"
-													size="2" maxlength="2"> 일
-					</td>
-  				</tr>
-  				<tr>
-					<th><span>연락처</span></th>
-					<td>
-						<input type="text" name="hp1"
-													size="3" maxlength="3"> -
-						<input type="text" name="hp2"
-													size="4" maxlength="4"> -
-						<input type="text" name="hp3"
-													size="4" maxlength="4">
+													size="2" maxlength="2" value="${getMember.birth_d}"> 일
 					</td>
   				</tr>
   					<tr>
 				<th><span>프로필사진</span></th>
-				<td><input type="file" name="profile_name">
+				<td><input type="file" name="profile_name" value="${getMember.profile_name}">
 				</td>
 			</tr>
   				<tr>
 					<th><span>자기소개</span></th>
 					<td>
-						<textarea name="intro" rows="5" cols="60"></textarea>
+						<textarea name="intro" rows="5" cols="60">${getMember.intro}</textarea>
 					</td>
   				</tr>
-                            	<c:if test="${mode==1 }">
-                                <tr>
-                                    <th><span>포인트</span></th>
-                                    <td><input type="text" name="point"></td>
-                                </tr>
-                                <tr>
-                                    <th><span>권한</span></th>
-                                    <td><input type="text" name="auth"></td>
-                                </tr>
-                                </c:if>
                             </tbody>
                         </table>                 
                     </div>                   

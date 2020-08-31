@@ -27,7 +27,7 @@
 									<li><a href="B4_myPage.do">Mypage</a></li>
 									<li><a href="B4_bookMark.do">BookMark</a></li>
 									<li>
-									<a href="member_edit.do?memberNum=${memberNum}">Settings</a>
+									<a href="member_edit.do?id=${id }">Settings</a>
 									</li>
 									
 								</ul>

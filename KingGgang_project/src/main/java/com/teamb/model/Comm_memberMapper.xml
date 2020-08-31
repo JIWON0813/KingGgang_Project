@@ -17,11 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from B4_member where memberNum = #{memberNum}
 	</select> -->
 	
-	<!-- <update id="updateMember" parameterType="B4_memberDTO" >
-		update B4_member set passwd=#{passwd}, 
-		email=#{email}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3},intro=#{intro}
-			where memberNum=#{memberNum}
-	</update> -->
+	<update id="updateMember" parameterType="MemberDTO" >
+		update member set passwd=#{passwd}, 
+		email=#{email}, hp=#{hp}
+			where id=#{id}
+	</update>
   
 	<!-- <delete id="deleteMember" parameterType="int">
 		delete from B4_member where memberNum = #{memberNum}

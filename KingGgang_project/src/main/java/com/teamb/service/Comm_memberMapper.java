@@ -1,6 +1,3 @@
-/*package com.teamb.service;
-// �궘�젣 �삁�젙
-
 package com.teamb.service;
 
 import java.util.List;
@@ -9,16 +6,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamb.model.B4_memberDTO;
+import com.teamb.model.MemberDTO;
+
 
 @Service
-public class B4_memberMapper {
+public class Comm_memberMapper {
 
 	@Autowired
 	private SqlSession sqlSession;
 	
 	
-	public int getMemberNum(String id){
+/*	public int getMemberNum(String id){
 		return sqlSession.selectOne("getMemberNum",id);
 	}
 	
@@ -84,18 +82,17 @@ public class B4_memberMapper {
 	public B4_memberDTO getMember(int memberNum) {
 		B4_memberDTO dto = sqlSession.selectOne("getMember", memberNum);
 		return dto;
-	}
+	}*/
 	
-	public int updateMember(B4_memberDTO dto) {
+	/*public int updateMember(MemberDTO dto) {
 		int res = sqlSession.update("updateMember", dto);
 		return res;
-	}
+	}*/
 	
-	public int deleteMember(int memberNum) {
+	/*public int deleteMember(int memberNum) {
 		int res = sqlSession.insert("deleteMember", memberNum);
 		return res;
-	}
+	}*/
 	
 
 }
-*/

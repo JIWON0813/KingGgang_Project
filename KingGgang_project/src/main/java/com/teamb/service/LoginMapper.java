@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.teamb.model.MemberDTO;
 /*
-이	   름 : LoginMapper class
-개  발   자 : 박 준 언
-설	   명 : 로그인 매퍼  클래스  
+�씠	   由� : LoginMapper class
+媛�  諛�   �옄 : 諛� 以� �뼵
+�꽕	   紐� : 濡쒓렇�씤 留ㅽ띁  �겢�옒�뒪  
 */
 @Service
 public class LoginMapper {
@@ -18,8 +18,21 @@ public class LoginMapper {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public MemberDTO login(MemberDTO dto){
+	/*public MemberDTO login(MemberDTO dto){
 		return sqlSession.selectOne("login",dto);		
+	}*/
+	
+	public int loginOk(MemberDTO dto){
+		String dbPass = sqlSession.selectOne("login", dto);
+		if (dbPass != null) {
+			if (dbPass.trim().equals(dto.getPasswd())) {
+				return dto.OK;
+			} else {
+				return dto.NOT_PW;
+			}
+		} else {
+			return dto.NOT_ID;
+		}
 	}
 	
 	public MemberDTO viewMember(MemberDTO dto){

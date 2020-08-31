@@ -15,9 +15,9 @@ import com.teamb.service.CommboardMapper;
 
 
 /*
- 이	   름 : CommNewsfeedController
-개  발   자 : 이여진
-설	   명 : 커뮤니티 뉴스피드 컨트롤러
+ �씠	   由� : CommNewsfeedController
+媛�  諛�   �옄 : �씠�뿬吏�
+�꽕	   紐� : 而ㅻ�ㅻ땲�떚 �돱�뒪�뵾�뱶 而⑦듃濡ㅻ윭
 */
 
 
@@ -32,7 +32,20 @@ public class CommNewsfeedController {
 
 	@RequestMapping("/commhome.comm")
 	public String index(HttpServletRequest req, HttpSession session) {
-		session.setAttribute("id","t");
+		//session.setAttribute("id","t");
+	  
+		String mbId = (String)session.getAttribute("mbId");
+	      boolean isLogin = false;
+	      int memberNum = (Integer)session.getAttribute("memberNum");
+	      if(mbId != null){
+	         isLogin = true;
+	         session.setAttribute("memberNum", memberNum);
+	      }
+	      
+	      session.setAttribute("isLogin", isLogin);
+	      req.setAttribute("isLogin",isLogin);
+	      req.setAttribute("memberNum",memberNum);
+	
 		return "comm/index";
 	}
 

@@ -43,13 +43,13 @@ public class Comm_FriendController {
 			return "message";
 		}*/
 
-		MemberDTO member = (MemberDTO)session.getAttribute("login");
+		//MemberDTO member = (MemberDTO)session.getAttribute("login");
 		//int memberNum = (Integer) session.getAttribute("memberNum");
 
 		//List<Comm_FriendDTO> list = friendMapper.listFriend(memberNum);
 		//req.setAttribute("friendList", list);
-		req.setAttribute("profile_name", member.getFilename());
-		req.setAttribute("name", member.getName());
+		//req.setAttribute("profile_name", member.getProfile_name());
+		//req.setAttribute("name", member.getName());
 
 		return "friend/friendAll";
 	}

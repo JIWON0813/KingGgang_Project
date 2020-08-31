@@ -31,9 +31,9 @@
 			login.id.focus();
 			return false;
 		}
-		if(login.password.value==""){
+		if(login.passwd.value==""){
 			alert("비밀번호를 입력해주세요")
-			login.password.focus();
+			login.passwd.focus();
 			return false;
 		}
 		if(document.login.useCookie.checked == true){
@@ -63,13 +63,13 @@
                                 </tr>
                                 <tr>
                                     <th>비밀번호</th>
-                                    <td><input type="password" name="password" placeholder="비밀번호를 입력해주세요."></td>
+                                    <td><input type="password" name="passwd" placeholder="비밀번호를 입력해주세요."></td>
                                 </tr>
                             </tbody>                 
                         </table>           
                     </div>
                     <div class="btn_wrap">
-                        <input type="button" value="로그인" onclick="check()">
+                        <input type="button" value="로그인!!!" onclick="check()">
                     </div>
                 </div> 
             </div>

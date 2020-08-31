@@ -3,7 +3,21 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teamb.model.loginMapper">
-	<select id="login" resultType="memberDTO">
- 		select * from member where id= #{id} and password= #{password}
+	<!-- <select id="login" resultType="memberDTO"> -->
+ 	<select id="login" parameterType="memberDTO" resultType="String">
+ 		<!-- select * from member where id= #{id} and password= #{password} -->
+ 		select passwd from member where id=#{id}
  	</select>
+ 	
+ 	<!-- <select id = "loginOk" parameterType="b4_memberDTO"  resultType="String">
+        select passwd from B4_member where id=#{id}
+    </select>   -->  
+    
+    <select id="getMemberNum" parameterType="MemberDTO" resultType="int">
+    	select memberNum from member where id=#{id}
+    </select>
+
+	<select id="memberNum" parameterType="memberDTO" resultType="String">
+		select memberNum from member where id=#{id}
+	</select>
 </mapper>

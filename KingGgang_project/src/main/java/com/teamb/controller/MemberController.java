@@ -46,40 +46,56 @@ public class MemberController {
 	private String upLoadPath;
 	
 	
-	
-	
 	@RequestMapping(value = "/main.mem")
-	public String main(){
+	public String main(HttpServletRequest req,HttpSession session){
+		
+		 String mbId = (String)session.getAttribute("mbId");
+	      boolean isLogin = false;
+	      int memberNum = (Integer)session.getAttribute("memberNum");
+	      if(mbId != null){
+	         isLogin = true;
+	         session.setAttribute("memberNum", memberNum);
+	      }
+	      
+	      session.setAttribute("isLogin", isLogin);
+	      req.setAttribute("isLogin",isLogin);
+	      req.setAttribute("memberNum",memberNum);
+	      
 		return "admin/member/memberMain";
 	}
 	
 	@RequestMapping(value = "/insertMember.mem")
-	public String insertMember(HttpServletRequest req) {
+	public String insertMember(HttpServletRequest req,MemberDTO dto) {
+		
+		/*
 		String mode = req.getParameter("mode");
 		List<MemberDTO> list = memberMapper.memberList();
 		req.setAttribute("memberList", list);
-		req.setAttribute("mode", mode);
+		req.setAttribute("mode", mode);*/
 		return "admin/member/insertMember";
 	}
 	
 	@RequestMapping(value = "/insert.mem")
 	public String insertMemberPro(HttpServletRequest req, @ModelAttribute MemberDTO dto,BindingResult result) throws Exception, IOException{
-		UUID uuid = UUID.randomUUID();
-		String filename="";
-		int filesize=0;
+		//UUID uuid = UUID.randomUUID();
+		HttpSession session = req.getSession();
+		session.setAttribute("memberNum", dto.getMemberNum());
+		String profile_name="";
+		int profile_size=0;
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
-		MultipartFile file = mr.getFile("filename");
-		File target = new File(upLoadPath,uuid+"_"+file.getOriginalFilename());
+		MultipartFile file = mr.getFile("profile_name");
+		File target = new File(upLoadPath, file.getOriginalFilename());
 		if(file.getSize()>0){
-			try{
+			try {
 				file.transferTo(target);
-				filesize = (int)file.getSize();
-				filename = uuid+"_"+file.getOriginalFilename();
-				dto.setFilename(filename);
-				dto.setFilesize(filesize);
-			}catch(IOException e){
-				e.printStackTrace();
-			}
+			} catch (IOException e) {}
+			
+			profile_name = file.getOriginalFilename();
+			profile_size=(int)file.getSize();
+			
+			
+			dto.setProfile_name(profile_name);
+			dto.setProfile_size(profile_size);
 		}
 		int res = memberMapper.adminInsertMember(dto);
 		String msg=null,url=null;
@@ -116,7 +132,7 @@ public class MemberController {
 		return "admin/member/memberContent";
 	}
 	
-	@RequestMapping("/deletePro.mem")
+	/*@RequestMapping("/deletePro.mem")
 	public String deletePro(HttpServletRequest req) throws Exception{		
 		String id = req.getParameter("id");
 		MemberDTO dto = memberMapper.getMember(id);
@@ -146,7 +162,7 @@ public class MemberController {
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
 		return "message";
-	}
+	}*/
 	
 	@RequestMapping(value = "/updateForm.mem")
 	public ModelAndView updateMem(@RequestParam String id) {
@@ -158,7 +174,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/updatePro.mem")
+	/*@RequestMapping(value = "/updatePro.mem")
 	public String updatePro(HttpServletRequest req,MemberDTO dto,BindingResult result) {
 		String id= req.getParameter("id");
 		dto.setId(id);
@@ -201,7 +217,9 @@ public class MemberController {
 	req.setAttribute("msg", msg);
 	return "message";
 	
+	}
+	*/
 
-}
+
 }
 

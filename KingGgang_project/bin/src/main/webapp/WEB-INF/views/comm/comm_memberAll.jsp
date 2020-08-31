@@ -6,7 +6,7 @@
 <section id="four" class="wrapper style1 special fade-up">
 					<div class="container">
 						<header class="major">
-							<h2>친구목록</h2>
+							<h2></h2>
 						</header>
 						<div class="box alt">
 							<div class="row gtr-uniform">
