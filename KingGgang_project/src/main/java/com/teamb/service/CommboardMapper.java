@@ -71,8 +71,8 @@ public class CommboardMapper{
 	}
 
 	public int updateBoard(CommboardDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = sqlSession.update("updateBoard",dto);
+		return res;
 	}
 
 	public List<CommboardDTO> listBoard(String id) {

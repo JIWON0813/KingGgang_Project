@@ -19,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.teamb.model.CommReplyDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
+import com.teamb.service.CommReplyMapper;
 import com.teamb.service.CommboardMapper;
 
 
@@ -31,16 +33,20 @@ import com.teamb.service.CommboardMapper;
 
 @Controller
 public class CommMyBoardController {
+	
 	@Autowired
 	private CommboardMapper boardMapper;
-
+	
+	@Autowired
+	private CommReplyMapper replyMapper;
+ 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
 	@RequestMapping(value = "/comm_writeForm.do", method = RequestMethod.GET)
 	public String writeForm(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		MemberDTO mbId = (MemberDTO) session.getAttribute("login");
+		MemberDTO mbId = (MemberDTO) session.getAttribute("mdid");
 		boolean isLogin = false;
 		if (mbId != null)
 			isLogin = true;
@@ -114,7 +120,11 @@ public class CommMyBoardController {
 
 		req.setAttribute("boardList", list);
 		req.setAttribute("name", member.getName());
-
+		/*req.setAttribute("profile_name",member.getProfile_name());
+		System.out.println(member.getProfile_name());
+		req.setAttribute("name",member.getName());
+		//req.setAttribute("upLoadPath", upLoadPath);
+*/
 		return "comm/board/comm_myPage";
 	}
 
@@ -123,6 +133,10 @@ public class CommMyBoardController {
 
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
+		
+		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
+		
+		req.setAttribute("replyList", list);
 
 		HttpSession session = req.getSession();
 		String mbId = (String) session.getAttribute("mbId");
@@ -133,10 +147,28 @@ public class CommMyBoardController {
 
 		return "comm/board/comm_content";
 	}
+	
+	@RequestMapping(value = "/comm_writeReply.do", method = RequestMethod.POST)
+	public String writeReply(CommReplyDTO dto, HttpServletRequest req, @RequestParam int boardNum, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			dto.setBoardNum(0);
+		}
+		
+		replyMapper.writeReply(dto);
+		
+		req.setAttribute("boardnum", dto.getBoardNum());
+		/*req.addAttribute("page", scri.getPage());
+		req.addAttribute("perPageNum", scri.getPerPageNum());
+		req.addAttribute("searchType", scri.getSearchType());
+		req.addAttribute("keyword", scri.getKeyword());*/
+		
+		return "redirect:comm/board/comm_writeForm.do";
+	}
 
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req) {
-		HttpSession session = req.getSession();
+		/*HttpSession session = req.getSession();
 		String mbId = (String) session.getAttribute("mbId");
 		boolean isLogin = false;
 		if (mbId != null)
@@ -151,35 +183,35 @@ public class CommMyBoardController {
 			req.setAttribute("url", url);
 			return "message";
 		}
-
+*/
 		return "board/B4_bookMark";
 	}
 
 	@RequestMapping(value = "/comm_updateForm.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(@RequestParam int boardNum) {
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
-		ModelAndView mav = new ModelAndView("updateForm", "getBoard", dto);
+		ModelAndView mav = new ModelAndView("comm/board/comm_updateForm", "getBoard", dto);
 		return mav;
 	}
 
 	@RequestMapping(value = "/comm_updatePro.do", method = RequestMethod.POST)
-	public String updatePro(HttpServletRequest req, HttpSession session, @ModelAttribute CommboardDTO dto,
-			BindingResult result) {
-		if (result.hasErrors()) {
-			dto.setBoardNum(0);
-		}
-		dto = (CommboardDTO) session.getAttribute("getBoard");
+	public String updatePro(HttpServletRequest req, HttpSession session, @ModelAttribute CommboardDTO dto, @RequestParam int boardNum) {
+	/*	dto = (CommboardDTO) session.getAttribute("getBoard");*/
+		
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "�Խñۼ�������!!";
-			url = "board/B4_myPage.do";
+			msg = "게시글수정성공!!";
+			url = "comm_myPage.do";
+		}else{
+			msg = "게시글수정실패!!";
+			url = "comm_updateForm.do";
 		}
-
+		
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 
-		return "messsage";
+		return"message";
 	}
 
 	@RequestMapping(value = "/comm_deletePro.do")

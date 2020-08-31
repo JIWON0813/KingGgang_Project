@@ -25,6 +25,10 @@
 		delete from commboard where boardNum=#{boardNum} 
 	</select>
 	
+	<update id="updateBoard" parameterType="CommboardDTO">
+		update commboard set content=#{content} where boardNum=#{boardNum}
+	</update>
+	
 	<update id="plusReadcount" parameterType="int">
 		update commboard set readcount=readcount+1 where boardNum=#{num}
 	</update>
