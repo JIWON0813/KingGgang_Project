@@ -71,7 +71,11 @@ public class HotelController {
 			list = hotelmapper.hotelCateList(startRow, endRow, cate);
 		}
 
-		
+		String search = req.getParameter("search");
+		if(search != null && search.trim().equals("")){
+			cate = "all";
+			list = hotelmapper.hotelSearchList(startRow, endRow, search);
+		}
 		req.setAttribute("cate", cate);
 		req.setAttribute("hotelList", list);
 		return "hotel/hotelMain";
@@ -106,9 +110,14 @@ public class HotelController {
 			req.setAttribute("startPage", startPage);
 			req.setAttribute("endPage", endPage);
 		}
+		String search = req.getParameter("search");
+		if(search != null && search.trim().equals("")){
+			list = hotelmapper.hotelSearchList(startRow, endRow, search);
+		}
 		req.setAttribute("hotelList", list);
 		return "hotel/hotelList";
 	}
+	
 	
 	@RequestMapping(value="/hotelContent.hotel")
 	public String showHotelContent(HttpServletRequest req , @RequestParam int no){
