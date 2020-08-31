@@ -37,6 +37,7 @@ import com.teamb.service.MyMapper;
 
 /*
 이	   름 : MyController.java
+
 개  발   자 : 원세호
 설	   명 : 마이페이지 컨트롤러
 */
