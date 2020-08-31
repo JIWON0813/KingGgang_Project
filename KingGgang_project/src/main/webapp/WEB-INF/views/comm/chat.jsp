@@ -50,19 +50,16 @@
 
 <script type="text/javascript">
 	var ws;
-
-	function wsOpen(){
+	 
+ function wsOpen(){
 		//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
-		ws = new  WebSocket("ws://"+ document.location.host +"/echo/"+$("#roomNumber").val());
-		/* ws = new WebSocket("ws://" + document.location.host + "/echo/");*/
-		/* ws = new WebSocket ("ws://" + document.location.host +"/"+echo+"/"+$("#roomNumber").val()); */
+		ws = new WebSocket ("ws:echo/"+$("#roomNumber").val());
 		wsEvt();
 	}
 		
 	function wsEvt() {
 		ws.onopen = function(data){
 			//소켓이 열리면 동작
-		}
 		
 		ws.onmessage = function(data) {
 			//메시지를 받으면 동작
@@ -85,7 +82,7 @@
 					console.warn("unknown type!")
 				}
 			}
-		}
+		} 
 
 		document.addEventListener("keypress", function(e){
 			if(e.keyCode == 13){ //enter press
@@ -93,7 +90,7 @@
 			}
 		});
 	}
-
+}
 	function chatName(){
 		var userName = $("#userName").val();
 		if(userName == null || userName.trim() == ""){
