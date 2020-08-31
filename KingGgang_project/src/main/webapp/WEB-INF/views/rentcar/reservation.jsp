@@ -8,28 +8,42 @@
 	설	   명 : 회원 렌트카 예약 페이지
 	-->
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	
+	<!-- bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<script>
-$(function () {
-$("#datepicker1").datepicker({
-    changeMonth: true, 
-    dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-    dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-    monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-});
-$("#datepicker2").datepicker({
-    changeMonth: true, 
-    dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-    dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-    monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-});
-});
-</script>
+	<!-- moment -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" integrity="sha256-ABVkpwb9K9PxubvRrHMkk6wmWcIHUE9eBxNZLXYQ84k=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js" integrity="sha256-XWrGUqSiENmD8bL+BVeLl7iCfhs+pkPyIqrZQcS2Te8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ko.js" integrity="sha256-52Xn0wi4kPGcROqCAA5EoontBDks09MLjv7fd5WAj3U=" crossorigin="anonymous"></script>
+
+	<!-- bootstrap datetimepicker -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.4/css/bootstrap-datetimepicker.min.css" integrity="sha256-Fl1s8EQCc9mKf/njo8mWr0MPJR8TnOQb0h0rmVKRoP8=" crossorigin="anonymous" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.4/js/bootstrap-datetimepicker.min.js" integrity="sha256-sU6nRhzXDAC31Wdrirz7X2A2rSRWj10WnP9CA3vpYKw=" crossorigin="anonymous"></script>
+
+    <script>
+        $(function () {
+            $('#datepicker1').datetimepicker({
+                format: 'YYYY-MM-DD',
+                language: 'ko',
+                autoclose: true,
+                todayBtn: true,
+                minView: '2',
+            });
+
+            $('#datepicker2').datetimepicker({
+                format: 'YYYY-MM-DD',
+                language: 'ko',
+                autoclose: true,
+                todayBtn: true,
+                minView: '2',
+            });
+
+        })
+    </script>
 <script type="text/javascript">
   function showPopupMap(){ 
 	  window.open("https://map.kakao.com/link/map/"+"${rentcar.lat}"+","+"${rentcar.lng}", 

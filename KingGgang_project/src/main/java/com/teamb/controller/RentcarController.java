@@ -300,6 +300,8 @@ public class RentcarController {
 	
 	@RequestMapping(value = "reservation_Ok.rentcar")
 	public String rentcarReservationOk(HttpServletRequest req,Rentcar_ResDTO dto){
+		
+		
 		int res = rentcarMapper.insertRentcarReservation(dto);
 		String msg = null;
 		String url = null;
