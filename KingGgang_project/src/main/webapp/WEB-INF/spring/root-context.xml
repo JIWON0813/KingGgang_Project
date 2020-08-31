@@ -12,10 +12,10 @@
 			<value>jdbc:oracle:thin:@127.0.0.1:1521:xe</value>
 		</property>
 		<property name="username">
-			<value>javaweb</value>
+			<value>jeju</value>
 		</property>
 		<property name="password">
-			<value>javaweb</value>
+			<value>jeju</value>
 		</property>
 	</bean>
 
