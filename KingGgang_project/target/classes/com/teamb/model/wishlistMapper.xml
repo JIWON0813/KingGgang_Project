@@ -26,7 +26,7 @@
 			delete from wishlist where m_id = #{m_id} and f_no = #{f_no}
 		</select>
 		
-		<select id="getNo" parameterType="WishlistDTO" resultType="WishlistDTO">
+		<select id="getwishNo" parameterType="WishlistDTO" resultType="WishlistDTO">
 		select * from wishlist where m_id = #{m_id} and type = #{type}
 		</select>
 		

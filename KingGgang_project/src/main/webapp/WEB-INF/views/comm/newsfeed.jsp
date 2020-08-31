@@ -8,7 +8,6 @@
 <title>Newsfeed</title>
 </head>
 <body>
-	<section id="five" class="wrapper style2 special fade">
 	<div class="container">
 		<form method="post" action="#" class="cta">
 			<div class="row gtr-uniform gtr-50">
@@ -22,8 +21,6 @@
 			</div>
 		</form>
 	</div>
-	</section>
-	<section id="one" class="spotlight style1 top">
 	<div class="content">
 		<div class="container">
 			<div class="row">
@@ -43,10 +40,8 @@
 		</div>
 	</div>
 	<div>
-	<a href="">DM</a>
+	<a href="room">DM</a>
 	</div>
-	<section id="four" class="wrapper style1 special fade-up">
-<div class="box alt">
 		<div class="row gtr-uniform">
 			<h2>뉴스피드</h2>
 			<div class="box alt">
@@ -62,7 +57,6 @@
 		</div>
 	</div>
 </div>
-	</section>
 </body>
 </html>
 

@@ -20,10 +20,27 @@ public class MemberDTO {
 	private int friendCount;
 	private int point;
 	private String regdate;
+	private String filename;
+	private int filesize;
 	
 	
+	
+	public String getFilename() {
+		return filename;
+	}
 
-	
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public int getFilesize() {
+		return filesize;
+	}
+
+	public void setFilesize(int filesize) {
+		this.filesize = filesize;
+	}
+
 	public String getProfile_name() {
 		return profile_name;
 	}

@@ -45,6 +45,9 @@
                                 <tr><td></td></tr>
                                 <tr>
                                     <th><a href="delete.my">&nbsp&nbsp&nbsp&nbsp&nbsp탈퇴 하기</a></th>
+                                </tr><td></td></tr>
+                                 <tr>
+                                    <th><a href="adpayment.my">&nbsp&nbsp&nbsp&nbsp&nbsp관리자 계정 결제 리스트</a></th>
                                 </tr>
                          </tbody>
                         </table>

@@ -11,7 +11,7 @@
 			<tr  width="20%" height="35" bgcolor="black">
 		 		<td colspan="7"> 
 			</tr>
-			<tr>
+			<tr> 
 			</tr>
 			<tr>
 			</tr>

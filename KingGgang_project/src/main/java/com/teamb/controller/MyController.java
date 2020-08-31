@@ -1,4 +1,4 @@
-/*package com.teamb.controller;
+package com.teamb.controller;
 
 import java.io.File;
 
@@ -35,18 +35,19 @@ import com.teamb.service.MyMapper;
 
 
 
+/*
+이	   름 : MyController.java
 
-�씠	   由� : MyController.java
-媛�  諛�   �옄 : �썝�꽭�샇
-�꽕	   紐� : 留덉씠�럹�씠吏� 而⑦듃濡ㅻ윭
-
+개  발   자 : 원세호
+설	   명 : 마이페이지 컨트롤러
+*/
 
 
 
 //rroll2
-*//**
+/**
  * Handles requests for the application home page.
- *//*
+ */
 @Controller
 public class MyController {
 	
@@ -76,7 +77,7 @@ public class MyController {
 	
 	@RequestMapping("/deletePro.my")
 	public String deletePro(HttpServletRequest req,HttpSession session) {
-		//濡쒓렇�씤 �꽭�뀡�씠 �뾾�뼱�꽌 �뀒�뒪�듃 遺덇� 
+		//로그인 세션이 없어서 테스트 불가 
 		//String id = String.valueOf(session.getAttribute("id"));
 		//String password = String.valueOf(session.getAttribute("password"));
 		String id =  req.getParameter("id");
@@ -180,4 +181,3 @@ public class MyController {
 	
 	
 }
-*/
