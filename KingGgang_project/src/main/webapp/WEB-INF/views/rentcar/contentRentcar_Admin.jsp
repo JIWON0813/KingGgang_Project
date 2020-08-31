@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
+	<!--  
+	이	   름 : contentRentcar_Admin.jsp
+	개  발   자 : 정 우 철
+	설	   명 : 관리자 렌트카 상세 페이지
+	-->
 
 <div align="center">
 	<table border="1" width="50%">

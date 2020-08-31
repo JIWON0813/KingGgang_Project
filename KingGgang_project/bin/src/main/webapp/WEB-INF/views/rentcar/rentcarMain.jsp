@@ -2,23 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-	<!--  
-	이	   름 : rentcarMain.jsp
-	개  발   자 : 정 우 철
-	설	   명 : 렌트카 메인 페이지
-	-->
-	
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-$(function () {
-$("#receiptday").datepicker();
-$("#returnday").datepicker();
-});
-</script>	
 <form method="post" action="main.rentcar?mode=date">
-	<input type="text" name="receiptday" id="receiptday" placeholder="예약일"> ~ <input type="text" name="returnday" id="returnday" placeholder="반납일"> 
+	<input type="datetime-local" name="receiptday"> ~ <input type="datetime-local" name="returnday"> 
 	<input type="submit" value="조회">
 	<br>
 	<a	href="main.rentcar">

@@ -23,6 +23,9 @@ public class RentcarDTO {
 	private String renthp2;
 	private String renthp3;
 	private String renttel;
+	private String pickupplace;
+	private String lat;
+	private String lng;
 	
 	public int getId() {
 		return id;
@@ -114,4 +117,23 @@ public class RentcarDTO {
 	public void setRenttel(String renttel) {
 		this.renttel = renttel;
 	}
+	public String getPickupplace() {
+		return pickupplace;
+	}
+	public void setPickupplace(String pickupplace) {
+		this.pickupplace = pickupplace;
+	}
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLng() {
+		return lng;
+	}
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
+	
 }

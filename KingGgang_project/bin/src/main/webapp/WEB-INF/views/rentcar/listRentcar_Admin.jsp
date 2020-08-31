@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-function del(r_id){
+function del(id){
 	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-	    location.href="deleteRentcar.admin?r_id="+r_id
+	    location.href="deleteRentcar.admin?id="+id
 	}else{   //취소
 	    return
 	}
@@ -36,7 +36,7 @@ function del(r_id){
 		<tr align="center">
 			<td>${dto.company}</td>
 			<td>
-				<a href="contentRentcar.admin?r_id=${dto.r_id}">
+				<a href="contentRentcar.admin?id=${dto.id}">
 					${dto.name}
 				</a>
 			</td>
@@ -52,9 +52,9 @@ function del(r_id){
 			</c:if>
 			</td>
 			<td>
-			<input type="button" onclick="location.href='updateRentcar.admin?r_id=${dto.r_id}'" value="수정">
-			<input type="button" onclick="javascript:del(${dto.r_id})" value="삭제">
-			<td>
+			<input type="button" onclick="location.href='updateRentcar.admin?id=${dto.id}'" value="수정">
+			<input type="button" onclick="javascript:del(${dto.id})" value="삭제">
+			</td>
 		</tr>		
 	</c:forEach>
 	</table>

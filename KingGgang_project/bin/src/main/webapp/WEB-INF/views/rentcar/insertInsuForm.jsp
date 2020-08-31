@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<!--  
-	이	   름 : insertInsuForm.jsp
-	개  발   자 : 정 우 철
-	설	   명 : 관리자 보험 등록 페이지
-	-->
 	<script type="text/javascript">
 		function check(){
 			if (f.name.value==""){

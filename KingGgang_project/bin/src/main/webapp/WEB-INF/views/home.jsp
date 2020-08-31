@@ -17,6 +17,8 @@
 <a href="main.mem">멤버 페이지로 가기</a><p>
 <a href="main.hotel">호텔 예약하기</a>
 <a href="listRentcar.admin">렌트카 목록(어드민)</a>
+<a href="listInsu.admin">렌트카_보험 목록(어드민)</a>
+<a href="main.rentcar">렌트카 메인(회원)</a>
 <a href="main.wish">관심리스트등록 페이지로 가기</a><p>
 <a href="main.pay">결제 페이지로 가기</a><p>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

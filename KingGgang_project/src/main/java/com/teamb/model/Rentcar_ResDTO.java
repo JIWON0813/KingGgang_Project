@@ -14,7 +14,8 @@ public class Rentcar_ResDTO {
 	private int insu_id;
 	private String reservationday;
 	private String receiptday;
-	private String returnday; 
+	private String returnday;
+	private String pickuptime;
 	private int price;
 	
 	public int getRes_id() {
@@ -59,6 +60,12 @@ public class Rentcar_ResDTO {
 	public void setReturnday(String returnday) {
 		this.returnday = returnday;
 	}
+	public String getPickuptime() {
+		return pickuptime;
+	}
+	public void setPickuptime(String pickuptime) {
+		this.pickuptime = pickuptime;
+	}
 	public int getPrice() {
 		return price;
 	}
@@ -66,5 +73,5 @@ public class Rentcar_ResDTO {
 		this.price = price;
 	}
 	
-
+	
 }

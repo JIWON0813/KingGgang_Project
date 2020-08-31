@@ -301,13 +301,10 @@ public class RentcarController {
 	@RequestMapping(value = "reservation_Ok.rentcar")
 	public String rentcarReservationOk(HttpServletRequest req,Rentcar_ResDTO dto){
 		int res = rentcarMapper.insertRentcarReservation(dto);
-		System.out.println(dto.getPrice());
-		System.out.println(dto.getReceiptday());
-		System.out.println(dto.getReturnday());
-		rentcarMapper.updateRentcarReservation(dto.getR_id());
 		String msg = null;
 		String url = null;
-		if(res>0){	
+		if(res>0){
+			rentcarMapper.updateRentcarReservation(dto.getR_id());
 			msg = "예약 성공! 메인 페이지로 이동합니다.";
 			url = "main.rentcar";
 		}else{

@@ -1,48 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+  <script type="text/javascript">
+  function showPopup(id)
+  { window.open("reservation.rentcar?id="+id, "ë ŒíŠ¸ì¹´ ì˜ˆì•½ í˜ì´ì§€", "width=1024, height=760, left=100, top=50"); }
+  </script>
 <div align="center">
 	<table border="1" width="50%">
-		<caption>Â÷·® »ó¼¼ º¸±â</caption>
+		<caption>ì°¨ëŸ‰ ìƒì„¸ ë³´ê¸°</caption>
 		<tr>
-			<th width="15%" class="m2">Â÷·® ¹øÈ£</th>
+			<th width="15%" class="m2">ì°¨ëŸ‰ ë²ˆí˜¸</th>
 			<td width="35%" align="center">${rentcar.id}</td>
-			<th width="15%" class="m2">Â÷·® ºĞ·ù</th>
+			<th width="15%" class="m2">ì°¨ëŸ‰ ë¶„ë¥˜</th>
 			<td width="35%" align="center">${rentcar.type}</td>
 		</tr>
 		<tr>
-			<th width="15%" class="m2">»óÇ°¸í</th>
+			<th width="15%" class="m2">ìƒí’ˆëª…</th>
 			<td width="35%" align="center">${rentcar.name}</td>
-			<th width="15%" class="m2">Á¦Á¶È¸»ç</th>
+			<th width="15%" class="m2">ì œì¡°íšŒì‚¬</th>
 			<td width="35%" align="center">${rentcar.company}</td>
 		</tr>
 		<tr>
-			<th width="15%" class="m2">»çÁø</th>
+			<th width="15%" class="m2">ì‚¬ì§„</th>
 			<td width="40%" align="center" colspan="3">
 				<img src="http://localhost:8080/img/${rentcar.filename}" style="width:450px; height:400px auto;">
 			</td>
 		</tr>
 		<tr>
-			<th width="15%" class="m2">¾÷Ã¼¸í</th>
+			<th width="15%" class="m2">ì—…ì²´ëª…</th>
 			<td width="35%" align="center">${rentcar.rentcom}</td>
-			<th width="15%" class="m2">¾÷Ã¼ ¹øÈ£</th>
+			<th width="15%" class="m2">ì—…ì²´ ë²ˆí˜¸</th>
 			<td width="35%" align="center">${rentcar.renttel}</td>
 		</tr>
 		<tr>
-			<th width="30%">¿¹¾à °¡´É ¿©ºÎ</th>
+			<th width="30%">ì˜ˆì•½ ê°€ëŠ¥ ì—¬ë¶€</th>
 			<td align="center" colspan="4">
 				<c:if test="${rentcar.reservation == 0}">
-					¿¹¾à °¡´É
+					ì˜ˆì•½ ê°€ëŠ¥
 				</c:if>
 				<c:if test="${rentcar.reservation == 1}">
-					¿¹¾àÁß(~${returnday})
+					ì˜ˆì•½ì¤‘
 				</c:if>
 			</td>
 			
 		</tr>
 		<tr>
-			<th width="15%" class="m2">Â÷·® ¼Ò°³</th>
+			<th width="15%" class="m2">ì°¨ëŸ‰ ì†Œê°œ</th>
 			<td width="85%" colspan="3">
 				<textarea name="contents" rows="5" cols="80" readOnly>${rentcar.contents}
 				</textarea>
@@ -50,9 +53,12 @@
 		</tr>
 		<tr>
 			<td colspan="4" align="center" class="m1">
-				<input type="button" value="µ¹¾Æ°¡±â" 
-									onclick="window.location='listRentcar.admin'">
+				<input type="button" value="ëŒì•„ê°€ê¸°" 
+									onclick="window.location='main.rentcar'">
+				<input type="button" value="ì˜ˆì•½í•˜ê¸°"
+									onclick="javascript:showPopup(${rentcar.id})">
 			</td>
 		</tr>
 	</table>
 </div>
+

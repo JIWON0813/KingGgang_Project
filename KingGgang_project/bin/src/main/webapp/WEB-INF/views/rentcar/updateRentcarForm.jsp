@@ -161,7 +161,7 @@
   				<tr>
   				<td><input type="hidden" name="ogFilename" value="${rentcar.filename}"></td>
   				<td><input type="hidden" name="ogFilesize" value="${rentcar.filesize}"></td>
-  				<td><input type="hidden" name="r_id" value="${rentcar.r_id}"></td>
+  				<td><input type="hidden" name="id" value="${rentcar.id}"></td>
   				</tr>
   			</table>
 		</form>

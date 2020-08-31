@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+	<!--  
+	이	   름 : listRentcar_Admin.jsp
+	개  발   자 : 정 우 철
+	설	   명 : 관리자 렌트카 목록 페이지
+	-->
+	
 <script type="text/javascript">
 function del(id){
 	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
