@@ -52,6 +52,8 @@ public class LoginController {
 	         int memberNum = memberMapper.getMemberNum(dto.getId());
 	            session.setAttribute("memberNum",memberNum);
 	            session.setAttribute("member",memberMapper.getMember(memberNum));
+	            session.setAttribute("memberName", memberMapper.getMember(memberNum).getName());
+	            session.setAttribute("memberEmail", memberMapper.getMember(memberNum).getEmail());
 
 	            if(dto.getId().equals("admin")) {
 	            msg = "관리자만 이용 가능";

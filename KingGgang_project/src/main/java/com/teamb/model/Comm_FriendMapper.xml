@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
     <insert id="insertFriend" parameterType="Comm_FriendDTO">
      insert into commfriend values
-     (commfriend_num.nextval,#{memberNum})
+     (#{memberNum},commfriend_num.nextval)
     </insert>
   
   	<select id="getFriend" parameterType="int" resultType="Comm_FriendDTO">

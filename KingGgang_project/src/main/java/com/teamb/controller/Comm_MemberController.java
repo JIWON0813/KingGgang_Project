@@ -21,7 +21,7 @@ import com.teamb.service.MemberMapper;
 
 
 @Controller
-public class Comm_LoginController {
+public class Comm_MemberController {
 	@Autowired
 	private MemberMapper memberMapper;
 	

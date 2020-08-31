@@ -18,12 +18,16 @@ import com.teamb.model.Comm_FriendDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.service.Comm_FriendMapper;
+import com.teamb.service.MemberMapper;
 
 @Controller
 public class Comm_FriendController {
 
 	@Autowired
 	private Comm_FriendMapper friendMapper;
+	
+	@Autowired
+	private MemberMapper memberMapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
@@ -45,7 +49,7 @@ public class Comm_FriendController {
 	}
 
 	@RequestMapping("/comm_insertFriend.do")
-	public String insertFriend(HttpServletRequest req, HttpSession session, Comm_FriendDTO dto, BindingResult result) {
+	public String insertFriend(HttpServletRequest req, HttpSession session, Comm_FriendDTO dto, MemberDTO mdto, BindingResult result) {
 
 		session = req.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
@@ -55,12 +59,14 @@ public class Comm_FriendController {
 		dto.setMemberNum(memberNum);
 		session.setAttribute("name", member.getName());
 		session.setAttribute("email", member.getEmail());
+		//System.out.println(dto.getMemberNum());
+		//session.setAttribute("name", memberMapper.getMember(memberNum).getName());
+		//System.out.println(memberMapper.getMember(memberNum).getName());
+		//session.setAttribute("email", member.getEmail());
+		//session.setAttribute("email", memberMapper.getMember(memberNum).getEmail());
+		//System.out.println(memberMapper.getMember(memberNum).getEmail());
 		
 		String msg = null, url = null;
-		/*if(dto.getMemberNum()!=0){
-			msg = "이미 등록된 친구입니다.";
-			url = "commhome.comm";
-		}*/
 		int res = friendMapper.insertFriend(dto);
 
 		
