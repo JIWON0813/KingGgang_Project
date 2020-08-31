@@ -53,7 +53,8 @@
 
 	function wsOpen(){
 		//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
-		ws = new WebSocket("ws://" + document.location.host + "/echo/"+$("#roomNumber").val());
+		ws = new  WebSocket("ws://"+ document.location.host +"/echo/"+$("#roomNumber").val());
+		/* ws = new WebSocket("ws://" + document.location.host + "/echo/");*/
 		/* ws = new WebSocket ("ws://" + document.location.host +"/"+echo+"/"+$("#roomNumber").val()); */
 		wsEvt();
 	}
