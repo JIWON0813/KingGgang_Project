@@ -4,7 +4,7 @@
 <!-- 
 	이	   름 : insertHotelForm.jsp
 	개  발   자 : 김 지 원
-	설	   명 : 숙소 등록페이지
+	설	   명 : 숙소 등록 폼
  -->
  <div align="center">
 	<form name="f" action="insertHotel.hotel" method="post" enctype="multipart/form-data">

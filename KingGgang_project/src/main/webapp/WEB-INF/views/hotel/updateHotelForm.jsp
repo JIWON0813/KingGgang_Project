@@ -4,7 +4,7 @@
 <!-- 
 	이	   름 : updateHotelForm.jsp
 	개  발   자 : 김 지 원
-	설	   명 : 숙소 정보 수정페이지
+	설	   명 : 숙소 정보 수정 폼
  -->
  <div align="center">
 	<form name="f" action="updateHotel.hotel" method="post" enctype="multipart/form-data">
