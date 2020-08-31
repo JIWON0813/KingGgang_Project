@@ -6,29 +6,37 @@
 <mapper namespace="mybatis.hotelMapper">
 		
 	<select id="hotelList" resultType="hotelDTO">
-		select * from hotel
+		select * from hotel order by no desc
 	</select>
 	
 	<select id="hotelCateList" parameterType="java.util.Map" resultType="hotelDTO">
 		select * from (select rownum rn, A.* from 
-		(select * from hotel)A)
+		(select * from hotel where category = #{category})A)
 		where rn between #{start} and #{end} and category = #{category}
 	</select>
 	
 	<select id="hotelMain" parameterType="java.util.Map" resultType="hotelDTO">
 		select * from (select rownum rn, A.* from 
-		(select * from hotel)A)
-		where rn between #{start} and #{end}
+		(select * from hotel order by no desc)A)
+		where rn between #{start} and #{end} order by no desc
 	</select>
 	
 	<select id="getCount" resultType="Integer">
 		select count(*) from hotel
 	</select>
 	
+	<select id="getCountCate" parameterType="String" resultType="int">
+		select count(*) from hotel where category = #{category}
+	</select>
+	
+	<select id="getCountSearch" parameterType="String" resultType="int">
+		select count(*) from hotel where name like #{search}
+	</select>
+	
 	<select id="searchHotelList" parameterType="java.util.Map" resultType="hotelDTO">
 		select * from (select rownum rn, A.* from 
-		(select * from hotel)A)
-		where rn between #{start} and #{end} and name = %#{search}%
+		(select * from hotel where name like #{search})A)
+		where rn between #{start} and #{end} and name like #{search}
 	</select>
 	
 	

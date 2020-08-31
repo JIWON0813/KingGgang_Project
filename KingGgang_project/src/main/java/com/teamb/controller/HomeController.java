@@ -11,11 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/*
+이	   름 : HomeController class
+설	   명 : 메인페이지 controller
+*/
 
-//rroll2
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 	

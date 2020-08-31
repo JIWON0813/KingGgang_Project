@@ -47,7 +47,7 @@ ${dto.content}
 </div>
 <!-- 여기서부터 room -->
 <div align="center">
-<table>
+<table border="1" width="600">
 	<c:if test="${empty roomList}">
 		<tr>
 			<td colspan="6" align="center">등록된 방이 없습니다.
@@ -58,12 +58,12 @@ ${dto.content}
 		<h3 align="center">방 목록</h3>
 		<c:forEach var="roomdto" items="${roomList}">
 			<tr>
-				<td><img src="http://localhost:9210/img/${roomdto.filename}" width="100" height="100">
-				<td>이름</td>
-				<td>${roomdto.name}</td>
-				<td>최대수용인원</td>
-				<td>${roomdto.maxpersons}</td>
-				<td><a href="room_book.hotel?id=${roomdto.id}">예약하기</a>
+				<td width="auto"><img src="http://localhost:9211/img/${roomdto.filename}" width="150" height="150">
+				<td width="10%">이름</td>
+				<td width="15%">${roomdto.name}</td>
+				<td width="25%">최대수용인원</td>
+				<td width="10%">${roomdto.maxpersons}</td>
+				<td width="15%"><a href="room_book.hotel?id=${roomdto.id}">예약하기</a>
 			</tr>
 		</c:forEach>
 	</c:if>
