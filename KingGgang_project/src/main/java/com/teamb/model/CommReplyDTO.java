@@ -1,4 +1,9 @@
 package com.teamb.model;
+ 
+	/*이	   름 : CommReplyDTO.java
+	개  발   자 : 최 인 아
+	설	   명 : 메인 페이지*/
+
 
 import java.util.Date;
 

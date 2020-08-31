@@ -52,7 +52,8 @@
 <br>
 <br>
 <form name="replyForm" action="comm_writeReply.do" method="post">
-  <input type="hidden" id="boardNum" name="boardNum" value="${read.boardNum}" />
+  <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}"/>
+  
  <%--  <input type="hidden" id="page" name="page" value="${scri.page}"> 
   <input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
   <input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
@@ -70,7 +71,11 @@
 
 <!-- 댓글 -->
 <div id="reply">
+<input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
   <ol class="replyList">
+   <c:if test="${empty replyList}">
+	      <p>등록된 댓글이 없습니다.</p>
+	</c:if>   
     <c:forEach items="${replyList}" var="replyList">
       <li>
         <p>
@@ -79,8 +84,19 @@
         </p>
         <p>${replyList.rcontent}</p>
       </li>
+      <input type="button" value="글수정" >
+      <input type="button" value="글삭제" onclick="window.location='reply_deletePro.do?replyNum=${getReply.replyNum}'">
+     <%--  <input type="button" value="글수정"
+		onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="글삭제"
+		onclick="window.location='reply_deletePro.do?replyNum=${getBoard.replyNum}'">
+		&nbsp;&nbsp;&nbsp;&nbsp;--%>
     </c:forEach>   
   </ol>
+  
+		
+			
 </div>
 
 

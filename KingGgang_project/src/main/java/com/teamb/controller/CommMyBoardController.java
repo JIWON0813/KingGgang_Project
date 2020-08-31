@@ -26,9 +26,9 @@ import com.teamb.service.CommReplyMapper;
 import com.teamb.service.CommboardMapper;
 
 
-/*�씠	   由� : CommMyBoardController
-媛�  諛�   �옄 : 理� �씤 �븘,�씠 �뿬 吏�
-�꽕	   紐� : 而ㅻ�ㅻ땲�듃 留덉씠寃뚯떆�뙋 而⑦듃濡ㅻ윭
+/*占쎌뵠	   �뵳占� : CommMyBoardController
+揶쏉옙  獄쏉옙   占쎌쁽 : 筌ㅿ옙 占쎌뵥 占쎈툡,占쎌뵠 占쎈연 筌욑옙
+占쎄퐬	   筌륅옙 : �뚣끇占썬끇�빍占쎈뱜 筌띾뜆�뵠野껊슣�뻻占쎈솇 �뚢뫂�뱜嚥▲끇�쑎
 */
 
 @Controller
@@ -54,7 +54,7 @@ public class CommMyBoardController {
 
 		String msg = null, url = null;
 		if (mbId == null) {
-			msg = "로그인을 해주세요.";
+			msg = "濡쒓렇�씤�쓣 �빐二쇱꽭�슂.";
 			url = "login.log";
 			req.setAttribute("msg", msg);
 			req.setAttribute("url", url);
@@ -100,10 +100,10 @@ public class CommMyBoardController {
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "등록 완료.";
+			msg = "�벑濡� �셿猷�.";
 			url = "comm_myPage.do";
 		} else {
-			msg = "등록 실패 ";
+			msg = "�벑濡� �떎�뙣 ";
 			url = "comm_writeForm.do";
 		}
 		req.setAttribute("msg", msg);
@@ -149,21 +149,17 @@ public class CommMyBoardController {
 	}
 	
 	@RequestMapping(value = "/comm_writeReply.do", method = RequestMethod.POST)
-	public String writeReply(CommReplyDTO dto, HttpServletRequest req, @RequestParam int boardNum, BindingResult result) {
-		
-		if (result.hasErrors()) {
-			dto.setBoardNum(0);
-		}
-		
+	public String writeReply(CommReplyDTO dto, HttpServletRequest req, @RequestParam int boardNum) {
+	
 		replyMapper.writeReply(dto);
 		
-		req.setAttribute("boardnum", dto.getBoardNum());
+		req.setAttribute("boardNum", dto.getBoardNum());
 		/*req.addAttribute("page", scri.getPage());
 		req.addAttribute("perPageNum", scri.getPerPageNum());
 		req.addAttribute("searchType", scri.getSearchType());
 		req.addAttribute("keyword", scri.getKeyword());*/
 		
-		return "redirect:comm/board/comm_writeForm.do";
+		return "redirect:comm/board/comm_content";
 	}
 
 	@RequestMapping("/comm_bookMark.do")
@@ -177,7 +173,7 @@ public class CommMyBoardController {
 
 		String msg = null, url = null;
 		if (mbId == null) {
-			msg = "�α��� �� �̿� �����մϴ�.";
+			msg = "占싸깍옙占쏙옙 占쏙옙 占싱울옙 占쏙옙占쏙옙占쌌니댐옙.";
 			url = "login.do";
 			req.setAttribute("msg", msg);
 			req.setAttribute("url", url);
@@ -201,10 +197,10 @@ public class CommMyBoardController {
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "게시글수정성공!!";
+			msg = "寃뚯떆湲��닔�젙�꽦怨�!!";
 			url = "comm_myPage.do";
 		}else{
-			msg = "게시글수정실패!!";
+			msg = "寃뚯떆湲��닔�젙�떎�뙣!!";
 			url = "comm_updateForm.do";
 		}
 		
@@ -219,8 +215,23 @@ public class CommMyBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "게시글이 삭제되었습니다.";
+			msg = "寃뚯떆湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
 			url = "comm_myPage.do";
+		}
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("url", url);
+		mav.setViewName("message");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/reply_deletePro.do")
+	public ModelAndView deletereplyPro(@RequestParam int replyNum) {
+		int res = replyMapper.deleteReply(replyNum);
+		String msg = null, url = null;
+		if (res > 0) { 
+			msg = "댓글이 삭제 되었습니다.";
+			url = "comm_content.do";
 		}
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
