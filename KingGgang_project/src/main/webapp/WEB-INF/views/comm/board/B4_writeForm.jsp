@@ -46,7 +46,7 @@
 				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">	
-					<input type="button" value="뒤로가기" onclick="window.location='commhome.home'">
+					<input type="button" value="뒤로가기" onclick="window.location='commhome.comm'">
 				</td>
 			</tr>
 		</table>

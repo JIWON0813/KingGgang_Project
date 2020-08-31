@@ -131,10 +131,10 @@
                                     <th><span>이름</span></th>
                                     <td><input type="text" name="name" placeholder="이름을 입력하세요."></td>
                                 </tr>
-                                <tr>
+                               <!--  <tr>
                                     <th><span>닉네임</span></th>
                                     <td><input type="text" name="nickname" placeholder="닉네임을 입력하세요."></td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <th><span>성별</span></th>
                                     <td><input type="text" name="gender" placeholder="성별을 입력하세요."></td>

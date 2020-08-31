@@ -17,11 +17,11 @@
 				<a href="main.admin">관리자모드로 가기</a>|
 				<a href="commhome.comm">커뮤니티 가기</a>|
 				<a href="insertMember.mem">회원가입</a>|
-				<c:if test="${isLogin == null }">
+				<c:if test="${isLogin == null}">
 				<a href="login.log">로그인</a>
 				</c:if>
-				<c:if test="${isLogin != null }"> 
-				${login.name }님<a href="logout.log">로그아웃</a>
+				<c:if test="${isLogin != null}"> 
+				${name }님<a href="logout.log">로그아웃</a>
 				</c:if>
 				</td>
 			</tr>

@@ -32,11 +32,6 @@
 		update member set name=#{name}, nickname=#{nickname}, email=#{email,jdbcType=VARCHAR}, point=#{point}, hp=#{hp,jdbcType=VARCHAR}, filename=#{filename,jdbcType=VARCHAR}, filesize=#{filesize,jdbcType=INTEGER} where memberNum = #{memberNum}
 	</update>
 	
-	<update id="comm_updateMember" parameterType="MemberDTO" >
-		update member set nickname=#{nickname}, 
-		email=#{email} where memberNum=#{memberNum}
-	</update>
-	
 	<select id="checkId" resultType="int">
 		select count(*) from member where id=#{id}
 	</select>

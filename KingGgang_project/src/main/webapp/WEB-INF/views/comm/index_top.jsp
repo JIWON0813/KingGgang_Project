@@ -28,7 +28,8 @@
 									
 								</ul>
 							</li>
-							<li><a href="comm_memberAll.do">Friends</a></li>
+							<li><a href="comm_friendAll.do">Friends 목록</a></li>
+							<li><a href="comm_insertFriend.do?memberNum=${memberNum }">Friends 추가</a></li>
 						</ul>
 					</nav>
 				</header>

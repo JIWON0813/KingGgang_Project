@@ -1,6 +1,6 @@
 package com.teamb.controller;
 
-
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.Comm_FriendDTO;
+import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.service.Comm_FriendMapper;
 
@@ -24,63 +28,83 @@ public class Comm_FriendController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
-	@RequestMapping(value = "/friendAll.do")
+	@RequestMapping(value = "/comm_friendAll.do")
 	public String listFriend(HttpServletRequest req, Comm_FriendDTO dto, HttpSession session) {
 
-	/*	session = req.getSession();
-		String mbId = (String) session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null)
-			isLogin = true;
-		req.setAttribute("isLogin", isLogin);
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		//int memberNum = member.getMemberNum();
+		int memberNum = (Integer) session.getAttribute("memberNum");
 
-		String msg = null, url = null;
-		if (mbId == null) {
-			msg = "占싸깍옙占쏙옙 占쏙옙 占싱울옙 占쏙옙占쏙옙占쌌니댐옙.";
-			url = "login.do";
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		}*/
-
-		//MemberDTO member = (MemberDTO)session.getAttribute("login");
-		//int memberNum = (Integer) session.getAttribute("memberNum");
-
-		//List<Comm_FriendDTO> list = friendMapper.listFriend(memberNum);
-		//req.setAttribute("friendList", list);
+		List<Comm_FriendDTO> list = friendMapper.listFriend(memberNum);
+		req.setAttribute("friendList", list);
 		//req.setAttribute("profile_name", member.getProfile_name());
-		//req.setAttribute("name", member.getName());
+		session.getAttribute("name");
+		session.getAttribute("email");
 
-		return "friend/friendAll";
+		return "comm/friend/friendAll";
 	}
 
-	@RequestMapping("/insertFriend.do")
+	@RequestMapping("/comm_insertFriend.do")
 	public String insertFriend(HttpServletRequest req, HttpSession session, Comm_FriendDTO dto, BindingResult result) {
 
-		MemberDTO member = (MemberDTO)session.getAttribute("login");
-		session.getAttribute("f_profile_name");
-		session.getAttribute("f_name");
+		session = req.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int memberNum = (Integer) session.getAttribute("memberNum");
 
-		//session.setAttribute("memberNum", member.getMemberNum());
-		session.setAttribute("friendNum", dto.getFriendNum());
-		session.setAttribute("f_name", dto.getF_name());
-
-		if (result.hasErrors()) {
-			dto.setFriendNum(0);
-		}
-
+		//session.setAttribute("memberNum", dto.getMemberNum());
+		dto.setMemberNum(memberNum);
+		session.setAttribute("name", member.getName());
+		session.setAttribute("email", member.getEmail());
+		
+		String msg = null, url = null;
+		/*if(dto.getMemberNum()!=0){
+			msg = "이미 등록된 친구입니다.";
+			url = "commhome.comm";
+		}*/
 		int res = friendMapper.insertFriend(dto);
 
-		String msg = null, url = null;
+		
 		if (res > 0) {
-			msg = "친占쏙옙占쌩곤옙占쏙옙占쏙옙! 친占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙占쏙옙 占싱듸옙占쌌니댐옙.";
-			url = "friendAll.do";
+			msg = "친구 추가 성공. 친구목록 페이지로 이동";
+			url = "comm_friendAll.do";
 		} else {
-			msg = "친占쏙옙占쌩곤옙占쏙옙占쏙옙! 占쏙옙占쏙옙占쏙옙占쏙옙 占싱듸옙占쌌니댐옙.";
-			url = "index.do";
+			msg = "친구 추가 실패. 메인으로 이동";
+			url = "commhome.comm";
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		return "message";
 	}
+	
+	@RequestMapping(value = "/comm_deleteFriend.do")
+	public String deleteFriend(HttpServletRequest req,@RequestParam int friendNum) {
+		int res = friendMapper.deleteFriend(friendNum);
+		String msg = null, url = null;
+		if (res > 0) {
+			msg = "친구삭제 성공. 친구목록페이지로 이동";
+			url = "comm_friendAll.do";
+		}
+		
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}
+	
+	@RequestMapping(value = "/comm_friendContent.do")
+	public String content(HttpServletRequest req, @RequestParam int friendNum) {
+
+		Comm_FriendDTO dto = friendMapper.getFriend(friendNum);
+		req.setAttribute("getFriend", dto);
+
+		/*HttpSession session = req.getSession();
+		String mbId = (String) session.getAttribute("mbId");
+		boolean isLogin = false;
+		if (mbId != null)
+			isLogin = true;
+		req.setAttribute("isLogin", isLogin);*/
+
+		return "comm/friend/friendcontent";
+	}
+	
+	
 }

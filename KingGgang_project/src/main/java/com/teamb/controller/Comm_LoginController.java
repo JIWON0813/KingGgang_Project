@@ -106,19 +106,15 @@ public class Comm_LoginController {
 	@RequestMapping(value = "/comm_member_edit_ok.do", method = RequestMethod.POST)
 	public String memberEditOk(HttpServletRequest req, HttpSession session, @ModelAttribute MemberDTO dto,
 			BindingResult result) {
-		/*
-		 * if(result.hasErrors()){ dto.setMemberNum(0); } dto =
-		 * (B4_memberDTO)session.getAttribute("member"); int memberNum = 70; dto
-		 * = memberMapper.getMember(memberNum);
-		 */
+		
 		int res = memberMapper.comm_updateMember(dto);
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "회원수정성공! 목록페이지로 이동합니다.";
+			msg = "회원수정성공! 메인페이지로 이동합니다.";
 			url = "commhome.comm";
 		} else {
-			msg = "회원수정실패! 목록페이지로 이동합니다.";
+			msg = "회원수정실패! 메인페이지로 이동합니다.";
 			url = "commhome.comm";
 		}
 		req.setAttribute("msg", msg);
