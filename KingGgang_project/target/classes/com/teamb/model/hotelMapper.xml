@@ -25,6 +25,12 @@
 		select count(*) from hotel
 	</select>
 	
+	<select id="searchHotelList" parameterType="java.util.Map" resultType="hotelDTO">
+		select * from (select rownum rn, A.* from 
+		(select * from hotel)A)
+		where rn between #{start} and #{end} and name = %#{search}%
+	</select>
+	
 	
 	<insert id="insertHotel" parameterType="HotelDTO">
 		insert into hotel
