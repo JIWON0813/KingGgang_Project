@@ -29,7 +29,7 @@
 	</beans:bean>
 	
 	<beans:bean id="upLoadPath" class="java.lang.String">
-	<beans:constructor-arg value="D:/java-emp-class-0406//file"></beans:constructor-arg>	
+	<beans:constructor-arg value="c://java-2020//files"></beans:constructor-arg>	
 	</beans:bean>
 	
 	

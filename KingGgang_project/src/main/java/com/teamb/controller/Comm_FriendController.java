@@ -53,18 +53,17 @@ public class Comm_FriendController {
 
 		session = req.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		String name = (String)session.getAttribute("memberName");
+		String email = (String)session.getAttribute("memberEmail");
 		int memberNum = (Integer) session.getAttribute("memberNum");
 
 		//session.setAttribute("memberNum", dto.getMemberNum());
 		dto.setMemberNum(memberNum);
-		session.setAttribute("name", member.getName());
-		session.setAttribute("email", member.getEmail());
-		//System.out.println(dto.getMemberNum());
+		session.setAttribute("memberName", name);
+		session.setAttribute("memberEmail", email);
 		//session.setAttribute("name", memberMapper.getMember(memberNum).getName());
-		//System.out.println(memberMapper.getMember(memberNum).getName());
 		//session.setAttribute("email", member.getEmail());
 		//session.setAttribute("email", memberMapper.getMember(memberNum).getEmail());
-		//System.out.println(memberMapper.getMember(memberNum).getEmail());
 		
 		String msg = null, url = null;
 		int res = friendMapper.insertFriend(dto);

@@ -21,6 +21,7 @@ public class MemberDTO {
 	private int point;
 	private String regdate;
 	
+	
 
 	
 	public String getProfile_name() {
