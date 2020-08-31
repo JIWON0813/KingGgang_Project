@@ -6,7 +6,7 @@
 <mapper namespace="mybatis.hotelMapper">
 		
 	<select id="hotelList" resultType="hotelDTO">
-		select * from hotel
+		select * from hotel order by no desc
 	</select>
 	
 	<select id="hotelCateList" parameterType="java.util.Map" resultType="hotelDTO">
@@ -17,8 +17,8 @@
 	
 	<select id="hotelMain" parameterType="java.util.Map" resultType="hotelDTO">
 		select * from (select rownum rn, A.* from 
-		(select * from hotel)A)
-		where rn between #{start} and #{end}
+		(select * from hotel order by no desc)A)
+		where rn between #{start} and #{end} order by no desc
 	</select>
 	
 	<select id="getCount" resultType="Integer">

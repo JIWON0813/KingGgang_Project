@@ -8,7 +8,7 @@
  -->
  <div align="center">
 	<form name="f" action="insertHotel.hotel" method="post" enctype="multipart/form-data">
-		<table border="1" width="500">
+		<table border="1" width="1000">
 			<tr bgcolor="yellow">
 				<td align="center" colspan="2">숙소 등록하기</td>
 			</tr>
@@ -50,18 +50,18 @@
 				</td>
 			</tr>
 			<tr>
-				<th width="20%" bgcolor="yellow">주차</th>
+				<th width="10%" bgcolor="yellow">주차</th>
 				<td>
 				주차가능<input type="radio" name="parking" value="ok">
 				주차불가<input type="radio" name="parking" value="no" checked>
 				</td>
 			</tr>
 			<tr>
-				<th width="20%" bgcolor="yellow">내 용</th>
-				<td><textarea name="content" rows="10" cols="40" class="box"></textarea></td>
+				<th width="40%" bgcolor="yellow">내 용</th>
+				<td><textarea name="content" rows="20" cols="100" class="box"></textarea></td>
 			</tr>
 			<tr>
-				<th width="20%" bgcolor="yellow">숙소사진</th>
+				<th width="10%" bgcolor="yellow">숙소사진</th>
 				<td><input type="file" name="filename" class="box" size="40"></td>
 			</tr>
 			

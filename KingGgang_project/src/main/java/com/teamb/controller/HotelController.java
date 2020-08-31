@@ -258,7 +258,6 @@ public class HotelController {
 	public String insertRoom(HttpServletRequest req, @ModelAttribute RoomDTO dto, BindingResult result){
 		String filename = "";
 		int filesize = 0;
-		String checkin = req.getParameter("startcheckin") + " ~ " + req.getParameter("endcheckin");
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest) req;
 		MultipartFile file = mr.getFile("file");
 		File target = new File(upLoadPath, file.getOriginalFilename());
