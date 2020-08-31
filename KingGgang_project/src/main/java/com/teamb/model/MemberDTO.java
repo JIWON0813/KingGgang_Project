@@ -14,6 +14,7 @@ public class MemberDTO {
 	private String regdate;
 	private String filename;
 	private int filesize;
+
 	
 	public String getId() {
 		return id;

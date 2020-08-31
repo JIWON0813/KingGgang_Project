@@ -18,9 +18,9 @@
 </script>
 
 <div align="center">
-	<form name="f" action="writePro.do" method="post" 
+	<form name="f" action="comm_writePro.do" method="post" 
 						onsubmit="return check()" enctype="multipart/form-data">
-		<input type="hidden" name="memberNum" value="${param.memberNum}">
+		<input type="hidden" name="id" value="${id}">
 			<header class="major">
 				<h3>새 게시물</h3>
 			</header>
