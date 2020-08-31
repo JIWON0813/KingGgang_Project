@@ -1,3 +1,5 @@
+// 삭제 또는 변경 예정 
+
 package com.teamb.model;
 
 public class B4_memberDTO {
