@@ -13,9 +13,9 @@
 <input type="hidden" name="id" value="${roomdto.id}"/>
 	<table border="1">
 				<tr>
-					<td colspan="2"><img src="http://localhost:9210/img/${roomdto.filename}"
+					<td colspan="2"><img src="http://localhost:9211/img/${roomdto.filename}"
 						width="250" height="250">
-					<td>방 이름
+					<td width="15%">방 이름
 					<td>${roomdto.name}
 				</tr>
 				<tr>

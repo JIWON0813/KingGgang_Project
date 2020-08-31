@@ -44,13 +44,14 @@ public class PaymentMapper {
 		return sqlSession.selectList("getPayment",m_id);
 	}
 	
-	public PaylistDTO getPaylist(PaymentDTO ptdto) {
-		return sqlSession.selectOne("getHPaylist",ptdto);
+	public PaylistDTO getmyPaylist(PaymentDTO ptdto) {
+		return sqlSession.selectOne("getMyPaylist",ptdto);
 	}
 	
-	public List<PaylistDTO> getPaytest(String m_id) {
-		return sqlSession.selectList("testRow",m_id);
+	public PaylistDTO getadPaylist(PaymentDTO ptdto) {
+		return sqlSession.selectOne("getAdPaylist",ptdto);
 	}
+	
 	
 }	
 	

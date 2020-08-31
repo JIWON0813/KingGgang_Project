@@ -23,7 +23,7 @@
 		</tr>
 	</table>
 	<div align="center">
-		<form action="main.hotel">
+		<form action="main.hotel" method="post">
 			<input type="text" name="search" placeholder="검색어입력"> <input
 				type="submit" value="검색">
 		</form>

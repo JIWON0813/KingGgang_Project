@@ -52,7 +52,7 @@
 		</c:if>
 	</table>
 	<div align="center">
-		<form action="searchhotelList.hotel">
+		<form action="hotelList.hotel">
 			<input type="text" name="search" placeholder="검색어입력"> <input
 				type="submit" value="검색">
 		</form>
