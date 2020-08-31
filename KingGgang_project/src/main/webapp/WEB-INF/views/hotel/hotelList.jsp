@@ -8,7 +8,7 @@
  -->
 <div align="center">
 	<b>숙 소 목 록</b>
-	<table border="1" width="800">
+	<table border="1" width="1000">
 		<tr bgcolor="green">
 			<th>번호</th>
 			<th width="40%" colspan="2">이름</th>
@@ -28,8 +28,7 @@
 					<td>${dto.no}</td>
 					<c:if test="${not empty dto.filename}">
 						<td width="15%"><img
-							src="http://localhost:9211/img/${dto.filename}" width="auto"
-							height="100"></td>
+							src="http://localhost:9211/img/${dto.filename}" style="width : 150px ; height : 100px ; "></td>
 					</c:if>
 					<c:if test="${empty dto.filename}">
 						<td width="15%">이미지가 존재하지 않습니다.</td>
@@ -59,13 +58,13 @@
 	</div>
 	<c:if test="${count>0}">
 		<c:if test="${startPage > pageBlock}">
-			[<a href="hotelList.hotel?pageNum=${startPage-1}">이전</a>]		
+			[<a href="hotelList.hotel?pageNum=${startPage-1}&search=${search}">이전</a>]		
 		</c:if>
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			[<a href="hotelList.hotel?pageNum=${i}">${i}</a>]
+			[<a href="hotelList.hotel?pageNum=${i}&search=${search}">${i}</a>]
 		</c:forEach>
 		<c:if test="${endPage<pageCount}">
-			[<a href="hotelList.hotel?pageNum=${endPage+1}">다음</a>]
+			[<a href="hotelList.hotel?pageNum=${endPage+1}&search=${search}">다음</a>]
 		</c:if>
 	</c:if>
 	<br> <a href="main.admin">관리자 목록으로 가기</a>
