@@ -7,23 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamb.model.MemberDTO;
-/*
-�씠	   由� : LoginMapper class
-媛�  諛�   �옄 : 諛� 以� �뼵
-�꽕	   紐� : 濡쒓렇�씤 留ㅽ띁  �겢�옒�뒪  
-*/
+
+/*	이	   름 : LoginMapper class
+	개  발   자 : 박 준 언, 황 지 은
+	설	   명 : 로그인 매퍼  클래스  */
+
 @Service
 public class LoginMapper {
 
 	@Autowired
 	private SqlSession sqlSession;
 	
-	/*public MemberDTO login(MemberDTO dto){
-		return sqlSession.selectOne("login",dto);		
-	}*/
+	public int getMemberNum(String id){
+		return sqlSession.selectOne("getMemberNum",id);
+	}
 	
 	public int loginOk(MemberDTO dto){
-		String dbPass = sqlSession.selectOne("login", dto);
+		String dbPass = sqlSession.selectOne("loginOk", dto);
 		if (dbPass != null) {
 			if (dbPass.trim().equals(dto.getPasswd())) {
 				return dto.OK;
@@ -34,11 +34,9 @@ public class LoginMapper {
 			return dto.NOT_ID;
 		}
 	}
-	
-	public MemberDTO viewMember(MemberDTO dto){
-		return sqlSession.selectOne("viewMember",dto);
+	public MemberDTO getMemberid(String id){
+		return sqlSession.selectOne("getMemberid",id);
 	}
-	
 	public void logout(HttpSession session){
 		session.invalidate();
 	}

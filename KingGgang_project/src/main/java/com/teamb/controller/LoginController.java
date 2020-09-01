@@ -1,9 +1,7 @@
 package com.teamb.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +12,9 @@ import com.teamb.model.MemberDTO;
 import com.teamb.service.LoginMapper;
 import com.teamb.service.MemberMapper;
 
-/*
-�씠	   由� : LoginController class
-媛�  諛�   �옄 : 諛� 以� �뼵
-�꽕	   紐� : 濡쒓렇�씤 而⑦듃濡ㅻ윭  
+/*	이	   름 : LoginController class
+	개  발   자 : 박 준 언 , 황지은
+	설	   명 : 로그인 컨트롤러  
 */
 
 @Controller
@@ -25,73 +22,101 @@ public class LoginController {
 
 	@Autowired
 	private LoginMapper loginMapper;
-	
-	@Autowired
 	private MemberMapper memberMapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
-	@RequestMapping(value = "/login.log")
-	public String login(HttpServletRequest req) {
+	@RequestMapping("/login.log")
+	public String login() {
 		return "login/login";
 	}
 
-	@RequestMapping(value = "/loginOk.log")
-	public String loginOk(MemberDTO dto, HttpServletRequest req,HttpSession session) {
-		dto.setId(req.getParameter("id"));
-	    dto.setPasswd(req.getParameter("passwd"));
-	      
-	      int res = loginMapper.loginOk(dto);      
+	@RequestMapping("/logout.log")
+	public String logout(HttpServletRequest req, HttpSession session) {
+
+		session.invalidate();
+		String msg = "로그아웃 되었습니다.";
+		String url = "home.do";
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}
+	
+	@RequestMapping("/loginOk.log")
+	   public String loginOk(HttpServletRequest req,HttpSession session){
+			MemberDTO dto = loginMapper.getMemberid(req.getParameter("id"));
+			int res = loginMapper.loginOk(dto);
+			
 	      String msg = null, url = null;
 	      switch(res){
-	      case MemberDTO.OK:
-	         session = req.getSession();
-	         session.setAttribute("mbId", dto.getId());
-	         
-	         int memberNum = memberMapper.getMemberNum(dto.getId());
-	     
-	      
-	            session.setAttribute("memberNum",memberNum);
-	            session.setAttribute("member",memberMapper.getMember(memberNum));
-
+	      case MemberDTO.OK:	    
+	    	  session.setAttribute("mbId", dto.getId());
+	    	  session.setAttribute("memberDto", dto);
+	    	  session.setAttribute("upLoadPath", upLoadPath);
 	            if(dto.getId().equals("admin")) {
-	            msg = "관리자만 이용 가능";
+	            msg = "관리자로 로그인 하였습니다.";
 	            url = "main.mem";
-	            }
-	            else{
-	            msg = "회원가입 성공. 메인으로 이동";
+	            }else{
+	            msg = "로그인 하였습니다.";
 	            url = "main.mem";
 	            }
 	            
 	            break;
 	      
 	      case MemberDTO.NOT_ID :
-	         msg = "ID오류";
-	         url = "main.mem";
+	         msg = "등록된 회원이 아닙니다.";
+	         url = "login.mem";
 	         break;
 	      case MemberDTO.NOT_PW :
-	         msg = "비밀번호 오류 ";
-	         url = "main.mem";
+	         msg = "비밀번호를 확인해 주세요.";
+	         url = "login.mem";
 	         break;
 	      case MemberDTO.ERROR :
-	         msg = "DB실패!!";
-	         url = "main.mem";
+	         msg = "에러";
+	         url = "index.mem";
 	      }
 	      req.setAttribute("msg", msg);
 	      req.setAttribute("url", url);
 	      return "message";
 	   }
+	@RequestMapping(value = "/member_search.log")
+	public String searchMemberForm(HttpServletRequest req) {
+		String mode = req.getParameter("mode");
+		req.setAttribute("mode", mode);
+		return "login/search";
+	}
 
-	@RequestMapping("/logout.log")
-	public String logout(HttpServletRequest req, HttpSession session) {
-		session = req.getSession();
-		session.invalidate();
-		
-		String msg = "로그아웃되었습니다.";
-		String url = "main.mem";
+	@RequestMapping(value = "/member_search_ok.log")
+	public String searchMember_id(HttpServletRequest req) {
+		String mode = req.getParameter("mode");
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		System.out.println(mode);
+		String msg = null, url = null;
+		if (mode.equals("search_id")) {
+			if (memberMapper.searchMember_id(name, email) != null) {
+				msg = "회원님 아이디는 " + memberMapper.searchMember_id(name, email) + " 입니다.";
+			} else {
+				msg = "이름과 이메일을 확인해주세요.";
+			}
+			url = "login.mem";
+		} else if (mode.equals("pw")) {
+			String id = req.getParameter("id");
+			if (memberMapper.searchMember_pw(name, email, id) != null) {
+				msg = "회원님 비밀번호는 " + memberMapper.searchMember_pw(name, email, id) + " 입니다.";
+			} else {
+				msg = "이름과 이메일, 아이디를 확인해 주세요.";
+			}
+			url = "login.mem";
+		} else {
+			msg = "��ϵ� ������ �����ϴ�.";
+			url = "login.mem";
+		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
+
 		return "message";
+
 	}
 }
