@@ -12,16 +12,17 @@
 		<table width="100%" height="800" border="1">
 			<tr height="10%">
 				<td align="center">
-				<a href="home.home">메인페이지</a>|
+				<a href="home.do">메인페이지</a>|
 				<a href="main.hotel">호텔관리자모드로 가기</a>|
-				<a href="main.admin">관리자모드로 가기</a>|
-				<a href="commhome.comm">커뮤니티 가기</a>|
+				<c:if test="${mbId == 'admin' }">
+				<a href="main.admin">관리자모드로 가기</a>	
+				</c:if>
 				<a href="insertMember.mem">회원가입</a>|
-				<c:if test="${login == null }">
+				<c:if test="${mbId == null }">
 				<a href="login.log">로그인</a>
 				</c:if>
-				<c:if test="${login != null }"> 
-				${login.name }님<a href="logout.log">로그아웃</a>
+				<c:if test="${mbId != null }"> 
+				${memberDto.name }님<a href="logout.log">로그아웃</a>
 				</c:if>
 				</td>
 			</tr>

@@ -74,7 +74,7 @@ public class PaymentController {
 			int totalPrice=pdto.getAmount()*pdto.getPrice();
 			System.out.println(totalPrice);
 			req.setAttribute("totalPrice", totalPrice);
-			MemberDTO mrdto =  memberMapper.getMember(m_id);
+			MemberDTO mrdto =  memberMapper.getMemberid(m_id);
 			req.setAttribute("mrdto", mrdto);
 			return "payment/payins2";
 		}else{

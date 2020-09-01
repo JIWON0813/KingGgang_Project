@@ -34,7 +34,7 @@ public class MyMapper {
 	
 	public boolean checkPassword(String id, String password) {
 		MemberDTO dto = getMember(id);
-		if(dto.getPassword().equals(password)) {
+		if(dto.getPasswd().equals(password)) {
 			return true;
 		}
 		return false;
@@ -46,7 +46,7 @@ public class MyMapper {
 	}
 	
 	public int updateMember(MemberDTO dto) {
-		boolean isPass = checkPassword(dto.getId(),dto.getPassword());
+		boolean isPass = checkPassword(dto.getId(),dto.getPasswd());
 		if(isPass) {
 			int res = sqlSession.update("updateMem", dto);
 			return res;
