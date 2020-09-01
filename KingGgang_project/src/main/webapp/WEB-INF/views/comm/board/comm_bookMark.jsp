@@ -11,11 +11,11 @@
 	<div class="box alt">
 		<div class="row gtr-uniform">
 			<c:if test="${empty boardList}">
-				<h2>등록된 페이지가 없습니다.</h2>>
+				<h2>등록된 페이지가 없습니다.</h2>
 			</c:if>
 			<c:forEach var="dto" items="${boardList}">		
 				<section class="col-4 col-6-medium col-12-xsmall">
-					<img src="${upLoadPath}//${dto.file_name}" width="50" height="50">
+					<img src="http://localhost:8080/img/${dto.file_name}" width="50" height="50">
 				</section>
 			</c:forEach>
 		</div>

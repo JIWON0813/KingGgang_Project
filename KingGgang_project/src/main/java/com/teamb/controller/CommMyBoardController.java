@@ -129,13 +129,10 @@ public class CommMyBoardController {
 	}
 
 	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
-	public String content(HttpServletRequest req, @RequestParam int boardNum, int replyNum) {
+	public String content(HttpServletRequest req, @RequestParam int boardNum) {
 
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
-		
-		CommReplyDTO rdto = replyMapper.getReply(replyNum);
-		req.setAttribute("getReply", rdto);
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		
@@ -155,7 +152,7 @@ public class CommMyBoardController {
 	public String writeReply(CommReplyDTO dto, HttpServletRequest req, @RequestParam int boardNum) {
 		replyMapper.writeReply(dto);
 		req.setAttribute("boardNum", dto.getBoardNum());
-		return "redirect:/"; //여기 바로 뒤로 왜 안넘어갈까 내비두고 하기
+		return "redirect:/";
 	}
 
 	@RequestMapping("/comm_bookMark.do")
@@ -176,7 +173,7 @@ public class CommMyBoardController {
 			return "message";
 		}
 */
-		return "board/B4_bookMark";
+		return "comm/board/comm_bookMark";
 	}
 
 	@RequestMapping(value = "/comm_updateForm.do", method = RequestMethod.GET)

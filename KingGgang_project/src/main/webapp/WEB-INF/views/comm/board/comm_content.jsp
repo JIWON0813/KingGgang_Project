@@ -73,7 +73,7 @@
         <p>
 		        작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${replyList.rregdate}<br/>
         </p>
-        <p>${replyList.rcontent}</p>
+         <p> : ${replyList.rcontent}</p>
       </li>
       <input type="submit" value="댓수정">
       <input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${getReply.replyNum}'">
