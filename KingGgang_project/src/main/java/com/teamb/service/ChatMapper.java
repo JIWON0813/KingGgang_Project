@@ -31,16 +31,16 @@ public class ChatMapper {
 		sqlSession.insert("insertMessage", msg);
 	}
 
-	public int getPartner(ChatRoomDTO dto) throws Exception {
+/*	public int getPartner(ChatRoomDTO dto) throws Exception {
 		List<ChatMsgDTO> mvo = sqlSession.selectList("getPartner",dto);
 		return mvo.get(0).getComm_memberNum();
 	}
+*/
 
 
-
-	public String getProfile(String str) throws Exception {
+	public String getProfile(int comm_memberNum) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getProfile", str);
+		return sqlSession.selectOne("getProfile", comm_memberNum);
 	}
 
 
@@ -61,10 +61,10 @@ public class ChatMapper {
 	}
 
 
-	public ChatMsgDTO getRecentMessage(String str) throws Exception {
-		return sqlSession.selectOne("getRecentMessage" , str);
+/*	public ChatMsgDTO getRecentMessage(String str) throws Exception {
+		return sqlSession.selectOne("getRecentMessage", str);
 	}
-
+*/
 
 	/*public void updateReadTime(int class_id, String user_id, String TUTOR_USER_user_id) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object> ();
