@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.service.CommboardMapper;
 
@@ -31,21 +32,14 @@ public class CommNewsfeedController {
 	private String upLoadPath;
 
 	@RequestMapping("/commhome.comm")
-	public String index(HttpServletRequest req, HttpSession session) {
-		//session.setAttribute("id","t");
-	  
-		String commId = (String)session.getAttribute("commId");
-	      boolean isLogin = false;
-	      int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-	      if(commId != null){
+	public String index(HttpServletRequest req, HttpSession session,Comm_MemberDTO dto) {
+		
+		String mbId = (String)session.getAttribute("mbId");
+		boolean isLogin = false;
+		if(mbId != null){
 	         isLogin = true;
-	         session.setAttribute("comm_memberNum", comm_memberNum);
-	      }
+		}
 	      
-	      session.setAttribute("isLogin", isLogin);
-	     // req.setAttribute("isLogin",isLogin);
-	    // req.setAttribute("memberNum",memberNum);
-	
 		return "comm/index";
 	}
 

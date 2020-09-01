@@ -11,10 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/*
-이	   름 : HomeController class
-설	   명 : 메인페이지 controller
-*/
 
 @Controller
 public class HomeController {
@@ -30,7 +26,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/home.home", method = RequestMethod.GET)
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String main() {
 		return "home";
 	}

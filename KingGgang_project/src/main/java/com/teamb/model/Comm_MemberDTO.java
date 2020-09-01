@@ -4,8 +4,8 @@ public class Comm_MemberDTO {
 	private int memberNum; // foreign key
 	private int comm_memberNum; //primary key
 	private String comm_name;
-	private String comm_profile_name;
-	private int comm_profile_size;
+	private String comm_profilename;
+	private int comm_profilesize;
 	private String comm_nickname;
 	private String comm_birth;
 	private String comm_intro;
@@ -29,17 +29,17 @@ public class Comm_MemberDTO {
 	public void setComm_name(String comm_name) {
 		this.comm_name = comm_name;
 	}
-	public String getComm_profile_name() {
-		return comm_profile_name;
+	public String getComm_profilename() {
+		return comm_profilename;
 	}
-	public void setComm_profile_name(String comm_profile_name) {
-		this.comm_profile_name = comm_profile_name;
+	public void setComm_profilename(String comm_profilename) {
+		this.comm_profilename = comm_profilename;
 	}
-	public int getComm_profile_size() {
-		return comm_profile_size;
+	public int getComm_profilesize() {
+		return comm_profilesize;
 	}
-	public void setComm_profile_size(int comm_profile_size) {
-		this.comm_profile_size = comm_profile_size;
+	public void setComm_profilesize(int comm_profilesize) {
+		this.comm_profilesize = comm_profilesize;
 	}
 	public String getComm_nickname() {
 		return comm_nickname;

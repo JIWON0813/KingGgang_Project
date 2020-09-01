@@ -32,14 +32,6 @@
            join.name.focus();
            return;
        }
-<<<<<<< HEAD
-	   if(join.nickname.value==""){
-		   alert("닉네임을 입력해 주세요");
-		   join.nickname.focus();
-		   return;
-	   } 
-=======
->>>>>>> branch 'master' of https://github.com/JIWON0813/KingGgang_Project.git
 	   if(!join.passwd.value){
     	   alert("비밀번호를 입력해 주세요");
     	   join.passwd.focus();
@@ -154,16 +146,6 @@
                                     <th><span>이름</span></th>
                                     <td><input type="text" name="name" placeholder="이름을 입력하세요."></td>
                                 </tr>
-<<<<<<< HEAD
-                               <!--  <tr>
-                                    <th><span>닉네임</span></th>
-                                    <td><input type="text" name="nickname" placeholder="닉네임을 입력하세요."></td>
-                                </tr> -->
-                                <tr>
-                                    <th><span>성별</span></th>
-                                    <td><input type="text" name="gender" placeholder="성별을 입력하세요."></td>
-                                </tr>
-=======
                                 <tr>
 								<th><span>성별</span></th>
 									<td>
@@ -173,7 +155,6 @@
 										</select>
 									</td>
 								</tr>
->>>>>>> branch 'master' of https://github.com/JIWON0813/KingGgang_Project.git
                                 <tr>
                                     <th><span>비밀번호</span></th>
                                     <td><input type="password" name="passwd" placeholder="비밀번호를 입력해주세요."></td>
@@ -207,51 +188,6 @@
                                     <th><span>이메일</span></th>
                                     <td><input type="text" name="email"></td>
                                 </tr>                    
-<<<<<<< HEAD
-                               <tr>
-					<th><span>생년월일</span></th>
-					<td>
-						<input type="text" name="birth_y" 
-													size="4" maxlength="4"> 년
-						<input type="text" name="birth_m" class="box"
-													size="2" maxlength="2"> 월
-						<input type="text" name="birth_d" class="box"
-													size="2" maxlength="2"> 일
-					</td>
-  				</tr>
-  				<tr>
-					<th><span>연락처</span></th>
-					<td>
-						<input type="text" name="hp1"
-													size="3" maxlength="3"> -
-						<input type="text" name="hp2"
-													size="4" maxlength="4"> -
-						<input type="text" name="hp3"
-													size="4" maxlength="4">
-					</td>
-  				</tr>
-  					<tr>
-				<th><span>프로필사진</span></th>
-				<td><input type="file" name="profile_name">
-				</td>
-			</tr>
-  				<tr>
-					<th><span>자기소개</span></th>
-					<td>
-						<textarea name="intro" rows="5" cols="60"></textarea>
-					</td>
-  				</tr>
-                            	<c:if test="${mode==1 }">
-                                <tr>
-                                    <th><span>포인트</span></th>
-                                    <td><input type="text" name="point"></td>
-                                </tr>
-                                <tr>
-                                    <th><span>권한</span></th>
-                                    <td><input type="text" name="auth"></td>
-                                </tr>
-                                </c:if>
-=======
                                 <tr>
 									<th><span>연락처</span></th>
 									<td>
@@ -273,14 +209,11 @@
                                 	<th><span>프로필 사진</span></th>
                                 	<td><input type="file" name="profile_name" accept="image/*">
                                 </tr>                           
->>>>>>> branch 'master' of https://github.com/JIWON0813/KingGgang_Project.git
                             </tbody>
                         </table>                 
                     </div>                   
                     </div>
                     <div class="btn_wrap">
-                    <input type="submit" value="조회" >
-						<input type="reset" value="취소" >
                       	<a href="javascript:checkjoin()">다음</a>
                     </div>
                 </div> 
