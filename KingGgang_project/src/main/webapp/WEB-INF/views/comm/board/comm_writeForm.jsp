@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 
+	이	   름 : B4_writeForm.jsp
+	개  발   자 : 최 인 아
+	설	   명 : 메인 페이지
+ -->
 <%@ include file="../index_top.jsp" %>
 <script type="text/javascript">
 	function check(){
@@ -20,8 +25,7 @@
 <div align="center">
 	<form name="f" action="comm_writePro.do" method="post" 
 						onsubmit="return check()" enctype="multipart/form-data">
-		<%-- <input type="hidden" name="id" value="${id}"> --%>
-		<input type="hidden" name="memberNum" value="${memberNum}">
+		<input type="hidden" name="memberNum" value="${param.memberNum}">
 			<header class="major">
 				<h3>새 게시물</h3>
 			</header>
@@ -46,7 +50,7 @@
 				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">	
-					<input type="button" value="뒤로가기" onclick="window.location='commhome.comm'">
+					<input type="button" value="뒤로가기" onclick="window.location='comm_myPage.do'">
 				</td>
 			</tr>
 		</table>

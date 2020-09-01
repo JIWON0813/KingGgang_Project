@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.teamb.model.Comm">
+    
+    <select id="listFriend" resultType="Comm_FriendDTO">
+		select * from commfriend
+	</select>
+	
+    <insert id="insertFriend" parameterType="Comm_FriendDTO">
+     insert into commfriend values
+     (#{memberNum},commfriend_num.nextval)
+    </insert>
+  
+  	<select id="getFriend" parameterType="int" resultType="Comm_FriendDTO">
+		select * from commfriend where friendNum = #{friendNum}
+	</select>
+  
+	<delete id="deleteFriend" parameterType="int">
+		delete from commfriend where friendNum = #{friendNum}
+	</delete>  
+    
+</mapper>

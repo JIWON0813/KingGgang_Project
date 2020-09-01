@@ -1,21 +1,21 @@
 package com.teamb.function;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.teamb.model.ChatMsgDTO;
+import com.teamb.model.ChatRoomDTO;
 
 /*
 이	   름 : echoHandler.java
@@ -26,102 +26,103 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Component
 @RequestMapping("/echo")
 public class EchoHandler extends TextWebSocketHandler {
+
+/*HashMap<String, WebSocketSession> sessionMap = new HashMap<>(); //웹소켓 세션을 담아둘 맵
+*/
+	private List<WebSocketSession> connectedUsers;
+	public EchoHandler() {
+	      connectedUsers = new ArrayList<WebSocketSession>();
+	   }	
+
+	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
 	
-	//HashMap<String, WebSocketSession> sessionMap = new HashMap<>(); //웹소켓 세션을 담아둘 맵
-	List<HashMap<String, Object>> rls = new ArrayList<>(); //웹소켓 세션을 담아둘 리스트 ---roomListSessions
-	
+
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) {
+		System.out.println("메세지 수신");
 		//메시지 발송
-		String msg = message.getPayload();
-		JSONObject obj = jsonToObjectParser(msg);
-		
-		String rN = (String) obj.get("roomNumber");
-		HashMap<String, Object> temp = new HashMap<String, Object>();
-		if(rls.size() > 0) {
-			for(int i=0; i<rls.size(); i++) {
-				String roomNumber = (String) rls.get(i).get("roomNumber"); //세션리스트의 저장된 방번호를 가져와서
-				if(roomNumber.equals(rN)) { //같은값의 방이 존재한다면
-					temp = rls.get(i); //해당 방번호의 세션리스트의 존재하는 모든 object값을 가져온다.
-					break;
-				}
-			}
-			
-			//해당 방의 세션들만 찾아서 메시지를 발송해준다.
-			for(String k : temp.keySet()) { 
-				if(k.equals("roomNumber")) { //다만 방번호일 경우에는 건너뛴다.
-					continue;
-				}
-				
-				WebSocketSession wss = (WebSocketSession) temp.get(k);
-				if(wss != null) {
-					try {
-						wss.sendMessage(new TextMessage(obj.toJSONString()));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
+		System.out.println(message.getPayload());
+		  Map<String, Object> map = null;
+
+	      ChatMsgDTO msg = ChatMsgDTO.convertMessage(message.getPayload());
+
+	      System.out.println("1 : " + msg.toString());
+
+
+	      ChatRoomDTO room  = new ChatRoomDTO();
+	      room.setComm_memberNum(msg.getComm_memberNum()); //유저
 	}
+	 /*   	  if(mapper.isRoom(ChatRoomDTO) == null ) {
+	    		  System.out.println("호잇");
+	    		  mapper.createRoom(ChatRoomDTO);
+	    		  System.out.println("요잇");
+	    		  croom = dao.isRoom(roomVO);
+
+	    	  }else {
+	    		  System.out.println("C");
+	    		  croom = dao.isRoom(roomVO);
+	    	  }
+	      }else {
+
+  		  croom = dao.isRoom(roomVO);
+  	  }
+
+	      messageVO.setCHATROOM_chatroom_id(croom.getChatroom_id());
+	      if(croom.getUSER_user_id().equals(messageVO.getMessage_sender())) {
+
+	    	  messageVO.setMessage_receiver(roomVO.getTUTOR_USER_user_id());
+	      }else {
+	    	  messageVO.setMessage_receiver(roomVO.getUSER_user_id());
+	      }
+
+
+
+
+	      for (WebSocketSession websocketSession : connectedUsers) {
+	         map = websocketSession.getAttributes();
+	         UserVO login = (UserVO) map.get("login");
+
+	         //받는사람
+	         if (login.getUser_id().equals(messageVO.getMessage_sender())) {
+
+	            Gson gson = new Gson();
+	            String msgJson = gson.toJson(messageVO);
+	            websocketSession.sendMessage(new TextMessage(msgJson));
+	         }
+
+
+	      }
+	   }
+*/
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		log(session.getId() + " 연결 됨!!");
 		//소켓 연결
 		super.afterConnectionEstablished(session);
-		boolean flag = false;
-		String url = session.getUri().toString();
-		System.out.println(url);
-		String roomNumber = url.split("/chating/")[1];
-		int idx = rls.size(); //방의 사이즈를 조사한다.
-		if(rls.size() > 0) {
-			for(int i=0; i<rls.size(); i++) {
-				String rN = (String) rls.get(i).get("roomNumber");
-				if(rN.equals(roomNumber)) {
-					flag = true;
-					idx = i;
-					break;
-				}
-			}
-		}
-		
-		if(flag) { //존재하는 방이라면 세션만 추가한다.
-			HashMap<String, Object> map = rls.get(idx);
-			map.put(session.getId(), session);
-		}else { //최초 생성하는 방이라면 방번호와 세션을 추가한다.
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("roomNumber", roomNumber);
-			map.put(session.getId(), session);
-			rls.add(map);
-		}
-		
-		//세션등록이 끝나면 발급받은 세션ID값의 메시지를 발송한다.
-		JSONObject obj = new JSONObject();
-		obj.put("type", "getId");
-		obj.put("sessionId", session.getId());
-		session.sendMessage(new TextMessage(obj.toJSONString()));
+		users.put(session.getId(), session);
+		connectedUsers.add(session);
 	}
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		System.out.println("연결종료됨");
 		//소켓 종료
-		if(rls.size() > 0) { //소켓이 종료되면 해당 세션값들을 찾아서 지운다.
-			for(int i=0; i<rls.size(); i++) {
-				rls.get(i).remove(session.getId());
-			}
-		}
 		super.afterConnectionClosed(session, status);
+		connectedUsers.remove(session);
+		users.remove(session.getId());
 	}
 	
-	private static JSONObject jsonToObjectParser(String jsonStr) {
-		JSONParser parser = new JSONParser();
-		JSONObject obj = null;
-		try {
-			obj = (JSONObject) parser.parse(jsonStr);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return obj;
+	@Override
+	public void handleTransportError(
+			WebSocketSession session, Throwable exception) throws Exception {
+		log(session.getId() + " 익셉션 발생: " + exception.getMessage());
+
 	}
+
+	private void log(String logmsg) {
+		System.out.println(new Date() + " : " + logmsg);
+	}
+
 }
+

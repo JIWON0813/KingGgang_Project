@@ -12,7 +12,6 @@ import com.teamb.model.MemberDTO;
 import com.teamb.service.LoginMapper;
 import com.teamb.service.MemberMapper;
 
-
 /*	이	   름 : LoginController class
 	개  발   자 : 박 준 언 , 황지은
 	설	   명 : 로그인 컨트롤러  
@@ -35,6 +34,7 @@ public class LoginController {
 
 	@RequestMapping("/logout.log")
 	public String logout(HttpServletRequest req, HttpSession session) {
+
 		session.invalidate();
 		String msg = "로그아웃 되었습니다.";
 		String url = "home.do";

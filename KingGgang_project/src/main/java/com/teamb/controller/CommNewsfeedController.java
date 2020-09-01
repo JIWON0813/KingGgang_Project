@@ -10,14 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.service.CommboardMapper;
 
 
 /*
- 이	   름 : CommNewsfeedController
-개  발   자 : 이여진
-설	   명 : 커뮤니티 뉴스피드 컨트롤러
+ �씠	   由� : CommNewsfeedController
+媛�  諛�   �옄 : �씠�뿬吏�
+�꽕	   紐� : 而ㅻ�ㅻ땲�떚 �돱�뒪�뵾�뱶 而⑦듃濡ㅻ윭
 */
 
 
@@ -31,7 +32,14 @@ public class CommNewsfeedController {
 	private String upLoadPath;
 
 	@RequestMapping("/commhome.comm")
-	public String index(HttpServletRequest req, HttpSession session) {
+	public String index(HttpServletRequest req, HttpSession session,Comm_MemberDTO dto) {
+		
+		String mbId = (String)session.getAttribute("mbId");
+		boolean isLogin = false;
+		if(mbId != null){
+	         isLogin = true;
+		}
+	      
 		return "comm/index";
 	}
 
