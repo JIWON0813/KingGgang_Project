@@ -1,87 +1,86 @@
 package com.teamb.service;
 
 import java.util.List;
-import java.util.UUID;
-
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.teamb.model.B4_memberDTO;
 import com.teamb.model.MemberDTO;
- 
-/*
-이	   름 : MemberMapper class
-개  발   자 : 박 준 언
-설	   명 : 멤버 매퍼  
-*/
 
 @Service
 public class MemberMapper {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insertMember(MemberDTO dto){
-		int res = sqlSession.insert("insertMember",dto);
-		return res;
+	
+
+	public List<MemberDTO> listMember() {
+		return sqlSession.selectList("listMember");
 	}
 	
-	public List<MemberDTO> memberList(){
-		List<MemberDTO> list = sqlSession.selectList("memberList");
-		return list;
-	}
 	
-	public MemberDTO getMember(String id){
-		return sqlSession.selectOne("getMember",id);
-	}
-	
-	public int adminDeleteMember(String id) {
-		int res = sqlSession.delete("deleteMember",id);
-		return res;
-	}
-	
-	public int adminDeleteCoupon(String id){
-		int res = sqlSession.delete("deleteCo",id);
-		return res;
-	}
-	public int adminInsertMember(MemberDTO dto){
-		int res = sqlSession.insert("adminInsertMember",dto);
-		return res;
-	}
-	public int adminUpdateMember(MemberDTO dto){
-		int res = sqlSession.update("adminUpdateMember",dto);
-		return res;
-	}
-	
-	public boolean checkPassword(String id, String password) {
-		MemberDTO dto = getMember(id);
-		if(dto.getPassword().equals(password)) {
-			return true;
+	public String searchMember_id(String name, String email){
+		java.util.Map<String, String> map = new java.util.Hashtable<String, String>();
+		if (name == null || email == null) {
+			name = "";
+			email = "";
 		}
-		return false;
+		
+		map.put("name", name);
+		map.put("email",email);
+		
+		String id = sqlSession.selectOne("searchMember_id", map);
+		if(id==null)
+			return null;
+		return id;
+	}
+	
+	public String searchMember_pw(String name, String email, String id){
+		java.util.Map<String, String> map = new java.util.Hashtable<String, String>();
+		if (name == null || email == null || id == null) {
+			name = "";
+			email = "";
+			id="";
+		}
+		
+		map.put("name", name);
+		map.put("email",email);
+		map.put("id", id);
+		
+		String passwd = sqlSession.selectOne("searchMember_pw", map);
+		if(passwd==null)
+			return null;
+		return passwd;
+	}
+	
+	public int insertMember(MemberDTO dto) {
+		int res = sqlSession.insert("insertMember", dto);
+		
+		return res;
+	}
+	
+	public MemberDTO getMember(int memberNum) {
+		MemberDTO dto = sqlSession.selectOne("getMember", memberNum);
+		return dto;
+	}
+	
+	public MemberDTO getMemberid(String id){
+		MemberDTO dto = sqlSession.selectOne("getMemberid",id);
+		return dto;
 	}
 	
 	public int updateMember(MemberDTO dto) {
-		boolean isPass = checkPassword(dto.getId(),dto.getPassword());
-		if(isPass) {
-			int res = sqlSession.update("updateMember", dto);
-			return res;
-		}
-		return -1;
-	}
-	
-	public int checkId(MemberDTO dto){
-		int res = sqlSession.selectOne("checkId",dto);
+		int res = sqlSession.update("updateMember", dto);
 		return res;
 	}
 	
-	public int deleteMember(String id,String password) {
-		int res = sqlSession.delete("deleteMember",id);
+	public int deleteMember(int memberNum) {
+		int res = sqlSession.insert("deleteMember", memberNum);
 		return res;
 	}
+	
 
 }
-
-
