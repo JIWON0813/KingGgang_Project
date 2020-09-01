@@ -18,6 +18,7 @@
 				<c:if test="${mbId == 'admin' }">
 				<a href="main.admin">관리자모드로 가기</a>	
 				</c:if>
+				<a href="commhome.comm">커뮤니티 가기</a>|
 				<a href="insertMember.mem">회원가입</a>|
 				<c:if test="${mbId == null }">
 				<a href="login.log">로그인</a>

@@ -20,7 +20,8 @@
 <div align="center">
 	<form name="f" action="comm_writePro.do" method="post" 
 						onsubmit="return check()" enctype="multipart/form-data">
-		<input type="hidden" name="id" value="${id}">
+		<%-- <input type="hidden" name="id" value="${id}"> --%>
+		<input type="hidden" name="memberNum" value="${memberNum}">
 			<header class="major">
 				<h3>새 게시물</h3>
 			</header>
@@ -45,7 +46,7 @@
 				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">	
-					<input type="button" value="뒤로가기" onclick="window.location='index.do'">
+					<input type="button" value="뒤로가기" onclick="window.location='commhome.comm'">
 				</td>
 			</tr>
 		</table>

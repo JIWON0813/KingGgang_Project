@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.teamb.model.Comm">
+	
+	<insert id="comm_insertMember" parameterType="comm_MemberDTO">
+	insert into comm_member values
+     (#{memberNum},commmember_num.nextval,#{comm_profilename},#{comm_profilesize},
+     #{comm_nickname},#{comm_birth},#{comm_intro},0,sysdate)
+	</insert>
+	<select id="comm_memberList" resultType="comm_memberDTO">
+		select * from comm_member
+	</select> 
+	
+	<select id="comm_getMember" parameterType="int" resultType="comm_memberDTO">
+ 		select * from comm_member where comm_memberNum = #{comm_memberNum}
+ 	</select>
+ 	
+ 	<select id ="comm_deleteMember"  parameterType="String">
+		delete from comm_member where comm_memberNum = #{comm_memberNum}
+	</select>
+	
+	<update id="comm_updateMember" parameterType="Comm_MemberDTO" >
+		update comm_member set comm_nickname=#{comm_nickname},
+		comm_birth=#{comm_birth}, comm_intro=#{comm_intro} 
+		where comm_memberNum = #{comm_memberNum}
+	</update>
+    
+</mapper>

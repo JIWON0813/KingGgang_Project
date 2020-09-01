@@ -1,6 +1,6 @@
 package com.teamb.model;
 
-public class CommFriendDTO {
+public class Comm_FriendDTO {
 	private int friendNum; // ģ���߰��� ����
 	private int memberNum; // �ش� ����
 	private String f_profile_name;
