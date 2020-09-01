@@ -4,7 +4,7 @@
 <!-- 
 	이	   름 : hotelDetail.jsp
 	개  발   자 : 김 지 원
-	설	   명 : 숙소 상세페이지(관리자모드)
+	설	   명 : 숙소 상세페이지(관리자모드) 
  -->
 <script>
  function regiroom(){

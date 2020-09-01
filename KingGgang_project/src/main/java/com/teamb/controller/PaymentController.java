@@ -43,10 +43,7 @@ import com.teamb.service.WishlistMapper;
 설	   명 : 결제시스템 컨트롤러
 */
 
-//rroll2
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class PaymentController {
 	
@@ -77,7 +74,7 @@ public class PaymentController {
 			int totalPrice=pdto.getAmount()*pdto.getPrice();
 			System.out.println(totalPrice);
 			req.setAttribute("totalPrice", totalPrice);
-			MemberDTO mrdto =  memberMapper.getMember(m_id);
+			MemberDTO mrdto =  memberMapper.getMemberid(m_id);
 			req.setAttribute("mrdto", mrdto);
 			return "payment/payins2";
 		}else{
@@ -133,14 +130,14 @@ public class PaymentController {
 				System.out.println(ptdto.getM_id());
 				System.out.println(ptdto.getP_no());
 				System.out.println(ptdto.getType());
-				PaylistDTO phdto = paymemtMapper.getPaylist(ptdto);
+				PaylistDTO phdto = paymemtMapper.getmyPaylist(ptdto);
 				System.out.println(phdto.getH_name());
 				Phlist.add(phdto);
 			} else {
 				System.out.println(ptdto.getM_id());
 				System.out.println(ptdto.getP_no());
 				System.out.println(ptdto.getType());
-				PaylistDTO prdto = paymemtMapper.getPaylist(ptdto);
+				PaylistDTO prdto = paymemtMapper.getmyPaylist(ptdto);
 				System.out.println(prdto.getH_name());
 				Prlist.add(prdto);
 			}
@@ -153,6 +150,43 @@ public class PaymentController {
 		
 		
 		return "my/mypagePayment";
+	}
+	
+	@RequestMapping("/adpayment.my")
+	public String adPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
+		//session.getAttribute("id"); 로그인 세션에서 받음
+		//
+		String m_id = "q";
+		//pdto.setM_id(m_id);
+		//
+		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(m_id);
+		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
+		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
+		for(PaymentDTO ptdto : Plist) {
+			if(ptdto.getType()==1) {//호텔결제내역 
+				System.out.println(ptdto.getM_id());
+				System.out.println(ptdto.getP_no());
+				System.out.println(ptdto.getType());
+				PaylistDTO phdto = paymemtMapper.getadPaylist(ptdto);
+				System.out.println(phdto.getH_name());
+				Phlist.add(phdto);
+			} else {
+				System.out.println(ptdto.getM_id());
+				System.out.println(ptdto.getP_no());
+				System.out.println(ptdto.getType());
+				PaylistDTO prdto = paymemtMapper.getadPaylist(ptdto);
+				System.out.println(prdto.getH_name());
+				Prlist.add(prdto);
+			}
+			
+		}
+		req.setAttribute("Phlist", Phlist);
+		req.setAttribute("Prlist", Prlist);
+		
+		//paytestDTO dt = paymemtMapper.getPaytest(m_id);
+		
+		
+		return "my/adminPayment";
 	}
 	
 }

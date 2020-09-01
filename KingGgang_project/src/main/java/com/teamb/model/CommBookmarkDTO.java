@@ -1,3 +1,4 @@
+
 package com.teamb.model;
 
 public class CommBookmarkDTO {

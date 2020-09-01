@@ -6,27 +6,27 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamb.model.CommFriendDTO;
+import com.teamb.model.Comm_FriendDTO;
 
 @Service
-public class CommFriendMapper {
+public class Comm_FriendMapper {
 
 	@Autowired
 	private SqlSession sqlSession;
 	
 	
-	public List<CommFriendDTO> listFriend(int memberNum) {
+	public List<Comm_FriendDTO> listFriend(int memberNum) {
 		return sqlSession.selectList("listFriend",memberNum);
 	}
 	
-	public int insertFriend(CommFriendDTO dto) {
+	public int insertFriend(Comm_FriendDTO dto) {
 		int res = sqlSession.insert("insertFriend", dto);
 		
 		return res;
 	}
 	
-	public CommFriendDTO getFriend(int friendNum) {
-		CommFriendDTO dto = sqlSession.selectOne("getFriend", friendNum);
+	public Comm_FriendDTO getFriend(int friendNum) {
+		Comm_FriendDTO dto = sqlSession.selectOne("getFriend", friendNum);
 		return dto;
 	}
 	

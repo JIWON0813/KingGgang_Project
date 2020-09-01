@@ -10,13 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.service.CommboardMapper;
 
 
-/*ÀÌ	   ¸§ : CommNewsfeedController
-°³  ¹ß   ÀÚ : 
-¼³	   ¸í : Ä¿¹Â´ÏÆ® ´º½ºÇÇµå ÄÁÆ®·Ñ·¯*/
+/*
+ ï¿½ì” 	   ç”±ï¿½ : CommNewsfeedController
+åª›ï¿½  è«›ï¿½   ï¿½ì˜„ : ï¿½ì” ï¿½ë¿¬ï§ï¿½
+ï¿½ê½•	   ï§ï¿½ : è€Œã…»ï¿½ã…»ë•²ï¿½ë–š ï¿½ë±ï¿½ë’ªï¿½ëµ¾ï¿½ë±¶ è€Œâ‘¦ë“ƒæ¿¡ã…»ìœ­
+*/
 
 
 @Controller
@@ -29,7 +32,14 @@ public class CommNewsfeedController {
 	private String upLoadPath;
 
 	@RequestMapping("/commhome.comm")
-	public String index(HttpServletRequest req, HttpSession session) {
+	public String index(HttpServletRequest req, HttpSession session,Comm_MemberDTO dto) {
+		
+		String mbId = (String)session.getAttribute("mbId");
+		boolean isLogin = false;
+		if(mbId != null){
+	         isLogin = true;
+		}
+	      
 		return "comm/index";
 	}
 
@@ -37,23 +47,8 @@ public class CommNewsfeedController {
 
 	@RequestMapping("/comm_newsfeed.do")
 	public String newsFeed(HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		String mbId = (String) session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null)
-			isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-
-		String msg = null, url = null;
-		if (mbId == null) {
-			msg = "·Î±×ÀÎÀ» ÇØÁÖ¼¼¿ä.";
-			url = "login.log";
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		}
 		List<CommboardDTO> list = boardMapper.allListBoard();
 		req.setAttribute("boardList", list);
-		return "newsfeed";
+		return "comm/newsfeed";
 	}
 }

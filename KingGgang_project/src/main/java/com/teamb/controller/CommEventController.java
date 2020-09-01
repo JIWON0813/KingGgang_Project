@@ -1,9 +1,9 @@
 package com.teamb.controller;
 
 
-/*ÀÌ	   ¸§ : CommEventController
-°³  ¹ß   ÀÚ : 
-¼³	   ¸í : Ä¿¹Â´ÏÆ® µ¿Çà ¹× ÀÌº¥Æ® ÄÁÆ®·Ñ·¯*/
+/*ï¿½ï¿½	   ï¿½ï¿½ : CommEventController
+ï¿½ï¿½  ï¿½ï¿½   ï¿½ï¿½ : 
+ï¿½ï¿½	   ï¿½ï¿½ : Ä¿ï¿½Â´ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½Æ®ï¿½Ñ·ï¿½*/
 
 public class CommEventController {
 

@@ -112,22 +112,22 @@ public class CommMyBoardController {
 	}
 
 	@RequestMapping("/comm_myPage.do")
-	public String myPage(HttpServletRequest req, HttpSession session) {
+	   public String myPage(HttpServletRequest req, HttpSession session) {
 
-		MemberDTO member = (MemberDTO) session.getAttribute("login");
-		String id = member.getId();
-		List<CommboardDTO> list = boardMapper.listBoard(id);
+	      MemberDTO member = (MemberDTO) session.getAttribute("login");
+	      int comm_memberNum = member.getMemberNum();
+	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 
-		req.setAttribute("boardList", list);
-		req.setAttribute("name", member.getName());
-		/*req.setAttribute("profile_name",member.getProfile_name());
-		System.out.println(member.getProfile_name());
-		req.setAttribute("name",member.getName());
-		//req.setAttribute("upLoadPath", upLoadPath);
-*/
-		return "comm/board/comm_myPage";
-	}
-
+	      req.setAttribute("boardList", list);
+	      req.setAttribute("name", member.getName());
+	      /*req.setAttribute("profile_name",member.getProfile_name());
+	      System.out.println(member.getProfile_name());
+	      req.setAttribute("name",member.getName());
+	      //req.setAttribute("upLoadPath", upLoadPath);
+	*/
+	      return "comm/board/comm_myPage";
+	   }
+	
 	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
 	public String content(HttpServletRequest req, @RequestParam int boardNum) {
 
