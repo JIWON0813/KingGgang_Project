@@ -1,16 +1,17 @@
 package com.teamb.model;
 
 public class ChatRoomDTO {
-	private int roomNumber;
+	private int chatroom_id;
 	private int comm_memberNum;
 	private String roomName;
 	
 	
-	public int getRoomNumber() {
-		return roomNumber;
+
+	public int getChatroom_id() {
+		return chatroom_id;
 	}
-	public void setRoomNumber(int roomNumber) {
-		this.roomNumber = roomNumber;
+	public void setChatroom_id(int chatroom_id) {
+		this.chatroom_id = chatroom_id;
 	}
 	public int getComm_memberNum() {
 		return comm_memberNum;

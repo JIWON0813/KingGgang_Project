@@ -9,7 +9,7 @@ public class ChatMsgDTO {
 	private int msgId;
 	private int comm_memberNum;
 	private String comm_nickname;
-	private String chatroom_id;
+	private int chatroom_id;
 	private String msgSender;
 	private String msgReceiver;
 	private String msgContent;
@@ -43,11 +43,11 @@ public class ChatMsgDTO {
 		this.comm_nickname = comm_nickname;
 	}
 
-	public String getChatroom_id() {
+	public int getChatroom_id() {
 		return chatroom_id;
 	}
 
-	public void setChatroom_id(String chatroom_id) {
+	public void setChatroom_id(int chatroom_id) {
 		this.chatroom_id = chatroom_id;
 	}
 
