@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div>
-	<a href="room">DM</a>
+	<a href="chat">메신저</a>
 	</div>
 		<div class="row gtr-uniform">
 			<h2>뉴스피드</h2>

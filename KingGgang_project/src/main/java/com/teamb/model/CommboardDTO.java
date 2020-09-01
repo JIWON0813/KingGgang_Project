@@ -129,4 +129,5 @@ public class CommboardDTO {
 		this.reply = reply;
 	}
 
+
 }

@@ -48,5 +48,4 @@
 						</ul>
 					</nav>
 				</header>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
-		
+

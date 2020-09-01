@@ -46,10 +46,9 @@ public class ChatController {
 	 */
 	@RequestMapping("/createRoom")
 	public @ResponseBody List<ChatRoomDTO> createRoom(@RequestParam HashMap<Object, Object> params){
-		String roomName = (String) params.get("roomName");
+		String roomName = (String) params.get("comm_nickname");
 		if(roomName != null && !roomName.trim().equals("")) {
 			ChatRoomDTO room = new ChatRoomDTO();
-			room.setRoomNumber(++roomNumber);
 			room.setRoomName(roomName);
 			roomList.add(room);
 		}
@@ -75,7 +74,7 @@ public class ChatController {
 		ModelAndView mv = new ModelAndView();
 		int roomNumber = Integer.parseInt((String) params.get("roomNumber"));
 		
-		List<ChatRoomDTO> new_list = roomList.stream().filter(o->o.getRoomNumber()==roomNumber).collect(Collectors.toList());
+		List<ChatRoomDTO> new_list = roomList.stream().filter(o->o.getChatroom_id()==roomNumber).collect(Collectors.toList());
 		if(new_list != null && new_list.size() > 0) {
 			mv.addObject("roomName", params.get("roomName"));
 			mv.addObject("roomNumber", params.get("roomNumber"));

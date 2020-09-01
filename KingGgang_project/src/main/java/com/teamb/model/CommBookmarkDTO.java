@@ -1,9 +1,9 @@
+
 package com.teamb.model;
 
 public class CommBookmarkDTO {
 /*private	B4_memberDTO memberNum; //foreign key
 private	CommboardDTO boardNum; //foreign key
-
 public B4_memberDTO getMemberNum() {
 	return memberNum;
 }
