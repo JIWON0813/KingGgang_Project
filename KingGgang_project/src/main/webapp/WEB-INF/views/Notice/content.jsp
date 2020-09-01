@@ -28,7 +28,7 @@
 			<td colspan="3" >
 				${notice.content}
 			</td>
-		</tr>
+		</tr> 
 		<tr bgcolor="yellow">
 			<td colspan="4" align="right">
 			<c:if test="${not empty a_id}">

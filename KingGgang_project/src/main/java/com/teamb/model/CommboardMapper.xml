@@ -18,16 +18,8 @@
 	
 	<insert id="writeBoard" parameterType="CommboardDTO">
 		insert into commboard values(#{id},commboard_num.nextval, #{file_name}, #{file_size}, 
-		#{content}, #{tag}, #{loc},0,0,0,0,0,0) 
+		#{content}, #{tag}, #{loc},0,0,0,0,0,0,0) 
 	</insert>
-	
-	<select id="deleteBoard" parameterType="int" resultType="int">
-		delete from commboard where boardNum=#{boardNum} 
-	</select>
-	
-	<update id="updateBoard" parameterType="CommboardDTO">
-		update commboard set content=#{content} where boardNum=#{boardNum}
-	</update>
 	
 	<update id="plusReadcount" parameterType="int">
 		update commboard set readcount=readcount+1 where boardNum=#{num}
@@ -38,14 +30,18 @@
 	</select>
 	
 	<update id="plusIsLikecount" parameterType="int">
-		update commboard set likecount=likecount+1 where boardNum=#{bNum} and memberNum=#{mNum}
+		update B4_count set likecount=likecount+1 where boardNum=#{bNum} and memberNum=#{mNum}
 	</update>
 	
 	<update id="plusLikecount" parameterType="int">
-		update commboard set likecount=likecount+1 where boardNum=#{bNum}
+		update B4_board set likecount=likecount+1 where boardNum=#{bNum}
 	</update>
 	
 	<update id="minusLikecount" parameterType="int">
-		update commboard set likecount=likecount-1 where boardNum=#{bNum}
+		update B4_board set likecount=likecount-1 where boardNum=#{bNum}
 	</update>
+	
+	<select id="deleteBoard" parameterType="int" resultType="int">
+	delete from B4_board where boardNum=#{boardNum}
+</select>
 </mapper>
