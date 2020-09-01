@@ -10,7 +10,7 @@ public class Comm_MemberDTO {
 	private String comm_birth;
 	private String comm_intro;
 	private int comm_friendCount;
-	private int comm_regdate;
+	private String comm_regdate;
 	public int getMemberNum() {
 		return memberNum;
 	}
@@ -65,10 +65,10 @@ public class Comm_MemberDTO {
 	public void setComm_friendCount(int comm_friendCount) {
 		this.comm_friendCount = comm_friendCount;
 	}
-	public int getComm_regdate() {
+	public String getComm_regdate() {
 		return comm_regdate;
 	}
-	public void setComm_regdate(int comm_regdate) {
+	public void setComm_regdate(String comm_regdate) {
 		this.comm_regdate = comm_regdate;
 	}
 	

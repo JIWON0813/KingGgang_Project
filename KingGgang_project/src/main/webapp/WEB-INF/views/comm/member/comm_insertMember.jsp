@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
-<form name="join" action="comm_insert.do" enctype="multipart/form-data" method="post">
+<form name="join" action="comm_member_input_ok.do" enctype="multipart/form-data" method="post">
 	<div class="wrap wd668">
 		<div class="container">
 			<div class="form_txtInput">
@@ -32,7 +32,8 @@
 							</tr>
 							<tr>
 								<th><span>프로필사진</span></th>
-								<td><input type="file" name="comm_profilename"></td>
+								<td><input type="file" name="comm_profilename">
+									<input type="hidden" name="comm_profilesize"></td>
 							</tr>
 							<tr>
 								<th><span>자기소개</span></th>

@@ -51,6 +51,12 @@ public class LoginController {
 	      String msg = null, url = null;
 	      switch(res){
 	      case MemberDTO.OK:	    
+	    	  //지은
+	    	  int memberNum = loginMapper.getMemberNum(dto.getId());
+	            session.setAttribute("memberNum",memberNum);
+	            //session.setAttribute("member",memberMapper.getMember(memberNum));  
+	    	  //지은
+	    	  
 	    	  session.setAttribute("mbId", dto.getId());
 	    	  session.setAttribute("memberDto", dto);
 	    	  session.setAttribute("upLoadPath", upLoadPath);

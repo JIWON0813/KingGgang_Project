@@ -17,14 +17,6 @@
 					<h1 id="logo"><a href="home.do">낑깡</a></h1>
 					<nav id="nav">
 						<ul>
-							<li>
-							<c:if test="${isLogin == null }">
-								<a href="Comm_loginOk.log">가입하기</a>
-							</c:if>
-							<c:if test="${isLogin != null }">
-								<a>가입한 상태</a>
-							</c:if>
-							</li>
 							<li><a href="comm_newsfeed.do">News Feed</a></li>
 							<li><a href="comm_writeForm.do">Write</a></li>
 							<li>
@@ -40,6 +32,19 @@
 							</li>
 							<li><a href="comm_friendAll.do">Friends 목록</a></li>
 							<li><a href="comm_insertFriend.do?memberNum=${memberNum }">Friends 추가</a></li>
+							<li>
+							<c:if test="${isLogin == null }">
+								<%-- <a href="comm_member_input.do?memberNum=${memberNum }">가입하기</a> --%>
+								<a href="comm_member_input.do?memberNum=${memberNum }">가입하기</a>
+								<a href="comm_memberList.do">목록</a>
+								<a href="comm_member_edit.do?comm_memberNum=${dto.comm_memberNum }">수정</a></td> 
+							</c:if>
+							<c:if test="${isLogin != null }">
+								<a>가입한 상태</a>
+							</c:if>
+							</li>
+						
+						
 						</ul>
 					</nav>
 				</header>
