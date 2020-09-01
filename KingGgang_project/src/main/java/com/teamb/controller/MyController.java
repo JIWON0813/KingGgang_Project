@@ -84,7 +84,7 @@ public class MyController {
 		String password = req.getParameter("password");
 		
 		MemberDTO dto = myMapper.getMember(id);
-		String filename = dto.getFilename(); 
+		String filename = dto.getProfile_name(); 
 		File file = new File(upLoadPath,filename);
 		
 		int res = myMapper.deleteMember(id,password);
@@ -153,8 +153,8 @@ public class MyController {
 	filename=filename2;
 	filesize=filesize2;
 	}
-		dto.setFilename(filename);
-		dto.setFilesize(filesize);
+		dto.setProfile_name(filename);
+		dto.setProfile_size(filesize);
 	
 		int res = myMapper.updateMember(dto);
 		String msg = null, url=null;
