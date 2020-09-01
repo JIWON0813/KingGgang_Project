@@ -34,17 +34,17 @@ public class CommNewsfeedController {
 	public String index(HttpServletRequest req, HttpSession session) {
 		//session.setAttribute("id","t");
 	  
-		String mbId = (String)session.getAttribute("mbId");
+		String commId = (String)session.getAttribute("commId");
 	      boolean isLogin = false;
-	      int memberNum = (Integer)session.getAttribute("memberNum");
-	      if(mbId != null){
+	      int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+	      if(commId != null){
 	         isLogin = true;
-	         session.setAttribute("memberNum", memberNum);
+	         session.setAttribute("comm_memberNum", comm_memberNum);
 	      }
 	      
 	      session.setAttribute("isLogin", isLogin);
-	      req.setAttribute("isLogin",isLogin);
-	      req.setAttribute("memberNum",memberNum);
+	     // req.setAttribute("isLogin",isLogin);
+	    // req.setAttribute("memberNum",memberNum);
 	
 		return "comm/index";
 	}

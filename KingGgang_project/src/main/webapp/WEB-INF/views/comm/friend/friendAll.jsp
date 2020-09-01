@@ -20,8 +20,8 @@
 		<c:forEach var="dto" items="${friendList }">
 			<tr>
 				<%-- <img src="http://localhost:8080/img/${profile_name}" width="50" height="50"> --%>
-				<td>${name}</td>
-				<td>${email }</td>
+				<td>${dto.f_name}</td>
+				<td>${dto.f_email }</td>
 				<td>${dto.memberNum }</td>
 				<td>${dto.friendNum }</td>
 				<td><a href="comm_friendContent.do?friendNum=${dto.friendNum}">상세보기</a></td> 

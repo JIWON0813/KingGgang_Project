@@ -50,13 +50,10 @@ public class LoginController {
 	         session.setAttribute("mbId", dto.getId());
 	         
 	         int memberNum = memberMapper.getMemberNum(dto.getId());
-	         //황지은 친구 목록 중 친구 이름/이메일 끌어오기 실행중
-	         /* String email = memberMapper.getMember(memberNum).getEmail();
-	         String name= memberMapper.getMember(memberNum).getName();*/
+	     
+	      
 	            session.setAttribute("memberNum",memberNum);
 	            session.setAttribute("member",memberMapper.getMember(memberNum));
-	         /*   session.setAttribute("memberName", name);
-	            session.setAttribute("memberEmail", email);*/
 
 	            if(dto.getId().equals("admin")) {
 	            msg = "관리자만 이용 가능";

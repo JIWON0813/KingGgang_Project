@@ -15,6 +15,14 @@
 					<h1 id="logo"><a href="home.do">낑깡</a></h1>
 					<nav id="nav">
 						<ul>
+							<li>
+							<c:if test="${isLogin == null}">
+								<a href="Comm_loginOk.log">가입하기</a>
+							</c:if>
+							<c:if test="${isLogin != null}"> 
+								<a>가입한 상태</a>
+							</c:if>
+							</li>
 							<li><a href="comm_newsfeed.do">News Feed</a></li>
 							<li><a href="comm_writeForm.do">Write</a></li>
 							<li>

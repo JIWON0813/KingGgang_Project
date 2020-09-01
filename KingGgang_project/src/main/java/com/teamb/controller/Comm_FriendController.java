@@ -40,10 +40,17 @@ public class Comm_FriendController {
 		int memberNum = (Integer) session.getAttribute("memberNum");
 
 		List<Comm_FriendDTO> list = friendMapper.listFriend(memberNum);
+		for(Comm_FriendDTO dto2: list){
+			int m=dto2.getMemberNum();
+			MemberDTO mdto=memberMapper.getMember(m);
+			dto2.setF_email(mdto.getEmail());
+			dto2.setF_name(mdto.getName());
+		}
 		req.setAttribute("friendList", list);
 		//req.setAttribute("profile_name", member.getProfile_name());
 		session.getAttribute("name");
 		session.getAttribute("email");
+		
 
 		return "comm/friend/friendAll";
 	}
@@ -100,13 +107,6 @@ public class Comm_FriendController {
 
 		Comm_FriendDTO dto = friendMapper.getFriend(friendNum);
 		req.setAttribute("getFriend", dto);
-
-		/*HttpSession session = req.getSession();
-		String mbId = (String) session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null)
-			isLogin = true;
-		req.setAttribute("isLogin", isLogin);*/
 
 		return "comm/friend/friendcontent";
 	}

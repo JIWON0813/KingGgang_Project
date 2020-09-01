@@ -16,19 +16,52 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.MemberDTO;
+import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.MemberMapper;
 
 
 @Controller
 public class Comm_MemberController {
 	@Autowired
-	private MemberMapper memberMapper;
+	private Comm_MemberMapper memberMapper;
 	
 	
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
 	
+	
+	@RequestMapping(value = "/Comm_loginOk.log")
+	public String comm_loginOk(Comm_MemberDTO dto, HttpServletRequest req,HttpSession session, int comm_memberNum) {
+	      int res = memberMapper.comm_loginOk(dto);      
+	      String msg = null, url = null;
+	      switch(res){
+	      case Comm_MemberDTO.OK:
+	         session = req.getSession();
+	         session.setAttribute("commId", dto.getMemberNum());
+	         
+	         //int memberNum = memberMapper.getMemberNum(dto.getId());
+	         
+	        session.setAttribute("comm_member",memberMapper.comm_getMember(comm_memberNum));
+	        
+	        MemberDTO mdto = new MemberDTO();
+	            if(mdto.getId().equals("admin")) {
+	            msg = "관리자만 이용 가능";
+	            url = "commhome.comm";
+	            }
+	            else{
+	            msg = "가입 성공. 메인으로 이동";
+	            url = "commhome.comm";
+	            }
+	            
+	            break;
+	      }
+	      req.setAttribute("msg", msg);
+	      req.setAttribute("url", url);
+	      return "message";
+	   }
+
 
 	/*@RequestMapping(value = "/memberAll.do")
 	public String listMember(HttpServletRequest req,MemberDTO dto){
@@ -42,52 +75,10 @@ public class Comm_MemberController {
 		return "memberAll";
 	}*/
 	
-	/*@RequestMapping(value = "/member_search.do")
-	public String searchMemberForm(HttpServletRequest req){
-		String mode = req.getParameter("mode");
-		req.setAttribute("mode", mode);
-		return "login/search";
-	}
-	
-	@RequestMapping(value = "/member_search_ok.do")
-//	public ModelAndView searchMember_id(HttpServletRequest req){ 
-		public String searchMember_id(HttpServletRequest req){ 
-		String mode = req.getParameter("mode");
-		String name = req.getParameter("name");
-		String email = req.getParameter("email");
-		System.out.println(mode);
-		String msg = null, url = null;
-		if(mode.equals("search_id")){
-			if(memberMapper.searchMember_id(name, email) != null){
-				msg = "占쏙옙占싱듸옙占� "+ memberMapper.searchMember_id(name, email) +" 占쌉니댐옙.";
-			}
-			else{
-				msg="占쏙옙溝占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙.";
-			}
-			url="login.do";
-		}else if(mode.equals("pw")){
-			String id = req.getParameter("id");
-			if(memberMapper.searchMember_pw(name, email, id) != null){	
-				msg = "占쏙옙橘占싫ｏ옙占� "+ memberMapper.searchMember_pw(name, email, id) +" 占쌉니댐옙.";
-			}
-			else{
-				msg="占쏙옙溝占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙.";
-			}
-			url="login.do";
-		}else{
-			msg ="占쏙옙溝占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙.";
-			url="login.do";
-		}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		
-		return "message";
-		
-		}*/
 	
 	@RequestMapping(value="/comm_member_edit.do", method=RequestMethod.GET)
-	public ModelAndView memberEdit(HttpServletRequest req,@RequestParam int memberNum){
-		MemberDTO dto = memberMapper.getMember(memberNum);
+	public ModelAndView commMemberEdit(HttpServletRequest req,@RequestParam int comm_memberNum){
+		Comm_MemberDTO dto = memberMapper.comm_getMember(comm_memberNum);
 		ModelAndView mav = new ModelAndView
 				("comm/comm_member_edit", "getMember", dto);
 		
@@ -96,16 +87,14 @@ public class Comm_MemberController {
 		boolean isLogin = false;
 		if (mbId != null) isLogin = true;
 		req.setAttribute("isLogin", isLogin);
-		req.setAttribute("getMember", memberMapper.getMember(memberNum));
+		req.setAttribute("comm_getMember", memberMapper.comm_getMember(comm_memberNum));
 		
 		return mav;
 	}
-	
-	
 		
 	@RequestMapping(value = "/comm_member_edit_ok.do", method = RequestMethod.POST)
-	public String memberEditOk(HttpServletRequest req, HttpSession session, @ModelAttribute MemberDTO dto,
-			BindingResult result) {
+	public String commMemberEditOk(HttpServletRequest req, HttpSession session, 
+			@ModelAttribute Comm_MemberDTO dto, BindingResult result) {
 		
 		int res = memberMapper.comm_updateMember(dto);
 
@@ -120,5 +109,21 @@ public class Comm_MemberController {
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		return "message";
+	}
+	
+	@RequestMapping("/comm_member_delete.do")
+	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum){
+		int res = memberMapper.comm_deleteMember(comm_memberNum);
+		String msg = null, url = null;
+		if(res>0){
+			msg="회원삭제성공!";
+			url="commhome.comm";
+		}else{
+			msg="회원삭제실패!";
+			url="commhome.comm";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";	
 	}
 }
