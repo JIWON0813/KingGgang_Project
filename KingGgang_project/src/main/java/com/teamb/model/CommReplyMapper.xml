@@ -27,5 +27,9 @@
 	<select id="deleteReply" parameterType="int" resultType="int">
 		delete from reply where replyNum=#{replyNum} 
 	</select>
+	
+	<update id="updateReply" parameterType="CommReplyDTO">
+		update reply set content=#{content} where replyNum=#{replyNum}
+	</update>
 
 </mapper>

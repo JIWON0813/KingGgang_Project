@@ -45,7 +45,7 @@ public class CommMyBoardController {
 
 	@RequestMapping(value = "/comm_writeForm.do", method = RequestMethod.GET)
 	public String writeForm(HttpServletRequest req) {
-		HttpSession session = req.getSession();
+		/*HttpSession session = req.getSession();
 		MemberDTO mbId = (MemberDTO) session.getAttribute("mdid");
 		boolean isLogin = false;
 		if (mbId != null)
@@ -59,7 +59,7 @@ public class CommMyBoardController {
 			req.setAttribute("msg", msg);
 			req.setAttribute("url", url);
 			return "message";
-		}
+		}*/
 		return "comm/board/comm_writeForm";
 	}
 
@@ -129,10 +129,13 @@ public class CommMyBoardController {
 	}
 
 	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
-	public String content(HttpServletRequest req, @RequestParam int boardNum) {
+	public String content(HttpServletRequest req, @RequestParam int boardNum, int replyNum) {
 
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
+		
+		CommReplyDTO rdto = replyMapper.getReply(replyNum);
+		req.setAttribute("getReply", rdto);
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		
@@ -150,16 +153,9 @@ public class CommMyBoardController {
 	
 	@RequestMapping(value = "/comm_writeReply.do", method = RequestMethod.POST)
 	public String writeReply(CommReplyDTO dto, HttpServletRequest req, @RequestParam int boardNum) {
-	
 		replyMapper.writeReply(dto);
-		
 		req.setAttribute("boardNum", dto.getBoardNum());
-		/*req.addAttribute("page", scri.getPage());
-		req.addAttribute("perPageNum", scri.getPerPageNum());
-		req.addAttribute("searchType", scri.getSearchType());
-		req.addAttribute("keyword", scri.getKeyword());*/
-		
-		return "redirect:comm/board/comm_content";
+		return "redirect:/"; //여기 바로 뒤로 왜 안넘어갈까 내비두고 하기
 	}
 
 	@RequestMapping("/comm_bookMark.do")
@@ -192,7 +188,6 @@ public class CommMyBoardController {
 
 	@RequestMapping(value = "/comm_updatePro.do", method = RequestMethod.POST)
 	public String updatePro(HttpServletRequest req, HttpSession session, @ModelAttribute CommboardDTO dto, @RequestParam int boardNum) {
-	/*	dto = (CommboardDTO) session.getAttribute("getBoard");*/
 		
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
@@ -207,7 +202,7 @@ public class CommMyBoardController {
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 
-		return"message";
+		return "message";
 	}
 
 	@RequestMapping(value = "/comm_deletePro.do")
@@ -215,7 +210,7 @@ public class CommMyBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "寃뚯떆湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
+			msg = "게시물이 삭제 되었습니다.";
 			url = "comm_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -225,9 +220,24 @@ public class CommMyBoardController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/reply_updateForm.do", method = RequestMethod.GET)
+	public String updatereplyForm(CommReplyDTO dto, HttpServletRequest req, @RequestParam int replyNum) {
+		replyMapper.updateReply(dto);
+		req.setAttribute("replyNum", dto.getReplyNum());
+		return "redirect:comm/board/comm_Mypage";
+	}
+	
+	@RequestMapping(value = "/reply_updatePro.do", method = RequestMethod.POST)
+	public String updatereplyPro(CommReplyDTO dto, HttpServletRequest req, @RequestParam int replyNum) {
+		replyMapper.updateReply(dto);
+		req.setAttribute("replyNum", dto.getReplyNum());
+		return "redirect:comm/board/comm_Mypage";
+	}
+	
 	@RequestMapping(value = "/reply_deletePro.do")
 	public ModelAndView deletereplyPro(@RequestParam int replyNum) {
 		int res = replyMapper.deleteReply(replyNum);
+		System.out.println(replyNum);
 		String msg = null, url = null;
 		if (res > 0) { 
 			msg = "댓글이 삭제 되었습니다.";

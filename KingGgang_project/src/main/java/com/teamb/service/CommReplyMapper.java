@@ -31,6 +31,11 @@ public class CommReplyMapper {
 		return sqlSession.insert("writeReply",dto);
 	}
 	
+	public int updateReply(CommReplyDTO dto) {
+		int res = sqlSession.update("updateReply",dto);
+		return res;
+	}
+	
 	public int deleteReply(int replyNum) {	
 		int res = sqlSession.insert("deleteReply",replyNum);
 		return res;

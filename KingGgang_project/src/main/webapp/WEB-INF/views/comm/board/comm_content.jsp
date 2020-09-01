@@ -10,9 +10,6 @@
 <section id="four" class="wrapper style1 special fade-up">
 <div class="container">
 	<table width="300" class="wrapper style1 special fade-up">
-	<!-- <tr align="right">
-		<th><img src="warn.png"></th>
-	</tr> -->
 	<c:if test="${getBoard.file_size != 0}">
 		<tr align="center">
 			 <td align="center" colspan="3">
@@ -53,12 +50,6 @@
 <br>
 <form name="replyForm" action="comm_writeReply.do" method="post">
   <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}"/>
-  
- <%--  <input type="hidden" id="page" name="page" value="${scri.page}"> 
-  <input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
-  <input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-  <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">  --%>
-
   <div>
     <label for="rwriter">댓글 작성자</label><input type="text" id="rwriter" name="rwriter" />
     <br/>
@@ -71,7 +62,8 @@
 
 <!-- 댓글 -->
 <div id="reply">
-<input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
+<form name="f" action="reply_updatePro.do" method="post" onsubmit="return check()">
+ <%--  <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/> --%>
   <ol class="replyList">
    <c:if test="${empty replyList}">
 	      <p>등록된 댓글이 없습니다.</p>
@@ -79,24 +71,15 @@
     <c:forEach items="${replyList}" var="replyList">
       <li>
         <p>
-		        작성자 : ${replyList.rwriter}<br/>
-		        작성 날짜 : ${replyList.rregdate}
+		        작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${replyList.rregdate}<br/>
         </p>
         <p>${replyList.rcontent}</p>
       </li>
-      <input type="button" value="글수정" >
-      <input type="button" value="글삭제" onclick="window.location='reply_deletePro.do?replyNum=${getReply.replyNum}'">
-     <%--  <input type="button" value="글수정"
-		onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="글삭제"
-		onclick="window.location='reply_deletePro.do?replyNum=${getBoard.replyNum}'">
-		&nbsp;&nbsp;&nbsp;&nbsp;--%>
+      <input type="submit" value="댓수정">
+      <input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${getReply.replyNum}'">
     </c:forEach>   
   </ol>
-  
-		
-			
+ </form>		
 </div>
 
 

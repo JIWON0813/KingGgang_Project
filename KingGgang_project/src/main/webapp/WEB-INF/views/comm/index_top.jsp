@@ -14,7 +14,7 @@
 
 			<!-- Header -->
 				<header id="header">
-					<h1 id="logo"><a href="home.home">낑깡</a></h1>
+					<h1 id="logo"><a href="home.do">낑깡</a></h1>
 					<nav id="nav">
 						<ul>
 							<li><a href="comm_newsfeed.do">News Feed</a></li>

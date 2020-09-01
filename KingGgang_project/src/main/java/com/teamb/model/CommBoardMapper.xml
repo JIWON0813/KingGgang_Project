@@ -18,7 +18,7 @@
 	
 	<insert id="writeBoard" parameterType="CommboardDTO">
 		insert into commboard values(#{id},commboard_num.nextval, #{file_name}, #{file_size}, 
-		#{content}, #{tag}, #{loc},0,0,0,0,0,0,0) 
+		#{content}, #{tag}, #{loc},0,0,0,0,0,0) 
 	</insert>
 	
 	<select id="deleteBoard" parameterType="int" resultType="int">
