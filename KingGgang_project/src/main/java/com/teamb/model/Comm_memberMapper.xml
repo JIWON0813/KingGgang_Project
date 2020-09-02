@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="comm_insertMember" parameterType="Comm_MemberDTO">
 	insert into comm_member values
      (#{memberNum},comm_member_num.nextval,#{comm_name},#{comm_profilename},#{comm_profilesize},
-     #{comm_nickname},#{comm_birth},#{comm_intro},0,sysdate)
+     #{comm_nickname},#{comm_birth},#{comm_intro},0,sysdate,0)
 	</insert>
 	<select id="comm_memberList" resultType="comm_memberDTO">
 		select * from comm_member

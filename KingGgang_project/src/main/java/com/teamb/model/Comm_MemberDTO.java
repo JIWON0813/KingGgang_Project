@@ -11,6 +11,8 @@ public class Comm_MemberDTO {
 	private String comm_intro;
 	private int comm_friendCount;
 	private String comm_regdate;
+	private int unReadCount;
+	
 	public int getMemberNum() {
 		return memberNum;
 	}
@@ -72,6 +74,15 @@ public class Comm_MemberDTO {
 		this.comm_regdate = comm_regdate;
 	}
 	
+	
+	public int getUnReadCount() {
+		return unReadCount;
+	}
+	public void setUnReadCount(int unReadCount) {
+		this.unReadCount = unReadCount;
+	}
+
+
 	public static final int OK = 0;			
 	public static final int NOT_ID = 1;	
 	public static final int NOT_PW = 2;
