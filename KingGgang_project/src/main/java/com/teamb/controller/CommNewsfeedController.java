@@ -37,13 +37,20 @@ public class CommNewsfeedController {
 	public String index(HttpServletRequest req, HttpSession session,Comm_MemberDTO dto) {
 		
 		String mbId = (String)session.getAttribute("mbId");
-		boolean isLogin = false;
+		String commId = (String)session.getAttribute("commId");
+		//boolean isLogin = false;
+			boolean isLoginMain = false;
+			boolean isLoginComm = false;
+			//if(mbId == null){ return "home"; }
 		if(mbId != null){
-	         isLogin = true;
-	         dto.setComm_memberNum(1);
-	      //   System.out.println(dto.getComm_memberNum());
-		}
-	      
+	    // isLogin= true;
+			isLoginMain = true;
+			if(commId != null ) isLoginComm=true;
+	    //dto.setComm_memberNum(1);
+		
+		}   
+		
+		
 		return "comm/index";
 	}
 

@@ -38,7 +38,7 @@ public class Comm_MemberController {
 	
 	@RequestMapping(value = "/Comm_loginOk.log")
 	public String comm_loginOk(Comm_MemberDTO dto, HttpServletRequest req,HttpSession session, int comm_memberNum) {
-	    // 가입되어있으면 가입된 멤버입니다. 메세지 창 나오고, 가입안되있으면 insert 하는 폼 나오기
+	    // 가입되어있으면 가입된 멤버입니다.(or 가입하기 버튼이 회원입니다.) 메세지 창 나오고, 가입안되있으면 insert 하는 폼 나오기(or 가입하기 버튼)
 		session.getAttribute("mbId");
 		boolean isLogin=false;
 		dto = memberMapper.comm_getMember(comm_memberNum);
@@ -79,19 +79,24 @@ public class Comm_MemberController {
 	public String comminsertMemberForm(HttpServletRequest req,HttpSession session){
 		//Comm_MemberDTO dto = memberMapper.comm_getMember(comm_memberNum);
 		int memberNum = (Integer)session.getAttribute("memberNum");
-		//int num = (Integer)session.getAttribute("num"); // 가입완료 후 받는 memberNum값 넘겨받기.
+			//int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+			//List<Comm_MemberDTO> list = (List<Comm_MemberDTO>) session.getAttribute("comm_memberList"); //20200902
+			//session.setAttribute("num",list.get(0)); //20200902
+			//System.out.println(list.get(0)); //20200902
+			//int num = (Integer)session.getAttribute("num"); // 가입완료 후 받는 memberNum값 넘겨받기.
 		
 		String msg = null, url = null;
 		
-		/*if(memberNum == num){
-			msg = "이미 가입되어 있습니다.";
-			url = "commhome.comm";
-			
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		} 		*/			
-		
+			//20200902
+			/*if(memberNum == num){
+				msg = "이미 가입되어 있습니다.";
+				url = "commhome.comm";
+				
+				req.setAttribute("msg", msg);
+				req.setAttribute("url", url);
+				return "message";
+			} 				*/	
+			//20200902
 		return "comm/member/comm_insertMember";
 	}
 	
@@ -100,7 +105,6 @@ public class Comm_MemberController {
 											Comm_MemberDTO dto,BindingResult result){
 		
 		int memberNum = (Integer)session.getAttribute("memberNum");
-	    //Comm_MemberDTO comm_member = (Comm_MemberDTO)session.getAttribute("comm_member");
 	       
 		
 		if (result.hasErrors()){
@@ -128,9 +132,10 @@ public class Comm_MemberController {
 		    
 		
 		    int res = memberMapper.comm_insertMember(dto);
+		    session.setAttribute("commId", dto.getComm_name()); //20200902
+		    session.setAttribute("comm_memberNum", dto.getComm_memberNum());
 		  //  session.setAttribute("num", ); 
 		    // 가입하면서 dto에 저장된 memberNum값 저장!!!! 해서 'input.do'실행시 값 가져오기 해아 중복 가입이 안됨.
-		  //session.setAttribute("comm_memberNum", dto.getComm_memberNum());
 		String msg = null, url = null;
 		if(res>0){
 			msg="가입성공";
@@ -151,20 +156,21 @@ public class Comm_MemberController {
 		
 		List<Comm_MemberDTO> list = memberMapper.comm_memberList();
 		
-		req.setAttribute("comm_memberList", list);
+		session.setAttribute("comm_memberList", list);
 		
 		req.setAttribute("upLoadPath", upLoadPath);
-		//String mode = req.getParameter("mode");
 		
 		return "comm/member/comm_memberList";
 	}
 	
 	
-	@RequestMapping(value="/comm_member_edit.do", method=RequestMethod.GET)
-	public ModelAndView commMemberEdit(HttpServletRequest req,@RequestParam int comm_memberNum){
+	@RequestMapping(value="/comm_member_edit.do")
+	public ModelAndView commMemberEdit(HttpServletRequest req,HttpSession session,
+											@RequestParam int comm_memberNum){
 		Comm_MemberDTO dto = memberMapper.comm_getMember(comm_memberNum);
+		session.getAttribute("comm_memberNum");
 		ModelAndView mav = new ModelAndView
-				("comm/comm_member_edit", "getMember", dto);
+				("comm/member/comm_member_edit", "getMember", dto);
 		
 		req.setAttribute("comm_getMember", memberMapper.comm_getMember(comm_memberNum));
 		

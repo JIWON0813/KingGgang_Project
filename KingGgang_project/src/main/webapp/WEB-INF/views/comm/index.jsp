@@ -33,11 +33,20 @@
 							<li><a href="comm_friendAll.do">Friends 목록</a></li>
 							<li><a href="comm_insertFriend.do?memberNum=${memberNum }">Friends 추가</a></li>
 							<li>
+							<!--  -->
+								<c:if test="${isLoginComm}">
+							<li><a href="#">회원입니다(회원탈퇴)</a></li>
+							</c:if>
+							<c:if test="${!isLoginComm}">
+							<li><a href="comm_member_input.do?memberNum=${memberNum }">가입하기</a></li>
+							</c:if>
+							<!--  -->
+							
 							<c:if test="${isLogin == null }">
 								<%-- <a href="comm_member_input.do?memberNum=${memberNum }">가입하기</a> --%>
 								<a href="comm_member_input.do?memberNum=${memberNum }">가입하기</a>
 								<a href="comm_memberList.do">목록</a>
-								<a href="comm_member_edit.do?comm_memberNum=${dto.comm_memberNum }">수정</a></td> 
+								<a href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">수정</a></td> 
 							</c:if>
 							<c:if test="${isLogin != null }">
 								<a>가입한 상태</a>
