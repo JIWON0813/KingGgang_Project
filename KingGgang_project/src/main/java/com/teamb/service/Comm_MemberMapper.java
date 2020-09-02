@@ -15,11 +15,13 @@ public class Comm_MemberMapper {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int comm_loginOk(Comm_MemberDTO dto){
-		String dbPass = sqlSession.selectOne("comm_loginOk", dto);
-		if (dbPass != null)
-			return dto.OK;
-		return dto.ERROR;
+	public Comm_MemberDTO comm_loginOk(Comm_MemberDTO dto){
+		return sqlSession.selectOne("comm_loginOk", dto);
+	}
+	
+	public int comm_getmemberNum(String comm_nickname){
+		int res = sqlSession.selectOne("comm_getmemberNum",comm_nickname);
+		return res;
 	}
 	
 	public int comm_insertMember(Comm_MemberDTO dto){
