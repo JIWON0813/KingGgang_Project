@@ -1,5 +1,5 @@
 package com.teamb.model;
-
+ 
 public class RentcarDTO {
 	private int r_id;
 	private String company;
