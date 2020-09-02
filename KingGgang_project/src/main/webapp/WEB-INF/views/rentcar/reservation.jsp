@@ -85,17 +85,17 @@
   					<option selected value="0">
   					픽업 시간 선택
   					</option>
-  					<option value="09:00:00">오전 09시</option>
-  					<option value="10:00:00">오전 10시</option>
-  					<option value="11:00:00">오전 11시</option>
-  					<option value="12:00:00">오전 12시</option>
-  					<option value="13:00:00">오후 1시</option>
-  					<option value="14:00:00">오후 2시</option>
-  					<option value="15:00:00">오후 3시</option>
-  					<option value="16:00:00">오후 4시</option>
-  					<option value="17:00:00">오후 5시</option>
-  					<option value="18:00:00">오후 6시</option>
-  					<option value="19:00:00">오후 7시</option>
+  					<option value="09:00">오전 09시</option>
+  					<option value="10:00">오전 10시</option>
+  					<option value="11:00">오전 11시</option>
+  					<option value="12:00">오전 12시</option>
+  					<option value="13:00">오후 1시</option>
+  					<option value="14:00">오후 2시</option>
+  					<option value="15:00">오후 3시</option>
+  					<option value="16:00">오후 4시</option>
+  					<option value="17:00">오후 5시</option>
+  					<option value="18:00">오후 6시</option>
+  					<option value="19:00">오후 7시</option>
   					</select>
   					</td>
   					<td>반납 예정일<input type="text" name="returnday" placeholder="반납일" id="datepicker2">

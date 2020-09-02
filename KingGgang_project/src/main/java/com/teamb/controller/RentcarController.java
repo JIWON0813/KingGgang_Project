@@ -2,6 +2,10 @@ package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -300,9 +304,21 @@ public class RentcarController {
 	
 	@RequestMapping(value = "reservation_Ok.rentcar")
 	public String rentcarReservationOk(HttpServletRequest req,Rentcar_ResDTO dto){
-		
-		
+		 RentcarDTO rentcarDTO = rentcarMapper.getRentcar(dto.getR_id());
+		 InsuDTO insuDTO = rentcarMapper.getInsu(dto.getInsu_id());
+		 
+		 LocalDate d1 = LocalDate.parse(dto.getReceiptday(), DateTimeFormatter.ISO_LOCAL_DATE);
+		 LocalDate d2 = LocalDate.parse(dto.getReturnday(), DateTimeFormatter.ISO_LOCAL_DATE);
+		 Duration diff = Duration.between(d1.atStartOfDay(), d2.atStartOfDay());
+		 int diffDays = (int)diff.toDays();
+		 dto.setPrice(diffDays*(rentcarDTO.getPrice()+insuDTO.getPrice()));
+		 
+		String receiptday = dto.getReceiptday() + dto.getPickuptime(); 
+		String returnday = dto.getReturnday() + dto.getPickuptime();
+		dto.setReceiptday(receiptday);
+		dto.setReturnday(returnday);
 		int res = rentcarMapper.insertRentcarReservation(dto);
+		
 		String msg = null;
 		String url = null;
 		if(res>0){

@@ -20,7 +20,7 @@
 	<insert id="insertRentcar" parameterType="RentcarDTO">
 		insert into rentcar values(rentcar_num.nextval,#{company},#{type},#{price},
 		#{name},#{fuel},0,#{filename},#{filesize},#{contents},#{rentcom},
-		#{renthp1},#{renthp2},#{renthp3},#{renttel})
+		#{renthp1},#{renthp2},#{renthp3},#{renttel},#{pickupplace},#{lat},#{lng})
 	</insert>
 	
 	<select id="getRentcar" parameterType="int" resultType="RentcarDTO">
@@ -31,7 +31,7 @@
 		update rentcar set company=#{company},type=#{type},price=#{price},name=#{name},filename=#{filename},
 		filesize=#{filesize},contents=#{contents},
 		renthp1=#{renthp1},renthp2=#{renthp2},
-		renthp3=#{renthp3},renttel=#{renttel} where id=#{id}
+		renthp3=#{renthp3},renttel=#{renttel},pickupplace=#{pickupplace},coordinates=#{coordinates} where id=#{id}
 	</update>
 	
 	<delete id="deleteRentcar" parameterType="int">
@@ -68,7 +68,7 @@
 	
 	<insert id="insertRentcar_Res">
 		insert into rentcar_res values(rentcar_res_num.nextval,#{member_id},#{r_id},#{insu_id},sysdate,
-		to_date(#{receiptday},'yyyy-mm-dd"T"hh24:mi:ss'),to_date(#{returnday},'yyyy-mm-dd"T"hh24:mi:ss'),#{price})
+		to_date(#{receiptday},'yyyy-mm-dd"T"hh24:mi:ss'),to_date(#{returnday},'yyyy-mm-dd"T"hh24:mi:ss'),#{pickuptime},#{price})
 	</insert>
 	
 	<update id="updateRentcar_Reservation" parameterType="int">

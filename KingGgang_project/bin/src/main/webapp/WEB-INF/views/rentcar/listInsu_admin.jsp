@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
+	<!--  
+	이	   름 : listInsu_Admin.jsp
+	개  발   자 : 정 우 철
+	설	   명 : 관리자 보험 목록 페이지
+	-->
+
 <script type="text/javascript">
 function del(id){
 	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
@@ -22,8 +29,11 @@ function del(id){
 		</tr> 
 	<c:if test="${empty insuList}">		
 		<tr>
-			<td colspan="5">
+			<td colspan="4">
 				등록된 보험이 없습니다.
+			</td>
+			<td>
+				<input type="button" onclick="location.href='insertInsu.admin'" value=" 보험  등록 ">
 			</td>
 		</tr>
 	</c:if>		

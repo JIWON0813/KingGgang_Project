@@ -17,6 +17,7 @@ public class Rentcar_ResDTO {
 	private String returnday;
 	private String pickuptime;
 	private int price;
+	private int pstatus;
 	
 	public int getRes_id() {
 		return res_id;
@@ -72,6 +73,11 @@ public class Rentcar_ResDTO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+	public int getPstatus() {
+		return pstatus;
+	}
+	public void setPstatus(int pstatus) {
+		this.pstatus = pstatus;
+	}
 	
 }

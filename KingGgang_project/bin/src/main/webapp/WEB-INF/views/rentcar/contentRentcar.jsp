@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<!--  
+	이	   름 : contentRentcar.jsp
+	개  발   자 : 정 우 철
+	설	   명 : 회원 렌트카 상세 페이지
+	-->
   <script type="text/javascript">
   function showPopup(id)
   { window.open("reservation.rentcar?id="+id, "렌트카 예약 페이지", "width=1024, height=760, left=100, top=50"); }

@@ -66,9 +66,9 @@
 		select * from rentcar where ${str} = #{obj}
 	</select>
 	
-	<insert id="insertRentcar_Res">
+	<insert id="insertRentcar_Res" parameterType="Rentcar_ResDTO">
 		insert into rentcar_res values(rentcar_res_num.nextval,#{member_id},#{r_id},#{insu_id},sysdate,
-		to_date(#{receiptday},'yyyy-mm-dd"T"hh24:mi:ss'),to_date(#{returnday},'yyyy-mm-dd"T"hh24:mi:ss'),#{pickuptime},#{price})
+		to_date(#{receiptday},'yyyy-mm-ddhh24:mi'),to_date(#{returnday},'yyyy-mm-ddhh24:mi'),#{pickuptime},null,#{price},0)
 	</insert>
 	
 	<update id="updateRentcar_Reservation" parameterType="int">
@@ -89,7 +89,7 @@
 	
 	<select id="testRentcar" resultType="int" parameterType="String">
 		select r_id from rentcar_res where returnday not between 
-		to_date(#{receiptday},'yyyy-mm-dd"T"hh24:mi:ss') and to_date(#{returnday},'yyyy-mm-dd"T"hh24:mi:ss')
+		to_date(#{receiptday},'yyyy-mm-dd-hh24:mi') and to_date(#{returnday},'yyyy-mm-dd-hh24:mi')
 	</select>
 	
 	
