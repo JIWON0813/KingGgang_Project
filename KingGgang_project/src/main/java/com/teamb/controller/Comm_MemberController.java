@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.service.Comm_MemberMapper;
+import com.teamb.service.LoginMapper;
 
 
 @Controller
@@ -35,68 +36,48 @@ public class Comm_MemberController {
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
 	
+	@RequestMapping(value="/comm_login.do")
+	public String comm_login(HttpSession session){
+		int memberNum = (Integer)session.getAttribute("memberNum");
+		//int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+		return "comm/login/comm_login";
+	}
 	
-	@RequestMapping(value = "/Comm_loginOk.log")
-	public String comm_loginOk(Comm_MemberDTO dto, HttpServletRequest req,HttpSession session, int comm_memberNum) {
-	    // 가입되어있으면 가입된 멤버입니다.(or 가입하기 버튼이 회원입니다.) 메세지 창 나오고, 가입안되있으면 insert 하는 폼 나오기(or 가입하기 버튼)
-		session.getAttribute("mbId");
-		boolean isLogin=false;
-		dto = memberMapper.comm_getMember(comm_memberNum);
-		int res = memberMapper.comm_loginOk(dto);      
-	      String msg = null, url = null;
-	      switch(res){
-	      case Comm_MemberDTO.OK:
-	       //  session = req.getSession();
-	         isLogin=true;
-	         session.setAttribute("isLogin", isLogin);
-	         session.setAttribute("memberNum", dto.getMemberNum());
-	         session.setAttribute("comm_memberNum", dto.getComm_memberNum());
-	         session.setAttribute("comm_member",memberMapper.comm_getMember(comm_memberNum));
-	         
-	         MemberDTO mdto = new MemberDTO();
-	            if(mdto.getId().equals("admin")) {
-	            msg = "관리자만 이용 가능";
-	            url = "commhome.comm";
-	            }
-	            else{
-	            	if(session.getAttribute("comm_memberNum") == null){
-	            		msg = "가입페이지로 이동";
-	            		url = "commhome.comm";
-	            	}else{
-	            		msg = "이미 등록된 회원입니다.";
-	            		url = "commhome.comm";
-	            	}
-	            } 
-	            break;
-	      }
-	      req.setAttribute("msg", msg);
-	      req.setAttribute("url", url);
-	      return "message";
-	   }
+	/*@RequestMapping(value="/comm_logout.do")
+	public String comm_logout( HttpServletRequest req,HttpSession session){
+		int memberNum = (Integer)session.getAttribute("memberNum");
+		session.invalidate();
+		String msg = "로그아웃 되었습니다.";
+		String url = "commhome.comm";
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}*/
 	
+	@RequestMapping(value = "/comm_loginOk.do")
+	public String comm_loginOk(Comm_MemberDTO dto, HttpServletRequest req,HttpSession session) {
+		Comm_MemberDTO login = memberMapper.comm_loginOk(dto);
+		String msg = null, url = null;
+		if (login == null) {
+			session.setAttribute("comm_login", null);
+			msg = "등록정보가 없습니다. 가입 페이지로 이동합니다.";
+			url = "comm_member_input.do";
+		} else {
+			session.setAttribute("comm_login", login);
+			msg = "로그인 하였습니다";
+			url = "commhome.comm";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}	
 	
 	@RequestMapping("/comm_member_input.do")
 	public String comminsertMemberForm(HttpServletRequest req,HttpSession session){
-		//Comm_MemberDTO dto = memberMapper.comm_getMember(comm_memberNum);
 		int memberNum = (Integer)session.getAttribute("memberNum");
-			//int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-			//List<Comm_MemberDTO> list = (List<Comm_MemberDTO>) session.getAttribute("comm_memberList"); //20200902
-			//session.setAttribute("num",list.get(0)); //20200902
-			//System.out.println(list.get(0)); //20200902
-			//int num = (Integer)session.getAttribute("num"); // 가입완료 후 받는 memberNum값 넘겨받기.
 		
 		String msg = null, url = null;
 		
-			//20200902
-			/*if(memberNum == num){
-				msg = "이미 가입되어 있습니다.";
-				url = "commhome.comm";
-				
-				req.setAttribute("msg", msg);
-				req.setAttribute("url", url);
-				return "message";
-			} 				*/	
-			//20200902
 		return "comm/member/comm_insertMember";
 	}
 	
@@ -132,8 +113,6 @@ public class Comm_MemberController {
 		    
 		
 		    int res = memberMapper.comm_insertMember(dto);
-		    session.setAttribute("commId", dto.getComm_name()); //20200902
-		    session.setAttribute("comm_memberNum", dto.getComm_memberNum());
 		  //  session.setAttribute("num", ); 
 		    // 가입하면서 dto에 저장된 memberNum값 저장!!!! 해서 'input.do'실행시 값 가져오기 해아 중복 가입이 안됨.
 		String msg = null, url = null;
@@ -157,7 +136,7 @@ public class Comm_MemberController {
 		List<Comm_MemberDTO> list = memberMapper.comm_memberList();
 		
 		session.setAttribute("comm_memberList", list);
-		
+		//session.setAttribute("list_comm_memberNum", list.get(index)));
 		req.setAttribute("upLoadPath", upLoadPath);
 		
 		return "comm/member/comm_memberList";
@@ -168,11 +147,11 @@ public class Comm_MemberController {
 	public ModelAndView commMemberEdit(HttpServletRequest req,HttpSession session,
 											@RequestParam int comm_memberNum){
 		Comm_MemberDTO dto = memberMapper.comm_getMember(comm_memberNum);
-		session.getAttribute("comm_memberNum");
+		//session.getAttribute("comm_memberNum");
 		ModelAndView mav = new ModelAndView
 				("comm/member/comm_member_edit", "getMember", dto);
 		
-		req.setAttribute("comm_getMember", memberMapper.comm_getMember(comm_memberNum));
+		//req.setAttribute("comm_getMember", memberMapper.comm_getMember(comm_memberNum));
 		
 		return mav;
 	}

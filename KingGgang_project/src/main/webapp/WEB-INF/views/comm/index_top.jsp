@@ -31,12 +31,12 @@
 							<li><a href="comm_friendAll.do">Friends 목록</a></li>
 							<li><a href="comm_insertFriend.do?memberNum=${memberNum }">Friends 추가</a></li>
 							<li><a href="comm_memberAll.do">Friends</a></li>
-							<c:if test="${isLogin}">
+							<%-- <c:if test="${isLogin}">
 							<li><a href="logout.do" class="button primary">로그아웃</a></li>
 							</c:if>
 							<c:if test="${!isLogin}">
 							<li><a href="login.do" class="button primary">로그인 하기</a></li>
-							</c:if>				 
+							</c:if>				  --%>
 						</ul>
 					</nav>
 				</header>

@@ -5,9 +5,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.teamb.model.Comm">
 
-	<select id = "comm_loginOk" parameterType="comm_memberDTO"  resultType="int">
-        select comm_memberNum from member where comm_memberNum=#{comm_memberNum}
+	<select id = "comm_loginOk" resultType="comm_memberDTO">
+        select * from comm_member where comm_nickname=#{comm_nickname} and memberNum=#{memberNum}
     </select>
+    
+    <select id = "comm_getmemberNum" parameterType="comm_memberDTO"  resultType="int">
+        select comm_memberNum from comm_member where comm_nickname=#{comm_nickname}
+    </select>
+ 
+ 
 	
 	<insert id="comm_insertMember" parameterType="Comm_MemberDTO">
 	insert into comm_member values

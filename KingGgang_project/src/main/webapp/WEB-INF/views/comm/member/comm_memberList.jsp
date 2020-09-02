@@ -28,6 +28,7 @@
 				<td>${dto.comm_birth }</td>
 				<td>${dto.comm_profilename }</td>
 				<td>${dto.comm_intro }</td>
+				<td><a href="comm_friend_insert.do?comm_memberNum=${dto.comm_memberNum }">친구추가</a></td> 
 				<td><a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a></td> 
 			</tr>
 		</c:forEach>

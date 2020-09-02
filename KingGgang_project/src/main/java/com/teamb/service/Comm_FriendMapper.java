@@ -16,22 +16,22 @@ public class Comm_FriendMapper {
 	
 	
 	public List<Comm_FriendDTO> listFriend(int memberNum) {
-		return sqlSession.selectList("listFriend",memberNum);
+		return sqlSession.selectList("comm_listFriend",memberNum);
 	}
 	
 	public int insertFriend(Comm_FriendDTO dto) {
-		int res = sqlSession.insert("insertFriend", dto);
+		int res = sqlSession.insert("comm_insertFriend", dto);
 		
 		return res;
 	}
 	
 	public Comm_FriendDTO getFriend(int friendNum) {
-		Comm_FriendDTO dto = sqlSession.selectOne("getFriend", friendNum);
+		Comm_FriendDTO dto = sqlSession.selectOne("comm_getFriend", friendNum);
 		return dto;
 	}
 	
 	public int deleteFriend(int friendNum) {
-		int res = sqlSession.insert("deleteFriend", friendNum);
+		int res = sqlSession.insert("comm_deleteFriend", friendNum);
 		return res;
 	}
 
