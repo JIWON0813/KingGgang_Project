@@ -6,11 +6,11 @@
 		<mapper namespace="wishlistMapper">
 		
 		<insert id="insertWish" parameterType="WishlistDTO">
-		insert into wishlist values(wish_no.nextval,#{m_id},#{type},#{f_no})
+		insert into wishlist values(wish_no.nextval,#{m_no},#{type},#{f_no})
 		</insert>
 		
-		<select id="getWish" parameterType="String" resultType="WishlistDTO">
-		select * from wishlist where m_id = #{m_id}
+		<select id="getWish" parameterType="int" resultType="WishlistDTO">
+		select * from wishlist where m_no = #{m_no}
 		</select>
 		
 		<select id="getwishHotel" parameterType="java.util.List" resultType="HotelDTO">
@@ -23,11 +23,11 @@
 		</select>
 		
 		<select id ="deleteWish"  parameterType="WishlistDTO">
-			delete from wishlist where m_id = #{m_id} and f_no = #{f_no}
+			delete from wishlist where m_no = #{m_no} and f_no = #{f_no}
 		</select>
 		
 		<select id="getwishNo" parameterType="WishlistDTO" resultType="WishlistDTO">
-		select * from wishlist where m_id = #{m_id} and type = #{type}
+		select * from wishlist where m_no = #{m_no} and type = #{type}
 		</select>
 		
 		</mapper>

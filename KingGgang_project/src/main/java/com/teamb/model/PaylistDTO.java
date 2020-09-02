@@ -16,7 +16,14 @@ public class PaylistDTO {
 	private int p_type;
 	private int p_valid;
 	//member
+	private int m_no;
 	private String m_id;
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
 	private String m_name;
 	private String m_email;
 	private String m_hp;
@@ -87,11 +94,11 @@ public class PaylistDTO {
 	public void setP_paydate(String p_paydate) {
 		this.p_paydate = p_paydate;
 	}
-	public String getM_id() {
-		return m_id;
+	public int getM_no() {
+		return m_no;
 	}
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
+	public void setM_no(String m_id) {
+		this.m_no = m_no;
 	}
 	public String getM_name() {
 		return m_name;

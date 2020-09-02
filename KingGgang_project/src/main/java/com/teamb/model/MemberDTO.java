@@ -2,6 +2,14 @@ package com.teamb.model;
 
 public class MemberDTO {
 
+	private int memberNum;
+	
+	public int getMemberNum() {
+		return memberNum;
+	}
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
+	}
 	
 	private String id;
 	private String name;

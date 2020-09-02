@@ -28,11 +28,7 @@
                            
                             <tbody>
                             
-                            <c:if test = "${empty Phlist}">
-                            <tr>
-                            	<td colspan="9">호텔 결제 내역이 없습니다.</td>
-                            </tr>
-                            </c:if>
+                           
                       
                             	<tr>
                             	<td><span>상품 이름</span></td>
@@ -45,8 +41,14 @@
                                  <td><span>총 결제금액</span></td>
                                  <td><span>결제일</span></td>
                                 </tr>
+                                 <c:if test = "${empty Phlist}">
+                            <tr>
+                            	<td colspan="9">호텔 결제 내역이 없습니다.</td>
+                            </tr>
+                            </c:if>
                             	<c:forEach var="dto" items="${Phlist}" varStatus="status">
                                 <tr>
+                                
                                 <td><span>${dto.h_name}</span></td>
                                 <td><span>${dto.h_category}</span></td>
                                 <td><span>${dto.h_hp}</span></td>

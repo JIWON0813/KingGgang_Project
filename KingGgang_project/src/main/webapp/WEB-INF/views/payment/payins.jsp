@@ -26,8 +26,8 @@
 	<p>가격</p>
 	<p><input type = "text" name= "price"></p><br>
 	<!-- 로그인 세션에서 받아올 m_id -->
-	<p>회원아이디(q)</p>
-	<p><input type = "text" name= "m_id"></p><br>
+	<p>회원번호 4</p>
+	<p><input type = "text" name= "m_no"></p><br>
 	<p><input type="submit" value="결제하기"></p>
 </form>
 <a href="main.my">마이페이지로 가기</a><p>

@@ -59,9 +59,7 @@ public class WishController {
 	
 	@RequestMapping("/insert.wish")
 	public String myPayment(HttpServletRequest req,@ModelAttribute WishlistDTO dto) {
-		//dto.setM_id(req.getParameter("m_id"));
-		//dto.setType(Integer.parseInt(req.getParameter("type")));
-		//dto.setF_no(Integer.parseInt(req.getParameter("f_no")));
+		
 		int f_no = Integer.parseInt(req.getParameter("f_no"));
 		List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
 		boolean check1 =true;
@@ -100,12 +98,12 @@ public class WishController {
 	throws IOException{
 		//session.getAttribute("id"); 로그인 세션에서 받음 
 		//
-		String m_id = "q";
-		dto.setM_id(m_id);
+		int m_no = 4;
+		dto.setNo(m_no);
 		//
 		List<HotelDTO> hlist = new ArrayList<HotelDTO> ();
 		List<RentcarDTO> rlist = new ArrayList<RentcarDTO> ();
-		List<WishlistDTO> Wlist = wishlistmapper.getWishlist(m_id);
+		List<WishlistDTO> Wlist = wishlistmapper.getWishlist(m_no);
 			for(WishlistDTO wdto : Wlist) {
 			System.out.println(wdto.getType());
 			if(wdto.getType()==1) {
@@ -134,8 +132,8 @@ public class WishController {
 		//session.getAttribute("id"); 로그인 세션에서 받음 
 		
 		//
-		String m_id = "q";
-		dto.setM_id(m_id);
+		int m_no = 4;
+		dto.setNo(m_no);
 		//
 		
 		int res = wishlistmapper.deleteWish(dto);

@@ -3,6 +3,7 @@ package com.teamb.controller;
 import java.io.IOException;
 
 
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import com.teamb.model.HotelDTO;
 import com.teamb.model.MemberDTO;
@@ -61,20 +63,20 @@ public class PaymentController {
 	@RequestMapping("/insert.pay")
 	public String paymentInsert(HttpServletRequest req,@ModelAttribute PaymentDTO pdto,MemberDTO mdto) {
 		//로그인 세션에서 가져오는아이디 값
-		String m_id = "q";
-		pdto.setM_id(m_id);
+		
+		int m_no = Integer.parseInt(req.getParameter("m_no"));
 		int res =  paymemtMapper.insertPayment(pdto);
 		String msg=null,url=null;
 		if(res>0){
 			//int no = pdto.getNo();
-			int no = paymemtMapper.getPayno(pdto.getM_id());
+			int no = paymemtMapper.getPayno(pdto.getM_no());
 			System.out.println(no);
 			//int no = pdto.getNo();
 			req.setAttribute("no", no);
 			int totalPrice=pdto.getAmount()*pdto.getPrice();
 			System.out.println(totalPrice);
 			req.setAttribute("totalPrice", totalPrice);
-			MemberDTO mrdto =  memberMapper.getMember(m_id);
+			MemberDTO mrdto =  paymemtMapper.getpayMember(m_no);
 			req.setAttribute("mrdto", mrdto);
 			return "payment/payins2";
 		}else{
@@ -119,23 +121,23 @@ public class PaymentController {
 	public String myPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
 		//session.getAttribute("id"); 로그인 세션에서 받음
 		//
-		String m_id = "q";
+		int m_no = 4;
 		//pdto.setM_id(m_id);
 		//
-		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(m_id);
+		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(m_no);
 		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
 		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
 		for(PaymentDTO ptdto : Plist) {
 			if(ptdto.getType()==1) {//호텔결제내역 
-				System.out.println(ptdto.getM_id());
+				System.out.println(ptdto.getM_no());
 				System.out.println(ptdto.getP_no());
 				System.out.println(ptdto.getType());
 				PaylistDTO phdto = paymemtMapper.getmyPaylist(ptdto);
 				System.out.println(phdto.getH_name());
 				Phlist.add(phdto);
 			} else {
-				System.out.println(ptdto.getM_id());
-				System.out.println(ptdto.getP_no());
+				System.out.println(ptdto.getM_no());
+				System.out.println(ptdto.getP_no()); 
 				System.out.println(ptdto.getType());
 				PaylistDTO prdto = paymemtMapper.getmyPaylist(ptdto);
 				System.out.println(prdto.getH_name());
@@ -156,22 +158,22 @@ public class PaymentController {
 	public String adPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
 		//session.getAttribute("id"); 로그인 세션에서 받음
 		//
-		String m_id = "q";
+		int m_no = 4;
 		//pdto.setM_id(m_id);
 		//
-		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(m_id);
+		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(m_no);
 		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
 		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
 		for(PaymentDTO ptdto : Plist) {
 			if(ptdto.getType()==1) {//호텔결제내역 
-				System.out.println(ptdto.getM_id());
+				System.out.println(ptdto.getM_no());
 				System.out.println(ptdto.getP_no());
 				System.out.println(ptdto.getType());
 				PaylistDTO phdto = paymemtMapper.getadPaylist(ptdto);
 				System.out.println(phdto.getH_name());
 				Phlist.add(phdto);
 			} else {
-				System.out.println(ptdto.getM_id());
+				System.out.println(ptdto.getM_no()); 
 				System.out.println(ptdto.getP_no());
 				System.out.println(ptdto.getType());
 				PaylistDTO prdto = paymemtMapper.getadPaylist(ptdto);
