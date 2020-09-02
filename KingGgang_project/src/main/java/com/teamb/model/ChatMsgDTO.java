@@ -10,15 +10,15 @@ public class ChatMsgDTO {
 	private int comm_memberNum;
 	private String comm_nickname;
 	private int chatroom_id;
-	private String msgSender;
-	private String msgReceiver;
+	private int msgSender;
+	private int msgReceiver;
 	private String msgContent;
 	private Date msgSendTime;
 	private Date msgReadTime;
-	private String receiver_comm_nickname;
 	private int unReadCount;
 	
 	
+
 	public int getMsgId() {
 		return msgId;
 	}
@@ -51,19 +51,19 @@ public class ChatMsgDTO {
 		this.chatroom_id = chatroom_id;
 	}
 
-	public String getMsgSender() {
+	public int getMsgSender() {
 		return msgSender;
 	}
 
-	public void setMsgSender(String msgSender) {
+	public void setMsgSender(int msgSender) {
 		this.msgSender = msgSender;
 	}
 
-	public String getMsgReceiver() {
+	public int getMsgReceiver() {
 		return msgReceiver;
 	}
 
-	public void setMsgReceiver(String msgReceiver) {
+	public void setMsgReceiver(int msgReceiver) {
 		this.msgReceiver = msgReceiver;
 	}
 
@@ -91,14 +91,6 @@ public class ChatMsgDTO {
 		this.msgReadTime = msgReadTime;
 	}
 
-	public String getReceiver_comm_nickname() {
-		return receiver_comm_nickname;
-	}
-
-	public void setReceiver_comm_nickname(String receiver_comm_nickname) {
-		this.receiver_comm_nickname = receiver_comm_nickname;
-	}
-
 	public int getUnReadCount() {
 		return unReadCount;
 	}
@@ -119,8 +111,9 @@ public class ChatMsgDTO {
 		return "ChatMsgDTO [msgId=" + msgId + ", comm_memberNum=" + comm_memberNum + ", comm_nickname=" + comm_nickname
 				+ ", chatroom_id=" + chatroom_id + ", msgSender=" + msgSender + ", msgReceiver=" + msgReceiver
 				+ ", msgContent=" + msgContent + ", msgSendTime=" + msgSendTime + ", msgReadTime=" + msgReadTime
-				+ ", receiver_comm_nickname=" + receiver_comm_nickname + ", unReadCount=" + unReadCount + "]";
+				+ ", unReadCount=" + unReadCount + "]";
 	}
+
 	
 	
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.socket.CloseStatus;
@@ -14,8 +15,11 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.google.gson.Gson;
 import com.teamb.model.ChatMsgDTO;
 import com.teamb.model.ChatRoomDTO;
+import com.teamb.model.Comm_MemberDTO;
+import com.teamb.service.ChatMapper;
 
 /*
 이	   름 : echoHandler.java
@@ -26,7 +30,8 @@ import com.teamb.model.ChatRoomDTO;
 @Component
 @RequestMapping("/echo")
 public class EchoHandler extends TextWebSocketHandler {
-
+	@Autowired
+	private ChatMapper chatMapper;
 /*HashMap<String, WebSocketSession> sessionMap = new HashMap<>(); //웹소켓 세션을 담아둘 맵
 */
 	private List<WebSocketSession> connectedUsers;
@@ -38,62 +43,43 @@ public class EchoHandler extends TextWebSocketHandler {
 	
 
 	@Override
-	public void handleTextMessage(WebSocketSession session, TextMessage message) {
-		System.out.println("메세지 수신");
-		//메시지 발송
+	   protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		System.out.println(message.getPayload());
 		  Map<String, Object> map = null;
+	      ChatMsgDTO mdto =  ChatMsgDTO.convertMessage(message.getPayload());
+	      System.out.println("1 : " + mdto.toString());
 
-	      ChatMsgDTO msg = ChatMsgDTO.convertMessage(message.getPayload());
+	      ChatRoomDTO roomdto  = new ChatRoomDTO();
+	      roomdto.setComm_memberNum(mdto.getComm_memberNum());//유저
 
-	      System.out.println("1 : " + msg.toString());
 
-
-	      ChatRoomDTO room  = new ChatRoomDTO();
-	      room.setComm_memberNum(msg.getComm_memberNum()); //유저
-	}
-	 /*   	  if(mapper.isRoom(ChatRoomDTO) == null ) {
-	    		  System.out.println("호잇");
-	    		  mapper.createRoom(ChatRoomDTO);
-	    		  System.out.println("요잇");
-	    		  croom = dao.isRoom(roomVO);
-
-	    	  }else {
-	    		  System.out.println("C");
-	    		  croom = dao.isRoom(roomVO);
+	    	  if(chatMapper.isRoom(roomdto) == null ) {
+	    		  chatMapper.createRoom(roomdto);
+	    		  System.out.println("d");
+	    		  mdto.setChatroom_id(roomdto.getChatroom_id());
 	    	  }
-	      }else {
-
-  		  croom = dao.isRoom(roomVO);
-  	  }
-
-	      messageVO.setCHATROOM_chatroom_id(croom.getChatroom_id());
-	      if(croom.getUSER_user_id().equals(messageVO.getMessage_sender())) {
-
-	    	  messageVO.setMessage_receiver(roomVO.getTUTOR_USER_user_id());
-	      }else {
-	    	  messageVO.setMessage_receiver(roomVO.getUSER_user_id());
+	      if(roomdto.getComm_memberNum()==(mdto.getMsgSender())) {
+	    	  mdto.setMsgReceiver(roomdto.getComm_memberNum());
 	      }
-
-
+	    	  
 
 
 	      for (WebSocketSession websocketSession : connectedUsers) {
 	         map = websocketSession.getAttributes();
-	         UserVO login = (UserVO) map.get("login");
+	         Comm_MemberDTO login = (Comm_MemberDTO) map.get("login");
 
 	         //받는사람
-	         if (login.getUser_id().equals(messageVO.getMessage_sender())) {
+	         if (login.getComm_memberNum()==(mdto.getMsgSender())) {
 
 	            Gson gson = new Gson();
-	            String msgJson = gson.toJson(messageVO);
+	            String msgJson = gson.toJson(mdto);
 	            websocketSession.sendMessage(new TextMessage(msgJson));
 	         }
 
 
 	      }
 	   }
-*/
+
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
