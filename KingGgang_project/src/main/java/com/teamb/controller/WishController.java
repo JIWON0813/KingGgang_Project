@@ -32,6 +32,7 @@ import com.teamb.service.WishlistMapper;
 /*
 이	   름 : WishController.java
 
+
 개  발   자 : 원세호
 설	   명 : 관심리스트 컨트롤러
 */
@@ -39,7 +40,7 @@ import com.teamb.service.WishlistMapper;
  
 
 
-//rroll2
+//rroll2 
 /**
  * Handles requests for the application home page.
  */
