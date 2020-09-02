@@ -121,7 +121,7 @@ public class PaymentController {
 	public String myPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
 		//session.getAttribute("id"); 로그인 세션에서 받음
 		//
-		int m_no = 4;
+		int m_no = 1;
 		//pdto.setM_id(m_id);
 		//
 		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(m_no);
@@ -158,7 +158,7 @@ public class PaymentController {
 	public String adPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
 		//session.getAttribute("id"); 로그인 세션에서 받음
 		//
-		int m_no = 4;
+		int m_no = 1;
 		//pdto.setM_id(m_id);
 		//
 		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(m_no);

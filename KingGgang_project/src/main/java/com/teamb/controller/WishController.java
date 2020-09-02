@@ -53,7 +53,7 @@ public class WishController {
 	@RequestMapping("/main.wish")
 	public String mypageMain() {
 		
-		return "test/wishins";
+		return "payment/wishins";
 		
 	}
 	
@@ -98,7 +98,7 @@ public class WishController {
 	throws IOException{
 		//session.getAttribute("id"); 로그인 세션에서 받음 
 		//
-		int m_no = 4;
+		int m_no = 1;
 		dto.setNo(m_no);
 		//
 		List<HotelDTO> hlist = new ArrayList<HotelDTO> ();

@@ -4,15 +4,16 @@ public class WishlistDTO {
 	
 	private int no;
 	private int m_no;
+	
+	private int type;
+	private int f_no;
+	
 	public int getM_no() {
 		return m_no;
 	}
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
-	private int type;
-	private int f_no;
-	
 	public int getNo() {
 		return no;
 	}
