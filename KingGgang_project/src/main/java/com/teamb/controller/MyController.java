@@ -37,6 +37,7 @@ import com.teamb.service.MyMapper;
 
 /*
 이	   름 : MyController.java
+
 개  발   자 : 원세호
 설	   명 : 마이페이지 컨트롤러
 */
@@ -83,7 +84,7 @@ public class MyController {
 		String password = req.getParameter("password");
 		
 		MemberDTO dto = myMapper.getMember(id);
-		String filename = dto.getFilename(); 
+		String filename = dto.getProfile_name(); 
 		File file = new File(upLoadPath,filename);
 		
 		int res = myMapper.deleteMember(id,password);
@@ -152,8 +153,8 @@ public class MyController {
 	filename=filename2;
 	filesize=filesize2;
 	}
-		dto.setFilename(filename);
-		dto.setFilesize(filesize);
+		dto.setProfile_name(filename);
+		dto.setProfile_size(filesize);
 	
 		int res = myMapper.updateMember(dto);
 		String msg = null, url=null;

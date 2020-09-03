@@ -8,11 +8,10 @@
 	설	   명 : 결제 진행 페이지
  -->
 
-<<<<<<< HEAD
 <P> 결제 진행 테스트 페이지 </P>
 </body>
 </html>
-=======
+
 
 
 <form action="insert.pay" method="post">
@@ -33,5 +32,5 @@
 <a href="main.my">마이페이지로 가기</a><p>
 
 	<%=request.getContextPath()%>
->>>>>>> refs/remotes/origin/master
+
 

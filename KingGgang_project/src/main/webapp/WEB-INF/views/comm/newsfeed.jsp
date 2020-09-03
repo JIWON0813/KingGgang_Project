@@ -8,7 +8,6 @@
 <title>Newsfeed</title>
 </head>
 <body>
-	<section id="five" class="wrapper style2 special fade">
 	<div class="container">
 		<form method="post" action="#" class="cta">
 			<div class="row gtr-uniform gtr-50">
@@ -22,8 +21,6 @@
 			</div>
 		</form>
 	</div>
-	</section>
-	<section id="one" class="spotlight style1 top">
 	<div class="content">
 		<div class="container">
 			<div class="row">
@@ -42,9 +39,8 @@
 			</div>
 		</div>
 	</div>
-	<a href="#two" class="goto-next scrolly">Next</a> </section>
-	<section id="four" class="wrapper style1 special fade-up">
-<div class="box alt">
+	<div>
+	</div>
 		<div class="row gtr-uniform">
 			<h2>뉴스피드</h2>
 			<div class="box alt">
@@ -54,13 +50,12 @@
 			</c:if>
 			<c:forEach var="dto" items="${boardList}">		
 				<section class="col-4 col-6-medium col-12-xsmall">
-			<a href="B4_content.do?boardNum=${dto.boardNum}"><img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300"></a>
+			<a href=""><img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300"></a>
 			</section>
 			</c:forEach>
 		</div>
 	</div>
 </div>
-	</section>
 </body>
 </html>
 

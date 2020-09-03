@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.teamb.model.memberMapper">
-	<insert id="insertMember" parameterType="MemberDTO">
-		insert into member values(#{id},#{name},#{nickname},#{password},#{email,jdbcType=VARCHAR},0,0,#{hp,jdbcType=VARCHAR},sysdate,#{filename,jdbcType=VARCHAR},#{filesize,jdbcType=INTEGER})
-	</insert>
-	<select id="memberList" resultType="memberDTO">
-		select * from member
-	</select> 
-	<select id="checkLogin" resultType="String">
- 		select name from member where id=#{id} and password=#{password}
- 	</select>
- 	<select id="viewMember" resultType="memberDTO">
- 		select id,nickname,filename from member where id=#{id} and password=#{password}
- 	</select>
- 	<select id="getMember" resultType="memberDTO">
- 		select * from member where id=#{id}
- 	</select>
- 	<select id ="deleteMember"  parameterType="String">
-		delete from member where id = #{id}
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.ezen.model">
+    
+    <select id="listMember" resultType="memberDTO">
+		select * from member order by memberNum
 	</select>
-	<update id="updateMember" parameterType="MemberDTO">
-		update member set name=#{name}, nickname=#{nickname}, email=#{email,jdbcType=VARCHAR}, point=#{point}, hp=#{hp,jdbcType=VARCHAR}, filename=#{filename,jdbcType=VARCHAR}, filesize=#{filesize,jdbcType=INTEGER} where id = #{id}
-	</update>
-	<select id="checkId" resultType="int">
-		select count(*) from member where id=#{id}
-	</select>
-	<insert id="adminInsertMember" parameterType="MemberDTO">
-		insert into member values(#{id},#{name},#{nickname},#{password},#{email,jdbcType=VARCHAR},#{auth},#{point,jdbcType=INTEGER},#{hp,jdbcType=VARCHAR},sysdate,#{filename,jdbcType=VARCHAR},#{filesize,jdbcType=INTEGER})
-	</insert>
-	<update id="adminUpdateMember" parameterType="MemberDTO">
-		update member set name=#{name}, nickname=#{nickname}, email=#{email,jdbcType=VARCHAR}, point=#{point}, hp=#{hp,jdbcType=VARCHAR}, auth=#{auth}, filename=#{filename,jdbcType=VARCHAR}, filesize=#{filesize,jdbcType=INTEGER} where id = #{id}
-	</update>
 	
+    <!-- 회원가입 mapper -->
+    <insert id="insertMember" parameterType="memberDTO">
+     insert into member values
+     (member_num.nextval,#{profile_name,jdbcType=VARCHAR},#{profile_size},
+     #{name},#{gender},#{id},#{passwd},#{email},
+     #{birth_y},#{birth_m},#{birth_d},#{hp1},#{hp2},#{hp3},#{intro},0,0,sysdate)
+    </insert>
+  
+  	<select id="getMember" parameterType="int" resultType="memberDTO">
+		select * from member where memberNum = #{memberNum}
+	</select>
+	<update id="updateMember" parameterType="memberDTO">
+		update member set profile_name=#{profile_name},profile_size=#{profile_size},passwd=#{passwd}, 
+		email=#{email}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, intro=#{intro,jdbcType=VARCHAR}, point=#{point}
+			where membernum=#{memberNum}
+	</update>
+  
+	<delete id="deleteMember" parameterType="int">
+		delete from member where memberNum = #{memberNum}
+	</delete>  
+
 </mapper>
-
-
