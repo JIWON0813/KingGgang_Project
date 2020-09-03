@@ -1,4 +1,4 @@
-package com.teamb.service;
+/*package com.teamb.service;
 
 import java.util.List;
 
@@ -36,3 +36,4 @@ public class CommFriendMapper {
 	}
 
 }
+*/

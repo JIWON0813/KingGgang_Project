@@ -13,8 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select comm_memberNum from comm_member where comm_nickname=#{comm_nickname}
     </select>
  
- 
-	
 	<insert id="comm_insertMember" parameterType="Comm_MemberDTO">
 	insert into comm_member values
      (#{memberNum},comm_member_num.nextval,#{comm_name},#{comm_profilename},#{comm_profilesize},

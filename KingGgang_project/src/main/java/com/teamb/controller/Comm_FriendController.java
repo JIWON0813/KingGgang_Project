@@ -19,6 +19,7 @@ import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.service.Comm_FriendMapper;
+import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.MemberMapper;
 
 @Controller
@@ -28,22 +29,19 @@ public class Comm_FriendController {
 	private Comm_FriendMapper friendMapper;
 	
 	@Autowired
-	private MemberMapper memberMapper;
+	private Comm_MemberMapper memberMapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
 	@RequestMapping("/comm_friend_insert.do")
 	public String insertFriend(HttpServletRequest req, HttpSession session, 
-							Comm_FriendDTO dto, Comm_MemberDTO mdto, BindingResult result) {
+							Comm_FriendDTO dto, Comm_MemberDTO mdto) {
 
-		
-			Comm_MemberDTO member = (Comm_MemberDTO)session.getAttribute("comm_member");
 			int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
-		
 		String msg = null, url = null;
 		int res = friendMapper.insertFriend(dto);
-
+		
 		
 		if (res > 0) {
 			msg = "친구 추가 성공. 친구목록 페이지로 이동";
@@ -57,22 +55,17 @@ public class Comm_FriendController {
 		return "message";
 	}
 	
+	
 	@RequestMapping(value = "/comm_friendAll.do")
 	public String listFriend(HttpServletRequest req, Comm_FriendDTO dto, HttpSession session) {
 
-		Comm_MemberDTO member = (Comm_MemberDTO)session.getAttribute("comm_member");
+		//Comm_MemberDTO member = (Comm_MemberDTO)session.getAttribute("comm_member");
 		int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
-		
-		//MemberDTO member = (MemberDTO)session.getAttribute("member");
-		//int memberNum = member.getMemberNum();
-		//int memberNum = (Integer) session.getAttribute("memberNum");
-
 		List<Comm_FriendDTO> list = friendMapper.listFriend(comm_memberNum);
 		for(Comm_FriendDTO dto2: list){
-			int m=dto2.getMemberNum();
-			MemberDTO mdto=memberMapper.getMember(m);
-			dto2.setF_email(mdto.getEmail());
-			dto2.setF_name(mdto.getName());
+			int m=dto2.getComm_memberNum();
+			Comm_MemberDTO mdto=memberMapper.comm_getMember(m);
+			dto2.setF_name(mdto.getComm_name());
 		}
 		req.setAttribute("friendList", list);
 		//session.getAttribute("name");
@@ -98,14 +91,15 @@ public class Comm_FriendController {
 		return "message";
 	}
 	
-	/*@RequestMapping(value = "/comm_friendContent.do")
-	public String content(HttpServletRequest req, @RequestParam int friendNum) {
-
+	@RequestMapping(value = "/comm_friendContent.do")
+	public String content(HttpServletRequest req, HttpSession session,@RequestParam int friendNum) {
+		int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
 		Comm_FriendDTO dto = friendMapper.getFriend(friendNum);
-		req.setAttribute("getFriend", dto);
+		
+		session.setAttribute("getFriend", dto);
 
 		return "comm/friend/friendcontent";
-	}*/
+	}
 	
 	
 }
