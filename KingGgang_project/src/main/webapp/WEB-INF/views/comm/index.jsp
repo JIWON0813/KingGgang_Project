@@ -37,7 +37,7 @@
 							
 							<c:if test="${comm_login == null }">
 								<a href="comm_login.do?memberNum=${memberNum }">로그인</a>
-								<a href="comm_checkMember.do?memberNum=${memberNum }">가입하기</a>
+								<a href="comm_checkMember.do?memberNum=${memberNum}">가입하기</a>
 								 
 							</c:if>
 							

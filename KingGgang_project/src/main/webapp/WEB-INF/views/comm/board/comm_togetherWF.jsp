@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <div align="center">
-	<form name="f" action="comm_togetherWP.jsp" method="post" onsubmit="return check()">											
+	<form name="f" action="comm_togetherWP.do" method="post" onsubmit="return check()">											
 		<table width="70%">
 			<tr bgcolor="pink">
 				<td align="center" colspan="2"><font color="pink">글</font></td>

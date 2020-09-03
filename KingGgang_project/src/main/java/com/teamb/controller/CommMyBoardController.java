@@ -20,15 +20,16 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.CommReplyDTO;
+import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.service.CommReplyMapper;
 import com.teamb.service.CommboardMapper;
 
 
-/*占쎌뵠	   �뵳占� : CommMyBoardController
-揶쏉옙  獄쏉옙   占쎌쁽 : 筌ㅿ옙 占쎌뵥 占쎈툡,占쎌뵠 占쎈연 筌욑옙
-占쎄퐬	   筌륅옙 : �뚣끇占썬끇�빍占쎈뱜 筌띾뜆�뵠野껊슣�뻻占쎈솇 �뚢뫂�뱜嚥▲끇�쑎
+/*�뜝�럩逾�	   占쎈뎨�뜝占� : CommMyBoardController
+�뤆�룊�삕  �뛾�룊�삕   �뜝�럩�겱 : 嶺뚣끏�삕 �뜝�럩逾� �뜝�럥�닡,�뜝�럩逾� �뜝�럥�뿰 嶺뚯쉻�삕
+�뜝�럡�맟	   嶺뚮쪋�삕 : 占쎈슔�걞�뜝�뜫�걞占쎈퉵�뜝�럥諭� 嶺뚮씭�쐠占쎈턄�뇦猿딆뒩占쎈뻣�뜝�럥�냷 占쎈슓維귨옙諭쒎슖�뼯�걞占쎌몠
 */
 
 @Controller
@@ -45,21 +46,6 @@ public class CommMyBoardController {
 
 	@RequestMapping(value = "/comm_writeForm.do", method = RequestMethod.GET)
 	public String writeForm(HttpServletRequest req) {
-		/*HttpSession session = req.getSession();
-		MemberDTO mbId = (MemberDTO) session.getAttribute("mdid");
-		boolean isLogin = false;
-		if (mbId != null)
-			isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-
-		String msg = null, url = null;
-		if (mbId == null) {
-			msg = "濡쒓렇�씤�쓣 �빐二쇱꽭�슂.";
-			url = "login.log";
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		}*/
 		return "comm/board/comm_writeForm";
 	}
 
@@ -76,6 +62,9 @@ public class CommMyBoardController {
 		HttpSession session = req.getSession();
 		
 		MemberDTO member = (MemberDTO)session.getAttribute("login");
+		
+		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+		Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
 
 		String file_name = "";
 		int file_size = 0;
@@ -90,7 +79,7 @@ public class CommMyBoardController {
 			file_name = file.getOriginalFilename();
 			file_size = (int) file.getSize();
 		}
-		dto.setId(member.getId());
+		dto.setComm_memberNum(comm_memberNum);
 		dto.setFile_name(file_name);
 		dto.setFile_size(file_size);
 	/*	req.setAttribute("profile_name", member.getProfile_name());
@@ -100,10 +89,10 @@ public class CommMyBoardController {
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "�벑濡� �셿猷�.";
+			msg = "글 등록되었습니다";
 			url = "comm_myPage.do";
 		} else {
-			msg = "�벑濡� �떎�뙣 ";
+			msg = "글 등록에 실패하였습니다.";
 			url = "comm_writeForm.do";
 		}
 		req.setAttribute("msg", msg);
@@ -115,16 +104,17 @@ public class CommMyBoardController {
 	   public String myPage(HttpServletRequest req, HttpSession session) {
 
 	      MemberDTO member = (MemberDTO) session.getAttribute("login");
-	      int comm_memberNum = member.getMemberNum();
+	      
+	      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
+	      int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+	      
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 
 	      req.setAttribute("boardList", list);
-	      req.setAttribute("name", member.getName());
+	      /*req.setAttribute("comm_nickname", commmember.getComm_nickname());*/
 	      /*req.setAttribute("profile_name",member.getProfile_name());
 	      System.out.println(member.getProfile_name());
-	      req.setAttribute("name",member.getName());
-	      //req.setAttribute("upLoadPath", upLoadPath);
-	*/
+	      req.setAttribute("name",member.getName());*/
 	      return "comm/board/comm_myPage";
 	   }
 	
@@ -152,27 +142,11 @@ public class CommMyBoardController {
 	public String writeReply(CommReplyDTO dto, HttpServletRequest req, @RequestParam int boardNum) {
 		replyMapper.writeReply(dto);
 		req.setAttribute("boardNum", dto.getBoardNum());
-		return "redirect:/";
+		return "redirect:/"; //질문할꺼임.
 	}
 
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req) {
-		/*HttpSession session = req.getSession();
-		String mbId = (String) session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null)
-			isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-
-		String msg = null, url = null;
-		if (mbId == null) {
-			msg = "占싸깍옙占쏙옙 占쏙옙 占싱울옙 占쏙옙占쏙옙占쌌니댐옙.";
-			url = "login.do";
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		}
-*/
 		return "comm/board/comm_bookMark";
 	}
 
@@ -189,10 +163,10 @@ public class CommMyBoardController {
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "寃뚯떆湲��닔�젙�꽦怨�!!";
+			msg = "글이 수정되었습니다!!";
 			url = "comm_myPage.do";
 		}else{
-			msg = "寃뚯떆湲��닔�젙�떎�뙣!!";
+			msg = "글 수정에 실패하였습니다!!";
 			url = "comm_updateForm.do";
 		}
 		
@@ -207,7 +181,7 @@ public class CommMyBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "게시물이 삭제 되었습니다.";
+			msg = "글이 삭제되었습니다.";
 			url = "comm_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -237,7 +211,7 @@ public class CommMyBoardController {
 		System.out.println(replyNum);
 		String msg = null, url = null;
 		if (res > 0) { 
-			msg = "댓글이 삭제 되었습니다.";
+			msg = "�뙎湲��씠 �궘�젣 �릺�뿀�뒿�땲�떎.";
 			url = "comm_content.do";
 		}
 		ModelAndView mav = new ModelAndView();

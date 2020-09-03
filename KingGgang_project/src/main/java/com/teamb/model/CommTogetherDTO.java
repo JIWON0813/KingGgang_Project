@@ -1,5 +1,9 @@
 package com.teamb.model;
 
+/*이	   름 : CommTogetherDTO.java
+개  발   자 : 최 인 아
+설	   명 : 투게더DTO*/
+
 import java.util.Date;
 
 public class CommTogetherDTO {

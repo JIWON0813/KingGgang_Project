@@ -50,7 +50,13 @@ public class Comm_MemberController {
 			msg = "등록정보가 없습니다. 닉네임을 확인해주세요.";
 			url = "commhome.comm";
 		} else {
-
+			session = req.getSession();
+			session.setAttribute("memberNum", dto.getComm_nickname());
+			
+			int comm_memberNum = memberMapper.comm_getmemberNum(dto.getComm_nickname());
+			session.setAttribute("comm_memberNum",comm_memberNum);
+	        session.setAttribute("commmember",memberMapper.comm_getMember(comm_memberNum));
+	        
 			session.setAttribute("comm_login", login);
 			session.setAttribute("comm_memberNum", login.getComm_memberNum());
 			msg = "로그인 하였습니다";

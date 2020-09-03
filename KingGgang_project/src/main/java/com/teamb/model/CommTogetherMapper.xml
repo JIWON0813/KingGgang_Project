@@ -10,10 +10,25 @@
  -->
  
  <mapper namespace="com.team.model.Comm">
+	 <select id="getTogether" resultType="CommTogetherDTO" parameterType="int">
+		select * from together where togetherNum=#{togetherNum}
+	</select>
+
+	<select id="listTogether" resultType="CommTogetherDTO">
+		select * from together where togetherNum=#{togetherNum}
+	</select>
  
  	<insert id="writeTogether" parameterType="CommTogetherDTO">
 	    insert into together values(#{comm_memberNum}, together_num.nextval,
 	    #{tname}, #{ttitle}, #{temail}, #{tcontent}, sysdate, 0)
 	</insert>
+	
+	<!-- <select id="deleteReply" parameterType="int" resultType="int">
+		delete from reply where replyNum=#{replyNum} 
+	</select>
+	
+	<update id="updateReply" parameterType="CommReplyDTO">
+		update reply set content=#{content} where replyNum=#{replyNum}
+	</update> -->
 	
  </mapper>

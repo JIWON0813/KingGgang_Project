@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id="listBoard" resultType="CommboardDTO">
-		select * from commboard where id=#{id} order by boardNum desc
+		select * from commboard where comm_memberNum=#{comm_memberNum} order by boardNum desc
 	</select>
 	
 	<select id="allListBoard" resultType="CommboardDTO">
@@ -17,7 +17,7 @@
 	</select>
 	
 	<insert id="writeBoard" parameterType="CommboardDTO">
-		insert into commboard values(#{id},commboard_num.nextval, #{file_name}, #{file_size}, 
+		insert into commboard values(#{comm_memberNum},commboard_num.nextval, #{file_name}, #{file_size}, 
 		#{content}, #{tag}, #{loc},0,0,0,0,0,0) 
 	</insert>
 	

@@ -9,7 +9,7 @@
 <%@ include file="../index_top.jsp"%>
 
 <section id="four" class="wrapper style1 special fade-up">
-<div align="center">
+<div align="left">
 <table>
    <tr>
 	  	 <td width="120" height="120">
@@ -24,8 +24,10 @@
 	   </td>
    </tr>
 </table>
+</div>
    <div class="box alt">
    <div class="row gtr-uniform">
+    <hr color="pink">
 	   <c:if test="${empty boardList}">
 	      <h2>등록된 게시물이 없습니다.</h2>
 	   </c:if>   
@@ -38,6 +40,6 @@
 	   </c:forEach>   
    </div>
    </div>         
-</div>
+
 </section>
 <%@ include file="../index_bottom.jsp"%>
