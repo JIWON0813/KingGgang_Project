@@ -1,14 +1,23 @@
 package com.teamb.model;
 
 public class ChatRoomDTO {
-	int roomNumber;
-	String roomName;
+	private int chatroom_id;
+	private int comm_memberNum;
+	private String roomName;
 	
-	public int getRoomNumber() {
-		return roomNumber;
+	
+
+	public int getChatroom_id() {
+		return chatroom_id;
 	}
-	public void setRoomNumber(int roomNumber) {
-		this.roomNumber = roomNumber;
+	public void setChatroom_id(int chatroom_id) {
+		this.chatroom_id = chatroom_id;
+	}
+	public int getComm_memberNum() {
+		return comm_memberNum;
+	}
+	public void setComm_memberNum(int comm_memberNum) {
+		this.comm_memberNum = comm_memberNum;
 	}
 	public String getRoomName() {
 		return roomName;
@@ -17,8 +26,10 @@ public class ChatRoomDTO {
 		this.roomName = roomName;
 	}
 	
-	@Override
-	public String toString() {
-		return "Room [roomNumber=" + roomNumber + ", roomName=" + roomName + "]";
-	}	
+	
+	
 }
+	
+	
+	
+	
