@@ -21,9 +21,9 @@ public class ChatMapper {
 
 
 
-	public ChatRoomDTO isRoom(ChatRoomDTO dto) throws Exception {
-		ChatRoomDTO room = null;
-		room = sqlSession.selectOne("isRoom",dto);
+	public List<ChatRoomDTO> isRoom(ChatRoomDTO dto) throws Exception {
+		 List<ChatRoomDTO> room = null;
+		room = sqlSession.selectList("isRoom",dto);
 		return room;
 	}
 
@@ -55,9 +55,9 @@ public class ChatMapper {
 	}
 
 
-	public List<ChatRoomDTO> getRoomList(String str) throws Exception {
+	public ChatRoomDTO getRoomList(int chatroom_id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("getRoomList",str);
+		return sqlSession.selectOne("getRoomList",chatroom_id);
 	}
 
 
@@ -90,7 +90,7 @@ public class ChatMapper {
 	}
 */
 
-
+/*
 	public int getAllCount(String str) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<String, Object> ();
@@ -103,6 +103,6 @@ public class ChatMapper {
 			return sqlSession.selectOne("getAllCount" ,map);
 		}
 		
-	}
+	}*/
 
 }

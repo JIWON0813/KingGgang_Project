@@ -63,7 +63,7 @@ public class Comm_MemberController {
 			msg = "등록정보가 없습니다. 가입 페이지로 이동합니다.";
 			url = "comm_member_input.do";
 		} else {
-			session.setAttribute("comm_login", login);
+			session.setAttribute("comm_login",login);
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
 		}

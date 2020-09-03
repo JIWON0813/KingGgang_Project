@@ -13,7 +13,7 @@
 		</tr>
 		<c:if test="${empty friendList}">
 			<tr>
-					<td colspan="5">등록된 친구가 없습니다.</td>
+					<td colspan="6">등록된 친구가 없습니다.</td>
 			</tr>
 		</c:if>
 		
