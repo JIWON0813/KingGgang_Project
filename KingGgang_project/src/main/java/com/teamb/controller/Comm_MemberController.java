@@ -1,4 +1,4 @@
-// 지은
+// 吏���
 package com.teamb.controller;
 
 import java.io.File;
@@ -47,7 +47,7 @@ public class Comm_MemberController {
 	public String comm_logout( HttpServletRequest req,HttpSession session){
 		int memberNum = (Integer)session.getAttribute("memberNum");
 		session.invalidate();
-		String msg = "로그아웃 되었습니다.";
+		String msg = "濡쒓렇�븘�썐 �릺�뿀�뒿�땲�떎.";
 		String url = "commhome.comm";
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
@@ -60,11 +60,12 @@ public class Comm_MemberController {
 		String msg = null, url = null;
 		if (login == null) {
 			session.setAttribute("comm_login", null);
-			msg = "등록정보가 없습니다. 가입 페이지로 이동합니다.";
+			msg = "�벑濡앹젙蹂닿� �뾾�뒿�땲�떎. 媛��엯 �럹�씠吏�濡� �씠�룞�빀�땲�떎.";
 			url = "comm_member_input.do";
 		} else {
 			session.setAttribute("comm_login",login);
-			msg = "로그인 하였습니다";
+			session.setAttribute("comm_memberNum", login.getComm_memberNum());
+			msg = "濡쒓렇�씤 �븯���뒿�땲�떎";
 			url = "commhome.comm";
 		}
 		req.setAttribute("msg", msg);
@@ -114,14 +115,14 @@ public class Comm_MemberController {
 		
 		    int res = memberMapper.comm_insertMember(dto);
 		  //  session.setAttribute("num", ); 
-		    // 가입하면서 dto에 저장된 memberNum값 저장!!!! 해서 'input.do'실행시 값 가져오기 해아 중복 가입이 안됨.
+		    // 媛��엯�븯硫댁꽌 dto�뿉 ���옣�맂 memberNum媛� ���옣!!!! �빐�꽌 'input.do'�떎�뻾�떆 媛� 媛��졇�삤湲� �빐�븘 以묐났 媛��엯�씠 �븞�맖.
 		String msg = null, url = null;
 		if(res>0){
-			msg="가입성공";
+			msg="媛��엯�꽦怨�";
 			url="comm_memberList.do";
 			//url="commhome.comm"; 
 		}else{
-			msg="가입실패";
+			msg="媛��엯�떎�뙣";
 			url="commhome.comm";
 		}
 		req.setAttribute("msg", msg);
@@ -129,7 +130,7 @@ public class Comm_MemberController {
 		return "message";
 	}
 
-	// 목록은 관리자만 볼 수 있음.
+	// 紐⑸줉�� 愿�由ъ옄留� 蹂� �닔 �엳�쓬.
 	@RequestMapping(value = "/comm_memberList.do")
 	public String commlistMember(HttpServletRequest req,HttpSession session,Comm_MemberDTO dto){
 		
@@ -164,10 +165,10 @@ public class Comm_MemberController {
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "회원수정성공! 메인페이지로 이동합니다.";
+			msg = "�쉶�썝�닔�젙�꽦怨�! 硫붿씤�럹�씠吏�濡� �씠�룞�빀�땲�떎.";
 			url = "commhome.comm";
 		} else {
-			msg = "회원수정실패! 메인페이지로 이동합니다.";
+			msg = "�쉶�썝�닔�젙�떎�뙣! 硫붿씤�럹�씠吏�濡� �씠�룞�빀�땲�떎.";
 			url = "commhome.comm";
 		}
 		req.setAttribute("msg", msg);
@@ -180,10 +181,10 @@ public class Comm_MemberController {
 		int res = memberMapper.comm_deleteMember(comm_memberNum);
 		String msg = null, url = null;
 		if(res>0){
-			msg="회원삭제성공!";
+			msg="�쉶�썝�궘�젣�꽦怨�!";
 			url="comm_memberList.do";
 		}else{
-			msg="회원삭제실패!";
+			msg="�쉶�썝�궘�젣�떎�뙣!";
 			url="comm_memberList.do";
 		}
 		req.setAttribute("msg", msg);

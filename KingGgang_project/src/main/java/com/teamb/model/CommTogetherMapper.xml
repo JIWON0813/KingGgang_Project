@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 
+	이	   름 : CommTogetherMapper.xml
+	개  발   자 : 최 인 아
+	설	   명 : 투게더게시판
+ -->
+ 
+ <mapper namespace="com.team.model.Comm">
+ 
+ 	<insert id="writeTogether" parameterType="CommTogetherDTO">
+	    insert into together values(#{comm_memberNum}, together_num.nextval,
+	    #{tname}, #{ttitle}, #{temail}, #{tcontent}, sysdate)
+	</insert>
+	
+ </mapper>
