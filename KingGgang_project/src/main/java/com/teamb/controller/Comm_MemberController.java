@@ -1,4 +1,4 @@
-// 吏���
+// 지은
 package com.teamb.controller;
 
 import java.io.File;
@@ -63,24 +63,25 @@ public class Comm_MemberController {
 	}	
 	
 	@RequestMapping("/comm_checkMember.do")
-	public String commcheckMember(HttpServletRequest req,HttpSession session){
-		int memberNum = (Integer)session.getAttribute("memberNum");
-		
-		boolean isMember=memberMapper.comm_checkMember(memberNum);
-		String msg = null, url = null;
-		if (isMember){
-			msg="이미 등록된 회원입니다. 로그인을 해주세요.";
-			url="comm_login.do";
-		}else {
-			session.setAttribute("memberNum", memberNum);
-			msg="회원가입 페이지로 이동합니다.";
-			url="comm_member_input.do";
-		}
-		
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";
-	}
+	   public String commcheckMember(HttpServletRequest req,HttpSession session){
+	      int memberNum = (Integer)session.getAttribute("memberNum");
+	      
+	      boolean isMember=memberMapper.comm_checkMember(memberNum);
+	      String msg = null, url = null;
+	      if (isMember){
+	         msg="이미 등록된 회원입니다. 로그인을 해주세요.";
+	         url="comm_login.do";
+	      }else {
+	         session.setAttribute("memberNum", memberNum);
+	         msg="회원가입 페이지로 이동합니다.";
+	         url="comm_member_input.do";
+	      }
+	      
+	      req.setAttribute("msg", msg);
+	      req.setAttribute("url", url);
+	      return "message";
+	   }
+	
 	@RequestMapping("/comm_member_input.do")
 	public String comminsertMemberForm(HttpServletRequest req,HttpSession session){
 		int memberNum = (Integer)session.getAttribute("memberNum");
