@@ -1,5 +1,7 @@
 package com.teamb.model;
 
+import java.util.Date;
+
 public class CommTogetherDTO {
 	
 	private int comm_memberNum;
@@ -8,6 +10,8 @@ public class CommTogetherDTO {
 	private String ttitle;
 	private String temail;
 	private String tcontent;
+	private Date tregdate;
+	private int treadcount;
 	
 	public int getComm_memberNum() {
 		return comm_memberNum;
@@ -44,5 +48,17 @@ public class CommTogetherDTO {
 	}
 	public void setTcontent(String tcontent) {
 		this.tcontent = tcontent;
+	}
+	public Date getTregdate() {
+		return tregdate;
+	}
+	public void setTregdate(Date tregdate) {
+		this.tregdate = tregdate;
+	}
+	public int getTreadcount() {
+		return treadcount;
+	}
+	public void setTreadcount(int treadcount) {
+		this.treadcount = treadcount;
 	}
 }

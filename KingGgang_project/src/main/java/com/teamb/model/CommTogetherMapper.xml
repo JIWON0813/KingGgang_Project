@@ -13,7 +13,7 @@
  
  	<insert id="writeTogether" parameterType="CommTogetherDTO">
 	    insert into together values(#{comm_memberNum}, together_num.nextval,
-	    #{tname}, #{ttitle}, #{temail}, #{tcontent}, sysdate)
+	    #{tname}, #{ttitle}, #{temail}, #{tcontent}, sysdate, 0)
 	</insert>
 	
  </mapper>

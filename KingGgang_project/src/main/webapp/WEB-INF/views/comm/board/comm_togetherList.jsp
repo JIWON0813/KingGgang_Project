@@ -34,9 +34,9 @@
 				<img src="img/hot.gif">
 		</c:if>		
 			</td>
-			<td>${dto.writer}</td>
-			<td>${dto.reg_date}</td>
-			<td>${dto.readcount}</td>
+			<td>${dto.tname}</td>
+			<td>${dto.tregdate}</td>
+			<td>${dto.treadcount}</td>
 		</tr>		
 	</c:forEach>	
 	</table>
