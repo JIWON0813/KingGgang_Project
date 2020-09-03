@@ -47,8 +47,8 @@ public class Comm_MemberController {
 		String msg = null, url = null;
 		if (login == null) {
 			session.setAttribute("comm_login", null);
-			msg = "등록정보가 없습니다. 가입 페이지로 이동합니다.";
-			url = "comm_member_input.do";
+			msg = "등록정보가 없습니다. 닉네임을 확인해주세요.";
+			url = "commhome.comm";
 		} else {
 			session.setAttribute("comm_login", login);
 			session.setAttribute("comm_memberNum", login.getComm_memberNum());
@@ -61,13 +61,30 @@ public class Comm_MemberController {
 		return "message";
 	}	
 	
+	@RequestMapping("/comm_checkMember.do")
+	public String commcheckMember(HttpServletRequest req,HttpSession session){
+		int memberNum = (Integer)session.getAttribute("memberNum");
+		
+		boolean isMember=memberMapper.comm_checkMember(memberNum);
+		String msg = null, url = null;
+		if (isMember){
+			msg="이미 등록된 회원입니다. 로그인을 해주세요.";
+			url="comm_login.do";
+		}else {
+			session.setAttribute("memberNum", memberNum);
+			msg="회원가입 페이지로 이동합니다.";
+			url="comm_member_input.do";
+		}
+		
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}
 	@RequestMapping("/comm_member_input.do")
 	public String comminsertMemberForm(HttpServletRequest req,HttpSession session){
 		int memberNum = (Integer)session.getAttribute("memberNum");
 		String name = (String)session.getAttribute("name");
-		
-		String msg = null, url = null;
-		
+				
 		return "comm/member/comm_insertMember";
 	}
 	
@@ -113,7 +130,7 @@ public class Comm_MemberController {
 			msg="가입실패";
 			url="commhome.comm";
 		}
-		session.setAttribute("comm_memberNum", dto.getComm_memberNum());
+		//session.setAttribute("comm_memberNum", dto.getComm_memberNum());
 		
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);

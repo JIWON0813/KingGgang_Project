@@ -19,6 +19,13 @@ public class Comm_MemberMapper {
 		return sqlSession.selectOne("comm_loginOk", dto);
 	}
 	
+	public boolean comm_checkMember(int memberNum) {
+		Comm_MemberDTO dto = sqlSession.selectOne("comm_checkMember", memberNum);
+		if (dto == null)
+			return false;
+		return true;
+	}
+	
 	public int comm_getmemberNum(String comm_nickname){
 		int res = sqlSession.selectOne("comm_getmemberNum",comm_nickname);
 		return res;

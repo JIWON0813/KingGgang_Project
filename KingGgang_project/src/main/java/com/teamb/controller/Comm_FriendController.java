@@ -38,7 +38,7 @@ public class Comm_FriendController {
 	public String insertFriend(HttpServletRequest req, HttpSession session, 
 							Comm_FriendDTO dto, Comm_MemberDTO mdto) {
 
-			int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
+		int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
 		String msg = null, url = null;
 		int res = friendMapper.insertFriend(dto);
 		
@@ -59,7 +59,6 @@ public class Comm_FriendController {
 	@RequestMapping(value = "/comm_friendAll.do")
 	public String listFriend(HttpServletRequest req, Comm_FriendDTO dto, HttpSession session) {
 
-		//Comm_MemberDTO member = (Comm_MemberDTO)session.getAttribute("comm_member");
 		int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
 		List<Comm_FriendDTO> list = friendMapper.listFriend(comm_memberNum);
 		for(Comm_FriendDTO dto2: list){
@@ -69,7 +68,6 @@ public class Comm_FriendController {
 		}
 		req.setAttribute("friendList", list);
 		//session.getAttribute("name");
-		//session.getAttribute("email");
 		
 
 		return "comm/friend/friendAll";
