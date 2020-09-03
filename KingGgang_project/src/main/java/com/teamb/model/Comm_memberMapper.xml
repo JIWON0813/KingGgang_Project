@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.teamb.model.Comm">
 
 	<select id = "comm_loginOk" resultType="comm_memberDTO">
-        select * from comm_member where comm_nickname=#{comm_nickname} and comm_memberNum=#{memberNum}
+        select * from comm_member 
+        where comm_nickname=#{comm_nickname} and memberNum=#{memberNum}
     </select>
     
     <select id="comm_checkMember" parameterType="int" resultType="comm_memberDTO">
