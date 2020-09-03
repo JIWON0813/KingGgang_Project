@@ -51,11 +51,14 @@ public class LoginController {
 	      String msg = null, url = null;
 	      switch(res){
 	      case MemberDTO.OK:	    
+	    	  
 	    	  //지은
 	    	  int memberNum = loginMapper.getMemberNum(dto.getId());
 	            session.setAttribute("memberNum",memberNum);
-	            //session.setAttribute("member",memberMapper.getMember(memberNum));  
+	            
 	    	  //지은
+	          String name = loginMapper.getMemberName(dto.getId());
+	          	session.setAttribute("name", name);
 	    	  
 	    	  session.setAttribute("mbId", dto.getId());
 	    	  session.setAttribute("memberDto", dto);
