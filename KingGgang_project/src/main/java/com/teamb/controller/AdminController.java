@@ -20,6 +20,6 @@ public class AdminController {
 	
 	@RequestMapping(value = "insertHotel.admin")
 	public String insertHotelForm(){
-		return "admin/insertHotelForm";
+		return "hotel/insertHotelForm";
 	}
 }

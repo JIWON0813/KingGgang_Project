@@ -18,11 +18,11 @@ public class AdminController2
 	@Autowired
 	private AdminMapper2 adminmapper;
 	
-	@RequestMapping(value = "/insert.admin", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/insert.admin", method = RequestMethod.GET)
 	public String Insert()
 	{
 		return "login2/InsertAdmin";
-	}
+	}*/
 	
 	@RequestMapping(value = "/insert.admin", method = RequestMethod.POST)
 	public String InsertPro(HttpServletRequest req, @ModelAttribute Admin2DTO dto)
@@ -48,11 +48,11 @@ public class AdminController2
 		return "login/message";
 	}
 	
-	@RequestMapping(value = "/login.admin", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/login.admin", method = RequestMethod.GET)
 	public String Login()
 	{
 		return "login2/login";
-	}
+	}*/
 	
 	@RequestMapping(value = "/login.admin", method = RequestMethod.POST)
 	public String LoginPro(HttpServletRequest req, @ModelAttribute Admin2DTO dto)

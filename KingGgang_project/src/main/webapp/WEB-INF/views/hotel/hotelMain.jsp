@@ -22,6 +22,12 @@
 			<td width="20%" class="catetd"><a href="main.hotel?cate=pension">펜션</a></td>
 		</tr>
 	</table>
+	<div align="center">
+		<form action="main.hotel" method="post">
+			<input type="text" name="search" placeholder="검색어입력"> <input
+				type="submit" value="검색">
+		</form>
+	</div>
 </div>
 <div class="content" align="center">
 	<p style="font-size: 20px; font-weight: bold">숙소 목록</p>
@@ -31,7 +37,7 @@
 				<c:if test="${not empty dto.filename}">
 					<td rowspan="6" width="20%">
 					<a href="hotelDetail.hotel?no=${dto.no}">
-					<img src="http://localhost:9210/img/${dto.filename}" width="200" height="200">
+					<img src="http://localhost:9211/img/${dto.filename}" width="200" height="200">
 					</a>
 				</c:if>
 				<c:if test="${empty dto.filename}">
@@ -66,13 +72,13 @@
 	</table>
 	<c:if test="${count>0}">
 		<c:if test="${startPage > pageBlock}">
-			[<a href="main.hotel?pageNum=${startPage-1}">이전</a>]		
+			[<a href="main.hotel?pageNum=${startPage-1}&cate=${cate}&search=${search}">이전</a>]		
 		</c:if>
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			[<a href="main.hotel?pageNum=${i}">${i}</a>]
+			[<a href="main.hotel?pageNum=${i}&cate=${cate}&search=${search}">${i}</a>]
 		</c:forEach>
 		<c:if test="${endPage<pageCount}">
-			[<a href="main.hotel?pageNum=${endPage+1}">다음</a>]
+			[<a href="main.hotel?pageNum=${endPage+1}&cate=${cate}&search=${search}">다음</a>]
 		</c:if>
 	</c:if>
 </div>

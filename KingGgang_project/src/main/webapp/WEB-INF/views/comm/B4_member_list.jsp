@@ -5,13 +5,13 @@
 <head>
 	<title>관리자</title>
 </head>
-<body>
+<body> 
 <div align="center">
 		<table width="800" height="700">
 			<tr  width="20%" height="35" bgcolor="black">
 		 		<td colspan="7"> 
 			</tr>
-			<tr>
+			<tr> 
 			</tr>
 			<tr>
 			</tr>

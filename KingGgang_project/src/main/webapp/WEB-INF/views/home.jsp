@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%-- <%@ page session="false" %> --%>
 <!-- 
 	이	   름 : home.jsp
 	개  발   자 : 
@@ -9,7 +9,7 @@
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <a href="main.admin">관리자모드로 가기</a>
-<br> 
+<br>
 <a href="main.member">임시회원</a>
 <a href="Q_list.board">문의게시판 가기</a>
 <a href="list.notice">공지사항 보기</a>

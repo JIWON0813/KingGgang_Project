@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!-- 
-	이	   름 : hotelList.jsp
+	이	   름 : updateRoomForm.jsp
 	개  발   자 : 김 지 원
-	설	   명 : 관리자모드 숙소목록페이지
+	설	   명 : 방 정보 수정 폼
  -->
  <div align="center">
  <form action="updateRoom.hotel" method="post" enctype="multipart/form-data">
@@ -11,7 +11,7 @@
  <table>
  <tr>
  <td cols="2">
- <img src="http://localhost:9210/img/${roomdto.filename}" width="200" height="200">
+ <img src="http://localhost:9211/img/${roomdto.filename}" width="200" height="200">
  </td>
  </tr>
  <tr>

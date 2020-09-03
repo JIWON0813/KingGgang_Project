@@ -1,3 +1,7 @@
+# Created by https://www.toptal.com/developers/gitignore/api/java,java-web
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,java-web
+
+### Java ###
 # Compiled class file
 *.class
 
@@ -22,9 +26,19 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+### Java-Web ###
+## ignoring target file
+target/
+
+# End of https://www.toptal.com/developers/gitignore/api/java,java-web
+
 
 .properties
 .classpath
 .project
 /target/
 /bin/
+.settings/
+.springBeans
+.DS_Store
+

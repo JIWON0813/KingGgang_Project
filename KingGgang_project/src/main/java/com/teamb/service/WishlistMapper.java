@@ -52,7 +52,7 @@ public class WishlistMapper {
 	}
 	
 	public List<WishlistDTO> getNolist(WishlistDTO dto) {
-		return sqlSession.selectList("getNo",dto);
+		return sqlSession.selectList("getwishNo",dto);
 	}
 	
 }	
