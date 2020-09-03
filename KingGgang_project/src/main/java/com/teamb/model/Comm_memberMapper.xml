@@ -9,12 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from comm_member where comm_nickname=#{comm_nickname} and comm_memberNum=#{memberNum}
     </select>
     
+    <select id="comm_checkMember" parameterType="int" resultType="comm_memberDTO">
+		select * from comm_member where memberNum=#{memberNum}
+	</select>
+    
     <select id = "comm_getmemberNum" parameterType="comm_memberDTO"  resultType="int">
         select comm_memberNum from comm_member where comm_nickname=#{comm_nickname}
     </select>
- 
- 
-	
+
 	<insert id="comm_insertMember" parameterType="Comm_MemberDTO">
 	insert into comm_member values
      (#{memberNum},comm_member_num.nextval,#{comm_name},#{comm_profilename},#{comm_profilesize},
