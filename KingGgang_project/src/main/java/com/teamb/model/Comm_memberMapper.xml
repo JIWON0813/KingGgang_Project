@@ -4,11 +4,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.teamb.model.Comm">
+
+	<select id = "comm_loginOk" resultType="comm_memberDTO">
+        select * from comm_member where comm_nickname=#{comm_nickname} and comm_memberNum=#{memberNum}
+    </select>
+    
+    <select id = "comm_getmemberNum" parameterType="comm_memberDTO"  resultType="int">
+        select comm_memberNum from comm_member where comm_nickname=#{comm_nickname}
+    </select>
+ 
+ 
 	
-	<insert id="comm_insertMember" parameterType="comm_MemberDTO">
+	<insert id="comm_insertMember" parameterType="Comm_MemberDTO">
 	insert into comm_member values
-     (#{memberNum},commmember_num.nextval,#{comm_profilename},#{comm_profilesize},
-     #{comm_nickname},#{comm_birth},#{comm_intro},0,sysdate)
+     (#{memberNum},comm_member_num.nextval,#{comm_name},#{comm_profilename},#{comm_profilesize},
+     #{comm_nickname},#{comm_birth},#{comm_intro},0,sysdate,0)
 	</insert>
 	<select id="comm_memberList" resultType="comm_memberDTO">
 		select * from comm_member

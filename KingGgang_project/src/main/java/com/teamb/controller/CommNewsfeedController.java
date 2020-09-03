@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
+import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.CommboardMapper;
 
 
@@ -27,6 +28,7 @@ public class CommNewsfeedController {
 
 	@Autowired
 	private CommboardMapper boardMapper;
+	private Comm_MemberMapper memberMapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
@@ -35,11 +37,19 @@ public class CommNewsfeedController {
 	public String index(HttpServletRequest req, HttpSession session,Comm_MemberDTO dto) {
 		
 		String mbId = (String)session.getAttribute("mbId");
-		boolean isLogin = false;
+		Comm_MemberDTO comm_login = (Comm_MemberDTO)session.getAttribute("comm_login");
+		/*//boolean isLogin = false;
+			boolean isLoginMain = false;
+			boolean isLoginComm = false;
+			//if(mbId == null){ return "home"; }
 		if(mbId != null){
-	         isLogin = true;
-		}
-	      
+			isLoginMain = true;
+			if(comm_login != null ) 
+				isLoginComm=true;
+			isLoginComm=false;
+		}   */
+		
+		
 		return "comm/index";
 	}
 

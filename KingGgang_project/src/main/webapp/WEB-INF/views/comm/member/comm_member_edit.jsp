@@ -18,7 +18,7 @@
                  <input type="hidden" name="memberNum" value="${comm_getMember.comm_memberNum}"/>
                  	<tr>
 						<th><span>이름</span></th>
-						<td><input type="text" name="comm_name" value="${getMember.name}"></td>
+						<td><input type="text" name="comm_name" value="${comm_getMember.comm_name}" readOnly></td>
 					</tr>
                  	<tr>
                  	
@@ -33,7 +33,7 @@
   					<tr>
 						<th><span>프로필사진</span></th>
 						<td>
-							<input type="file" name="comm_profile_name" value="${comm_getMember.comm_profile_name}">
+							<input type="file" name="comm_profile_name" value="${comm_getMember.comm_profilename}">
 						</td>
 					</tr>
   					<tr>
