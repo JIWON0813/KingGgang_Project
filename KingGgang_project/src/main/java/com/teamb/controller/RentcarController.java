@@ -2,6 +2,10 @@ package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,8 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.teamb.model.InsuDTO;
 import com.teamb.model.RentcarDTO;
+import com.teamb.model.Rentcar_ResDTO;
 import com.teamb.service.RentcarMapper;
+
+/*
+이	   름 : RentcarController class
+개  발   자 : 정 우 철
+설	   명 : 렌트카 페이지 컨트롤러  
+*/
 
 @Controller
 public class RentcarController {
@@ -80,16 +92,23 @@ public class RentcarController {
 	
 	@RequestMapping(value = "contentRentcar.admin")
 	public String contentRentcar(HttpServletRequest req){
-		int num = Integer.parseInt(req.getParameter("r_id"));
+		int num = Integer.parseInt(req.getParameter("id"));
 		RentcarDTO dto = rentcarMapper.getRentcar(num);
 		req.setAttribute("rentcar",dto);
 		req.setAttribute("upLoadPath",upLoadPath);
+		
+		if(dto.getReservation()==1){
+		List<Rentcar_ResDTO> dto2 = rentcarMapper.findReturnday(num);
+		String returnday = dto2.get(0).getReturnday();
+		req.setAttribute("returnday",returnday);
+		}
+		
 		return "rentcar/contentRentcar_Admin";
 	}
 	
 	@RequestMapping(value = "updateRentcar.admin")
 	public String updateRentcar(HttpServletRequest req){
-		int num = Integer.parseInt(req.getParameter("r_id"));
+		int num = Integer.parseInt(req.getParameter("id"));
 		RentcarDTO dto = rentcarMapper.getRentcar(num);
 		req.setAttribute("rentcar",dto);
 		return "rentcar/updateRentcarForm";
@@ -133,7 +152,7 @@ public class RentcarController {
 			url = "listRentcar.admin";
 		}else{
 			msg = "렌트카 수정 실패~ 렌트카 수정 페이지로 이동합니다.";
-			url = "updateRentcar.admin?r_id="+dto.getR_id();
+			url = "updateRentcar.admin?id="+dto.getId();
 		}
 		req.setAttribute("msg",msg);
 		req.setAttribute("url",url);
@@ -142,7 +161,7 @@ public class RentcarController {
 	
 	@RequestMapping(value = "deleteRentcar.admin")
 	public String deleteRentcar(HttpServletRequest req){
-		int num = Integer.parseInt(req.getParameter("r_id"));
+		int num = Integer.parseInt(req.getParameter("id"));
 		RentcarDTO dto = rentcarMapper.getRentcar(num);
 
 		String filename = dto.getFilename();
@@ -162,12 +181,159 @@ public class RentcarController {
 		req.setAttribute("url",url);
 		return "message";
 	}
+//////////////////////////보험/////////////////////////////////	
+	@RequestMapping(value = "insertInsu.admin")
+	public String insertInsu(){
+		return "rentcar/insertInsuForm";
+	}
+	
+	@RequestMapping(value = "listInsu.admin")
+	public String listInsu(HttpServletRequest req){
+		List<InsuDTO> list = rentcarMapper.listInsu();
+		req.setAttribute("insuList",list);
+		return "rentcar/listInsu_admin";
+	}
+	
+	@RequestMapping(value = "insertInsu_Ok.admin")
+	public String insertInsuOk(HttpServletRequest req,InsuDTO dto){
+		int res = rentcarMapper.insertInsu(dto);
+		
+		String msg = null;
+		String url = null;
+		
+		if(res>0){	
+			msg = "등록 성공! 보험 목록으로 이동합니다.";
+			url = "listInsu.admin";
+		}else{
+			msg = "등록 실패! 보험 목록으로 이동합니다.";
+			url = "listInsu.admin";
+		}
+		req.setAttribute("msg",msg);
+		req.setAttribute("url",url);
+		return "message";
+	}
+	
+	@RequestMapping(value = "deleteInsu.admin")
+	public String deleteInsu(HttpServletRequest req){
+		int id = Integer.parseInt(req.getParameter("id"));
+		int res = rentcarMapper.deleteInsu(id);
+		
+		String msg = null;
+		String url = null;
+		if(res>0){	
+			msg = "보험 삭제 성공! 보험 목록으로 이동합니다.";
+			url = "listInsu.admin";
+		}else{
+			msg = "보험 삭제 실패! 보험 목록으로 이동합니다.";
+			url = "listInsu.admin";
+		}
+		req.setAttribute("msg",msg);
+		req.setAttribute("url",url);
+		return "message";
+	}
+	
+	@RequestMapping(value = "updateInsu.admin")
+	public String updateInsu(HttpServletRequest req){
+		int id = Integer.parseInt(req.getParameter("id"));
+		InsuDTO dto = rentcarMapper.getInsu(id);
+		req.setAttribute("insu",dto);
+		return "rentcar/updateInsuForm";
+	}
+	
+	@RequestMapping(value = "updateInsu_Ok.admin")
+	public String updateInsuOk(HttpServletRequest req,InsuDTO dto){
+		int res = rentcarMapper.updateInsu(dto);
+		
+		String msg = null;
+		String url = null;
+		if(res>0){	
+			msg = "보험 수정 성공! 보험 목록 페이지로 이동합니다.";
+			url = "listInsu.admin";
+		}else{
+			msg = "보험 수정 실패! 보험 수정 페이지로 이동합니다.";
+			url = "updateInsu.admin?insu_id="+dto.getId();
+		}
+		req.setAttribute("msg",msg);
+		req.setAttribute("url",url);
+		return "message";
+		
+	}
 	
 //////////////////////////////////////////////////////////////
 	
 	@RequestMapping(value = "main.rentcar")
-	public String rentcarMain(){
+	public String rentcarMain(HttpServletRequest req){
+		String mode = req.getParameter("mode");
+		if (mode == null){
+		List<RentcarDTO> list = rentcarMapper.listRentcar();
+		req.setAttribute("rentcar",list);
+		}else if(mode.equals("lowPrice")){
+			List<RentcarDTO> list = rentcarMapper.listLowPriceRentcar();
+			req.setAttribute("rentcar",list);
+		}else if(mode.equals("type") || mode.equals("fuel")){
+			Object obj = req.getParameter("obj");
+			List<RentcarDTO> list = rentcarMapper.findRentcar(mode,obj);
+			req.setAttribute("rentcar",list);
+		}else if(mode.equals("date")){
+			String receiptday = req.getParameter("receiptday");
+			String returnday = req.getParameter("returnday");
+			List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
+			req.setAttribute("rentcar",list);
+		}
 		return "rentcar/rentcarMain";
 	}
+	
+	@RequestMapping(value = "content.rentcar")
+	public String rentcarContent(HttpServletRequest req){
+		int num = Integer.parseInt(req.getParameter("id"));
+		RentcarDTO dto = rentcarMapper.getRentcar(num);
+		req.setAttribute("rentcar",dto);
+		req.setAttribute("upLoadPath",upLoadPath);
+		return "rentcar/contentRentcar";
+	}
+	
+	@RequestMapping(value = "reservation.rentcar")
+	public String rentcarReservation(HttpServletRequest req){
+		int r_id = Integer.parseInt(req.getParameter("id"));
+		RentcarDTO rdto = rentcarMapper.getRentcar(r_id);
+		List<InsuDTO> insulist = rentcarMapper.listInsu();
+		req.setAttribute("rentcar",rdto);
+		req.setAttribute("insu",insulist);
+		return "rentcar/reservation";
+	}
+	
+	@RequestMapping(value = "reservation_Ok.rentcar")
+	public String rentcarReservationOk(HttpServletRequest req,Rentcar_ResDTO dto){
+		 RentcarDTO rentcarDTO = rentcarMapper.getRentcar(dto.getR_id());
+		 InsuDTO insuDTO = rentcarMapper.getInsu(dto.getInsu_id());
+		 
+		 LocalDate d1 = LocalDate.parse(dto.getReceiptday(), DateTimeFormatter.ISO_LOCAL_DATE);
+		 LocalDate d2 = LocalDate.parse(dto.getReturnday(), DateTimeFormatter.ISO_LOCAL_DATE);
+		 Duration diff = Duration.between(d1.atStartOfDay(), d2.atStartOfDay());
+		 int diffDays = (int)diff.toDays();
+		 dto.setPrice(diffDays*(rentcarDTO.getPrice()+insuDTO.getPrice()));
+		 
+		String receiptday = dto.getReceiptday() + dto.getPickuptime(); 
+		String returnday = dto.getReturnday() + dto.getPickuptime();
+		dto.setReceiptday(receiptday);
+		dto.setReturnday(returnday);
+		int res = rentcarMapper.insertRentcarReservation(dto);
+		
+		String msg = null;
+		String url = null;
+		if(res>0){
+			rentcarMapper.updateRentcarReservation(dto.getR_id());
+			msg = "예약 성공! 메인 페이지로 이동합니다.";
+			url = "main.rentcar";
+		}else{
+			msg = "예약 실패! 차량 상세 페이지로 이동합니다.";
+			url = "content.rentcar?id="+dto.getR_id();
+		}
+		req.setAttribute("msg",msg);
+		req.setAttribute("url",url);
+		return "message";
+			
+	}
+	
 	
 }
