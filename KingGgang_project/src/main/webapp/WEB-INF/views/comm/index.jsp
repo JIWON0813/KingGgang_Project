@@ -31,20 +31,19 @@
 								</ul>
 							</li>
 							
-							<li><a href="comm_friendAll.do">Friends 목록</a>
-								<a href="comm_insertFriend.do?memberNum=${memberNum }">Friends 추가</a>
+							<li><a href="comm_friendAll.do?comm_memberNum=${comm_memberNum }">Friends 목록</a>
 							</li>
 							
 							
 							<c:if test="${comm_login == null }">
 								<a href="comm_login.do?memberNum=${memberNum }">로그인</a>
-								<a href="comm_member_input.do?memberNum=${memberNum }">가입하기</a>
+								<a href="comm_checkMember.do?memberNum=${memberNum }">가입하기</a>
 								 
 							</c:if>
 							
 							<c:if test="${comm_login != null }">
 								<%-- <a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a> --%>
-								<a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">회원탈퇴</a>
+								<a href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">회원탈퇴</a>
 								<a href="comm_memberList.do">목록</a>
 								<a href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">수정</a>
 							</c:if>

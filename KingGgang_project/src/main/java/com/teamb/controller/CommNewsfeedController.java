@@ -38,16 +38,6 @@ public class CommNewsfeedController {
 		
 		String mbId = (String)session.getAttribute("mbId");
 		Comm_MemberDTO comm_login = (Comm_MemberDTO)session.getAttribute("comm_login");
-		/*//boolean isLogin = false;
-			boolean isLoginMain = false;
-			boolean isLoginComm = false;
-			//if(mbId == null){ return "home"; }
-		if(mbId != null){
-			isLoginMain = true;
-			if(comm_login != null ) 
-				isLoginComm=true;
-			isLoginComm=false;
-		}   */
 		
 		
 		return "comm/index";
