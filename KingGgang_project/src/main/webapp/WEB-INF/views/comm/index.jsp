@@ -44,7 +44,7 @@
 							
 							<c:if test="${comm_login != null }">
 								<%-- <a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a> --%>
-								<a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">회원탈퇴</a>
+								<a href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">회원탈퇴</a>
 								<a href="comm_memberList.do">목록</a>
 								<a href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">수정</a>
 							</c:if>

@@ -33,6 +33,30 @@ public class Comm_FriendController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
+	@RequestMapping("/comm_friend_insert.do")
+	public String insertFriend(HttpServletRequest req, HttpSession session, 
+							Comm_FriendDTO dto, Comm_MemberDTO mdto, BindingResult result) {
+
+		
+			Comm_MemberDTO member = (Comm_MemberDTO)session.getAttribute("comm_member");
+			int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
+		
+		String msg = null, url = null;
+		int res = friendMapper.insertFriend(dto);
+
+		
+		if (res > 0) {
+			msg = "친구 추가 성공. 친구목록 페이지로 이동";
+			url = "comm_friendAll.do";
+		} else {
+			msg = "친구 추가 실패. 메인으로 이동";
+			url = "commhome.comm";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}
+	
 	@RequestMapping(value = "/comm_friendAll.do")
 	public String listFriend(HttpServletRequest req, Comm_FriendDTO dto, HttpSession session) {
 
@@ -58,28 +82,7 @@ public class Comm_FriendController {
 		return "comm/friend/friendAll";
 	}
 
-	@RequestMapping("/comm_friend_insert.do")
-	public String insertFriend(HttpServletRequest req, HttpSession session, Comm_FriendDTO dto, MemberDTO mdto, BindingResult result) {
-
-		
-			Comm_MemberDTO member = (Comm_MemberDTO)session.getAttribute("comm_member");
-			int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
-		
-		String msg = null, url = null;
-		int res = friendMapper.insertFriend(dto);
-
-		
-		if (res > 0) {
-			msg = "친구 추가 성공. 친구목록 페이지로 이동";
-			url = "comm_friendAll.do";
-		} else {
-			msg = "친구 추가 실패. 메인으로 이동";
-			url = "commhome.comm";
-		}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";
-	}
+	
 	
 	@RequestMapping(value = "/comm_deleteFriend.do")
 	public String deleteFriend(HttpServletRequest req,@RequestParam int friendNum) {

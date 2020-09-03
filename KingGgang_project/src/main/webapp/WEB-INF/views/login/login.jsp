@@ -64,8 +64,8 @@
 						</c:if> <c:if test="${value != null }">
 							<input type="text" name="id" tabindex="1" value="${value}">
 						</c:if></td>
-					<td rowspan="2" width="30%" valign="middle"><a
-						href="javascript:loginCheck()">로그인 <%-- <img
+					<td rowspan="2" width="30%" valign="middle">
+					<a href="javascript:loginCheck()">로그인 <%-- <img
 							src="${pageContext.request.contextPath}/resources/img/login.jpg" width="50" height="50"
 							border="0" alt="로그인" tabindex="3"> --%>&nbsp;&nbsp;<br>
 					</a>
