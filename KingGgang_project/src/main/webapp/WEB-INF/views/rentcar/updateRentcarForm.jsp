@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
+	<!--  
+	이	   름 : updateRentcarForm.jsp
+	개  발   자 : 정 우 철
+	설	   명 : 관리자 렌트카 수정 페이지
+	-->
+
 	<script type="text/javascript">
 		function check(){
 			if (f.name.value==""){
@@ -161,7 +168,7 @@
   				<tr>
   				<td><input type="hidden" name="ogFilename" value="${rentcar.filename}"></td>
   				<td><input type="hidden" name="ogFilesize" value="${rentcar.filesize}"></td>
-  				<td><input type="hidden" name="r_id" value="${rentcar.r_id}"></td>
+  				<td><input type="hidden" name="id" value="${rentcar.id}"></td>
   				</tr>
   			</table>
 		</form>

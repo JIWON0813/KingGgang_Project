@@ -17,14 +17,6 @@
 					<h1 id="logo"><a href="home.do">낑깡</a></h1>
 					<nav id="nav">
 						<ul>
-							<li>
-							<c:if test="${isLogin == null }">
-								<a href="Comm_loginOk.log">가입하기</a>
-							</c:if>
-							<c:if test="${isLogin != null }">
-								<a>가입한 상태</a>
-							</c:if>
-							</li>
 							<li><a href="comm_newsfeed.do">News Feed</a></li>
 							<li><a href="comm_writeForm.do">Write</a></li>
 							<li>
@@ -38,9 +30,27 @@
 									
 								</ul>
 							</li>
-							<li><a href="comm_friendAll.do">Friends 목록</a></li>
-							<li><a href="comm_insertFriend.do?memberNum=${memberNum }">Friends 추가</a></li>
+							
+							<li><a href="comm_friendAll.do?comm_memberNum=${comm_memberNum }">Friends 목록</a>
+							</li>
+							
+							
+							<c:if test="${comm_login == null }">
+								<a href="comm_login.do?memberNum=${memberNum }">로그인</a>
+								<a href="comm_checkMember.do?memberNum=${memberNum }">가입하기</a>
+								 
+							</c:if>
+							
+							<c:if test="${comm_login != null }">
+								<%-- <a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a> --%>
+								<a href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">회원탈퇴</a>
+								<a href="comm_memberList.do">목록</a>
+								<a href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">수정</a>
+							</c:if>
+							
 						</ul>
 					</nav>
 				</header>
+				</div>
+				</body>
 

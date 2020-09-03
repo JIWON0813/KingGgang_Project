@@ -28,7 +28,7 @@
 	
 <section id="four" class="wrapper style1 special fade-up">
 	<div class="container">
-	<form name="f" action="member_search_ok.mem" method="post" onsubmit="return check('${mode}')">
+	<form name="f" action="member_search_ok.log" method="post" onsubmit="return check('${mode}')">
 		<header class="major">
 			<c:if test="${requestScope.mode == 'search_id'}">
 				<h2>아이디찾기</h2>
