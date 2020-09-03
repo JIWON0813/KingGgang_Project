@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="com.ezen.b4.book.model">
+<mapper namespace="com.ezen.model">
     
     <select id="listMember" resultType="memberDTO">
 		select * from member order by memberNum
@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      insert into member values
      (member_num.nextval,#{profile_name,jdbcType=VARCHAR},#{profile_size},
      #{name},#{gender},#{id},#{passwd},#{email},
-     #{birth_y},#{birth_m},#{birth_d},#{hp1},#{hp2},#{hp3},#{intro},0,0,sysdate,0)
+     #{birth_y},#{birth_m},#{birth_d},#{hp1},#{hp2},#{hp3},#{intro},0,0,sysdate)
     </insert>
   
   	<select id="getMember" parameterType="int" resultType="memberDTO">

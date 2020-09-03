@@ -11,6 +11,9 @@
     <select id="getMemberNum" parameterType="memberDTO" resultType="int">
     	select memberNum from member where id=#{id}
     </select>
+    <select id="getMemberName" parameterType="memberDTO" resultType="String">
+    	select name from member where id=#{id}
+    </select>
 	<select id="getMemberid" parameterType="String" resultType="memberDTO">
 		select * from member where id = #{id}
 	</select>
