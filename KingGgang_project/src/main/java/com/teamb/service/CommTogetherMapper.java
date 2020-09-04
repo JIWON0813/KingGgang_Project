@@ -30,13 +30,13 @@ public class CommTogetherMapper {
 		return sqlSession.insert("writeTogether",dto);
 	}
 	
-	/*public int updateReply(CommTogetherDTO dto) {
-		int res = sqlSession.update("updateReply",dto);
+	public int updateTogether(CommTogetherDTO dto) {
+		int res = sqlSession.update("updateTogether",dto);
 		return res;
 	}
 	
-	public int deleteReply(int replyNum) {	
-		int res = sqlSession.insert("deleteReply",replyNum);
+	public int deleteTogether(int togetherNum) {	
+		int res = sqlSession.insert("deleteTogether",togetherNum);
 		return res;
-	}*/
+	}
 }

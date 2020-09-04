@@ -1,5 +1,9 @@
 package com.teamb.controller;
 
+/*이	   름 : CommBoardController.java
+개  발   자 : 최 인 아
+설	   명 : 보드Controller*/
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -26,14 +30,8 @@ import com.teamb.model.MemberDTO;
 import com.teamb.service.CommReplyMapper;
 import com.teamb.service.CommboardMapper;
 
-
-/*�뜝�럩逾�	   占쎈뎨�뜝占� : CommMyBoardController
-�뤆�룊�삕  �뛾�룊�삕   �뜝�럩�겱 : 嶺뚣끏�삕 �뜝�럩逾� �뜝�럥�닡,�뜝�럩逾� �뜝�럥�뿰 嶺뚯쉻�삕
-�뜝�럡�맟	   嶺뚮쪋�삕 : 占쎈슔�걞�뜝�뜫�걞占쎈퉵�뜝�럥諭� 嶺뚮씭�쐠占쎈턄�뇦猿딆뒩占쎈뻣�뜝�럥�냷 占쎈슓維귨옙諭쒎슖�뼯�걞占쎌몠
-*/
-
 @Controller
-public class CommMyBoardController {
+public class CommBoardController {
 	
 	@Autowired
 	private CommboardMapper boardMapper;
@@ -125,7 +123,6 @@ public class CommMyBoardController {
 		req.setAttribute("getBoard", dto);
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
-		
 		req.setAttribute("replyList", list);
 
 		HttpSession session = req.getSession();
@@ -138,12 +135,33 @@ public class CommMyBoardController {
 		return "comm/board/comm_content";
 	}
 	
-	@RequestMapping(value = "/comm_writeReply.do", method = RequestMethod.POST)
-	public String writeReply(CommReplyDTO dto, HttpServletRequest req, @RequestParam int boardNum) {
+	@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
+	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto,  @RequestParam int boardNum) {
 		replyMapper.writeReply(dto);
 		req.setAttribute("boardNum", dto.getBoardNum());
 		return "redirect:/"; //질문할꺼임.
 	}
+	
+	/*@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
+	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			dto.setReplyNum(0);
+		}
+		
+		int res = replyMapper.writeReply(dto);
+		String msg = null, url = null;
+		if (res > 0) {
+			msg = "댓글 등록되었습니다.";
+			url = "comm_content.do";
+		} else {
+			msg = "댓글 등록에 실패하였습니다.";
+			url = "comm_content.do";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}*/
 
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req) {
@@ -211,7 +229,7 @@ public class CommMyBoardController {
 		System.out.println(replyNum);
 		String msg = null, url = null;
 		if (res > 0) { 
-			msg = "�뙎湲��씠 �궘�젣 �릺�뿀�뒿�땲�떎.";
+			msg = "댓글이 삭제되었습니다.";
 			url = "comm_content.do";
 		}
 		ModelAndView mav = new ModelAndView();

@@ -1,27 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<!-- 
+	이	   름 : comm_togetherWF.jsp
+	개  발   자 : 최 인 아
+	설	   명 : 투게더글쓰기페이지
+-->
+<%@ include file="../index_top.jsp" %>    
 <div align="center">
-	<form name="f" action="comm_togetherWP.do" method="post" onsubmit="return check()">											
-		<table width="70%">
+	<form name="f" action="comm_togetherWP.do" method="post" onsubmit="return check()">										
+		<table width="600">
 			<tr bgcolor="pink">
 				<td align="center" colspan="2"><font color="pink">글</font></td>
 			</tr>
 			<tr>
 				<th width="20%" bgcolor="skyblue">작 성 자</th>
-				<td><input type="text" name="writer" class="box"></td>
+				<td><input type="text" name="tname"></td>
 			</tr>
 			<tr>
 				<th width="20%" bgcolor="skyblue">제 목</th>
-				<td><input type="text" name="subject" class="box" size="40"></td>
+				<td><input type="text" name="ttitle" size="40"></td>
 			</tr>
 			<tr>
-				<th width="20%" bgcolor="skyblue">Email</th>
-				<td><input type="text" name="email" class="box" size="40"></td>
+				<th width="20%" bgcolor="skyblue">이메일</th>
+				<td><input type="text" name="temail" size="40"></td>
 			</tr>
 			<tr>
 				<th width="20%" bgcolor="skyblue">내 용</th>
-				<td><textarea name="content" rows="10" cols="40" class="box"></textarea></td>
+				<td><textarea name="tcontent" rows="10" cols="40"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" bgcolor="pink">
@@ -33,3 +39,4 @@
 		</table>
 	</form>
 </div>
+<%@ include file="../index_bottom.jsp"%>
