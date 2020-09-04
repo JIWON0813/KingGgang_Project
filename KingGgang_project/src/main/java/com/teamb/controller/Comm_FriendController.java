@@ -36,14 +36,18 @@ public class Comm_FriendController {
 
 	@RequestMapping("/comm_friend_insert.do")
 	public String insertFriend(HttpServletRequest req, HttpSession session, 
-							Comm_FriendDTO dto, Comm_MemberDTO mdto) {
-
+							Comm_FriendDTO dto,Comm_MemberDTO mdto) {
+			
 		int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
 		String msg = null, url = null;
 		int res = friendMapper.insertFriend(dto);
 		
 		
 		if (res > 0) {
+			Comm_MemberDTO member = (Comm_MemberDTO) session.getAttribute("comm_login");
+		      comm_memberNum = member.getMemberNum();
+			/* mdto = (Comm_MemberDTO)session.getAttribute("comm_login");
+			 session.setAttribute("login_comm_memberNum", mdto.getComm_memberNum());*/
 			msg = "친구 추가 성공. 친구목록 페이지로 이동";
 			url = "comm_friendAll.do";
 		} else {
@@ -57,16 +61,21 @@ public class Comm_FriendController {
 	
 	
 	@RequestMapping(value = "/comm_friendAll.do")
-	public String listFriend(HttpServletRequest req, Comm_FriendDTO dto, HttpSession session) {
-
-		int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
+	public String listFriend(HttpServletRequest req, Comm_FriendDTO dto, 
+				HttpSession session) {
+		 Comm_MemberDTO member = (Comm_MemberDTO) session.getAttribute("comm_login");
+	      int comm_memberNum = member.getMemberNum();
+		
+		//int login_comm_memberNum=(Integer)session.getAttribute("login_comm_memberNum");
+		
+		//int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
 		List<Comm_FriendDTO> list = friendMapper.listFriend(comm_memberNum);
 		for(Comm_FriendDTO dto2: list){
 			int m=dto2.getComm_memberNum();
 			Comm_MemberDTO mdto=memberMapper.comm_getMember(m);
 			dto2.setF_name(mdto.getComm_name());
 		}
-		req.setAttribute("friendList", list);
+		session.setAttribute("friendList", list);
 		//session.getAttribute("name");
 		
 
