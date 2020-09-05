@@ -6,7 +6,7 @@
 	개  발   자 : 최 인 아
 	설	   명 : 투게더글쓰기페이지
 -->
-<%@ include file="../index_top.jsp" %>    
+<%@ include file="/WEB-INF/views/top.jsp"%> 
 <div align="center">
 	<form name="f" action="comm_togetherWP.do" method="post" onsubmit="return check()">										
 		<table width="600">
@@ -39,4 +39,4 @@
 		</table>
 	</form>
 </div>
-<%@ include file="../index_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

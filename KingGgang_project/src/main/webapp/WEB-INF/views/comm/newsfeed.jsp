@@ -1,26 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ include file="index_top.jsp"%>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Newsfeed</title>
 </head>
 <body>
-	<div class="container">
-		<form method="post" action="#" class="cta">
-			<div class="row gtr-uniform gtr-50">
-				<div class="col-8 col-12-xsmall">
-					<input type="text" name="hashcode" id="email"
-						placeholder="검색어를 입력하세요.">
-				</div>
-				<div>
-					<input type="submit" value="검색" />
-				</div>
-			</div>
-		</form>
-	</div>
+<div class="section layout_padding">
 	<div class="content">
 		<div class="container">
 			<div class="row">
@@ -56,7 +44,7 @@
 		</div>
 	</div>
 </div>
+</div>
 </body>
 </html>
-
-<%@ include file="index_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

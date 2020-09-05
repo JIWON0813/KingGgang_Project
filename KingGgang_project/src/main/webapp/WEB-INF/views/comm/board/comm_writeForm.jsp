@@ -5,7 +5,7 @@
 	개  발   자 : 최 인 아
 	설	   명 : 메인 페이지
  -->
-<%@ include file="../index_top.jsp" %>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <script type="text/javascript">
 	function check(){
 		if (f.file_name.value==""){
@@ -55,4 +55,4 @@
 		</table>
 	</form>
 </div>
-<%@ include file="../index_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

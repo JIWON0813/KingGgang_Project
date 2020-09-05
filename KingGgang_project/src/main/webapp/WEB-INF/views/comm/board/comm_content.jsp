@@ -6,7 +6,7 @@
 	설	   명 : content
  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ include file="../index_top.jsp" %>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <div align="center">
 	<table width="300">
 	<tr>
@@ -91,4 +91,4 @@
  </form>		
 </div>
 
-<%@ include file="../index_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

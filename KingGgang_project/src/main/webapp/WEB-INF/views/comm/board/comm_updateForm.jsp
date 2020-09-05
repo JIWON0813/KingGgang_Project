@@ -6,7 +6,7 @@
 	설	   명 : 메인 페이지
 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ include file="../index_top.jsp" %>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <header>
 		<h2>게시물 수정</h2>
 </header>
@@ -49,4 +49,4 @@
 	</table>
 	</form>
 </div>
-<%@ include file="../index_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>
