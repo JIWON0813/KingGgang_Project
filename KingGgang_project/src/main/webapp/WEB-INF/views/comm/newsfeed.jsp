@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col-4 col-12-medium">
 					<header>
-					<h2>Big Event</h2>
+					<h2><a href="comm_togetherList.do">Big Event</a></h2>
 					<p>현재 진행중인 이벤트입니다.</p>
 					</header>
 				</div>
