@@ -101,7 +101,6 @@ public class LoginController {
 		String mode = req.getParameter("mode");
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
-		System.out.println(mode);
 		String msg = null, url = null;
 		if (mode.equals("search_id")) {
 			if (memberMapper.searchMember_id(name, email) != null) {
