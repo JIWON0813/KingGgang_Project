@@ -1,8 +1,8 @@
 package com.teamb.controller;
 
-/*이	   름 : CommBoardController.java
-개  발   자 : 최 인 아
-설	   명 : 보드Controller*/
+/*�씠	   由� : CommBoardController.java
+媛�  諛�   �옄 : 理� �씤 �븘
+�꽕	   紐� : 蹂대뱶Controller*/
 
 import java.io.File;
 import java.io.IOException;
@@ -87,10 +87,10 @@ public class CommBoardController {
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "글 등록되었습니다";
+			msg = "湲� �벑濡앸릺�뿀�뒿�땲�떎";
 			url = "comm_myPage.do";
 		} else {
-			msg = "글 등록에 실패하였습니다.";
+			msg = "湲� �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎.";
 			url = "comm_writeForm.do";
 		}
 		req.setAttribute("msg", msg);
@@ -124,7 +124,7 @@ public class CommBoardController {
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		req.setAttribute("replyList", list);
-
+		
 		HttpSession session = req.getSession();
 		String mbId = (String) session.getAttribute("mbId");
 		boolean isLogin = false;
@@ -139,7 +139,7 @@ public class CommBoardController {
 	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto,  @RequestParam int boardNum) {
 		replyMapper.writeReply(dto);
 		req.setAttribute("boardNum", dto.getBoardNum());
-		return "redirect:/"; //질문할꺼임.
+		return "redirect:/"; //吏덈Ц�븷爰쇱엫.
 	}
 	
 	/*@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
@@ -152,10 +152,10 @@ public class CommBoardController {
 		int res = replyMapper.writeReply(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "댓글 등록되었습니다.";
+			msg = "�뙎湲� �벑濡앸릺�뿀�뒿�땲�떎.";
 			url = "comm_content.do";
 		} else {
-			msg = "댓글 등록에 실패하였습니다.";
+			msg = "�뙎湲� �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎.";
 			url = "comm_content.do";
 		}
 		req.setAttribute("msg", msg);
@@ -181,10 +181,10 @@ public class CommBoardController {
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "글이 수정되었습니다!!";
+			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
 			url = "comm_myPage.do";
 		}else{
-			msg = "글 수정에 실패하였습니다!!";
+			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
 			url = "comm_updateForm.do";
 		}
 		
@@ -199,7 +199,7 @@ public class CommBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "글이 삭제되었습니다.";
+			msg = "湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
 			url = "comm_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -224,12 +224,20 @@ public class CommBoardController {
 	}
 	
 	@RequestMapping(value = "/reply_deletePro.do")
-	public ModelAndView deletereplyPro(@RequestParam int replyNum) {
-		int res = replyMapper.deleteReply(replyNum);
+	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
+		System.out.println(boardNum);
 		System.out.println(replyNum);
+		
+		replyMapper.deleteReply(replyNum);
+		req.setAttribute("replyNum", replyNum);
+		
+		return "comm/board/comm_content";
+	}
+		
+		/*int res = replyMapper.deleteReply(replyNum);
 		String msg = null, url = null;
 		if (res > 0) { 
-			msg = "댓글이 삭제되었습니다.";
+			msg = "�뙎湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
 			url = "comm_content.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -237,5 +245,5 @@ public class CommBoardController {
 		mav.addObject("url", url);
 		mav.setViewName("message");
 		return mav;
-	}
+	}*/
 }

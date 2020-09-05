@@ -27,7 +27,16 @@
 		<tr height="30">
 			<th>태그</th>
 			<td align="center" width="30%">${getBoard.tag}</td>
-			<th align="right" width="10"><img src="${pageContext.request.contextPath}/resources/img/heart.png" width="50" height="50"></th>
+			<th align="right" width="10">
+				<c:choose>
+  					<c:when test="${comm_memberNum ne null}">
+    					<a href='javascript: like_func();'><img src='./images/dislike.png' id='like_img'></a>
+  					</c:when>
+  					<c:otherwise>
+    					<a href='javascript: login_need();'><img src='./images/dislike.png'></a>
+  					</c:otherwise>
+				</c:choose>
+			</th>
 		</tr>
 		<tr height="30">
 			<th>장소</th>
@@ -85,7 +94,7 @@
          <p> : ${replyList.rcontent}</p>
       </li>
       <input type="submit" value="댓수정">
-      <input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${getReply.replyNum}'">
+      <input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}+&boardNum=${getBoard.boardNum}'">
     </c:forEach>   
   </ol>
  </form>		
