@@ -55,7 +55,6 @@ public class Comm_MemberController {
 
 			session.setAttribute("comm_login", login);
 			session.setAttribute("comm_memberNum", login.getComm_memberNum());
-			System.out.println(login.getComm_memberNum());
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
         	}
@@ -157,7 +156,6 @@ public class Comm_MemberController {
 	public ModelAndView commMemberEdit(HttpServletRequest req,HttpSession session,
 											@RequestParam int comm_memberNum){
 		Comm_MemberDTO dto = memberMapper.comm_getMember(comm_memberNum);
-		//session.getAttribute("comm_memberNum");
 		ModelAndView mav = new ModelAndView
 				("comm/member/comm_member_edit", "comm_getMember", dto);
 		
@@ -174,6 +172,7 @@ public class Comm_MemberController {
 
 		String msg = null, url = null;
 		if (res>0) {
+			//session.setAttribute("comm_getMember", memberMapper.comm_getMember(comm_memberNum));
 			msg = "회원수정성공! 메인페이지로 이동합니다.";
 			url = "commhome.comm";
 		} else {
