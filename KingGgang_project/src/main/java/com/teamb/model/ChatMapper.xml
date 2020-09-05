@@ -11,15 +11,20 @@ insert into ChatRoom values(chatroom_seq.nextval,#{msgSender},#{msgReceiver},#{r
 
 
 <select id ="isRoom" parameterType="ChatRoomDTO" resultType = "ChatRoomDTO">
-select distinct * from ChatRoom WHERE msgSender = #{msgSender} or msgReceiver = #{msgSender} 
+select distinct * from ChatRoom WHERE msgSender = #{msgSender} and msgReceiver = #{msgReceiver}
+or  msgSender = #{msgReceiver} and msgReceiver = #{msgSender}
 </select>
 
 <insert id = "insertMessage" parameterType="ChatMsgDTO">
-insert into chat_msg values(chatMsg_seq.nextval,#{chatroom_id},#{msgSender},#{msgReceiver},#{msgContent})
+insert into chat_msg values(chatMsg_seq.nextval, #{chatroom_id},#{msgSender},#{msgReceiver},#{msgContent})
 </insert>
 
 <select id = "getRoomList" resultType = "ChatRoomDTO">
 select * from  ChatRoom where chatroom_id = #{chatroom_id}
+</select>
+
+<select id = "getMessageList" resultType = "ChatMsgDTO">
+select * from Chat_msg where chatroom_id = #{chatroom_id}
 </select>
 
 <!-- <select id = "getProfile" resultType = "int">

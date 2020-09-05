@@ -53,6 +53,10 @@
 		#yourMsg{
 			display: none;
 		}
+		#my{
+			color: #FFFFFF;
+			text-align: right;
+		}
 	</style>
 </head>
 
@@ -61,7 +65,7 @@
 
 	function wsOpen(){
 		//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
-		ws = new SockJS("<c:url value="/echo"/>"+"?/${msgReceiver}");
+		ws = new SockJS("<c:url value="/echo"/>"+"?/${chatroom_id}");
 		
 		wsEvt();
 	}
@@ -85,9 +89,9 @@
 					}
 				}else if(d.type == "message"){
 					if(d.sessionId == $("#sessionId").val()){
-						$("#chating").append("<p class='me'>나 :" + d.msg + "</p>");	
+						$("#chating").append("<p class='me'>나 :" + d.msgContent + "</p>");	
 					}else{
-						$("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
+						$("#chating").append("<p class='others'>" + d.userName + " :" + d.msgContent + "</p>");
 					}
 						
 				}else{
@@ -112,10 +116,12 @@
 	function send() {
 		var option = {
 			type: "message",
-			chatroom_id : $("#chatroom_id").val(),
+			chatroom_id : "${chatroom_id}",
 			sessionId : $("#sessionId").val(),
 			userName : $("#userName").val(),
-			msg : $("#chatting").val()
+			msgContent : $("#chatting").val(),
+			msgSender : "${msgSender}",
+			msgReceiver : "${msgReceiver}"
 		}
 		ws.send(JSON.stringify(option))
 		$('#chatting').val("");
@@ -128,7 +134,22 @@
 		<input type="hidden" id="userName" value="${msgSender}">
 		<input type="hidden" id="chatroom_id" value="${msgReceiver}">
 		
-		<div id="chating" class="chating">
+		<div id="chating" class="chating" style="color:#FFFFFF">
+		<c:forEach var="dto" items="${msgList}">
+		<c:if test="${dto.msgSender == megSender}">
+			<tr>
+				<td align="right">${dto.msgContent}</td>
+				<br>
+			</tr>
+		</c:if>
+		<c:if test="${dto.msgSender != megSender}">
+			<tr>
+				<td align="left">${dto.msgContent}</td>
+				<br>
+			</tr>
+		</c:if>
+		
+		</c:forEach>
 		</div>
 		
 		<!-- <div id="yourName">

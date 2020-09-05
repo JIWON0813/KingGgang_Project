@@ -2,6 +2,7 @@ package com.teamb.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,12 +11,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.SocketUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.socket.WebSocketSession;
 
+import com.teamb.model.ChatMsgDTO;
 import com.teamb.model.ChatRoomDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.service.ChatMapper;
@@ -40,26 +43,30 @@ public class ChatController {
 		//보내는사람
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int msgSender = login.getComm_memberNum();
+		String Sname = login.getComm_nickname();
 		//받는사람
 		String msgReceiver = req.getParameter("comm_memberNum");
-		String name = req.getParameter("comm_name");
+		String Rname = req.getParameter("comm_name");
 		
 		//채팅방 설정
 		ChatRoomDTO croom  = new ChatRoomDTO();
 	    croom.setMsgReceiver(Integer.parseInt(msgReceiver));
 	    croom.setMsgSender(msgSender);
-	    croom.setRoomName(name);
+	    croom.setRoomName(Sname+" 님과 "+Rname+" 의 대화");
 		
 		if(chatMapper.isRoom(croom) == null ) {
- 		 chatMapper.createRoom(croom);
- 		 roomList.add(croom);
+			chatMapper.createRoom(croom);
+			roomList.add(chatMapper.isRoom(croom));
 		}else{
-			roomList.addAll(chatMapper.isRoom(croom));
+			roomList.add(chatMapper.isRoom(croom));
+
 		}
+		//증복제거
+		HashSet<ChatRoomDTO> temp = new HashSet<ChatRoomDTO>(roomList);
+		List<ChatRoomDTO> rooms = new ArrayList<ChatRoomDTO>(temp);
 		
-		session.setAttribute("roomList",roomList);
-		
-		req.setAttribute("roomList",roomList);
+		session.setAttribute("roomList",rooms);
+		req.setAttribute("roomList",rooms);
 		mv.addObject("msgReceiver",msgReceiver);
 		mv.addObject("msgSender",msgSender );
 		mv.setViewName("comm/chatRoom");
@@ -117,8 +124,12 @@ public class ChatController {
 		ModelAndView mv = new ModelAndView();
 		int chatroom_id = Integer.parseInt(req.getParameter("chatroom_id"));
 		ChatRoomDTO list = chatMapper.getRoomList(chatroom_id);
+		List<ChatMsgDTO> msgList = chatMapper.getMessageList(chatroom_id);
+		
 		List<ChatRoomDTO> new_list = roomList.stream().filter(o->o.getChatroom_id()==chatroom_id).collect(Collectors.toList());
 		if(new_list != null && new_list.size() > 0) {
+			
+			req.setAttribute("msgList",msgList);
 			req.setAttribute("msgSender",list.getMsgSender());
 			req.setAttribute("chatroom_id",list.getChatroom_id());
 			req.setAttribute("roomName",list.getRoomName());
