@@ -24,29 +24,26 @@
 								<ul>
 									<li><a href="comm_myPage.do">Mypage</a></li>
 									<li><a href="comm_bookMark.do">BookMark</a></li>
-									<li>
-									<a href="comm_member_edit.do?memberNum=${memberNum}">Settings</a>
-									</li>
 									
 								</ul>
 							</li>
-							
-							<li><a href="comm_friendAll.do?comm_memberNum=${comm_memberNum }">Friends 목록</a>
-							</li>
-							
-							
+							<li>
 							<c:if test="${comm_login == null }">
 								<a href="comm_login.do?memberNum=${memberNum }">로그인</a>
-								<a href="comm_checkMember.do?memberNum=${memberNum }">가입하기</a>
+								<a href="comm_checkMember.do?memberNum=${memberNum}">가입하기</a>
 								 
 							</c:if>
 							
 							<c:if test="${comm_login != null }">
 								<%-- <a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a> --%>
 								<a href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">회원탈퇴</a>
-								<a href="comm_memberList.do">목록</a>
 								<a href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">수정</a>
+								<a href="comm_memberList.do">목록</a>
+								<li><a href="comm_friendAll.do?comm_memberNum=${comm_memberNum }">Friends 목록</a></li>
+								
 							</c:if>
+							</li>
+							<li><a href="commadmin.comm">관리자모드</a></li>
 							
 						</ul>
 					</nav>

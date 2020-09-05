@@ -10,14 +10,40 @@ import com.teamb.model.CommboardDTO;
 @Service
 public class CommboardMapper {
 	   
-	   @Autowired
-	   private SqlSession sqlSession;
+	@Autowired
+	private SqlSession sqlSession;
 
-	   public CommboardDTO getBoard(int boardNum) {
+	public CommboardDTO getBoard(int boardNum) {
 	      return sqlSession.selectOne("getBoard",boardNum);    
-	   }
+	}
 	   
+	public int insertBoard(CommboardDTO dto) {
+		  int res = sqlSession.insert("insertBoard", dto);
+		  return res;
+	}
+		   
+	public int writeBoard(CommboardDTO dto) {
+		  return sqlSession.insert("writeBoard",dto);
+	}
 
+	public int deleteBoard(int boardNum) {   
+		  int res = sqlSession.insert("deleteBoard",boardNum);
+		  return res;
+	}
+
+	public int updateBoard(CommboardDTO dto) {
+		int res = sqlSession.update("updateBoard", dto);
+		return res;
+	}
+
+	public List<CommboardDTO> listBoard(int comm_memberNum) {
+		   return sqlSession.selectList("listBoard",comm_memberNum);
+	}
+		  
+	public List<CommboardDTO> allListBoard() {
+		   return sqlSession.selectList("allListBoard");
+	}
+	   
 	   public void plusReadcount(int num) {
 	      sqlSession.update("plusReadcount", num);
 	      sqlSession.commit();
@@ -54,38 +80,6 @@ public class CommboardMapper {
 	   
 	   public boolean isWarn(int bNum, int mNum){
 	      return true;
-	   }
-
-	   public int insertBoard(CommboardDTO dto) {
-	      int res = sqlSession.insert("insertBoard", dto);
-	      return res;
-	   }
-	   
-	   public int writeBoard(CommboardDTO dto) {
-	      return sqlSession.insert("writeBoard",dto);
-	   }
-
-	   public int deleteBoard(int boardNum) {   
-
-	      int res = sqlSession.insert("deleteBoard",boardNum);
-	      return res;
-	   }
-
-	   public int updateBoard(CommboardDTO dto) {
-	      // TODO Auto-generated method stub
-	      return 0;
-	   }
-
-	   /*public List<CommboardDTO> listBoard(String id) {
-	      return sqlSession.selectList("listBoard",id);
-	   }*/
-	   public List<CommboardDTO> listBoard(int memberNum) {
-	      return sqlSession.selectList("listBoard",memberNum);
-	   }
-	   
-	   public List<CommboardDTO> allListBoard() {
-	      return sqlSession.selectList("allListBoard");
-
 	   }
 
 	   public int getCount() {

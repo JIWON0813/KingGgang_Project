@@ -35,8 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="comm_updateMember" parameterType="Comm_MemberDTO" >
-		update comm_member set comm_nickname=#{comm_nickname},
-		comm_birth=#{comm_birth}, comm_intro=#{comm_intro} 
+		update comm_member set comm_nickname=#{comm_nickname}
+		,comm_birth=#{comm_birth}, comm_intro=#{comm_intro} 
 		where comm_memberNum = #{comm_memberNum}
 	</update>
     

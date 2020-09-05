@@ -55,9 +55,4 @@ public class Comm_MemberMapper {
 		int res = sqlSession.delete("comm_deleteMember",comm_memberNum);
 		return res;
 	}
-	
-
-
 }
-
-

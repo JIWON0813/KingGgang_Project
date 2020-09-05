@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <!-- 
-	이	   름 : B4_content.jsp
+	이	   름 : comm_content.jsp
 	개  발   자 : 최 인 아
-	설	   명 : 메인 페이지
+	설	   명 : content
  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ include file="../index_top.jsp" %>
-<section id="four" class="wrapper style1 special fade-up">
-<div class="container">
-	<table width="300" class="wrapper style1 special fade-up">
+<div align="center">
+	<table width="300">
+	<tr>
+	<td align="right"><a href="">신고</a></td>
+	</tr>
 	<c:if test="${getBoard.file_size != 0}">
 		<tr align="center">
 			 <td align="center" colspan="3">
@@ -47,24 +49,31 @@
 	</table>
 </div>
 <br>
-<br>
-<form name="replyForm" action="comm_writeReply.do" method="post">
+<hr color="pink">
+<div align="center">
+<form name="replyForm" action="comm_writeReplyPro.do" method="post">
   <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}"/>
-  <div>
-    <label for="rwriter">댓글 작성자</label><input type="text" id="rwriter" name="rwriter" />
-    <br/>
-    <label for="rcontent">댓글 내용</label><input type="text" id="rcontent" name="rcontent" />
-  </div>
-  <div>
- 	<input type="submit" value="작성">
-  </div>
+  <table>
+    <tr>
+    	<th>댓글 작성자</th>
+    	<td><input type="text" id="rwriter" name="rwriter"></td>
+    </tr>
+    
+    <tr>
+   		 <th>댓글 내용</th>
+   		 <td><input type="text" id="rcontent" name="rcontent"></td>
+   		 <td><input type="submit" value="작성"></td>
+    </tr>
+  </table>
 </form>
-
+</div>
+<hr color="pink">
+<br>
 <!-- 댓글 -->
-<div id="reply">
+<div>
 <form name="f" action="reply_updatePro.do" method="post" onsubmit="return check()">
- <%--  <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/> --%>
-  <ol class="replyList">
+ <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
+  <ol>
    <c:if test="${empty replyList}">
 	      <p>등록된 댓글이 없습니다.</p>
 	</c:if>   
@@ -82,6 +91,4 @@
  </form>		
 </div>
 
-
-</section>
 <%@ include file="../index_bottom.jsp"%>

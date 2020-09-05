@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.Comm_MemberDTO;
+import com.teamb.model.MemberDTO;
 import com.teamb.service.Comm_MemberMapper;
 
 
@@ -42,45 +43,53 @@ public class Comm_MemberController {
 	
 	
 	@RequestMapping(value = "/comm_loginOk.do")
-	public String comm_loginOk(Comm_MemberDTO dto, HttpServletRequest req,HttpSession session) {
+	public String comm_loginOk(Comm_MemberDTO dto, MemberDTO mdto,
+						HttpServletRequest req,HttpSession session) {
 		Comm_MemberDTO login = memberMapper.comm_loginOk(dto);
 		String msg = null, url = null;
-		if (login == null) {
+        	if (login == null) {
 			session.setAttribute("comm_login", null);
 			msg = "등록정보가 없습니다. 닉네임을 확인해주세요.";
 			url = "commhome.comm";
 		} else {
-
+			session = req.getSession();
+			session.setAttribute("memberNum", dto.getComm_nickname());
+			
+			int comm_memberNum = memberMapper.comm_getmemberNum(dto.getComm_nickname());
+			session.setAttribute("comm_memberNum",comm_memberNum);
+	        session.setAttribute("commmember",memberMapper.comm_getMember(comm_memberNum));
+	        
 			session.setAttribute("comm_login", login);
 			session.setAttribute("comm_memberNum", login.getComm_memberNum());
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
-		}
-		
+        	}
+	
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		return "message";
 	}	
 	
 	@RequestMapping("/comm_checkMember.do")
-	public String commcheckMember(HttpServletRequest req,HttpSession session){
-		int memberNum = (Integer)session.getAttribute("memberNum");
-		
-		boolean isMember=memberMapper.comm_checkMember(memberNum);
-		String msg = null, url = null;
-		if (isMember){
-			msg="이미 등록된 회원입니다. 로그인을 해주세요.";
-			url="comm_login.do";
-		}else {
-			session.setAttribute("memberNum", memberNum);
-			msg="회원가입 페이지로 이동합니다.";
-			url="comm_member_input.do";
-		}
-		
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";
-	}
+	   public String commcheckMember(HttpServletRequest req,HttpSession session){
+	      int memberNum = (Integer)session.getAttribute("memberNum");
+	      
+	      boolean isMember=memberMapper.comm_checkMember(memberNum);
+	      String msg = null, url = null;
+	      if (isMember){
+	         msg="이미 등록된 회원입니다. 로그인을 해주세요.";
+	         url="comm_login.do";
+	      }else {
+	         session.setAttribute("memberNum", memberNum);
+	         msg="회원가입 페이지로 이동합니다.";
+	         url="comm_member_input.do";
+	      }
+	      
+	      req.setAttribute("msg", msg);
+	      req.setAttribute("url", url);
+	      return "message";
+	   }
+	
 	@RequestMapping("/comm_member_input.do")
 	public String comminsertMemberForm(HttpServletRequest req,HttpSession session){
 		int memberNum = (Integer)session.getAttribute("memberNum");
@@ -154,7 +163,6 @@ public class Comm_MemberController {
 	public ModelAndView commMemberEdit(HttpServletRequest req,HttpSession session,
 											@RequestParam int comm_memberNum){
 		Comm_MemberDTO dto = memberMapper.comm_getMember(comm_memberNum);
-		session.getAttribute("comm_memberNum");
 		ModelAndView mav = new ModelAndView
 				("comm/member/comm_member_edit", "comm_getMember", dto);
 		
@@ -164,21 +172,21 @@ public class Comm_MemberController {
 	}
 		
 	@RequestMapping(value = "/comm_member_edit_ok.do", method = RequestMethod.POST)
-	public String commMemberEditOk(HttpServletRequest req, HttpSession session, 
-			 					Comm_MemberDTO dto, BindingResult result) {
-		//int memberNum = (Integer)session.getAttribute("memberNum");
-		session.getAttribute("comm_getMember");
+	public String commMemberEditOk(HttpServletRequest req, HttpSession session) {
+		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+		Comm_MemberDTO dto = (Comm_MemberDTO) session.getAttribute("comm_getMember");
 		int res = memberMapper.comm_updateMember(dto);
 
 		String msg = null, url = null;
 		if (res>0) {
+			//session.setAttribute("comm_getMember", memberMapper.comm_getMember(comm_memberNum));
 			msg = "회원수정성공! 메인페이지로 이동합니다.";
 			url = "commhome.comm";
 		} else {
 			msg = "회원수정실패! 메인페이지로 이동합니다.";
 			url = "commhome.comm";
 		}
-	//	session.setAttribute("comm_login", login);
+		
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		return "message";

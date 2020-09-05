@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.teamb.model.Comm">
     
     <select id="comm_listFriend" resultType="Comm_FriendDTO">
-		select * from comm_friend
+		select * from comm_friend where comm_memberNum=#{comm_memberNum} order by friendNum desc
 	</select>
 	
     <insert id="comm_insertFriend" parameterType="Comm_FriendDTO">

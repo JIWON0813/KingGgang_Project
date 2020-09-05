@@ -51,4 +51,9 @@ public class CommNewsfeedController {
 		req.setAttribute("boardList", list);
 		return "comm/newsfeed";
 	}
+	
+	@RequestMapping("/commadmin.comm")
+	public String admin(HttpServletRequest req){
+		return "comm/comm_admin";
+	}
 }
