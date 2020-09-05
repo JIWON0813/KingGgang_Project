@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="full">
-                                <h3>Quick Link</h3>
+                            <!--     <h3>Quick Link</h3>
                             </div>
                             <div class="full">
                                 <ul class="menu_footer">
@@ -51,7 +51,7 @@
                                <li><img src="images/i6.png"><span>demo@gmail.com</span></li>
                                <li><img src="images/i7.png"><span>+12586954775</span></li>
                              </ul>
-                         </div>
+                         </div> -->
                             </div>
                         </div>
 					</div>

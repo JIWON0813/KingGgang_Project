@@ -1,10 +1,18 @@
 package com.teamb.model;
 
 public class Comm_FriendDTO {
+	private int login_comm_memberNum;
 	private int friendNum; // ģ���߰��� ����
 	private int comm_memberNum; // �ش� ����	
 	private String f_name;
 	
+	
+	public int getLogin_comm_memberNum() {
+		return login_comm_memberNum;
+	}
+	public void setLogin_comm_memberNum(int login_comm_memberNum) {
+		this.login_comm_memberNum = login_comm_memberNum;
+	}
 	public int getComm_memberNum() {
 		return comm_memberNum;
 	}

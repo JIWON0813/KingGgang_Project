@@ -1,8 +1,8 @@
 package com.teamb.controller;
 
-/*ì´	   ë¦„ : CommBoardController.java
-ê°œ  ë°œ   ì : ìµœ ì¸ ì•„
-ì„¤	   ëª… : ë³´ë“œController*/
+/*ÀÌ	   ¸§ : CommBoardController.java
+°³  ¹ß   ÀÚ : ÃÖ ÀÎ ¾Æ
+¼³	   ¸í : º¸µåController*/
 
 import java.io.File;
 import java.io.IOException;
@@ -87,10 +87,10 @@ public class CommBoardController {
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "ê¸€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤";
+			msg = "±Û µî·ÏµÇ¾ú½À´Ï´Ù";
 			url = "comm_myPage.do";
 		} else {
-			msg = "ê¸€ ë“±ë¡ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.";
+			msg = "±Û µî·Ï¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.";
 			url = "comm_writeForm.do";
 		}
 		req.setAttribute("msg", msg);
@@ -139,7 +139,7 @@ public class CommBoardController {
 	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto,  @RequestParam int boardNum) {
 		replyMapper.writeReply(dto);
 		req.setAttribute("boardNum", dto.getBoardNum());
-		return "redirect:/"; //ì§ˆë¬¸í• êº¼ì„.
+		return "redirect:/"; //Áú¹®ÇÒ²¨ÀÓ.
 	}
 	
 	/*@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
@@ -152,10 +152,10 @@ public class CommBoardController {
 		int res = replyMapper.writeReply(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "ëŒ“ê¸€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.";
+			msg = "´ñ±Û µî·ÏµÇ¾ú½À´Ï´Ù.";
 			url = "comm_content.do";
 		} else {
-			msg = "ëŒ“ê¸€ ë“±ë¡ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.";
+			msg = "´ñ±Û µî·Ï¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.";
 			url = "comm_content.do";
 		}
 		req.setAttribute("msg", msg);
@@ -181,10 +181,10 @@ public class CommBoardController {
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "ê¸€ì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤!!";
+			msg = "±ÛÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù!!";
 			url = "comm_myPage.do";
 		}else{
-			msg = "ê¸€ ìˆ˜ì •ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤!!";
+			msg = "±Û ¼öÁ¤¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù!!";
 			url = "comm_updateForm.do";
 		}
 		
@@ -199,7 +199,7 @@ public class CommBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "ê¸€ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.";
+			msg = "±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.";
 			url = "comm_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -229,7 +229,7 @@ public class CommBoardController {
 		System.out.println(replyNum);
 		String msg = null, url = null;
 		if (res > 0) { 
-			msg = "ëŒ“ê¸€ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.";
+			msg = "´ñ±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.";
 			url = "comm_content.do";
 		}
 		ModelAndView mav = new ModelAndView();

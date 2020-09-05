@@ -22,6 +22,12 @@ import com.teamb.service.Comm_FriendMapper;
 import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.MemberMapper;
 
+
+/*
+이	   름 : Comm_MemberController
+개  발   자 : 황지은
+성	   명 : 커뮤니티 친구 컨트롤러
+*/
 @Controller
 public class Comm_FriendController {
 
@@ -37,21 +43,26 @@ public class Comm_FriendController {
 	@RequestMapping("/comm_friend_insert.do")
 	public String insertFriend(HttpServletRequest req, HttpSession session, 
 							Comm_FriendDTO dto,Comm_MemberDTO mdto) {
-			
+		
+		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
+		int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
 		int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
-		System.out.println(comm_memberNum);
+		
 		String msg = null, url = null;
-		int res = friendMapper.insertFriend(dto);
 		
-		
-		if (res > 0) {
-			/* mdto = (Comm_MemberDTO)session.getAttribute("comm_login");
-			 session.setAttribute("login_comm_memberNum", mdto.getComm_memberNum());*/
+		if(login_comm_memberNum==comm_memberNum){
+			msg="본인 자신은 친구 추가가 되지 않습니다.";
+			url = "comm_memberList.do";
+		}
+		else{
+			int res = friendMapper.insertFriend(dto);
+			if (res > 0) {
 			msg = "친구 추가 성공. 친구목록 페이지로 이동";
 			url = "comm_friendAll.do";
-		} else {
+			} else {
 			msg = "친구 추가 실패. 메인으로 이동";
 			url = "commhome.comm";
+			}
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
@@ -62,24 +73,18 @@ public class Comm_FriendController {
 	@RequestMapping(value = "/comm_friendAll.do")
 	public String listFriend(HttpServletRequest req, Comm_FriendDTO dto, 
 				HttpSession session) {
-		 Comm_MemberDTO member = (Comm_MemberDTO) session.getAttribute("comm_login");
+		 Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		 
-	      int comm_memberNum = member.getComm_memberNum();
-	      System.out.println("찍혀라");
-	      System.out.println(comm_memberNum);
+	      int comm_memberNum = login.getComm_memberNum();
 		
-		//int login_comm_memberNum=(Integer)session.getAttribute("login_comm_memberNum");
-		
-		//int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
-		List<Comm_FriendDTO> list = friendMapper.listFriend(comm_memberNum);
-		System.out.println(list);
+		int login_comm_memberNum=(Integer)session.getAttribute("login_comm_memberNum");
+		List<Comm_FriendDTO> list = friendMapper.listFriend(login_comm_memberNum);
 		for(Comm_FriendDTO dto2: list){
 			int m=dto2.getComm_memberNum();
 			Comm_MemberDTO mdto=memberMapper.comm_getMember(m);
 			dto2.setF_name(mdto.getComm_name());
 		}
 		session.setAttribute("friendList", list);
-		//session.getAttribute("name");
 		
 
 		return "comm/friend/friendAll";

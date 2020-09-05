@@ -1,4 +1,3 @@
-// 지은
 package com.teamb.controller;
 
 import java.io.File;
@@ -23,7 +22,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.service.Comm_MemberMapper;
 
-
+/*
+이	   름 : Comm_MemberController
+개  발   자 : 황지은
+성	   명 : 커뮤니티 로그인/멤버 컨트롤러
+*/
 @Controller
 public class Comm_MemberController {
 	@Autowired
@@ -61,7 +64,7 @@ public class Comm_MemberController {
 	        
 	        //지은쓰
 			session.setAttribute("comm_login", login);
-			session.setAttribute("comm_memberNum", login.getComm_memberNum());
+			session.setAttribute("login_comm_memberNum", login.getComm_memberNum());
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
         	}

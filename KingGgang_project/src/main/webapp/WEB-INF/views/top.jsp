@@ -64,7 +64,12 @@
                     <div class="site_information">
                         <ul>
                             <li><a href="mailto:"><img src="${pageContext.request.contextPath}/resources/main/images/mail_icon.png" alt="#" />제주하면 낑깡~!</a></li>
-                            <li><a href="login.log">sign in</a></li>
+                            <c:if test="${mbId == null }">
+							 <li><a href="login.log">sign in</a></li>
+							</c:if>
+							<c:if test="${mbId != null }">
+							<li>${memberDto.name }님<a href="logout.log">로그아웃</a></li>
+							</c:if>
                             <li><a class="join_bt" href="insertMember.mem">Join us</a></li>
                         </ul>
                     </div>

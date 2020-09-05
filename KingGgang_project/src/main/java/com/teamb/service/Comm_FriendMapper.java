@@ -15,8 +15,8 @@ public class Comm_FriendMapper {
 	private SqlSession sqlSession;
 	
 	
-	public List<Comm_FriendDTO> listFriend(int comm_memberNum) {
-		return sqlSession.selectList("comm_listFriend",comm_memberNum);
+	public List<Comm_FriendDTO> listFriend(int login_comm_memberNum) {
+		return sqlSession.selectList("comm_listFriend",login_comm_memberNum);
 	}
 	
 	public int insertFriend(Comm_FriendDTO dto) {

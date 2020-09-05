@@ -1,8 +1,8 @@
 package com.teamb.controller;
 
-/*ì´	   ë¦„ : CommTogetherController.java
-ê°œ  ë°œ   ì : ìµœ ì¸ ì•„
-ì„¤	   ëª… : íˆ¬ê²Œë”Controller*/
+/*ÀÌ	   ¸§ : CommTogetherController.java
+°³  ¹ß   ÀÚ : ÃÖ ÀÎ ¾Æ
+¼³	   ¸í : Åõ°Ô´õController*/
 
 import java.io.File;
 import java.io.IOException;
@@ -54,10 +54,10 @@ public class CommTogetherController {
 		int res = togetherMapper.writeTogether(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "ê¸€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.";
+			msg = "±Û µî·ÏµÇ¾ú½À´Ï´Ù.";
 			url = "comm_togetherList.do";
 		} else {
-			msg = "ê¸€ ë“±ë¡ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.";
+			msg = "±Û µî·Ï¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.";
 			url = "comm_togetherWF.do";
 		}
 		req.setAttribute("msg", msg);
@@ -100,10 +100,10 @@ public class CommTogetherController {
 		int res = togetherMapper.updateTogether(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "ê¸€ì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤!!";
+			msg = "±ÛÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù!!";
 			url = "comm_tcontent.do";
 		}else{
-			msg = "ê¸€ ìˆ˜ì •ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤!!";
+			msg = "±Û ¼öÁ¤¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù!!";
 			url = "comm_tupdateForm.do";
 		}
 		
@@ -118,7 +118,7 @@ public class CommTogetherController {
 		int res = togetherMapper.deleteTogether(togetherNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "ê¸€ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.";
+			msg = "±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.";
 			url = "comm_togetherList.do";
 		}
 		ModelAndView mav = new ModelAndView();

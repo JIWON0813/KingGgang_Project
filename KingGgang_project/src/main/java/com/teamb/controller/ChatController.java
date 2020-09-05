@@ -24,9 +24,9 @@ import com.teamb.model.Comm_MemberDTO;
 import com.teamb.service.ChatMapper;
 
 /*
-ì´	   ë¦„ : ChatController
-ê°œ  ë°œ   ì : ì´ì—¬ì§„
-ì„¤	   ëª… : ì±„íŒ… ì»¨íŠ¸ë¡¤ëŸ¬
+ÀÌ	   ¸§ : ChatController
+°³  ¹ß   ÀÚ : ÀÌ¿©Áø
+¼³	   ¸í : Ã¤ÆÃ ÄÁÆ®·Ñ·¯
 */
 
 @Controller
@@ -40,19 +40,19 @@ public class ChatController {
 	@RequestMapping("/room")
 	public ModelAndView room(HttpSession session, HttpServletRequest req) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		//ë³´ë‚´ëŠ”ì‚¬ëŒ
+		//º¸³»´Â»ç¶÷
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int msgSender = login.getComm_memberNum();
 		String Sname = login.getComm_nickname();
-		//ë°›ëŠ”ì‚¬ëŒ
+		//¹Ş´Â»ç¶÷
 		String msgReceiver = req.getParameter("comm_memberNum");
 		String Rname = req.getParameter("comm_name");
 		
-		//ì±„íŒ…ë°© ì„¤ì •
+		//Ã¤ÆÃ¹æ ¼³Á¤
 		ChatRoomDTO croom  = new ChatRoomDTO();
 	    croom.setMsgReceiver(Integer.parseInt(msgReceiver));
 	    croom.setMsgSender(msgSender);
-	    croom.setRoomName(Sname+" ë‹˜ê³¼ "+Rname+" ì˜ ëŒ€í™”");
+	    croom.setRoomName(Sname+" ´Ô°ú "+Rname+" ÀÇ ´ëÈ­");
 		
 		if(chatMapper.isRoom(croom) == null ) {
 			chatMapper.createRoom(croom);
@@ -61,7 +61,7 @@ public class ChatController {
 			roomList.add(chatMapper.isRoom(croom));
 
 		}
-		//ì¦ë³µì œê±°
+		//Áõº¹Á¦°Å
 		HashSet<ChatRoomDTO> temp = new HashSet<ChatRoomDTO>(roomList);
 		List<ChatRoomDTO> rooms = new ArrayList<ChatRoomDTO>(temp);
 		
@@ -81,7 +81,7 @@ public class ChatController {
 	}
 	
 	/**
-	 * ë°© ìƒì„±í•˜ê¸°
+	 * ¹æ »ı¼ºÇÏ±â
 	 * @param params
 	 * @return
 	 * @throws Exception 
@@ -102,7 +102,7 @@ public class ChatController {
 	}*/
 	
 	/**
-	 * ë°© ì •ë³´ê°€ì ¸ì˜¤ê¸°
+	 * ¹æ Á¤º¸°¡Á®¿À±â
 	 * @param params
 	 * @return
 	 * @throws Exception 
@@ -115,7 +115,7 @@ public class ChatController {
 	}*/
 	
 	/**
-	 * ì±„íŒ…ë°©
+	 * Ã¤ÆÃ¹æ
 	 * @return
 	 * @throws Exception 
 	 */

@@ -40,7 +40,7 @@
 													href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">> 수정</a>
 												<a href="comm_memberList.do">> 목록</a>
 												<li><a
-													href="comm_friendAll.do?comm_memberNum=${comm_memberNum }">> Friends
+													href="comm_friendAll.do?login_comm_memberNum=${login_comm_memberNum }">> Friends
 														목록</a></li>
 
 											</c:if></li>
