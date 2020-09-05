@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ include file="../index_top.jsp"%>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <section id="four" class="wrapper style1 special fade-up">
 	<div class="container">
 		<header class="major">
@@ -22,4 +22,4 @@
 	</div>
 	</div>
 </section>
-<%@ include file="../index_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

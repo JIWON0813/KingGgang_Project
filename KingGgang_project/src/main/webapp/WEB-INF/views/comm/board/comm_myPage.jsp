@@ -6,7 +6,7 @@
 	설	   명 : 메인 페이지
  -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../index_top.jsp"%>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <div align="left">
 <table>
    <tr>
@@ -34,4 +34,4 @@
 	        </a>
 	   </c:forEach>          
 </div>
-<%@ include file="../index_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

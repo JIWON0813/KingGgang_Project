@@ -1,7 +1,8 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
-	<div class="wrap wd668" align="center">
+	<div class="section layout_padding">
+	<div class="wrap wd668" align="center" >
             <div class="container">
                 <div class="form_txtInput">
                     <h2 class="sub_tit_txt">회원목록</h2>
@@ -37,6 +38,7 @@
 			</tr>
 		</c:forEach>
 		</table>
+	</div>
 	</div>
 	</div>
 	</div>
