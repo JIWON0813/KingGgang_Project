@@ -52,7 +52,7 @@ public class Comm_MemberMapper {
 	}
 	
 	public int comm_deleteMember(int comm_memberNum) {
-		int res = sqlSession.delete("comm_deleteMember",comm_memberNum);
+		int res = sqlSession.insert("comm_deleteMember",comm_memberNum);
 		return res;
 	}
 }

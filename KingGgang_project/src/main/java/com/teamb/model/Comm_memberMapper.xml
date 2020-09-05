@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from comm_member where comm_memberNum = #{comm_memberNum}
  	</select>
  	
- 	<select id ="comm_deleteMember"  parameterType="String">
+ 	<select id ="comm_deleteMember"  parameterType="int" >
 		delete from comm_member where comm_memberNum = #{comm_memberNum}
 	</select>
 	

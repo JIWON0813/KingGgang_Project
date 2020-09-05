@@ -18,7 +18,7 @@
 		
 		<c:forEach var="dto" items="${friendList }">
 			<tr>
-				<%-- <img src="http://localhost:8080/img/${profile_name}" width="50" height="50"> --%>
+				<%-- <img src="http://localhost:8080/img/${profilename}" width="50" height="50"> --%>
 				<td>${dto.f_name }</td>
 				<td>${dto.comm_memberNum }</td>
 				<td>${dto.friendNum }</td>

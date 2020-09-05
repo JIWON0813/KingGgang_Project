@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.Comm_MemberDTO;
-import com.teamb.model.MemberDTO;
 import com.teamb.service.Comm_MemberMapper;
 
 
@@ -43,8 +42,7 @@ public class Comm_MemberController {
 	
 	
 	@RequestMapping(value = "/comm_loginOk.do")
-	public String comm_loginOk(Comm_MemberDTO dto, MemberDTO mdto,
-						HttpServletRequest req,HttpSession session) {
+	public String comm_loginOk(Comm_MemberDTO dto, HttpServletRequest req,HttpSession session) {
 		Comm_MemberDTO login = memberMapper.comm_loginOk(dto);
 		String msg = null, url = null;
         	if (login == null) {
@@ -54,12 +52,12 @@ public class Comm_MemberController {
 		} else {
 			
 			//인아쓰
-			/*session = req.getSession();
-			session.setAttribute("memberNum", dto.getComm_nickname());
+			//session = req.getSession();
+			//session.setAttribute("memberNum", dto.getComm_nickname());
 			
 			int comm_memberNum = memberMapper.comm_getmemberNum(dto.getComm_nickname());
 			session.setAttribute("comm_memberNum",comm_memberNum);
-	        session.setAttribute("commmember",memberMapper.comm_getMember(comm_memberNum));*/
+	        session.setAttribute("commmember",memberMapper.comm_getMember(comm_memberNum));
 	        
 	        //지은쓰
 			session.setAttribute("comm_login", login);
