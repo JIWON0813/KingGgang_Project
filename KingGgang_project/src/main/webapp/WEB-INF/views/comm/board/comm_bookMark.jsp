@@ -3,12 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ include file="../index_top.jsp"%>
-<section id="four" class="wrapper style1 special fade-up">
-	<div class="container">
-		<header class="major">
+
+	<div>
+		<header>
 			<h2>BookMark</h2>
 		</header>
-	<div class="box alt">
+	<div>
 		<div class="row gtr-uniform">
 			<c:if test="${empty boardList}">
 				<h2>등록된 페이지가 없습니다.</h2>
@@ -21,5 +21,5 @@
 		</div>
 	</div>
 	</div>
-</section>
+
 <%@ include file="../index_bottom.jsp"%>

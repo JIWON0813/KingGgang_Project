@@ -43,12 +43,11 @@ public class CommboardMapper {
 	public List<CommboardDTO> allListBoard() {
 		   return sqlSession.selectList("allListBoard");
 	}
-	   
-	   public void plusReadcount(int num) {
-	      sqlSession.update("plusReadcount", num);
-	      sqlSession.commit();
+	
+	public void plusReadcount(int boardNum) {
+	      sqlSession.update("plusReadcount", boardNum);
 	      return;
-	   }
+	}
 
 	   public void likeCount(int bNum,int mNum) {
 	      java.util.Map<String,Integer> map = new java.util.Hashtable<String,Integer>();

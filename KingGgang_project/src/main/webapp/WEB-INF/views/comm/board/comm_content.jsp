@@ -27,15 +27,75 @@
 		<tr height="30">
 			<th>태그</th>
 			<td align="center" width="30%">${getBoard.tag}</td>
-			<th align="right" width="10">
-				<c:choose>
-  					<c:when test="${comm_memberNum ne null}">
-    					<a href='javascript: like_func();'><img src='./images/dislike.png' id='like_img'></a>
-  					</c:when>
-  					<c:otherwise>
-    					<a href='javascript: login_need();'><img src='./images/dislike.png'></a>
-  					</c:otherwise>
-				</c:choose>
+			<th align="right" width="10"><img src="${pageContext.request.contextPath}/resources/img/heart.png" width="50" height="50"></th>
+		</tr>
+		<tr height="30">
+			<th>장소</th>
+			<td align="center" width="30%">${getBoard.loc}</td>
+			<th align="right" width="10"><a href="comm_BookMark.do?boardNum=${boardNum}">
+			<%-- <img src="${pageContext.request.contextPath}/resources/img/bookmark.png" width="30" height="30"> --%>
+			★
+			</a></th>
+		</tr>
+
+		<tr>
+			<td align="center" colspan="3">
+				<input type="button" value="글수정"
+				onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="글삭제"
+				onclick="window.location='comm_deletePro.do?boardNum=${getBoard.boardNum}'">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="글목록" onclick="window.location='comm_myPage.do'">
+			</td>
+		</tr>
+	</table>
+</div>
+<br>
+<hr color="pink">
+<div align="center">
+<form name="replyForm" action="comm_writeReplyPro.do" method="post">
+  <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}"/>
+  <table>
+    <tr>
+    	<th>댓글 작성자</th>
+    	<td><input type="text" id="rwriter" name="rwriter"></td>
+    </tr>
+    
+    <tr>
+   		 <th>댓글 내용</th>
+   		 <td><input type="text" id="rcontent" name="rcontent"></td>
+   		 <td><input type="submit" value="작성"></td>
+    </tr>
+  </table>
+</form>
+</div>
+<hr color="pink">
+<br>
+<!-- 댓글 -->
+<div>
+<form name="f" action="reply_updatePro.do" method="post" onsubmit="return check()">
+ <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
+  <ol>
+   <c:if test="${empty replyList}">
+	      <p>등록된 댓글이 없습니다.</p>
+	</c:if>   
+    <c:forEach items="${replyList}" var="replyList">
+      <li>
+        <p>
+		        작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${replyList.rregdate}<br/>
+        </p>
+         <p> : ${replyList.rcontent}</p>
+      </li>
+      <input type="submit" value="댓수정">
+      <input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${getReply.replyNum}'">
+    </c:forEach>   
+  </ol>
+ </form>		
+</div>
+
+<%@ include file="/WEB-INF/views/bottom.jsp"%>
+
 			</th>
 		</tr>
 		<tr height="30">

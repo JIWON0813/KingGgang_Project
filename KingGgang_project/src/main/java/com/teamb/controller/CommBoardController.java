@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.CommReplyDTO;
+import com.teamb.model.CommTogetherDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
@@ -103,6 +104,10 @@ public class CommBoardController {
 
 	      MemberDTO member = (MemberDTO) session.getAttribute("login");
 	      
+	      /*boardMapper.plusReadcount(boardNum);
+	      CommboardDTO dto = boardMapper.getBoard(boardNum);
+	      req.setAttribute("getBoard",dto);*/
+	      
 	      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
 	      int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 	      
@@ -110,8 +115,8 @@ public class CommBoardController {
 
 	      req.setAttribute("boardList", list);
 	      /*req.setAttribute("comm_nickname", commmember.getComm_nickname());*/
-	      /*req.setAttribute("profile_name",member.getProfile_name());
-	      System.out.println(member.getProfile_name());
+	     /* req.setAttribute("profile_name",member.getProfile_name());*/
+	      /*System.out.println(member.getProfile_name());
 	      req.setAttribute("name",member.getName());*/
 	      return "comm/board/comm_myPage";
 	   }
@@ -142,27 +147,6 @@ public class CommBoardController {
 		return "redirect:/"; //吏덈Ц�븷爰쇱엫.
 	}
 	
-	/*@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
-	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result) {
-		
-		if (result.hasErrors()) {
-			dto.setReplyNum(0);
-		}
-		
-		int res = replyMapper.writeReply(dto);
-		String msg = null, url = null;
-		if (res > 0) {
-			msg = "�뙎湲� �벑濡앸릺�뿀�뒿�땲�떎.";
-			url = "comm_content.do";
-		} else {
-			msg = "�뙎湲� �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎.";
-			url = "comm_content.do";
-		}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";
-	}*/
-
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req) {
 		return "comm/board/comm_bookMark";

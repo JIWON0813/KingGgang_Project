@@ -35,23 +35,23 @@
 		update commboard set content=#{content} where boardNum=#{boardNum}
 	</update>
 	
-	<update id="plusReadcount" parameterType="int">
-		update commboard set readcount=readcount+1 where boardNum=#{num}
+	<update id="plusLikecount" parameterType="int">
+		update commboard set likecount=likecount+1 where boardNum=#{boardNum}
 	</update>
-
+	
+	<update id="plusReadcount" parameterType="int">
+		update commboard set readcount=readcount+1 where boardNum=#{boardNum}
+	</update>
+	
+	<!-- <update id="plusIsLikecount" parameterType="int">
+		update commboard set likecount=likecount+1 where boardNum=#{bNum} and memberNum=#{mNum}
+	</update>
+	
 	<select id="isLike" resultType="int" parameterType="java.util.Map">
 		select likecount from commboard where boardNum=#{bNum} and memberNum=#{mNum}
 	</select>
 	
-	<update id="plusIsLikecount" parameterType="int">
-		update commboard set likecount=likecount+1 where boardNum=#{bNum} and memberNum=#{mNum}
-	</update>
-	
-	<update id="plusLikecount" parameterType="int">
-		update commboard set likecount=likecount+1 where boardNum=#{bNum}
-	</update>
-	
 	<update id="minusLikecount" parameterType="int">
 		update commboard set likecount=likecount-1 where boardNum=#{bNum}
-	</update>
+	</update> -->
 </mapper>
