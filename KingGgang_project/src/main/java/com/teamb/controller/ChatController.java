@@ -83,7 +83,6 @@ public class ChatController {
 		ModelAndView mv = new ModelAndView();
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int msgSender = login.getComm_memberNum();
-
 		
 		roomList.addAll(chatMapper.getChatList(msgSender));
 		
@@ -91,6 +90,7 @@ public class ChatController {
 		List<ChatRoomDTO> rooms = new ArrayList<ChatRoomDTO>(temp);
 		
 		req.setAttribute("roomList",rooms);
+		session.setAttribute("msgSender",msgSender);
 		mv.setViewName("comm/chatRoom");
 		
 		return mv;
@@ -100,18 +100,25 @@ public class ChatController {
 	public ModelAndView chating(HttpServletRequest req, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int chatroom_id = Integer.parseInt(req.getParameter("chatroom_id"));
+		int msgSender = (int)session.getAttribute("msgSender");
 		List<ChatMsgDTO> msgList = chatMapper.getMessageList(chatroom_id);
 		List<ChatRoomDTO> new_list = roomList.stream().filter(o->o.getChatroom_id()==chatroom_id).collect(Collectors.toList());
-		ChatRoomDTO croom = (ChatRoomDTO)session.getAttribute("croom");
+		ChatRoomDTO croom = chatMapper.getRoomList(chatroom_id);
 		
+		int msgReceiver = 0;
+		if(msgSender == croom.getMsgSender()){
+			msgReceiver = croom.getMsgReceiver();
+		}else{
+			msgReceiver = croom.getMsgSender();
+		}
 		
 		if(new_list != null && new_list.size() > 0) {
 			
 			req.setAttribute("msgList",msgList);
 			req.setAttribute("chatroom_id",chatroom_id);
-			req.setAttribute("msgSender",croom.getMsgSender());
+			req.setAttribute("msgSender",msgSender);
 			req.setAttribute("roomName",croom.getRoomName());
-			req.setAttribute("msgReceiver", croom.getMsgReceiver());
+			req.setAttribute("msgReceiver", msgReceiver);
 			mv.setViewName("comm/chatView3");
 		}else {
 			mv.setViewName("comm/chatRoom");
