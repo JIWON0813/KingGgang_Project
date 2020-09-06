@@ -18,7 +18,7 @@
 			margin: 0 auto;
 			padding: 25px
 		}
-		.container h1{
+		.container h3{
 			text-align: left;
 			padding: 5px 5px 5px 15px;
 			color: #FFBB00;
@@ -93,7 +93,7 @@
 </script>
 <body>
 	<div id="container" class="container">
-		<h1>채팅</h1>
+		<h3>채팅</h3>
 		<div id="chating" class="chating">
 		</div>
 		

@@ -59,12 +59,17 @@
             <div class="container">
                 <div class="row">
                     <div class="logo_section">
-                        <a class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath}/resources/main/images/logo.png" alt="image"></a>
+                        <a class="navbar-brand" href="home.do"><img src="${pageContext.request.contextPath}/resources/main/images/logo.png" alt="image"></a>
                     </div>
                     <div class="site_information">
                         <ul>
-                            <li><a href="mailto:"><img src="${pageContext.request.contextPath}/resources/main/images/mail_icon.png" alt="#" />제주하면 낑깡~!</a></li>
-                            <li><a href="login.log">sign in</a></li>
+                            <li><a href="#"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />제주하면 낑깡~!</a></li>
+                            <c:if test="${mbId == null }">
+							<li><a href="login.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그인</a></li>
+							</c:if>
+							<c:if test="${mbId != null }"> 
+							<li>${memberDto.name}님   <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그아웃</a></li>
+							</c:if>
                             <li><a class="join_bt" href="insertMember.mem">Join us</a></li>
                         </ul>
                     </div>
