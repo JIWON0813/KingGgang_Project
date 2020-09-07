@@ -87,9 +87,10 @@
 		select * from rentcar order by price
 	</select>
 	
-	<select id="testRentcar" resultType="int" parameterType="String">
-		select r_id from rentcar_res where returnday not between 
-		to_date(#{receiptday},'yyyy-mm-dd-hh24:mi') and to_date(#{returnday},'yyyy-mm-dd-hh24:mi')
+	<select id="listCanReservationRentcar" resultType="RentcarDTO" parameterType="String">
+		select * from rentcar where id not in(select r_id from rentcar_res where 
+		receiptday <![CDATA[>]]> to_date(#{receiptday},'yyyy-mm-dd-hh24:mi') and 
+		returnday <![CDATA[<]]> to_date(#{returnday},'yyyy-mm-dd-hh24:mi'))
 	</select>
 	
 	

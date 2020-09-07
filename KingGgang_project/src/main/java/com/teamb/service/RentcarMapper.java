@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.teamb.model.InsuDTO;
@@ -107,16 +108,14 @@ public class RentcarMapper {
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("receiptday",receiptday);
 		map.put("returnday",returnday);
-		List<Integer> canResCarIdList = sqlSession.selectList("testRentcar",map);
-		List<RentcarDTO> canResCarList = null;
-		for(int i=0;i<canResCarIdList.size();i++){
-			int id = canResCarIdList.get(i);
-			RentcarDTO dto = sqlSession.selectOne("getRentcar",id);
-			canResCarList.add(dto);
-		}
+		List<RentcarDTO> canResCarList = sqlSession.selectList("listCanReservationRentcar",map);
 		return canResCarList;
 	}
 	
+	@Scheduled(fixedDelay=20000)
+	public void renewalRentcarReservation(){
+		System.out.println("서버 가동중");
+	}
 	
 }
 

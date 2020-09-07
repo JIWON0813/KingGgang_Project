@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.questionMapper">
+	<insert id="InsertAdmin" parameterType="Admin2DTO">
+		insert into admin values (#{a_id},#{a_passwd})  
+	</insert>
+	
+	<select id="A_IDcheck" resultType="String" parameterType="Admin2DTO">
+		select a_passwd from admin where a_id = #{a_id}	
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

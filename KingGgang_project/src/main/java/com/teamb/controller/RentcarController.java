@@ -275,8 +275,8 @@ public class RentcarController {
 			List<RentcarDTO> list = rentcarMapper.findRentcar(mode,obj);
 			req.setAttribute("rentcar",list);
 		}else if(mode.equals("date")){
-			String receiptday = req.getParameter("receiptday");
-			String returnday = req.getParameter("returnday");
+			String receiptday = req.getParameter("receiptday")+req.getParameter("pickuptime");
+			String returnday = req.getParameter("returnday")+req.getParameter("pickuptime");
 			List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
 			req.setAttribute("rentcar",list);
 		}
