@@ -43,7 +43,7 @@
 		update commboard set readcount=readcount+1 where boardNum=#{boardNum}
 	</update>
 	
-	<!-- <update id="plusIsLikecount" parameterType="int">
+	<update id="plusIsLikecount" parameterType="int">
 		update commboard set likecount=likecount+1 where boardNum=#{bNum} and memberNum=#{mNum}
 	</update>
 	
@@ -53,5 +53,5 @@
 	
 	<update id="minusLikecount" parameterType="int">
 		update commboard set likecount=likecount-1 where boardNum=#{bNum}
-	</update> -->
+	</update>
 </mapper>
