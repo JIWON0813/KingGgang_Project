@@ -32,14 +32,14 @@ function del(id){
 			<th>결제 상태</th>
 			<th>수정 / 삭제</th>
 		</tr> 
-	<c:if test="${empty insuList}">		
+	<c:if test="${empty resList}">		
 		<tr>
 			<td colspan="10">
 				등록된 예약이 없습니다.
 			</td>
 		</tr>
 	</c:if>		
-	<c:forEach var="dto" items="${insuList}">		
+	<c:forEach var="dto" items="${resList}">		
 		<tr align="center">
 			<td>${dto.res_id}</td>
 			<td>${dto.member_id}</td>

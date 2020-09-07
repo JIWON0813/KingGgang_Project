@@ -87,11 +87,22 @@
 		select * from rentcar order by price
 	</select>
 	
+	<select id="listRentcarReservation" resultType="Rentcar_ResDTO">
+		select * from rentcar_res
+	</select>
+	
 	<select id="listCanReservationRentcar" resultType="RentcarDTO" parameterType="String">
 		select * from rentcar where id not in(select r_id from rentcar_res where 
 		receiptday <![CDATA[>]]> to_date(#{receiptday},'yyyy-mm-dd-hh24:mi') and 
 		returnday <![CDATA[<]]> to_date(#{returnday},'yyyy-mm-dd-hh24:mi'))
 	</select>
 	
+	<select id="findReturnTimeReservation" resultType="Rentcar_ResDTO">
+		select * from rentcar_res where returnday <![CDATA[>=]]> sysdate 
+	</select>
+	
+	<select id="listRentcarReservation2" resultType="Rentcar_ResDTO" parameterType="int">
+		select * from rentcar_res where r_id = #{r_id}
+	</select>
 	
 </mapper>

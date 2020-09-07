@@ -52,6 +52,10 @@ public class RentcarMapper {
 		int res = sqlSession.delete("deleteRentcar",num);
 		return res;
 	}
+	
+	public List<Rentcar_ResDTO> listRentcarReservation2(int r_id){
+		return sqlSession.selectList("listRentcarReservation2",r_id);
+	}
 	//렌트카_회원 페이지
 	public List<RentcarDTO> findRentcar(String str,Object obj){
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -96,10 +100,6 @@ public class RentcarMapper {
 		return sqlSession.selectList("listNotReservationRentcar");
 	}
 	
-	public List<Rentcar_ResDTO> findReturnday(int r_id){
-		return sqlSession.selectList("findReturnday",r_id);
-	}
-	
 	public List<RentcarDTO> listLowPriceRentcar(){
 		return sqlSession.selectList("listLowPriceRentcar");
 	}
@@ -114,7 +114,7 @@ public class RentcarMapper {
 	
 	@Scheduled(fixedDelay=20000)
 	public void renewalRentcarReservation(){
-		System.out.println("서버 가동중");
+		
 	}
 	
 }

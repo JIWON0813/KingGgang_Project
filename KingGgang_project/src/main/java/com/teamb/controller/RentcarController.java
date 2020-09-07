@@ -92,15 +92,13 @@ public class RentcarController {
 	
 	@RequestMapping(value = "contentRentcar.admin")
 	public String contentRentcar(HttpServletRequest req){
-		int num = Integer.parseInt(req.getParameter("id"));
-		RentcarDTO dto = rentcarMapper.getRentcar(num);
-		req.setAttribute("rentcar",dto);
-		req.setAttribute("upLoadPath",upLoadPath);
+		int r_id = Integer.parseInt(req.getParameter("id"));
+		RentcarDTO rentcar = rentcarMapper.getRentcar(r_id);
+		req.setAttribute("rentcar",rentcar);
 		
-		if(dto.getReservation()==1){
-		List<Rentcar_ResDTO> dto2 = rentcarMapper.findReturnday(num);
-		String returnday = dto2.get(0).getReturnday();
-		req.setAttribute("returnday",returnday);
+		if(rentcar.getReservation()==1){
+		List<Rentcar_ResDTO> rentcarRes = rentcarMapper.listRentcarReservation2(r_id);
+		req.setAttribute("rentcarRes",rentcarRes);
 		}
 		
 		return "rentcar/contentRentcar_Admin";
