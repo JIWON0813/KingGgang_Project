@@ -55,13 +55,20 @@ public class Comm_FriendController {
 			url = "comm_memberList.do";
 		}
 		else{
-			int res = friendMapper.insertFriend(dto);
-			if (res > 0) {
-			msg = "친구 추가 성공. 친구목록 페이지로 이동";
-			url = "comm_friendAll.do";
-			} else {
-			msg = "친구 추가 실패. 메인으로 이동";
-			url = "commhome.comm";
+			int res1= friendMapper.check_insertFriend(login_comm_memberNum,comm_memberNum);
+			if(res1 == 0){
+				int res = friendMapper.insertFriend(dto);
+				if (res > 0) {
+					msg = "친구 추가 성공. 친구목록 페이지로 이동";
+					url = "comm_friendAll.do";
+				} else {
+					msg = "친구 추가 실패. 메인으로 이동";
+					url = "commhome.comm";
+				}
+			}
+			else{
+				msg="이미 등록된 친구입니다.";
+				url="comm_friendAll.do";
 			}
 		}
 		req.setAttribute("msg", msg);

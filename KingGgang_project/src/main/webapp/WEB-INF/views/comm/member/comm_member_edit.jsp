@@ -34,8 +34,8 @@
   					<tr>
 						<th><span>프로필사진</span></th>
 						<td>
-							<input type="file" name="comm_profile_name" value="${comm_getMember.comm_profilename}">
-							<input type="hidden" name="comm_profile_size" value="${comm_getMember.comm_profilesize}">
+							<input type="file" name="filename">
+							<%-- <input type="hidden" name="comm_profile_size" value="${comm_getMember.comm_profilesize}"> --%>
 							<img src="http://localhost:8090/img/${comm_getMember.comm_profilename}" width="100" height="100">
 						</td>
 					</tr>

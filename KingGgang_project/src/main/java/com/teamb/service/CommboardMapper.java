@@ -33,6 +33,11 @@ public class CommboardMapper {
 		  int res = sqlSession.insert("deleteBoard",boardNum);
 		  return res;
 	}
+	
+	public int deleteAllBoard(int comm_memberNum,int boardNum) {   
+		  int res = sqlSession.insert("deleteBoard",boardNum);
+		  return res;
+	}
 
 	public int updateBoard(CommboardDTO dto) {
 		int res = sqlSession.update("updateBoard", dto);

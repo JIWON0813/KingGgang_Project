@@ -57,8 +57,6 @@ public class Comm_MemberController {
 		} else {
 			
 			//인아쓰
-			//session = req.getSession();
-			//session.setAttribute("memberNum", dto.getComm_nickname());
 			
 			int comm_memberNum = memberMapper.comm_getmemberNum(dto.getComm_nickname());
 			session.setAttribute("comm_memberNum",comm_memberNum);
@@ -179,12 +177,13 @@ public class Comm_MemberController {
 		
 	@RequestMapping(value = "/comm_member_edit_ok.do", method = RequestMethod.POST)
 	public String commMemberEditOk(HttpServletRequest req, HttpSession session,
-									Comm_MemberDTO dto, @RequestParam int comm_memberNum) {
+									Comm_MemberDTO dto, @RequestParam int comm_memberNum , BindingResult result) {
 		
-		/*String comm_profilename="";
+		String comm_profilename="";
 		int comm_profilesize=0;
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
-		MultipartFile file = mr.getFile("comm_profile_name");
+		MultipartFile file = mr.getFile("filename");
+		System.out.println("파일값"+file.getOriginalFilename());
 		File target = new File(upLoadPath, file.getOriginalFilename());
 		if(file.getSize()>0){
 			try {
@@ -193,12 +192,15 @@ public class Comm_MemberController {
 			
 			comm_profilename = file.getOriginalFilename();
 			comm_profilesize=(int)file.getSize();
+			dto.setComm_profilename(comm_profilename);
+			dto.setComm_profilesize(comm_profilesize);
+		}
+		else{
+			dto = memberMapper.comm_getMember(comm_memberNum);
+			dto.setComm_profilename(dto.getComm_profilename());
+			dto.setComm_profilesize(dto.getComm_profilesize());
 		}
 			
-			dto.setComm_profilename(comm_profilename);
-			dto.setComm_profilesize(comm_profilesize);*/
-		
-		
 		
 		int res = memberMapper.comm_updateMember(dto);
 		String msg = null, url = null;

@@ -13,7 +13,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      insert into comm_friend values
      (#{login_comm_memberNum},#{comm_memberNum},comm_friend_num.nextval)
     </insert>
-  
+    
+  	<select id="check_comm_insertFriend" parameterType="java.util.Map" resultType="int">
+    	select count(*) from (select * from comm_friend where login_comm_memberNum=#{login_comm_memberNum})
+    	where comm_memberNum=#{comm_memberNum}
+    </select>
+    
   	<select id="comm_getFriend" parameterType="int" resultType="Comm_FriendDTO">
 		select * from comm_friend where friendNum = #{friendNum}
 	</select>
