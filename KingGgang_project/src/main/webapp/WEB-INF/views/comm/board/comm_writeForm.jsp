@@ -6,6 +6,7 @@
 	설	   명 : 메인 페이지
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<div class="section layout_padding">
 <script type="text/javascript">
 	function check(){
 		if (f.file_name.value==""){
@@ -42,10 +43,6 @@
 				<td><input type="text" name="tag"></td>
 			</tr>
 			<tr>
-				<th width="150">위치표시하기</th>
-				<td><input type="text" name="loc"></td>
-			</tr>
-			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">	
@@ -54,5 +51,6 @@
 			</tr>
 		</table>
 	</form>
+</div>
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

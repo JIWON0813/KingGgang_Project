@@ -53,6 +53,7 @@ public class CommTogetherController {
 		
 		int res = togetherMapper.writeTogether(dto);
 		String msg = null, url = null;
+
 		if (res > 0) {
 			msg = "湲� �벑濡앸릺�뿀�뒿�땲�떎.";
 			url = "comm_togetherList.do";
@@ -100,6 +101,7 @@ public class CommTogetherController {
 		
 		int res = togetherMapper.updateTogether(dto);
 		String msg = null, url = null;
+
 		if (res > 0) {
 			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
 			url = "comm_tcontent.do";
@@ -118,6 +120,7 @@ public class CommTogetherController {
 	public ModelAndView tdeletePro(@RequestParam int togetherNum) {
 		int res = togetherMapper.deleteTogether(togetherNum);
 		String msg = null, url = null;
+
 		if (res > 0) {
 			msg = "湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
 			url = "comm_togetherList.do";

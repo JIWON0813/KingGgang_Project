@@ -10,6 +10,7 @@
 -->
  
 <mapper namespace="com.teamb.model.Comm">
+
 	<select id="getBoard" resultType="CommboardDTO" parameterType="int">
 		select * from commboard where boardNum=#{boardNum}
 	</select>
@@ -23,8 +24,8 @@
 	</select>
 	
 	<insert id="writeBoard" parameterType="CommboardDTO">
-		insert into commboard values(#{comm_memberNum},commboard_num.nextval, #{file_name}, #{file_size}, 
-		#{content}, #{tag}, #{loc},0,0,0,0,0,0) 
+		insert into commboard values(#{comm_memberNum}, commboard_num.nextval, #{file_name}, #{file_size}, 
+		#{content}, #{tag}, 0,0,0,0,0) 
 	</insert>
 	
 	<select id="deleteBoard" parameterType="int" resultType="int">
@@ -35,23 +36,4 @@
 		update commboard set content=#{content} where boardNum=#{boardNum}
 	</update>
 	
-	<update id="plusLikecount" parameterType="int">
-		update commboard set likecount=likecount+1 where boardNum=#{boardNum}
-	</update>
-	
-	<update id="plusReadcount" parameterType="int">
-		update commboard set readcount=readcount+1 where boardNum=#{boardNum}
-	</update>
-	
-	<update id="plusIsLikecount" parameterType="int">
-		update commboard set likecount=likecount+1 where boardNum=#{bNum} and memberNum=#{mNum}
-	</update>
-	
-	<select id="isLike" resultType="int" parameterType="java.util.Map">
-		select likecount from commboard where boardNum=#{bNum} and memberNum=#{mNum}
-	</select>
-	
-	<update id="minusLikecount" parameterType="int">
-		update commboard set likecount=likecount-1 where boardNum=#{bNum}
-	</update>
 </mapper>

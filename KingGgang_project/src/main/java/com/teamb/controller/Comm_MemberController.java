@@ -41,7 +41,6 @@ public class Comm_MemberController {
 	@RequestMapping(value="/comm_login.do")
 	public String comm_login(HttpSession session){
 		int memberNum = (Integer)session.getAttribute("memberNum");
-	
 		return "comm/login/comm_login";
 	}
 	
@@ -57,16 +56,16 @@ public class Comm_MemberController {
 		} else {
 			
 			//인아쓰
-			
 			int comm_memberNum = memberMapper.comm_getmemberNum(dto.getComm_nickname());
 			session.setAttribute("comm_memberNum",comm_memberNum);
 	        session.setAttribute("commmember",memberMapper.comm_getMember(comm_memberNum));
-	        
+	        String comm_profilename = memberMapper.comm_getMember(comm_memberNum).getComm_profilename();
+	        session.setAttribute("comm_profilename", comm_profilename);
 	        //지은쓰
 			session.setAttribute("comm_login", login);
 			session.setAttribute("login_comm_memberNum", login.getComm_memberNum());
-				String comm_nickname = memberMapper.comm_getMember(comm_memberNum).getComm_nickname();
-	          	session.setAttribute("comm_nickname", comm_nickname);
+			String comm_nickname = memberMapper.comm_getMember(comm_memberNum).getComm_nickname();
+	        session.setAttribute("comm_nickname", comm_nickname);
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
         	}
