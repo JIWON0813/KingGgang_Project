@@ -23,7 +23,7 @@
 	<c:if test="${getBoard.file_size != 0}">
 		<tr align="center">
 			 <td align="center" colspan="3">
-			 	<img src="http://localhost:8090/img/${getBoard.file_name}" width="400" height="400">
+			 	<img src="http://localhost:8080/img/${getBoard.file_name}" width="400" height="400">
 			 </td>
 		</tr>
 	</c:if>
@@ -104,4 +104,3 @@
 </div>
 
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-

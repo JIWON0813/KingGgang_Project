@@ -39,19 +39,12 @@ public class CommNewsfeedController {
 		
 		String mbId = (String)session.getAttribute("mbId");
 		Comm_MemberDTO comm_login = (Comm_MemberDTO)session.getAttribute("comm_login");
-		
+		List<CommboardDTO> list = boardMapper.allListBoard();
+		req.setAttribute("boardList", list);		
 		
 		return "comm/index";
 	}
 
-	
-
-	@RequestMapping("/comm_newsfeed.do")
-	public String newsFeed(HttpServletRequest req) {
-		List<CommboardDTO> list = boardMapper.allListBoard();
-		req.setAttribute("boardList", list);
-		return "comm/newsfeed";
-	}
 	
 	@RequestMapping("/commadmin.comm")
 	public String admin(HttpServletRequest req){

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<div class="section layout_padding">
 <div align="center">
 	<b>목 록</b>
 	<table width="800">
@@ -44,4 +45,5 @@
 	</c:forEach>	
 	</table>
 </div>	
+</div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

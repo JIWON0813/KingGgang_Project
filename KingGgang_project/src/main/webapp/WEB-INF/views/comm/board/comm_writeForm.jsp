@@ -23,7 +23,7 @@
 	}
 </script>
 
-<div align="center">
+<div class="section layout_padding" align="center">
 	<form name="f" action="comm_writePro.do" method="post" onsubmit="return check()" enctype="multipart/form-data">
 		<header>
 			<h3>새 게시물</h3>

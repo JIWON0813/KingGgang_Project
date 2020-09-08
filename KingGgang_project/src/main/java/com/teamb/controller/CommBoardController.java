@@ -1,9 +1,5 @@
 package com.teamb.controller;
 
-/*�씠	   由� : CommBoardController.java
-媛�  諛�   �옄 : 理� �씤 �븘
-�꽕	   紐� : 蹂대뱶Controller*/
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -88,7 +84,8 @@ public class CommBoardController {
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "�� ��ϵǾ����ϴ�";
+			msg="글쓰기 성공";
+
 			url = "comm_myPage.do";
 		} else {
 			msg = "�� ��Ͽ� �����Ͽ����ϴ�.";
@@ -169,7 +166,6 @@ public class CommBoardController {
 		return "message";
 	}
 
-
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req) {
 		return "comm/board/comm_bookMark";
@@ -188,10 +184,10 @@ public class CommBoardController {
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "���� �����Ǿ����ϴ�!!";
+			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
 			url = "comm_myPage.do";
 		}else{
-			msg = "�� ������ �����Ͽ����ϴ�!!";
+			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
 			url = "comm_updateForm.do";
 		}
 		
@@ -206,7 +202,7 @@ public class CommBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "���� �����Ǿ����ϴ�.";
+			msg = "湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
 			url = "comm_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -276,13 +272,11 @@ public class CommBoardController {
 	
 	@RequestMapping(value = "/reply_deletePro.do")
 	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
-		System.out.println(boardNum);
-		System.out.println(replyNum);
-
 		replyMapper.deleteReply(replyNum);
 		req.setAttribute("replyNum", replyNum);
 		req.setAttribute("boardNum", boardNum);
 		return "comm_content.do";
+
 	}
 
 }

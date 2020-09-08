@@ -41,9 +41,11 @@
 				</c:if>
 				<td>${dto.comm_intro }</td>
 				<td><a href="comm_friend_insert.do?login_comm_memberNum=${login_comm_memberNum }&comm_memberNum=${dto.comm_memberNum }">친구추가</a></td> 
-				<td><a href="room?comm_memberNum=${dto.comm_memberNum}&comm_name=${dto.comm_name}">채팅하기</a></td> 
+				<td><a href=""
+				onclick="window.open('room?comm_memberNum=${dto.comm_memberNum}&comm_nickname=${dto.comm_nickname}', '_blank', 'width=600 height=600')">채팅하기</a></td> 
 				<%-- <c:if test=""> --%>
 				<td><a href="admin_comm_member_delete.do?comm_nickname=${dto.comm_nickname }">삭제</a></td> 
+				<%-- <td><a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a></td>  --%>
 				<%-- </c:if> --%>
 			</tr>
 		</c:forEach>

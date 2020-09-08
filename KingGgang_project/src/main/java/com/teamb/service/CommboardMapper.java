@@ -93,7 +93,7 @@ public class CommboardMapper {
 	      // TODO Auto-generated method stub
 	      return 0;
 	   }
-	   
+
 	public int comm_insertNotice(Comm_NoticeDTO dto) {
 		 int res = sqlSession.insert("comm_insertNotice", dto);
 		  return res;
