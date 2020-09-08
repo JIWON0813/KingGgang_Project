@@ -83,7 +83,7 @@ public class ChatController {
 		ModelAndView mv = new ModelAndView();
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int msgSender = login.getComm_memberNum();
-		
+		roomList.clear();
 		roomList.addAll(chatMapper.getChatList(msgSender));
 		
 		HashSet<ChatRoomDTO> temp = new HashSet<ChatRoomDTO>(roomList);

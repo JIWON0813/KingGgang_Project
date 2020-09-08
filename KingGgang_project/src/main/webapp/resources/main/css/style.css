@@ -550,8 +550,8 @@ a.navbar-brand {
     z-index: 11;
 }
 
-.search-box:hover .search-txt {
-	width: 240px;
+.search-box:hover .search-txt{
+	width: 190px;
 	padding: 0 10px;
 }
 
@@ -2308,8 +2308,8 @@ ul.bottom_menu li {
     width: 25px;
 }
 
-.top-header.fixed-menu .search-box:hover .search-txt {
-	width: 240px;
+.top-header.fixed-menu .search-box:hover .search-txt{
+	width: 190px;
 	padding: 0 10px;
 	border: solid #000 1px;
 	height: 41px;

@@ -10,9 +10,9 @@ import com.teamb.model.ChatMsgDTO;
 import com.teamb.model.ChatRoomDTO;
 
 /*
-이	   름 : ChatMapper
+이	   름 : ChatMapper.java
 개  발   자 : 이여진
-설	   명 : 채 팅
+설	   명 : 채팅관련 서비스
 */
 
 @Service

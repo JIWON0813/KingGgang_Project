@@ -94,7 +94,7 @@ padding: 7px 15px;
     .search-box {
         top: 12px;
         right: 15px; 
-    } 
+    }
     .slide_text h3 {
         font-size: 65px;
     }
@@ -105,7 +105,7 @@ padding: 7px 15px;
          background: #111;
     }
      .search-box:hover .search-txt {
-         width: 240px;
+         width: 190px;
          padding: 0 10px;
          border: solid #000 1px;
          height: 41px;
@@ -246,7 +246,7 @@ padding: 7px 15px;
         position: relative;
         bottom: 0;
     }
-    .search-box:hover .search-txt {
+    .search-box:hover .search-txt{
         width: 190px;
         padding: 0 10px;
     }

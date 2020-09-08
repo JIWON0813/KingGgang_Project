@@ -1,17 +1,25 @@
 package com.teamb.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
+import com.teamb.service.CommNewsFeedMapper;
 import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.CommboardMapper;
 
@@ -28,7 +36,7 @@ public class CommNewsfeedController {
 
 	@Autowired
 	private CommboardMapper boardMapper;
-	private Comm_MemberMapper memberMapper;
+	private CommNewsFeedMapper newsfeedMapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
@@ -49,4 +57,31 @@ public class CommNewsfeedController {
 	public String admin(HttpServletRequest req){
 		return "comm/comm_admin";
 	}
+	
+	@RequestMapping("/commSearch")
+	public String commSearch(HttpServletRequest req,Comm_MemberDTO dto){
+		String word = req.getParameter("word");
+		  ArrayList<Comm_MemberDTO> arrList  = new ArrayList<Comm_MemberDTO>();
+				arrList.addAll(newsfeedMapper.getSearchComm_Member(word));
+		return "arrList";
+	}
+	
+	
+	/*@ResponseBody 
+	@RequestMapping(value = "/getMoreContents_ajax.do")
+	 public void getMoreContents(CommboardDTO dto,HttpServletRequest req, HttpServletResponse res) throws ParseException, IOException {
+		String viewCount = req.getParameter("viewCount");
+		String startCount = req.getParameter("startCount");
+			
+		JSONArray resultList = newsfeedMapper.allListBoard(startCount,viewCount);
+		int resultCnt = 
+		 
+		json.put("resultList",resultList);
+		json.put("resultCnt",resultCnt);
+		
+		res.setContentType("application/json; charset=utf-8");
+		res.getWriter().write(json.toString());
+				
+		
+	 }      */
 }

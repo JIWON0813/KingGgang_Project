@@ -25,22 +25,25 @@
 			margin: 0 auto;
 			padding: 25px
 		}
-		.container h1{
+		.container h3{
 			text-align: left;
 			padding: 5px 5px 5px 15px;
 			color: #FFBB00;
 			border-left: 3px solid #FFBB00;
-			margin-bottom: 20px;
+			margin-bottom: 10px;
 		}
 		.chating{
-			background-color: #000;
+			border: 1px solid #FFBB00;
+			background-color: #FFFFFF;
 			width: 500px;
 			height: 500px;
 			overflow: auto;
+			padding: 5px 5px 5px 5px;
 		}
 		.chating .me{
-			color: #F6F6F6;
+			color: #3a1e02;
 			text-align: right;
+		
 		}
 		.chating .others{
 			color: #FFE400;
@@ -53,10 +56,16 @@
 		#yourMsg{
 			display: none;
 		}
-		#my{
-			color: #FFFFFF;
-			text-align: right;
+		#back{
+		float: right;
+		width: 100px;
+		color: #FFBB00;
+		border: 1px solid #FFBB00;
+		background: #FFFFFF;
+		margin-bottom: 20px;
+		 
 		}
+		
 	</style>
 </head>
 
@@ -129,24 +138,19 @@
 </script>
 <body>
 	<div id="container" class="container">
-		<h1>${roomName}의 채팅방</h1>
+		<h3>${roomName}의 채팅방</h3>
+		<input type="button" id ="back" value="돌아가기" onclick="history.back()">
 		<input type="hidden" id="sessionId" value="">
-		<input type="hidden" id="userName" value="${msgSender}">
+		<input type="hidden" id="userName" value="${msgReceiver}">
 		<input type="hidden" id="chatroom_id" value="${chatroom_id}">
-		
-		<div id="chating" class="chating" style="color:#FFFFFF">
+		<c:out value="${msgSender}"/>
+		<div id="chating" class="chating">
 		<c:forEach var="dto" items="${msgList}">
-		<c:if test="${dto.msgSender == megSender}">
-			<tr>
-				<td align="left">${dto.msgContent}</td>
-				<br>
-			</tr>
-		</c:if>
-		<c:if test="${dto.msgSender != megSender}">
-			<tr>
-				<td align="right">${dto.msgContent}</td>
-				<br>
-			</tr>
+			<c:if test="${dto.msgSender eq msgSender}">
+					<p id = "chat" align="right">${dto.msgContent}</p>
+			</c:if>
+		<c:if test="${dto.msgSender ne msgSender}">
+				<p id = "chat" align="left">${dto.msgContent}</p>
 		</c:if>
 		
 		</c:forEach>
