@@ -54,8 +54,9 @@ public class WishController {
 	private WishlistMapper wishlistmapper;
 	
 	@RequestMapping("/main.wish")
-	public String mypageMain() {
-		
+	public String mypageMain(HttpServletRequest req) {
+		int m_no = 1;
+		req.setAttribute("m_no", m_no);
 		return "payment/wishins";
 		
 	}
@@ -66,7 +67,6 @@ public class WishController {
 		int f_no = Integer.parseInt(req.getParameter("f_no"));
 		List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
 		boolean check1 =true;
-		
 		for(WishlistDTO check : noCheck) {
 			System.out.println(check.getF_no());
 			if(check.getF_no()!=f_no) {

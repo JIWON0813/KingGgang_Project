@@ -80,7 +80,7 @@ public class PaymentController {
 			MemberDTO mrdto =  paymemtMapper.getpayMember(m_no);
 			req.setAttribute("mrdto", mrdto);
 			return "payment/payins2";
-		}else{
+		} else {
 			msg = "결제 실패!! 상품리스트로 돌아갑니다.";
 			url = "main.pay";
 			req.setAttribute("msg", msg);
