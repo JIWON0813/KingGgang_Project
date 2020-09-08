@@ -22,6 +22,12 @@ import com.teamb.service.Comm_FriendMapper;
 import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.MemberMapper;
 
+
+/*
+ì´	   ë¦„ : Comm_MemberController
+ê°œ  ë°œ   ìž : í™©ì§€ì€
+ì„±	   ëª… : ì»¤ë®¤ë‹ˆí‹° ì¹œêµ¬ ì»¨íŠ¸ë¡¤ëŸ¬
+*/
 @Controller
 public class Comm_FriendController {
 
@@ -40,21 +46,20 @@ public class Comm_FriendController {
 		
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
-		int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
-		
+		int comm_memberNum=dto.getComm_memberNum();
+
 		String msg = null, url = null;
-		
 		if(login_comm_memberNum==comm_memberNum){
-			msg="º»ÀÎ ÀÚ½ÅÀº Ä£±¸ Ãß°¡°¡ µÇÁö ¾Ê½À´Ï´Ù.";
+			msg="ë³¸ì¸ ìžì‹ ì€ ì¹œêµ¬ ì¶”ê°€ê°€ ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
 			url = "comm_memberList.do";
 		}
 		else{
 			int res = friendMapper.insertFriend(dto);
 			if (res > 0) {
-			msg = "Ä£±¸ Ãß°¡ ¼º°ø. Ä£±¸¸ñ·Ï ÆäÀÌÁö·Î ÀÌµ¿";
+			msg = "ì¹œêµ¬ ì¶”ê°€ ì„±ê³µ. ì¹œêµ¬ëª©ë¡ íŽ˜ì´ì§€ë¡œ ì´ë™";
 			url = "comm_friendAll.do";
 			} else {
-			msg = "Ä£±¸ Ãß°¡ ½ÇÆÐ. ¸ÞÀÎÀ¸·Î ÀÌµ¿";
+			msg = "ì¹œêµ¬ ì¶”ê°€ ì‹¤íŒ¨. ë©”ì¸ìœ¼ë¡œ ì´ë™";
 			url = "commhome.comm";
 			}
 		}
@@ -76,6 +81,8 @@ public class Comm_FriendController {
 		for(Comm_FriendDTO dto2: list){
 			int m=dto2.getComm_memberNum();
 			Comm_MemberDTO mdto=memberMapper.comm_getMember(m);
+			dto2.setF_comm_profilename(mdto.getComm_profilename());
+			dto2.setF_comm_profilesize(dto2.getF_comm_profilesize());
 			dto2.setF_name(mdto.getComm_name());
 		}
 		session.setAttribute("friendList", list);
@@ -91,7 +98,7 @@ public class Comm_FriendController {
 		int res = friendMapper.deleteFriend(friendNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "Ä£±¸»èÁ¦ ¼º°ø. Ä£±¸¸ñ·ÏÆäÀÌÁö·Î ÀÌµ¿";
+			msg = "Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½";
 			url = "comm_friendAll.do";
 		}
 		

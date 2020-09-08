@@ -49,5 +49,4 @@
    </websocket:handlers>
     
     <beans:bean id="echoHandler" class="com.teamb.function.EchoHandler" />    
-   
 </beans:beans>

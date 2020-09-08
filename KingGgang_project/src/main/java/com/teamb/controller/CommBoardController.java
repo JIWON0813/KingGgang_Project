@@ -88,10 +88,10 @@ public class CommBoardController {
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲� �벑濡앸릺�뿀�뒿�땲�떎";
+			msg = "�� ��ϵǾ����ϴ�";
 			url = "comm_myPage.do";
 		} else {
-			msg = "湲� �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎.";
+			msg = "�� ��Ͽ� �����Ͽ����ϴ�.";
 			url = "comm_writeForm.do";
 		}
 		req.setAttribute("msg", msg);
@@ -144,9 +144,32 @@ public class CommBoardController {
 	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto,  @RequestParam int boardNum) {
 		replyMapper.writeReply(dto);
 		req.setAttribute("boardNum", dto.getBoardNum());
+
 		return "redirect:/comm/board/comm_content";
 	}
 	
+	/*@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
+	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			dto.setReplyNum(0);
+		}
+		
+		int res = replyMapper.writeReply(dto);
+		String msg = null, url = null;
+		if (res > 0) {
+			msg = "��� ��ϵǾ����ϴ�.";
+			url = "comm_content.do";
+		} else {
+			msg = "��� ��Ͽ� �����Ͽ����ϴ�.";
+			url = "comm_content.do";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}*/
+
+
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req) {
 		return "comm/board/comm_bookMark";
@@ -165,10 +188,10 @@ public class CommBoardController {
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
+			msg = "���� �����Ǿ����ϴ�!!";
 			url = "comm_myPage.do";
 		}else{
-			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
+			msg = "�� ������ �����Ͽ����ϴ�!!";
 			url = "comm_updateForm.do";
 		}
 		
@@ -183,7 +206,7 @@ public class CommBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
+			msg = "���� �����Ǿ����ϴ�.";
 			url = "comm_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -255,10 +278,11 @@ public class CommBoardController {
 	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
 		System.out.println(boardNum);
 		System.out.println(replyNum);
-		
+
 		replyMapper.deleteReply(replyNum);
 		req.setAttribute("replyNum", replyNum);
 		
 		return "redirect:/comm/board/comm_content";
 	}
+
 }

@@ -54,10 +54,10 @@ public class CommTogetherController {
 		int res = togetherMapper.writeTogether(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲� �벑濡앸릺�뿀�뒿�땲�떎.";
+			msg = "�� ��ϵǾ����ϴ�.";
 			url = "comm_togetherList.do";
 		} else {
-			msg = "湲� �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎.";
+			msg = "�� ��Ͽ� �����Ͽ����ϴ�.";
 			url = "comm_togetherWF.do";
 		}
 		req.setAttribute("msg", msg);
@@ -101,10 +101,10 @@ public class CommTogetherController {
 		int res = togetherMapper.updateTogether(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
+			msg = "���� �����Ǿ����ϴ�!!";
 			url = "comm_tcontent.do";
 		}else{
-			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
+			msg = "�� ������ �����Ͽ����ϴ�!!";
 			url = "comm_tupdateForm.do";
 		}
 		
@@ -119,7 +119,7 @@ public class CommTogetherController {
 		int res = togetherMapper.deleteTogether(togetherNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
+			msg = "���� �����Ǿ����ϴ�.";
 			url = "comm_togetherList.do";
 		}
 		ModelAndView mav = new ModelAndView();

@@ -2,6 +2,7 @@ package com.teamb.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,20 +11,22 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.SocketUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.socket.WebSocketSession;
 
+import com.teamb.model.ChatMsgDTO;
 import com.teamb.model.ChatRoomDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.service.ChatMapper;
 
 /*
-ì´	   ë¦„ : ChatController
-ê°œ  ë°œ   ì : ì´ì—¬ì§„
-ì„¤	   ëª… : ì±„íŒ… ì»¨íŠ¸ë¡¤ëŸ¬
+ÀÌ	   ¸§ : ChatController
+°³  ¹ß   ÀÚ : ÀÌ¿©Áø
+¼³	   ¸í : Ã¤ÆÃ ÄÁÆ®·Ñ·¯
 */
 
 @Controller
@@ -37,29 +40,33 @@ public class ChatController {
 	@RequestMapping("/room")
 	public ModelAndView room(HttpSession session, HttpServletRequest req) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		//ë³´ë‚´ëŠ”ì‚¬ëŒ
+		//º¸³»´Â»ç¶÷
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int msgSender = login.getComm_memberNum();
-		//ë°›ëŠ”ì‚¬ëŒ
+		String Sname = login.getComm_nickname();
+		//¹Ş´Â»ç¶÷
 		String msgReceiver = req.getParameter("comm_memberNum");
-		String name = req.getParameter("comm_name");
+		String Rname = req.getParameter("comm_name");
 		
-		//ì±„íŒ…ë°© ì„¤ì •
+		//Ã¤ÆÃ¹æ ¼³Á¤
 		ChatRoomDTO croom  = new ChatRoomDTO();
 	    croom.setMsgReceiver(Integer.parseInt(msgReceiver));
 	    croom.setMsgSender(msgSender);
-	    croom.setRoomName(name);
+	    croom.setRoomName(Sname+" ´Ô°ú "+Rname+" ÀÇ ´ëÈ­");
 		
 		if(chatMapper.isRoom(croom) == null ) {
- 		 chatMapper.createRoom(croom);
- 		 roomList.add(croom);
+			chatMapper.createRoom(croom);
+			roomList.add(chatMapper.isRoom(croom));
 		}else{
-			roomList.addAll(chatMapper.isRoom(croom));
+			roomList.add(chatMapper.isRoom(croom));
+
 		}
+		//Áõº¹Á¦°Å
+		HashSet<ChatRoomDTO> temp = new HashSet<ChatRoomDTO>(roomList);
+		List<ChatRoomDTO> rooms = new ArrayList<ChatRoomDTO>(temp);
 		
-		session.setAttribute("roomList",roomList);
-		
-		req.setAttribute("roomList",roomList);
+		session.setAttribute("roomList",rooms);
+		req.setAttribute("roomList",rooms);
 		mv.addObject("msgReceiver",msgReceiver);
 		mv.addObject("msgSender",msgSender );
 		mv.setViewName("comm/chatRoom");
@@ -74,7 +81,7 @@ public class ChatController {
 	}
 	
 	/**
-	 * ë°© ìƒì„±í•˜ê¸°
+	 * ¹æ »ı¼ºÇÏ±â
 	 * @param params
 	 * @return
 	 * @throws Exception 
@@ -95,7 +102,7 @@ public class ChatController {
 	}*/
 	
 	/**
-	 * ë°© ì •ë³´ê°€ì ¸ì˜¤ê¸°
+	 * ¹æ Á¤º¸°¡Á®¿À±â
 	 * @param params
 	 * @return
 	 * @throws Exception 
@@ -108,7 +115,7 @@ public class ChatController {
 	}*/
 	
 	/**
-	 * ì±„íŒ…ë°©
+	 * Ã¤ÆÃ¹æ
 	 * @return
 	 * @throws Exception 
 	 */
@@ -117,8 +124,12 @@ public class ChatController {
 		ModelAndView mv = new ModelAndView();
 		int chatroom_id = Integer.parseInt(req.getParameter("chatroom_id"));
 		ChatRoomDTO list = chatMapper.getRoomList(chatroom_id);
+		List<ChatMsgDTO> msgList = chatMapper.getMessageList(chatroom_id);
+		
 		List<ChatRoomDTO> new_list = roomList.stream().filter(o->o.getChatroom_id()==chatroom_id).collect(Collectors.toList());
 		if(new_list != null && new_list.size() > 0) {
+			
+			req.setAttribute("msgList",msgList);
 			req.setAttribute("msgSender",list.getMsgSender());
 			req.setAttribute("chatroom_id",list.getChatroom_id());
 			req.setAttribute("roomName",list.getRoomName());

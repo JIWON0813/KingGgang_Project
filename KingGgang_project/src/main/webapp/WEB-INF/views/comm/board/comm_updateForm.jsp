@@ -6,7 +6,7 @@
 	설	   명 : 메인 페이지
 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ include file="../index_top.jsp" %>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <header>
 		<h2>게시물 수정</h2>
 </header>
@@ -21,7 +21,7 @@
 			 <td align="center" colspan="3">
 			 	<input type="file" name="file_name">
 			 	<%-- <img src="${pageContext.request.contextPath}/resources/img/${getBoard.file_name}" width="30" height="30"> --%>
-			 	<img src="http://localhost:8080/img/${getBoard.file_name}" width="200" height="200">
+			 	<img src="http://localhost:8090/img/${getBoard.file_name}" width="200" height="200">
 				<input type="hidden" name="file_size" value="${getBoard.file_size}">
 			 </td>
 		</tr>
@@ -49,4 +49,4 @@
 	</table>
 	</form>
 </div>
-<%@ include file="../index_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

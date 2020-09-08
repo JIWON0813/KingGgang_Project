@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../index_top.jsp"%>    
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <div align="center">
 	<b>목 록</b>
 	<table width="800">
@@ -44,4 +44,4 @@
 	</c:forEach>	
 	</table>
 </div>	
-<%@ include file="../index_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>
