@@ -11,13 +11,13 @@
 <table>
    <tr>
 	  	 <td width="120" height="120">
-		      <img src="http://localhost:8080/img/${filename}" width="180" height="180">
+		      <img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
 		       <h3>${name}</h3>
 	   	</td>
 	   <td>
 		   <a href="memberAll.do">친구</a>
 		   	&nbsp;&nbsp;
-	  		방문자수${getBoard.readCount}
+	  		방문자수
 	  		&nbsp;&nbsp;
 	   </td>
    </tr>

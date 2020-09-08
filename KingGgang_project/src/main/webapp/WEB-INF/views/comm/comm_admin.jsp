@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>°ü¸®ÀÚ ÆäÀÌÁöÀÔ´Ï´Ù.</h2>
+	<h2>ê´€ë¦¬ìž íŽ˜ì´ì§€ìž…ë‹ˆë‹¤.</h2>
 	
 	<ul>
-		<li><a href="comm_memberList.do">È¸¿ø¸ñ·Ï</a></li>
-		<li><a href="#">°øÁö»çÇ× µî·Ï</a></li>
-		<li><a href="comm_warnList.do">½Å°í¸ñ·Ï</a></li>
+		<li><a href="comm_memberList.do">íšŒì›ëª©ë¡</a></li>
+		<li><a href="#">ê³µì§€ì‚¬í•­ ë“±ë¡</a></li>
+		<li><a href="comm_warnList.do">ì‹ ê³ ëª©ë¡</a></li>
 		
 	
 	</ul>

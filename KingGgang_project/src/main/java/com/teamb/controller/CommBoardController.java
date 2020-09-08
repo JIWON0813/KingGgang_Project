@@ -79,10 +79,10 @@ public class CommBoardController {
 			file_size = (int) file.getSize();
 		}
 		dto.setComm_memberNum(comm_memberNum);
-		dto.setFile_name(file_name);
-		dto.setFile_size(file_size);
-	/*	req.setAttribute("profile_name", member.getProfile_name());
-		req.setAttribute("name", member.getName());*/
+		/*dto.setComm_profilename(comm_profilename);*/
+		/*dto.setComm_profilesize(comm_profilesize);*/
+		req.setAttribute("comm_profilename", commmember.getComm_profilename());
+		/*req.setAttribute("name", member.getName());*/
 
 		int res = boardMapper.writeBoard(dto);
 
