@@ -2,6 +2,7 @@ package com.teamb.controller;
 
 import java.io.IOException;
 
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.HotelDTO;
@@ -44,12 +46,12 @@ import com.teamb.service.WishlistMapper;
 /**
  * Handles requests for the application home page.
  */
+
 @Controller
 public class WishController {
 	
 	@Autowired
 	private WishlistMapper wishlistmapper;
-	
 	
 	@RequestMapping("/main.wish")
 	public String mypageMain() {
@@ -92,7 +94,7 @@ public class WishController {
 	}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
-		return "my/alert";
+		return "message";
 }
 	@RequestMapping("/list.wish")
 	public String wishList(HttpServletRequest req,HttpSession session,@ModelAttribute WishlistDTO dto)
@@ -148,7 +150,7 @@ public class WishController {
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
-		return "my/alert";
+		return "message";
 		
 	}
 	

@@ -19,5 +19,7 @@
 <a href="listRentcar.admin">렌트카 목록(어드민)</a>
 <a href="main.wish">관심리스트등록 페이지로 가기</a><p>
 <a href="main.pay">결제 페이지로 가기</a><p>
+<a href="tested.pay">테스트 페이지 가기</a><p>
+
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
 

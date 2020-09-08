@@ -54,6 +54,7 @@ public class PaymentController {
 		
 	@Autowired
 	private MemberMapper memberMapper;
+
 		
 	@RequestMapping("/main.pay")
 	public String payMain() {
@@ -84,7 +85,7 @@ public class PaymentController {
 			url = "main.pay";
 			req.setAttribute("msg", msg);
 			req.setAttribute("url", url);
-			return "my/alert";
+			return "message";
 		}
 	}
 	
@@ -113,7 +114,7 @@ public class PaymentController {
 		}
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
-		return "my/alert";
+		return "message";
 		
 	}
 	
@@ -156,11 +157,43 @@ public class PaymentController {
 	
 	@RequestMapping("/adpayment.my")
 	public String adPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
-		//session.getAttribute("id"); 로그인 세션에서 받음
-		//
-		int m_no = 1;
-		//pdto.setM_id(m_id);
-		//
+		
+		List<PaymentDTO> Plist = paymemtMapper.getAllPaymentlist();
+		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
+		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
+		for(PaymentDTO ptdto : Plist) {
+			if(ptdto.getType()==1) {//호텔결제내역 
+				System.out.println(ptdto.getM_no());
+				System.out.println(ptdto.getP_no());
+				System.out.println(ptdto.getType());
+				PaylistDTO phdto = paymemtMapper.getadPaylist(ptdto);
+				System.out.println(phdto.getH_name());
+				Phlist.add(phdto);
+			} else {
+				System.out.println(ptdto.getM_no()); 
+				System.out.println(ptdto.getP_no());
+				System.out.println(ptdto.getType());
+				PaylistDTO prdto = paymemtMapper.getadPaylist(ptdto);
+				System.out.println(prdto.getH_name());
+				Prlist.add(prdto);
+			}
+			
+		}
+		int type = 2;
+		req.setAttribute("type", type);
+		req.setAttribute("Phlist", Phlist);
+		req.setAttribute("Prlist", Prlist);
+		
+		
+		return "my/adminPayment";
+	} 
+	
+	@RequestMapping("/adpayfind.my")
+	public String adpayfind(HttpServletRequest req) {
+		String id = req.getParameter("id");
+		MemberDTO mdto = memberMapper.getMember(id);
+		int m_no =  mdto.getMemberNum();
+		
 		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(m_no);
 		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
 		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
@@ -182,14 +215,16 @@ public class PaymentController {
 			}
 			
 		}
+		int type = 2;
+		req.setAttribute("type", type);
 		req.setAttribute("Phlist", Phlist);
 		req.setAttribute("Prlist", Prlist);
 		
-		//paytestDTO dt = paymemtMapper.getPaytest(m_id);
-		
 		
 		return "my/adminPayment";
+		
 	}
+
 	
 }
 

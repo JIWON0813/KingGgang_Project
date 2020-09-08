@@ -45,6 +45,10 @@ public class PaymentMapper {
 		return sqlSession.selectList("getPayment",m_no);
 	}
 	
+	public List<PaymentDTO> getAllPaymentlist(){
+		return sqlSession.selectList("getAllPayment");
+	}
+	
 	public PaylistDTO getmyPaylist(PaymentDTO ptdto) {
 		return sqlSession.selectOne("getMyPaylist",ptdto);
 	}

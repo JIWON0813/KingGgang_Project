@@ -105,7 +105,7 @@ public class MyController {
 		
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
-		return "my/alert";
+		return "message";
 	}
 	
 	@RequestMapping("/update.my")
@@ -169,7 +169,7 @@ public class MyController {
 	}
 	req.setAttribute("url", url);
 	req.setAttribute("msg", msg);
-	return "my/alert";
+	return "message";
 	}
 	
 	@RequestMapping("/home.my")

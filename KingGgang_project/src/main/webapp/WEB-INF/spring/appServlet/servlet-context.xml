@@ -32,5 +32,5 @@
 	<beans:constructor-arg value="D:/java-emp-class-0406//file"></beans:constructor-arg>	
 	</beans:bean>
 	
-	
-</beans:beans>
+	</beans:beans>
+

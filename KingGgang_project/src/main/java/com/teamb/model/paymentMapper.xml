@@ -21,6 +21,10 @@
 		select * from payment where m_no = #{m_no}
 		</select>
 		
+		<select id="getAllPayment" resultType="PaymentDTO">
+		select * from payment
+		</select>
+		
 		<select id="getMyPaylist" parameterType="PaymentDTO" resultType="PaylistDTO" >
 		select 
 		<choose>
