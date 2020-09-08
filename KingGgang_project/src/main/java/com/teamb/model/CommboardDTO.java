@@ -8,7 +8,6 @@ public class CommboardDTO {
 	private int file_size;
 	private String content;
 	private String tag;
-	private String loc;
 	private int re_step;
 	private int re_level;
 	private int re_group;
@@ -61,14 +60,6 @@ public class CommboardDTO {
 
 	public void setTag(String tag) {
 		this.tag = tag;
-	}
-
-	public String getLoc() {
-		return loc;
-	}
-
-	public void setLoc(String loc) {
-		this.loc = loc;
 	}
 
 	public int getRe_step() {

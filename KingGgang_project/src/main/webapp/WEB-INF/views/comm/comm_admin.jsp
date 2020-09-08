@@ -12,7 +12,7 @@
 		<li><a href="comm_memberList.do">ȸ�����</a></li>
 		<li><a href="comm_noticewrite.do">�������� ���</a></li>
 		<li><a href="comm_noticeList.do">�������� ���</a></li>
-		<li><a href="comm_warnList.do">�Ű���</a></li>	
+		<li><a href="comm_warnList.do">신고목록</a></li>	
 	</ul>
 </body>
 </html>

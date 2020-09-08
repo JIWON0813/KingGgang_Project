@@ -58,7 +58,7 @@
 					<div class="full">
 						<div class="heading_main text_align_center">
 							<h2>
-								<span class="theme_color"></span>뉴스피드
+								<span class="theme_color"></span><a href="comm_togetherList.do">뉴스피드</a>
 							</h2>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 					<div class="col-md-3 col-sm-6 col-xs-12">
 						<div class="full services_blog">
 							<a href=""><img class="img-responsive"
-								src="http://localhost:8090/img/${dto.file_name}" alt="#" /></a>
+								src="http://localhost:8080/img/${dto.file_name}" alt="#" /></a>
 						</div>
 					</div>
 				</c:forEach>
@@ -80,7 +80,7 @@
 					<div class="col-sm-12">
 						<div class="full">
 							<div class="center">
-								<a class="main_bt" href="#">See More ></a>
+								<a class="main_bt" href="#">See More</a>
 							</div>
 						</div>
 					</div>

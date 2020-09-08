@@ -75,17 +75,16 @@ public class CommBoardController {
 			file_size = (int) file.getSize();
 		}
 		dto.setComm_memberNum(comm_memberNum);
-		/*dto.setComm_profilename(comm_profilename);*/
-		/*dto.setComm_profilesize(comm_profilesize);*/
-		/*req.setAttribute("comm_profilename", commmember.getComm_profilename());*/
-		/*req.setAttribute("name", member.getName());*/
+		dto.setFile_name(file_name);
+		dto.setFile_size(file_size);
+	/*	req.setAttribute("profile_name", member.getProfile_name());
+		req.setAttribute("name", member.getName());*/
 
 		int res = boardMapper.writeBoard(dto);
 
 		String msg = null, url = null;
 		if (res > 0) {
 			msg="글쓰기 성공";
-
 			url = "comm_myPage.do";
 		} else {
 			msg = "�� ��Ͽ� �����Ͽ����ϴ�.";
@@ -101,20 +100,17 @@ public class CommBoardController {
 
 	      MemberDTO member = (MemberDTO) session.getAttribute("login");
 	      
-	      /*boardMapper.plusReadcount(boardNum);
-	      CommboardDTO dto = boardMapper.getBoard(boardNum);
-	      req.setAttribute("getBoard",dto);*/
-	      
 	      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
-	      int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-	      
+	      //int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+	      int comm_memberNum = commmember.getComm_memberNum();
+	      System.out.println("comm_memberNum값"+comm_memberNum);
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 
 	      req.setAttribute("boardList", list);
-	      /*req.setAttribute("comm_nickname", commmember.getComm_nickname());*/
-	     /* req.setAttribute("profile_name",member.getProfile_name());*/
-	      /*System.out.println(member.getProfile_name());
-	      req.setAttribute("name",member.getName());*/
+	      req.getParameter(commmember.getComm_profilename());
+	      //req.getParameter(Integer.parseInt(commmember.getComm_profilesize()));
+	      req.getParameter(commmember.getComm_nickname());
+	      //req.setAttribute("comm_profilename", arg1);
 	      return "comm/board/comm_myPage";
 	   }
 	

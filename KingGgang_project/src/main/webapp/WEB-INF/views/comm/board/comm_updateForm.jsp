@@ -21,7 +21,7 @@
 			 <td align="center" colspan="3">
 			 	<input type="file" name="file_name">
 			 	<%-- <img src="${pageContext.request.contextPath}/resources/img/${getBoard.file_name}" width="30" height="30"> --%>
-			 	<img src="http://localhost:8090/img/${getBoard.file_name}" width="200" height="200">
+			 	<img src="http://localhost:8080/img/${getBoard.file_name}" width="200" height="200">
 				<input type="hidden" name="file_size" value="${getBoard.file_size}">
 			 </td>
 		</tr>

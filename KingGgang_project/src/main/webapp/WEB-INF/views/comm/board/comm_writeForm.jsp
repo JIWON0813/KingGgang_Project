@@ -43,10 +43,6 @@
 				<td><input type="text" name="tag"></td>
 			</tr>
 			<tr>
-				<th width="150">위치표시하기</th>
-				<td><input type="text" name="loc"></td>
-			</tr>
-			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">	
