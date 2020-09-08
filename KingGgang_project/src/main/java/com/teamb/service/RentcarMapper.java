@@ -112,9 +112,27 @@ public class RentcarMapper {
 		return canResCarList;
 	}
 	
-	@Scheduled(fixedDelay=20000)
+	public Rentcar_ResDTO findReturnTimeReservation(){
+		return sqlSession.selectOne("findReturnTimeReservation");
+	}
+	
+	public int updatePstatus(int res_id){
+		return sqlSession.update("updatePstatus",res_id);
+	}
+	
+	@Scheduled(fixedDelay=100000)
 	public void renewalRentcarReservation(){
-		
+		try{
+			Rentcar_ResDTO resDTO = findReturnTimeReservation();
+			List<Rentcar_ResDTO> resList = sqlSession.selectList("findUnPiadReservation");
+			if(resList.size()>0){
+				for(int i=0;i<resList.size();i++){
+					int res_id = resList.get(i).getRes_id();
+					updatePstatus(res_id);
+					System.out.println(res_id+"번 예약 결제 실패");
+				}
+			}
+		}catch(NullPointerException e){}
 	}
 	
 }

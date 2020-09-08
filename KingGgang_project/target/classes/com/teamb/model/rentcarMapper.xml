@@ -105,4 +105,11 @@
 		select * from rentcar_res where r_id = #{r_id}
 	</select>
 	
+	<select id="findUnPaidReservation" resultType="Rentcar_ResDTO">
+		select * from rentcar_res where pstatus = 0
+	</select>
+
+	<update id="updatePstatus" parameterType="Integer">
+		update set rentcar_res set pstatus = 0 where res_id = #{res_id}
+	</update>
 </mapper>
