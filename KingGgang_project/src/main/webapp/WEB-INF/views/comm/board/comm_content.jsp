@@ -17,7 +17,7 @@
 	</tr>
 	<tr>
 		<td align="left" colspan="3">
-		 	<a href="comm_myPage.do"><img src="http://localhost:8080/img/${filename}" width="50" height="50"></a>&nbsp;&nbsp;<a href="comm_myPage.do">${name}</a>
+		 	<a href="comm_myPage.do"><img src="http://localhost:8090/img/${filename}" width="50" height="50"></a>&nbsp;&nbsp;<a href="comm_myPage.do">${name}</a>
 		</td>
 	</tr>
 	<br>

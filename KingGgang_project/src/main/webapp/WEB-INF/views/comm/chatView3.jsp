@@ -132,19 +132,19 @@
 		<h1>${roomName}의 채팅방</h1>
 		<input type="hidden" id="sessionId" value="">
 		<input type="hidden" id="userName" value="${msgSender}">
-		<input type="hidden" id="chatroom_id" value="${msgReceiver}">
+		<input type="hidden" id="chatroom_id" value="${chatroom_id}">
 		
 		<div id="chating" class="chating" style="color:#FFFFFF">
 		<c:forEach var="dto" items="${msgList}">
 		<c:if test="${dto.msgSender == megSender}">
 			<tr>
-				<td align="right">${dto.msgContent}</td>
+				<td align="left">${dto.msgContent}</td>
 				<br>
 			</tr>
 		</c:if>
 		<c:if test="${dto.msgSender != megSender}">
 			<tr>
-				<td align="left">${dto.msgContent}</td>
+				<td align="right">${dto.msgContent}</td>
 				<br>
 			</tr>
 		</c:if>
