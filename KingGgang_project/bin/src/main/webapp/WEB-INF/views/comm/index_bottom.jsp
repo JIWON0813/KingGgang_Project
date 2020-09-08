@@ -1,4 +1,0 @@
-<!-- Scripts -->
-	</div>
-	</body>
-</html>

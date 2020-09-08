@@ -98,7 +98,7 @@
 	</select>
 	
 	<select id="findReturnTimeReservation" resultType="Rentcar_ResDTO">
-		select * from rentcar_res where returnday <![CDATA[>=]]> sysdate 
+		select * from rentcar_res where returnday <![CDATA[<=]]> sysdate 
 	</select>
 	
 	<select id="listRentcarReservation2" resultType="Rentcar_ResDTO" parameterType="int">
