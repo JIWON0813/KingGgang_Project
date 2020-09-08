@@ -44,10 +44,12 @@ public class Comm_FriendController {
 	public String insertFriend(HttpServletRequest req, HttpSession session, 
 							Comm_FriendDTO dto,Comm_MemberDTO mdto) {
 		
-		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
+		//Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
+		//select * from ( list) where id = m_id
 		int comm_memberNum=dto.getComm_memberNum();
 		String msg = null, url = null;
+		
 		if(login_comm_memberNum==comm_memberNum){
 			msg="본인 자신은 친구 추가가 되지 않습니다.";
 			url = "comm_memberList.do";

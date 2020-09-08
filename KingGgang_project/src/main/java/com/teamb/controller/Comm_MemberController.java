@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.service.Comm_MemberMapper;
+import com.teamb.service.CommboardMapper;
 
 /*
 이	   름 : Comm_MemberController
@@ -31,6 +32,7 @@ import com.teamb.service.Comm_MemberMapper;
 public class Comm_MemberController {
 	@Autowired
 	private Comm_MemberMapper memberMapper;
+	private CommboardMapper boardMapper;
 	
 	
 	@Resource(name="upLoadPath")
@@ -214,11 +216,12 @@ public class Comm_MemberController {
 	}
 	
 	@RequestMapping("/comm_member_delete.do")
-	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum){
+	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum,@RequestParam int boardNum){
+		int res2 = boardMapper.deleteBoard(boardNum);
 		int res = memberMapper.comm_deleteMember(comm_memberNum);
 			Comm_MemberDTO login = memberMapper.comm_getMember(comm_memberNum);
 		String msg = null, url = null;
-		if(res>0){
+		if(res>0&&res2>0){
 				HttpSession session = req.getSession();
 				session.setAttribute("comm_login", login);
 			msg="회원삭제성공!";
