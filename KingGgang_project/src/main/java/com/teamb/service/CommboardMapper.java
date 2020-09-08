@@ -43,48 +43,6 @@ public class CommboardMapper {
 	public List<CommboardDTO> allListBoard() {
 		   return sqlSession.selectList("allListBoard");
 	}
-	   
-	   public void plusReadcount(int num) {
-	      sqlSession.update("plusReadcount", num);
-	      sqlSession.commit();
-	      return;
-	   }
-
-	   public void likeCount(int bNum,int mNum) {
-	      java.util.Map<String,Integer> map = new java.util.Hashtable<String,Integer>();
-	      map.put("bNum", bNum);
-	      map.put("mNum", mNum);
-	      if(isLike(bNum,mNum)){
-	         sqlSession.update("plusLikecount",bNum);
-	         sqlSession.update("plusIsLikecount",map);
-	      }else{
-	         sqlSession.update("minusLikecount",bNum);
-	         sqlSession.update("plusIsLikecount",map);
-	      }
-	      sqlSession.commit();
-	   }
-	   
-	   public boolean isLike(int bNum, int mNum){
-	      java.util.Map<String,Integer> map = new java.util.Hashtable<String,Integer>();
-	      map.put("bNum", bNum);
-	      map.put("mNum", mNum);
-	      int res=sqlSession.selectOne("isLike", map);
-	      if(res%2==0)return true;
-	      else return false;
-	   }
-
-
-	   public void warnCount(int bNum, int mNum) {
-	      
-	   }
-	   
-	   public boolean isWarn(int bNum, int mNum){
-	      return true;
-	   }
-
-	   public int getCount() {
-	      // TODO Auto-generated method stub
-	      return 0;
-	   }
+	  
 
 	}

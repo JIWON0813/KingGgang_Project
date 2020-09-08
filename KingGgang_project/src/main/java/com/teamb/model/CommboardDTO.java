@@ -8,13 +8,11 @@ public class CommboardDTO {
 	private int file_size;
 	private String content;
 	private String tag;
-	private String loc;
 	private int re_step;
 	private int re_level;
 	private int re_group;
 	private int readCount;
 	private int likeCount;
-	private int warnCount;
 
 	public int getComm_memberNum() {
 		return comm_memberNum;
@@ -64,13 +62,6 @@ public class CommboardDTO {
 		this.tag = tag;
 	}
 
-	public String getLoc() {
-		return loc;
-	}
-
-	public void setLoc(String loc) {
-		this.loc = loc;
-	}
 
 	public int getRe_step() {
 		return re_step;
@@ -112,11 +103,4 @@ public class CommboardDTO {
 		this.likeCount = likeCount;
 	}
 
-	public int getWarnCount() {
-		return warnCount;
-	}
-
-	public void setWarnCount(int warnCount) {
-		this.warnCount = warnCount;
-	}
 }
