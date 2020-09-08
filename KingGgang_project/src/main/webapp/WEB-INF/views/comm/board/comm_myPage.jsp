@@ -7,6 +7,7 @@
  -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<div class="section layout_padding">
 <div align="left">
 <table>
    <tr>
@@ -33,5 +34,6 @@
 	        	<img src="http://localhost:8090/img/${dto.file_name}" width="300" height="300">
 	        </a>
 	   </c:forEach>          
+</div>
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

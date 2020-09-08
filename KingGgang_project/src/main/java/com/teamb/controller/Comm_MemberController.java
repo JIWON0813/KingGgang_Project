@@ -39,7 +39,6 @@ public class Comm_MemberController {
 	@RequestMapping(value="/comm_login.do")
 	public String comm_login(HttpSession session){
 		int memberNum = (Integer)session.getAttribute("memberNum");
-	
 		return "comm/login/comm_login";
 	}
 	

@@ -6,6 +6,7 @@
 	설	   명 : 메인 페이지
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<div class="section layout_padding">
 <script type="text/javascript">
 	function check(){
 		if (f.file_name.value==""){
@@ -54,5 +55,6 @@
 			</tr>
 		</table>
 	</form>
+</div>
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

@@ -81,7 +81,7 @@ public class CommBoardController {
 		dto.setComm_memberNum(comm_memberNum);
 		/*dto.setComm_profilename(comm_profilename);*/
 		/*dto.setComm_profilesize(comm_profilesize);*/
-		req.setAttribute("comm_profilename", commmember.getComm_profilename());
+		/*req.setAttribute("comm_profilename", commmember.getComm_profilename());*/
 		/*req.setAttribute("name", member.getName());*/
 
 		int res = boardMapper.writeBoard(dto);
@@ -140,16 +140,16 @@ public class CommBoardController {
 		return "comm/board/comm_content";
 	}
 	
-	@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
 	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto,  @RequestParam int boardNum) {
 		replyMapper.writeReply(dto);
 		req.setAttribute("boardNum", dto.getBoardNum());
 
-		return "redirect:/comm/board/comm_content";
-	}
+		return "comm/board/comm_content";
+	}*/
 	
-	/*@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
-	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result) {
+	@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
+	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result,  @RequestParam int boardNum) {
 		
 		if (result.hasErrors()) {
 			dto.setReplyNum(0);
@@ -159,7 +159,7 @@ public class CommBoardController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "��� ��ϵǾ����ϴ�.";
-			url = "comm_content.do";
+			url = "comm_content.do?boardNum="+boardNum;
 		} else {
 			msg = "��� ��Ͽ� �����Ͽ����ϴ�.";
 			url = "comm_content.do";
@@ -167,7 +167,7 @@ public class CommBoardController {
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		return "message";
-	}*/
+	}
 
 
 	@RequestMapping("/comm_bookMark.do")
@@ -281,8 +281,8 @@ public class CommBoardController {
 
 		replyMapper.deleteReply(replyNum);
 		req.setAttribute("replyNum", replyNum);
-		
-		return "redirect:/comm/board/comm_content";
+		req.setAttribute("boardNum", boardNum);
+		return "comm_content.do";
 	}
 
 }
