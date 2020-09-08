@@ -16,6 +16,7 @@
 					<header>
 					<h2><a href="comm_togetherList.do">Big Event</a></h2>
 					<p>현재 진행중인 이벤트입니다.</p>
+					<p><h2><a href="comm_togetherList.do">ddBig Eventss</a></h2></p>
 					</header>
 				</div>
 				<div class="col-4 col-12-medium">
@@ -29,10 +30,10 @@
 	</div>
 	<div>
 	</div>
-		<div class="row gtr-uniform">
+		<div class="section layout_padding">
 			<h2>뉴스피드</h2>
-			<div class="box alt">
-			<div class="row gtr-uniform">
+			<!-- <div class="box alt">
+			<div class="row gtr-uniform"> -->
 			<c:if test="${empty boardList}">
 				<h2>등록된 페이지가 없습니다.</h2>
 			</c:if>
@@ -41,8 +42,8 @@
 			<a href=""><img src="http://localhost:8090/img/${dto.file_name}" width="300" height="300"></a>
 			</section>
 			</c:forEach>
-		</div>
-	</div>
+		<!-- </div>
+	</div> -->
 </div>
 </div>
 </body>

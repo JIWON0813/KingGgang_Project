@@ -39,4 +39,9 @@ public class CommTogetherMapper {
 		int res = sqlSession.insert("deleteTogether",togetherNum);
 		return res;
 	}
+	
+	 public void plustReadcount(int togetherNum) {
+	      sqlSession.update("plustReadcount", togetherNum);
+	      return;
+	 }
 }

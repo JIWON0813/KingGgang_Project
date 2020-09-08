@@ -14,7 +14,6 @@ public class CommboardDTO {
 	private int re_group;
 	private int readCount;
 	private int likeCount;
-	private int warnCount;
 
 	public int getComm_memberNum() {
 		return comm_memberNum;
@@ -110,13 +109,5 @@ public class CommboardDTO {
 
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
-	}
-
-	public int getWarnCount() {
-		return warnCount;
-	}
-
-	public void setWarnCount(int warnCount) {
-		this.warnCount = warnCount;
 	}
 }

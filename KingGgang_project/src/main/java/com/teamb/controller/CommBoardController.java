@@ -1,9 +1,5 @@
 package com.teamb.controller;
 
-/*ÀÌ	   ¸§ : CommBoardController.java
-°³  ¹ß   ÀÚ : ÃÖ ÀÎ ¾Æ
-¼³	   ¸í : º¸µåController*/
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.CommReplyDTO;
+import com.teamb.model.CommTogetherDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
@@ -87,10 +84,10 @@ public class CommBoardController {
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "±Û µî·ÏµÇ¾ú½À´Ï´Ù";
+			msg="ê¸€ì“°ê¸° ì„±ê³µ";
 			url = "comm_myPage.do";
 		} else {
-			msg = "±Û µî·Ï¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.";
+			msg = "ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 			url = "comm_writeForm.do";
 		}
 		req.setAttribute("msg", msg);
@@ -103,6 +100,10 @@ public class CommBoardController {
 
 	      MemberDTO member = (MemberDTO) session.getAttribute("login");
 	      
+	      /*boardMapper.plusReadcount(boardNum);
+	      CommboardDTO dto = boardMapper.getBoard(boardNum);
+	      req.setAttribute("getBoard",dto);*/
+	      
 	      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
 	      int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 	      
@@ -110,8 +111,8 @@ public class CommBoardController {
 
 	      req.setAttribute("boardList", list);
 	      /*req.setAttribute("comm_nickname", commmember.getComm_nickname());*/
-	      /*req.setAttribute("profile_name",member.getProfile_name());
-	      System.out.println(member.getProfile_name());
+	     /* req.setAttribute("profile_name",member.getProfile_name());*/
+	      /*System.out.println(member.getProfile_name());
 	      req.setAttribute("name",member.getName());*/
 	      return "comm/board/comm_myPage";
 	   }
@@ -124,7 +125,7 @@ public class CommBoardController {
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		req.setAttribute("replyList", list);
-
+		
 		HttpSession session = req.getSession();
 		String mbId = (String) session.getAttribute("mbId");
 		boolean isLogin = false;
@@ -139,7 +140,7 @@ public class CommBoardController {
 	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto,  @RequestParam int boardNum) {
 		replyMapper.writeReply(dto);
 		req.setAttribute("boardNum", dto.getBoardNum());
-		return "redirect:/"; //Áú¹®ÇÒ²¨ÀÓ.
+		return "redirect:/comm/board/comm_content";
 	}
 	
 	/*@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
@@ -152,10 +153,10 @@ public class CommBoardController {
 		int res = replyMapper.writeReply(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "´ñ±Û µî·ÏµÇ¾ú½À´Ï´Ù.";
+			msg = "ï¿½ï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 			url = "comm_content.do";
 		} else {
-			msg = "´ñ±Û µî·Ï¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.";
+			msg = "ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 			url = "comm_content.do";
 		}
 		req.setAttribute("msg", msg);
@@ -181,10 +182,10 @@ public class CommBoardController {
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "±ÛÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù!!";
+			msg = "æ¹²ï¿½ï¿½ì”  ï¿½ë‹”ï¿½ì ™ï¿½ë¦ºï¿½ë¿€ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž!!";
 			url = "comm_myPage.do";
 		}else{
-			msg = "±Û ¼öÁ¤¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù!!";
+			msg = "æ¹²ï¿½ ï¿½ë‹”ï¿½ì ™ï¿½ë¿‰ ï¿½ë–Žï¿½ë™£ï¿½ë¸¯ï¿½ï¿½ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž!!";
 			url = "comm_updateForm.do";
 		}
 		
@@ -199,7 +200,7 @@ public class CommBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.";
+			msg = "æ¹²ï¿½ï¿½ì”  ï¿½ê¶˜ï¿½ì £ï¿½ë¦ºï¿½ë¿€ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž.";
 			url = "comm_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -210,33 +211,72 @@ public class CommBoardController {
 	}
 	
 	@RequestMapping(value = "/reply_updateForm.do", method = RequestMethod.GET)
+	public ModelAndView updatereplyForm(@RequestParam int replyNum) {
+		CommReplyDTO dto = replyMapper.getReply(replyNum);
+		ModelAndView mav = new ModelAndView("comm/board/comm_Mypage", "getReply", dto);
+		return mav;
+	}
+	
+	/*@RequestMapping(value = "/reply_updateForm.do", method = RequestMethod.GET)
 	public String updatereplyForm(CommReplyDTO dto, HttpServletRequest req, @RequestParam int replyNum) {
 		replyMapper.updateReply(dto);
 		req.setAttribute("replyNum", dto.getReplyNum());
 		return "redirect:comm/board/comm_Mypage";
-	}
+	}*/
+	
+	/*@RequestMapping(value = "/comm_updatePro.do", method = RequestMethod.POST)
+	public String updatePro(HttpServletRequest req, HttpSession session, @ModelAttribute CommboardDTO dto, @RequestParam int boardNum) {
+		
+		int res = boardMapper.updateBoard(dto);
+		String msg = null, url = null;
+		if (res > 0) {
+			msg = "æ¹²ï¿½ï¿½ì”  ï¿½ë‹”ï¿½ì ™ï¿½ë¦ºï¿½ë¿€ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž!!";
+			url = "comm_myPage.do";
+		}else{
+			msg = "æ¹²ï¿½ ï¿½ë‹”ï¿½ì ™ï¿½ë¿‰ ï¿½ë–Žï¿½ë™£ï¿½ë¸¯ï¿½ï¿½ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž!!";
+			url = "comm_updateForm.do";
+		}
+		
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+
+		return "message";
+	}*/
 	
 	@RequestMapping(value = "/reply_updatePro.do", method = RequestMethod.POST)
+	public String updatereplyPro(CommReplyDTO dto, HttpServletRequest req, @RequestParam int replyNum) {
+		int res = replyMapper.updateReply(dto);
+		String msg = null, url = null;
+		if (res > 0) {
+			msg = "æ¹²ï¿½ï¿½ì”  ï¿½ë‹”ï¿½ì ™ï¿½ë¦ºï¿½ë¿€ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž!!";
+			url = "comm_myPage.do";
+		}else{
+			msg = "æ¹²ï¿½ ï¿½ë‹”ï¿½ì ™ï¿½ë¿‰ ï¿½ë–Žï¿½ë™£ï¿½ë¸¯ï¿½ï¿½ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž!!";
+			url = "comm_updateForm.do";
+		}
+		
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+
+		return "message";
+	}
+	
+	/*@RequestMapping(value = "/reply_updatePro.do", method = RequestMethod.POST)
 	public String updatereplyPro(CommReplyDTO dto, HttpServletRequest req, @RequestParam int replyNum) {
 		replyMapper.updateReply(dto);
 		req.setAttribute("replyNum", dto.getReplyNum());
 		return "redirect:comm/board/comm_Mypage";
-	}
+	}*/
 	
 	@RequestMapping(value = "/reply_deletePro.do")
-	public ModelAndView deletereplyPro(@RequestParam int replyNum) {
-		int res = replyMapper.deleteReply(replyNum);
+	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
+		System.out.println(boardNum);
 		System.out.println(replyNum);
-		String msg = null, url = null;
-		if (res > 0) { 
-			msg = "´ñ±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.";
-			url = "comm_content.do";
-		}
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.addObject("url", url);
-		mav.setViewName("message");
-		return mav;
+
+		replyMapper.deleteReply(replyNum);
+		req.setAttribute("replyNum", replyNum);
+		
+		return "redirect:/comm/board/comm_content";
 	}
 	
 	

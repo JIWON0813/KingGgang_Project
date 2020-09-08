@@ -1,5 +1,6 @@
 package com.teamb.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,14 +46,27 @@ public class CommboardMapper {
 	public List<CommboardDTO> allListBoard() {
 		   return sqlSession.selectList("allListBoard");
 	}
-	   
-	   public void plusReadcount(int num) {
-	      sqlSession.update("plusReadcount", num);
-	      sqlSession.commit();
+	
+	public void plusReadcount(int boardNum) {
+	      sqlSession.update("plusReadcount", boardNum);
 	      return;
-	   }
-
-	   public void likeCount(int bNum,int mNum) {
+	}
+	
+	/*public CommboardDTO read(int boardNum) {
+	    CommboardDTO dto = sqlSession.selectOne("read", boardNum);
+	    return dto;
+	}
+	
+	public void likecnt_up(int boardNum) {
+		 return sqlSession.delete("likecnt_up", boardNum);
+		
+	}
+	
+	public void likecnt_down(int boardNum) {
+		// TODO Auto-generated method stub
+		
+	}*/
+	   /*public void likeCount(int bNum,int mNum) {
 	      java.util.Map<String,Integer> map = new java.util.Hashtable<String,Integer>();
 	      map.put("bNum", bNum);
 	      map.put("mNum", mNum);
@@ -74,16 +88,7 @@ public class CommboardMapper {
 	      if(res%2==0)return true;
 	      else return false;
 	   }
-
-
-	   public void warnCount(int bNum, int mNum) {
-	      
-	   }
-	   
-	   public boolean isWarn(int bNum, int mNum){
-	      return true;
-	   }
-
+*/
 	   public int getCount() {
 	      // TODO Auto-generated method stub
 	      return 0;

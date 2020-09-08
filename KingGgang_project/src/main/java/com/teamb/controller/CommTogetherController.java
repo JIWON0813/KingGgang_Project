@@ -1,8 +1,8 @@
 package com.teamb.controller;
 
-/*ÀÌ	   ¸§ : CommTogetherController.java
-°³  ¹ß   ÀÚ : ÃÖ ÀÎ ¾Æ
-¼³	   ¸í : Åõ°Ô´õController*/
+/*ï¿½ì” 	   ç”±ï¿½ : CommTogetherController.java
+åª›ï¿½  è«›ï¿½   ï¿½ì˜„ : ï§¤ï¿½ ï¿½ì”¤ ï¿½ë¸˜
+ï¿½ê½•	   ï§ï¿½ : ï¿½ë‹¾å¯ƒëš®ëœ‘Controller*/
 
 import java.io.File;
 import java.io.IOException;
@@ -54,10 +54,10 @@ public class CommTogetherController {
 		int res = togetherMapper.writeTogether(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "±Û µî·ÏµÇ¾ú½À´Ï´Ù.";
+			msg = "æ¹²ï¿½ ï¿½ë²‘æ¿¡ì•¸ë¦ºï¿½ë¿€ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž.";
 			url = "comm_togetherList.do";
 		} else {
-			msg = "±Û µî·Ï¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.";
+			msg = "æ¹²ï¿½ ï¿½ë²‘æ¿¡ì•¹ë¿‰ ï¿½ë–Žï¿½ë™£ï¿½ë¸¯ï¿½ï¿½ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž.";
 			url = "comm_togetherWF.do";
 		}
 		req.setAttribute("msg", msg);
@@ -80,6 +80,7 @@ public class CommTogetherController {
 	@RequestMapping(value = "/comm_tcontent.do", method = RequestMethod.GET)
 	public String tcontent(HttpServletRequest req, @RequestParam int togetherNum) {
 		
+		togetherMapper.plustReadcount(togetherNum);
 		CommTogetherDTO dto = togetherMapper.getTogether(togetherNum);
 		req.setAttribute("getTogether",dto);
 		
@@ -100,10 +101,10 @@ public class CommTogetherController {
 		int res = togetherMapper.updateTogether(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "±ÛÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù!!";
+			msg = "æ¹²ï¿½ï¿½ì”  ï¿½ë‹”ï¿½ì ™ï¿½ë¦ºï¿½ë¿€ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž!!";
 			url = "comm_tcontent.do";
 		}else{
-			msg = "±Û ¼öÁ¤¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù!!";
+			msg = "æ¹²ï¿½ ï¿½ë‹”ï¿½ì ™ï¿½ë¿‰ ï¿½ë–Žï¿½ë™£ï¿½ë¸¯ï¿½ï¿½ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž!!";
 			url = "comm_tupdateForm.do";
 		}
 		
@@ -118,7 +119,7 @@ public class CommTogetherController {
 		int res = togetherMapper.deleteTogether(togetherNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.";
+			msg = "æ¹²ï¿½ï¿½ì”  ï¿½ê¶˜ï¿½ì £ï¿½ë¦ºï¿½ë¿€ï¿½ë’¿ï¿½ë•²ï¿½ë–Ž.";
 			url = "comm_togetherList.do";
 		}
 		ModelAndView mav = new ModelAndView();
