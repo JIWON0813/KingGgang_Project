@@ -1,4 +1,4 @@
-package com.teamb.function;
+/*package com.teamb.function;
 
 
 import java.io.IOException;
@@ -17,11 +17,11 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-/*
+
 이	   름 : echoHandler.java
 개  발   자 : 이여진
 설	   명 : 채팅 핸들러
-*/
+
 
 @Component
 @RequestMapping("/echo")
@@ -124,4 +124,4 @@ public class EchoHandler extends TextWebSocketHandler {
 		}
 		return obj;
 	}
-}
+}*/

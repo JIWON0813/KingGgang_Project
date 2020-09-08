@@ -1,4 +1,4 @@
-package com.teamb.controller;
+/*package com.teamb.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.ChatRoomDTO;
 
-/*
+
 이	   름 : ChatController
 개  발   자 : 이여진
 설	   명 : 채팅 컨트롤러
-*/
+
 
 @Controller
 public class ChatController {
@@ -39,11 +39,11 @@ public class ChatController {
 		return mv;
 	}
 	
-	/**
+	*//**
 	 * 방 생성하기
 	 * @param params
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/createRoom")
 	public @ResponseBody List<ChatRoomDTO> createRoom(@RequestParam HashMap<Object, Object> params){
 		String roomName = (String) params.get("roomName");
@@ -56,20 +56,20 @@ public class ChatController {
 		return roomList;
 	}
 	
-	/**
+	*//**
 	 * 방 정보가져오기
 	 * @param params
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/getRoom")
 	public @ResponseBody List<ChatRoomDTO> getRoom(@RequestParam HashMap<Object, Object> params){
 		return roomList;
 	}
 	
-	/**
+	*//**
 	 * 채팅방
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/moveChating")
 	public ModelAndView chating(@RequestParam HashMap<Object, Object> params) {
 		ModelAndView mv = new ModelAndView();
@@ -85,4 +85,4 @@ public class ChatController {
 		}
 		return mv;
 	}
-}
+}*/

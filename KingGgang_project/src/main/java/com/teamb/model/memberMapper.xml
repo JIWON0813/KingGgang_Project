@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateMember" parameterType="memberDTO">
 		update member set profile_name=#{profile_name},profile_size=#{profile_size},passwd=#{passwd}, 
 		email=#{email}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, intro=#{intro,jdbcType=VARCHAR}, point=#{point}
-			where membernum=#{memberNum}
+			where memberNum=#{memberNum}
 	</update>
   
 	<delete id="deleteMember" parameterType="int">

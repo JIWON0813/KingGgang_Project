@@ -15,7 +15,7 @@
 				<a href="home.do">메인페이지</a>|
 				<a href="main.hotel">호텔관리자모드로 가기</a>|
 				<c:if test="${mbId == 'admin' }">
-				<a href="main.admin">관리자모드로 가기</a>	
+				<a href="main.admin">관리자모드로 가기</a>|
 				</c:if>
 				<a href="insertMember.mem">회원가입</a>|
 				<c:if test="${mbId == null }">

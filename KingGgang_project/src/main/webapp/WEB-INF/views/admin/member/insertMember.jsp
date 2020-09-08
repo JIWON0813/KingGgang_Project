@@ -1,13 +1,12 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
- 	   function checkjoin() {
+	function checkjoin() {
        var reid = /^[a-zA-Z0-9]{4,12}$/; 
        var repass = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; 
        var reemail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-       /* 이메일, 휴대폰 번호 ,이미지파일
-       var reemail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-       var rehp = /^\d{3}-\d{3,4}-\d{4}$/; */
+       /* 휴대폰 번호 ,이미지파일
+          var rehp = /^\d{3}-\d{3,4}-\d{4}$/; */
 	   /* var reimg = /(.*?)\.(jpg|jpeg|png|gif|bmp|"")$/; */
 	   
        
@@ -74,12 +73,31 @@
     	   join.hp3.focus();
     	   return;
        }
+       var list = new Array();
+	   <c:forEach items="${memberList}" var="userid">
+	   list.push("${userid.id}");
+	   </c:forEach> 
+	   if(join.id.value==""){
+    	   alert("아이디를 입력해 주세요")
+    	   join.id.focus();
+    	   return false;
+       }
+	   for(var i = 0;i<list.length;i++){
+		   if(join.id.value == list[i]){
+			   alert("이미 가입된 아이디 입니다.");
+			   join.id.focus();
+			   return false;
+		   }  
+	   }
+	   	  alert("사용 가능한 아이디 입니다.");
+	   	  join.name.focus();
+	   	  return false;  
+ 	   }
       /*  if(join.filename!=null||join.filename!=""){
     	   if(!check(reimg,join.filename,"이미지 파일만 업로드 가능"));
     	   return;
        } */
       	form.submit()		      
- 	}
 	   function check(re, what, message) {
        if(re.test(what.value)) {
            return true;
@@ -89,6 +107,7 @@
        what.focus();
        return false;
    }  
+	   
 	   function idCheck(){
 	   var reid = /^[a-zA-Z0-9]{4,12}$/;
 	   join.idDuplication.value="idCheck";
@@ -214,7 +233,7 @@
                     </div>                   
                     </div>
                     <div class="btn_wrap">
-                      	<a href="javascript:checkjoin()">다음</a>
+                      	<a href="javascript:checkjoin()">회원가입</a>
                     </div>
                 </div> 
             </div>

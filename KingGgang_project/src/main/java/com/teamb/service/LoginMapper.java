@@ -22,16 +22,16 @@ public class LoginMapper {
 		return sqlSession.selectOne("getMemberNum",id);
 	}
 	
-	public int loginOk(MemberDTO dto){
-		String dbPass = sqlSession.selectOne("loginOk", dto);
-		if (dbPass != null) {
-			if (dbPass.trim().equals(dto.getPasswd())) {
-				return dto.OK;
+	public int loginOk(String id,String passwd){
+		String dbPass = sqlSession.selectOne("loginOk", id);
+		if (dbPass != null) { 
+			if (dbPass.trim().equals(passwd)) {
+				return MemberDTO.OK;
 			} else {
-				return dto.NOT_PW;
+				return MemberDTO.NOT_PW;
 			}
 		} else {
-			return dto.NOT_ID;
+			return MemberDTO.NOT_ID;
 		}
 	}
 	public MemberDTO getMemberid(String id){
@@ -39,5 +39,39 @@ public class LoginMapper {
 	}
 	public void logout(HttpSession session){
 		session.invalidate();
+	}
+	
+	public String searchMember_id(String name, String email){
+		java.util.Map<String, String> map = new java.util.Hashtable<String, String>();
+		if (name == null || email == null) {
+			name = "";
+			email = "";
+		}
+		
+		map.put("name", name);
+		map.put("email",email);
+		
+		String id = sqlSession.selectOne("searchMember_id", map);
+		if(id==null)
+			return null;
+		return id;
+	}
+	
+	public String searchMember_pw(String name, String email, String id){
+		java.util.Map<String, String> map = new java.util.Hashtable<String, String>();
+		if (name == null || email == null || id == null) {
+			name = "";
+			email = "";
+			id="";
+		}
+		
+		map.put("name", name);
+		map.put("email",email);
+		map.put("id", id);
+		
+		String passwd = sqlSession.selectOne("searchMember_pw", map);
+		if(passwd==null)
+			return null;
+		return passwd;
 	}
 }

@@ -103,9 +103,6 @@ public class MemberController {
 	 @RequestMapping(value = "/updatePro.mem")
 	 public String updatePro(HttpServletRequest req,MemberDTO dto, BindingResult result) {
 		UUID uuid = UUID.randomUUID();
-		String memberNum = req.getParameter("memberNum");
-		
-		dto = memberMapper.getMember(Integer.parseInt(memberNum));
 		String filename2 = req.getParameter("filename2");
 		int filesize2 = Integer.parseInt(req.getParameter("filesize2"));
 		
@@ -118,13 +115,13 @@ public class MemberController {
 		if (file.getSize() > 0) {
 			try {
 				file.transferTo(target);
-			} catch (IOException e) {
 				if (filename2 != null) {
 					File filedelete = new File(upLoadPath, filename2);
 					filedelete.delete();
 				}
-				profile_name = file.getOriginalFilename();
+				profile_name = uuid+file.getOriginalFilename();
 				profile_size = (int) file.getSize();
+			} catch (IOException e) {		
 			}
 		} else {
 			profile_name = filename2;
@@ -175,22 +172,20 @@ public class MemberController {
 		if (file.getSize() > 0) {
 			try {
 				file.transferTo(target);
+				profile_name = uuid + file.getOriginalFilename();
+				profile_size = (int) file.getSize();
+				dto.setProfile_name(profile_name);
+				dto.setProfile_size(profile_size);
 			} catch (IOException e) {
 			}
-
-			profile_name = uuid + file.getOriginalFilename();
-			profile_size = (int) file.getSize();
-			dto.setProfile_name(profile_name);
-			dto.setProfile_size(profile_size);
 		}
 
 		int res = memberMapper.insertMember(dto);
-
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "회원가입 완료.";
 			url = "home.do";
-		} else {
+		}else{
 			msg = "회원가입 실패.";
 			url = "home.do";
 		}

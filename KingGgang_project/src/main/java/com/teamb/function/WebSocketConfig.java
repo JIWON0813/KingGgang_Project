@@ -1,4 +1,4 @@
-package com.teamb.function;
+/*package com.teamb.function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -6,11 +6,11 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-/*
+
 이	   름 : webSocketConfig
 개  발   자 : 이여진
 설	   명 : 웹소켓 구현체와 등록해주는 config파일
-*/
+
 
 
 @Configuration
@@ -24,4 +24,4 @@ public class WebSocketConfig implements WebSocketConfigurer{
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 		registry.addHandler(echoHandler, "/echo/{roomNumber}");
 	}
-}
+}*/
