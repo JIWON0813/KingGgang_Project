@@ -32,4 +32,8 @@
 		update together set ttitle=#{ttitle}, temail=#{temail}, tcontent=#{tcontent} where togetherNum=#{togetherNum}
 	</update>
 	
+	<update id="plustReadcount" parameterType="int">
+		update together set treadcount=treadcount+1 where togetherNum=#{togetherNum}
+	</update>
+	
  </mapper>

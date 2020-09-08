@@ -62,7 +62,6 @@ public class CommboardDTO {
 		this.tag = tag;
 	}
 
-
 	public int getRe_step() {
 		return re_step;
 	}
@@ -102,5 +101,4 @@ public class CommboardDTO {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
-
 }

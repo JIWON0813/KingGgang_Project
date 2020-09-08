@@ -10,6 +10,7 @@
 -->
  
 <mapper namespace="com.teamb.model.Comm">
+
 	<select id="getBoard" resultType="CommboardDTO" parameterType="int">
 		select * from commboard where boardNum=#{boardNum}
 	</select>
@@ -35,5 +36,4 @@
 		update commboard set content=#{content} where boardNum=#{boardNum}
 	</update>
 	
-
 </mapper>

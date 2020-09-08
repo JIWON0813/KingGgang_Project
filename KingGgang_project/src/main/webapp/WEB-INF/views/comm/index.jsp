@@ -74,7 +74,7 @@
 					<div class="full">
 						<div class="heading_main text_align_center">
 							<h2>
-								<span class="theme_color"></span>뉴스피드
+								<span class="theme_color"></span><a href="comm_togetherList.do">뉴스피드</a>
 							</h2>
 						</div>
 					</div>
@@ -102,6 +102,7 @@
 					<br>
 						<div class="center">
 							<a class="main_bt" href="moreList();">See More ></a>
+
 						</div>
 					</div>
 				</div>

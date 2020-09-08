@@ -1,8 +1,8 @@
 package com.teamb.controller;
 
-/*이	   름 : CommTogetherController.java
-개  발   자 : 최 인 아
-설	   명 : 투게더Controller*/
+/*�씠	   由� : CommTogetherController.java
+媛�  諛�   �옄 : 理� �씤 �븘
+�꽕	   紐� : �닾寃뚮뜑Controller*/
 
 import java.io.File;
 import java.io.IOException;
@@ -53,11 +53,12 @@ public class CommTogetherController {
 		
 		int res = togetherMapper.writeTogether(dto);
 		String msg = null, url = null;
+
 		if (res > 0) {
-			msg = "글 등록되었습니다.";
+			msg = "湲� �벑濡앸릺�뿀�뒿�땲�떎.";
 			url = "comm_togetherList.do";
 		} else {
-			msg = "글 등록에 실패하였습니다.";
+			msg = "湲� �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎.";
 			url = "comm_togetherWF.do";
 		}
 		req.setAttribute("msg", msg);
@@ -80,6 +81,7 @@ public class CommTogetherController {
 	@RequestMapping(value = "/comm_tcontent.do", method = RequestMethod.GET)
 	public String tcontent(HttpServletRequest req, @RequestParam int togetherNum) {
 		
+		togetherMapper.plustReadcount(togetherNum);
 		CommTogetherDTO dto = togetherMapper.getTogether(togetherNum);
 		req.setAttribute("getTogether",dto);
 		
@@ -99,11 +101,12 @@ public class CommTogetherController {
 		
 		int res = togetherMapper.updateTogether(dto);
 		String msg = null, url = null;
+
 		if (res > 0) {
-			msg = "글이 수정되었습니다!!";
+			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
 			url = "comm_tcontent.do";
 		}else{
-			msg = "글 수정에 실패하였습니다!!";
+			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
 			url = "comm_tupdateForm.do";
 		}
 		
@@ -117,8 +120,9 @@ public class CommTogetherController {
 	public ModelAndView tdeletePro(@RequestParam int togetherNum) {
 		int res = togetherMapper.deleteTogether(togetherNum);
 		String msg = null, url = null;
+
 		if (res > 0) {
-			msg = "글이 삭제되었습니다.";
+			msg = "湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
 			url = "comm_togetherList.do";
 		}
 		ModelAndView mav = new ModelAndView();
