@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.teamb.model.Comm">
 
 	<select id = "comm_loginOk" resultType="comm_memberDTO">
-        select * from comm_member where comm_nickname=#{comm_nickname} and comm_memberNum=#{memberNum}
+        select * from comm_member where comm_nickname=#{comm_nickname} and memberNum=#{memberNum}
     </select>
     
     <select id="comm_checkMember" parameterType="int" resultType="comm_memberDTO">
@@ -30,12 +30,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from comm_member where comm_memberNum = #{comm_memberNum}
  	</select>
  	
- 	<select id ="comm_deleteMember"  parameterType="String">
+ 	<select id ="comm_deleteMember"  parameterType="int" >
 		delete from comm_member where comm_memberNum = #{comm_memberNum}
 	</select>
 	
+	<select id ="admin_comm_deleteMember"  parameterType="String" >
+		delete from comm_member where comm_nickname = #{comm_nickname}
+	</select>
+	
+	
 	<update id="comm_updateMember" parameterType="Comm_MemberDTO" >
-		update comm_member set comm_nickname=#{comm_nickname},
+		update comm_member set comm_nickname=#{comm_nickname}
+		,comm_profilename=#{comm_profilename}, <!-- comm_profilesize=#{comm_profilesize}, -->
 		comm_birth=#{comm_birth}, comm_intro=#{comm_intro} 
 		where comm_memberNum = #{comm_memberNum}
 	</update>

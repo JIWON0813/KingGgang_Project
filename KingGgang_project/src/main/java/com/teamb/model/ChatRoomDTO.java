@@ -30,8 +30,22 @@ public class ChatRoomDTO {
 		this.roomName = roomName;
 	}
 	
-	
+	 @Override
+     public int hashCode() {
+         return (this.chatroom_id + this.roomName.hashCode());
+     }
 
+	 
+	@Override
+    public boolean equals(Object obj) {
+        if(obj instanceof ChatRoomDTO) {
+        	ChatRoomDTO temp = (ChatRoomDTO) obj;
+            if(this.chatroom_id==(temp.chatroom_id) && this.roomName.equals(temp.roomName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 	
 	
 	

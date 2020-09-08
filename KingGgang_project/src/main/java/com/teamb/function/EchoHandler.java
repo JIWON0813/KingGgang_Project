@@ -53,7 +53,13 @@ public class EchoHandler extends TextWebSocketHandler {
 	      System.out.println("1 : " + msg.toString());
 	      JSONObject obj = new JSONObject(message.getPayload());*/
 		
-
+		ChatMsgDTO msg = ChatMsgDTO.convertMessage(message.getPayload());
+		System.out.println("1 : " + msg.toString());
+	     
+		//db에 메세지 저장
+		chatMapper.insertMessage(msg);
+	     System.out.println("메세지 등록 성공!");
+ 
 		JSONObject obj = new JSONObject(message.getPayload());
 		
 		String rN = (String) obj.get("chatroom_id");
@@ -83,12 +89,14 @@ public class EchoHandler extends TextWebSocketHandler {
 				}
 			}
 		}
-	}
-	      	/*msg.setChatroom_id(setroom.getChatroom_id());
-	      	chatMapper.insertMessage(msg);
-	      	System.out.println("메세지 등록 성공!");
-	      	*/
+	
+		/*msg.setChatroom_id(setroom.getChatroom_id());
+      	chatMapper.insertMessage(msg);
+      	System.out.println("메세지 등록 성공!");
+      	*/
 
+	}
+	      
 		      
 	      
 

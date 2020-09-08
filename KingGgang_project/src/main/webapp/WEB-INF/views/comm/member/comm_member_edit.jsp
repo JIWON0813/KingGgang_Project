@@ -3,7 +3,8 @@
 <section id="four" class="wrapper style1 special fade-up">
 	<div class="container">		
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
-<form name="join" method="post" action="comm_member_edit_ok.do" onsubmit="return check()" enctype="multipart/form-data">			
+<form name="join" method="post" action="comm_member_edit_ok.do?comm_memberNum=${comm_getMember.comm_memberNum }" 
+							onsubmit="return check()" enctype="multipart/form-data">			
 <div class="wrap wd668">
    <div class="container">
        <div class="form_txtInput">
@@ -15,7 +16,7 @@
                   <col width="auto"/>
                </colgroup>                           
                <tbody>
-                 <input type="hidden" name="memberNum" value="${comm_getMember.comm_memberNum}"/>
+                 <input type="hidden" name="comm_memberNum" value="${comm_getMember.comm_memberNum}"/>
                  	<tr>
 						<th><span>이름</span></th>
 						<td><input type="text" name="comm_name" value="${comm_getMember.comm_name}" readOnly></td>
@@ -33,7 +34,9 @@
   					<tr>
 						<th><span>프로필사진</span></th>
 						<td>
-							<input type="file" name="comm_profile_name" value="${comm_getMember.comm_profilename}">
+							<input type="file" name="filename">
+							<%-- <input type="hidden" name="comm_profile_size" value="${comm_getMember.comm_profilesize}"> --%>
+							<img src="http://localhost:8090/img/${comm_getMember.comm_profilename}" width="100" height="100">
 						</td>
 					</tr>
   					<tr>

@@ -58,7 +58,7 @@
 				<tr>
 					<td colspan="2" align="center">
 					<input type="submit" value="조회"> 
-					<input type="button" value="취소" onclick="window.location='login.mem'">
+					<input type="button" value="취소" onclick="window.location='login.log'">
 					</td>
 				</tr>
 			</table>

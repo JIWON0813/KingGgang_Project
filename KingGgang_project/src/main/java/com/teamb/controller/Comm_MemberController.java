@@ -1,4 +1,3 @@
-// 지은
 package com.teamb.controller;
 
 import java.io.File;
@@ -22,12 +21,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.service.Comm_MemberMapper;
+import com.teamb.service.CommboardMapper;
 
-
+/*
+이	   름 : Comm_MemberController
+개  발   자 : 황지은
+성	   명 : 커뮤니티 로그인/멤버 컨트롤러
+*/
 @Controller
 public class Comm_MemberController {
 	@Autowired
 	private Comm_MemberMapper memberMapper;
+	private CommboardMapper boardMapper;
 	
 	
 	@Resource(name="upLoadPath")
@@ -36,7 +41,6 @@ public class Comm_MemberController {
 	@RequestMapping(value="/comm_login.do")
 	public String comm_login(HttpSession session){
 		int memberNum = (Integer)session.getAttribute("memberNum");
-	
 		return "comm/login/comm_login";
 	}
 	
@@ -45,42 +49,52 @@ public class Comm_MemberController {
 	public String comm_loginOk(Comm_MemberDTO dto, HttpServletRequest req,HttpSession session) {
 		Comm_MemberDTO login = memberMapper.comm_loginOk(dto);
 		String msg = null, url = null;
-		if (login == null) {
+        	if (login == null) {
 			session.setAttribute("comm_login", null);
 			msg = "등록정보가 없습니다. 닉네임을 확인해주세요.";
 			url = "commhome.comm";
 		} else {
-
+			
+			//인아쓰
+			int comm_memberNum = memberMapper.comm_getmemberNum(dto.getComm_nickname());
+			session.setAttribute("comm_memberNum",comm_memberNum);
+	        session.setAttribute("commmember",memberMapper.comm_getMember(comm_memberNum));
+	        String comm_profilename = memberMapper.comm_getMember(comm_memberNum).getComm_profilename();
+	        session.setAttribute("comm_profilename", comm_profilename);
+	        //지은쓰
 			session.setAttribute("comm_login", login);
-			session.setAttribute("comm_memberNum", login.getComm_memberNum());
+			session.setAttribute("login_comm_memberNum", login.getComm_memberNum());
+			String comm_nickname = memberMapper.comm_getMember(comm_memberNum).getComm_nickname();
+	        session.setAttribute("comm_nickname", comm_nickname);
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
-		}
-		
+        	}
+	
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		return "message";
 	}	
 	
 	@RequestMapping("/comm_checkMember.do")
-	public String commcheckMember(HttpServletRequest req,HttpSession session){
-		int memberNum = (Integer)session.getAttribute("memberNum");
-		
-		boolean isMember=memberMapper.comm_checkMember(memberNum);
-		String msg = null, url = null;
-		if (isMember){
-			msg="이미 등록된 회원입니다. 로그인을 해주세요.";
-			url="comm_login.do";
-		}else {
-			session.setAttribute("memberNum", memberNum);
-			msg="회원가입 페이지로 이동합니다.";
-			url="comm_member_input.do";
-		}
-		
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";
-	}
+	   public String commcheckMember(HttpServletRequest req,HttpSession session){
+	      int memberNum = (Integer)session.getAttribute("memberNum");
+	      
+	      boolean isMember=memberMapper.comm_checkMember(memberNum);
+	      String msg = null, url = null;
+	      if (isMember){
+	         msg="이미 등록된 회원입니다. 로그인을 해주세요.";
+	         url="comm_login.do";
+	      }else {
+	         session.setAttribute("memberNum", memberNum);
+	         msg="회원가입 페이지로 이동합니다.";
+	         url="comm_member_input.do";
+	      }
+	      
+	      req.setAttribute("msg", msg);
+	      req.setAttribute("url", url);
+	      return "message";
+	   }
+	
 	@RequestMapping("/comm_member_input.do")
 	public String comminsertMemberForm(HttpServletRequest req,HttpSession session){
 		int memberNum = (Integer)session.getAttribute("memberNum");
@@ -113,11 +127,11 @@ public class Comm_MemberController {
 			comm_profilename = file.getOriginalFilename();
 			comm_profilesize=(int)file.getSize();
 		}
-			
+			dto.setMemberNum(memberNum);
+			dto.setComm_name(comm_name);
 			dto.setComm_profilename(comm_profilename);
 			dto.setComm_profilesize(comm_profilesize);
-			dto.setMemberNum(memberNum);
-			 dto.setComm_name(comm_name);
+			
 		
 		    
 		
@@ -131,7 +145,6 @@ public class Comm_MemberController {
 			msg="가입실패";
 			url="commhome.comm";
 		}
-		//session.setAttribute("comm_memberNum", dto.getComm_memberNum());
 		
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
@@ -154,22 +167,41 @@ public class Comm_MemberController {
 	public ModelAndView commMemberEdit(HttpServletRequest req,HttpSession session,
 											@RequestParam int comm_memberNum){
 		Comm_MemberDTO dto = memberMapper.comm_getMember(comm_memberNum);
-		session.getAttribute("comm_memberNum");
 		ModelAndView mav = new ModelAndView
 				("comm/member/comm_member_edit", "comm_getMember", dto);
 		
-		session.setAttribute("comm_getMember", memberMapper.comm_getMember(comm_memberNum));
 		
 		return mav;
 	}
 		
 	@RequestMapping(value = "/comm_member_edit_ok.do", method = RequestMethod.POST)
-	public String commMemberEditOk(HttpServletRequest req, HttpSession session, 
-			 					Comm_MemberDTO dto, BindingResult result) {
-		//int memberNum = (Integer)session.getAttribute("memberNum");
-		session.getAttribute("comm_getMember");
+	public String commMemberEditOk(HttpServletRequest req, HttpSession session,
+									Comm_MemberDTO dto, @RequestParam int comm_memberNum , BindingResult result) {
+		
+		String comm_profilename="";
+		int comm_profilesize=0;
+		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
+		MultipartFile file = mr.getFile("filename");
+		System.out.println("파일값"+file.getOriginalFilename());
+		File target = new File(upLoadPath, file.getOriginalFilename());
+		if(file.getSize()>0){
+			try {
+				file.transferTo(target);
+			} catch (IOException e) {}
+			
+			comm_profilename = file.getOriginalFilename();
+			comm_profilesize=(int)file.getSize();
+			dto.setComm_profilename(comm_profilename);
+			dto.setComm_profilesize(comm_profilesize);
+		}
+		else{
+			dto = memberMapper.comm_getMember(comm_memberNum);
+			dto.setComm_profilename(dto.getComm_profilename());
+			dto.setComm_profilesize(dto.getComm_profilesize());
+		}
+			
+		
 		int res = memberMapper.comm_updateMember(dto);
-
 		String msg = null, url = null;
 		if (res>0) {
 			msg = "회원수정성공! 메인페이지로 이동합니다.";
@@ -178,20 +210,40 @@ public class Comm_MemberController {
 			msg = "회원수정실패! 메인페이지로 이동합니다.";
 			url = "commhome.comm";
 		}
-	//	session.setAttribute("comm_login", login);
+		
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		return "message";
 	}
 	
 	@RequestMapping("/comm_member_delete.do")
-	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum){
+	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum,@RequestParam int boardNum){
+		int res2 = boardMapper.deleteBoard(boardNum);
 		int res = memberMapper.comm_deleteMember(comm_memberNum);
 			Comm_MemberDTO login = memberMapper.comm_getMember(comm_memberNum);
 		String msg = null, url = null;
-		if(res>0){
+		if(res>0&&res2>0){
 				HttpSession session = req.getSession();
 				session.setAttribute("comm_login", login);
+			msg="회원삭제성공!";
+			url="commhome.comm";
+		}else{
+			msg="회원삭제실패!";
+			url="commhome.comm";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";	
+	}
+	
+	@RequestMapping("/admin_comm_member_delete.do")
+	public String adminmemberDelete(HttpServletRequest req,@RequestParam String comm_nickname){
+		int res = memberMapper.admin_comm_deleteMember(comm_nickname);
+			//Comm_MemberDTO login = memberMapper.comm_getMember(memberNum);
+		String msg = null, url = null;
+		if(res>0){
+			//	HttpSession session = req.getSession();
+			//	session.setAttribute("comm_login", login);
 			msg="회원삭제성공!";
 			url="commhome.comm";
 		}else{
