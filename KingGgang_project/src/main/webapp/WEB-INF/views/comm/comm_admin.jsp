@@ -11,7 +11,8 @@
 	
 	<ul>
 		<li><a href="comm_memberList.do">회원목록</a></li>
-		<li><a href="#">공지사항 등록</a></li>
+		<li><a href="comm_noticewrite.do">공지사항 등록</a></li>
+		<li><a href="comm_noticeList.do">공지사항 목록</a></li>
 		<li><a href="#">신고목록</a></li>
 		
 	

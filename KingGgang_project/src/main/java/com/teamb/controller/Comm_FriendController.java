@@ -46,10 +46,8 @@ public class Comm_FriendController {
 		
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
-		int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
-		
+		int comm_memberNum=dto.getComm_memberNum();
 		String msg = null, url = null;
-		
 		if(login_comm_memberNum==comm_memberNum){
 			msg="본인 자신은 친구 추가가 되지 않습니다.";
 			url = "comm_memberList.do";
@@ -82,6 +80,8 @@ public class Comm_FriendController {
 		for(Comm_FriendDTO dto2: list){
 			int m=dto2.getComm_memberNum();
 			Comm_MemberDTO mdto=memberMapper.comm_getMember(m);
+			dto2.setF_comm_profilename(mdto.getComm_profilename());
+			dto2.setF_comm_profilesize(dto2.getF_comm_profilesize());
 			dto2.setF_name(mdto.getComm_name());
 		}
 		session.setAttribute("friendList", list);

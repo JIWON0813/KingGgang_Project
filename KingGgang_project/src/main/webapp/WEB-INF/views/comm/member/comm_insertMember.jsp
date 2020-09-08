@@ -39,10 +39,8 @@ function comm_inputIdCheck(){
 	   
 	   
 </script>
-
-
 <form name="join" action="comm_member_input_ok.do" enctype="multipart/form-data" method="post">
-	<div class="wrap wd668">
+	 <div class="section layout_padding">
 		<div class="container">
 			<div class="form_txtInput">
 				<h2 class="sub_tit_txt">회원가입</h2>

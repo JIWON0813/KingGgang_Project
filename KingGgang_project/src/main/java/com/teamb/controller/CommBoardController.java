@@ -238,4 +238,6 @@ public class CommBoardController {
 		mav.setViewName("message");
 		return mav;
 	}
+	
+	
 }

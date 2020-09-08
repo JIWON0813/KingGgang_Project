@@ -38,7 +38,7 @@
 			</c:if>
 			<c:forEach var="dto" items="${boardList}">		
 				<section class="col-4 col-6-medium col-12-xsmall">
-			<a href=""><img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300"></a>
+			<a href=""><img src="http://localhost:8090/img/${dto.file_name}" width="300" height="300"></a>
 			</section>
 			</c:forEach>
 		</div>

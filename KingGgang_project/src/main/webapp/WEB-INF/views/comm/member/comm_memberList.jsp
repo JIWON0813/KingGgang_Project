@@ -29,12 +29,22 @@
 				<td>${dto.memberNum} //// ${dto.comm_memberNum }</td>
 				<td>${dto.comm_name}</td>
 				<td>${dto.comm_nickname}</td>
-				<td>${dto.comm_birth }</td>
-				<td>${dto.comm_profilename }</td>
+				<td>${dto.comm_birth }</td> 
+				<%-- <td>${dto.comm_profilename }</td> --%>
+				<c:if test="${dto.comm_profilename  == null}">
+				<td><img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200"></td>
+				</c:if>
+				<c:if test="${dto.comm_profilename  != null}">
+				<td>
+			 	<img src="http://localhost:8090/img/${dto.comm_profilename}" width="200" height="200">
+			 	</td>
+				</c:if>
 				<td>${dto.comm_intro }</td>
 				<td><a href="comm_friend_insert.do?login_comm_memberNum=${login_comm_memberNum }&comm_memberNum=${dto.comm_memberNum }">친구추가</a></td> 
 				<td><a href="room?comm_memberNum=${dto.comm_memberNum}&comm_name=${dto.comm_name}">채팅하기</a></td> 
-				<td><a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a></td> 
+				<%-- <c:if test=""> --%>
+				<td><a href="admin_comm_member_delete.do?comm_nickname=${dto.comm_nickname }">삭제</a></td> 
+				<%-- </c:if> --%>
 			</tr>
 		</c:forEach>
 		</table>

@@ -6,7 +6,6 @@
 	설	   명 : content
  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ include file="/WEB-INF/views/top.jsp"%>
 <div align="center">
 	<table width="300">
 	<tr>
@@ -15,7 +14,7 @@
 	<c:if test="${getBoard.file_size != 0}">
 		<tr align="center">
 			 <td align="center" colspan="3">
-			 	<img src="http://localhost:8080/img/${getBoard.file_name}" width="400" height="400">
+			 	<img src="http://localhost:8090/img/${getBoard.file_name}" width="400" height="400">
 			 </td>
 		</tr>
 	</c:if>
@@ -32,7 +31,8 @@
 		<tr height="30">
 			<th>장소</th>
 			<td align="center" width="30%">${getBoard.loc}</td>
-			<th align="right" width="10"><img src="${pageContext.request.contextPath}/resources/img/bookmark.png" width="30" height="30"></th>
+			<th align="right" width="10"><a href="comm_bookMark.do?boarmNum=${getBoard.boardNum }">
+					<img src="${pageContext.request.contextPath}/resources/img/bookmark.png" width="30" height="30"></a></th>
 		</tr>
 
 		<tr>
@@ -91,4 +91,3 @@
  </form>		
 </div>
 
-<%@ include file="/WEB-INF/views/bottom.jsp"%>

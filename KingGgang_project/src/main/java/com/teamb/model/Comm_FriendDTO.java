@@ -5,6 +5,8 @@ public class Comm_FriendDTO {
 	private int friendNum; // ģ���߰��� ����
 	private int comm_memberNum; // �ش� ����	
 	private String f_name;
+	private String f_comm_profilename;
+	private int f_comm_profilesize;
 	
 	
 	public int getLogin_comm_memberNum() {
@@ -30,6 +32,18 @@ public class Comm_FriendDTO {
 	}
 	public void setF_name(String f_name) {
 		this.f_name = f_name;
+	}
+	public String getF_comm_profilename() {
+		return f_comm_profilename;
+	}
+	public void setF_comm_profilename(String f_comm_profilename) {
+		this.f_comm_profilename = f_comm_profilename;
+	}
+	public int getF_comm_profilesize() {
+		return f_comm_profilesize;
+	}
+	public void setF_comm_profilesize(int f_comm_profilesize) {
+		this.f_comm_profilesize = f_comm_profilesize;
 	}
 	
 	

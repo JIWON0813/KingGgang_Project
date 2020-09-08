@@ -55,4 +55,9 @@ public class Comm_MemberMapper {
 		int res = sqlSession.insert("comm_deleteMember",comm_memberNum);
 		return res;
 	}
+
+	public int admin_comm_deleteMember(String comm_nickname) {
+		int res = sqlSession.insert("admin_comm_deleteMember",comm_nickname);
+		return res;
+	}
 }

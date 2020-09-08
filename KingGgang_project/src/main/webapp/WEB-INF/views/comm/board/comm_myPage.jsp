@@ -11,7 +11,7 @@
 <table>
    <tr>
 	  	 <td width="120" height="120">
-		      <img src="http://localhost:8080/img/${filename}" width="180" height="180">
+		      <img src="http://localhost:8090/img/${filename}" width="180" height="180">
 		       <h3>${name}</h3>
 	   	</td>
 	   <td>
@@ -30,7 +30,7 @@
 	   </c:if>   
 	   <c:forEach var="dto" items="${boardList}">
 	   		<a href="comm_content.do?boardNum=${dto.boardNum}">
-	        	<img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300">
+	        	<img src="http://localhost:8090/img/${dto.file_name}" width="300" height="300">
 	        </a>
 	   </c:forEach>          
 </div>
