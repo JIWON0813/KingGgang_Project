@@ -39,6 +39,8 @@ function comm_inputIdCheck(){
 	   
 	   
 </script>
+
+
 <form name="join" action="comm_member_input_ok.do" enctype="multipart/form-data" method="post">
 	 <div class="section layout_padding">
 		<div class="container">
@@ -90,6 +92,7 @@ function comm_inputIdCheck(){
 				<input type="button" value="취소" onclick="window.location='commhome.comm'" >
 			</div>
 		</div>
-	</div>
+	</div> 
 </form>
+
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

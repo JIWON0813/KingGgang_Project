@@ -30,8 +30,9 @@
 									<li><a href="comm_bookMark.do">> BookMark</a></li>
 									<li><a href="commadmin.comm">> 관리자모드</a></li>
 									<li><c:if test="${comm_login == null }">
-											<a href="comm_login.do?memberNum=${memberNum }">> 로그인</a>
-											<a href="comm_checkMember.do?memberNum=${memberNum}">>
+											<%-- <a href="comm_login.do?memberNum=${memberNum }">> 로그인</a> --%>
+											<a href="comm_login.do">> 로그인</a>
+											<a href="comm_checkMember.do">>
 												가입하기</a>
 
 										</c:if> <c:if test="${comm_login != null }">

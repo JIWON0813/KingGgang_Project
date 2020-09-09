@@ -92,6 +92,11 @@ public class CommNewsfeedController {
 	}
 	
 	
+	@RequestMapping("/test")
+	public String test(HttpServletRequest req) {
+		return "comm/ex01";
+	}
+	
 	/*
 	 * @ResponseBody
 	 * 

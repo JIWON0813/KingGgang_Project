@@ -33,7 +33,8 @@
 	      <h2>등록된 게시물이 없습니다.</h2>
 	   </c:if>   
 	   <c:forEach var="dto" items="${boardList}">
-	   		<a href="comm_content.do?boardNum=${dto.boardNum}">
+	   <a href="comm_otherContent.do?boardNum=${dto.boardNum}">
+	   		<%-- <a href="comm_content.do?boardNum=${dto.boardNum}"> --%>
 	        	<img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300">
 	        </a>
 	   </c:forEach>          

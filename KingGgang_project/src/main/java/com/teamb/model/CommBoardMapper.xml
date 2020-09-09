@@ -37,7 +37,7 @@
 	</select>
 	
 	<select id="deleteAllBoard" parameterType="int" resultType="int">
-		delete from commboard where comm_memberNum=#{comm_memberNum} 
+		delete from commboard where comm_memberNum=#{comm_memberNum}
 	</select>
 	
 	<update id="updateBoard" parameterType="CommboardDTO">
