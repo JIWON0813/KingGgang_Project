@@ -2,10 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>신고목록</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
 <div class="section layout_padding">
 <div align="center">
 <form name="f" onsubmit="return check()">
-	<b>신 고 목 록</b>
 	<table width="800">
 		<td align="right"><a href="commadmin.comm">뒤로가기</a></td>
 	</table>

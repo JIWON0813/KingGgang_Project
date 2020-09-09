@@ -7,6 +7,21 @@
  -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>MyPage</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
 <div class="section layout_padding">
 <div align="left">
 <table>
@@ -15,9 +30,14 @@
 		      <img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
 		 </td>
 		 <td>
-	    	&nbsp;&nbsp;&nbsp;&nbsp;
+	    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="comm_friendAll.do?comm_memberNum=${comm_memberNum}">친구</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="comm_writeForm.do">Write</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+	   		<a href="comm_bookMark.do">BookMark</a>
 	   </td>
+	 
 	</tr>
 	<tr>
 		 <td>
@@ -28,7 +48,7 @@
 </table>
 </div>
 <div>
-    <hr color="pink">
+    <hr color="orange">
 	   <c:if test="${empty boardList}">
 	      <h2>등록된 게시물이 없습니다.</h2>
 	   </c:if>   

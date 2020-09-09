@@ -36,7 +36,7 @@
 				</c:if>
 				<c:if test="${dto.comm_profilename  != null}">
 				<td>
-			 	<img src="http://localhost:8090/img/${dto.comm_profilename}" width="200" height="200">
+			 	<img src="http://localhost:8080/img/${dto.comm_profilename}" width="200" height="200">
 			 	</td>
 				</c:if>
 				<td>${dto.comm_intro }</td>

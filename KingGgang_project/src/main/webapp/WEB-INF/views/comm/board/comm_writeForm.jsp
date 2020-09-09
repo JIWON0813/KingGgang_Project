@@ -6,7 +6,6 @@
 	설	   명 : 메인 페이지
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
-<div class="section layout_padding">
 <script type="text/javascript">
 	function check(){
 		if (f.file_name.value==""){
@@ -22,13 +21,23 @@
 		return true
 	}
 </script>
-
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>새 게시글</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
 <div class="section layout_padding" align="center">
 	<form name="f" action="comm_writePro.do" method="post" onsubmit="return check()" enctype="multipart/form-data">
-		<header>
-			<b>새 게시물</b>
-		</header>
-		<hr width=90 color=orange>
 		<table width="600">
 			<tr>
 				<th width="150" align="center">사진명</th>
@@ -52,6 +61,5 @@
 			</tr>
 		</table>
 	</form>
-</div>
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

@@ -21,7 +21,7 @@
 			 			<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200">
 			 			</c:if>
 						<c:if test="${dto.f_comm_profilename  != null}">
-			 			<img src="http://localhost:8090/img/${dto.f_comm_profilename}" width="200" height="200">
+			 			<img src="http://localhost:8080/img/${dto.f_comm_profilename}" width="200" height="200">
 			 			</c:if>
 						<h4>${dto.f_name }</h4>
 						<%-- <p>${dto.comm_memberNum }</p>

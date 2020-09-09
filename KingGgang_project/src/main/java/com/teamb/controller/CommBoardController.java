@@ -53,7 +53,7 @@ public class CommBoardController {
 	}
 
 	@RequestMapping(value = "/comm_writePro.do", method = RequestMethod.POST)
-	public String writePro(HttpServletRequest req, @ModelAttribute CommboardDTO dto, BindingResult result) {
+	public String writePro(HttpServletRequest req, HttpSession session, @ModelAttribute CommboardDTO dto, BindingResult result) {
 
 		if (result.hasErrors()) {
 			dto.setBoardNum(0);
@@ -61,8 +61,6 @@ public class CommBoardController {
 			dto.setRe_level(0);
 			dto.setRe_group(0);
 		}
-
-		HttpSession session = req.getSession();
 		
 		MemberDTO member = (MemberDTO)session.getAttribute("login");
 		
@@ -198,8 +196,30 @@ public class CommBoardController {
 	}
 
 	@RequestMapping(value = "/comm_updatePro.do", method = RequestMethod.POST)
-	public String updatePro(HttpServletRequest req, HttpSession session, @ModelAttribute CommboardDTO dto, 
-							@RequestParam int boardNum) {
+	public String updatePro(HttpServletRequest req, HttpSession session, 
+							CommboardDTO dto, @RequestParam int boardNum) {
+		
+		String file_name = "";
+		int file_size = 0;
+		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
+		MultipartFile file = mr.getFile("file_name");
+		System.out.println("파일값"+file.getOriginalFilename());
+		File target = new File(upLoadPath, file.getOriginalFilename());
+		if(file.getSize()>0){
+			try {
+				file.transferTo(target);
+			} catch (IOException e) {}
+			
+			file_name = file.getOriginalFilename();
+			file_size=(int)file.getSize();
+			dto.setFile_name(file_name);
+			dto.setFile_size(file_size);
+		}
+		else{
+			dto = boardMapper.getBoard(boardNum);
+			dto.setFile_name(dto.getFile_name());
+			dto.setFile_size(dto.getFile_size());
+		}
 		
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;

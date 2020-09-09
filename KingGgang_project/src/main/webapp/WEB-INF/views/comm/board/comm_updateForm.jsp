@@ -7,22 +7,30 @@
 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ include file="/WEB-INF/views/top.jsp"%>
-<header>
-		<h2>게시물 수정</h2>
-</header>
-<div align="center">
-	<form name="f" action="comm_updatePro.do" method="post" onsubmit="return check()">
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>게시물 수정</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
+<div class="section layout_padding" align="center">
+	<form name="f" action="comm_updatePro.do?boardNum=${getBoard.boardNum}" method="post" onsubmit="return check()" enctype="multipart/form-data">
 	<input type="hidden" name="boardNum" value="${getBoard.boardNum}">
 	<table width="600">
-	<!-- <tr>
-			<th><img src="warn.png"></th>
-		</tr> -->
 		<tr align="center">
 			 <td align="center" colspan="3">
 			 	<input type="file" name="file_name">
-			 	<%-- <img src="${pageContext.request.contextPath}/resources/img/${getBoard.file_name}" width="30" height="30"> --%>
 			 	<img src="http://localhost:8080/img/${getBoard.file_name}" width="200" height="200">
-				<input type="hidden" name="file_size" value="${getBoard.file_size}">
+				<%-- <input type="hidden" name="file_size" value="${getBoard.file_size}"> --%>
 			 </td>
 		</tr>
 		
@@ -33,11 +41,6 @@
 		<tr>
 			<th>태그하기</th>
 			<td><input type="text" name="tag" value="${getBoard.tag}"></td>
-		</tr>
-		
-		<tr>
-			<th>위치표시하기</th>
-			<td><input type="text" name="loc" value="${getBoard.loc}"></td>
 		</tr>
 		
 		<tr>
