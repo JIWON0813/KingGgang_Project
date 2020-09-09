@@ -63,6 +63,17 @@
               					
 							</div>
 						</div>
+						 <div class="section layout_padding" style="width:60% !important; margin-left:100px;">
+                            <div class="full">
+                                <h3 style="font-size: 20px !important"><font size=7>낑</font><font size=3>깡</font><font size=7>같</font><font size=3>이</font><font size=7>따</font><font size=3>러갈래?</font> 
+                                <img alt="#" src="${pageContext.request.contextPath}/resources/main/images/orange.png">
+                                <a href="comm_togetherList.do" style="font-size:10px;color:#FFFFFF;float: right;"> >> 더 알아보기</a></h3>
+                            <div style="width:100%; height: 200px; " >
+           					 <iframe src="${pageContext.request.contextPath}/comm_mainTogetherList" style="width: 100%; 
+            				  height: 100%; border: none;" ></iframe>    
+      						 </div>
+                             </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -75,7 +86,7 @@
 					<div class="full">
 						<div class="heading_main text_align_center">
 							<h2>
-								<span class="theme_color"></span><a href="comm_togetherList.do">뉴스피드</a>
+								<span class="theme_color"></span>뉴스피드
 							</h2>
 						</div>
 					</div>
@@ -91,7 +102,7 @@
 			<c:forEach var="dto" items="${boardList}" varStatus="status">
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="full services_blog">
-						<a href="">
+						<a href="comm_otherContent.do?boardNum=${dto.boardNum}">
 						<img class="img-responsive" src="http://localhost:8080/img/${dto.file_name}" alt="#" />
 						</a>
 					</div>
@@ -150,5 +161,5 @@ $(function() {
         }
 
     })
-})
+});
 </script>

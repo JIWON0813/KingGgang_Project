@@ -293,4 +293,29 @@ public class CommBoardController {
 	      return "comm/board/comm_myPage";
 	   }
 
+	@RequestMapping(value = "/comm_otherContent.do", method = RequestMethod.GET)
+	public String otherContent(HttpServletRequest req, @RequestParam int boardNum) {
+		HttpSession session = req.getSession();
+		String mbId = (String) session.getAttribute("mbId");
+		boolean isLogin = false;
+		if (mbId != null)
+			isLogin = true;
+		req.setAttribute("isLogin", isLogin);
+		
+		
+		CommboardDTO dto = boardMapper.getBoard(boardNum);
+		req.setAttribute("getBoard", dto);
+		
+		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
+		req.setAttribute("replyList", list);
+		
+		 Comm_MemberDTO member = comm_memberMapper.comm_getMember(dto.getComm_memberNum());
+		 req.setAttribute("comm_profilename",member.getComm_profilename());
+	     req.setAttribute("comm_nickname",member.getComm_nickname());
+	      
+	      
+		
+
+		return "comm/board/comm_content";
+	}
 }
