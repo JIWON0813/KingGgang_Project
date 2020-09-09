@@ -1,6 +1,5 @@
 package com.teamb.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,61 +9,59 @@ import org.springframework.stereotype.Service;
 import com.teamb.model.ChatMsgDTO;
 import com.teamb.model.ChatRoomDTO;
 
+/*
+이	   름 : ChatMapper.java
+개  발   자 : 이여진
+설	   명 : 채팅관련 서비스
+*/
+
 @Service
 public class ChatMapper {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void createRoom(ChatRoomDTO dto) throws Exception {
-		sqlSession.insert("createRoom" ,dto);
+	public int createRoom(ChatRoomDTO dto) throws Exception {
+		int res = sqlSession.insert("createRoom" ,dto);
+		return res;
 	}
 
-
-
-	public List<ChatRoomDTO> isRoom(ChatRoomDTO dto) throws Exception {
-		 List<ChatRoomDTO> room = null;
-		room = sqlSession.selectList("isRoom",dto);
+	public ChatRoomDTO isRoom(ChatRoomDTO dto) throws Exception {
+		 ChatRoomDTO room = null;
+		room = sqlSession.selectOne("isRoom",dto);
 		return room;
 	}
 
+	public String getProfile(int comm_memberNum) throws Exception {
+		return sqlSession.selectOne("getProfile", comm_memberNum);
+	}
+
+	public ChatRoomDTO getRoomList(int chatroom_id) throws Exception {
+		return sqlSession.selectOne("getRoomList",chatroom_id);
+	}
+	
+	public List<ChatRoomDTO> getChatList(int msgSender) throws Exception {
+		 List<ChatRoomDTO> room = null;
+		room = sqlSession.selectList("getChatList",msgSender);
+		
+		return room;
+	}
+	
+	public int getRoomId(ChatRoomDTO dto) throws Exception {
+		return sqlSession.selectOne("getRoomId",dto);
+	}
+	
+	
+	//메세지
+	
 	public void insertMessage(ChatMsgDTO msg) throws Exception {
 		sqlSession.insert("insertMessage", msg);
 	}
 
-/*	public int getPartner(ChatRoomDTO dto) throws Exception {
-		List<ChatMsgDTO> mvo = sqlSession.selectList("getPartner",dto);
-		return mvo.get(0).getComm_memberNum();
-	}
-*/
-
-
-	public String getProfile(int comm_memberNum) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getProfile", comm_memberNum);
+	public List<ChatMsgDTO> getMessageList(int chatroom_id) throws Exception {
+		return sqlSession.selectList("getMessageList",chatroom_id);
 	}
 
 
-
-	public String getName(String str) throws Exception {
-		return sqlSession.selectOne("getName", str);
-	}
-
-	public List<ChatMsgDTO> getMessageList(String str) throws Exception {
-			return sqlSession.selectList("getMessageList" , str);
-		
-	}
-
-
-	public ChatRoomDTO getRoomList(int chatroom_id) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getRoomList",chatroom_id);
-	}
-
-
-/*	public ChatMsgDTO getRecentMessage(String str) throws Exception {
-		return sqlSession.selectOne("getRecentMessage", str);
-	}
-*/
 
 	/*public void updateReadTime(int class_id, String user_id, String TUTOR_USER_user_id) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object> ();
@@ -103,6 +100,14 @@ public class ChatMapper {
 			return sqlSession.selectOne("getAllCount" ,map);
 		}
 		
+	}*/
+	/*	public int getPartner(ChatRoomDTO dto) throws Exception {
+	List<ChatMsgDTO> mvo = sqlSession.selectList("getPartner",dto);
+	return mvo.get(0).getComm_memberNum();
+}
+*/
+	/*public String getName(String str) throws Exception {
+		return sqlSession.selectOne("getName", str);
 	}*/
 
 }

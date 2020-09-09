@@ -42,18 +42,15 @@
 		<beans:constructor-arg value="C://java-emp-class-0406//file"></beans:constructor-arg>
 	</beans:bean>
 
-	 <websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/echo" />
-		<websocket:handshake-interceptors>
+    <websocket:handlers>
+      <websocket:mapping handler="echoHandler" path="/echo" />
+      <websocket:handshake-interceptors>
          <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
       </websocket:handshake-interceptors>
-	
-	<websocket:sockjs/>
-	</websocket:handlers>
+   
+   <websocket:sockjs/>
+   </websocket:handlers>
     
-	 <beans:bean id="echoHandler" class="com.teamb.function.EchoHandler" /> 	
-	 
-	 <context:component-scan base-package="com.teamb.service.RentcarMapper" />
-	 <task:annotation-driven/>
-	 
+
+    <beans:bean id="echoHandler" class="com.teamb.function.EchoHandler" />    
 </beans:beans>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
 	<title>Room</title>
 	<style>
 		*{
@@ -74,7 +74,6 @@
 	</style>
 </head>
 
-
 <body>
 	<div class="container">
 		<h1>채팅방</h1>
@@ -93,7 +92,7 @@
 		
 		<c:forEach var="dto" items="${roomList}">
 			<tr>
-				<td class='num'>${dto.msgReceiver}</td>
+				<td class='num'>${dto.chatroom_id}</td>
 				<td class='room'>${dto.roomName}</td>
 				<td class='go'>
 				<button type='button' onclick="location.href='moveChating?chatroom_id=${dto.chatroom_id}'" >보내기</button>

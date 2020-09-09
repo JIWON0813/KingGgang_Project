@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      insert into member values
      (member_num.nextval,#{profile_name,jdbcType=VARCHAR},#{profile_size},
      #{name},#{gender},#{id},#{passwd},#{email},
-     #{birth_y},#{birth_m},#{birth_d},#{hp1},#{hp2},#{hp3},#{intro},0,0,sysdate)
+     #{birth_y},#{birth_m},#{birth_d},#{hp1},#{hp2},#{hp3},#{intro},0,0,sysdate,0)
     </insert>
   
   	<select id="getMember" parameterType="int" resultType="memberDTO">
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateMember" parameterType="memberDTO">
 		update member set profile_name=#{profile_name},profile_size=#{profile_size},passwd=#{passwd}, 
 		email=#{email}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, intro=#{intro,jdbcType=VARCHAR}, point=#{point}
-			where membernum=#{memberNum}
+		where membernum=#{memberNum}
 	</update>
   
 	<delete id="deleteMember" parameterType="int">

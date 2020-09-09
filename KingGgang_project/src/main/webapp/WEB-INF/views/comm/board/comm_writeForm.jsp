@@ -5,7 +5,8 @@
 	개  발   자 : 최 인 아
 	설	   명 : 메인 페이지
  -->
-<%@ include file="../index_top.jsp" %>
+<%@ include file="/WEB-INF/views/top.jsp"%>
+<div class="section layout_padding">
 <script type="text/javascript">
 	function check(){
 		if (f.file_name.value==""){
@@ -22,29 +23,24 @@
 	}
 </script>
 
-<div align="center">
-	<form name="f" action="comm_writePro.do" method="post" 
-						onsubmit="return check()" enctype="multipart/form-data">
-		<input type="hidden" name="memberNum" value="${param.memberNum}">
-			<header class="major">
-				<h3>새 게시물</h3>
-			</header>
-			<table width="600" align="center">
+<div class="section layout_padding" align="center">
+	<form name="f" action="comm_writePro.do" method="post" onsubmit="return check()" enctype="multipart/form-data">
+		<header>
+			<h3>새 게시물</h3>
+		</header>
+		<table width="600">
 			<tr>
 				<th width="150">사진명</th>
 				<td><input type="file" name="file_name"></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-				<textarea name="content" placeholder="내용을 입력하세요.." cols="100" rows="5"></textarea></td>
+					<textarea name="content" placeholder="내용을 입력하세요.." cols="100" rows="5"></textarea>
+				</td>
 			</tr>
 			<tr>
 				<th width="150">태그하기</th>
 				<td><input type="text" name="tag"></td>
-			</tr>
-			<tr>
-				<th width="150">위치표시하기</th>
-				<td><input type="text" name="loc"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -56,4 +52,5 @@
 		</table>
 	</form>
 </div>
-<%@ include file="../index_bottom.jsp"%>
+</div>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

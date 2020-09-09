@@ -1,12 +1,12 @@
-<%@ include file="/WEB-INF/views/top.jsp"%>
+<%@ include file="../admintop.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<div class="wrap wd668" align="center">
             <div class="container">
                 <div class="form_txtInput">
                     <h2 class="sub_tit_txt">회원목록</h2>
-		<table border="1" width="800">
+		<table border="1" width="1000">
 		<tr bgcolor="skyblue">
-			<th>회원번호</th>
+			<th width="70">회원번호</th>
 			<th>아이디</th>
 			<th>이름</th>
 			<th>성별</th>
@@ -26,7 +26,7 @@
 		
 		<c:forEach var="dto" items="${memberList }">
 			<tr>
-				<td>${dto.memberNum }</td>
+				<td align="center">${dto.memberNum }</td>
 				<td>${dto.id }</td>
 				<td>${dto.name}</td>
 				<td>${dto.gender}</td>
@@ -46,4 +46,4 @@
 	</div>
 	</div>
 	</div>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
+	<%@ include file="../adminbottom.jsp"%>

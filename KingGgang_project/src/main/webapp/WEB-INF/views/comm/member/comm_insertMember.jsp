@@ -39,10 +39,8 @@ function comm_inputIdCheck(){
 	   
 	   
 </script>
-
-
 <form name="join" action="comm_member_input_ok.do" enctype="multipart/form-data" method="post">
-	<div class="wrap wd668">
+	 <div class="section layout_padding">
 		<div class="container">
 			<div class="form_txtInput">
 				<h2 class="sub_tit_txt">회원가입</h2>
@@ -56,7 +54,7 @@ function comm_inputIdCheck(){
 							<input type="hidden" name="comm_memberNum">
 							<tr>
 								<th><span>이름</span></th>
-								<td><input type="text" name="comm_name" placeholder="이름을 입력하세요." value=${name }></td>
+								<td><input type="text" name="comm_name" value=${name } readOnly></td>
 							</tr>
 							<tr>
 								<th><span>닉네임</span></th>

@@ -111,8 +111,8 @@ public class HotelMapper {
 		return sqlSession.selectOne("getCountSearch", search);
 	}
 
-	public int getCountCate(String cate) {
-		return sqlSession.selectOne("getCountCate", cate);
+	public int getCountCate(String category) {
+		return sqlSession.selectOne("getCountCate", category);
 	}
 
 	

@@ -2,24 +2,42 @@
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-		
+<!-- 
+	이	   름 : ChatMapper.xml
+	개  발   자 : 이 여 진
+	설	   명 : 채 팅
+-->		
 <mapper namespace="com.teamb.model.Comm">
 
 <insert  id = "createRoom" parameterType="ChatRoomDTO">
 insert into ChatRoom values(chatroom_seq.nextval,#{msgSender},#{msgReceiver},#{roomName})
 </insert>
 
-
 <select id ="isRoom" parameterType="ChatRoomDTO" resultType = "ChatRoomDTO">
-select distinct * from ChatRoom WHERE msgSender = #{msgSender} or msgReceiver = #{msgSender} 
+select distinct * from ChatRoom WHERE msgSender = #{msgSender} and msgReceiver = #{msgReceiver}
+or  msgSender = #{msgReceiver} and msgReceiver = #{msgSender}
 </select>
 
-<insert id = "insertMessage" parameterType="ChatMsgDTO">
-insert into chat_msg values(chatMsg_seq.nextval,#{chatroom_id},#{msgSender},#{msgReceiver},#{msgContent})
-</insert>
+<select id = "getChatList" resultType = "ChatRoomDTO">
+select * from  ChatRoom where msgSender = #{msgSender} or msgReceiver = #{msgSender}
+</select>
 
 <select id = "getRoomList" resultType = "ChatRoomDTO">
 select * from  ChatRoom where chatroom_id = #{chatroom_id}
+</select>
+
+<select id = "getRoomId" resultType = "int">
+select chatroom_id from  ChatRoom where msgSender = #{msgSender} and msgReceiver = #{msgReceiver}
+or  msgSender = #{msgReceiver} and msgReceiver = #{msgSender}
+</select>
+
+<!-- 메세지 -->
+
+<insert id = "insertMessage" parameterType="ChatMsgDTO">
+insert into chat_msg values(chatMsg_seq.nextval, #{chatroom_id},#{msgSender},#{msgReceiver},#{msgContent})
+</insert>
+<select id = "getMessageList" resultType = "ChatMsgDTO">
+select * from Chat_msg where chatroom_id = #{chatroom_id} order by msgId
 </select>
 
 <!-- <select id = "getProfile" resultType = "int">
