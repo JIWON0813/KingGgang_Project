@@ -51,6 +51,7 @@
 		document.f.submit();
 	}
 </script>
+<div class="section layout_padding">
 <section id="four" class="wrapper style1 special fade-up">
 	<div class="container">
 						<header class="major">
@@ -86,4 +87,5 @@
 		</form>
 </div>
 </section>
+</div>
 <%@ include file="../bottom.jsp"%>

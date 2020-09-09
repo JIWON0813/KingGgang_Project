@@ -1,8 +1,9 @@
 <%@ include file="../top.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="section layout_padding">
 <table align="center" width="100%" height="100%">
 	<tr>
-		<td valign="top" align="left" width="15%">
+		<td valign="top" align="center" width="15%">
 			<ul><a href="memberList.mem">회원 목록</a></ul>
 			<ul><a href="couponList.co">쿠폰 목록</a></ul>
 		</td>
