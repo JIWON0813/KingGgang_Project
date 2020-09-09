@@ -39,10 +39,15 @@
 			<th width="30%">예약 가능 여부</th>
 			<td align="center" colspan="4">
 				<c:if test="${rentcar.reservation == 0}">
-					예약 가능
+					예약 없음
 				</c:if>
 				<c:if test="${rentcar.reservation == 1}">
-					예약중(~${returnday})
+					예약중
+					<br>
+					<c:forEach var="dto" items="${rentcarRes}">
+						[${dto.receiptday}~${dto.returnday}]
+						<br>
+					</c:forEach>
 				</c:if>
 			</td>
 			
