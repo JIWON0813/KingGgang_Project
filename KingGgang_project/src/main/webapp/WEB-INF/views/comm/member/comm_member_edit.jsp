@@ -50,7 +50,7 @@
          </div>                   
         </div>
 <div class="btn_wrap">
-                 		<input type="submit" value="조회" >
+                 		<input type="submit" value="수정" >
 						<input type="button" value="취소" onclick="window.location='commhome.comm'" >
 </div>
 </div> 

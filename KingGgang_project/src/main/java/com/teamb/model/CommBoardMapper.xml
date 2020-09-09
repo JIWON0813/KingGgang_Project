@@ -27,7 +27,6 @@
 		select * from commboard where look=#{look}
 	</select>
 	
-	
 	<insert id="writeBoard" parameterType="CommboardDTO">
 		insert into commboard values(#{comm_memberNum},commboard_num.nextval, #{file_name}, #{file_size}, 
 		#{content}, #{tag},0,0,0,0,0,#{look}) 
@@ -44,5 +43,5 @@
 	<update id="updateBoard" parameterType="CommboardDTO">
 		update commboard set content=#{content} where boardNum=#{boardNum}
 	</update>
-	
+
 </mapper>

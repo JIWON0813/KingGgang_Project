@@ -189,16 +189,15 @@ public class Comm_MemberController {
 			try {
 				file.transferTo(target);
 			} catch (IOException e) {}
-			
 			comm_profilename = file.getOriginalFilename();
 			comm_profilesize=(int)file.getSize();
 			dto.setComm_profilename(comm_profilename);
 			dto.setComm_profilesize(comm_profilesize);
 		}
 		else{
-			dto = memberMapper.comm_getMember(comm_memberNum);
-			dto.setComm_profilename(dto.getComm_profilename());
-			dto.setComm_profilesize(dto.getComm_profilesize());
+			Comm_MemberDTO mdto = memberMapper.comm_getMember(comm_memberNum);
+			dto.setComm_profilename(mdto.getComm_profilename());
+			dto.setComm_profilesize(mdto.getComm_profilesize());
 		}
 			
 		

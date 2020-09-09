@@ -1,4 +1,4 @@
-<%@ include file="/WEB-INF/views/top.jsp"%>
+<%@ include file="../admintop.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	function deleteCo(no){
@@ -41,4 +41,4 @@
 			</tr>
 		</table>
 	</div>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
+<%@ include file="../adminbottom.jsp"%>
