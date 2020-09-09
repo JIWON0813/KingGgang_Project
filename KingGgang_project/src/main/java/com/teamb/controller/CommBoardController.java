@@ -85,6 +85,9 @@ public class CommBoardController {
 		req.setAttribute("name", member.getName());*/
 
 		int res = boardMapper.writeBoard(dto);
+		// 지은
+		req.setAttribute("look", dto.getLook());
+		System.out.println("dto look값"+dto.getLook());
 
 		String msg = null, url = null;
 		if (res > 0) {
@@ -105,16 +108,13 @@ public class CommBoardController {
 	      MemberDTO member = (MemberDTO) session.getAttribute("login");
 	      
 	      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
-	     // int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 	      int comm_memberNum = commmember.getComm_memberNum();
 	      System.out.println("comm_memberNum값"+comm_memberNum);
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 
 	      req.setAttribute("boardList", list);
 	      req.getParameter(commmember.getComm_profilename());
-	      //req.getParameter(Integer.parseInt(commmember.getComm_profilesize()));
 	      req.getParameter(commmember.getComm_nickname());
-	      //req.setAttribute("comm_profilename", arg1);
 	      return "comm/board/comm_myPage";
 	   }
 	

@@ -48,7 +48,10 @@
 				</a>
 			</td>
 		</tr>
-
+		<tr>
+			<th align="center">공개범위</th>
+			<td colspan="4">${getBoard.look}</td>
+		</tr>
 		<tr>
 			<td align="center" colspan="4">
 				<input type="button" value="글수정"

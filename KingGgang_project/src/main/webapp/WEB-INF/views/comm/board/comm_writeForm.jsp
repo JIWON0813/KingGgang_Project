@@ -43,6 +43,15 @@
 				<td><input type="text" name="tag"></td>
 			</tr>
 			<tr>
+				<th width="150">공개범위</th>
+				<td><select name="look">
+   					<option value="all" selected>전체공개</option>
+    				<option value="member">회원공개</option>
+    				<option value="alone">비공개</option>
+					</select>	
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">	

@@ -66,6 +66,8 @@ public class Comm_MemberController {
 			session.setAttribute("login_comm_memberNum", login.getComm_memberNum());
 			String comm_nickname = memberMapper.comm_getMember(comm_memberNum).getComm_nickname();
 	        session.setAttribute("comm_nickname", comm_nickname);
+	        session.setAttribute("look", "member");
+	        System.out.println("login look값;"+session.getAttribute("look"));
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
         	}
@@ -182,7 +184,6 @@ public class Comm_MemberController {
 		int comm_profilesize=0;
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
 		MultipartFile file = mr.getFile("filename");
-		System.out.println("파일값"+file.getOriginalFilename());
 		File target = new File(upLoadPath, file.getOriginalFilename());
 		if(file.getSize()>0){
 			try {
@@ -225,25 +226,6 @@ public class Comm_MemberController {
 		if(res>0&&res2>0){
 				HttpSession session = req.getSession();
 				session.setAttribute("comm_login", login);
-			msg="회원삭제성공!";
-			url="commhome.comm";
-		}else{
-			msg="회원삭제실패!";
-			url="commhome.comm";
-		}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";	
-	}
-	
-	@RequestMapping("/admin_comm_member_delete.do")
-	public String adminmemberDelete(HttpServletRequest req,@RequestParam String comm_nickname){
-		int res = memberMapper.admin_comm_deleteMember(comm_nickname);
-			//Comm_MemberDTO login = memberMapper.comm_getMember(memberNum);
-		String msg = null, url = null;
-		if(res>0){
-			//	HttpSession session = req.getSession();
-			//	session.setAttribute("comm_login", login);
 			msg="회원삭제성공!";
 			url="commhome.comm";
 		}else{

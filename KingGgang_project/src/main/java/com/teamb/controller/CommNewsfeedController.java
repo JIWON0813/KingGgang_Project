@@ -41,10 +41,32 @@ public class CommNewsfeedController {
 
 		String mbId = (String) session.getAttribute("mbId");
 		Comm_MemberDTO comm_login = (Comm_MemberDTO) session.getAttribute("comm_login");
-		List<CommboardDTO> list = boardMapper.allListBoard();
-		req.setAttribute("boardList", list);
-
-		return "comm/index";
+		//List<CommboardDTO> list = boardMapper.allListBoard();
+		//req.setAttribute("boardList", list);
+		
+		//지은
+		String look=(String) session.getAttribute("look");
+		System.out.println("if문 밖 look값:"+look);
+		if(look==null){
+			look="all";
+			List<CommboardDTO> list = boardMapper.allListBoard(look);
+			req.setAttribute("boardList", list);
+		}else if(look!=null){
+			System.out.println("look값:"+look);
+			if(look.equals("all")){
+				List<CommboardDTO> list = boardMapper.allListBoard(look);
+				req.setAttribute("boardList", list);
+			}
+			else if(look.equals("member")){
+				List<CommboardDTO> list = boardMapper.allListBoard(look);
+				req.setAttribute("boardList", list);
+			}else if(look.equals("alone")){
+				List<CommboardDTO> list = boardMapper.allListBoard(look);
+				req.setAttribute("boardList", list);
+			}
+		}
+			return "comm/index";	
+		
 	}
 
 	@SuppressWarnings("unchecked")

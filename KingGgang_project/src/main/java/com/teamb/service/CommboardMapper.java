@@ -33,7 +33,7 @@ public class CommboardMapper {
 	}
 	
 	public int deleteAllBoard(int comm_memberNum) {
-		int res = sqlSession.insert("deleteAllBoard",comm_memberNum);
+		int res = sqlSession.delete("deleteAllBoard",comm_memberNum);
 		  return res;
 	}
 
@@ -78,5 +78,9 @@ public class CommboardMapper {
 	public int comm_updateNotice(Comm_NoticeDTO dto) {
 		int res = sqlSession.update("comm_updateNotice", dto);
 		return res;
+	}
+
+	public List<CommboardDTO> allListBoard(String look) {
+		return sqlSession.selectList("look_allListBoard", look);
 	}
 }

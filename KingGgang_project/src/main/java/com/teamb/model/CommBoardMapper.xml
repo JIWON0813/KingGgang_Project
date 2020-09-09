@@ -23,9 +23,14 @@
 		select * from commboard
 	</select>
 	
+	<select id="look_allListBoard" resultType="CommboardDTO">
+		select * from commboard where look=#{look}
+	</select>
+	
+	
 	<insert id="writeBoard" parameterType="CommboardDTO">
 		insert into commboard values(#{comm_memberNum},commboard_num.nextval, #{file_name}, #{file_size}, 
-		#{content}, #{tag},0,0,0,0,0) 
+		#{content}, #{tag},0,0,0,0,0,#{look}) 
 	</insert>
 	
 	<select id="deleteBoard" parameterType="int" resultType="int">
