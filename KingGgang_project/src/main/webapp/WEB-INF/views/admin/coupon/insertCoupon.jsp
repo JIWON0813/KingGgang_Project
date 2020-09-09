@@ -1,4 +1,4 @@
-<%@ include file="/WEB-INF/views/top.jsp"%>
+<%@ include file="../admintop.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	var randomCoupon=Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000;
@@ -64,4 +64,4 @@
 	</div>
 	</div>
 	</form>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
+<%@ include file="../adminbottom.jsp"%>
