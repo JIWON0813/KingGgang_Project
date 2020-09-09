@@ -53,14 +53,16 @@ public class RentcarMapper {
 		return res;
 	}
 	
-	public List<Rentcar_ResDTO> listRentcarReservation2(int r_id){
-		return sqlSession.selectList("listRentcarReservation2",r_id);
+	public List<Rentcar_ResDTO> listRentcarReservationTime(int r_id){
+		return sqlSession.selectList("listRentcarReservationTime",r_id);
 	}
 	//렌트카_회원 페이지
-	public List<RentcarDTO> findRentcar(String str,Object obj){
+	public List<RentcarDTO> findRentcar(String str,Object obj,String receiptday,String returnday){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("str",str);
 		map.put("obj",obj);
+		map.put("receiptday",receiptday);
+		map.put("returnday",returnday);
 		return sqlSession.selectList("findRentcar",map);
 	}
 	
@@ -100,8 +102,11 @@ public class RentcarMapper {
 		return sqlSession.selectList("listNotReservationRentcar");
 	}
 	
-	public List<RentcarDTO> listLowPriceRentcar(){
-		return sqlSession.selectList("listLowPriceRentcar");
+	public List<RentcarDTO> listLowPriceRentcar(String receiptday,String returnday){
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("receiptday",receiptday);
+		map.put("returnday",returnday);
+		return sqlSession.selectList("listLowPriceRentcar",map);
 	}
 	
 	public List<RentcarDTO> listCanReservationRentcar(String receiptday,String returnday){
@@ -124,12 +129,13 @@ public class RentcarMapper {
 	public void renewalRentcarReservation(){
 		try{
 			Rentcar_ResDTO resDTO = findReturnTimeReservation();
-			List<Rentcar_ResDTO> resList = sqlSession.selectList("findUnPiadReservation");
+			List<Rentcar_ResDTO> resList = sqlSession.selectList("findUnPaidReservation");
 			if(resList.size()>0){
 				for(int i=0;i<resList.size();i++){
 					int res_id = resList.get(i).getRes_id();
-					updatePstatus(res_id);
-					System.out.println(res_id+"번 예약 결제 실패");
+					if(updatePstatus(res_id)>0){
+					System.out.println(res_id+"번 렌트카 예약 결제 실패(회원ID : "+resList.get(i).getMember_id()+")");
+					}
 				}
 			}
 		}catch(NullPointerException e){}

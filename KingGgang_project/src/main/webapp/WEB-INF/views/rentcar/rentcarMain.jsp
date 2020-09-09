@@ -43,29 +43,71 @@
             });
 
         })
-    </script>	
-<form method="post" action="main.rentcar?mode=date">
-	<input type="text" name="receiptday" id="datepicker1" placeholder="예약일">
+        
+         function check(){
+			if (f.receiptday.value==""){
+				alert("차량 수령일을 입력 해 주세요!!")
+				f.receiptday.focus()
+				return
+			}
+			if (f.returnday.value==""){
+				alert("반납 예정일을 입력 해 주세요!!")
+				f.returnday.focus()
+				return
+			}
+			if (f.pickuptime.value==0){
+				alert("픽업 시간을 선택 해 주세요!!")
+				f.pickuptime.focus()
+				return
+			}
+			document.f.submit()
+		}
+    </script>
+<div align="center">	
+<form name="f" method="post" action="main.rentcar?mode=date">
+	<input type="text" name="receiptday" id="datepicker1" value="${dpreceiptday}">
 	<select name="pickuptime">
-  					<option selected value="0">
+   					<option value="0" <c:if test="${dppickuptime eq null}">selected</c:if>>
   					픽업 시간 선택
   					</option>
-  					<option value="09:00">오전 09시</option>
-  					<option value="10:00">오전 10시</option>
-  					<option value="11:00">오전 11시</option>
-  					<option value="12:00">오전 12시</option>
-  					<option value="13:00">오후 1시</option>
-  					<option value="14:00">오후 2시</option>
-  					<option value="15:00">오후 3시</option>
-  					<option value="16:00">오후 4시</option>
-  					<option value="17:00">오후 5시</option>
-  					<option value="18:00">오후 6시</option>
-  					<option value="19:00">오후 7시</option>
-  					</select>
-	<input type="text" name="returnday" id="datepicker2" placeholder="반납일"> 
-	<input type="submit" value="조회">
+  					<option value="/09:00" <c:if test="${dppickuptime eq '/09:00'}">selected</c:if>>
+  					오전 09시
+  					</option>
+  					<option value="/10:00" <c:if test="${dppickuptime eq '/10:00'}">selected</c:if>>
+  					오전 10시
+  					</option>
+  					<option value="/11:00" <c:if test="${dppickuptime eq '/11:00'}">selected</c:if>>
+  					오전 11시
+  					</option>
+  					<option value="/12:00" <c:if test="${dppickuptime eq '/12:00'}">selected</c:if>>
+  					오전 12시
+  					</option>
+  					<option value="/13:00" <c:if test="${dppickuptime eq '/13:00'}">selected</c:if>>
+  					오후 1시
+  					</option>
+  					<option value="/14:00" <c:if test="${dppickuptime eq '/14:00'}">selected</c:if>>
+  					오후 2시
+  					</option>
+  					<option value="/15:00" <c:if test="${dppickuptime eq '/15:00'}">selected</c:if>>
+  					오후 3시
+  					</option>
+  					<option value="/16:00" <c:if test="${dppickuptime eq '/16:00'}">selected</c:if>>
+  					오후 4시
+  					</option>
+  					<option value="/17:00" <c:if test="${dppickuptime eq '/17:00'}">selected</c:if>>
+  					오후 5시
+  					</option>
+  					<option value="/18:00" <c:if test="${dppickuptime eq '/18:00'}">selected</c:if>>
+  					오후 6시
+  					</option>
+  					<option value="/19:00" <c:if test="${dppickuptime eq '/19:00'}">selected</c:if>>
+  					오후 7시
+  					</option>
+  	</select>
+	<input type="text" name="returnday" id="datepicker2" value="${dpreturnday}"> 
+	<input type="button" value="조회" onclick="javascript:check()">
 	<br>
-	<a	href="main.rentcar">
+	<a	href="main.rentcar?mode=all">
 	전체보기|
 	</a>
 	<a href="main.rentcar?mode=type&obj=경차">
@@ -89,7 +131,7 @@
 	<a href="main.rentcar?mode=fuel&obj=하이브리드">
 	하이브리드|
 	</a>
-	<a href="main.rentcar?mode=lowPrice">낮은가격순</a>		
+	<a href="main.rentcar?mode=lowPrice">낮은가격순</a>
 <br>
 <br>
 <table>
@@ -109,3 +151,4 @@
 <tr>
 </table>
 </form>
+</div>

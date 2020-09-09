@@ -59,7 +59,7 @@
 		<tr>
 			<td colspan="4" align="center">
 				<input type="button" value="돌아가기" 
-									onclick="window.location='main.rentcar'">
+									onclick="window.history.back()">
 				<input type="button" value="예약하기"
 									onclick="javascript:showPopup(${rentcar.id})">
 			</td>
