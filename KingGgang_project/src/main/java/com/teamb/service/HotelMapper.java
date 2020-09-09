@@ -12,6 +12,7 @@ import com.teamb.model.HotelDTO;
 import com.teamb.model.RoomDTO;
 import com.teamb.model.RoomDateDTO;
 
+
 @Service
 public class HotelMapper {
 
@@ -95,6 +96,23 @@ public class HotelMapper {
 	
 	public int deleteRoom(int id){
 		return sqlSession.delete("deleteRoom", id);
+	}
+
+	public List<HotelDTO> hotelSearchList(int startRow, int endRow, String search) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", startRow);
+		map.put("end", endRow);
+		map.put("search", "%"+search+"%");
+		return sqlSession.selectList("searchHotelList", map);
+	}
+
+	public int getCountSearch(String search) {
+		search = "%"+search+"%";
+		return sqlSession.selectOne("getCountSearch", search);
+	}
+
+	public int getCountCate(String cate) {
+		return sqlSession.selectOne("getCountCate", cate);
 	}
 
 	

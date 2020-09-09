@@ -77,7 +77,10 @@ public class PaymentController {
 			int totalPrice=pdto.getAmount()*pdto.getPrice();
 			System.out.println(totalPrice);
 			req.setAttribute("totalPrice", totalPrice);
+
 			MemberDTO mrdto =  paymemtMapper.getpayMember(m_no);
+
+
 			req.setAttribute("mrdto", mrdto);
 			return "payment/payins2";
 		} else {
@@ -190,8 +193,9 @@ public class PaymentController {
 	
 	@RequestMapping("/adpayfind.my")
 	public String adpayfind(HttpServletRequest req) {
+		int memberNum = 1;
 		String id = req.getParameter("id");
-		MemberDTO mdto = memberMapper.getMember(id);
+		MemberDTO mdto = memberMapper.getMember(memberNum);
 		int m_no =  mdto.getMemberNum();
 		
 		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(m_no);

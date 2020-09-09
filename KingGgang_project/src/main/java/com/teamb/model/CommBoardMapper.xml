@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="com.teamb.model.Comm">
+	<select id="getBoard" resultType="CommboardDTO" parameterType="int">
+		select * from commboard where boardNum=#{boardNum}
+	</select>
+	
+	<select id="listBoard" resultType="CommboardDTO">
+		select * from commboard where id=#{id} order by boardNum desc
+	</select>
+	
+	<select id="allListBoard" resultType="CommboardDTO">
+		select * from commboard
+	</select>
+	
+	<insert id="writeBoard" parameterType="CommboardDTO">
+		insert into commboard values(#{id},commboard_num.nextval, #{file_name}, #{file_size}, 
+		#{content}, #{tag}, #{loc},0,0,0,0,0,0) 
+	</insert>
+	
+	<select id="deleteBoard" parameterType="int" resultType="int">
+		delete from commboard where boardNum=#{boardNum} 
+	</select>
+	
+	<update id="updateBoard" parameterType="CommboardDTO">
+		update commboard set content=#{content} where boardNum=#{boardNum}
+	</update>
+	
+	<update id="plusReadcount" parameterType="int">
+		update commboard set readcount=readcount+1 where boardNum=#{num}
+	</update>
+
+	<select id="isLike" resultType="int" parameterType="java.util.Map">
+		select likecount from commboard where boardNum=#{bNum} and memberNum=#{mNum}
+	</select>
+	
+	<update id="plusIsLikecount" parameterType="int">
+		update commboard set likecount=likecount+1 where boardNum=#{bNum} and memberNum=#{mNum}
+	</update>
+	
+	<update id="plusLikecount" parameterType="int">
+		update commboard set likecount=likecount+1 where boardNum=#{bNum}
+	</update>
+	
+	<update id="minusLikecount" parameterType="int">
+		update commboard set likecount=likecount-1 where boardNum=#{bNum}
+	</update>
+</mapper>

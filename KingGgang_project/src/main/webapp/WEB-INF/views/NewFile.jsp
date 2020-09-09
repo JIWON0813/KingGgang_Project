@@ -15,12 +15,15 @@
 var obj = {"name": "kim", "age": 30}; 
 function test() { 
 	$.ajax({ url: "<c:url value="/test" />", 
-		type: "POST", data: JSON.stringify(obj), 
-		dataType: "text", 
+		type: "POST", 
+		data: JSON.stringify(obj), 
+		dataType: "json", 
+		
 		contentType: "application/json", 
 		success: function(data) { alert("성공"); 
-		
-				$('#result').text(data);
+				var result1 = data.name
+				alert(result1);
+				$('#result').text(result1)
 		}, 
 		error: function(errorThrown) { alert(errorThrown.statusText); } }); } 
 </script>

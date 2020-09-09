@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -45,10 +46,25 @@ public class HotelController {
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = currentPage * pageSize - (pageSize-1);
 		int endRow = currentPage * pageSize;
-		int count = hotelmapper.getCount();
-		if (endRow>count) endRow = count;
-		int startNum = count - ((currentPage-1) * pageSize); 
+		int count =0;
+		String cate = req.getParameter("cate");
+		String search = req.getParameter("search");
 		List<HotelDTO> list = hotelmapper.hotelMainlist(startRow, endRow);
+		if(cate == null || cate.equals("all")){
+			cate = "all";			
+		}
+		else{
+			list = hotelmapper.hotelCateList(startRow, endRow, cate);
+		}
+		
+		if(search != null && !search.trim().equals(""))
+			count = hotelmapper.getCountSearch(search);
+		else if(!cate.equals("all"))
+			count = hotelmapper.getCountCate(cate);
+		else
+			count = hotelmapper.getCount();
+		if (endRow>count) endRow = count;
+		int startNum = count - ((currentPage-1) * pageSize); 		
 		req.setAttribute("boardList", list);
 		req.setAttribute("startNum", startNum);
 		if (count>0){
@@ -63,15 +79,13 @@ public class HotelController {
 			req.setAttribute("startPage", startPage);
 			req.setAttribute("endPage", endPage);
 		}
-		String cate = req.getParameter("cate");
-		if(cate == null || cate.equals("all")){
-			cate = "all";			
-		}
-		else{
-			list = hotelmapper.hotelCateList(startRow, endRow, cate);
-		}
-
 		
+		
+		
+		if(search != null && !search.trim().equals("")){
+			cate = "all";
+			list = hotelmapper.hotelSearchList(startRow, endRow, search);
+		}
 		req.setAttribute("cate", cate);
 		req.setAttribute("hotelList", list);
 		return "hotel/hotelMain";
@@ -84,11 +98,16 @@ public class HotelController {
 		if (pageNum==null){
 			pageNum = "1";
 		}
+		String search = req.getParameter("search");
 		int pageSize = 5;
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = currentPage * pageSize - (pageSize-1);
 		int endRow = currentPage * pageSize;
-		int count = hotelmapper.getCount();
+		int count =0;
+		if(search != null && !search.trim().equals(""))
+			count = hotelmapper.getCountSearch(search);
+		else
+			count = hotelmapper.getCount();
 		if (endRow>count) endRow = count;
 		int startNum = count - ((currentPage-1) * pageSize); 
 		List<HotelDTO> list = hotelmapper.hotelMainlist(startRow, endRow);
@@ -105,10 +124,14 @@ public class HotelController {
 			req.setAttribute("pageBlock", pageBlock);
 			req.setAttribute("startPage", startPage);
 			req.setAttribute("endPage", endPage);
+		}	
+		if(search != null && !search.trim().equals("")){
+			list = hotelmapper.hotelSearchList(startRow, endRow, search);
 		}
 		req.setAttribute("hotelList", list);
 		return "hotel/hotelList";
 	}
+	
 	
 	@RequestMapping(value="/hotelContent.hotel")
 	public String showHotelContent(HttpServletRequest req , @RequestParam int no){
@@ -235,7 +258,6 @@ public class HotelController {
 	public String insertRoom(HttpServletRequest req, @ModelAttribute RoomDTO dto, BindingResult result){
 		String filename = "";
 		int filesize = 0;
-		String checkin = req.getParameter("startcheckin") + " ~ " + req.getParameter("endcheckin");
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest) req;
 		MultipartFile file = mr.getFile("file");
 		File target = new File(upLoadPath, file.getOriginalFilename());
