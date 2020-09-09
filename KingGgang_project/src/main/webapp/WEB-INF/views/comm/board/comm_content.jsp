@@ -13,7 +13,7 @@
 	<tr>
 		<td align="right" colspan="4">
 		<p onclick="confirm('신고하시겠습니까? 버튼을 눌러주세요')">신고
-			<a href="comm_warnPro.do?boardNum=${boardNum}"><img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a></p>
+			<a href="comm_warnPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"><img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a></p>
 		</td>
 	</tr>
 	<tr>
@@ -66,7 +66,7 @@
 <hr color="pink">
 <div align="center">
 <form name="replyForm" action="comm_writeReplyPro.do" method="post">
-  <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}"/>
+  <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}">
   <table width="400">
     <tr>
     	<th>댓글 작성자</th>
@@ -83,6 +83,7 @@
 </div>
 <hr color="pink">
 <br>
+
 <!-- 댓글 -->
 <div align="center">
 <form name="f" action="reply_updatePro.do" method="post" onsubmit="return check()">

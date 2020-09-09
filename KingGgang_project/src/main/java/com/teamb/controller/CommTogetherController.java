@@ -70,9 +70,7 @@ public class CommTogetherController {
 	public String togetherList(HttpServletRequest req, HttpSession session) {
 		
 	    int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-	      
 	    List<CommTogetherDTO> list = togetherMapper.listTogether(comm_memberNum);
-
 	    req.setAttribute("togetherList", list);
 	      
 		return "comm/board/comm_togetherList";

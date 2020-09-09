@@ -77,17 +77,15 @@ public class CommBoardController {
 		dto.setComm_memberNum(comm_memberNum);
 		dto.setFile_name(file_name);
 		dto.setFile_size(file_size);
-	/*	req.setAttribute("profile_name", member.getProfile_name());
-		req.setAttribute("name", member.getName());*/
 
 		int res = boardMapper.writeBoard(dto);
 
 		String msg = null, url = null;
 		if (res > 0) {
-			msg="글쓰기 성공";
+			msg = "게시물이 등록되었습니다.";
 			url = "comm_myPage.do";
 		} else {
-			msg = "�� ��Ͽ� �����Ͽ����ϴ�.";
+			msg = "게시물 등록에 실패하였습니다.";
 			url = "comm_writeForm.do";
 		}
 		req.setAttribute("msg", msg);
@@ -101,16 +99,13 @@ public class CommBoardController {
 	      MemberDTO member = (MemberDTO) session.getAttribute("login");
 	      
 	      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
-	      //int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 	      int comm_memberNum = commmember.getComm_memberNum();
-	      System.out.println("comm_memberNum값"+comm_memberNum);
+	   
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
-
 	      req.setAttribute("boardList", list);
 	      req.getParameter(commmember.getComm_profilename());
-	      //req.getParameter(Integer.parseInt(commmember.getComm_profilesize()));
 	      req.getParameter(commmember.getComm_nickname());
-	      //req.setAttribute("comm_profilename", arg1);
+	     
 	      return "comm/board/comm_myPage";
 	   }
 	
@@ -133,16 +128,9 @@ public class CommBoardController {
 		return "comm/board/comm_content";
 	}
 	
-	/*@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
-	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto,  @RequestParam int boardNum) {
-		replyMapper.writeReply(dto);
-		req.setAttribute("boardNum", dto.getBoardNum());
-
-		return "comm/board/comm_content";
-	}*/
-	
 	@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
-	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result,  @RequestParam int boardNum) {
+	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result,  
+								@RequestParam int boardNum) {
 		
 		if (result.hasErrors()) {
 			dto.setReplyNum(0);
@@ -151,10 +139,10 @@ public class CommBoardController {
 		int res = replyMapper.writeReply(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "��� ��ϵǾ����ϴ�.";
+			msg = "댓글작성완료";
 			url = "comm_content.do?boardNum="+boardNum;
 		} else {
-			msg = "��� ��Ͽ� �����Ͽ����ϴ�.";
+			msg = "댓글작성실패";
 			url = "comm_content.do";
 		}
 		req.setAttribute("msg", msg);
@@ -175,18 +163,18 @@ public class CommBoardController {
 	}
 
 	@RequestMapping(value = "/comm_updatePro.do", method = RequestMethod.POST)
-	public String updatePro(HttpServletRequest req, HttpSession session, @ModelAttribute CommboardDTO dto, @RequestParam int boardNum) {
+	public String updatePro(HttpServletRequest req, HttpSession session, @ModelAttribute CommboardDTO dto, 
+							@RequestParam int boardNum) {
 		
 		int res = boardMapper.updateBoard(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
+			msg = "게시글 수정되었습니다.";
 			url = "comm_myPage.do";
 		}else{
-			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
+			msg = "게시글 수정에 실패하였습니다. 다시 시도 해 주세요.";
 			url = "comm_updateForm.do";
 		}
-		
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 
@@ -198,7 +186,7 @@ public class CommBoardController {
 		int res = boardMapper.deleteBoard(boardNum);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
+			msg = "게시글이 삭제되었습니다.";
 			url = "comm_myPage.do";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -272,7 +260,5 @@ public class CommBoardController {
 		req.setAttribute("replyNum", replyNum);
 		req.setAttribute("boardNum", boardNum);
 		return "comm_content.do";
-
 	}
-
 }
