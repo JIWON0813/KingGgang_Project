@@ -43,7 +43,7 @@
 					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
 			</th>
 			<td width="10">
-				<a href="comm_BookMark.do?boardNum=${boardNum}">
+				<a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}">
 					<img src="${pageContext.request.contextPath}/resources/img/bookmark.png" width="30" height="30">
 				</a>
 			</td>

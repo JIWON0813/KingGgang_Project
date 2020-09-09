@@ -38,6 +38,7 @@ public class CommWarnController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 	
+	//인아
 	@RequestMapping("/comm_warnPro.do")
 	public String warnPro(HttpServletRequest req, HttpSession session,
 			CommWarnDTO dto, Comm_MemberDTO mdto, @RequestParam int boardNum) {
@@ -74,15 +75,6 @@ public class CommWarnController {
 		return "comm/warnList";
 	}
 	
-	/*@RequestMapping(value = "/warn_deletePro.do")
-	public String deletewarnPro(HttpServletRequest req, @RequestParam int warnNum) {
-		warnMapper.deleteWarn(warnNum);
-		req.setAttribute("warnNum", warnNum);
-		
-		return "comm/warnList";
-	}*/
-	
-
 	@RequestMapping(value = "/warn_deletePro.do")
 	public ModelAndView deletewarnPro(@RequestParam int warnNum) {
 		int res = warnMapper.deleteWarn(warnNum);

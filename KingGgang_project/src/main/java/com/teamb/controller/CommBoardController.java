@@ -19,10 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.teamb.model.CommBookmarkDTO;
 import com.teamb.model.CommReplyDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
+import com.teamb.service.CommBookMarkMapper;
 import com.teamb.service.CommReplyMapper;
 import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.CommboardMapper;
@@ -38,6 +40,9 @@ public class CommBoardController {
 	
 	@Autowired
 	private CommReplyMapper replyMapper;
+	
+	@Autowired
+	private CommBookMarkMapper bookmarkMapper;
  
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
@@ -152,9 +157,36 @@ public class CommBoardController {
 		req.setAttribute("url", url);
 		return "message";
 	}
+	
+	@RequestMapping("/comm_bookMarkPro.do")
+	public String bookMarkPro(HttpServletRequest req, HttpSession session,
+			CommBookmarkDTO dto, Comm_MemberDTO mdto, @RequestParam int boardNum) {
+		
+		CommboardDTO bdto = boardMapper.getBoard(boardNum);
+		req.setAttribute("getBoard", bdto);
+		
+		int comm_memberNum = mdto.getComm_memberNum();
+		
+		int res = bookmarkMapper.markPro(dto);
+		String msg = null, url = null;
+		if (res > 0) {
+			msg = "보관함에 저장되었습니다.";
+			url = "comm_bookMark.do";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}
 
 	@RequestMapping("/comm_bookMark.do")
-	public String bookmark(HttpServletRequest req) {
+	public String bookmark(HttpServletRequest req, HttpSession session) {
+		
+	    Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
+	    int boardNum = commmember.getComm_memberNum();
+	   
+	    List<CommBookmarkDTO> list = bookmarkMapper.listMark(boardNum);
+	    req.setAttribute("bookmarkList", list);
+	    
 		return "comm/board/comm_bookMark";
 	}
 

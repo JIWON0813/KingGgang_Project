@@ -26,11 +26,12 @@
 <div class="section layout_padding" align="center">
 	<form name="f" action="comm_writePro.do" method="post" onsubmit="return check()" enctype="multipart/form-data">
 		<header>
-			<h3>새 게시물</h3>
+			<b>새 게시물</b>
 		</header>
+		<hr width=90 color=orange>
 		<table width="600">
 			<tr>
-				<th width="150">사진명</th>
+				<th width="150" align="center">사진명</th>
 				<td><input type="file" name="file_name"></td>
 			</tr>
 			<tr>
@@ -39,7 +40,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th width="150">태그하기</th>
+				<th width="150" align="center">태그하기</th>
 				<td><input type="text" name="tag"></td>
 			</tr>
 			<tr>

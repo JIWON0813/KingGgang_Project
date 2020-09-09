@@ -4,16 +4,16 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <div class="section layout_padding">
 <div align="center">
-	<b>목 록</b>
+	<b><font size=7>낑</font><font size=3>깡</font><font size=7>같</font><font size=3>이</font><font size=7>따</font><font size=3>러갈래?</font></b>
 	<table width="800">
-		<tr bgcolor="pink">
-			<td align="right"><a href="comm_newsfeed.do">뒤로가기</a>|<a href="comm_togetherWF.do">글쓰기</a></td>
+		<tr>
+			<td align="right"><a href="commhome.comm">뒤로가기</a>|<a href="comm_togetherWF.do">글쓰기</a></td>
 		</tr>
 	</table>
 	<table width="800" id="eventTable">
-		<tr bgcolor="skyblue">
+		<tr bgcolor="orange" align="center">
 			<th>번호</th>
-			<th width="40%">제목</th>
+			<th width="30%">제목</th>
 			<th>작성자</th>
 			<th>이메일</th>
 			<th>작성일</th>
@@ -30,12 +30,12 @@
 		<tr>
 			<td><c:out value="${dto.togetherNum}"/></td>
 			<td>
+			<c:if test="${dto.treadcount>10}">
+				<img src="${pageContext.request.contextPath}/resources/img/crown.PNG" width="30" height="30">
+			</c:if>	
 				<a href="comm_tcontent.do?togetherNum=${dto.togetherNum}">
 					${dto.ttitle}
 				</a>
-		<c:if test="${dto.treadcount>10}">
-				<img src="img/hot.gif">
-		</c:if>		
 			</td>
 			<td>${dto.tname}</td>
 			<td>${dto.temail}</td>

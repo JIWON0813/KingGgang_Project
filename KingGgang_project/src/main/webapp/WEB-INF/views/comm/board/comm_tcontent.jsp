@@ -7,6 +7,7 @@
  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<div class="section layout_padding">
 <div align="center">
 	<table width="800">
 		<tr align="center" height="30">
@@ -15,13 +16,13 @@
 			<th bgcolor="skyblue">작 성 일</th>
 			<td width="30%">${getTogether.tregdate}</td>
 		</tr>
-		<tr height="30">
+		<tr align="center" height="30">
 			<th bgcolor="skyblue">제 목</th>
 			<td width="30%">${getTogether.ttitle}</td>
 			<th bgcolor="skyblue">조 회 수</th>
 			<td width="30%">${getTogether.treadcount}</td>
 		</tr>
-		<tr height="30">
+		<tr align="center" height="30">
 			<th bgcolor="skyblue">이 메 일</th>
 			<td width="30%">${getTogether.temail}</td>
 		</tr>
@@ -42,5 +43,5 @@
 		</tr>
 	</table>
 </div>
-
+</div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

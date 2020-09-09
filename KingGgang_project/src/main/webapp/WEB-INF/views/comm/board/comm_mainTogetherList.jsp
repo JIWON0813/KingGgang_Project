@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<table width="100%">
-		<tr bgcolor="skyblue">
+		<tr bgcolor="orange">
 			<th>번호</th>
-			<th width="40%">제목</th>
+			<th width="30%">제목</th>
 			<th>작성자</th>
 			<th>이메일</th>
 			<th>작성일</th>
@@ -22,12 +22,12 @@
 		<tr>
 			<td><c:out value="${dto.togetherNum}"/></td>
 			<td>
-				<a href="comm_tcontent.do?togetherNum=${dto.togetherNum}">
-					${dto.ttitle}
-				</a>
-		<c:if test="${dto.treadcount>10}">
-				<img src="img/hot.gif">
-		</c:if>		
+				<c:if test="${dto.treadcount>10}">
+					<img src="${pageContext.request.contextPath}/resources/img/crown.PNG" width="30" height="30">
+				</c:if>	
+					<a href="comm_tcontent.do?togetherNum=${dto.togetherNum}">
+						${dto.ttitle}
+					</a>
 			</td>
 			<td>${dto.tname}</td>
 			<td>${dto.temail}</td>

@@ -4,8 +4,6 @@ package com.teamb.controller;
 媛�  諛�   �옄 : 理� �씤 �븘
 �꽕	   紐� : �닾寃뚮뜑Controller*/
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.teamb.model.CommReplyDTO;
 import com.teamb.model.CommTogetherDTO;
-import com.teamb.model.Comm_MemberDTO;
-import com.teamb.model.CommboardDTO;
-import com.teamb.service.CommReplyMapper;
 import com.teamb.service.CommTogetherMapper;
 
 @Controller
@@ -35,7 +27,8 @@ public class CommTogetherController {
 	
 	@Autowired
 	private CommTogetherMapper togetherMapper;
- 
+	
+	//인아
 	@RequestMapping(value = "/comm_togetherWF.do", method = RequestMethod.GET)
 	public String togetherWF(HttpServletRequest req) {
 		return "comm/board/comm_togetherWF";
@@ -79,8 +72,6 @@ public class CommTogetherController {
 			list = togetherMapper.listTogether(comm_memberNum);
 			req.setAttribute("togetherList", list);
 		}
-		  
-		  
 		return "comm/board/comm_mainTogetherList";
 	}
 	

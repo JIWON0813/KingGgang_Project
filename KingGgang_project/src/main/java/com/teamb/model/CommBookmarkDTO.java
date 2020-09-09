@@ -1,31 +1,27 @@
-
 package com.teamb.model;
 
 public class CommBookmarkDTO {
-	/*private String select;
-
-	public String getSelect() {
-		return select;
-	}
-
-	public void setSelect(String select) {
-		this.select = select;
-	}*/
 	
-/*private	B4_memberDTO memberNum; //foreign key
-private	CommboardDTO boardNum; //foreign key
-public B4_memberDTO getMemberNum() {
-	return memberNum;
-}
-public void setMemberNum(B4_memberDTO memberNum) {
-	this.memberNum = memberNum;
-}
-public CommboardDTO getBoardNum() {
-	return boardNum;
-}
-public void setBoardNum(CommboardDTO boardNum) {
-	this.boardNum = boardNum;
-}
-*/
-
+	private	int boardNum;
+	private int comm_memberNum;
+	private int bookmarkNum;
+	
+	public int getBoardNum() {
+		return boardNum;
+	}
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
+	}
+	public int getComm_memberNum() {
+		return comm_memberNum;
+	}
+	public void setComm_memberNum(int comm_memberNum) {
+		this.comm_memberNum = comm_memberNum;
+	}
+	public int getBookmarkNum() {
+		return bookmarkNum;
+	}
+	public void setBookmarkNum(int bookmarkNum) {
+		this.bookmarkNum = bookmarkNum;
+	}
 }

@@ -1,6 +1,7 @@
 package com.teamb.model;
 
 public class CommWarnDTO {
+	
 	private int boardNum;
 	private int comm_memberNum;
 	private int warnNum;
