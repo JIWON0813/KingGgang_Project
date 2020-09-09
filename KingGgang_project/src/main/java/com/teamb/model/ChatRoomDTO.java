@@ -1,14 +1,27 @@
 package com.teamb.model;
 
 public class ChatRoomDTO {
-	int roomNumber;
-	String roomName;
-	
-	public int getRoomNumber() {
-		return roomNumber;
+	private int chatroom_id;
+	private int msgSender;
+	private int msgReceiver;
+	private String roomName;
+	public int getChatroom_id() {
+		return chatroom_id;
 	}
-	public void setRoomNumber(int roomNumber) {
-		this.roomNumber = roomNumber;
+	public void setChatroom_id(int chatroom_id) {
+		this.chatroom_id = chatroom_id;
+	}
+	public int getMsgSender() {
+		return msgSender;
+	}
+	public void setMsgSender(int msgSender) {
+		this.msgSender = msgSender;
+	}
+	public int getMsgReceiver() {
+		return msgReceiver;
+	}
+	public void setMsgReceiver(int msgReceiver) {
+		this.msgReceiver = msgReceiver;
 	}
 	public String getRoomName() {
 		return roomName;
@@ -17,8 +30,28 @@ public class ChatRoomDTO {
 		this.roomName = roomName;
 	}
 	
+	 @Override
+     public int hashCode() {
+         return (this.chatroom_id + this.roomName.hashCode());
+     }
+
+	 
 	@Override
-	public String toString() {
-		return "Room [roomNumber=" + roomNumber + ", roomName=" + roomName + "]";
-	}	
+    public boolean equals(Object obj) {
+        if(obj instanceof ChatRoomDTO) {
+        	ChatRoomDTO temp = (ChatRoomDTO) obj;
+            if(this.chatroom_id==(temp.chatroom_id) && this.roomName.equals(temp.roomName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+	
+	
+	
+	
 }
+	
+	
+	
+	

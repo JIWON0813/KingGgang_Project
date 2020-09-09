@@ -21,6 +21,10 @@ public class LoginMapper {
 	public int getMemberNum(String id){
 		return sqlSession.selectOne("getMemberNum",id);
 	}
+	// 지은
+	public String getMemberName(String id){
+		return sqlSession.selectOne("getMemberName",id);
+	}
 	
 	public int loginOk(String id,String passwd){
 		String dbPass = sqlSession.selectOne("loginOk", id);

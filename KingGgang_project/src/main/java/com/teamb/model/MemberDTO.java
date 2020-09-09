@@ -109,7 +109,7 @@ public class MemberDTO {
 		this.birth_d = birrth_d;
 	}
 	public String getAllBirth() {
-		/*if (birth_y==null) return "������Ͼ���";*/
+		
 		return birth_y+"년"+birth_m+"월"+birth_d+"일";
 	}
 	
@@ -132,7 +132,7 @@ public class MemberDTO {
 		this.hp3 = hp3;
 	}
 	public String getAllHp() {
-		/*if (hp1==null) return "��ȭ����";*/
+		
 		return hp1+"-"+hp2+"-"+hp3;
 	}
 	
@@ -149,8 +149,8 @@ public class MemberDTO {
 		this.friendCount = friendCount;
 	}
 	
-	public static final int OK = 0;			//�α��� �Ǿ���...
-	public static final int NOT_ID = 1;	//���̵� ����
-	public static final int NOT_PW = 2;//��й�ȣ Ʋ�ȴ�
-	public static final int ERROR = -1;	//SQLException�߻�!!
+	public static final int OK = 0;			
+	public static final int NOT_ID = 1;	
+	public static final int NOT_PW = 2;
+	public static final int ERROR = -1;	
 }

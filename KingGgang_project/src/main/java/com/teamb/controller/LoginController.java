@@ -12,7 +12,6 @@ import com.teamb.model.MemberDTO;
 import com.teamb.service.LoginMapper;
 import com.teamb.service.MemberMapper;
 
-
 /*	이	   름 : LoginController class
 	개  발   자 : 박 준 언 , 황지은
 	설	   명 : 로그인 컨트롤러  
@@ -35,6 +34,7 @@ public class LoginController {
 
 	@RequestMapping("/logout.log")
 	public String logout(HttpServletRequest req, HttpSession session) {
+
 		session.invalidate();
 		String msg = "로그아웃 되었습니다.";
 		String url = "home.do";
@@ -52,6 +52,15 @@ public class LoginController {
 	      switch(res){
 	      case MemberDTO.OK:	    
 	    	  MemberDTO dto = loginMapper.getMemberid(id);
+	    	  
+	    	  //지은
+	    	  int memberNum = loginMapper.getMemberNum(dto.getId());
+	            session.setAttribute("memberNum",memberNum);
+	            
+	    	  //지은
+	          String name = loginMapper.getMemberName(dto.getId());
+	          	session.setAttribute("name", name);
+	    	  
 	    	  session.setAttribute("mbId", dto.getId());
 	    	  session.setAttribute("memberDto", dto);
 	    	  session.setAttribute("upLoadPath", upLoadPath);
@@ -93,7 +102,6 @@ public class LoginController {
 		String mode = req.getParameter("mode");
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
-		System.out.println(mode); 
 		String msg = null, url = null;
 		if (mode.equals("search_id")) {
 			if (loginMapper.searchMember_id(name, email) != null) {

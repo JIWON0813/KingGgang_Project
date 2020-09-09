@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="com.ezen.b4.book.model">
+<mapper namespace="com.ezen.model">
     
     <select id="listMember" resultType="memberDTO">
 		select * from member order by memberNum
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateMember" parameterType="memberDTO">
 		update member set profile_name=#{profile_name},profile_size=#{profile_size},passwd=#{passwd}, 
 		email=#{email}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, intro=#{intro,jdbcType=VARCHAR}, point=#{point}
-			where memberNum=#{memberNum}
+		where membernum=#{memberNum}
 	</update>
   
 	<delete id="deleteMember" parameterType="int">

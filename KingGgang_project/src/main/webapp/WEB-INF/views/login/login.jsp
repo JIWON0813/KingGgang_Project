@@ -1,53 +1,54 @@
 <%@ include file="../top.jsp"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <script type="text/javascript">
-	
-	window.onload = function(){
-		if(getCookie("id")){
+	window.onload = function() {
+		if (getCookie("id")) {
 			document.f.id.value = getCookie("id");
-			document.f.useCookie.checked=true;
+			document.f.useCookie.checked = true;
 		}
 	}
-	function setCookie(coo,value,expiredays){
+	function setCookie(coo, value, expiredays) {
 		var todayDate = new Date();
-		todayDate.setDate(todayDate.getDate()+expiredays);
-		document.cookie = coo+"="+escape(value)+";path=/;expires="+todayDate.toGMTString()+";"
+		todayDate.setDate(todayDate.getDate() + expiredays);
+		document.cookie = coo + "=" + escape(value) + ";path=/;expires="
+				+ todayDate.toGMTString() + ";"
 	}
-	function getCookie(coo){
-		var search = coo+"=";
-		if(document.cookie.length>0){
+	function getCookie(coo) {
+		var search = coo + "=";
+		if (document.cookie.length > 0) {
 			offset = document.cookie.indexOf(search);
-			if(offset!=-1){
-				offset+=search.length;
-				end=document.cookie.indexOf(";",offset);
-				if(end==-1)
-					end=document.cookie.length;
-				return unescape(document.cookie.substring(offset,end));
+			if (offset != -1) {
+				offset += search.length;
+				end = document.cookie.indexOf(";", offset);
+				if (end == -1)
+					end = document.cookie.length;
+				return unescape(document.cookie.substring(offset, end));
 			}
 		}
 	}
-	
-	function searchMember(mode){
-		location.href="member_search.log?mode="+mode;
+
+	function searchMember(mode) {
+		location.href = "member_search.log?mode=" + mode;
 	}
-	
-	function loginCheck(){
-		if(f.id.value==""){
+
+	function loginCheck() {
+		if (f.id.value == "") {
 			alert("ID를 입력해주세요")
 			f.id.focus();
 			return false;
 		}
-		if(f.passwd.value==""){
+		if (f.passwd.value == "") {
 			alert("비밀번호를 입력해주세요")
 			f.passwd.focus();
 			return false;
 		}
-		if(document.f.useCookie.checked == true){
-			setCookie("id",document.f.id.value,7);
-		}else{
-			setCookie("id",document.f.id.value,0);
+		if (document.f.useCookie.checked == true) {
+			setCookie("id", document.f.id.value, 7);
+		} else {
+			setCookie("id", document.f.id.value, 0);
 		}
-		document.f.submit();	
+		document.f.submit();
 	}
 </script>
 <section id="four" class="wrapper style1 special fade-up">
