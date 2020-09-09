@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.teamb.model.InsuDTO;
@@ -51,11 +52,17 @@ public class RentcarMapper {
 		int res = sqlSession.delete("deleteRentcar",num);
 		return res;
 	}
+	
+	public List<Rentcar_ResDTO> listRentcarReservationTime(int r_id){
+		return sqlSession.selectList("listRentcarReservationTime",r_id);
+	}
 	//렌트카_회원 페이지
-	public List<RentcarDTO> findRentcar(String str,Object obj){
+	public List<RentcarDTO> findRentcar(String str,Object obj,String receiptday,String returnday){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("str",str);
 		map.put("obj",obj);
+		map.put("receiptday",receiptday);
+		map.put("returnday",returnday);
 		return sqlSession.selectList("findRentcar",map);
 	}
 	
@@ -95,28 +102,44 @@ public class RentcarMapper {
 		return sqlSession.selectList("listNotReservationRentcar");
 	}
 	
-	public List<Rentcar_ResDTO> findReturnday(int r_id){
-		return sqlSession.selectList("findReturnday",r_id);
-	}
-	
-	public List<RentcarDTO> listLowPriceRentcar(){
-		return sqlSession.selectList("listLowPriceRentcar");
+	public List<RentcarDTO> listLowPriceRentcar(String receiptday,String returnday){
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("receiptday",receiptday);
+		map.put("returnday",returnday);
+		return sqlSession.selectList("listLowPriceRentcar",map);
 	}
 	
 	public List<RentcarDTO> listCanReservationRentcar(String receiptday,String returnday){
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("receiptday",receiptday);
 		map.put("returnday",returnday);
-		List<Integer> canResCarIdList = sqlSession.selectList("testRentcar",map);
-		List<RentcarDTO> canResCarList = null;
-		for(int i=0;i<canResCarIdList.size();i++){
-			int id = canResCarIdList.get(i);
-			RentcarDTO dto = sqlSession.selectOne("getRentcar",id);
-			canResCarList.add(dto);
-		}
+		List<RentcarDTO> canResCarList = sqlSession.selectList("listCanReservationRentcar",map);
 		return canResCarList;
 	}
 	
+	public Rentcar_ResDTO findReturnTimeReservation(){
+		return sqlSession.selectOne("findReturnTimeReservation");
+	}
+	
+	public int updatePstatus(int res_id){
+		return sqlSession.update("updatePstatus",res_id);
+	}
+	
+	@Scheduled(fixedDelay=100000)
+	public void renewalRentcarReservation(){
+		try{
+			Rentcar_ResDTO resDTO = findReturnTimeReservation();
+			List<Rentcar_ResDTO> resList = sqlSession.selectList("findUnPaidReservation");
+			if(resList.size()>0){
+				for(int i=0;i<resList.size();i++){
+					int res_id = resList.get(i).getRes_id();
+					if(updatePstatus(res_id)>0){
+					System.out.println(res_id+"번 렌트카 예약 결제 실패(회원ID : "+resList.get(i).getMember_id()+")");
+					}
+				}
+			}
+		}catch(NullPointerException e){}
+	}
 	
 }
 

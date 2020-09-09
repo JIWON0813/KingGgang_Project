@@ -45,12 +45,14 @@ public class LoginController {
 	
 	@RequestMapping("/loginOk.log")
 	   public String loginOk(HttpServletRequest req,HttpSession session){
-		MemberDTO dto = loginMapper.getMemberid(req.getParameter("id"));
-		int res = loginMapper.loginOk(dto);
-			
+		String id = req.getParameter("id");
+		String passwd = req.getParameter("passwd");
+		int res = loginMapper.loginOk(id,passwd);
 	      String msg = null, url = null;
 	      switch(res){
-	      case MemberDTO.OK:
+
+	      case MemberDTO.OK:	    
+	    	  MemberDTO dto = loginMapper.getMemberid(id);
 	    	  
 	            //지은
 	            int memberNum = loginMapper.getMemberNum(dto.getId());
@@ -103,22 +105,22 @@ public class LoginController {
 		String email = req.getParameter("email");
 		String msg = null, url = null;
 		if (mode.equals("search_id")) {
-			if (memberMapper.searchMember_id(name, email) != null) {
-				msg = "회원님 아이디는 " + memberMapper.searchMember_id(name, email) + " 입니다.";
+			if (loginMapper.searchMember_id(name, email) != null) {
+				msg = "회원님 아이디는 " + loginMapper.searchMember_id(name, email) + " 입니다.";
 			} else {
 				msg = "이름과 이메일을 확인해주세요.";
 			}
-			url = "login.log";
+			url = "login.log?id="+loginMapper.searchMember_id(name, email);
 		} else if (mode.equals("pw")) {
 			String id = req.getParameter("id");
-			if (memberMapper.searchMember_pw(name, email, id) != null) {
-				msg = "회원님 비밀번호는 " + memberMapper.searchMember_pw(name, email, id) + " 입니다.";
+			if (loginMapper.searchMember_pw(name, email, id) != null) {
+				msg = "회원님 비밀번호는 " + loginMapper.searchMember_pw(name, email, id) + " 입니다.";
 			} else {
 				msg = "이름과 이메일, 아이디를 확인해 주세요.";
 			}
 			url = "login.log";
 		} else {
-			msg = "등록된 정보 없습니다.";
+			msg = "잘못 입력 하였습니다..";
 			url = "login.log";
 		}
 		req.setAttribute("msg", msg);

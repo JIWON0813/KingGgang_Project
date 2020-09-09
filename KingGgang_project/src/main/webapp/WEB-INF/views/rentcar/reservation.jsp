@@ -59,12 +59,17 @@
 		function check(){
 			if (f.receiptday.value==""){
 				alert("차량 수령일을 입력 해 주세요!!")
-				f.id.focus()
+				f.receiptday.focus()
 				return
 			}
-			if (f.price.value==""){
+			if (f.returnday.value==""){
 				alert("반납 예정일을 입력 해 주세요!!")
 				f.returnday.focus()
+				return
+			}
+			if (f.pickuptime.value==0){
+				alert("픽업 시간을 선택 해 주세요!!")
+				f.pickuptime.focus()
 				return
 			}
 			document.f.submit()
@@ -80,25 +85,49 @@
 			<table width="600" align="center" border="1">
   				<tr>
   					<td colspan="2">차량 대여일
-  					<input type="text" name="receiptday" placeholder="대여일" id="datepicker1">
+  					<input type="text" name="receiptday" value="${dpreceiptday}" id="datepicker1">
 					<select name="pickuptime">
-  					<option selected value="0">
+  			
+  					<option value="0" <c:if test="${dppickuptime eq null}">selected</c:if>>
   					픽업 시간 선택
   					</option>
-  					<option value="09:00">오전 09시</option>
-  					<option value="10:00">오전 10시</option>
-  					<option value="11:00">오전 11시</option>
-  					<option value="12:00">오전 12시</option>
-  					<option value="13:00">오후 1시</option>
-  					<option value="14:00">오후 2시</option>
-  					<option value="15:00">오후 3시</option>
-  					<option value="16:00">오후 4시</option>
-  					<option value="17:00">오후 5시</option>
-  					<option value="18:00">오후 6시</option>
-  					<option value="19:00">오후 7시</option>
+  					<option value="/09:00" <c:if test="${dppickuptime eq '/09:00'}">selected</c:if>>
+  					오전 09시
+  					</option>
+  					<option value="/10:00" <c:if test="${dppickuptime eq '/10:00'}">selected</c:if>>
+  					오전 10시
+  					</option>
+  					<option value="/11:00" <c:if test="${dppickuptime eq '/11:00'}">selected</c:if>>
+  					오전 11시
+  					</option>
+  					<option value="/12:00" <c:if test="${dppickuptime eq '/12:00'}">selected</c:if>>
+  					오전 12시
+  					</option>
+  					<option value="/13:00" <c:if test="${dppickuptime eq '/13:00'}">selected</c:if>>
+  					오후 1시
+  					</option>
+  					<option value="/14:00" <c:if test="${dppickuptime eq '/14:00'}">selected</c:if>>
+  					오후 2시
+  					</option>
+  					<option value="/15:00" <c:if test="${dppickuptime eq '/15:00'}">selected</c:if>>
+  					오후 3시
+  					</option>
+  					<option value="/16:00" <c:if test="${dppickuptime eq '/16:00'}">selected</c:if>>
+  					오후 4시
+  					</option>
+  					<option value="/17:00" <c:if test="${dppickuptime eq '/17:00'}">selected</c:if>>
+  					오후 5시
+  					</option>
+  					<option value="/18:00" <c:if test="${dppickuptime eq '/18:00'}">selected</c:if>>
+  					오후 6시
+  					</option>
+  					<option value="/19:00" <c:if test="${dppickuptime eq '/19:00'}">selected</c:if>>
+  					오후 7시
+  					</option>
+
   					</select>
   					</td>
-  					<td>반납 예정일<input type="text" name="returnday" placeholder="반납일" id="datepicker2">
+  					<td>반납 예정일<input type="text" name="returnday" value="${dpreturnday}" id="datepicker2">
   					</td>
   				</tr>
  
