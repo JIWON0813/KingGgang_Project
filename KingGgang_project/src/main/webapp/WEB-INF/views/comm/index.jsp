@@ -126,12 +126,14 @@ function search(target){
 		dataType: 'json', 
 		contentType: "application/json;", 
 		success: function(data) {
+			console.log(data);
+			
 			 $("#searchList").empty(); 
 			 
 			 var checkWord = $("#word").val(); 
 			 if(checkWord.length > 0 && data.length > 0){
-			 for(var i=0; i<data.length-1; i++){
-                 $('#searchList').append("<li><img src='http://localhost:8080/img/"+data[i]+"' width='50' height='50'/> "+data[i+1]+"</li><br>");
+			 for(var i=0; i<data.length; i++){
+                 $('#searchList').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
              }
 			}
 		}, 

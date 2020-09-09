@@ -50,28 +50,28 @@ public class LoginController {
 			
 	      String msg = null, url = null;
 	      switch(res){
-	      case MemberDTO.OK:	    
+	      case MemberDTO.OK:
 	    	  
-	    	  //지은
-	    	  int memberNum = loginMapper.getMemberNum(dto.getId());
-	            session.setAttribute("memberNum",memberNum);
+	            //지은
+	            int memberNum = loginMapper.getMemberNum(dto.getId());
+	               session.setAttribute("memberNum",memberNum);
+	               
+	            //지은
+	             String name = loginMapper.getMemberName(dto.getId());
+	                session.setAttribute("name", name);
 	            
-	    	  //지은
-	          String name = loginMapper.getMemberName(dto.getId());
-	          	session.setAttribute("name", name);
-	    	  
-	    	  session.setAttribute("mbId", dto.getId());
-	    	  session.setAttribute("memberDto", dto);
-	    	  session.setAttribute("upLoadPath", upLoadPath);
-	            if(dto.getId().equals("admin")) {
-	            msg = "관리자로 로그인 하였습니다.";
-	            url = "main.mem";
-	            }else{
-	            msg = "로그인 하였습니다.";
-	            url = "main.mem";
-	            }
-	            
-	            break;
+	            session.setAttribute("mbId", dto.getId());
+	            session.setAttribute("memberDto", dto);
+	            session.setAttribute("upLoadPath", upLoadPath);
+	               if(dto.getId().equals("admin")) {
+	               msg = "관리자로 로그인 하였습니다.";
+	               url = "main.mem";
+	               }else{
+	               msg = "로그인 하였습니다.";
+	               url = "main.mem";
+	               }
+	               
+	               break;
 	      
 	      case MemberDTO.NOT_ID :
 	         msg = "등록된 회원이 아닙니다.";

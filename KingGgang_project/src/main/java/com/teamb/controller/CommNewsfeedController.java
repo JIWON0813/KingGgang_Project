@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,24 +48,27 @@ public class CommNewsfeedController {
 		return "comm/index";
 	}
 
-	
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value = "/commSearch", method = RequestMethod.POST)
 	public Object init(@RequestBody HashMap<String, Object> map) {
 		String word = (String) map.get("word");
-		System.out.println(word);
 		List<Comm_MemberDTO> list = newsfeedMapper.getSearchComm_Member(word);
-		ArrayList<String> arrList = new ArrayList<String>();
-		for(Comm_MemberDTO dto :list){
-			arrList.add(dto.getComm_profilename());
-			arrList.add(dto.getComm_nickname());
-		}
-		
-		
-		
-		return arrList;
-	}
+		JSONArray jsonArray = new JSONArray();
+		JSONObject json = null;
+		for (int i = 0; i < list.size(); i++) {
+			json = new JSONObject();
+			Comm_MemberDTO dto = (Comm_MemberDTO) list.get(i);
+			json.put("num", dto.getComm_memberNum());
+			json.put("profile", dto.getComm_profilename());
+			json.put("nick", dto.getComm_nickname());
 
+			jsonArray.add(json);
+
+		}
+
+		return jsonArray;
+	}
 	
 	
 	/*

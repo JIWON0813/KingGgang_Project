@@ -12,7 +12,7 @@
 <mapper namespace="com.teamb.model.Comm">
 
 	<select id="getSearchComm_Member" resultType="Comm_MemberDTO">
-		select comm_profilename,comm_nickname from comm_member where comm_nickname like '%' || #{word} || '%'
+		select comm_membernum, comm_profilename, comm_nickname from comm_member where comm_nickname like '%' || #{word} || '%'
 	</select>
 	
 
