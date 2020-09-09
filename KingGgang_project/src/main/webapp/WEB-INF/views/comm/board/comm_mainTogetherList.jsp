@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="/WEB-INF/views/top.jsp"%>
-<div class="section layout_padding">
-<div align="center">
-	<b>목 록</b>
-	<table width="800">
-		<tr bgcolor="pink">
-			<td align="right"><a href="comm_newsfeed.do">뒤로가기</a>|<a href="comm_togetherWF.do">글쓰기</a></td>
-		</tr>
-	</table>
-	<table width="800" id="eventTable">
+
+	<table width="100%">
 		<tr bgcolor="skyblue">
 			<th>번호</th>
 			<th width="40%">제목</th>
@@ -21,8 +13,8 @@
 		</tr> 
 	<c:if test="${empty togetherList}">		
 		<tr>
-			<td colspan="6">
-				등록된 게시글이 없습니다.
+			<td colspan="6" style="color: #FFFFFF;">
+				글 목록이 없거나, 로그인 후 이용 가능합니다.
 			</td>
 		</tr>
 	</c:if>		
@@ -44,6 +36,3 @@
 		</tr>		
 	</c:forEach>	
 	</table>
-</div>	
-</div>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>

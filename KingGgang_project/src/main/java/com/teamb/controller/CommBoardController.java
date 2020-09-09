@@ -20,11 +20,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.CommReplyDTO;
-import com.teamb.model.CommTogetherDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.service.CommReplyMapper;
+import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.CommboardMapper;
 
 @Controller
@@ -32,6 +32,9 @@ public class CommBoardController {
 	
 	@Autowired
 	private CommboardMapper boardMapper;
+	
+	@Autowired
+	private Comm_MemberMapper comm_memberMapper;
 	
 	@Autowired
 	private CommReplyMapper replyMapper;
@@ -261,4 +264,41 @@ public class CommBoardController {
 		req.setAttribute("boardNum", boardNum);
 		return "comm_content.do";
 	}
+	
+	//여진
+	@RequestMapping("/comm_otherPage.do")
+	   public String otherPage(HttpServletRequest req, HttpSession session) {
+		 int comm_memberNum = Integer.parseInt(req.getParameter("comm_memberNum"));
+		 
+	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
+	      Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
+	      
+	      req.setAttribute("boardList", list);
+	      req.setAttribute("comm_profilename",dto.getComm_profilename());
+	      req.setAttribute("comm_nickname",dto.getComm_nickname());
+	      return "comm/board/comm_myPage";
+	   }
+
+	@RequestMapping(value = "/comm_otherContent.do", method = RequestMethod.GET)
+	public String otherContent(HttpServletRequest req, @RequestParam int boardNum) {
+		HttpSession session = req.getSession();
+		String mbId = (String) session.getAttribute("mbId");
+		boolean isLogin = false;
+		if (mbId != null)
+			isLogin = true;
+		req.setAttribute("isLogin", isLogin);
+		
+		CommboardDTO dto = boardMapper.getBoard(boardNum);
+		req.setAttribute("getBoard", dto);
+		
+		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
+		req.setAttribute("replyList", list);
+		
+		 Comm_MemberDTO member = comm_memberMapper.comm_getMember(dto.getComm_memberNum());
+		 req.setAttribute("comm_profilename",member.getComm_profilename());
+	     req.setAttribute("comm_nickname",member.getComm_nickname());    
+
+		return "comm/board/comm_content";
+	}
+
 }

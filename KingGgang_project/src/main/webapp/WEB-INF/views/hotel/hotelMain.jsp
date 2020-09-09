@@ -72,13 +72,13 @@
 	</table>
 	<c:if test="${count>0}">
 		<c:if test="${startPage > pageBlock}">
-			[<a href="main.hotel?pageNum=${startPage-1}">이전</a>]		
+			[<a href="main.hotel?pageNum=${startPage-1}&cate=${cate}&search=${search}">이전</a>]		
 		</c:if>
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			[<a href="main.hotel?pageNum=${i}">${i}</a>]
+			[<a href="main.hotel?pageNum=${i}&cate=${cate}&search=${search}">${i}</a>]
 		</c:forEach>
 		<c:if test="${endPage<pageCount}">
-			[<a href="main.hotel?pageNum=${endPage+1}">다음</a>]
+			[<a href="main.hotel?pageNum=${endPage+1}&cate=${cate}&search=${search}">다음</a>]
 		</c:if>
 	</c:if>
 </div>

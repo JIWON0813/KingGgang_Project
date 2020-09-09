@@ -24,6 +24,7 @@
 							</div>
 							<div class="full">
 								<ul class="menu_footer">
+									<li><a href="ex">> test</a></li>
 									<li><a href="comm_writeForm.do">> Write</a></li>
 									<li><a href="comm_myPage.do">> Mypage</a></li>
 									<li><a href="comm_bookMark.do">> BookMark</a></li>
@@ -48,20 +49,31 @@
 												onclick="window.open('roomList', '_blank', 'width=600 height=600')">>
 													채팅 목록</a></li>
 										</c:if></li>
-								<li class="search-box" style="top:0 !important;position: inherit !important;">
+								<li style="margin-top:20px;">
                     			
                     			
-                    			<input type="text" id="word" class="search-txt" placeholder="검색어를 입력하세요" onkeyup="search(this);">
-                    			<a href ="#" class="search-btn" id="btn_search">
-                        		<img src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" /></a>
-              					<ul id="searchList"></ul>
+                    			<input type="text" id="word" placeholder="search" onkeyup="search(this);" style="opacity: 0.3;">
+                        		<a><img src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" /></a>
+								
+              					<ul id="searchList"></ul><li>
               					
-              					</li>
 								
 								</ul>
 								
+              					
 							</div>
 						</div>
+						 <div class="section layout_padding" style="width:60% !important; margin-left:100px;">
+                            <div class="full">
+                                <h3 style="font-size: 20px !important"><font size=7>낑</font><font size=3>깡</font><font size=7>같</font><font size=3>이</font><font size=7>따</font><font size=3>러갈래?</font> 
+                                <img alt="#" src="${pageContext.request.contextPath}/resources/main/images/orange.png">
+                                <a href="comm_togetherList.do" style="font-size:10px;color:#FFFFFF;float: right;"> >> 더 알아보기</a></h3>
+                            <div style="width:100%; height: 200px; " >
+           					 <iframe src="${pageContext.request.contextPath}/comm_mainTogetherList" style="width: 100%; 
+            				  height: 100%; border: none;" ></iframe>    
+      						 </div>
+                             </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -74,7 +86,7 @@
 					<div class="full">
 						<div class="heading_main text_align_center">
 							<h2>
-								<span class="theme_color"></span><a href="comm_togetherList.do">뉴스피드</a>
+								<span class="theme_color"></span>뉴스피드
 							</h2>
 						</div>
 					</div>
@@ -90,7 +102,7 @@
 			<c:forEach var="dto" items="${boardList}" varStatus="status">
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="full services_blog">
-						<a href="">
+						<a href="comm_otherContent.do?boardNum=${dto.boardNum}">
 						<img class="img-responsive" src="http://localhost:8080/img/${dto.file_name}" alt="#" />
 						</a>
 					</div>
@@ -113,49 +125,41 @@
 <!-- End Footer -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
 
-<script> function search(target){ 
+<script> 
+
+function search(target){
 	var word = target.value; 
-	var encodeWord = encodeURI(word);
 	
-	console.log(word); 
-	console.log(encodeWord); 
-	
-	//start Ajax 
-	
-	$.ajax({ type : 'POST', 
-		dataType : 'json',
-		contentType: "application/json; charset=utf-8;",
-		url : "/commSearch",
-		data: encodeWord,
-		error : function(err) { console.log("실행중 오류가 발생하였습니다."); }, 
-		success : function(data) { 
-		
-		console.log("data확인 : "+data);
-		console.log("결과 개수 : "+data.dataSearch.content.length); 
-		console.log("첫번째 결과 : "+data.dataSearch.content[0]); 
-		
-		$("#searchList").empty(); 
-		
-		var checkWord = $("#word").val(); 
-		//검색어 입력값
-		console.log(data.dataSearch.content.length); 
-		if(checkWord.length > 0 && data.dataSearch.content.length > 0){ 
-			for (i = 0; i < data.dataSearch.content.length; i++) {
-				$("#searchList") .append( "<li class='searchList' value='" 
-						+ data.dataSearch.content[i].comm_nickname 
-						+ "' data-input='" 
-						+ data.dataSearch.content[i].comm_nickname 
-						+ ">" 
-						+ "<a href='javascript:void(0);'>" 
-						+ data.dataSearch.content[i].comm_nickname
-						+ "</a>" 
-						+ "</li>"); 
-				} 
-			} 
-		} 
-		
-		});//end Ajax 
-		
-		}
+	var obj = {"word": word}; 
+	$.ajax({ url: "<c:url value="/commSearch" />", 
+		type: "POST", 
+		data: JSON.stringify(obj), 
+		dataType: 'json', 
+		contentType: "application/json;", 
+		success: function(data) {
+			console.log(data);
+			
+			 $("#searchList").empty(); 
+			 
+			 var checkWord = $("#word").val(); 
+			 if(checkWord.length > 0 && data.length > 0){
+			 for(var i=0; i<data.length; i++){
+                 $('#searchList').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
+             }
+			}
+		}, 
+		error: function(errorThrown) { alert(errorThrown.statusText); } }); } 
 </script>
 
+<script type="text/javascript">
+$(function() {
+    $(document).on('click', function(e) {
+        if (e.target.id === 'word') {
+        	$('#searchList').show();
+        } else {
+            $('#searchList').hide();
+        }
+
+    })
+});
+</script>

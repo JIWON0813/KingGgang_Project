@@ -6,6 +6,7 @@ package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,6 +66,24 @@ public class CommTogetherController {
 		req.setAttribute("url", url);
 		return "message";
 	}
+	
+	//여진
+	@RequestMapping("/comm_mainTogetherList")
+	public String mainTogetherList(HttpServletRequest req, HttpSession session) {
+		List<CommTogetherDTO> list = new ArrayList<>();
+	
+		if(session.getAttribute("comm_memberNum") == null){
+
+		}else{
+			int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+			list = togetherMapper.listTogether(comm_memberNum);
+			req.setAttribute("togetherList", list);
+		}
+		  
+		  
+		return "comm/board/comm_mainTogetherList";
+	}
+	
 	
 	@RequestMapping("/comm_togetherList.do")
 	public String togetherList(HttpServletRequest req, HttpSession session) {
