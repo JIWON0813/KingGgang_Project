@@ -29,7 +29,7 @@ import com.teamb.service.CommboardMapper;
 
 @Controller
 public class CommBoardController {
-	
+
 	@Autowired
 	private CommboardMapper boardMapper;
 	
@@ -105,7 +105,7 @@ public class CommBoardController {
 	      int comm_memberNum = commmember.getComm_memberNum();
 	      System.out.println("comm_memberNum값"+comm_memberNum);
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
-
+     
 	      req.setAttribute("boardList", list);
 	      req.getParameter(commmember.getComm_profilename());
 	      //req.getParameter(Integer.parseInt(commmember.getComm_profilesize()));
