@@ -1,7 +1,7 @@
 package com.teamb.model;
 
 public class CommBookmarkDTO {
-	
+
 	private	int boardNum;
 	private int comm_memberNum;
 	private int bookmarkNum;

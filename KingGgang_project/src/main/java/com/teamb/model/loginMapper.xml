@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teamb.model.loginMapper">
 	    <!-- 로그인 관련 mapper-->
-    <select id = "loginOk" parameterType="memberDTO"  resultType="String">
+    <select id = "loginOk" parameterType="String"  resultType="String">
         select passwd from member where id=#{id}
     </select>    
     

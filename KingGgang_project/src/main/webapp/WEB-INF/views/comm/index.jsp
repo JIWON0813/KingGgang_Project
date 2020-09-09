@@ -114,7 +114,6 @@
 					<br>
 						<div class="center">
 							<a class="main_bt" href="moreList();">See More ></a>
-
 						</div>
 					</div>
 				</div>
@@ -163,3 +162,4 @@ $(function() {
     })
 });
 </script>
+

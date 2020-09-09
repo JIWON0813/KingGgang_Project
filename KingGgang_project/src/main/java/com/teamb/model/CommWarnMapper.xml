@@ -15,5 +15,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="deleteWarn" parameterType="int" resultType="int">
 		delete from warn where warnNum=#{warnNum} 
 	</select>
-	
 </mapper>

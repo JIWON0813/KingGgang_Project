@@ -66,6 +66,9 @@
 							<li>${memberDto.name}님   <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그아웃</a></li>
 							</c:if>
                             <li><a class="join_bt" href="insertMember.mem">Join us</a></li>
+                            <%-- <c:if test="${mbId == 'admin' }"> --%>
+                            <li><a href="main.admin">관리자모드</a></li>
+                            <%-- </c:if> --%>
                         </ul>
                     </div>
                 </div>
@@ -103,8 +106,6 @@
                 </div>
             </div>
           </div>
-        </div>
-        
+        </div>       
     </header>
-   
     
