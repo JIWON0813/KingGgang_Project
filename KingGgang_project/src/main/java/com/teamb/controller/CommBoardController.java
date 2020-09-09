@@ -87,7 +87,7 @@ public class CommBoardController {
 			msg="글쓰기 성공";
 			url = "comm_myPage.do";
 		} else {
-			msg = "�� ��Ͽ� �����Ͽ����ϴ�.";
+			msg = "글쓰기 실패.";
 			url = "comm_writeForm.do";
 		}
 		req.setAttribute("msg", msg);
@@ -101,7 +101,7 @@ public class CommBoardController {
 	      MemberDTO member = (MemberDTO) session.getAttribute("login");
 	      
 	      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
-	      //int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+	     // int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 	      int comm_memberNum = commmember.getComm_memberNum();
 	      System.out.println("comm_memberNum값"+comm_memberNum);
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);

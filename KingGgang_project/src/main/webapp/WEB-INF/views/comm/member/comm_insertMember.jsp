@@ -86,7 +86,7 @@ function comm_inputIdCheck(){
 				</div>
 			</div>
 			<div class="btn_wrap">
-				<input type="button" value="조회" onclick="javascript:comm_checkjoin()">
+				<input type="button" value="등록" onclick="javascript:comm_checkjoin()">
 				<input type="button" value="취소" onclick="window.location='commhome.comm'" >
 			</div>
 		</div>

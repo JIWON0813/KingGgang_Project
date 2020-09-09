@@ -21,14 +21,14 @@
 			 			<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200">
 			 			</c:if>
 						<c:if test="${dto.f_comm_profilename  != null}">
-			 			<img src="http://localhost:8090/img/${dto.f_comm_profilename}" width="200" height="200">
+			 			<img src="http://localhost:8080/img/${dto.f_comm_profilename}" width="200" height="200">
 			 			</c:if>
 						<h4>${dto.f_name }</h4>
 						<%-- <p>${dto.comm_memberNum }</p>
 						<p>${dto.friendNum }</p> --%>
 						<p>
-							<a
-								href="comm_friendContent.do?comm_memberNum=${dto.comm_memberNum}">상세보기</a>
+							<a href="comm_friendContent.do?comm_memberNum=${dto.comm_memberNum}">상세보기</a>
+							<a href="comm_myPage.do?comm_memberNum=${dto.comm_memberNum}">bb상세보기</a>
 						</p>
 						<p>
 							<a href="comm_deleteFriend.do?friendNum=${dto.friendNum}">친구삭제</a>

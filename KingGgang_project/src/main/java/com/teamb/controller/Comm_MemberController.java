@@ -217,8 +217,8 @@ public class Comm_MemberController {
 	}
 	
 	@RequestMapping("/comm_member_delete.do")
-	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum,@RequestParam int boardNum){
-		int res2 = boardMapper.deleteBoard(boardNum);
+	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum){
+		int res2 = boardMapper.deleteAllBoard(comm_memberNum);
 		int res = memberMapper.comm_deleteMember(comm_memberNum);
 			Comm_MemberDTO login = memberMapper.comm_getMember(comm_memberNum);
 		String msg = null, url = null;

@@ -20,6 +20,7 @@ import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.service.Comm_FriendMapper;
 import com.teamb.service.Comm_MemberMapper;
+import com.teamb.service.CommboardMapper;
 import com.teamb.service.MemberMapper;
 
 
@@ -36,6 +37,9 @@ public class Comm_FriendController {
    
    @Autowired
    private Comm_MemberMapper memberMapper;
+   
+   @Autowired
+   private CommboardMapper boardMapper;
 
    @Resource(name = "upLoadPath")
    private String upLoadPath;
@@ -116,13 +120,20 @@ public class Comm_FriendController {
    }
    
    @RequestMapping(value = "/comm_friendContent.do")
-   public String content(HttpServletRequest req, HttpSession session,@RequestParam int friendNum) {
-      int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
-      Comm_FriendDTO dto = friendMapper.getFriend(friendNum);
+   public String content(HttpServletRequest req, HttpSession session,@RequestParam int comm_memberNum) {
+	   System.out.println("friendContent"+comm_memberNum);      
+     
+      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
+      System.out.println("2.friendContent"+comm_memberNum);   
+      session.setAttribute("friendboardList", list);
       
-      session.setAttribute("getFriend", dto);
-
+      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
+     // req.getParameter(commmember.getComm_profilename());
+      req.getParameter(commmember.getComm_nickname());
+     
       return "comm/friend/friendcontent";
+     // return "comm/board/comm_myPage";
+
    }
    
    

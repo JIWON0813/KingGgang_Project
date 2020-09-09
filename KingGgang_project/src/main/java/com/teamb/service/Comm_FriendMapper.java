@@ -35,8 +35,8 @@ public class Comm_FriendMapper {
 		int res = sqlSession.selectOne("check_comm_insertFriend", map);
 		return res;
 	}
-	public Comm_FriendDTO getFriend(int friendNum) {
-		Comm_FriendDTO dto = sqlSession.selectOne("comm_getFriend", friendNum);
+	public Comm_FriendDTO getFriend(int comm_memberNum) {
+		Comm_FriendDTO dto = sqlSession.selectOne("comm_getFriend", comm_memberNum);
 		return dto;
 	}
 	

@@ -8,7 +8,7 @@
                     <h2 class="sub_tit_txt">회원목록</h2>
 		<table border="1" width="800">
 		<tr bgcolor="skyblue">
-			<th>memberNum/Comm_memberNum</th>
+			<!-- <th>memberNum/Comm_memberNum</th> -->
 			<th>이름</th>
 			<th>닉네임</th>
 			<th>생년월일</th>
@@ -26,7 +26,7 @@
 		
 		<c:forEach var="dto" items="${comm_memberList }">
 			<tr>
-				<td>${dto.memberNum} //// ${dto.comm_memberNum }</td>
+				<%-- <td>${dto.memberNum} //// ${dto.comm_memberNum }</td> --%>
 				<td>${dto.comm_name}</td>
 				<td>${dto.comm_nickname}</td>
 				<td>${dto.comm_birth }</td> 
@@ -36,17 +36,15 @@
 				</c:if>
 				<c:if test="${dto.comm_profilename  != null}">
 				<td>
-			 	<img src="http://localhost:8090/img/${dto.comm_profilename}" width="200" height="200">
+			 	<img src="http://localhost:8080/img/${dto.comm_profilename}" width="200" height="200">
 			 	</td>
 				</c:if>
 				<td>${dto.comm_intro }</td>
 				<td><a href="comm_friend_insert.do?login_comm_memberNum=${login_comm_memberNum }&comm_memberNum=${dto.comm_memberNum }">친구추가</a></td> 
 				<td><a href=""
 				onclick="window.open('room?comm_memberNum=${dto.comm_memberNum}&comm_nickname=${dto.comm_nickname}', '_blank', 'width=600 height=600')">채팅하기</a></td> 
-				<%-- <c:if test=""> --%>
 				<td><a href="admin_comm_member_delete.do?comm_nickname=${dto.comm_nickname }">삭제</a></td> 
 				<%-- <td><a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a></td>  --%>
-				<%-- </c:if> --%>
 			</tr>
 		</c:forEach>
 		</table>

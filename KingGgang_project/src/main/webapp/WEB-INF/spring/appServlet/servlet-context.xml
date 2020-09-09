@@ -19,7 +19,7 @@
    <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
       up static resources in the ${webappRoot}/resources directory -->
    <resources mapping="/resources/**" location="/resources/" />
-   <resources mapping="/img/**" location="C://jeju//file" />
+   <resources mapping="/img/**" location="C://java-emp-class-0406//file" />
    <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
       in the /WEB-INF/views directory -->
    <beans:bean
@@ -36,7 +36,7 @@
    </beans:bean>
 
    <beans:bean id="upLoadPath" class="java.lang.String">
-      <beans:constructor-arg value="C://jeju//file"></beans:constructor-arg>
+      <beans:constructor-arg value="C://java-emp-class-0406//file"></beans:constructor-arg>
    </beans:bean>
 
     <websocket:handlers>
