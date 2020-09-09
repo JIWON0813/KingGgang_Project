@@ -24,6 +24,7 @@
 							</div>
 							<div class="full">
 								<ul class="menu_footer">
+									<li><a href="ex">> test</a></li>
 									<li><a href="comm_writeForm.do">> Write</a></li>
 									<li><a href="comm_myPage.do">> Mypage</a></li>
 									<li><a href="comm_bookMark.do">> BookMark</a></li>
@@ -48,18 +49,18 @@
 												onclick="window.open('roomList', '_blank', 'width=600 height=600')">>
 													채팅 목록</a></li>
 										</c:if></li>
-								<li class="search-box" style="top:0 !important;position: inherit !important;">
+								<li style="margin-top:20px;">
                     			
                     			
-                    			<input type="text" id="word" class="search-txt" placeholder="검색어를 입력하세요" onkeyup="search(this);">
-                    			<a href ="#" class="search-btn" id="btn_search">
-                        		<img src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" /></a>
-              					<ul id="searchList"></ul>
+                    			<input type="text" id="word" placeholder="search" onkeyup="search(this);" style="opacity: 0.3;">
+                        		<a><img src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" /></a>
+								
+              					<ul id="searchList"></ul><li>
               					
-              					</li>
 								
 								</ul>
 								
+              					
 							</div>
 						</div>
 					</div>
@@ -113,49 +114,41 @@
 <!-- End Footer -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
 
-<script> function search(target){ 
+<script> 
+
+function search(target){
 	var word = target.value; 
-	var encodeWord = encodeURI(word);
 	
-	console.log(word); 
-	console.log(encodeWord); 
-	
-	//start Ajax 
-	
-	$.ajax({ type : 'POST', 
-		dataType : 'json',
-		contentType: "application/json; charset=utf-8;",
-		url : "/commSearch",
-		data: encodeWord,
-		error : function(err) { console.log("실행중 오류가 발생하였습니다."); }, 
-		success : function(data) { 
-		
-		console.log("data확인 : "+data);
-		console.log("결과 개수 : "+data.dataSearch.content.length); 
-		console.log("첫번째 결과 : "+data.dataSearch.content[0]); 
-		
-		$("#searchList").empty(); 
-		
-		var checkWord = $("#word").val(); 
-		//검색어 입력값
-		console.log(data.dataSearch.content.length); 
-		if(checkWord.length > 0 && data.dataSearch.content.length > 0){ 
-			for (i = 0; i < data.dataSearch.content.length; i++) {
-				$("#searchList") .append( "<li class='searchList' value='" 
-						+ data.dataSearch.content[i].comm_nickname 
-						+ "' data-input='" 
-						+ data.dataSearch.content[i].comm_nickname 
-						+ ">" 
-						+ "<a href='javascript:void(0);'>" 
-						+ data.dataSearch.content[i].comm_nickname
-						+ "</a>" 
-						+ "</li>"); 
-				} 
-			} 
-		} 
-		
-		});//end Ajax 
-		
-		}
+	var obj = {"word": word}; 
+	$.ajax({ url: "<c:url value="/commSearch" />", 
+		type: "POST", 
+		data: JSON.stringify(obj), 
+		dataType: 'json', 
+		contentType: "application/json;", 
+		success: function(data) {
+			console.log(data);
+			
+			 $("#searchList").empty(); 
+			 
+			 var checkWord = $("#word").val(); 
+			 if(checkWord.length > 0 && data.length > 0){
+			 for(var i=0; i<data.length; i++){
+                 $('#searchList').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
+             }
+			}
+		}, 
+		error: function(errorThrown) { alert(errorThrown.statusText); } }); } 
 </script>
 
+<script type="text/javascript">
+$(function() {
+    $(document).on('click', function(e) {
+        if (e.target.id === 'word') {
+        	$('#searchList').show();
+        } else {
+            $('#searchList').hide();
+        }
+
+    })
+})
+</script>

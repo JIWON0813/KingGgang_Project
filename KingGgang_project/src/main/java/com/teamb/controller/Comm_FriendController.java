@@ -48,9 +48,7 @@ public class Comm_FriendController {
 	public String insertFriend(HttpServletRequest req, HttpSession session, 
 							Comm_FriendDTO dto,Comm_MemberDTO mdto) {
 		
-		//Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
-		//select * from ( list) where id = m_id
 		int comm_memberNum=dto.getComm_memberNum();
 		String msg = null, url = null;
 		
@@ -119,22 +117,6 @@ public class Comm_FriendController {
       return "message";
    }
    
-   @RequestMapping(value = "/comm_friendContent.do")
-   public String content(HttpServletRequest req, HttpSession session,@RequestParam int comm_memberNum) {
-	   System.out.println("friendContent"+comm_memberNum);      
-     
-      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
-      System.out.println("2.friendContent"+comm_memberNum);   
-      session.setAttribute("friendboardList", list);
-      
-      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
-     // req.getParameter(commmember.getComm_profilename());
-      req.getParameter(commmember.getComm_nickname());
-     
-      return "comm/friend/friendcontent";
-     // return "comm/board/comm_myPage";
-
-   }
    
    
 }

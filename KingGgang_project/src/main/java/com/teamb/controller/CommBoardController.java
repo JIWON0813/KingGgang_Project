@@ -25,6 +25,7 @@ import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.service.CommReplyMapper;
+import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.CommboardMapper;
 
 @Controller
@@ -32,6 +33,9 @@ public class CommBoardController {
 	
 	@Autowired
 	private CommboardMapper boardMapper;
+	
+	@Autowired
+	private Comm_MemberMapper comm_memberMapper;
 	
 	@Autowired
 	private CommReplyMapper replyMapper;
@@ -274,5 +278,33 @@ public class CommBoardController {
 		return "comm_content.do";
 
 	}
+	
+	//여진
+	@RequestMapping("/comm_otherPage.do")
+	   public String otherPage(HttpServletRequest req, HttpSession session) {
+		 int comm_memberNum = Integer.parseInt(req.getParameter("comm_memberNum"));
+		 
+	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
+	      Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
+	      
+	      req.setAttribute("boardList", list);
+	      req.setAttribute("comm_profilename",dto.getComm_profilename());
+	      req.setAttribute("comm_nickname",dto.getComm_nickname());
+	      return "comm/board/comm_myPage";
+	   }
 
+	/*@RequestMapping(value = "/comm_othercontent.do", method = RequestMethod.GET)
+	public String othercontent(HttpServletRequest req, @RequestParam int boardNum) {
+			int comm_memberNum = Integer.parseInt(req.getParameter("comm_memberNum"));
+		CommboardDTO dto = boardMapper.getBoard(boardNum);
+		 	Comm_MemberDTO mdto = comm_memberMapper.comm_getMember(comm_memberNum);
+		req.setAttribute("getBoard", dto);
+			req.setAttribute("comm_profilename",mdto.getComm_profilename());
+			req.setAttribute("comm_nickname",mdto.getComm_nickname());
+		
+		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
+		req.setAttribute("replyList", list);
+
+		return "comm/board/comm_content";
+	}*/
 }

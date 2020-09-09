@@ -27,8 +27,7 @@
 						<%-- <p>${dto.comm_memberNum }</p>
 						<p>${dto.friendNum }</p> --%>
 						<p>
-							<a href="comm_friendContent.do?comm_memberNum=${dto.comm_memberNum}">상세보기</a>
-							<a href="comm_myPage.do?comm_memberNum=${dto.comm_memberNum}">bb상세보기</a>
+							<a href="comm_otherPage.do?comm_memberNum=${dto.comm_memberNum}">상세보기</a>
 						</p>
 						<p>
 							<a href="comm_deleteFriend.do?friendNum=${dto.friendNum}">친구삭제</a>
