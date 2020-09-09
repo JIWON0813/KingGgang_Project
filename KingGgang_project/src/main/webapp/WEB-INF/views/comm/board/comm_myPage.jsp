@@ -16,7 +16,7 @@
 		 </td>
 		 <td>
 	    	&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="memberAll.do">친구</a>
+			<a href="comm_friendAll.do?comm_memberNum=${comm_memberNum}">친구</a>
 	   </td>
 	</tr>
 	<tr>

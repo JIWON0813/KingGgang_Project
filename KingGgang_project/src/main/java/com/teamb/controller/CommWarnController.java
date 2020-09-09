@@ -51,7 +51,7 @@ public class CommWarnController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "신고등록되었습니다.";
-			url = "comm_warnList.do";
+			url = "comm_content.do?boardNum="+boardNum;
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
