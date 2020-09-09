@@ -1,7 +1,14 @@
 package com.teamb.model;
  
 public class RentcarDTO {
-	private int r_id;
+	
+	/*
+	이	   름 : RentcarDTO class
+	개  발   자 : 정 우 철
+	설	   명 : 렌트카 DTO
+	*/
+	
+	private int id;
 	private String company;
 	private String type;
 	private int price;
@@ -20,29 +27,13 @@ public class RentcarDTO {
 	private String lat;
 	private String lng;
 	
-	public String getPickupplace() {
-		return pickupplace;
+
+	public int getId() {
+		return id;
+
 	}
-	public void setPickupplace(String pickupplace) {
-		this.pickupplace = pickupplace;
-	}
-	public String getLat() {
-		return lat;
-	}
-	public void setLat(String lat) {
-		this.lat = lat;
-	}
-	public String getLng() {
-		return lng;
-	}
-	public void setLng(String lng) {
-		this.lng = lng;
-	}
-	public int getR_id() {
-		return r_id;
-	}
-	public void setR_id(int r_id) {
-		this.r_id = r_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getCompany() {
 		return company;
@@ -128,6 +119,23 @@ public class RentcarDTO {
 	public void setRenttel(String renttel) {
 		this.renttel = renttel;
 	}
+	public String getPickupplace() {
+		return pickupplace;
+	}
+	public void setPickupplace(String pickupplace) {
+		this.pickupplace = pickupplace;
+	}
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLng() {
+		return lng;
+	}
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
 	
 }
-

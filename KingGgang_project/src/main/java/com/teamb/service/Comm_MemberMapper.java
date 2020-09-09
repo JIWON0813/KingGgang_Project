@@ -15,11 +15,20 @@ public class Comm_MemberMapper {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int comm_loginOk(Comm_MemberDTO dto){
-		String dbPass = sqlSession.selectOne("comm_loginOk", dto);
-		if (dbPass != null)
-			return dto.OK;
-		return dto.ERROR;
+	public Comm_MemberDTO comm_loginOk(Comm_MemberDTO dto){
+		return sqlSession.selectOne("comm_loginOk", dto);
+	}
+	
+	public boolean comm_checkMember(int memberNum) {
+		Comm_MemberDTO dto = sqlSession.selectOne("comm_checkMember", memberNum);
+		if (dto == null)
+			return false;
+		return true;
+	}
+	
+	public int comm_getmemberNum(String comm_nickname){
+		int res = sqlSession.selectOne("comm_getmemberNum",comm_nickname);
+		return res;
 	}
 	
 	public int comm_insertMember(Comm_MemberDTO dto){
@@ -43,12 +52,12 @@ public class Comm_MemberMapper {
 	}
 	
 	public int comm_deleteMember(int comm_memberNum) {
-		int res = sqlSession.delete("comm_deleteMember",comm_memberNum);
+		int res = sqlSession.insert("comm_deleteMember",comm_memberNum);
 		return res;
 	}
-	
 
-
+	public int admin_comm_deleteMember(String comm_nickname) {
+		int res = sqlSession.insert("admin_comm_deleteMember",comm_nickname);
+		return res;
+	}
 }
-
-

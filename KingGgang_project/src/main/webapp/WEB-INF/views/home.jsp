@@ -8,22 +8,76 @@
 	설	   명 : 메인 페이지
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
-<a href="main.admin">관리자모드로 가기</a>
-<br>
-<a href="main.member">임시회원</a>
-<a href="Q_list.board">문의게시판 가기</a>
-<a href="list.notice">공지사항 보기</a>
-<a href="main.my">마이페이지로 가기</a><p>
-<a href="main.mem">멤버 페이지로 가기</a><p>
-<a href="main.hotel">호텔 예약하기</a>
-<a href="listRentcar.admin">렌트카 목록(어드민)</a>
-<a href="main.wish">관심리스트등록 페이지로 가기</a><p>
-<a href="main.pay">결제 페이지로 가기</a><p>
 
-<a href="tested.pay">테스트 페이지 가기</a><p>
+    <div class="ulockd-home-slider">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="pogoSlider" id="js-main-slider">
+                    <div class="pogoSlider-slide" style="background-image:url(${pageContext.request.contextPath}/resources/main/images/banner2.jpg);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="slide_text white_fonts">
+                                         <h3>우리만의 제주정보<br><strong>돌하르방</strong></h3>
+                                        <br>
+                                        <a class="start_exchange_bt" href="commhome.comm">돌하르방 가기 ></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  		<div class="pogoSlider-slide" style="background-image:url(${pageContext.request.contextPath}/resources/main/images/banner1.jpg);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="slide_text white_fonts">
+                                  	  <h3>호텔 & 렌트카<br><strong>낑깡</strong></h3>
+                                        <br>
+                                        <a class="start_exchange_bt" href="#">예약하러 가기 ></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .pogoSlider -->
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
+    
+	<!-- section -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="full text_align_right_img">
+                        <img src="${pageContext.request.contextPath}/resources/main/images/pic1.jpg" alt="#" />
+                    </div>
+                </div>
+                <div class="col-md-6 layout_padding">
+                    <div class="full paddding_left_15">
+                        <div class="heading_main text_align_left">
+						   <h2><span class="theme_color">Welcome</span>  KingGgang</h2>	
+                        </div>
+                    </div>
+                    <div class="full paddding_left_15">
+                        <p>제주하면 귤 귤하면 낑깡 낑깡하면 GGAng<br>
+                        	낑깡 통해서 호텔 & 렌트  예약해서 <br>
+                        	다양한 제주 여행정보도 얻고<br>
+                        	 낑깡만의 커뮤니티와 함께 제주여행을 즐겨보세요! 
+                        	</p>
+                    </div>
+                    <div class="full paddding_left_15">
+                        <a class="main_bt" href="#">About more ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!-- end section -->
 
 
-<a href="commhome.comm">커뮤니티 페이지로 가기</a><p>
-
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
-
+    
+  <%@ include file="/WEB-INF/views/bottom.jsp"%>
+ 

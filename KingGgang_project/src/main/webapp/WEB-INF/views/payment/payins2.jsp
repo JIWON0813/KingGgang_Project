@@ -47,7 +47,7 @@
             amount : "${totalPrice}",
             buyer_email : "${mrdto.email}",
             buyer_name : "${mrdto.name}",
-            buyer_tel : "${mrdto.hp}",
+            buyer_tel : "${mrdto.hp1}",
             buyer_addr : "aa",
             buyer_postcode : '000-000',
             //m_redirect_url : 'http://www.naver.com'

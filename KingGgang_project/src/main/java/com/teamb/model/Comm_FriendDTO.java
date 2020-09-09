@@ -1,19 +1,25 @@
 package com.teamb.model;
 
 public class Comm_FriendDTO {
+	private int login_comm_memberNum;
 	private int friendNum; // ģ���߰��� ����
-	private int memberNum; // �ش� ����
-	private String f_profile_name;
-	private int f_profile_size;
+	private int comm_memberNum; // �ش� ����	
 	private String f_name;
-	private String f_id;
-	private String f_email;
+	private String f_comm_profilename;
+	private int f_comm_profilesize;
 	
-	public int getMemberNum() {
-		return memberNum;
+	
+	public int getLogin_comm_memberNum() {
+		return login_comm_memberNum;
 	}
-	public void setMemberNum(int memberNum) {
-		this.memberNum = memberNum;
+	public void setLogin_comm_memberNum(int login_comm_memberNum) {
+		this.login_comm_memberNum = login_comm_memberNum;
+	}
+	public int getComm_memberNum() {
+		return comm_memberNum;
+	}
+	public void setComm_memberNum(int comm_memberNum) {
+		this.comm_memberNum = comm_memberNum;
 	}
 	public int getFriendNum() {
 		return friendNum;
@@ -27,29 +33,17 @@ public class Comm_FriendDTO {
 	public void setF_name(String f_name) {
 		this.f_name = f_name;
 	}
-	public String getF_id() {
-		return f_id;
+	public String getF_comm_profilename() {
+		return f_comm_profilename;
 	}
-	public void setF_id(String f_id) {
-		this.f_id = f_id;
+	public void setF_comm_profilename(String f_comm_profilename) {
+		this.f_comm_profilename = f_comm_profilename;
 	}
-	public String getF_email() {
-		return f_email;
+	public int getF_comm_profilesize() {
+		return f_comm_profilesize;
 	}
-	public void setF_email(String f_email) {
-		this.f_email = f_email;
-	}
-	public String getF_profile_name() {
-		return f_profile_name;
-	}
-	public void setF_profile_name(String f_profile_name) {
-		this.f_profile_name = f_profile_name;
-	}
-	public int getF_profile_size() {
-		return f_profile_size;
-	}
-	public void setF_profile_size(int f_profile_size) {
-		this.f_profile_size = f_profile_size;
+	public void setF_comm_profilesize(int f_comm_profilesize) {
+		this.f_comm_profilesize = f_comm_profilesize;
 	}
 	
 	

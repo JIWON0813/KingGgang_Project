@@ -11,8 +11,8 @@
 	
 	<select id="hotelCateList" parameterType="java.util.Map" resultType="hotelDTO">
 		select * from (select rownum rn, A.* from 
-		(select * from hotel where category = #{category})A)
-		where rn between #{start} and #{end} and category = #{category}
+		(select * from hotel where category = #{category} order by no desc)A)
+		where rn between #{start} and #{end} and category = #{category} order by no desc
 	</select>
 	
 	<select id="hotelMain" parameterType="java.util.Map" resultType="hotelDTO">
@@ -35,8 +35,8 @@
 	
 	<select id="searchHotelList" parameterType="java.util.Map" resultType="hotelDTO">
 		select * from (select rownum rn, A.* from 
-		(select * from hotel where name like #{search})A)
-		where rn between #{start} and #{end} and name like #{search}
+		(select * from hotel where name like #{search} order by no desc)A)
+		where rn between #{start} and #{end} and name like #{search} order by no desc
 	</select>
 	
 	

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- 
+	이	   름 : newsfeedMapper.xml
+	개  발   자 : 이 여 진
+	설	   명 : 커뮤니티 뉴스피드 관련
+-->
+ 
+<mapper namespace="com.teamb.model.Comm">
+
+	<select id="getSearchComm_Member" resultType="Comm_MemberDTO">
+		select * from comm_member where comm_nickname like '%'|| #{word}|| '%';
+	</select>
+	
+
+
+</mapper>
