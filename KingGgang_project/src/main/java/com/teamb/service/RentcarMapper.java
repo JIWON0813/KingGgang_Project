@@ -141,7 +141,7 @@ public class RentcarMapper {
 			}
 		}catch(NullPointerException e){}
 	}
-	
+
 	//렌트카 결제 (for Pstatus update) 원세호
 	
 	public int getRes_id(String member_id){
@@ -151,6 +151,7 @@ public class RentcarMapper {
 	public int updatePstSuc(int res_id){
 			return sqlSession.update("updatePstSuc",res_id);
 	}
+
 	
 }
 

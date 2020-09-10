@@ -89,10 +89,11 @@
 			   return false;
 		   }  
 	   }
+
 	   form.submit() 
  	   }
       
-      		      
+
 	   function check(re, what, message) {
        if(re.test(what.value)) {
            return true;
