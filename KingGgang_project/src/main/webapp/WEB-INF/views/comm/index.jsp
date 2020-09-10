@@ -4,7 +4,8 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <%-- <%@ include file="index_top.jsp" %>  --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <html>
 <head>
@@ -49,31 +50,39 @@
 												onclick="window.open('roomList', '_blank', 'width=600 height=600')">>
 													채팅 목록</a></li>
 										</c:if></li>
-								<li style="margin-top:20px;">
-                    			
-                    			
-                    			<input type="text" id="word" placeholder="search" onkeyup="search(this);" style="opacity: 0.3;">
-                        		<a><img src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" /></a>
-								
-              					<ul id="searchList"></ul><li>
-              					
-								
+										
+									<li style="margin-top: 20px;">
+									<img style = "opacity: 0.3;" src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" />
+									<input type="text" id="word"
+										placeholder="search" onkeyup="search(this);"
+										style="opacity: 0.3;">
+
+										<ul id="searchList"></ul>
+									<li>
 								</ul>
-								
-              					
+
+
 							</div>
 						</div>
-						 <div class="section layout_padding" style="width:60% !important; margin-left:100px;">
-                            <div class="full">
-                                <h3 style="font-size: 20px !important"><font size=7>낑</font><font size=3>깡</font><font size=7>같</font><font size=3>이</font><font size=7>따</font><font size=3>러갈래?</font> 
-                                <img alt="#" src="${pageContext.request.contextPath}/resources/main/images/orange.png">
-                                <a href="comm_togetherList.do" style="font-size:10px;color:#FFFFFF;float: right;"> >> 더 알아보기</a></h3>
-                            <div style="width:100%; height: 200px; " >
-           					 <iframe src="${pageContext.request.contextPath}/comm_mainTogetherList" style="width: 100%; 
-            				  height: 100%; border: none;" ></iframe>    
-      						 </div>
-                             </div>
-                        </div>
+						<div class="section layout_padding"
+							style="width: 60% !important; margin-left: 100px;">
+							<div class="full">
+								<h3 style="font-size: 20px !important">
+									<font size=7>낑</font><font size=3>깡</font><font size=7>같</font><font
+										size=3>이</font><font size=7>따</font><font size=3>러갈래?</font> <img
+										alt="#"
+										src="${pageContext.request.contextPath}/resources/main/images/orange.png">
+									<a href="comm_togetherList.do"
+										style="font-size: 10px; color: #FFFFFF; float: right;"> >>
+										더 알아보기</a>
+								</h3>
+								<div style="width: 100%; height: 200px;">
+									<iframe
+										src="${pageContext.request.contextPath}/comm_mainTogetherList"
+										style="width: 100%; height: 100%; border: none;"></iframe>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -94,71 +103,89 @@
 			</div>
 		</div>
 	</div>
-		<form id="searTax">
-		<div class="row" id=table>
+		<div id="more_list">
+		<div class="row">
 			<c:if test="${empty boardList}">
 				<h4>등록된 페이지가 없습니다.</h4>
 			</c:if>
 			<c:forEach var="dto" items="${boardList}" varStatus="status">
-		
+
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="full services_blog">
-						<a href="comm_otherContent.do?boardNum=${dto.boardNum}">
-						<img class="img-responsive" src="http://localhost:8080/img/${dto.file_name}" alt="#" />
+						<a href="comm_otherContent.do?boardNum=${dto.boardNum}"> <img
+							class="img-responsive"
+							src="http://localhost:8080/img/${dto.file_name}" alt="#" />
 						</a>
 					</div>
 				</div>
 			</c:forEach>
-			<br>
+			</div>
+			<div class="row" id="moreList">
+			</div>
 		</div>
-		<div id="more_btn_div" align="center">
-			
+		
 			<div class="row margin-top_30">
 				<div class="col-sm-12">
 					<div class="full">
-					<br>
+						<br>
 						<div class="center">
-						<hr>
-							<a class="main_bt" id="more_btn_a" href="javascript:moreContent('more_list',4);">See More ></a>
-						<hr>
-						<input type="hidden" name="pageNum" id="pageNum" value="${page}">
-						<a href="#" onclick="loadNextPage()">더보기</a>
+							<a class="main_bt" id="more_btn_a"
+								href="javascript:loadNextPage();">See More ></a>
 						</div>
 					</div>
 				</div>
 			</div>
-		 </div>
-	</form>
 </body>
 <!-- End Footer -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
+
 <script>
-
-function loadNextPage() {
-var pageNum = $('#pageNum').val();
-pageNum = parseInt(pageNum);
-
-console.log(pageNum);
-
-pageNum +=4;
-
-
-$.ajax({
-type:'post', 
-url:'ajaxList.do',
-data:({pageNum:pageNum}),
-success:function(data){
-$('table').append(data);
-$('#pageNum').val(pageNum);
+/* 더보기기능 */
+	function loadNextPage() {
+		var list_length = $("#more_list img").length+1;
+		
+		var callLength = list_length;
+		var cnt = 3;
+		
+		var startRow = list_length;
+		var endRow = startRow+cnt;
+		var obj = {"startRow":startRow,
+				   "endRow":endRow};
+	
+	$.ajax({
+		type:'post', 
+		url:"<c:url value="/ajaxList.do" />",
+		data:JSON.stringify(obj),
+		dataType: 'json', 
+		contentType: "application/json;", 
+		success : function(data){
+	    	 for(var i=0; i<data.length; i++){
+                 $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><div class='full services_blog'><a href='comm_otherContent.do?boardNum="+data[i].num+"'><img class='img-responsive' src='http://localhost:8080/img/"+data[i].file+"' alt='#' /></a></div></div>");
+             
+			}
+	         
+	      },
+		error: function(errorThrown) { alert(errorThrown.statusText); }
+	});
+	              
+	
 }
-});
-}
 
+	$(function() {
+	    $(document).on('click', function(e) {
+	        if (e.target.id === 'word') {
+	        	$('#searchList').show();
+	        } else {
+	            $('#searchList').hide();
+	        }
+
+	    })
+	});
 </script>
 
- 
-<script> 
 
+<script> 
+/* 검색기능 */
 function search(target){
 	var word = target.value; 
 	
@@ -169,7 +196,6 @@ function search(target){
 		dataType: 'json', 
 		contentType: "application/json;", 
 		success: function(data) {
-			console.log(data);
 			
 			 $("#searchList").empty(); 
 			 
@@ -180,69 +206,8 @@ function search(target){
              }
 			}
 		}, 
-		error: function(errorThrown) { alert(errorThrown.statusText); } }); } 
-</script>
-
-<script type="text/javascript">
-$(function() {
-    $(document).on('click', function(e) {
-        if (e.target.id === 'word') {
-        	$('#searchList').show();
-        } else {
-            $('#searchList').hide();
-        }
-
-    })
-});
-</script>
-
-
-<script type="text/javascript">
-function moreContent(id,cnt) {
-	   var aname = id+"_btn";
-	   
-	   $.ajax({
-	      type : "post",
-	      url : ""<c:url value="/getMoreContents_ajax.do" />,
-	      data : $('#searchTxt').serialize(),
-	      dataType : "json",
-	      success : function(data){
-	    	  console.log(data);
-	    	  
-	         if(result.resultCnt > 0){
-	            var list = result.resultList;
-	            if(dto.file_name != ''){
-	               $('#'+aname).attr('href',"javascript:moreContent('"+id+"',"+cnt+");");
-	               getMoreList(list);
-	            }else{
-	               $("#"+id+"_div").remove();
-	            }
-	         }else{
-	        	 
-	         }
-	      },
-	      
-	   error : function(request,status,error) {
-	      alert("code = " + request.status + "message = " + request.responseText + "error = " + error );
-	   }
-	      
-	   });
-	   
-	   function getMoreList(list){
-	      var content = "";
-	      var length = list.length;
-	      for(i=0; i<list.length; i++){
-	         var dto = list[i];
-	         if(dto.file_name != ''){
-	            content += "<a href=''>";
-	            content += "<img class='img-responsive' src='http://localhost:8080/img/"+dto.file_name+"' alt='#' />";
-	            content += "</a>";
-	         }
-	      }
-	      $("#more_list a:last").after(content);
-	      
-	   }
-	}
-
-
+		error: function(errorThrown) { alert(errorThrown.statusText); 
+		} 
+	}); 
+} 
 </script>

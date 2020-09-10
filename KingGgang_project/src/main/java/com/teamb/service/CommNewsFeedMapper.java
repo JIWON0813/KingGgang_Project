@@ -34,8 +34,8 @@ public class CommNewsFeedMapper {
 		   return sqlSession.selectList("newfeedList",map);
 	}
 	
-	public int getNewCount() {
-		int count = sqlSession.selectOne("getNewCount");
+	public int getNewsCount() {
+		int count = sqlSession.selectOne("getNewsCount");
 		return count;
 	}
 	

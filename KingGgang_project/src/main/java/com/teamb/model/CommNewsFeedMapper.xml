@@ -21,7 +21,7 @@
 	where rn between #{startRow} and #{endRow}
 	</select> 
 
-	<select id="getNewCount" resultType="int">
+	<select id="getNewsCount" resultType="int">
 	select count(*) from commboard
 </select>
 
