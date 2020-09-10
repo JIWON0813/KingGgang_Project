@@ -28,9 +28,8 @@
 	and look like '%' || #{look} || '%'
 	</select>
 
-
-	<select id="getNewCount" resultType="int">
+	<select id="getNewsCount" resultType="int">
 	select count(*) from commboard
-</select>
+	</select>
 
 </mapper>

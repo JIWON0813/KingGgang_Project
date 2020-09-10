@@ -99,28 +99,15 @@ public class CommNewsfeedController {
 	//여진스
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value = "/getMoreContents_ajax.do", method = RequestMethod.POST)
-	public Object moerContent(@RequestBody HashMap<String, Object> map, HttpServletRequest req, HttpSession session){
-		int pageSize = 4;
-		String pageNum = req.getParameter("pageNum");
-		if (pageNum == null){
-			pageNum = "1";
-		}
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = currentPage * pageSize - (pageSize-1);
-		int endRow = currentPage * pageSize;
-		int count = 0;
-
-		count = newsfeedMapper.getNewCount();
+	@RequestMapping(value = "/ajaxList.do", method = RequestMethod.POST)
+	public Object moerContent(@RequestBody HashMap<String, Object> map, HttpServletRequest req){
+		
+		int startRow = (int) map.get("startRow");
+		int endRow = (int)map.get("endRow");
+		int count = newsfeedMapper.getNewsCount();
 		if (endRow>count) endRow = count;
 		
-		int startNum = count - ((currentPage-1) * pageSize); 
-		int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
-		int pageBlock = 3;
-		int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
-		int endPage = startPage + pageBlock - 1;
-		if (endPage>pageCount) endPage = pageCount;
-		
+		System.out.println(endRow);
 		List<CommboardDTO> list = newsfeedMapper.newfeedList(startRow, endRow);
 		//지은
 /*		List<CommboardDTO> list = null;
@@ -152,7 +139,7 @@ public class CommNewsfeedController {
 			json = new JSONObject();
 			CommboardDTO dto = (CommboardDTO) list.get(i);
 			json.put("num", dto.getBoardNum());
-			json.put("profile", dto.getFile_name());
+			json.put("file", dto.getFile_name());
 			jsonArray.add(json);
 			}
 	  
@@ -173,10 +160,8 @@ public class CommNewsfeedController {
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = currentPage * pageSize - (pageSize-1);
 		int endRow = currentPage * pageSize;
-		int count = 0;
 
-		count = newsfeedMapper.getNewCount();
-		if (endRow>count) endRow = count;
+	
 		
 		List<CommboardDTO> newsfeed = null;
 
@@ -209,24 +194,7 @@ public class CommNewsfeedController {
 			}
 		}
 */
-		
-		
-		
-		
-//		int startNum = count - ((currentPage-1) * pageSize); 
-//		int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
-//		int pageBlock = 3;
-//		int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
-//		int endPage = startPage + pageBlock - 1;
-//		if (endPage>pageCount) endPage = pageCount;
-		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("count", count);
-//		mav.addObject("startNum", startNum);
-//		mav.addObject("pageCount", pageCount);
-//		mav.addObject("pageBlock", pageBlock);
-//		mav.addObject("startPage", startPage);
-//		mav.addObject("endPage", endPage);
 		mav.addObject("boardList", newsfeed);
 		mav.setViewName("comm/index");
 		return mav;
