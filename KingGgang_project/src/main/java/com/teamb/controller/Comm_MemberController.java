@@ -81,7 +81,7 @@ public class Comm_MemberController {
 			session.setAttribute("login_comm_memberNum", login.getComm_memberNum());
 			String comm_nickname = memberMapper.comm_getMember(comm_memberNum).getComm_nickname();
 	        session.setAttribute("comm_nickname", comm_nickname);
-	        session.setAttribute("look", "member");
+	        session.setAttribute("look", "회원공개");
 	        System.out.println("login look값;"+session.getAttribute("look"));
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
