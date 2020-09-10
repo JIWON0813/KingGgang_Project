@@ -1,5 +1,7 @@
 package com.teamb.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,5 +17,9 @@ public class CommBookMarkMapper {
 	public int markPro(CommBookmarkDTO dto) {
 		int res = sqlSession.insert("markPro", dto);
 		return res;
+	}
+	
+	public List<CommBookmarkDTO> listMark(int comm_memberNum) {
+		return sqlSession.selectList("listMark",comm_memberNum);
 	}
 }

@@ -25,7 +25,7 @@
 			<c:forEach var="dto" items="${bookmarkList}">
 			<div class="col-md-3 col-sm-6 col-xs-12">
 					<a href="comm_otherContent.do?boardNum=${dto.boardNum}">		
-						<img src="http://localhost:8080/img/${dto.file_name}" width="180" height="180">
+						<img src="http://localhost:8080/img/${dto.cm_file_name}" width="180" height="180">
 					</a>
 			</div>
 			</c:forEach>

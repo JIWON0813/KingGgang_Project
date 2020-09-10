@@ -5,6 +5,8 @@ public class CommBookmarkDTO {
 	private	int boardNum;
 	private int comm_memberNum;
 	private int bookmarkNum;
+	private String cm_file_name;
+	private int cm_file_size;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -23,5 +25,17 @@ public class CommBookmarkDTO {
 	}
 	public void setBookmarkNum(int bookmarkNum) {
 		this.bookmarkNum = bookmarkNum;
+	}
+	public String getCm_file_name() {
+		return cm_file_name;
+	}
+	public void setCm_file_name(String cm_file_name) {
+		this.cm_file_name = cm_file_name;
+	}
+	public int getCm_file_size() {
+		return cm_file_size;
+	}
+	public void setCm_file_size(int cm_file_size) {
+		this.cm_file_size = cm_file_size;
 	}
 }
