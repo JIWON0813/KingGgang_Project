@@ -355,8 +355,15 @@ public class RentcarController {
 		dto.setReceiptday(receiptday);
 		dto.setReturnday(returnday);
 		int res = rentcarMapper.insertRentcarReservation(dto);
+		//결제 원세호
 		
-		String msg = null;
+		String member_id =  req.getParameter("member_id");
+		System.out.println(member_id);
+		int res_id = rentcarMapper.getRes_id(member_id);
+		System.out.println(res_id);
+
+		
+		/*String msg = null;
 		String url = null;
 		if(res>0){
 			rentcarMapper.updateRentcarReservation(dto.getR_id());
@@ -367,8 +374,12 @@ public class RentcarController {
 			url = "content.rentcar?id="+dto.getR_id();
 		}
 		req.setAttribute("msg",msg);
-		req.setAttribute("url",url);
-		return "message";
+		req.setAttribute("url",url);*/
+		req.setAttribute("res_id",res_id);
+		req.setAttribute("price", dto.getPrice());
+		req.setAttribute("type", 2);
+		
+		return "payment/payins";
 			
 	}
 	

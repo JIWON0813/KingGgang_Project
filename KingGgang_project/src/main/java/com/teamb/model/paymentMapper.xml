@@ -6,47 +6,67 @@
 		<mapper namespace="paymentMapper">
 		
 		<insert id="insertPayment" parameterType="PaymentDTO">
-		insert into payment values(pay_no.nextval,#{price},#{amount},#{type},#{p_no},#{m_id},'0',0)
+		insert into payment values(pay_no.nextval,#{price},#{type},#{p_no},#{m_no},'0',0)
 		</insert>
 		
 		<update id="updatePayment" parameterType="PaymentDTO">
 		update payment set paydate=#{paydate}, valid=#{valid} where no = #{no}
 		</update>
+		
+		<select id="deletePayment" parameterType="int">
+		delete from(select * from payment order by rownum desc) where rownum = 1 and m_no = #{m_no} no = #{no}
+		</select>
 	
-		<select id="getPayno" parameterType="String" resultType="int">
-			select no from(select * from payment order by rownum desc) where rownum = 1 and m_id = #{m_id}
+		<select id="getPayno" parameterType="int" resultType="int">
+			select no from(select * from payment order by rownum desc) where rownum = 1 and m_no = #{m_no}
 		</select>
 		
-		<select id="getPayment" parameterType="String" resultType="PaymentDTO">
-		select * from payment where m_id = #{m_id}
+		<select id="getPayment" parameterType="PaymentDTO" resultType="PaymentDTO">
+		select * from payment where m_no = #{m_no} and valid = #{valid}
+		</select>
+		
+		<select id="getPaymentNo" parameterType="int" resultType="PaymentDTO">
+		select * from payment where no = #{no}
+		</select>
+		
+		<select id="getAllPayment" parameterType="int" resultType="PaymentDTO">
+		select * from payment where valid = #{valid}
 		</select>
 		
 		<select id="getMyPaylist" parameterType="PaymentDTO" resultType="PaylistDTO" >
 		select 
 		<choose>
 		<when test="type==1">
-		hotel.name as h_name, hotel.category as h_category, hotel.hp as h_hp, payment.price as p_price, payment.amount as p_amount, payment.paydate as p_paydate, payment.type as p_type, payment.valid as p_valid from payment join hotel on payment.p_no = hotel.no 
+		d.startdate, d.enddate, h.name as h_name, h.category as h_category, h.hp as h_hp, p.price as p_price, p.paydate as p_paydate, p.type as p_type, p.valid as p_valid from payment p, room r, hotel h, roomdate d where p.p_no = r.id and r.id = d.room_id and r.h_id = h.no
 		</when>
 		<when test="type==2">
-		rentcar.name as r_name, rentcar.company as r_company, rentcar.type as r_type, payment.price as p_price, payment.amount as p_amount, payment.paydate as p_paydate, payment.type as p_type, payment.valid as p_valid from payment join rentcar on payment.p_no = rentcar.r_id
+		e.receiptday as receiptday, e.returnday as returnday, r.name as r_name, r.company as r_company, r.type as r_type, p.price as p_price, p.paydate as p_paydate, p.type as p_type, p.valid as p_valid from payment p, rentcar_res e, rentcar r where p.p_no = e.res_id and e.res_id = r.id
 		</when>
 		</choose>
-		where payment.m_id=#{m_id} and payment.type=#{type} and payment.no=#{no}
+		and p.m_no=#{m_no} and p.type=#{type} and p.no=#{no}
 		</select>
 		
-		<select id="getAdPaylist" parameterType="PaymentDTO" resultType="PaylistDTO" >
-		select 
+		<select id="getAdPaylist" parameterType="java.util.Map" resultType="PaylistDTO" >
+		select
 		<choose>
 		<when test="type==1">
-		hotel.name as h_name, hotel.category as h_category, hotel.hp as h_hp, member.name as m_name, member.email as m_email, member.id as m_id, payment.amount as p_amount, payment.price as p_price, payment.paydate as p_paydate, payment.valid as p_valid from payment join member on payment.m_id = member.id join hotel on payment.p_no = hotel.no 
+		d.startdate, d.enddate, h.name as h_name, h.category as h_category, h.hp as h_hp, m.name as m_name, m.email as m_email, m.id as m_id, p.price as p_price, p.paydate as p_paydate, p.valid as p_valid from from member m, payment p, room r, hotel h, roomdate d where m.memberNum = p.m_no and p.p_no = r.id and r.id = d.room_id and r.h_id = h.no
 		</when>
 		<when test="type==2">
-		rentcar.name as r_name, rentcar.type as r_type, rentcar.company as r_company, member.name as m_name, member.email as m_email, member.id as m_id, payment.amount as p_amount, payment.price as p_price, payment.paydate as p_paydate, payment.valid as p_valid from payment join member on payment.m_id = member.id join rentcar on payment.p_no = rentcar.r_id
+		e.receiptday, e.returnday,r.name as r_name, r.type as r_type, r.company as r_company, m.name as m_name, m.email as m_email, m.id as m_id, p.price as p_price, p.paydate as p_paydate, p.valid as p_valid from member m, payment p, rentcar_res e, rentcar r where m.memberNum = p.m_no and p.p_no = e.res_id and e.res_id = r.id
 		</when>
 		</choose>
-		where payment.m_id = #{m_id} and payment.type = #{type} and payment.no = #{no}
+		and p.m_no = #{m_no} and p.type = #{type} and p.no = #{no}
 		</select>
 		
+		<select id="getpayCount" resultType="int">
+		select count(*) from payment
+		</select> 
+		
+		<select id="getpayMember" parameterType="int" resultType="memberDTO">
+ 		select * from member where memberNum=#{m_no}
+ 		</select>
+ 		
 		</mapper>
 
 
