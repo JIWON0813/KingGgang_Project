@@ -7,13 +7,28 @@
  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ include file="/WEB-INF/views/top.jsp"%>
-<div class="section layout_padding">
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>글</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
+
 <div align="center">
 	<table width="400">
 	<tr>
 		<td align="right" colspan="4">
 		<p onclick="confirm('신고하시겠습니까? 버튼을 눌러주세요')">신고
-			<a href="comm_warnPro.do?boardNum=${boardNum}"><img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a></p>
+			<a href="comm_warnPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"><img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a></p>
 		</td>
 	</tr>
 	<tr>
@@ -43,7 +58,7 @@
 					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
 			</th>
 			<td width="10">
-				<a href="comm_BookMark.do?boardNum=${boardNum}">
+				<a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}">
 					<img src="${pageContext.request.contextPath}/resources/img/bookmark.png" width="30" height="30">
 				</a>
 			</td>
@@ -74,7 +89,7 @@
 <hr color="pink">
 <div align="center">
 <form name="replyForm" action="comm_writeReplyPro.do" method="post">
-  <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}"/>
+  <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}">
   <table width="400">
     <tr>
     	<th>댓글 작성자</th>
@@ -91,6 +106,7 @@
 </div>
 <hr color="pink">
 <br>
+
 <!-- 댓글 -->
 <div align="center">
 <form name="f" action="reply_updatePro.do" method="post" onsubmit="return check()">
@@ -109,6 +125,5 @@
     </c:forEach>   
   </ol>
  </form>		
-</div>
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
@@ -8,7 +9,6 @@
                     <h2 class="sub_tit_txt">회원목록</h2>
 		<table border="1" width="800">
 		<tr bgcolor="skyblue">
-			<!-- <th>memberNum/Comm_memberNum</th> -->
 			<th>이름</th>
 			<th>닉네임</th>
 			<th>생년월일</th>
@@ -16,9 +16,7 @@
 			<th>자기소개</th>
 			<th>친구추가</th>
 			<th>채팅하기</th>
-			<c:if test="${dto.comm_name == '관리자'}">
 			<th>삭제</th>
-			</c:if>
 		</tr>
 		<c:if test="${empty comm_memberList}">
 			<tr>
@@ -28,11 +26,9 @@
 		
 		<c:forEach var="dto" items="${comm_memberList }">
 			<tr>
-				<%-- <td>${dto.memberNum} //// ${dto.comm_memberNum }</td> --%>
 				<td>${dto.comm_name}</td>
 				<td>${dto.comm_nickname}</td>
 				<td>${dto.comm_birth }</td> 
-				<%-- <td>${dto.comm_profilename }</td> --%>
 				<c:if test="${dto.comm_profilename  == null}">
 				<td><img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200"></td>
 				</c:if>
