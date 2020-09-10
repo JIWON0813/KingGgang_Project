@@ -129,7 +129,8 @@
 			select res_id from(select * from rentcar_res order by rownum desc) where rownum = 1 and member_id = #{member_id}
 	</select>
 	
-	<update id="updatePstSuc" parameterType="int">
-		 update rentcar_res set pstatus = 1 where res_id = #{res_id}
+	<update id="changePstSuc" parameterType="int">
+		 update rentcar_res set pstatus = 0 where res_id = #{res_id}
 	</update>
+	
 </mapper>

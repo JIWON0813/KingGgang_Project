@@ -355,6 +355,7 @@ public class RentcarController {
 		dto.setReceiptday(receiptday);
 		dto.setReturnday(returnday);
 		int res = rentcarMapper.insertRentcarReservation(dto);
+		
 		//결제 원세호
 		
 		String member_id =  req.getParameter("member_id");
