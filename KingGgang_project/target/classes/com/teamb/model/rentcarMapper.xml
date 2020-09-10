@@ -94,7 +94,6 @@
 		r_id from rentcar_res where returnday <![CDATA[>=]]> to_date(#{receiptday},'yyyy-mm-dd/hh24:mi') and 
 		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and pstatus = 0 or pstatus = 1) 
 		order by price
-
 	</select>
 	
 	<select id="listRentcarReservation" resultType="Rentcar_ResDTO">
@@ -106,12 +105,7 @@
 		r_id from rentcar_res where returnday <![CDATA[>=]]> to_date(#{receiptday},'yyyy-mm-dd/hh24:mi') and 
 		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and pstatus = 0 or pstatus = 1)
 	</select>
-	
-	<select id="listCanReservationRentcar" resultType="RentcarDTO" parameterType="String">
-		select * from rentcar where id not in(select 
-		r_id from rentcar_res where returnday <![CDATA[>=]]> to_date(#{receiptday},'yyyy-mm-dd/hh24:mi') and 
-		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and pstatus = 0 or pstatus = 1)
-	</select>
+
 	
 	
 	<!-- Scheduled -->
@@ -129,6 +123,7 @@
 	<update id="updatePstatus" parameterType="int">
 		update rentcar_res set pstatus = 2 where res_id = #{res_id} and reservationday + 5/(24*60) <![CDATA[<=]]> sysdate
 	</update>
+  
 	<!-- 렌트카 결제 (for Pstatus update) 원세호 -->
 	
 	<select id="getRes_id" parameterType="String" resultType="int">
