@@ -102,7 +102,7 @@ public class CommBoardController {
 	@RequestMapping("/comm_myPage.do")
 	   public String myPage(HttpServletRequest req, HttpSession session) {
 		Comm_MemberDTO login = (Comm_MemberDTO)session.getAttribute("comm_login");
-		 int comm_memberNum = login.getMemberNum();
+		 int comm_memberNum = login.getComm_memberNum();
 		 
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 	      Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);

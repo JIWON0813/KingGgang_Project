@@ -37,16 +37,7 @@ public class CommNewsfeedController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
-	/*@RequestMapping("/commhome.comm")
-	public String index(HttpServletRequest req, HttpSession session, Comm_MemberDTO dto) {
 
-		String mbId = (String) session.getAttribute("mbId");
-		Comm_MemberDTO comm_login = (Comm_MemberDTO) session.getAttribute("comm_login");
-		List<CommboardDTO> list = boardMapper.allListBoard();
-		req.setAttribute("boardList", list);
-
-		return "comm/index";
-	}*/
 
 	@SuppressWarnings("unchecked")
 	@ResponseBody
