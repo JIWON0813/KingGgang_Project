@@ -241,5 +241,5 @@ public class CommNewsfeedController {
       req.setAttribute("url", url);
       return "message";
    }
-
+ 
 }
