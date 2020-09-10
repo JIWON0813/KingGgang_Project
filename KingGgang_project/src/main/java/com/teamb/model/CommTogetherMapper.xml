@@ -20,12 +20,12 @@
 	</select> -->
 	
 	<select id="allListTogether" resultType="CommTogetherDTO">
-		select * from together
+		select * from together order by togetherNum desc
 	</select>
  
  	<insert id="writeTogether" parameterType="CommTogetherDTO">
 	    insert into together values(#{comm_memberNum}, together_num.nextval,
-	    #{tname}, #{ttitle}, #{temail}, #{tcontent}, sysdate, 0)
+	    #{ttitle}, #{temail}, #{tcontent}, sysdate, 0)
 	</insert>
 	
 	<select id="deleteTogether" parameterType="int" resultType="int">

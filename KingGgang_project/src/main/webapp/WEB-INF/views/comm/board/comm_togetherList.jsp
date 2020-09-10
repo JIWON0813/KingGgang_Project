@@ -51,7 +51,7 @@
 					${dto.ttitle}
 				</a>
 			</td>
-			<td>${dto.tname}</td>
+			<td>${comm_nickname}</td>
 			<td>${dto.temail}</td>
 			<td>${dto.tregdate}</td>
 			<td>${dto.treadcount}</td>

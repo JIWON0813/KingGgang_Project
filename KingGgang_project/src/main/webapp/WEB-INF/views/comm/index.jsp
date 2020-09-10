@@ -47,6 +47,13 @@
 												onclick="window.open('roomList', '_blank', 'width=600 height=600')">>
 													채팅 목록</a></li>
 										</c:if>
+										<li><c:if test="${comm_login == null }">
+												<a href="comm_login.do?memberNum=${memberNum }">> 로그인</a>
+												<a href="comm_checkMember.do?memberNum=${memberNum}">>
+													가입하기</a>
+
+											</c:if> 
+										</li>
 										
 									<li style="margin-top: 20px;">
 									<img style = "opacity: 0.3;" src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" />

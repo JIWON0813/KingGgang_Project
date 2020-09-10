@@ -28,7 +28,7 @@
 		<table width="600">
 			<tr>
 				<th width="20%" bgcolor="orange" align="center"><font color="white">작 성 자</font></th>
-				<td><input type="text" name="tname" size="40"></td>
+				<td><!-- <input type="text" name="tname" size="40"> -->${comm_nickname}</td>
 			</tr>
 			<tr>
 				<th width="20%" bgcolor="brown" align="center"><font color="white">제 목</font></th>

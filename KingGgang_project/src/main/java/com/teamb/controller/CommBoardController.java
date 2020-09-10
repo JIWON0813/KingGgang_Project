@@ -186,10 +186,6 @@ public class CommBoardController {
 
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req, HttpSession session) {
-		
-	   /* CommboardDTO bdto = (CommboardDTO) session.getAttribute("boardNum");*/
-	    
-	   /* int comm_memberNum = bdto.getComm_memberNum();*/
 	    
 	    int comm_memberNum = (Integer) session.getAttribute("comm_memberNum");
 	    List<CommBookmarkDTO> list = bookmarkMapper.listMark(comm_memberNum);
