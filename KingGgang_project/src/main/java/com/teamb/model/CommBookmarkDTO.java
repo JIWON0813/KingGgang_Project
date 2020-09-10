@@ -1,31 +1,41 @@
-
 package com.teamb.model;
 
 public class CommBookmarkDTO {
-	/*private String select;
 
-	public String getSelect() {
-		return select;
-	}
-
-	public void setSelect(String select) {
-		this.select = select;
-	}*/
+	private	int boardNum;
+	private int comm_memberNum;
+	private int bookmarkNum;
+	private String cm_file_name;
+	private int cm_file_size;
 	
-/*private	B4_memberDTO memberNum; //foreign key
-private	CommboardDTO boardNum; //foreign key
-public B4_memberDTO getMemberNum() {
-	return memberNum;
-}
-public void setMemberNum(B4_memberDTO memberNum) {
-	this.memberNum = memberNum;
-}
-public CommboardDTO getBoardNum() {
-	return boardNum;
-}
-public void setBoardNum(CommboardDTO boardNum) {
-	this.boardNum = boardNum;
-}
-*/
-
+	public int getBoardNum() {
+		return boardNum;
+	}
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
+	}
+	public int getComm_memberNum() {
+		return comm_memberNum;
+	}
+	public void setComm_memberNum(int comm_memberNum) {
+		this.comm_memberNum = comm_memberNum;
+	}
+	public int getBookmarkNum() {
+		return bookmarkNum;
+	}
+	public void setBookmarkNum(int bookmarkNum) {
+		this.bookmarkNum = bookmarkNum;
+	}
+	public String getCm_file_name() {
+		return cm_file_name;
+	}
+	public void setCm_file_name(String cm_file_name) {
+		this.cm_file_name = cm_file_name;
+	}
+	public int getCm_file_size() {
+		return cm_file_size;
+	}
+	public void setCm_file_size(int cm_file_size) {
+		this.cm_file_size = cm_file_size;
+	}
 }

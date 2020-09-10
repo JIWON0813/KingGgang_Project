@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.teamb.model.Comm">
+
+	<insert id="markPro" parameterType="CommBookmarkDTO">
+     	insert into bookmark values(#{boardNum},#{comm_memberNum},bookmark_num.nextval)
+    </insert>
+    
+    <select id="listMark" resultType="CommBookmarkDTO">
+		select * from bookmark where comm_memberNum=#{comm_memberNum}
+	</select>
+
+</mapper>

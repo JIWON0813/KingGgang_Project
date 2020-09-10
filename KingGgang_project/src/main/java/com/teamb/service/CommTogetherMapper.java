@@ -1,8 +1,8 @@
 package com.teamb.service;
 
-	/*ÀÌ	   ¸§ : CommTogetherMapper.java
-	°³  ¹ß   ÀÚ : ÃÖ ÀÎ ¾Æ
-	¼³	   ¸í : Åõ°Ô´õMapper*/
+	/*ï¿½ï¿½	   ï¿½ï¿½ : CommTogetherMapper.java
+	ï¿½ï¿½  ï¿½ï¿½   ï¿½ï¿½ : ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
+	ï¿½ï¿½	   ï¿½ï¿½ : ï¿½ï¿½ï¿½Ô´ï¿½Mapper*/
 
 import java.util.List;
 
@@ -22,8 +22,12 @@ public class CommTogetherMapper {
 		return sqlSession.selectOne("getTogether",togetherNum);    
 	}
 	
-	public List<CommTogetherDTO> listTogether(int comm_memberNum) {
+	/*public List<CommTogetherDTO> listTogether(int comm_memberNum) {
 		return sqlSession.selectList("listTogether",comm_memberNum);
+	}*/
+	
+	public List<CommTogetherDTO> allListTogether() {
+		return sqlSession.selectList("allListTogether");
 	}
 	
 	public int writeTogether(CommTogetherDTO dto) {
