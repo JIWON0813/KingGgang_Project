@@ -35,7 +35,7 @@ public class CommboardMapper {
 	}
 	
 	public int deleteAllBoard(int comm_memberNum) {
-		int res = sqlSession.delete("deleteAllBoard",comm_memberNum);
+		int res = sqlSession.delete("all_deleteBoard",comm_memberNum);
 		  return res;
 	}
 

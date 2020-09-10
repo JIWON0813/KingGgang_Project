@@ -141,7 +141,6 @@ public class CommBoardController {
 	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto,  @RequestParam int boardNum) {
 		replyMapper.writeReply(dto);
 		req.setAttribute("boardNum", dto.getBoardNum());
-
 		return "comm/board/comm_content";
 	}*/
 	
@@ -241,7 +240,6 @@ public class CommBoardController {
 		
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
-
 		return "message";
 	}*/
 	
@@ -293,15 +291,14 @@ public class CommBoardController {
 	      return "comm/board/comm_myPage";
 	   }
 
+	//여진
 	@RequestMapping(value = "/comm_otherContent.do", method = RequestMethod.GET)
-	public String otherContent(HttpServletRequest req, @RequestParam int boardNum) {
-		HttpSession session = req.getSession();
-		String mbId = (String) session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null)
-			isLogin = true;
-		req.setAttribute("isLogin", isLogin);
-		
+	public String otherContent(HttpServletRequest req, @RequestParam int boardNum, HttpSession session) {
+		Comm_MemberDTO login = (Comm_MemberDTO)session.getAttribute("comm_login");
+		int loginNum = 0;
+		if(login != null){
+			loginNum = login.getComm_memberNum();
+		}
 		
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
@@ -310,9 +307,13 @@ public class CommBoardController {
 		req.setAttribute("replyList", list);
 		
 		 Comm_MemberDTO member = comm_memberMapper.comm_getMember(dto.getComm_memberNum());
+		 req.setAttribute("loginNum",loginNum);
 		 req.setAttribute("comm_profilename",member.getComm_profilename());
 	     req.setAttribute("comm_nickname",member.getComm_nickname());
-
+	     req.setAttribute("memberNum",member.getComm_memberNum());
+	      
+	      
+		
 
 		return "comm/board/comm_content";
 	}

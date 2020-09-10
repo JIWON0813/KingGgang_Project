@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -30,9 +31,8 @@
 									<li><a href="comm_bookMark.do">> BookMark</a></li>
 									<li><a href="commadmin.comm">> 관리자모드</a></li>
 									<li><c:if test="${comm_login == null }">
-											<%-- <a href="comm_login.do?memberNum=${memberNum }">> 로그인</a> --%>
-											<a href="comm_login.do">> 로그인</a>
-											<a href="comm_checkMember.do">>
+											<a href="comm_login.do?memberNum=${memberNum }">> 로그인</a>
+											<a href="comm_checkMember.do?memberNum=${memberNum}">>
 												가입하기</a>
 
 										</c:if> <c:if test="${comm_login != null }">
@@ -95,12 +95,13 @@
 			</div>
 		</div>
 	</div>
-
-		<div class="row">
+		<form id="searTax">
+		<div class="row" id=table>
 			<c:if test="${empty boardList}">
 				<h4>등록된 페이지가 없습니다.</h4>
 			</c:if>
 			<c:forEach var="dto" items="${boardList}" varStatus="status">
+		
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="full services_blog">
 						<a href="comm_otherContent.do?boardNum=${dto.boardNum}">
@@ -109,23 +110,48 @@
 					</div>
 				</div>
 			</c:forEach>
+			<br>
+		</div>
+		<div id="more_btn_div" align="center">
+			
 			<div class="row margin-top_30">
 				<div class="col-sm-12">
 					<div class="full">
 					<br>
 						<div class="center">
-							<a class="main_bt" href="moreList();">See More ></a>
-
+						<hr>
+							<a class="main_bt" id="more_btn_a" href="javascript:moreContent('more_list',4);">See More ></a>
+						<hr>
+						<input type="hidden" name="pageNum" id="pageNum" value="${page}">
+						<a href="#" onclick="loadNextPage()">더보기</a>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-
+		 </div>
+	</form>
 </body>
 <!-- End Footer -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
+<script>
+function loadNextPage() {
+var pageNum = $('#pageNum').val();
+pageNum = parseInt(pageNum);
+console.log(pageNum);
+pageNum +=4;
+$.ajax({
+type:'post', 
+url:'ajaxList.do',
+data:({pageNum:pageNum}),
+success:function(data){
+$('table').append(data);
+$('#pageNum').val(pageNum);
+}
+});
+}
+</script>
 
+ 
 <script> 
 function search(target){
 	var word = target.value; 
@@ -161,4 +187,53 @@ $(function() {
         }
     })
 });
+</script>
+
+
+<script type="text/javascript">
+function moreContent(id,cnt) {
+	   var aname = id+"_btn";
+	   
+	   $.ajax({
+	      type : "post",
+	      url : ""<c:url value="/getMoreContents_ajax.do" />,
+	      data : $('#searchTxt').serialize(),
+	      dataType : "json",
+	      success : function(data){
+	    	  console.log(data);
+	    	  
+	         if(result.resultCnt > 0){
+	            var list = result.resultList;
+	            if(dto.file_name != ''){
+	               $('#'+aname).attr('href',"javascript:moreContent('"+id+"',"+cnt+");");
+	               getMoreList(list);
+	            }else{
+	               $("#"+id+"_div").remove();
+	            }
+	         }else{
+	        	 
+	         }
+	      },
+	      
+	   error : function(request,status,error) {
+	      alert("code = " + request.status + "message = " + request.responseText + "error = " + error );
+	   }
+	      
+	   });
+	   
+	   function getMoreList(list){
+	      var content = "";
+	      var length = list.length;
+	      for(i=0; i<list.length; i++){
+	         var dto = list[i];
+	         if(dto.file_name != ''){
+	            content += "<a href=''>";
+	            content += "<img class='img-responsive' src='http://localhost:8080/img/"+dto.file_name+"' alt='#' />";
+	            content += "</a>";
+	         }
+	      }
+	      $("#more_list a:last").after(content);
+	      
+	   }
+	}
 </script>

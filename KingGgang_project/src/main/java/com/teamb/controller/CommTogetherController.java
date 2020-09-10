@@ -4,6 +4,8 @@ package com.teamb.controller;
 媛�  諛�   �옄 : 理� �씤 �븘
 �꽕	   紐� : �닾寃뚮뜑Controller*/
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +19,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.teamb.model.CommReplyDTO;
 import com.teamb.model.CommTogetherDTO;
+import com.teamb.model.Comm_MemberDTO;
+import com.teamb.model.CommboardDTO;
+import com.teamb.service.CommReplyMapper;
 import com.teamb.service.CommTogetherMapper;
 
 @Controller
@@ -48,35 +56,33 @@ public class CommTogetherController {
 		String msg = null, url = null;
 
 		if (res > 0) {
-			msg = "글등록완료.";
+			msg = "湲� �벑濡앸릺�뿀�뒿�땲�떎.";
 			url = "comm_togetherList.do";
 		} else {
-			msg = "글등록실패";
+			msg = "湲� �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎.";
 			url = "comm_togetherWF.do";
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		return "message";
 	}
-	
 	//여진
-	@RequestMapping("/comm_mainTogetherList")
-	public String mainTogetherList(HttpServletRequest req, HttpSession session) {
-		List<CommTogetherDTO> list = new ArrayList<>();
-	
-		if(session.getAttribute("comm_memberNum") == null){
+		@RequestMapping("/comm_mainTogetherList")
+		public String mainTogetherList(HttpServletRequest req, HttpSession session) {
+			List<CommTogetherDTO> list = new ArrayList<>();
+		
+			if(session.getAttribute("comm_memberNum") == null){
 
-		}else{
-			int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-			list = togetherMapper.listTogether(comm_memberNum);
-			req.setAttribute("togetherList", list);
+			}else{
+				int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+				list = togetherMapper.listTogether(comm_memberNum);
+				req.setAttribute("togetherList", list);
+			}
+			  
+			  
+			return "comm/board/comm_mainTogetherList";
 		}
-		  
-		  
-		return "comm/board/comm_mainTogetherList";
-	}
-	
-	
+		
 	@RequestMapping("/comm_togetherList.do")
 	public String togetherList(HttpServletRequest req, HttpSession session) {
 		
@@ -112,10 +118,10 @@ public class CommTogetherController {
 		String msg = null, url = null;
 
 		if (res > 0) {
-			msg = "글 수정 완료!";
+			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
 			url = "comm_tcontent.do";
 		}else{
-			msg = "글 수정 실패!";
+			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
 			url = "comm_tupdateForm.do";
 		}
 		
@@ -131,7 +137,7 @@ public class CommTogetherController {
 		String msg = null, url = null;
 
 		if (res > 0) {
-			msg = "글 삭제 성공!";
+			msg = "湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
 			url = "comm_togetherList.do";
 		}
 		ModelAndView mav = new ModelAndView();

@@ -46,4 +46,8 @@
 	</table>
 </div>	
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'yeojin' of https://github.com/JIWON0813/KingGgang_Project.git
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

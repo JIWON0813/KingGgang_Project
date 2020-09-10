@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
+import com.teamb.service.Comm_FriendMapper;
 import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.CommboardMapper;
 
@@ -33,7 +34,10 @@ import com.teamb.service.CommboardMapper;
 public class Comm_MemberController {
 	@Autowired
 	private Comm_MemberMapper memberMapper;
+	@Autowired
 	private CommboardMapper boardMapper;
+	@Autowired
+	private Comm_FriendMapper friendMapper;
 	
 	
 	@Resource(name="upLoadPath")
@@ -149,10 +153,7 @@ public class Comm_MemberController {
 			dto.setComm_name(comm_name);
 			dto.setComm_profilename(comm_profilename);
 			dto.setComm_profilesize(comm_profilesize);
-			
-		
-		    
-		
+	
 		    int res = memberMapper.comm_insertMember(dto);
 		String msg = null, url = null;
 		if(res>0){
@@ -169,7 +170,6 @@ public class Comm_MemberController {
 		return "message";
 	}
 
-	// 목록은 관리자만 볼 수 있음.
 	@RequestMapping(value = "/comm_memberList.do")
 	public String commlistMember(HttpServletRequest req,HttpSession session,Comm_MemberDTO dto){
 		
@@ -234,12 +234,12 @@ public class Comm_MemberController {
 	
 	@RequestMapping("/comm_member_delete.do")
 	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum){
-		//int res2 = boardMapper.deleteAllBoard(comm_memberNum);
+		int res2 = boardMapper.deleteAllBoard(comm_memberNum);
+		int res3 = friendMapper.deleteAllFriend(comm_memberNum);
 		int res = memberMapper.comm_deleteMember(comm_memberNum);
 			Comm_MemberDTO login = memberMapper.comm_getMember(comm_memberNum);
 		String msg = null, url = null;
-		if(res>0){
-		//if(res>0&&res2>0){
+		if(res>0||res2>0||res3>0){
 				HttpSession session = req.getSession();
 				session.setAttribute("comm_login", login);
 			msg="회원삭제성공!";

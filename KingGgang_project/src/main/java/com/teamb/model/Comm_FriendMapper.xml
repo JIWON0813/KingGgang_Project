@@ -26,5 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="comm_deleteFriend" parameterType="int">
 		delete from comm_friend where friendNum = #{friendNum}
 	</delete>  
+	
+	<delete id="all_comm_deleteFriend" parameterType="int">
+		delete from comm_friend where comm_memberNum = #{comm_memberNum}
+	</delete>  
     
 </mapper>

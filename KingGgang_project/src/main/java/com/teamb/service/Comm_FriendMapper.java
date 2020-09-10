@@ -45,4 +45,9 @@ public class Comm_FriendMapper {
 		return res;
 	}
 
+	public int deleteAllFriend(int comm_memberNum) {
+		int res = sqlSession.insert("all_comm_deleteFriend", comm_memberNum);
+		return res;
+	}
+
 }
