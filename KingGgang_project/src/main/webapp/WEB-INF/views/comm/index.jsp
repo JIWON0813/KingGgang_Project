@@ -25,7 +25,6 @@
 							</div>
 							<div class="full">
 								<ul class="menu_footer">
-									<li><a href="ex">> test</a></li>
 									<li><a href="comm_writeForm.do">> Write</a></li>
 									<li><a href="comm_myPage.do">> Mypage</a></li>
 									<li><a href="comm_bookMark.do">> BookMark</a></li>

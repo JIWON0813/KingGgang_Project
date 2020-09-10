@@ -110,6 +110,8 @@ public class CommBoardController {
 	      req.setAttribute("boardList", list);
 	      req.setAttribute("comm_profilename",dto.getComm_profilename());
 	      req.setAttribute("comm_nickname",dto.getComm_nickname());
+	      req.setAttribute("loginNum",comm_memberNum);
+	      req.setAttribute("memberNum",comm_memberNum);
 	      return "comm/board/comm_myPage";
 	   }
 	
@@ -285,14 +287,22 @@ public class CommBoardController {
 	//여진
 	@RequestMapping("/comm_otherPage.do")
 	   public String otherPage(HttpServletRequest req, HttpSession session) {
+		 Comm_MemberDTO login = (Comm_MemberDTO)session.getAttribute("comm_login");
+		 int loginNum = 0;
+			if(login != null){
+				loginNum = login.getComm_memberNum();
+			}
+			
 		 int comm_memberNum = Integer.parseInt(req.getParameter("comm_memberNum"));
-		 
+		 System.out.println(comm_memberNum);
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 	      Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
 	      
 	      req.setAttribute("boardList", list);
 	      req.setAttribute("comm_profilename",dto.getComm_profilename());
 	      req.setAttribute("comm_nickname",dto.getComm_nickname());
+	      req.setAttribute("loginNum",loginNum);
+	      req.setAttribute("memberNum",comm_memberNum);
 	      return "comm/board/comm_myPage";
 	   }
 	//여진
