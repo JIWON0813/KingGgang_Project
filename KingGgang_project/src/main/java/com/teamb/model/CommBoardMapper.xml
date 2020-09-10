@@ -41,7 +41,7 @@
 	</select>
 	
 	<update id="updateBoard" parameterType="CommboardDTO">
-		update commboard set content=#{content}, look=#{look} where boardNum=#{boardNum}
+		update commboard set file_name=#{file_name}, content=#{content}, tag=#{tag}, look=#{look} where boardNum=#{boardNum}
 	</update>
 
 </mapper>

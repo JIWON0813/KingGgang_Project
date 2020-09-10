@@ -100,7 +100,7 @@ public class CommNewsfeedController {
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value = "/ajaxList.do", method = RequestMethod.POST)
-	public Object moerContent(@RequestBody HashMap<String, Object> map, HttpServletRequest req){
+	public Object moerContent(@RequestBody HashMap<String, Object> map, HttpServletRequest req,HttpSession session){
 		
 		int startRow = (int) map.get("startRow");
 		int endRow = (int)map.get("endRow");
@@ -108,30 +108,27 @@ public class CommNewsfeedController {
 		if (endRow>count) endRow = count;
 		
 		System.out.println(endRow);
-		List<CommboardDTO> list = newsfeedMapper.newfeedList(startRow, endRow);
+//		List<CommboardDTO> list = newsfeedMapper.newfeedList(startRow, endRow);
 		//지은
-/*		List<CommboardDTO> list = null;
+		List<CommboardDTO> list = null;
 		String look=(String) session.getAttribute("look");
 		System.out.println("if문 밖 look값:"+look);
 		if(look==null){
-			look="all";
+			look="전체공개";
 			list = newsfeedMapper.newfeedList(startRow, endRow, look);
 		}else if(look!=null){
 			System.out.println("look값:"+look);
-			if(look.equals("all")){
+			if(look.contains("전체공개")){
 				list = newsfeedMapper.newfeedList(startRow, endRow, look);
 			}
-			if(look.equals("member")){
+			if(look.contains("회원공개")){
 				list = newsfeedMapper.newfeedList(startRow, endRow, look);
 			}
-			if(look.equals("alone")){
-				list = newsfeedMapper.newfeedList(startRow, endRow, look);
-			}
-			if(look.equals("all,member")){
+			if(look.contains("비공개")){
 				list = newsfeedMapper.newfeedList(startRow, endRow, look);
 			}
 		}
-*/
+
 	  
 		JSONArray jsonArray = new JSONArray();
 		JSONObject json = null;
@@ -165,37 +162,33 @@ public class CommNewsfeedController {
 		
 		List<CommboardDTO> newsfeed = null;
 
-		newsfeed = newsfeedMapper.newfeedList(startRow, endRow);
+//		newsfeed = newsfeedMapper.newfeedList(startRow, endRow);
 		//지은
-/*		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		String look=(String) session.getAttribute("look");
 		System.out.println("if문 밖 look값:"+look);
 		if(look==null){
-			look="all";
+			look="전체공개";
 			newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
 			mav.addObject("boardList", newsfeed);
 		}else if(look!=null){
 			System.out.println("look값:"+look);
-			if(look.equals("all")){
+			if(look.contains("전체공개")){
 				newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
 				mav.addObject("boardList", newsfeed);
 			}
-			if(look.equals("member")){
+			if(look.contains("회원공개")){
 				newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
 				mav.addObject("boardList", newsfeed);
 			}
-			if(look.equals("alone")){
-				newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
-				mav.addObject("boardList", newsfeed);
-			}
-			if(look.equals("all,member")){
+			if(look.contains("비공개")){
 				newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
 				mav.addObject("boardList", newsfeed);
 			}
 		}
-*/
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("boardList", newsfeed);
+
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("boardList", newsfeed);
 		mav.setViewName("comm/index");
 		return mav;
 	}
