@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="look_allListBoard" resultType="CommboardDTO">
-		select * from commboard where look=#{look}
+		select * from commboard where look like '%' || #{look} || '%'
 	</select>
 	
 	<insert id="writeBoard" parameterType="CommboardDTO">
@@ -41,7 +41,7 @@
 	</select>
 	
 	<update id="updateBoard" parameterType="CommboardDTO">
-		update commboard set content=#{content} where boardNum=#{boardNum}
+		update commboard set content=#{content}, look=#{look} where boardNum=#{boardNum}
 	</update>
 
 </mapper>

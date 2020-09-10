@@ -1,3 +1,4 @@
+  
 package com.teamb.controller;
 
 import java.util.List;
@@ -8,20 +9,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.Comm_FriendDTO;
 import com.teamb.model.Comm_MemberDTO;
-import com.teamb.model.CommboardDTO;
-import com.teamb.model.MemberDTO;
 import com.teamb.service.Comm_FriendMapper;
 import com.teamb.service.Comm_MemberMapper;
-import com.teamb.service.CommboardMapper;
-import com.teamb.service.MemberMapper;
 
 
 /*
@@ -37,9 +31,6 @@ public class Comm_FriendController {
    
    @Autowired
    private Comm_MemberMapper memberMapper;
-   
-   @Autowired
-   private CommboardMapper boardMapper;
 
    @Resource(name = "upLoadPath")
    private String upLoadPath;
@@ -48,7 +39,9 @@ public class Comm_FriendController {
 	public String insertFriend(HttpServletRequest req, HttpSession session, 
 							Comm_FriendDTO dto,Comm_MemberDTO mdto) {
 		
+		//Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
+		//select * from ( list) where id = m_id
 		int comm_memberNum=dto.getComm_memberNum();
 		String msg = null, url = null;
 		
@@ -117,6 +110,15 @@ public class Comm_FriendController {
       return "message";
    }
    
+   @RequestMapping(value = "/comm_friendContent.do")
+   public String content(HttpServletRequest req, HttpSession session,@RequestParam int friendNum) {
+      int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
+      Comm_FriendDTO dto = friendMapper.getFriend(friendNum);
+      
+      session.setAttribute("getFriend", dto);
+
+      return "comm/friend/friendcontent";
+   }
    
    
 }

@@ -57,10 +57,15 @@ public class CommNewsfeedController {
 				List<CommboardDTO> list = boardMapper.allListBoard(look);
 				req.setAttribute("boardList", list);
 			}
-			else if(look.equals("member")){
+			if(look.equals("member")){
 				List<CommboardDTO> list = boardMapper.allListBoard(look);
 				req.setAttribute("boardList", list);
-			}else if(look.equals("alone")){
+			}
+			if(look.equals("alone")){
+				List<CommboardDTO> list = boardMapper.allListBoard(look);
+				req.setAttribute("boardList", list);
+			}
+			if(look.equals("all,member")){
 				List<CommboardDTO> list = boardMapper.allListBoard(look);
 				req.setAttribute("boardList", list);
 			}

@@ -16,7 +16,9 @@
 			<th>자기소개</th>
 			<th>친구추가</th>
 			<th>채팅하기</th>
+			<c:if test="${dto.comm_name == '관리자'}">
 			<th>삭제</th>
+			</c:if>
 		</tr>
 		<c:if test="${empty comm_memberList}">
 			<tr>
@@ -44,7 +46,6 @@
 				<td><a href=""
 				onclick="window.open('room?comm_memberNum=${dto.comm_memberNum}&comm_nickname=${dto.comm_nickname}', '_blank', 'width=600 height=600')">채팅하기</a></td> 
 				<td><a href="admin_comm_member_delete.do?comm_nickname=${dto.comm_nickname }">삭제</a></td> 
-				<%-- <td><a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a></td>  --%>
 			</tr>
 		</c:forEach>
 		</table>

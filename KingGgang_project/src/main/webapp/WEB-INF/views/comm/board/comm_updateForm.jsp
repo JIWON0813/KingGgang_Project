@@ -35,14 +35,12 @@
 			<td><input type="text" name="tag" value="${getBoard.tag}"></td>
 		</tr>
 		<tr>
-				<th width="150">공개범위</th>
-				<td><select name="look" value="${getBoard.look}">
-   					<option value="all">전체공개</option>
-    				<option value="member">회원공개</option>
-    				<option value="alone">비공개</option>
-					</select>	
-				</td>
-			</tr>
+			<th width="150">공개범위</th>
+			<td>전체공개 <input type="checkbox" name="look" value="전체공개" />
+           		회원공개 <input type="checkbox" name="look" value="회원공개" />
+				비공개 <input type="checkbox" name="look" value="비공개" />			
+			</td>
+		</tr>
 		<tr>
 			<td align="center" colspan="3">
 				<input type="submit" value="글수정" onclick="window.location='comm_updatePro.do?boardNum=${getBoard.boardNum}'">
