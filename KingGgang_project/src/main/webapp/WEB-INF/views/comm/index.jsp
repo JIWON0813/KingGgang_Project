@@ -95,7 +95,7 @@
 		</div>
 	</div>
 		<form id="searTax">
-		<div class="row">
+		<div class="row" id=table>
 			<c:if test="${empty boardList}">
 				<h4>등록된 페이지가 없습니다.</h4>
 			</c:if>
@@ -110,7 +110,8 @@
 				</div>
 			</c:forEach>
 			<br>
-			<div id="more_btn_div" align="center">
+		</div>
+		<div id="more_btn_div" align="center">
 			
 			<div class="row margin-top_30">
 				<div class="col-sm-12">
@@ -120,17 +121,42 @@
 						<hr>
 							<a class="main_bt" id="more_btn_a" href="javascript:moreContent('more_list',4);">See More ></a>
 						<hr>
+						<input type="hidden" name="pageNum" id="pageNum" value="${page}">
+						<a href="#" onclick="loadNextPage()">더보기</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		 </div>
-		</div>
 	</form>
 </body>
 <!-- End Footer -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
+<script>
 
+function loadNextPage() {
+var pageNum = $('#pageNum').val();
+pageNum = parseInt(pageNum);
+
+console.log(pageNum);
+
+pageNum +=4;
+
+
+$.ajax({
+type:'post', 
+url:'ajaxList.do',
+data:({pageNum:pageNum}),
+success:function(data){
+$('table').append(data);
+$('#pageNum').val(pageNum);
+}
+});
+}
+
+</script>
+
+ 
 <script> 
 
 function search(target){

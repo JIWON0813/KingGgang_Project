@@ -112,10 +112,12 @@ public class CommNewsfeedController {
 	@RequestMapping("/commhome.comm")
 	public ModelAndView boardList(HttpServletRequest req){
 		int pageSize = 4;
+		
 		String pageNum = req.getParameter("pageNum");
 		if (pageNum == null){
 			pageNum = "1";
 		}
+		
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = currentPage * pageSize - (pageSize-1);
 		int endRow = currentPage * pageSize;
@@ -127,17 +129,20 @@ public class CommNewsfeedController {
 		List<CommboardDTO> newsfeed = null;
 		newsfeed = newsfeedMapper.newfeedList(startRow, endRow);
 		
-		int startNum = count - ((currentPage-1) * pageSize); 
-		int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
-		int pageBlock = 3;
-		int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
-		int endPage = startPage + pageBlock - 1;
-		if (endPage>pageCount) endPage = pageCount;
+//		int startNum = count - ((currentPage-1) * pageSize); 
+//		int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
+//		int pageBlock = 3;
+//		int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
+//		int endPage = startPage + pageBlock - 1;
+//		if (endPage>pageCount) endPage = pageCount;
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("count", count);
-		mav.addObject("startNum", startNum);
-		mav.addObject("pageCount", pageCount);
+//		mav.addObject("startNum", startNum);
+//		mav.addObject("pageCount", pageCount);
+//		mav.addObject("pageBlock", pageBlock);
+//		mav.addObject("startPage", startPage);
+//		mav.addObject("endPage", endPage);
 		mav.addObject("boardList", newsfeed);
 		mav.setViewName("comm/index");
 		return mav;
