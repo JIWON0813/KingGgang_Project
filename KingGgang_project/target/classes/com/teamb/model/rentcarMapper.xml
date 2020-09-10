@@ -132,5 +132,5 @@
 	<update id="changePstSuc" parameterType="int">
 		 update rentcar_res set pstatus = 0 where res_id = #{res_id}
 	</update>
-	
+	 
 </mapper>

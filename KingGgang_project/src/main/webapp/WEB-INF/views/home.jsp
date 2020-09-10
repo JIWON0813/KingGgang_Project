@@ -8,10 +8,12 @@
 	설	   명 : 메인 페이지
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
-<<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> branch 'seho' of https://github.com/JIWON0813/KingGgang_Project.git
     <div class="ulockd-home-slider">
         <div class="container-fluid">
             <div class="row">
@@ -79,10 +81,12 @@
         </div>
     </div>
 	<!-- end section -->
-<<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> branch 'seho' of https://github.com/JIWON0813/KingGgang_Project.git
 
     
   <%@ include file="/WEB-INF/views/bottom.jsp"%>
