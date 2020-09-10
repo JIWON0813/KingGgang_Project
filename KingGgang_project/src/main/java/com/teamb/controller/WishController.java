@@ -55,8 +55,31 @@ public class WishController {
 	
 	@RequestMapping("/main.wish")
 	public String mypageMain(HttpServletRequest req) {
+		//상품번호 호텔 = 1; 회원번호 memberNum = 1 ; 
 		int m_no = 1;
+		int no = 1;
+		int type = 1;
+		WishlistDTO dto = new WishlistDTO();
+		dto.setM_no(m_no);
+		dto.setF_no(no);
+		dto.setType(type);
+		
+		List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
+		boolean check1 =true;
+		for(WishlistDTO check : noCheck) {
+			System.out.println(check.getF_no());
+			if(check.getF_no()!=no) {
+				continue;
+			}else if(check.getF_no()==no) {
+				check1 = false;
+			}
+		}
+		
+		req.setAttribute("check1", check1);
 		req.setAttribute("m_no", m_no);
+		req.setAttribute("f_no", no);
+		req.setAttribute("type", type);
+		
 		return "payment/wishins";
 		
 	}
