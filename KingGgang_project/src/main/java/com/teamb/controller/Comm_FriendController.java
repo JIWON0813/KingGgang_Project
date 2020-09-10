@@ -85,8 +85,9 @@ public class Comm_FriendController {
 			int m=dto2.getComm_memberNum();
 			Comm_MemberDTO mdto=memberMapper.comm_getMember(m);
 			dto2.setF_comm_profilename(mdto.getComm_profilename());
-			dto2.setF_comm_profilesize(dto2.getF_comm_profilesize());
+			//dto2.setF_comm_profilesize(dto2.getF_comm_profilesize());
 			dto2.setF_name(mdto.getComm_name());
+			dto2.setF_comm_nickname(mdto.getComm_nickname());
 		}
 		session.setAttribute("friendList", list);
  
