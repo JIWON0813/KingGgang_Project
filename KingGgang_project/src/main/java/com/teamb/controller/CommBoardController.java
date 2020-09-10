@@ -177,15 +177,22 @@ public class CommBoardController {
 	}
 
 	@RequestMapping("/comm_bookMark.do")
-	public String bookmark(HttpServletRequest req, CommBookmarkDTO bmdto, HttpSession session) {
+	public String bookmark(HttpServletRequest req, HttpSession session) {
 		
-	    Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
-	   
-	    CommboardDTO bdto = (CommboardDTO) session.getAttribute("boardNum");
+	   /* CommboardDTO bdto = (CommboardDTO) session.getAttribute("boardNum");*/
 	    
-	    List<CommboardDTO> list = boardMapper.allListBoard();
+	   /* int comm_memberNum = bdto.getComm_memberNum();*/
+	    
+	    int comm_memberNum = (Integer) session.getAttribute("comm_memberNum");
+	    List<CommBookmarkDTO> list = bookmarkMapper.listMark(comm_memberNum);
+	    for(CommBookmarkDTO cmdto : list) {
+	    	int cm = cmdto.getBoardNum();
+	    	CommboardDTO dto = boardMapper.getBoard(cm);
+	    	cmdto.setCm_file_name(dto.getFile_name());
+	    	cmdto.setCm_file_size(dto.getFile_size());
+	    }
 	    req.setAttribute("bookmarkList", list);
-	  
+	   
 		return "comm/board/comm_bookMark";
 	}
 
