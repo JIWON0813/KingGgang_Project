@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="getMember" parameterType="int" resultType="memberDTO">
 		select * from member where memberNum = #{memberNum}
 	</select>
+	
 	<update id="updateMember" parameterType="memberDTO">
 		update member set profile_name=#{profile_name},profile_size=#{profile_size},passwd=#{passwd}, 
 		email=#{email}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, intro=#{intro,jdbcType=VARCHAR}, point=#{point}

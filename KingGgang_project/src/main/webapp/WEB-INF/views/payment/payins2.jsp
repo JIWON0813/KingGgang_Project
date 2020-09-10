@@ -43,7 +43,7 @@
             pg : 'kakaopay',
             // pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : '제주여행사 렌트카,호텔 결제',
+            name : '제주여행사 낑깡 렌트카,호텔 결제',
             amount : "${totalPrice}",
             buyer_email : "${mrdto.email}",
             buyer_name : "${mrdto.name}",
@@ -86,8 +86,14 @@
     
     
     </script>
- 	
+    
  	<form name="n" action="complete.pay" method="post">
+ 	<input type="hidden" name="no" value="${no}">
+ 	<input type="hidden" name="m_no" value="${m_no}">
+ 	</form>
+ 	
+ 	<form name="f" action="delete.pay" method="post">
+ 	<input type="hidden" name="m_no" value="${m_no}">
  	<input type="hidden" name="no" value="${no}">
  	</form>
  	

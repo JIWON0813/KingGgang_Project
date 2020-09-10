@@ -83,25 +83,32 @@ public class MyController {
 		//String password = String.valueOf(session.getAttribute("password"));
 		String id =  req.getParameter("id");
 		String password = req.getParameter("password");
+		System.out.println(id);
+		MemberDTO dto = myMapper.getMemberNo(id);
 		
-		MemberDTO dto = myMapper.getMember(id);
-		String filename = dto.getProfile_name(); 
-		File file = new File(upLoadPath,filename);
-		
-		int res = myMapper.deleteMember(id,password);
+		int memberNum = dto.getMemberNum();
+		System.out.println(memberNum);
+		int res = myMapper.deleteMember(id,password,memberNum);
 		String msg = null, url=null;
-		if (res>0) {
-			if(file.delete()) {
-			url = "home.my";
-			msg = "delete successed";
-			}else {
-				url = "home.my";
-				msg = "delete successed but image is remained";
-			}
-		}else {
-			url = "home.my";
-			msg = "delete failed";
-		}
+		if (res > 0) {
+	         if (dto.getProfile_name() == null) {
+	            url = "memberList.mem";
+	            msg = "delete successed";
+	         } else {
+	            String filename = dto.getProfile_name();
+	            File file = new File(upLoadPath, filename);
+	            if (file.delete()) {
+	               url = "memberList.mem";
+	               msg = "delete successed";
+	            } else {
+	               url = "memberList.mem";
+	               msg = "delete successed but image is remained";
+	            }
+	         }
+	      } else {
+	         url = "memberList.mem";
+	         msg = "delete failed";
+	      }
 		
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
@@ -116,7 +123,7 @@ public class MyController {
 	}
 	@RequestMapping(value = "/updateForm.my")
 	public ModelAndView updateMem(@RequestParam String id) {
-		MemberDTO dto =  myMapper.getMember(id);
+		MemberDTO dto =  myMapper.getMemberNo(id);
 		
 		ModelAndView mav = new ModelAndView("my/updateForm");
 		mav.addObject("getMember", dto);

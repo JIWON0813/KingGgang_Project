@@ -5,19 +5,53 @@ public class PaylistDTO {
 	private String r_name;
 	private String r_company;
 	private String r_type;
+	//rentcar_res
+	private String returnday;
+	private String receiptday;
 	//hotel
 	private String h_name;
 	private String h_category;
 	private String h_hp;
+	//roomdate
+	private String startdate;
+	private String enddate;
 	//pay
 	private int p_price;
-	private int p_amount;
 	private String p_paydate;
 	private int p_type;
 	private int p_valid;
 	//member
 	private int m_no;
 	private String m_id;
+	
+	
+	public String getReturnday() {
+		return returnday;
+	}
+	public void setReturnday(String returnday) {
+		this.returnday = returnday;
+	}
+	public String getReceiptday() {
+		return receiptday;
+	}
+	public void setReceiptday(String receiptday) {
+		this.receiptday = receiptday;
+	}
+	public String getStartdate() {
+		return startdate;
+	}
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
+	}
+	public String getEnddate() {
+		return enddate;
+	}
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
 	public String getM_id() {
 		return m_id;
 	}
@@ -82,12 +116,7 @@ public class PaylistDTO {
 	public void setP_price(int p_price) {
 		this.p_price = p_price;
 	}
-	public int getP_amount() {
-		return p_amount;
-	}
-	public void setP_amount(int p_amount) {
-		this.p_amount = p_amount;
-	}
+	
 	public String getP_paydate() {
 		return p_paydate;
 	}

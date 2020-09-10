@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<!-- 호텔 결제내역 -->
+<!-- 전체보기 -->
 <c:if test = "${type==1}">
 <form>
 	    <div class="wrap wd668">
@@ -32,7 +32,7 @@
                                  <td><span>구매자 아이디</span></td>
                                  <td><span>구매자 이름</span></td>
                                  <td><span>구매자 이메일</span></td>
-                                 <td><span>결제 수량</span></td>
+                                 <td><span>이용 일시</span></td>
                                  <td><span>총 결제금액</span></td>
                                  <td><span>결제일</span></td>
                                 </tr>
@@ -50,7 +50,7 @@
                                 <td><span>${dto.m_id}</span></td>
                                 <td><span>${dto.m_name}</span></td>
                                 <td><span>${dto.m_email}</span></td>
-                                <td><span>${dto.p_amount}</span></td>
+                                <td><span>${dto.startdate}일 부터 ${dto.startdate}까지</span></td>
                                  <td><span>${dto.p_amount*dto.p_price}</span></td>
                                  <td><span>${dto.p_paydate}</span></td>
                                 </tr>
@@ -82,7 +82,7 @@
                                  <td><span>구매자 아이디</span></td>
                                  <td><span>구매자 이름</span></td>
                                  <td><span>구매자 이메일</span></td>
-                                 <td><span>결제 수량</span></td>
+                                 <td><span>이용 일시</span></td>
                                  <td><span>총 결제금액</span></td>
                                  <td><span>결제일</span></td>
                                 </tr>
@@ -99,8 +99,8 @@
                                 <td><span>${dto.m_id}</span></td>
                                 <td><span>${dto.m_name}</span></td>
                                 <td><span>${dto.m_email}</span></td>
-                                <td><span>${dto.p_amount}</span></td>
-                                 <td><span>${dto.p_amount*dto.p_price}</span></td>
+                                <td><span>${dto.receiptday}일 부터 ${dto.returnday}까지</span></td>
+                                 <td><span>${dto.p_price}</span></td>
                                  <td><span>${dto.p_paydate}</span></td>
                                 </tr>
                                 </c:forEach>
@@ -135,7 +135,8 @@
             </div><!-- content E-->
         </div> 
                         </form>
-</c:if><!-- 호텔 결제내역 -->
+</c:if>
+<!-- 아이디 정보에 따른 찾기 -->
 <c:if test = "${type==2}">
 <form>
 	    <div class="wrap wd668">
@@ -151,7 +152,7 @@
                                  <td><span>구매자 아이디</span></td>
                                  <td><span>구매자 이름</span></td>
                                  <td><span>구매자 이메일</span></td>
-                                 <td><span>결제 수량</span></td>
+                                 <td><span>이용 일시</span></td>
                                  <td><span>총 결제금액</span></td>
                                  <td><span>결제일</span></td>
                                 </tr>
@@ -169,8 +170,8 @@
                                 <td><span>${dto.m_id}</span></td>
                                 <td><span>${dto.m_name}</span></td>
                                 <td><span>${dto.m_email}</span></td>
-                                <td><span>${dto.p_amount}</span></td>
-                                 <td><span>${dto.p_amount*dto.p_price}</span></td>
+                                <td><span>${dto.startdate}일 부터 ${dto.startdate}까지</span></td>
+                                 <td><span>${dto.p_price}</span></td>
                                  <td><span>${dto.p_paydate}</span></td>
                                 </tr>
                                 </c:forEach>
@@ -201,7 +202,7 @@
                                  <td><span>구매자 아이디</span></td>
                                  <td><span>구매자 이름</span></td>
                                  <td><span>구매자 이메일</span></td>
-                                 <td><span>결제 수량</span></td>
+                                 <td><span>이용 일시</span></td>
                                  <td><span>총 결제금액</span></td>
                                  <td><span>결제일</span></td>
                                 </tr>
@@ -218,8 +219,8 @@
                                 <td><span>${dto.m_id}</span></td>
                                 <td><span>${dto.m_name}</span></td>
                                 <td><span>${dto.m_email}</span></td>
-                                <td><span>${dto.p_amount}</span></td>
-                                 <td><span>${dto.p_amount*dto.p_price}</span></td>
+                                <td><span>${dto.receiptday}일 부터 ${dto.returnday}까지</span></td>
+                                 <td><span>${ddto.p_price}</span></td>
                                  <td><span>${dto.p_paydate}</span></td>
                                 </tr>
                                 </c:forEach>
