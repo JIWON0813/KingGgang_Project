@@ -106,7 +106,7 @@ public class CommBoardController {
 	      
 	      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
 	      int comm_memberNum = commmember.getComm_memberNum();
-	   
+	    
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 	      req.setAttribute("boardList", list);
 	      req.getParameter(commmember.getComm_profilename());
@@ -177,14 +177,15 @@ public class CommBoardController {
 	}
 
 	@RequestMapping("/comm_bookMark.do")
-	public String bookmark(HttpServletRequest req, HttpSession session) {
+	public String bookmark(HttpServletRequest req, CommBookmarkDTO bmdto, HttpSession session) {
 		
 	    Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
-	    int boardNum = commmember.getComm_memberNum();
 	   
-	    List<CommBookmarkDTO> list = bookmarkMapper.listMark(boardNum);
-	    req.setAttribute("bookmarkList", list);
+	    CommboardDTO bdto = (CommboardDTO) session.getAttribute("boardNum");
 	    
+	    List<CommboardDTO> list = boardMapper.allListBoard();
+	    req.setAttribute("bookmarkList", list);
+	  
 		return "comm/board/comm_bookMark";
 	}
 
@@ -202,7 +203,7 @@ public class CommBoardController {
 		String file_name = "";
 		int file_size = 0;
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
-		MultipartFile file = mr.getFile("file_name");
+		MultipartFile file = mr.getFile("filename");
 		System.out.println("파일값"+file.getOriginalFilename());
 		File target = new File(upLoadPath, file.getOriginalFilename());
 		if(file.getSize()>0){

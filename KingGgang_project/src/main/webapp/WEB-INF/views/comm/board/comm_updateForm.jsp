@@ -28,7 +28,7 @@
 	<table width="600">
 		<tr align="center">
 			 <td align="center" colspan="3">
-			 	<input type="file" name="file_name">
+			 	<input type="file" name="filename">
 			 	<img src="http://localhost:8080/img/${getBoard.file_name}" width="200" height="200">
 				<%-- <input type="hidden" name="file_size" value="${getBoard.file_size}"> --%>
 			 </td>

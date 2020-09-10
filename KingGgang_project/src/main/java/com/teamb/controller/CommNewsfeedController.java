@@ -64,9 +64,7 @@ public class CommNewsfeedController {
 			json.put("nick", dto.getComm_nickname());
 
 			jsonArray.add(json);
-
 		}
-
 		return jsonArray;
 	}
 	
@@ -97,8 +95,7 @@ public class CommNewsfeedController {
 	 * }
 	 */
 
-	// 지은이
-	
+	// 지은
 	@RequestMapping("/commadmin.comm")
 	public String admin(HttpServletRequest req) {
 		return "comm/comm_admin";

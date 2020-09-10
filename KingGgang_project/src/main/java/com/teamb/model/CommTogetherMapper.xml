@@ -15,8 +15,12 @@
 		select * from together where togetherNum=#{togetherNum}
 	</select>
 
-	<select id="listTogether" resultType="CommTogetherDTO">
+	<!-- <select id="listTogether" resultType="CommTogetherDTO">
 		select * from together where comm_memberNum=#{comm_memberNum}
+	</select> -->
+	
+	<select id="allListTogether" resultType="CommTogetherDTO">
+		select * from together
 	</select>
  
  	<insert id="writeTogether" parameterType="CommTogetherDTO">
