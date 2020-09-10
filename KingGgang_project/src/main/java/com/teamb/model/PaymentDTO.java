@@ -7,7 +7,7 @@ public class PaymentDTO {
 	private int amount;
 	private int type;
 	private int p_no;
-	private String m_id;
+	private int m_no;
 	private String paydate;
 	private int valid;
 	
@@ -41,11 +41,11 @@ public class PaymentDTO {
 	public void setP_no(int p_no) {
 		this.p_no = p_no;
 	}
-	public String getM_id() {
-		return m_id;
+	public int getM_no() {
+		return m_no;
 	}
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
 	}
 	public String getPaydate() {
 		return paydate;

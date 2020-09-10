@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
+
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.ezen.model">
+
     
     <select id="listMember" resultType="memberDTO">
 		select * from member order by memberNum
 	</select>
 	
-    <!-- 회원가입 mapper -->
     <insert id="insertMember" parameterType="memberDTO">
      insert into member values
      (member_num.nextval,#{profile_name,jdbcType=VARCHAR},#{profile_size},
@@ -28,6 +29,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 	<delete id="deleteMember" parameterType="int">
 		delete from member where memberNum = #{memberNum}
-	</delete>  
+	</delete>
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.teamb.service;
 
+import java.util.Hashtable;
 import java.util.List;
 
 
@@ -35,13 +36,17 @@ public class PaymentMapper {
 		return res;
 	}
 	
-	public int getPayno(String m_id) {
-		int no = sqlSession.selectOne("getPayno",m_id);
+	public int getPayno(int m_no) {
+		int no = sqlSession.selectOne("getPayno",m_no);
 		return no;
 	}
 	
-	public List<PaymentDTO> getPaymentlist(String m_id){
-		return sqlSession.selectList("getPayment",m_id);
+	public List<PaymentDTO> getPaymentlist(int m_no){
+		return sqlSession.selectList("getPayment",m_no);
+	}
+	
+	public List<PaymentDTO> getAllPaymentlist(){
+		return sqlSession.selectList("getAllPayment");
 	}
 	
 	public PaylistDTO getmyPaylist(PaymentDTO ptdto) {
@@ -49,9 +54,18 @@ public class PaymentMapper {
 	}
 	
 	public PaylistDTO getadPaylist(PaymentDTO ptdto) {
+		
 		return sqlSession.selectOne("getAdPaylist",ptdto);
 	}
 	
+	public int getpayCount(){
+		int count = sqlSession.selectOne("getpayCount");
+			return count;
+	}
+	
+	public MemberDTO getpayMember(int m_no){
+		return sqlSession.selectOne("getpayMember",m_no);
+	}
 	
 }	
 	

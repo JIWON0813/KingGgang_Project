@@ -33,10 +33,11 @@ import com.teamb.model.MemberDTO;
 import com.teamb.service.MemberMapper;
 import com.teamb.service.MyMapper;
 
-
+  
 
 /*
 이	   름 : MyController.java
+
 
 개  발   자 : 원세호
 설	   명 : 마이페이지 컨트롤러
@@ -104,7 +105,7 @@ public class MyController {
 		
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
-		return "my/alert";
+		return "message";
 	}
 	
 	@RequestMapping("/update.my")
@@ -168,7 +169,7 @@ public class MyController {
 	}
 	req.setAttribute("url", url);
 	req.setAttribute("msg", msg);
-	return "my/alert";
+	return "message";
 	}
 	
 	@RequestMapping("/home.my")

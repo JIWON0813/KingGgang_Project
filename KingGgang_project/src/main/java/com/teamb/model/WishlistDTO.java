@@ -3,21 +3,22 @@ package com.teamb.model;
 public class WishlistDTO {
 	
 	private int no;
-	private String m_id;
+	private int m_no;
+	
 	private int type;
 	private int f_no;
 	
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
 	public int getNo() {
 		return no;
 	}
 	public void setNo(int no) {
 		this.no = no;
-	}
-	public String getM_id() {
-		return m_id;
-	}
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
 	}
 	public int getType() {
 		return type;

@@ -16,8 +16,8 @@
 
 
 <form action="insert.wish" method="post">
-	<p>멤버id q/a</p>
-	<p><input type = "text" name= "m_id"></p><br>
+	<p>멤버no 4</p>
+	<p><input type = "text" name= "m_no"></p><br>
 	<p>호텔1,렌트카2</p>
 	<p><input type = "text" name= "type"></p><br>
 	<p>상품번호1/2/3</p>
