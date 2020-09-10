@@ -37,7 +37,7 @@ public class CommNewsfeedController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
-	@RequestMapping("/commhome.comm")
+	/*@RequestMapping("/commhome.comm")
 	public String index(HttpServletRequest req, HttpSession session, Comm_MemberDTO dto) {
 
 		String mbId = (String) session.getAttribute("mbId");
@@ -46,7 +46,7 @@ public class CommNewsfeedController {
 		req.setAttribute("boardList", list);
 
 		return "comm/index";
-	}
+	}*/
 
 	@SuppressWarnings("unchecked")
 	@ResponseBody
@@ -70,32 +70,81 @@ public class CommNewsfeedController {
 		return jsonArray;
 	}
 	
-	
-	@RequestMapping("/test")
-	public String test(HttpServletRequest req) {
-		return "comm/ex01";
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	@RequestMapping(value = "/getMoreContents_ajax.do", method = RequestMethod.POST)
+	public Object moerContent(@RequestBody HashMap<String, Object> map, HttpServletRequest req){
+		int pageSize = 4;
+		String pageNum = req.getParameter("pageNum");
+		if (pageNum == null){
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = currentPage * pageSize - (pageSize-1);
+		int endRow = currentPage * pageSize;
+		int count = 0;
+
+		count = newsfeedMapper.getNewCount();
+		if (endRow>count) endRow = count;
+		
+		int startNum = count - ((currentPage-1) * pageSize); 
+		int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
+		int pageBlock = 3;
+		int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock - 1;
+		if (endPage>pageCount) endPage = pageCount;
+		
+		List<CommboardDTO> list = newsfeedMapper.newfeedList(startRow, endRow);
+	  
+		JSONArray jsonArray = new JSONArray();
+		JSONObject json = null;
+		for (int i = 0; i < list.size(); i++) {
+			json = new JSONObject();
+			CommboardDTO dto = (CommboardDTO) list.get(i);
+			json.put("num", dto.getBoardNum());
+			json.put("profile", dto.getFile_name());
+			jsonArray.add(json);
+			}
+	  
+		return jsonArray;
+	  }
+	 
+	@RequestMapping("/commhome.comm")
+	public ModelAndView boardList(HttpServletRequest req){
+		int pageSize = 4;
+		String pageNum = req.getParameter("pageNum");
+		if (pageNum == null){
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = currentPage * pageSize - (pageSize-1);
+		int endRow = currentPage * pageSize;
+		int count = 0;
+
+		count = newsfeedMapper.getNewCount();
+		if (endRow>count) endRow = count;
+		
+		List<CommboardDTO> newsfeed = null;
+		newsfeed = newsfeedMapper.newfeedList(startRow, endRow);
+		
+		int startNum = count - ((currentPage-1) * pageSize); 
+		int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
+		int pageBlock = 3;
+		int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock - 1;
+		if (endPage>pageCount) endPage = pageCount;
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("count", count);
+		mav.addObject("startNum", startNum);
+		mav.addObject("pageCount", pageCount);
+		mav.addObject("boardList", newsfeed);
+		mav.setViewName("comm/index");
+		return mav;
 	}
 	
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/getMoreContents_ajax.do") public void
-	 * getMoreContents(CommboardDTO dto,HttpServletRequest req,
-	 * HttpServletResponse res) throws ParseException, IOException { String
-	 * viewCount = req.getParameter("viewCount"); String startCount =
-	 * req.getParameter("startCount");
-	 * 
-	 * JSONArray resultList = newsfeedMapper.allListBoard(startCount,viewCount);
-	 * int resultCnt =
-	 * 
-	 * json.put("resultList",resultList); json.put("resultCnt",resultCnt);
-	 * 
-	 * res.setContentType("application/json; charset=utf-8");
-	 * res.getWriter().write(json.toString());
-	 * 
-	 * 
-	 * }
-	 */
+	
+	
 
 	// 지은이
 	
