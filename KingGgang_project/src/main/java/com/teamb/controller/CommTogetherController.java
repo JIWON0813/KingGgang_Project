@@ -69,14 +69,14 @@ public class CommTogetherController {
 	@RequestMapping("/comm_togetherList.do")
 	public String togetherList(HttpServletRequest req, HttpSession session, Comm_MemberDTO dto) {
 		
-		Comm_MemberDTO comm_login = (Comm_MemberDTO) session.getAttribute("comm_login");
+		/*Comm_MemberDTO comm_login = (Comm_MemberDTO) session.getAttribute("comm_login");*/
 		
 	    int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 	    List<CommTogetherDTO> list = togetherMapper.allListTogether();
 	    req.setAttribute("togetherList", list);
 	    
-	    Comm_MemberDTO member = comm_memberMapper.comm_getMember(dto.getComm_memberNum());
-	    req.setAttribute("comm_nickname",member.getComm_nickname());
+	   /* Comm_MemberDTO member = comm_memberMapper.comm_getMember(dto.getComm_memberNum());
+	    req.setAttribute("comm_nickname",member.getComm_nickname());*/
 	    
 		return "comm/board/comm_togetherList";
 	}

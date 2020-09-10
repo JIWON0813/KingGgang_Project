@@ -23,28 +23,31 @@
 		</div>
 </footer>
 <div class="section layout_padding" align="center">
-	<form name="f" action="comm_updatePro.do?boardNum=${getBoard.boardNum}" method="post" onsubmit="return check()" enctype="multipart/form-data">
+	<form name="f" action="comm_updatePro.do?boardNum=${getBoard.boardNum}" method="post" 
+									onsubmit="return check()" enctype="multipart/form-data">
 	<input type="hidden" name="boardNum" value="${getBoard.boardNum}">
 	<table width="600">
 		<tr align="center">
 			 <td align="center" colspan="3">
 			 	<input type="file" name="filename">
 			 	<img src="http://localhost:8080/img/${getBoard.file_name}" width="200" height="200">
-				<%-- <input type="hidden" name="file_size" value="${getBoard.file_size}"> --%>
 			 </td>
 		</tr>
 		
 		<tr height="80">
-			<td colspan="2"><textarea name="content" cols="100" rows="5">${getBoard.content}</textarea></td>
+			<td colspan="2">
+				<textarea name="content" cols="100" rows="5">${getBoard.content}</textarea>
+			</td>
 		</tr>
 	
 		<tr>
 			<th>태그하기</th>
-			<td><input type="text" name="tag" value="${getBoard.tag}"></td>
+			<td><%-- <input type="text" name="tag" value="${getBoard.tag}"> --%></td>
 		</tr>
 		<tr>
 			<th width="150">공개범위</th>
-			<td>전체공개 <input type="checkbox" name="look" value="전체공개" />
+			<td>
+				전체공개 <input type="checkbox" name="look" value="전체공개" />
            		회원공개 <input type="checkbox" name="look" value="회원공개" />
 				비공개 <input type="checkbox" name="look" value="비공개" />			
 			</td>

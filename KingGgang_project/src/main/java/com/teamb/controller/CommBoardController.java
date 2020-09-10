@@ -321,7 +321,7 @@ public class CommBoardController {
 		replyMapper.deleteReply(replyNum);
 		req.setAttribute("replyNum", replyNum);
 		req.setAttribute("boardNum", boardNum);
-		return "comm_content.do";
+		return "comm/board/comm_content";
 	}
 	
 	//여진
