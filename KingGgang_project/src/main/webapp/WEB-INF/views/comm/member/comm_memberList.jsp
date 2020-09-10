@@ -59,4 +59,5 @@
 		</div>
 	</div>
 </div>
+
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

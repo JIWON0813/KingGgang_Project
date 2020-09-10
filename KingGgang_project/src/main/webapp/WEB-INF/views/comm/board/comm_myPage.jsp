@@ -37,14 +37,23 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;
 	   		<a href="comm_bookMark.do">BookMark</a>
 	   </td>
-	 
 	</tr>
+	
 	<tr>
 		 <td>
 		      <h2>[   ${comm_nickname}   ]님</h2>
 	   	 </td>
 	</tr> 
-	   
+	<tr>
+	<c:if test="${loginNum == memberNum}">
+	<td><a class="join_bt" href="#" onclick="window.open('roomList', '_blank', 'width=600 height=600')" style="display: inline-block; margin-left:30px;">채팅 목록</a></td>
+	</c:if>
+	<c:if test="${loginNum != memberNum}">
+	<td><a class="join_bt" href="#"
+				onclick="window.open('room?comm_memberNum=${memberNum}&comm_nickname=${comm_nickname}', '_blank', 'width=600 height=600')"
+				style="display: inline-block; margin-left:30px;">메세지 보내기</a></td> 
+	</c:if>
+	</tr>
 </table>
 </div>
 <div>

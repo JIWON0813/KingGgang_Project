@@ -33,7 +33,7 @@
 	</tr>
 	<tr>
 		<td align="left" colspan="4">
-		 	<a href="comm_myPage.do"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50"></a>&nbsp;&nbsp;<a href="comm_myPage.do">[   ${comm_nickname}   ]</a>
+		 	<a href="comm_myPage.do"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50"></a>&nbsp;&nbsp;<a href="comm_otherPage.do?comm_memberNum=${memberNum}">[   ${comm_nickname}   ]</a>
 		</td>
 	</tr>
 	<br>

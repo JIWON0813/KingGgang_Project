@@ -24,12 +24,11 @@
 							<div class="full">
 								<ul class="menu_footer">
 									<c:if test="${comm_login != null }">
-										<li><a href="ex">> test</a></li>
-										<li><a href="comm_writeForm.do">> Write</a></li>
-										<li><a href="comm_myPage.do">> Mypage</a></li>
-										<li><a href="comm_bookMark.do">> BookMark</a></li>
-										<li><a href="commadmin.comm">> 관리자모드</a></li>
-										<li>
+									<li><a href="comm_writeForm.do">> Write</a></li>
+									<li><a href="comm_myPage.do">> Mypage</a></li>
+									<li><a href="comm_bookMark.do">> BookMark</a></li>
+									<li><a href="commadmin.comm">> 관리자모드</a></li>
+									<li>
 											<a
 												href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">>
 												회원탈퇴</a>
@@ -96,69 +95,111 @@
 			</div>
 		</div>
 	</div>
+	<div id="more_list">
+      <div class="row">
+         <c:if test="${empty boardList}">
+            <h4>등록된 페이지가 없습니다.</h4>
+         </c:if>
+         <c:forEach var="dto" items="${boardList}" varStatus="status">
 
-		<div class="row">
-			<c:if test="${empty boardList}">
-				<h4>등록된 페이지가 없습니다.</h4>
-			</c:if>
-			<c:forEach var="dto" items="${boardList}" varStatus="status">
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="full services_blog">
-						<a href="comm_otherContent.do?boardNum=${dto.boardNum}">
-						<img class="img-responsive" src="http://localhost:8080/img/${dto.file_name}" alt="#" />
-						</a>
-					</div>
-				</div>
-			</c:forEach>
-			<div class="row margin-top_30">
-				<div class="col-sm-12">
-					<div class="full">
-						<br>
-						<div class="center">
-							<a class="main_bt" id="more_btn_a"
-								href="javascript:loadNextPage();">See More ></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
+            <div class="col-md-3 col-sm-6 col-xs-12">
+               <div class="full services_blog">
+                  <a href="comm_otherContent.do?boardNum=${dto.boardNum}"> <img
+                     class="img-responsive"
+                     src="http://localhost:8080/img/${dto.file_name}" alt="#" />
+                  </a>
+               </div>
+            </div>
+         </c:forEach>
+         </div>
+         <div class="row" id="moreList">
+         </div>
+      </div>
+      
+         <div class="row margin-top_30">
+            <div class="col-sm-12">
+               <div class="full">
+                  <br>
+                  <div class="center">
+                     <a class="main_bt" id="more_btn_a"
+                        href="javascript:loadNextPage();">See More ></a>
+                  </div>
+               </div>
+            </div>
+         </div>
 </body>
 <!-- End Footer -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
 
-<script> 
-function search(target){
-	var word = target.value; 
-	
-	var obj = {"word": word}; 
-	$.ajax({ url: "<c:url value="/commSearch" />", 
-		type: "POST", 
-		data: JSON.stringify(obj), 
-		dataType: 'json', 
-		contentType: "application/json;", 
-		success: function(data) {
-			console.log(data);
-			
-			 $("#searchList").empty(); 
-			 
-			 var checkWord = $("#word").val(); 
-			 if(checkWord.length > 0 && data.length > 0){
-			 for(var i=0; i<data.length; i++){
-                 $('#searchList').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
-             }
-			}
-		}, 
-		error: function(errorThrown) { alert(errorThrown.statusText); } }); } 
+<script>
+/* 더보기기능 */
+   function loadNextPage() {
+      var list_length = $("#more_list img").length+1;
+      
+      var callLength = list_length;
+      var cnt = 3;
+      
+      var startRow = list_length;
+      var endRow = startRow+cnt;
+      var obj = {"startRow":startRow,
+               "endRow":endRow};
+   
+   $.ajax({
+      type:'post', 
+      url:"<c:url value="/ajaxList.do" />",
+      data:JSON.stringify(obj),
+      dataType: 'json', 
+      contentType: "application/json;", 
+      success : function(data){
+           for(var i=0; i<data.length; i++){
+                 $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><div class='full services_blog'><a href='comm_otherContent.do?boardNum="+data[i].num+"'><img class='img-responsive' src='http://localhost:8080/img/"+data[i].file+"' alt='#' /></a></div></div>");
+             
+         }
+            
+         },
+      error: function(errorThrown) { alert(errorThrown.statusText); }
+   });
+                 
+   
+}
+
+   $(function() {
+       $(document).on('click', function(e) {
+           if (e.target.id === 'word') {
+              $('#searchList').show();
+           } else {
+               $('#searchList').hide();
+           }
+
+       })
+   });
 </script>
 
-<script type="text/javascript">
-$(function() {
-    $(document).on('click', function(e) {
-        if (e.target.id === 'word') {
-        	$('#searchList').show();
-        } else {
-            $('#searchList').hide();
-        }
-    })
-});
+
+<script> 
+/* 검색기능 */
+function search(target){
+   var word = target.value; 
+   
+   var obj = {"word": word}; 
+   $.ajax({ url: "<c:url value="/commSearch" />", 
+      type: "POST", 
+      data: JSON.stringify(obj), 
+      dataType: 'json', 
+      contentType: "application/json;", 
+      success: function(data) {
+         
+          $("#searchList").empty(); 
+          
+          var checkWord = $("#word").val(); 
+          if(checkWord.length > 0 && data.length > 0){
+          for(var i=0; i<data.length; i++){
+                 $('#searchList').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
+             }
+         }
+      }, 
+      error: function(errorThrown) { alert(errorThrown.statusText); 
+      } 
+   }); 
+} 
 </script>
