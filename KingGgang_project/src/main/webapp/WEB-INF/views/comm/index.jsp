@@ -64,11 +64,10 @@
 										<ul id="searchList"></ul>
 									<li>
 								</ul>
-
-
 							</div>
 						</div>
-						<div class="section layout_padding"
+					</div>
+					<div class="section layout_padding"
 							style="width: 60% !important; margin-left: 100px;">
 							<div class="full">
 								<h3 style="font-size: 20px !important">
@@ -86,13 +85,13 @@
 										style="width: 100%; height: 100%; border: none;"></iframe>
 								</div>
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</footer>
-	<div class="section layout_padding">
+		<div class="section layout_padding">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
@@ -142,7 +141,6 @@
 </body>
 <!-- End Footer -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-
 <script>
 /* 더보기기능 */
 	function loadNextPage() {
@@ -174,7 +172,6 @@
 	              
 	
 }
-
 	$(function() {
 	    $(document).on('click', function(e) {
 	        if (e.target.id === 'word') {
@@ -182,7 +179,6 @@
 	        } else {
 	            $('#searchList').hide();
 	        }
-
 	    })
 	});
 </script>

@@ -42,7 +42,13 @@
 			<th>태그하기</th>
 			<td><input type="text" name="tag" value="${getBoard.tag}"></td>
 		</tr>
-		
+		<tr>
+			<th width="150">공개범위</th>
+			<td>전체공개 <input type="checkbox" name="look" value="전체공개" />
+           		회원공개 <input type="checkbox" name="look" value="회원공개" />
+				비공개 <input type="checkbox" name="look" value="비공개" />			
+			</td>
+		</tr>
 		<tr>
 			<td align="center" colspan="3">
 				<input type="submit" value="글수정" onclick="window.location='comm_updatePro.do?boardNum=${getBoard.boardNum}'">

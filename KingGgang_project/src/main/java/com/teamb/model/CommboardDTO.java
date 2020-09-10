@@ -13,6 +13,7 @@ public class CommboardDTO {
 	private int re_group;
 	private int readCount;
 	private int likeCount;
+	private String look;
 
 	public int getComm_memberNum() {
 		return comm_memberNum;
@@ -101,4 +102,13 @@ public class CommboardDTO {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
+
+	public String getLook() {
+		return look;
+	}
+
+	public void setLook(String look) {
+		this.look = look;
+	}
+	
 }

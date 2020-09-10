@@ -23,17 +23,25 @@
 		select * from commboard
 	</select>
 	
+	<select id="look_allListBoard" resultType="CommboardDTO">
+		select * from commboard where look like '%' || #{look} || '%'
+	</select>
+	
 	<insert id="writeBoard" parameterType="CommboardDTO">
 		insert into commboard values(#{comm_memberNum},commboard_num.nextval, #{file_name}, #{file_size}, 
-		#{content}, #{tag},0,0,0,0,0) 
+		#{content}, #{tag},0,0,0,0,0,#{look}) 
 	</insert>
 	
 	<select id="deleteBoard" parameterType="int" resultType="int">
 		delete from commboard where boardNum=#{boardNum} 
 	</select>
 	
-	<update id="updateBoard" parameterType="CommboardDTO">
-		update commboard set file_name=#{file_name}, content=#{content}, tag=#{tag} where boardNum=#{boardNum}
-	</update>
+	<select id="all_deleteBoard" parameterType="int" resultType="int">
+		delete from commboard where comm_memberNum=#{comm_memberNum}
+	</select>
 	
+	<update id="updateBoard" parameterType="CommboardDTO">
+		update commboard set content=#{content}, look=#{look} where boardNum=#{boardNum}
+	</update>
+
 </mapper>

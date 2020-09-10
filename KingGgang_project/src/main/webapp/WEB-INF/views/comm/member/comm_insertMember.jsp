@@ -35,61 +35,58 @@ function comm_idCheck(){
   	}
 function comm_inputIdCheck(){
 		   document.join.comm_idDuplication.value="comm_idUnCheck";
-}
-	   
-	   
+}   
 </script>
-<form name="join" action="comm_member_input_ok.do" enctype="multipart/form-data" method="post">
-	 <div class="section layout_padding">
+<footer class="footer-box">
 		<div class="container">
-			<div class="form_txtInput">
-				<h2 class="sub_tit_txt">회원가입</h2>
-				<div class="join_form">
-					<table>
-						<colgroup>
-							<col width="30%" />
-							<col width="auto" />
-						</colgroup>
-						<tbody>
-							<input type="hidden" name="comm_memberNum">
-							<tr>
-								<th><span>이름</span></th>
-								<td><input type="text" name="comm_name" value=${name } readOnly></td>
-							</tr>
-							<tr>
-								<th><span>닉네임</span></th>
-								<td>
-									<input type="text" name="comm_nickname" placeholder="닉네임을 입력하세요." onkeydown="comm_inputIdCheck()">
-									<input type="button" value="중복체크" onclick="comm_idCheck()">
-                                	<input type="hidden" name= "comm_idDuplication" value="comm_idUnCheck"> 
-								</td>
-							</tr>
-							<tr>
-								<th><span>생년월일</span></th>
-								<td>
-									<input type="text" name="comm_birth" placeholder="생일을 입력하세요.">  
-								</td>
-							</tr>
-							<tr>
-								<th><span>프로필사진</span></th>
-								<td><input type="file" name="comm_profilename">
-									<input type="hidden" name="comm_profilesize"></td>
-							</tr>
-							<tr>
-								<th><span>자기소개</span></th>
-								<td>
-									<textarea name="comm_intro" rows="5" cols="60"></textarea>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>회원가입</h3>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="btn_wrap">
-				<input type="button" value="조회" onclick="javascript:comm_checkjoin()">
-				<input type="button" value="취소" onclick="window.location='commhome.comm'" >
-			</div>
 		</div>
-	</div>
-</form>
+</footer>
+<div class="section layout_padding" align="center">
+	<form name="join" action="comm_member_input_ok.do" enctype="multipart/form-data" method="post">
+		<table width=600">
+			<input type="hidden" name="comm_memberNum">
+				<tr>
+					<th width="150" align="center">이름</th>
+					<td><input type="text" name="comm_name" value=${name } readOnly></td>
+				</tr>
+				<tr>
+					<th width="150" align="center">닉네임</th>
+					<td><input type="text" name="comm_nickname" placeholder="닉네임을 입력하세요." onkeydown="comm_inputIdCheck()">
+						<input type="button" value="중복체크" onclick="comm_idCheck()">
+                        <input type="hidden" name= "comm_idDuplication" value="comm_idUnCheck"> 
+					</td>
+				</tr>
+				<tr>
+					<th width="150" align="center">생년월일</th>
+					<td><input type="text" name="comm_birth" placeholder="생일을 입력하세요."></td>
+				</tr>
+				<tr>
+					<th width="150" align="center">프로필사진</th>
+					<td><input type="file" name="comm_profilename">
+						<input type="hidden" name="comm_profilesize"></td>
+				</tr>
+				<tr>
+					<th width="150" align="center">자기소개</th>
+					<td><textarea name="comm_intro" rows="5" cols="60"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="button" value="등록" onclick="javascript:comm_checkjoin()">
+						<input type="button" value="취소" onclick="window.location='commhome.comm'" >
+					</td>
+				</tr>
+		</table>
+	</form>
+</div> 
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

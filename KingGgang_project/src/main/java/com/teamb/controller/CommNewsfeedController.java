@@ -1,6 +1,5 @@
 package com.teamb.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,16 +36,45 @@ public class CommNewsfeedController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
-	/*@RequestMapping("/commhome.comm")
+	// 지은
+/*	@RequestMapping("/commhome.comm")
 	public String index(HttpServletRequest req, HttpSession session, Comm_MemberDTO dto) {
 
 		String mbId = (String) session.getAttribute("mbId");
 		Comm_MemberDTO comm_login = (Comm_MemberDTO) session.getAttribute("comm_login");
-		List<CommboardDTO> list = boardMapper.allListBoard();
-		req.setAttribute("boardList", list);
-
-		return "comm/index";
-	}*/
+		//List<CommboardDTO> list = boardMapper.allListBoard();
+		//req.setAttribute("boardList", list);
+		
+		//지은
+		String look=(String) session.getAttribute("look");
+		System.out.println("if문 밖 look값:"+look);
+		if(look==null){
+			look="all";
+			List<CommboardDTO> list = boardMapper.allListBoard(look);
+			req.setAttribute("boardList", list);
+		}else if(look!=null){
+			System.out.println("look값:"+look);
+			if(look.equals("all")){
+				List<CommboardDTO> list = boardMapper.allListBoard(look);
+				req.setAttribute("boardList", list);
+			}
+			if(look.equals("member")){
+				List<CommboardDTO> list = boardMapper.allListBoard(look);
+				req.setAttribute("boardList", list);
+			}
+			if(look.equals("alone")){
+				List<CommboardDTO> list = boardMapper.allListBoard(look);
+				req.setAttribute("boardList", list);
+			}
+			if(look.equals("all,member")){
+				List<CommboardDTO> list = boardMapper.allListBoard(look);
+				req.setAttribute("boardList", list);
+			}
+		}
+			return "comm/index";	
+		
+	}
+*/
 
 	@SuppressWarnings("unchecked")
 	@ResponseBody
@@ -68,6 +96,7 @@ public class CommNewsfeedController {
 		return jsonArray;
 	}
 	
+	//여진스
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value = "/ajaxList.do", method = RequestMethod.POST)
@@ -80,6 +109,29 @@ public class CommNewsfeedController {
 		
 		System.out.println(endRow);
 		List<CommboardDTO> list = newsfeedMapper.newfeedList(startRow, endRow);
+		//지은
+/*		List<CommboardDTO> list = null;
+		String look=(String) session.getAttribute("look");
+		System.out.println("if문 밖 look값:"+look);
+		if(look==null){
+			look="all";
+			list = newsfeedMapper.newfeedList(startRow, endRow, look);
+		}else if(look!=null){
+			System.out.println("look값:"+look);
+			if(look.equals("all")){
+				list = newsfeedMapper.newfeedList(startRow, endRow, look);
+			}
+			if(look.equals("member")){
+				list = newsfeedMapper.newfeedList(startRow, endRow, look);
+			}
+			if(look.equals("alone")){
+				list = newsfeedMapper.newfeedList(startRow, endRow, look);
+			}
+			if(look.equals("all,member")){
+				list = newsfeedMapper.newfeedList(startRow, endRow, look);
+			}
+		}
+*/
 	  
 		JSONArray jsonArray = new JSONArray();
 		JSONObject json = null;
@@ -93,9 +145,11 @@ public class CommNewsfeedController {
 	  
 		return jsonArray;
 	  }
-	 
+	  
+
+	 //여진스
 	@RequestMapping("/commhome.comm")
-	public ModelAndView boardList(HttpServletRequest req){
+	public ModelAndView boardList(HttpServletRequest req,HttpSession session){
 		int pageSize = 4;
 		
 		String pageNum = req.getParameter("pageNum");
@@ -110,16 +164,42 @@ public class CommNewsfeedController {
 	
 		
 		List<CommboardDTO> newsfeed = null;
+
 		newsfeed = newsfeedMapper.newfeedList(startRow, endRow);
-		
-		
+		//지은
+/*		ModelAndView mav = new ModelAndView();
+		String look=(String) session.getAttribute("look");
+		System.out.println("if문 밖 look값:"+look);
+		if(look==null){
+			look="all";
+			newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
+			mav.addObject("boardList", newsfeed);
+		}else if(look!=null){
+			System.out.println("look값:"+look);
+			if(look.equals("all")){
+				newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
+				mav.addObject("boardList", newsfeed);
+			}
+			if(look.equals("member")){
+				newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
+				mav.addObject("boardList", newsfeed);
+			}
+			if(look.equals("alone")){
+				newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
+				mav.addObject("boardList", newsfeed);
+			}
+			if(look.equals("all,member")){
+				newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
+				mav.addObject("boardList", newsfeed);
+			}
+		}
+*/
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardList", newsfeed);
 		mav.setViewName("comm/index");
 		return mav;
 	}
-	
-	
+
 	
 
 	// 지은

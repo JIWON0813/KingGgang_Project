@@ -1,26 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/top.jsp"%>
-<footer class="footer-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 white_fonts">
-					<div class="row">
-						<div class="col-sm-6 col-md-6 col-lg-3">
-							<div class="full">
-								<h3>관리자 페이지</h3>
-								<ul>
-									<li><a href="comm_memberList.do">ȸ�����</a></li>
-									<li><a href="comm_noticewrite.do">�������� ���</a></li>
-									<li><a href="comm_noticeList.do">�������� ���</a></li>
-									<li><a href="comm_warnList.do">신고목록</a></li>	
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-</footer>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>관리자 페이지입니다.</h2>
+	<ul>
+		<li><a href="comm_memberList.do">돌하르방회원목록</a></li>
+		<li><a href="comm_noticewrite.do">공지글등록</a></li>
+		<li><a href="comm_noticeList.do">공지글목록</a></li>
+		<li><a href="comm_warnList.do">신고목록</a></li>	
+	</ul>
+</body>
+</html>

@@ -1,59 +1,58 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<section id="four" class="wrapper style1 special fade-up">
-	<div class="container">		
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>회원수정</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
+<div class="section layout_padding" align="center">
 <form name="join" method="post" action="comm_member_edit_ok.do?comm_memberNum=${comm_getMember.comm_memberNum }" 
-							onsubmit="return check()" enctype="multipart/form-data">			
-<div class="wrap wd668">
-   <div class="container">
-       <div class="form_txtInput">
-         <h2 class="sub_tit_txt">회원수정</h2>
-             <div class="join_form">
-              <table>
-                <colgroup>
-                  <col width="30%"/>
-                  <col width="auto"/>
-               </colgroup>                           
-               <tbody>
-                 <input type="hidden" name="comm_memberNum" value="${comm_getMember.comm_memberNum}"/>
-                 	<tr>
-						<th><span>이름</span></th>
-						<td><input type="text" name="comm_name" value="${comm_getMember.comm_name}" readOnly></td>
-					</tr>
-                 	<tr>
-                 	
-                      <th><span>닉네임</span></th>
-                      <td><input type="text" name="comm_nickname" value="${comm_getMember.comm_nickname}"></td>
-                 	</tr>  
-                 	<tr>
-                      <th><span>생년월일</span></th>
-                      <td><input type="text" name="comm_birth" value="${comm_getMember.comm_birth}"></td>
-                 	</tr>
-                    <tr>      
-  					<tr>
-						<th><span>프로필사진</span></th>
-						<td>
-							<input type="file" name="filename">
-							<%-- <input type="hidden" name="comm_profile_size" value="${comm_getMember.comm_profilesize}"> --%>
-							<img src="http://localhost:8080/img/${comm_getMember.comm_profilename}" width="100" height="100">
-						</td>
-					</tr>
-  					<tr>
-						<th><span>자기소개</span></th>
-						<td>
-							<textarea name="comm_intro" rows="5" cols="60">${comm_getMember.comm_intro}</textarea>
-						</td>
-  					</tr>
-                </tbody>
-            </table>                 
-         </div>                   
-        </div>
-<div class="btn_wrap">
-                 		<input type="submit" value="조회" >
-						<input type="button" value="취소" onclick="window.location='commhome.comm'" >
-</div>
-</div> 
-</div>
-</form>
+							onsubmit="return check()" enctype="multipart/form-data">	
+<table>
+<%-- <input type="hidden" name="comm_memberNum" value="${comm_getMember.comm_memberNum}"/> --%>                 	
+	<tr>
+		<th width="150" align="center">이름</th>
+		<td><input type="text" name="comm_name" value="${comm_getMember.comm_name}" readOnly></td>
+	</tr>			
+    <tr>
+		<th width="150" align="center">닉네임</th>
+		<td><input type="text" name="comm_nickname" value="${comm_getMember.comm_nickname}">
+			<input type="button" value="중복체크" onclick="comm_idCheck()">
+		</td>
+	</tr>
+	<tr>
+		<th width="150" align="center">생년월일</th>
+		<td><input type="text" name="comm_birth" value="${comm_getMember.comm_birth}"></td>
+	</tr>
+	<tr>
+		<th width="150" align="center">프로필사진</th>
+		<td><input type="file" name="filename">
+			<!-- <input type="hidden" name="comm_profilesize"> -->
+			<img src="http://localhost:8080/img/${comm_getMember.comm_profilename}" width="100" height="100">
+		</td>
+	</tr>
+	<tr>
+		<th width="150" align="center">자기소개</th>
+		<td><textarea name="comm_intro" rows="5" cols="60">${comm_getMember.comm_intro}</textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<input type="submit" value="수정">
+			<input type="button" value="취소" onclick="window.location='commhome.comm'" >
+		</td>
+	</tr>
+</table>
+</form>              
+</div>                   
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

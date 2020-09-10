@@ -50,7 +50,6 @@ public class LoginController {
 		int res = loginMapper.loginOk(id,passwd);
 	      String msg = null, url = null;
 	      switch(res){
-
 	      case MemberDTO.OK:	    
 	    	  MemberDTO dto = loginMapper.getMemberid(id);
 	    	  
