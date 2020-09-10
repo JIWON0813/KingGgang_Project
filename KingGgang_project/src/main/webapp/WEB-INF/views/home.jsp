@@ -8,7 +8,10 @@
 	설	   명 : 메인 페이지
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
     <div class="ulockd-home-slider">
         <div class="container-fluid">
             <div class="row">
@@ -76,7 +79,10 @@
         </div>
     </div>
 	<!-- end section -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
 
     
   <%@ include file="/WEB-INF/views/bottom.jsp"%>

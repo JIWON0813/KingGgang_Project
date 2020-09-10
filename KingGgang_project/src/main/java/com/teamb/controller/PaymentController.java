@@ -186,7 +186,7 @@ public class PaymentController {
 				System.out.println(ptdto.getP_no()); 
 				System.out.println(ptdto.getType());
 				PaylistDTO prdto = paymemtMapper.getmyPaylist(ptdto);
-				
+				//System.out.println(prdto.getR_company());
 				Prlist.add(prdto);
 			}
 			

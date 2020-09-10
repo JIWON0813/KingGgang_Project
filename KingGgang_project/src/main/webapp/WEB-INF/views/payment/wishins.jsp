@@ -21,7 +21,7 @@
 
 	<p><input type = "hidden" name= "type" value="${type}"></p><br>
 	
-	<p><input type = "hidden" name= "f_no" value="${f_no}}"></p><br>
+	<p><input type = "hidden" name= "f_no" value="${f_no}"></p><br>
 	<p><input type="submit" value="찜하기"></p>
 </form>
 <a href="main.my">마이페이지로 가기</a><p>
