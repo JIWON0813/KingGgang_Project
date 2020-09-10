@@ -84,7 +84,7 @@
 		</div>
 	</div>
 	</footer>
-	<div class="section layout_padding">
+		<div class="section layout_padding">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
@@ -134,7 +134,6 @@
 </body>
 <!-- End Footer -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-<script>
 <script>
 /* 더보기기능 */
 	function loadNextPage() {
