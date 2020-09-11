@@ -89,15 +89,11 @@
 			   return false;
 		   }  
 	   }
-	   	  alert("사용 가능한 아이디 입니다.");
-	   	  join.name.focus();
-	   	  return false;  
+
+	   form.submit() 
  	   }
-      /*  if(join.filename!=null||join.filename!=""){
-    	   if(!check(reimg,join.filename,"이미지 파일만 업로드 가능"));
-    	   return;
-       } */
-      	form.submit()		      
+      
+
 	   function check(re, what, message) {
        if(re.test(what.value)) {
            return true;

@@ -4,7 +4,6 @@ public class PaymentDTO {
 	
 	private int no;
 	private int price;
-	private int amount;
 	private int type;
 	private int p_no;
 	private int m_no;
@@ -23,12 +22,7 @@ public class PaymentDTO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getAmount() {
-		return amount;
-	}
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
+	
 	public int getType() {
 		return type;
 	}

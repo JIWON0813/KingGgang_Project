@@ -36,17 +36,26 @@ public class PaymentMapper {
 		return res;
 	}
 	
+	public int deletePayment(int no) {
+		int res =  sqlSession.delete("deletePayment",no);
+		return res;
+	}
+	
 	public int getPayno(int m_no) {
 		int no = sqlSession.selectOne("getPayno",m_no);
 		return no;
 	}
 	
-	public List<PaymentDTO> getPaymentlist(int m_no){
-		return sqlSession.selectList("getPayment",m_no);
+	public List<PaymentDTO> getPaymentlist(PaymentDTO pdto){
+		return sqlSession.selectList("getPayment",pdto);
 	}
 	
-	public List<PaymentDTO> getAllPaymentlist(){
-		return sqlSession.selectList("getAllPayment");
+	public PaymentDTO getPaymentNo(int no) {
+		return sqlSession.selectOne("getPaymentNo",no);
+	}
+	
+	public List<PaymentDTO> getAllPaymentlist(int valid){
+		return sqlSession.selectList("getAllPayment",valid);
 	}
 	
 	public PaylistDTO getmyPaylist(PaymentDTO ptdto) {
