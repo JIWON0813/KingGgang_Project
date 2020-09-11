@@ -63,18 +63,22 @@ public class LoginController {
 	             MemberDTO comm_birth = loginMapper.getMemberBirth(dto.getId());
 	             	session.setAttribute("birth", comm_birth.getAllBirth());
 	            
-	            session.setAttribute("mbId", dto.getId());
-	            session.setAttribute("memberDto", dto);
-	            session.setAttribute("upLoadPath", upLoadPath);
-	               if(dto.getId().equals("admin")) {
-	               msg = "관리자로 로그인 하였습니다.";
-	               url = "main.mem";
-	               }else{
-	               msg = "로그인 하였습니다.";
-	               url = "main.mem";
-	               }
-	               
-	               break;
+
+	    	  //지은
+	          String name = loginMapper.getMemberName(dto.getId());
+	          	session.setAttribute("name", name);
+	    	  
+	    	  session.setAttribute("mbId", dto.getId());
+	    	  session.setAttribute("upLoadPath", upLoadPath);
+	            if(dto.getId().equals("admin")) {
+	            msg = "관리자로 로그인 하였습니다.";
+	            url = "home.do";
+	            }else{
+	            msg = "로그인 하였습니다.";
+	            url = "home.do";
+	            }
+	            
+	            break;
 	      
 	      case MemberDTO.NOT_ID :
 	         msg = "등록된 회원이 아닙니다.";

@@ -113,4 +113,29 @@ public class CouponController {
 		return "message";
 	
 	}
+	
+	@RequestMapping("/regCoupon.co")
+	public String regCoupon(HttpServletRequest req,int no){
+		List<MemberDTO> list = couponMapper.memberList();
+		req.setAttribute("memberli", list);
+		return "admin/coupon/regCoupon";
+	}
+	
+	@RequestMapping("/regCouponPro.co")
+	public String regCouponPro(HttpServletRequest req,CouponDTO dt){
+		CouponDTO dto = couponMapper.getCoupon(dt.getNo());
+		dto.setM_id(dt.getM_id());
+		int res = couponMapper.regCoupon(dto);
+		String msg=null,url=null;
+		if(res>0){
+			msg="회원에게 쿠폰을 등록하였습니다.";
+			url="couponList.co";
+		}else{
+			msg="쿠폰등록실패";
+			url="couponList.co";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
+	}
 }
