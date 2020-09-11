@@ -78,9 +78,35 @@ public class AdminController {
 			}
 			
 			plist.add(new PaymentListData(pdto, mdto, rdto,hdto,resdto,cardto));
-			System.out.println(plist.size());
 		}
-		req.setAttribute("list", plist);
+		String pageNum = req.getParameter("pageNum");
+		if (pageNum==null){
+			pageNum = "1";
+		}
+		int pageSize = 10;
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = currentPage * pageSize - (pageSize-1);
+		int endRow = currentPage * pageSize;
+		int count = plist.size();
+		if (endRow>count) endRow = count;
+		int startNum = count - ((currentPage-1) * pageSize); 		
+		if (count>0){
+			int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
+			int pageBlock = 5;
+			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
+			int endPage = startPage + pageBlock - 1;
+			if (endPage>pageCount) endPage = pageCount;
+			req.setAttribute("count", count);
+			req.setAttribute("pageCount", pageCount);
+			req.setAttribute("pageBlock", pageBlock);
+			req.setAttribute("startPage", startPage);
+			req.setAttribute("endPage", endPage);
+		}
+		List<PaymentListData> partlist = new ArrayList<>();
+		for(int i = startRow-1 ; i < endRow ; i++){
+			partlist.add(plist.get(i));
+		}
+		req.setAttribute("list", partlist);
 		return "payment/adminPayList";
 	}
 }
