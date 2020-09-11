@@ -46,7 +46,6 @@
 				<p>${dto.comm_intro }</p>
 				<p><a style="color: blue" href="comm_friend_insert.do?login_comm_memberNum=${login_comm_memberNum }&comm_memberNum=${dto.comm_memberNum }">친구추가</a>
 				| <a style="color: red" href="" onclick="window.open('room?comm_memberNum=${dto.comm_memberNum}&comm_nickname=${dto.comm_nickname}', '_blank', 'width=600 height=600')">채팅하기</a></p>
-				<p><a href="admin_comm_member_delete.do?comm_nickname=${dto.comm_nickname }">삭제</a></p>
 		</div>
 		</c:forEach>
 	<div class="row margin-top_30">
@@ -59,4 +58,5 @@
 		</div>
 	</div>
 </div>
+
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

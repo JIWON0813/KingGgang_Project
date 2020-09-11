@@ -31,6 +31,11 @@ select chatroom_id from  ChatRoom where msgSender = #{msgSender} and msgReceiver
 or  msgSender = #{msgReceiver} and msgReceiver = #{msgSender}
 </select>
 
+<select id = "getProfile" resultType = "String">
+select comm_profilename from comm_member WHERE comm_memberNum = #{msgReceiver}
+</select>
+
+
 <!-- 메세지 -->
 
 <insert id = "insertMessage" parameterType="ChatMsgDTO">
@@ -40,9 +45,8 @@ insert into chat_msg values(chatMsg_seq.nextval, #{chatroom_id},#{msgSender},#{m
 select * from Chat_msg where chatroom_id = #{chatroom_id} order by msgId
 </select>
 
-<!-- <select id = "getProfile" resultType = "int">
-select comm_profilenam from comm_member WHERE comm_memberNum = #{comm_memberNum}
-</select>
+
+<!-- 
 
 <select id = "getNickName" resultType = "String">
 select comm_nickname from comm_member where comm_nickname = #{comm_nickname}

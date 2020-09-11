@@ -9,7 +9,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6 col-lg-3">
 							<div class="full">
-								<h3><img src="${pageContext.request.contextPath}/resources/img/bookmark.png" width="23" height="23">BookMark</h3>
+								<h3><img src="${pageContext.request.contextPath}/resources/img/orange.png" width="23" height="23">BookMark</h3>
 							</div>
 						</div>
 					</div>

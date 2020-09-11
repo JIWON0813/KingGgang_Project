@@ -22,12 +22,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.teamb.model.CommTogetherDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.service.CommTogetherMapper;
+import com.teamb.service.Comm_MemberMapper;
 
 @Controller
 public class CommTogetherController {
 	
 	@Autowired
 	private CommTogetherMapper togetherMapper;
+	
+	@Autowired
+	private Comm_MemberMapper comm_memberMapper;
 	
 	//인아
 	@RequestMapping(value = "/comm_togetherWF.do", method = RequestMethod.GET)
@@ -61,6 +65,7 @@ public class CommTogetherController {
 		return "message";
 	}
 	
+	//하다가 맘
 	@RequestMapping("/comm_togetherList.do")
 	public String togetherList(HttpServletRequest req, HttpSession session, Comm_MemberDTO dto) {
 		
@@ -69,7 +74,10 @@ public class CommTogetherController {
 	    int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 	    List<CommTogetherDTO> list = togetherMapper.allListTogether();
 	    req.setAttribute("togetherList", list);
-	      
+	    
+	    Comm_MemberDTO member = comm_memberMapper.comm_getMember(dto.getComm_memberNum());
+	    req.setAttribute("comm_nickname",member.getComm_nickname());
+	    
 		return "comm/board/comm_togetherList";
 	}
 	

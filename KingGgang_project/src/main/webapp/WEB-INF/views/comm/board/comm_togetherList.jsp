@@ -51,7 +51,7 @@
 					${dto.ttitle}
 				</a>
 			</td>
-			<td>${dto.tname}</td>
+			<td>${comm_nickname}</td>
 			<td>${dto.temail}</td>
 			<td>${dto.tregdate}</td>
 			<td>${dto.treadcount}</td>
@@ -60,8 +60,4 @@
 	</table>
 </div>	
 </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'yeojin' of https://github.com/JIWON0813/KingGgang_Project.git
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

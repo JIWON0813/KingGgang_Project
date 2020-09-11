@@ -31,8 +31,8 @@ public class ChatMapper {
 		return room;
 	}
 
-	public String getProfile(int comm_memberNum) throws Exception {
-		return sqlSession.selectOne("getProfile", comm_memberNum);
+	public String getProfile(int msgReceiver) throws Exception {
+		return sqlSession.selectOne("getProfile",msgReceiver);
 	}
 
 	public ChatRoomDTO getRoomList(int chatroom_id) throws Exception {

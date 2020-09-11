@@ -33,7 +33,7 @@
 	</tr>
 	<tr>
 		<td align="left" colspan="4">
-		 	<a href="comm_myPage.do"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50"></a>&nbsp;&nbsp;<a href="comm_myPage.do">[   ${comm_nickname}   ]</a>
+		 	<a href="comm_myPage.do"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50"></a>&nbsp;&nbsp;<a href="comm_otherPage.do?comm_memberNum=${memberNum}">[   ${comm_nickname}   ]</a>
 		</td>
 	</tr>
 	<br>
@@ -59,7 +59,7 @@
 			</th>
 			<td width="10">
 				<a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}">
-					<img src="${pageContext.request.contextPath}/resources/img/bookmark.png" width="30" height="30">
+					<img src="${pageContext.request.contextPath}/resources/img/orange.png" width="30" height="30">
 				</a>
 			</td>
 		</tr>

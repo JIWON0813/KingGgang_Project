@@ -87,7 +87,6 @@ public class CommBoardController {
 		int res = boardMapper.writeBoard(dto);
 		// 지은
 		req.setAttribute("look", dto.getLook());
-
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "게시물이 등록되었습니다.";
@@ -120,8 +119,8 @@ public class CommBoardController {
 	
 	@RequestMapping("/comm_myPage.do")
     public String myPage(HttpServletRequest req, HttpSession session) {
-    Comm_MemberDTO login = (Comm_MemberDTO)session.getAttribute("comm_login");
-     int comm_memberNum = login.getComm_memberNum();
+    	Comm_MemberDTO login = (Comm_MemberDTO)session.getAttribute("comm_login");
+    	int comm_memberNum = login.getComm_memberNum();
      
        List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
        Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
@@ -197,10 +196,6 @@ public class CommBoardController {
 
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req, HttpSession session) {
-		
-	   /* CommboardDTO bdto = (CommboardDTO) session.getAttribute("boardNum");*/
-	    
-	   /* int comm_memberNum = bdto.getComm_memberNum();*/
 	    
 	    int comm_memberNum = (Integer) session.getAttribute("comm_memberNum");
 	    List<CommBookmarkDTO> list = bookmarkMapper.listMark(comm_memberNum);
@@ -243,7 +238,8 @@ public class CommBoardController {
 			dto.setFile_size(file_size);
 		}
 		else{
-			dto = boardMapper.getBoard(boardNum);
+			//지은
+			CommboardDTO bdto = boardMapper.getBoard(boardNum);
 			dto.setFile_name(dto.getFile_name());
 			dto.setFile_size(dto.getFile_size());
 		}
@@ -336,24 +332,32 @@ public class CommBoardController {
 	}*/
 	
 	@RequestMapping(value = "/reply_deletePro.do")
-	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
-		replyMapper.deleteReply(replyNum);
-		req.setAttribute("replyNum", replyNum);
-		req.setAttribute("boardNum", boardNum);
-		return "comm_content.do";
-	}
+	   public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
+	      replyMapper.deleteReply(replyNum);
+	      req.setAttribute("replyNum", replyNum);
+	      req.setAttribute("boardNum", boardNum);
+	      return "comm/board/comm_content";
+	   }
 	
 	//여진
 	@RequestMapping("/comm_otherPage.do")
 	   public String otherPage(HttpServletRequest req, HttpSession session) {
+		 Comm_MemberDTO login = (Comm_MemberDTO)session.getAttribute("comm_login");
+		 int loginNum = 0;
+			if(login != null){
+				loginNum = login.getComm_memberNum();
+			}
+			
 		 int comm_memberNum = Integer.parseInt(req.getParameter("comm_memberNum"));
-		 
+		 System.out.println(comm_memberNum);
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 	      Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
 	      
 	      req.setAttribute("boardList", list);
 	      req.setAttribute("comm_profilename",dto.getComm_profilename());
 	      req.setAttribute("comm_nickname",dto.getComm_nickname());
+	      req.setAttribute("loginNum",loginNum);
+	      req.setAttribute("memberNum",comm_memberNum);
 	      return "comm/board/comm_myPage";
 	   }
 
@@ -377,6 +381,7 @@ public class CommBoardController {
 		 req.setAttribute("comm_profilename",member.getComm_profilename());
 	     req.setAttribute("comm_nickname",member.getComm_nickname());
 	     req.setAttribute("memberNum",member.getComm_memberNum());
+	     
 		return "comm/board/comm_content";
 	}
 

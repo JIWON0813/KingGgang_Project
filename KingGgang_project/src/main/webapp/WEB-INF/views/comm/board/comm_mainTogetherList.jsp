@@ -18,7 +18,7 @@
 			</td>
 		</tr>
 	</c:if>		
-	<c:forEach var="dto" items="${togetherList}">		
+	<c:forEach var="dto" items="${togetherList}" begin="0" end="4">		
 		<tr>
 			<td><c:out value="${dto.togetherNum}"/></td>
 			<td>
@@ -29,7 +29,7 @@
 						${dto.ttitle}
 					</a>
 			</td>
-			<td>${dto.tname}</td>
+			<td>${comm_nickname}</td>
 			<td>${dto.temail}</td>
 			<td>${dto.tregdate}</td>
 			<td>${dto.treadcount}</td>

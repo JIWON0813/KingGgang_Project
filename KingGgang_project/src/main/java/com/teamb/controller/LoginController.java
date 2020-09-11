@@ -60,6 +60,8 @@ public class LoginController {
 	            //지은
 	             String name = loginMapper.getMemberName(dto.getId());
 	                session.setAttribute("name", name);
+	             MemberDTO comm_birth = loginMapper.getMemberBirth(dto.getId());
+	             	session.setAttribute("birth", comm_birth.getAllBirth());
 	            
 	            session.setAttribute("mbId", dto.getId());
 	            session.setAttribute("memberDto", dto);
