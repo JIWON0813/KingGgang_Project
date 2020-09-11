@@ -75,6 +75,8 @@
 <br><a href="firstPage.rentcar">렌트카 메인(회원)</a>
 <br><a href="main.wish">관심리스트등록 페이지로 가기</a><p>
 <br><a href="main.pay">결제 페이지로 가기</a><p>
+<br><a href="payList.admin">결제 목록으로 가기(어드민)</a><p>
+
 <br><a href="commhome.comm">커뮤니티 페이지로 가기</a><p>
 <!-- test -->
     <div class="footer_bottom">
