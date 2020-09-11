@@ -3,7 +3,7 @@
  <!-- 
 	이	   름 : comm_tcontent.jsp
 	개  발   자 : 최 인 아
-	설	   명 : 투게더content
+	설	   명 : 투게더게시판 상세보기
  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>

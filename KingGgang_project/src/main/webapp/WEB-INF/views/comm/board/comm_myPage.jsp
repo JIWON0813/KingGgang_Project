@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
  <!-- 
-	이	   름 : B4_myPage.jsp
+	이	   름 : comm_myPage.jsp
 	개  발   자 : 최 인 아
-	설	   명 : 메인 페이지
+	설	   명 : 커뮤니티 마이페이지
  -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 
-	이	   름 : B4_updateForm.jsp
+	이	   름 : comm_updateForm.jsp
 	개  발   자 : 최 인 아
-	설	   명 : 메인 페이지
+	설	   명 : 글쓰기 수정 폼
 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ include file="/WEB-INF/views/top.jsp"%>
