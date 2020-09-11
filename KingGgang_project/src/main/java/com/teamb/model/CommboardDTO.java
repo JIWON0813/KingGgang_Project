@@ -13,6 +13,7 @@ public class CommboardDTO {
 	private int readCount;
 	private int likeCount;
 	private String look;
+	
 
 	public int getComm_memberNum() {
 		return comm_memberNum;

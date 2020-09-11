@@ -22,8 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.Comm_NoticeDTO;
 import com.teamb.model.CommboardDTO;
+import com.teamb.model.HashTagDTO;
 import com.teamb.service.CommNewsFeedMapper;
 import com.teamb.service.CommboardMapper;
+import com.teamb.service.HashTagMapper;
 
 @Controller
 public class CommNewsfeedController {
@@ -34,14 +36,17 @@ public class CommNewsfeedController {
    @Autowired
    private CommNewsFeedMapper newsfeedMapper;
 
+   @Autowired
+   private HashTagMapper hashtagMapper;
+   
    @Resource(name = "upLoadPath")
    private String upLoadPath;
 
 
    @SuppressWarnings("unchecked")
    @ResponseBody
-   @RequestMapping(value = "/commSearch", method = RequestMethod.POST)
-   public Object init(@RequestBody HashMap<String, Object> map) {
+   @RequestMapping(value = "/commMemberSearch", method = RequestMethod.POST)
+   public Object memberSearch(@RequestBody HashMap<String, Object> map) {
       String word = (String) map.get("word");
       List<Comm_MemberDTO> list = newsfeedMapper.getSearchComm_Member(word);
       JSONArray jsonArray = new JSONArray();
@@ -53,6 +58,26 @@ public class CommNewsfeedController {
          json.put("profile", dto.getComm_profilename());
          json.put("nick", dto.getComm_nickname());
 
+         jsonArray.add(json);
+
+      }
+
+      return jsonArray;
+   }
+   
+   @SuppressWarnings("unchecked")
+   @ResponseBody
+   @RequestMapping(value = "/commHashSearch", method = RequestMethod.POST)
+   public Object hashSearch(@RequestBody HashMap<String, Object> map) {
+      String word = (String) map.get("word");
+      List<HashTagDTO> list = hashtagMapper.getSearchTagList(word);
+      JSONArray jsonArray = new JSONArray();
+      JSONObject json = null;
+      for (int i = 0; i < list.size(); i++) {
+         json = new JSONObject();
+         HashTagDTO dto = (HashTagDTO) list.get(i);
+         json.put("tagName",dto.getTagName());
+         json.put("tagId", dto.getTagId());
          jsonArray.add(json);
 
       }

@@ -34,7 +34,7 @@
 	</tr>
 	<tr>
 		<td align="left" colspan="4">
-		 	<a href="comm_myPage.do"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50"></a>&nbsp;&nbsp;<a href="comm_otherPage.do?comm_memberNum=${memberNum}">[   ${comm_nickname}   ]</a>
+		 	<a href="comm_otherPage.do?comm_memberNum=${memberNum}"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50">&nbsp;&nbsp;[   ${comm_nickname}   ]</a>
 		</td>
 	</tr>
 	<br>
@@ -53,7 +53,11 @@
 	
 		<tr height="30">
 			<th align="center">태그</th>
-			<%-- <td width="30%">${getBoard.tag}</td> --%>
+			<td>
+			<c:forEach var="tag" items="${tag}">
+                  <a href="searchTag?tagId=${tag.tagId}&tagName=${tag.tagName}" style="color : blue;">#${tag.tagName} </a>
+         	</c:forEach>
+         	</td>
 			<th align="right" width="10">
 					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
 			</th>

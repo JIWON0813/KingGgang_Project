@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<!-- 
+	이	   름 : chatRoom.jsp
+	개  발   자 : 이 여 진
+	설	   명 : 채팅목록 페이지
+ 	-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>

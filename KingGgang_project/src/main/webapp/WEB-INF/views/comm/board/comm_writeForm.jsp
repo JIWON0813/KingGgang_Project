@@ -18,6 +18,12 @@
 			f.content.focus()
 			return false
 		}
+	/* 	if (f.content.hashtag != "#%"){
+			alert("잘못된 해시태그 형식입니다")
+			f.content.focus()
+			return false
+		}
+		 */
 		return true
 	}
 </script>
@@ -49,8 +55,8 @@
 				</td>
 			</tr>
 			<tr>
-				<th width="150" bgcolor=orange>태그하기</th>
-				<td><input type="text" name="tag"></td>
+				<th width="150" align="center">태그하기</th>
+				<td><input type="text" name="hashtag"></td>
 			</tr>
 			<tr>
 				<th width="150" bgcolor=orange>공개범위</th>

@@ -54,7 +54,7 @@ public class MyController {
 	@Autowired
 	//private MemberMapper memberMapper;
 	private MyMapper myMapper;
-	
+	 
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
 	

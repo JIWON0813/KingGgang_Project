@@ -30,6 +30,9 @@
 	<insert id="writeBoard" parameterType="CommboardDTO">
 		insert into commboard values(#{comm_memberNum},commboard_num.nextval, #{file_name}, #{file_size}, 
 		#{content},0,0,0,0,0,#{look}) 
+		<selectKey keyProperty="boardNum" resultType="int">
+		SELECT commboard_num.CURRVAL AS boardNum FROM DUAL
+		</selectKey>
 	</insert>
 	
 	<select id="deleteBoard" parameterType="int" resultType="int">
