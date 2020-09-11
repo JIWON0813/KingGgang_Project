@@ -63,7 +63,7 @@
 							<li><a href="login.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그인</a></li>
 							</c:if>
 							<c:if test="${mbId != null }"> 
-							<li>${memberDto.name}님   <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그아웃</a></li>
+							<li>${name}님   <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그아웃</a></li>
 							</c:if>
                             <li><a class="join_bt" href="insertMember.mem">Join us</a></li>
                             <%-- <c:if test="${mbId == 'admin' }"> --%>
@@ -93,16 +93,11 @@
                         <li><a class="nav-link" href="">렌트카</a></li>
                         <li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
                         <li><a class="nav-link" href="">Contact</a></li>
+                        <li><a class="nav-link" href="list.notice">공지사항</a></li>
                     </ul>
                 </div>
                      </div>
                  </nav>
-                 <div class="search-box">
-                    <input type="text" class="search-txt" placeholder="Search">
-                    <a class="search-btn">
-                        <img src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" />
-                    </a>
-                </div> 
                 </div>
             </div>
           </div>

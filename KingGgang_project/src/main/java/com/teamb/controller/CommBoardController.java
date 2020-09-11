@@ -37,7 +37,7 @@ import com.teamb.service.Post_TagMapper;
 
 @Controller
 public class CommBoardController {
-	
+
 	@Autowired
 	private CommboardMapper boardMapper;
 	
@@ -139,6 +139,7 @@ public class CommBoardController {
 	      int comm_memberNum = commmember.getComm_memberNum();
 	    
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
+
 	      req.setAttribute("boardList", list);
 	      req.getParameter(commmember.getComm_profilename());
 	      req.getParameter(commmember.getComm_nickname());

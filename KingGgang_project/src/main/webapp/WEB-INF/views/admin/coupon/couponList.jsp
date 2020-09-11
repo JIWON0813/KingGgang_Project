@@ -32,7 +32,12 @@
 				<td>${dto.name}</td>
 				<td>${dto.dis}%</td>
 				<td>${dto.regdate }</td>
+				<c:if test="${dto.m_id == null }">
+				<td><a href="regCoupon.co?no=${dto.no }">등록하기</a></td>
+				</c:if>
+				<c:if test="${dto.m_id != null }">
 				<td>${dto.m_id }</td>
+				</c:if>
 				<td><a href="updateCoupon.co?no=${dto.no }">수정</a>|<a href="javascript:deleteCo('${dto.no }')">삭제</a></td> 
 			</tr>
 		</c:forEach>

@@ -2,7 +2,6 @@ package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
-
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -335,7 +333,7 @@ public class RentcarController {
 		List<InsuDTO> insulist = rentcarMapper.listInsu();
 		req.setAttribute("rentcar",rdto);
 		req.setAttribute("insu",insulist);
-		
+		req.setAttribute("m_id", session.getAttribute("mbId"));
 		return "rentcar/reservation";
 	}
 	
@@ -355,8 +353,15 @@ public class RentcarController {
 		dto.setReceiptday(receiptday);
 		dto.setReturnday(returnday);
 		int res = rentcarMapper.insertRentcarReservation(dto);
+		//결제 원세호
 		
-		String msg = null;
+		String member_id =  req.getParameter("member_id");
+		System.out.println(member_id);
+		int res_id = rentcarMapper.getRes_id(member_id);
+		System.out.println(res_id);
+
+		
+		/*String msg = null;
 		String url = null;
 		if(res>0){
 			rentcarMapper.updateRentcarReservation(dto.getR_id());
@@ -367,8 +372,12 @@ public class RentcarController {
 			url = "content.rentcar?id="+dto.getR_id();
 		}
 		req.setAttribute("msg",msg);
-		req.setAttribute("url",url);
-		return "message";
+		req.setAttribute("url",url);*/
+		req.setAttribute("res_id",res_id);
+		req.setAttribute("price", dto.getPrice());
+		req.setAttribute("type", 2);
+		
+		return "payment/payins";
 			
 	}
 	
