@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<!-- 
+	이	   름 : index.jsp
+	개  발   자 : 이 여 진
+	설	   명 : 커뮤니티 메인, 뉴스피드 페이지
+ -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -57,9 +61,11 @@
                     			<input type="text" id="word" placeholder="search" onkeyup="search(this);" style="opacity: 0.3;">
                         		<a><img src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" /></a>
 								
-              					<ul id="searchList"></ul><li>
+              					<ul id="memberSearch"></ul>
               					
-								
+              					<ul id="tagSearch"></ul>
+              					
+								</li>
 								</ul>
 								
               					
@@ -167,9 +173,9 @@
    $(function() {
        $(document).on('click', function(e) {
            if (e.target.id === 'word') {
-              $('#searchList').show();
+              $('#memberSearch').show();
            } else {
-               $('#searchList').hide();
+               $('#memberSearch').hide();
            }
 
        })
@@ -178,29 +184,52 @@
 
 
 <script> 
-/* 검색기능 */
+/* 친구 검색기능 */
 function search(target){
    var word = target.value; 
    
    var obj = {"word": word}; 
-   $.ajax({ url: "<c:url value="/commSearch" />", 
+   $.ajax({ url: "<c:url value="/commMemberSearch" />", 
       type: "POST", 
       data: JSON.stringify(obj), 
       dataType: 'json', 
       contentType: "application/json;", 
       success: function(data) {
-         
-          $("#searchList").empty(); 
+          $("#memberSearch").empty(); 
           
           var checkWord = $("#word").val(); 
           if(checkWord.length > 0 && data.length > 0){
           for(var i=0; i<data.length; i++){
-                 $('#searchList').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
+                 $('#memberSearch').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
              }
          }
       }, 
       error: function(errorThrown) { alert(errorThrown.statusText); 
       } 
    }); 
+
+   //해시태그 검색
+   var obj = {"word": word}; 
+   $.ajax({ url: "<c:url value="/commHashSearch" />", 
+      type: "POST", 
+      data: JSON.stringify(obj), 
+      dataType: 'json', 
+      contentType: "application/json;", 
+      success: function(data) {
+         
+          $("#tagSearch").empty(); 
+          
+          var checkWord = $("#word").val(); 
+          if(checkWord.length > 0 && data.length > 0){
+          for(var i=0; i<data.length; i++){
+                 $('#tagSearch').append("<li><a href='searchTag?tagId="+data[i].tagId+"&tagName="+data[i].tagName+"'>#"+data[i].tagName+"</a></li>");
+             }
+         }
+      }, 
+      error: function(errorThrown) { alert(errorThrown.statusText); 
+      } 
+   }); 
+   
+   
 } 
 </script>
