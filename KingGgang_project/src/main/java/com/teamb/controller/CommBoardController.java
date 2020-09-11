@@ -116,7 +116,7 @@ public class CommBoardController {
 	      return "comm/board/comm_myPage";
 	   }
 */	
-	
+	 
 	@RequestMapping("/comm_myPage.do")
     public String myPage(HttpServletRequest req, HttpSession session) {
 
