@@ -76,20 +76,21 @@ public class CommNewsfeedController {
     //지은
       List<CommboardDTO> list = null;
       String look=(String) session.getAttribute("look");
-      if(look==null){
-         look="전체공개";
-         list = newsfeedMapper.newfeedList(startRow, endRow, look);
-      }else if(look!=null){
-         if(look.contains("전체공개")){
+     if(look!=null){
+         if(look.equals("전체공개")){
             list = newsfeedMapper.newfeedList(startRow, endRow, look);
          }
-         if(look.contains("회원공개")){
+         else if(look.equals("회원공개")){
             list = newsfeedMapper.newfeedList(startRow, endRow, look);
          }
-         if(look.contains("비공개")){
+         else if(look.equals("비공개")){
             list = newsfeedMapper.newfeedList(startRow, endRow, look);
          }
       }
+     else if(look==null){
+          look="전체공개";
+          list = newsfeedMapper.newfeedList(startRow, endRow, look);
+     }
 
       JSONArray jsonArray = new JSONArray();
       JSONObject json = null;
@@ -123,24 +124,25 @@ public class CommNewsfeedController {
     //지은
       ModelAndView mav = new ModelAndView();
       String look=(String) session.getAttribute("look");
-      if(look==null){
-         look="전체공개";
-         newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
-         mav.addObject("boardList", newsfeed);
-      }else if(look!=null){
-         if(look.contains("전체공개")){
+      if(look!=null){
+         if(look.equals("전체공개")){
             newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
             mav.addObject("boardList", newsfeed);
          }
-         if(look.contains("회원공개")){
+         else if(look.equals("회원공개")){
             newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
             mav.addObject("boardList", newsfeed);
          }
-         if(look.contains("비공개")){
+         else if(look.equals("비공개")){
             newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
             mav.addObject("boardList", newsfeed);
          }
       }
+      else if(look==null){
+          look="전체공개";
+          newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
+          mav.addObject("boardList", newsfeed);
+       }
 
 //      ModelAndView mav = new ModelAndView();
 //      mav.addObject("boardList", newsfeed);

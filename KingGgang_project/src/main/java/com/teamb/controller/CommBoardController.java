@@ -87,8 +87,6 @@ public class CommBoardController {
 		int res = boardMapper.writeBoard(dto);
 		// 지은
 		req.setAttribute("look", dto.getLook());
-		System.out.println("dto look값"+dto.getLook());
-
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "게시물이 등록되었습니다.";
@@ -102,12 +100,29 @@ public class CommBoardController {
 		return "message";
 	}
 
+/*	@RequestMapping("/comm_myPage.do")
+	   public String myPage(HttpServletRequest req, HttpSession session) {
+
+	      MemberDTO member = (MemberDTO) session.getAttribute("login");
+	      
+	      Comm_MemberDTO commmember = (Comm_MemberDTO)session.getAttribute("commmember");
+	      int comm_memberNum = commmember.getComm_memberNum();
+	    
+	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
+	      req.setAttribute("boardList", list);
+	      req.getParameter(commmember.getComm_profilename());
+	      req.getParameter(commmember.getComm_nickname());
+	     
+	      return "comm/board/comm_myPage";
+	   }
+*/	
+	
 	@RequestMapping("/comm_myPage.do")
     public String myPage(HttpServletRequest req, HttpSession session) {
+
     Comm_MemberDTO login = (Comm_MemberDTO)session.getAttribute("comm_login");
-    
-     int comm_memberNum = login.getComm_memberNum();
-     
+    int comm_memberNum = login.getComm_memberNum();
+
        List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
        Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
        
@@ -224,7 +239,8 @@ public class CommBoardController {
 			dto.setFile_size(file_size);
 		}
 		else{
-			dto = boardMapper.getBoard(boardNum);
+			//지은
+			CommboardDTO bdto = boardMapper.getBoard(boardNum);
 			dto.setFile_name(dto.getFile_name());
 			dto.setFile_size(dto.getFile_size());
 		}

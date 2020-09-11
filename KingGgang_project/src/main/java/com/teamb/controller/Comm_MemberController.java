@@ -21,6 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
+import com.teamb.model.MemberDTO;
+import com.teamb.service.CommBookMarkMapper;
+import com.teamb.service.CommTogetherMapper;
+import com.teamb.service.CommWarnMapper;
 import com.teamb.service.Comm_FriendMapper;
 import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.CommboardMapper;
@@ -38,6 +42,12 @@ public class Comm_MemberController {
 	private CommboardMapper boardMapper;
 	@Autowired
 	private Comm_FriendMapper friendMapper;
+	@Autowired
+	private CommTogetherMapper togetherMapper;
+	@Autowired
+	private CommWarnMapper warnMapper;
+	@Autowired
+	private CommBookMarkMapper bookmarkMapper;
 	
 	
 	@Resource(name="upLoadPath")
@@ -82,7 +92,6 @@ public class Comm_MemberController {
 			String comm_nickname = memberMapper.comm_getMember(comm_memberNum).getComm_nickname();
 	        session.setAttribute("comm_nickname", comm_nickname);
 	        session.setAttribute("look", "회원공개");
-	        System.out.println("login look값;"+session.getAttribute("look"));
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
         	}
@@ -130,7 +139,8 @@ public class Comm_MemberController {
 											Comm_MemberDTO dto,BindingResult result){
 		
 		int memberNum = (Integer)session.getAttribute("memberNum");
-		 String comm_name = (String)session.getAttribute("name");   
+		 String comm_name = (String)session.getAttribute("name"); 
+		 String comm_birth = (String)session.getAttribute("birth");
 		
 		if (result.hasErrors()){
 			dto.setMemberNum(0);
@@ -158,8 +168,7 @@ public class Comm_MemberController {
 		String msg = null, url = null;
 		if(res>0){
 			msg="가입성공";
-			url="comm_memberList.do";
-			//url="commhome.comm"; 
+			url="commhome.comm"; 
 		}else{
 			msg="가입실패";
 			url="commhome.comm";
@@ -178,6 +187,16 @@ public class Comm_MemberController {
 		session.setAttribute("comm_memberList", list);
 		
 		return "comm/member/comm_memberList";
+	}
+	
+	@RequestMapping(value = "/admin_comm_memberList.do")
+	public String admin_commlistMember(HttpServletRequest req,HttpSession session,Comm_MemberDTO dto){
+		
+		List<Comm_MemberDTO> list = memberMapper.comm_memberList();
+		
+		session.setAttribute("comm_memberList", list);
+		
+		return "comm/admin_comm_memberList";
 	}
 	
 	
@@ -234,14 +253,13 @@ public class Comm_MemberController {
 	
 	@RequestMapping("/comm_member_delete.do")
 	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum){
-		int res2 = boardMapper.deleteAllBoard(comm_memberNum);
-		int res3 = friendMapper.deleteAllFriend(comm_memberNum);
+				
 		int res = memberMapper.comm_deleteMember(comm_memberNum);
-			Comm_MemberDTO login = memberMapper.comm_getMember(comm_memberNum);
+		Comm_MemberDTO login = memberMapper.comm_getMember(comm_memberNum);
 		String msg = null, url = null;
-		if(res>0||res2>0||res3>0){
-				HttpSession session = req.getSession();
-				session.setAttribute("comm_login", login);
+		if(res>0){
+			HttpSession session = req.getSession();
+			session.setAttribute("comm_login", login);
 			msg="회원삭제성공!";
 			url="commhome.comm";
 		}else{

@@ -22,4 +22,9 @@ public class CommBookMarkMapper {
 	public List<CommBookmarkDTO> listMark(int comm_memberNum) {
 		return sqlSession.selectList("listMark",comm_memberNum);
 	}
+	
+	public int deleteAllBookmark(int boardnum) {
+		int res = sqlSession.delete("all_deleteBookmark",boardnum);
+		  return res;
+	}
 }
