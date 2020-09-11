@@ -21,7 +21,7 @@
 			padding:0;
 		}
 		.container{
-			width: 500px;
+			width: 450x;
 			margin: 0 auto;
 			padding: 25px
 		}
@@ -31,12 +31,13 @@
 			color: #FFBB00;
 			border-left: 3px solid #FFBB00;
 			margin-bottom: 10px;
+			float:left;
 		}
 		.chating{
 			border: 1px solid #FFBB00;
 			background-color: #FFFFFF;
-			width: 500px;
-			height: 500px;
+			width: 400px;
+			height: 400px;
 			overflow: auto;
 			padding: 5px 5px 5px 5px;
 		}
@@ -55,14 +56,17 @@
 		}
 		#yourMsg{
 			display: none;
+			
 		}
 		#back{
-		float: right;
-		width: 100px;
+		float: left;
+		width: 40px;
+		height:40px;
 		color: #FFBB00;
 		border: 1px solid #FFBB00;
 		background: #FFFFFF;
 		margin-bottom: 20px;
+		margin-right:10px;
 		 
 		}
 		
@@ -98,9 +102,20 @@
 					}
 				}else if(d.type == "message"){
 					if(d.sessionId == $("#sessionId").val()){
-						$("#chating").append("<p class='me'>나 :" + d.msgContent + "</p>");	
+						$("#chating").append("<div style='font-size:9px; clear:both;'></div><div class = 'col-12' style = 'margin-top : 5px;background-color:#ACF3FF; padding : 10px 5px; float:right; border-radius:10px;'><span style = 'font-size : 12px;'>"+d.msgContent+"</span></div></div>");	
 					}else{
-						$("#chating").append("<p class='others'>" + d.userName + " :" + d.msgContent + "</p>");
+						$("#chating").append("<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>"
+								+"<div style='font-size:9px; clear:both;'></div>"
+								+"<div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'>"
+								+"<img id='profileImg' class='img-fluid' src='http://localhost:8080/img/${RProfile}' style = 'width:30px; height:30px; border-radius:50%;'>"
+								+"</div>"
+								+"<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left; margin-left:10px;'>"
+								+"<div class = 'col-12' style = ' background-color:#FFEAAC; padding : 10px 5px; float:left; border-radius:10px;'>"
+								+"<span style = 'font-size : 12px;'>"+d.msgContent+"</span>"
+								+"</div>"
+								+"</div>"
+								+"</div>"
+								);
 					}
 						
 				}else{
@@ -138,19 +153,35 @@
 </script>
 <body>
 	<div id="container" class="container">
+		<input type="button" id ="back" value="<" onclick="history.back();">
 		<h3>${roomName}의 채팅방</h3>
-		<input type="button" id ="back" value="돌아가기" onclick="history.back()">
 		<input type="hidden" id="sessionId" value="">
 		<input type="hidden" id="userName" value="${msgReceiver}">
 		<input type="hidden" id="chatroom_id" value="${chatroom_id}">
-		<c:out value="${msgSender}"/>
 		<div id="chating" class="chating">
+			
 		<c:forEach var="dto" items="${msgList}">
 			<c:if test="${dto.msgSender eq msgSender}">
-					<p id = "chat" align="right">${dto.msgContent}</p>
+				<div style='font-size:9px; clear:both;'>
+				</div>
+				<div class = 'col-12' style = 'margin-top : 5px; background-color:#ACF3FF; padding : 10px 5px; float:right; border-radius:10px;'>
+				<span style = 'font-size : 12px;'>${dto.msgContent}</span>
+				</div>
+					
 			</c:if>
 		<c:if test="${dto.msgSender ne msgSender}">
-				<p id = "chat" align="left">${dto.msgContent}</p>
+		
+		<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>
+		<div style='font-size:9px; clear:both;'></div>
+		<div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'>
+		<img id='profileImg' class='img-fluid' src='http://localhost:8080/img/${RProfile}' style = 'width:30px; height:30px; border-radius:50%;'>
+		</div>
+		<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left; margin-left:10px;'>
+		<div class = 'col-12' style = ' background-color:#FFEAAC; padding : 10px 5px; float:left; border-radius:10px;'>
+		<span style = 'font-size : 12px;'>${dto.msgContent}</span>
+		</div>
+		</div>
+		</div>
 		</c:if>
 		
 		</c:forEach>
@@ -166,13 +197,12 @@
 			</table>
 		</div> -->
 		
-		<div id="yourMsg">
+		<div id="yourMsg" align="center">
 			<table class="inputTable">
 			<script type="text/javascript">
 			chatName();
 			</script>
 				<tr>
-					<th>메시지</th>
 					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
 					<th><button onclick="send()" id="sendBtn">보내기</button></th>
 				</tr>

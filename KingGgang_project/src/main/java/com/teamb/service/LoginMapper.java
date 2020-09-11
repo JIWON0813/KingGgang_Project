@@ -25,7 +25,9 @@ public class LoginMapper {
 	public String getMemberName(String id){
 		return sqlSession.selectOne("getMemberName",id);
 	}
-	
+	public MemberDTO getMemberBirth(String id) {
+		return sqlSession.selectOne("getMemberBirth",id);
+	}
 	public int loginOk(String id,String passwd){
 		String dbPass = sqlSession.selectOne("loginOk", id);
 		if (dbPass != null) { 
@@ -78,4 +80,5 @@ public class LoginMapper {
 			return null;
 		return passwd;
 	}
+	
 }
