@@ -13,4 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from bookmark where comm_memberNum=#{comm_memberNum}
 	</select>
 
+	<select id="all_deleteBookmark" parameterType="int" resultType="int">
+		delete from bookmark where boardnum=#{boardnum}
+	</select>
+	
 </mapper>

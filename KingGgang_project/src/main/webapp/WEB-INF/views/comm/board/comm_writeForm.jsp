@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 
-	이	   름 : B4_writeForm.jsp
+	이	   름 : comm_writeForm.jsp
 	개  발   자 : 최 인 아
-	설	   명 : 메인 페이지
+	설	   명 : 글쓰기폼
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script type="text/javascript">
@@ -46,7 +46,7 @@
 	<form name="f" action="comm_writePro.do" method="post" onsubmit="return check()" enctype="multipart/form-data">
 		<table width="600">
 			<tr>
-				<th width="150" align="center">사진명</th>
+				<th width="150" align="center" bgcolor=orange>사진명</th>
 				<td><input type="file" name="file_name"></td>
 			</tr>
 			<tr>
@@ -57,12 +57,15 @@
 			<tr>
 				<th width="150" align="center">태그하기</th>
 				<td><input type="text" name="hashtag"></td>
+
 			</tr>
 			<tr>
-				<th width="150">공개범위</th>
+				<th width="150" bgcolor=orange>공개범위</th>
 				<td>
 					전체공개 <input type="checkbox" name="look" value="전체공개" />
+					&nbsp;
            			회원공개 <input type="checkbox" name="look" value="회원공개" />
+           			&nbsp;
 					비공개 <input type="checkbox" name="look" value="비공개" />			
 				</td>
 			</tr>

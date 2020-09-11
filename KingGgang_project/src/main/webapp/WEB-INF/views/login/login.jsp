@@ -51,7 +51,7 @@
 		document.f.submit();
 	}
 </script>
-<div class="section layout_padding">
+<div class="section layout_padding"></div>
 <section id="four" class="wrapper style1 special fade-up">
 	<div class="container">
 						<header class="major">
@@ -60,7 +60,7 @@
 		<form name="f" action="loginOk.log" method="post">
 			<table width="600" align="center" height="120">
 				<tr>
-					<td align="right" width="30%">아이디</td>
+					<td align="right" width="30%">아이디</td>&nbsp;
 					<td width="40%">
 							<c:if test="${empty id }">
 							<input type="text" name="id" placeholder="아이디를 입력하세요."><input type="checkbox" name="useCookie">아이디저장<br>
@@ -71,7 +71,7 @@
 				</tr>
 				<tr>
 					<td align="right">비밀번호</td>
-					<td><input type="password" name="passwd" placeholder='비밀번호를 입력하세요.'><a href="javascript:loginCheck()">로그인</a></td>
+					<td><input type="password" name="passwd" placeholder='비밀번호를 입력하세요.'>&nbsp;<input type="button" value="로그인" onclick="javascript:loginCheck()"></td>
 				</tr>
 				<tr>
 					<td colspan="3" align="center">
@@ -87,5 +87,5 @@
 		</form>
 </div>
 </section>
-</div>
+<div class="section layout_padding"></div>
 <%@ include file="../bottom.jsp"%>

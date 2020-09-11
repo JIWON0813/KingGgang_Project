@@ -105,10 +105,14 @@
 		r_id from rentcar_res where returnday <![CDATA[>=]]> to_date(#{receiptday},'yyyy-mm-dd/hh24:mi') and 
 		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and pstatus = 0 or pstatus = 1)
 	</select>
+
+	<select id="getRentcarRes" parameterType="int" resultType="Rentcar_ResDTO">
+		select * from rentcar_res where res_id = #{res_id}
+	</select>
 	
 	
 	<!-- Scheduled -->
-	
+
 	<select id="findReturnTimeReservation" resultType="Rentcar_ResDTO">
 		select * from rentcar_res where returnday <![CDATA[<=]]> sysdate 
 	</select>
@@ -117,8 +121,20 @@
 		select * from rentcar_res where pstatus = 0
 	</select>
 
+
 	<!-- 예약후 5분 안에 미결제시 결제 실패로 업데이트 -->
 	<update id="updatePstatus" parameterType="int">
 		update rentcar_res set pstatus = 2 where res_id = #{res_id} and reservationday + 5/(24*60) <![CDATA[<=]]> sysdate
 	</update>
+  
+	<!-- 렌트카 결제 (for Pstatus update) 원세호 -->
+	
+	<select id="getRes_id" parameterType="String" resultType="int">
+			select res_id from(select * from rentcar_res order by rownum desc) where rownum = 1 and member_id = #{member_id}
+	</select>
+	
+	<update id="updatePstSuc" parameterType="int">
+		 update rentcar_res set pstatus = 1 where res_id = #{res_id}
+	</update>
+
 </mapper>

@@ -32,7 +32,7 @@
 			</td>
 			<td>${comm_nickname}</td>
 			<td>${dto.temail}</td>
-			<td><fmt:formatDate value="${dto.tregdate}" pattern="yyyy년MM월dd일"/></td>
+			<td><fmt:formatDate value="${dto.tregdate}" pattern="yyyy-MM-dd"/></td>
 			<td>${dto.treadcount}</td>
 		</tr>		
 	</c:forEach>	

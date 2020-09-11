@@ -28,32 +28,33 @@
 							<div class="full">
 								<ul class="menu_footer">
 									<c:if test="${comm_login != null }">
-									<li><a href="comm_writeForm.do">> Write</a></li>
-									<li><a href="comm_myPage.do">> Mypage</a></li>
-									<li><a href="comm_bookMark.do">> BookMark</a></li>
-									<li><a href="commadmin.comm">> 관리자모드</a></li>
-									<li>
-											<a
-												href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">>
-												회원탈퇴</a>
-											<a
-												href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">>
-												수정</a>
-											<a href="comm_memberList.do">> 목록</a>
+									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="comm_writeForm.do"> Write</a></li>
+									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="comm_myPage.do"> Mypage</a></li>
+									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="comm_bookMark.do"> BookMark</a></li>
+									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="commadmin.comm"> 관리자모드</a></li>
+									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">
+											<a href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">회원탈퇴</a>
+											<a href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">>수정</a>
+									</li>
+									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">			
+											<a href="comm_memberList.do"> 회원목록</a>
 										</li>
-											<li><a
-												href="comm_friendAll.do?comm_memberNum=${comm_memberNum }">>
+											<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">
+											<a href="comm_friendAll.do?comm_memberNum=${comm_memberNum }">
 													Friends 목록</a></li>
-											<li><a href="#"
-												onclick="window.open('roomList', '_blank', 'width=600 height=600')">>
+											<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">
+											<a href="#"
+												onclick="window.open('roomList', '_blank', 'width=600 height=600')">
 													채팅 목록</a></li>
 										</c:if>
-										<li><c:if test="${comm_login == null }">
-												<a href="comm_login.do?memberNum=${memberNum }">> 로그인</a>
-												<a href="comm_checkMember.do?memberNum=${memberNum}">>
-													가입하기</a>
-
-											</c:if> 
+										<c:if test="${comm_login == null }">
+										<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">
+												<a href="comm_login.do?memberNum=${memberNum }"> 로그인</a>
+										</li>
+										<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">
+												<a href="comm_checkMember.do?memberNum=${memberNum}">가입하기</a>
+										</li>
+										</c:if> 
 								<li style="margin-top:20px;">
                     			
                     			

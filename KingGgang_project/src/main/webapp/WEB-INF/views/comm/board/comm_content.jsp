@@ -3,7 +3,7 @@
  <!-- 
 	이	   름 : comm_content.jsp
 	개  발   자 : 최 인 아
-	설	   명 : content
+	설	   명 : 상세보기
  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
@@ -28,8 +28,8 @@
 	<table width="400">
 	<tr>
 		<td align="right" colspan="4">
-		<p onclick="confirm('신고하시겠습니까? 버튼을 눌러주세요')">신고
-			<a href="comm_warnPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"><img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a></p>
+			<p onclick="confirm('신고하시겠습니까? 버튼을 눌러주세요')">신고
+				<a href="comm_warnPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"><img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a></p>
 		</td>
 	</tr>
 	<tr>
@@ -37,7 +37,6 @@
 		 	<a href="comm_otherPage.do?comm_memberNum=${memberNum}"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50">&nbsp;&nbsp;[   ${comm_nickname}   ]</a>
 		</td>
 	</tr>
-	<br>
 	<br>
 	<br>
 	<c:if test="${getBoard.file_size != 0}">
@@ -83,9 +82,9 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="button" value="글목록" onclick="window.location='comm_myPage.do'">
 			 </c:if>
-			 	<c:if test="${loginNum != memberNum}">
+			 <c:if test="${loginNum != memberNum}">
 			 	<input type="button" value="뒤로가기" onclick="history.back()">
-			 	</c:if>
+			 </c:if>
 			</td>
 		</tr>
 	</table>
@@ -116,19 +115,62 @@
 <div align="center">
 <form name="f" action="reply_updatePro.do" method="post" onsubmit="return check()">
  <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
-  <ol>
+ <table>
+  <tr>
    <c:if test="${empty replyList}">
 	      <p>등록된 댓글이 없습니다.</p>
 	</c:if>   
     <c:forEach items="${replyList}" var="replyList">
-      <li>
-        <p> 작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${replyList.rregdate}" pattern="yyyy년MM월dd일"/></p>
-        <p> : ${replyList.rcontent}</p>
-        <input type="submit" value="댓수정">
-      	<input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
-      </li>
+      <tr>
+      	<td>
+        	 작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성일 : <fmt:formatDate value="${replyList.rregdate}" pattern="yyyy-MM-dd"/>
+        </td>
+       </tr>
+       <tr>
+        <td>	 
+        	 내 용 : ${replyList.rcontent}
+      	</td>
+        <td>
+        	<input type="submit" value="댓수정">
+      		<input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
+      	</td>
+      	<tr>
+      		<td>
+      			<img src="${pageContext.request.contextPath}/resources/img/line.PNG">
+      		</td>
+      	</tr>
     </c:forEach>   
-  </ol>
+  </tr>
+  </table>
  </form>		
 </div>
+<!-- <div>
+<input type="text" id="comment" name="content" placeholder="댓글 입력">
+<button onClick="make_comment({blog.id})" type="submit">작성</button>
+</div> -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
+<!-- <script>
+/*댓글기능*/
+function make_comment(blog_id) {
+	var body = $("#comment").val();
+	&.ajax({
+		type: "POST",
+		url: "/comment/create",
+		date : {
+			'blog_id' : blog_id,
+			'body' : body,
+			'csrfmiddlewaretoken' : '{{csrf_token}}',
+		},
+		dataType: "json",
+		success: function(response) {
+			console.log(response.message);
+			$("#comment_list").append("<p>"+response.body+"</p><hr>")
+			$("#comment").val('')
+		},
+		error:funtion(request,status,error) {
+			alert(error);
+		},
+	});
+}
+</script>
+ -->
