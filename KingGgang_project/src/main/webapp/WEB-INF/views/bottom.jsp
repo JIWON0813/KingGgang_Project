@@ -69,6 +69,7 @@
 <br><a href="main.my">마이페이지로 가기</a><p>
 <br><a href="main.mem">멤버 페이지로 가기</a><p>
 <br><a href="main.hotel">호텔 예약하기</a>
+<br><a href="hotelList.hotel">호텔 목록보기(어드민)</a>
 <br><a href="listRentcar.admin">렌트카 목록(어드민)</a>
 <br><a href="listInsu.admin">렌트카_보험 목록(어드민)</a>
 <br><a href="firstPage.rentcar">렌트카 메인(회원)</a>
