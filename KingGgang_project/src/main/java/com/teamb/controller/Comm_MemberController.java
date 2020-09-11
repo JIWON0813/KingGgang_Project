@@ -2,19 +2,23 @@ package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -178,6 +182,59 @@ public class Comm_MemberController {
 		req.setAttribute("url", url);
 		return "message";
 	}
+/*	
+	 @SuppressWarnings("unchecked")
+	   @ResponseBody
+	   @RequestMapping(value = "/ajaxList.do", method = RequestMethod.POST)
+	   public Object moerContent(@RequestBody HashMap<String, Object> map, HttpServletRequest req,HttpSession session){
+	      
+	      int startRow = (int) map.get("startRow");
+	      int endRow = (int)map.get("endRow");
+	      int count = memberMapper.getComm_memberCount();
+	      if (endRow>count) endRow = count;
+	      
+	      System.out.println(endRow);
+	      List<Comm_MemberDTO> list = memberMapper.comm_memberList(startRow,endRow);
+	      JSONArray jsonArray = new JSONArray();
+	      JSONObject json = null;
+	      for (int i = 0; i < list.size(); i++) {
+	         json = new JSONObject();
+	         Comm_MemberDTO dto = (Comm_MemberDTO) list.get(i);
+	         json.put("num", dto.getComm_memberNum());
+	         json.put("file", dto.getComm_profilename());
+	         json.put("name", dto.getComm_name());
+	         json.put("nickname", dto.getComm_nickname());
+	         jsonArray.add(json);
+	         }
+	     
+	      return jsonArray;
+	     }
+	
+	 @RequestMapping(value = "/comm_memberList.do")
+		public ModelAndView commlistMember(HttpServletRequest req,HttpSession session,Comm_MemberDTO dto){
+		 int pageSize = 4;
+	      
+	      String pageNum = req.getParameter("pageNum");
+	      if (pageNum == null){
+	         pageNum = "1";
+	      }
+	      
+	      int currentPage = Integer.parseInt(pageNum);
+	      int startRow = currentPage * pageSize - (pageSize-1);
+	      int endRow = currentPage * pageSize;
+
+	      List<Comm_MemberDTO> member = null;
+	      member = memberMapper.comm_memberList(startRow, endRow);
+		 
+	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("comm_memberList", member);
+
+	      mav.setViewName("comm/member/comm_memberList");
+	      return mav;
+		}
+	 
+	*/
+	
 
 	@RequestMapping(value = "/comm_memberList.do")
 	public String commlistMember(HttpServletRequest req,HttpSession session,Comm_MemberDTO dto){

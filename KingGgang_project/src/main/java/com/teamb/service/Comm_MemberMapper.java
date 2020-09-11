@@ -1,5 +1,6 @@
 package com.teamb.service;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -60,4 +61,18 @@ public class Comm_MemberMapper {
 		int res = sqlSession.insert("admin_comm_deleteMember",comm_nickname);
 		return res;
 	}
+	
+/*	public int getComm_memberCount() {
+		int count = sqlSession.selectOne("getComm_memberCount");
+		return count;
+	}
+
+	public List<Comm_MemberDTO> comm_memberList(int startRow, int endRow) {
+		java.util.Map<String,Integer> map = new Hashtable<String, Integer>();
+		map.put("startRow",startRow);
+		map.put("endRow",endRow);
+	   return sqlSession.selectList("c_comm_memberList",map);
+	}*/
+	
+	
 }

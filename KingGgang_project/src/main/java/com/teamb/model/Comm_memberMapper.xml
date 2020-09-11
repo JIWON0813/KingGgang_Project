@@ -45,5 +45,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		comm_birth=#{comm_birth}, comm_intro=#{comm_intro} 
 		where comm_memberNum = #{comm_memberNum}
 	</update>
+	
+	<!-- <select id="getComm_memberCount" resultType="int">
+	select count(*) from comm_member
+	</select>
+	
+	<select id="c_comm_memberList" resultType="Comm_MemberDTO" parameterType="java.util.Map">
+	select * from (select rownum rn, A.* from
+	(select * from comm_member order by boardNum desc)A)
+	where rn between #{startRow} and #{endRow}
+	</select>  -->
     
 </mapper>
