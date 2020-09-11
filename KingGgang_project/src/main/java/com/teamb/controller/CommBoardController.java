@@ -2,11 +2,13 @@ package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.HTML.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,11 +25,15 @@ import com.teamb.model.CommBookmarkDTO;
 import com.teamb.model.CommReplyDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
+import com.teamb.model.HashTagDTO;
 import com.teamb.model.MemberDTO;
+import com.teamb.model.Post_TagDTO;
 import com.teamb.service.CommBookMarkMapper;
 import com.teamb.service.CommReplyMapper;
 import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.CommboardMapper;
+import com.teamb.service.HashTagMapper;
+import com.teamb.service.Post_TagMapper;
 
 @Controller
 public class CommBoardController {
@@ -44,6 +50,12 @@ public class CommBoardController {
 	@Autowired
 	private CommBookMarkMapper bookmarkMapper;
  
+	@Autowired
+	private HashTagMapper hashtagMapper;
+	
+	@Autowired
+	private Post_TagMapper post_tagMapper;
+	
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
@@ -83,14 +95,32 @@ public class CommBoardController {
 		dto.setComm_memberNum(comm_memberNum);
 		dto.setFile_name(file_name);
 		dto.setFile_size(file_size);
-
-		int res = boardMapper.writeBoard(dto);
+		int boardNum = boardMapper.writeBoard(dto);
+		
+		//여진
+		String tag = req.getParameter("hashtag").trim();
+		String hashtag[] = tag.split("#");
+		List<HashTagDTO> hashList = new ArrayList<>();
+		for(int i=1;i<hashtag.length;i++){
+			if(hashtagMapper.isHashTag(hashtag[i]) == null){
+				hashtagMapper.insertTag(hashtag[i]);
+				hashList.add(hashtagMapper.isHashTag(hashtag[i]));
+			}else{
+			hashList.add(hashtagMapper.isHashTag(hashtag[i]));
+			}
+		}
+		
+	for(int i=0;i<hashList.size();i++){
+		HashTagDTO list = hashList.get(i);
+		post_tagMapper.insertPostTag(boardNum,list.getTagId());
+	} 
+		
 		// 지은
 		req.setAttribute("look", dto.getLook());
 		System.out.println("dto look값"+dto.getLook());
 
 		String msg = null, url = null;
-		if (res > 0) {
+		if (boardNum > 0) {
 			msg = "게시물이 등록되었습니다.";
 			url = "comm_myPage.do";
 		} else {
@@ -122,7 +152,6 @@ public class CommBoardController {
 	
 	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
 	public String content(HttpServletRequest req, @RequestParam int boardNum) {
-
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
 		
@@ -336,7 +365,6 @@ public class CommBoardController {
 			}
 			
 		 int comm_memberNum = Integer.parseInt(req.getParameter("comm_memberNum"));
-		 System.out.println(comm_memberNum);
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 	      Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
 	      
@@ -363,12 +391,20 @@ public class CommBoardController {
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		req.setAttribute("replyList", list);
 		
+		List<Post_TagDTO> post = post_tagMapper.getPostTagId(boardNum);
+		List<HashTagDTO> tag = new ArrayList<>();
+		
+		for(int i=0;i<post.size();i++){
+			Post_TagDTO tagId = post.get(i);
+			HashTagDTO tagImform = (hashtagMapper.getTagName(tagId.getTagId()));
+			tag.add(tagImform);
+		}
 		 Comm_MemberDTO member = comm_memberMapper.comm_getMember(dto.getComm_memberNum());
 		 req.setAttribute("loginNum",loginNum);
 		 req.setAttribute("comm_profilename",member.getComm_profilename());
 	     req.setAttribute("comm_nickname",member.getComm_nickname());
 	     req.setAttribute("memberNum",member.getComm_memberNum());
-	     
+	     req.setAttribute("tag",tag);
 		return "comm/board/comm_content";
 	}
 
