@@ -296,10 +296,10 @@ public class CommBoardController {
 		int res = replyMapper.updateReply(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
+			msg = "댓글수정성공!!";
 			url = "comm_myPage.do";
 		}else{
-			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
+			msg = "댓글수정실패!!";
 			url = "comm_updateForm.do";
 		}
 		
@@ -318,10 +318,22 @@ public class CommBoardController {
 	
 	@RequestMapping(value = "/reply_deletePro.do")
 	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
-		replyMapper.deleteReply(replyNum);
+		
+		int res = replyMapper.deleteReply(replyNum);
+		String msg = null, url = null;
+		if (res > 0) {
+			msg = "댓글삭제성공";
+			url = "comm_content.do?boardNum="+boardNum;
+		}else{
+			msg = "댓글삭제실패!!";
+			url = "comm_content.do";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
 		req.setAttribute("replyNum", replyNum);
 		req.setAttribute("boardNum", boardNum);
-		return "comm/board/comm_content";
+
+		return "message";
 	}
 	
 	//여진
