@@ -1,5 +1,5 @@
 package com.teamb.model;
-
+ 
 public class RentcarDTO {
 	
 	/*
@@ -27,8 +27,10 @@ public class RentcarDTO {
 	private String lat;
 	private String lng;
 	
+
 	public int getId() {
 		return id;
+
 	}
 	public void setId(int id) {
 		this.id = id;

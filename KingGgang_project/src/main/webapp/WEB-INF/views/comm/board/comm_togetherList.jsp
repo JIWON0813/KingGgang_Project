@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 
+	이	   름 : comm_together.jsp
+	개  발   자 : 최 인 아
+	설	   명 : 투게더 게시판 목록
+ -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <footer class="footer-box">
 		<div class="container">
@@ -41,19 +47,19 @@
 		</tr>
 	</c:if>		
 	<c:forEach var="dto" items="${togetherList}">		
-		<tr>
-			<td><c:out value="${dto.togetherNum}"/></td>
+		<tr align="center">
+			<td>
+				<c:out value="${dto.togetherNum}"/>
+			</td>
 			<td>
 			<c:if test="${dto.treadcount>10}">
 				<img src="${pageContext.request.contextPath}/resources/img/crown.PNG" width="30" height="30">
 			</c:if>	
-				<a href="comm_tcontent.do?togetherNum=${dto.togetherNum}">
-					${dto.ttitle}
-				</a>
+				<a href="comm_tcontent.do?togetherNum=${dto.togetherNum}">${dto.ttitle}</a>
 			</td>
 			<td>${comm_nickname}</td>
 			<td>${dto.temail}</td>
-			<td>${dto.tregdate}</td>
+			<td><fmt:formatDate value="${dto.tregdate}" pattern="yyyy-MM-dd"/></td>
 			<td>${dto.treadcount}</td>
 		</tr>		
 	</c:forEach>	

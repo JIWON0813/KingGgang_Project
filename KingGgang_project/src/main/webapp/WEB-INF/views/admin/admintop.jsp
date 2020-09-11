@@ -1,6 +1,7 @@
 <%@ include file="../top.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="section layout_padding">
+<div class="section layout_padding"></div>
+<%-- <c:if test="${mbId=='admin' }"> --%>
 <table align="center" width="100%" height="100%">
 	<tr>
 		<td valign="top" align="center" width="15%">
@@ -8,6 +9,9 @@
 			<ul><a href="couponList.co">쿠폰 목록</a></ul>
 		</td>
 		<td>
+<%-- </c:if> --%>
+	
+	
 	<!-- </tr>
 </table> -->
 <%-- <!-- 

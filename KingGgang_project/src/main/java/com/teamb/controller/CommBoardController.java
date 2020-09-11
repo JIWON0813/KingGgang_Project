@@ -31,7 +31,7 @@ import com.teamb.service.CommboardMapper;
 
 @Controller
 public class CommBoardController {
-	
+
 	@Autowired
 	private CommboardMapper boardMapper;
 	
@@ -109,6 +109,7 @@ public class CommBoardController {
 	      int comm_memberNum = commmember.getComm_memberNum();
 	    
 	      List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
+
 	      req.setAttribute("boardList", list);
 	      req.getParameter(commmember.getComm_profilename());
 	      req.getParameter(commmember.getComm_nickname());
@@ -116,12 +117,13 @@ public class CommBoardController {
 	      return "comm/board/comm_myPage";
 	   }
 */	
-	
+	 
 	@RequestMapping("/comm_myPage.do")
     public String myPage(HttpServletRequest req, HttpSession session) {
-    	Comm_MemberDTO login = (Comm_MemberDTO)session.getAttribute("comm_login");
-    	int comm_memberNum = login.getComm_memberNum();
-     
+
+    Comm_MemberDTO login = (Comm_MemberDTO)session.getAttribute("comm_login");
+    int comm_memberNum = login.getComm_memberNum();
+
        List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
        Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
        
@@ -311,10 +313,10 @@ public class CommBoardController {
 		int res = replyMapper.updateReply(dto);
 		String msg = null, url = null;
 		if (res > 0) {
-			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
+			msg = "댓글수정성공!!";
 			url = "comm_myPage.do";
 		}else{
-			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
+			msg = "댓글수정실패!!";
 			url = "comm_updateForm.do";
 		}
 		
@@ -332,12 +334,24 @@ public class CommBoardController {
 	}*/
 	
 	@RequestMapping(value = "/reply_deletePro.do")
-	   public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
-	      replyMapper.deleteReply(replyNum);
-	      req.setAttribute("replyNum", replyNum);
-	      req.setAttribute("boardNum", boardNum);
-	      return "comm/board/comm_content";
-	   }
+	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
+		
+		int res = replyMapper.deleteReply(replyNum);
+		String msg = null, url = null;
+		if (res > 0) {
+			msg = "댓글삭제성공";
+			url = "comm_content.do?boardNum="+boardNum;
+		}else{
+			msg = "댓글삭제실패!!";
+			url = "comm_content.do";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		req.setAttribute("replyNum", replyNum);
+		req.setAttribute("boardNum", boardNum);
+
+		return "message";
+	}
 	
 	//여진
 	@RequestMapping("/comm_otherPage.do")

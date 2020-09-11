@@ -2,9 +2,11 @@ package com.teamb.model;
 
 public class MemberDTO {
 
+
 	private int memberNum; //primary key
 	private String profile_name;
 	private int profile_size;
+	private String regdate;
 	private String name;
 	private String gender;
 	private String id;
@@ -21,6 +23,19 @@ public class MemberDTO {
 	private int point;
 	private int unreadCount;
 	
+	
+	public static final int OK = 0;			
+	public static final int NOT_ID = 1;	
+	public static final int NOT_PW = 2;
+	public static final int ERROR = -1;	
+	
+	
+	public int getMemberNum() {
+		return memberNum;
+	}
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
+	}
 	public int getUnreadCount() {
 		return unreadCount;
 	}
@@ -40,14 +55,9 @@ public class MemberDTO {
 		this.regdate = regdate;
 	}
 
-	private String regdate;
+	
 
-	public int getMemberNum() {
-		return memberNum;
-	}
-	public void setMemberNum(int memberNum) {
-		this.memberNum = memberNum;
-	}
+	
 	public String getProfile_name() {
 		return profile_name;
 	}
@@ -149,8 +159,5 @@ public class MemberDTO {
 		this.friendCount = friendCount;
 	}
 	
-	public static final int OK = 0;			
-	public static final int NOT_ID = 1;	
-	public static final int NOT_PW = 2;
-	public static final int ERROR = -1;	
+	
 }

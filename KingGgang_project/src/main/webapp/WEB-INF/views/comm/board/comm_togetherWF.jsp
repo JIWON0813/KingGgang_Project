@@ -1,12 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!-- 
 	이	   름 : comm_togetherWF.jsp
 	개  발   자 : 최 인 아
 	설	   명 : 투게더글쓰기페이지
 -->
 <%@ include file="/WEB-INF/views/top.jsp"%> 
+<script type="text/javascript">
+	function check(){
+		if (f.ttitle.value==""){
+			alert("제목을 입력해주세요!!")
+			f.ttitle.focus()
+			return false
+		}
+		if (f.temail.value==""){
+			alert("이메일을 입력해주세요!!")
+			f.temail.focus()
+			return false
+		}
+		if (f.tcontent.value==""){
+			alert("내용을 입력해주세요!!")
+			f.tcontent.focus()
+			return false
+		}
+		return true
+	}
+</script>
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
