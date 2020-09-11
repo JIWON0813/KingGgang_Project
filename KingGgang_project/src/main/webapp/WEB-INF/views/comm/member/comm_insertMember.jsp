@@ -80,27 +80,32 @@ function comm_inputIdCheck(){
 		<table width=600">
 			<input type="hidden" name="comm_memberNum">
 				<tr>
-					<th width="150" align="center">이름</th>
+					<th width="150" align="center">
+					<img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">이름</th>
 					<td><input type="text" name="comm_name" value=${name } readOnly></td>
 				</tr>
 				<tr>
-					<th width="150" align="center">닉네임</th>
+					<th width="150" align="center">
+					<img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">닉네임</th>
 					<td><input type="text" name="comm_nickname" placeholder="닉네임을 입력하세요." onkeydown="comm_inputIdCheck()">
 						<input type="button" value="중복체크" onclick="comm_idCheck()">
                         <input type="hidden" name= "comm_idDuplication" value="comm_idUnCheck"> 
 					</td>
 				</tr>
 				<tr>
-					<th width="150" align="center">생년월일</th>
+					<th width="150" align="center">
+					<img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">생년월일</th>
 					<td><input type="text" name="comm_birth" value=${birth } readOnly></td>
 				</tr>
 				<tr>
-					<th width="150" align="center">프로필사진</th>
+					<th width="150" align="center">
+					<img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">프로필사진</th>
 					<td><input type="file" name="comm_profilename">
 						<input type="hidden" name="comm_profilesize"></td>
 				</tr>
 				<tr>
-					<th width="150" align="center">자기소개</th>
+					<th width="150" align="center">
+					<img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">자기소개</th>
 					<td><textarea name="comm_intro" rows="5" cols="60"></textarea></td>
 				</tr>
 				<tr>

@@ -22,28 +22,28 @@
 <table>
 <%-- <input type="hidden" name="comm_memberNum" value="${comm_getMember.comm_memberNum}"/> --%>                 	
 	<tr>
-		<th width="150" align="center">이름</th>
+		<th width="150" align="center"><img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">이름</th>
 		<td><input type="text" name="comm_name" value="${comm_getMember.comm_name}" readOnly></td>
 	</tr>			
     <tr>
-		<th width="150" align="center">닉네임</th>
+		<th width="150" align="center"><img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">닉네임</th>
 		<td><input type="text" name="comm_nickname" value="${comm_getMember.comm_nickname}">
 			<input type="button" value="중복체크" onclick="comm_idCheck()">
 		</td>
 	</tr>
 	<tr>
-		<th width="150" align="center">생년월일</th>
+		<th width="150" align="center"><img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">생년월일</th>
 		<td><input type="text" name="comm_birth" value="${comm_getMember.comm_birth}"></td>
 	</tr>
 	<tr>
-		<th width="150" align="center">프로필사진</th>
+		<th width="150" align="center"><img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">프로필사진</th>
 		<td><input type="file" name="filename">
 			<!-- <input type="hidden" name="comm_profilesize"> -->
 			<img src="http://localhost:8080/img/${comm_getMember.comm_profilename}" width="100" height="100">
 		</td>
 	</tr>
 	<tr>
-		<th width="150" align="center">자기소개</th>
+		<th width="150" align="center"><img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">자기소개</th>
 		<td><textarea name="comm_intro" rows="5" cols="60">${comm_getMember.comm_intro}</textarea></td>
 	</tr>
 	<tr>
