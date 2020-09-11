@@ -21,7 +21,9 @@ public class MyMapper {
 	private SqlSession sqlSession;
 	
 	public int deleteMember(String id,String password,int memberNum) {
-		boolean ckPw = checkPassword(id,password,memberNum);
+
+		boolean ckPw = checkPassword(id,password);
+
 			if(ckPw) {
 				int res = sqlSession.delete("deleteMember",memberNum);
 				return res;
@@ -29,21 +31,19 @@ public class MyMapper {
 			return -1;
 	}
 	
-	public boolean checkPassword(String id, String password,int memberNum) {
-		MemberDTO dto = getMember(memberNum);
-		if(dto.getPasswd().equals(password)) {
+	public boolean checkPassword(String id, String password) {
+		MemberDTO dto = getMember(id);
+		if(dto.getPasswd().trim().equals(password)) {
+
 			return true;
 		}
 		return false;
 	}
 	
-	public MemberDTO getMemberNo(String id) {
+
+	public MemberDTO getMember(String id) {
 		MemberDTO dto = sqlSession.selectOne("getMemberid",id);
-		return dto;
-	}
-	
-	public MemberDTO getMember(int memberNum) {
-		MemberDTO dto = sqlSession.selectOne("getMember",memberNum);
+
 		return dto;
 	}
 	

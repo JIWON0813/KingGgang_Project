@@ -8,6 +8,7 @@
 	설	   명 : 메인 페이지
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
+
 <div class="section layout_padding">
 <a href="main.admin">관리자모드로 가기</a>
 <br>

@@ -103,12 +103,10 @@ public class NoticeController
 	}
 	
 	@RequestMapping(value = "/content.notice")
-	public String content(HttpServletRequest req, @RequestParam int no)
-	{
+	public String content(HttpServletRequest req,@RequestParam int no){	
 		noticeMapper.N_plusReadcount(no);
 		NoticeDTO dto = noticeMapper.getNotice(no);
 		req.setAttribute("notice", dto);
-		
 		return "Notice/content";
 	}
 	
@@ -136,9 +134,6 @@ public class NoticeController
 	public ModelAndView update(@RequestParam int no)
 	{
 		NoticeDTO dto = noticeMapper.getNotice(no);
-		
-		System.out.println("no = "+ dto.getNo() + ", subejct = "+ dto.getSubject() + ", content = "+ dto.getContent());
-		
 		return new ModelAndView("Notice/updateForm", "notice", dto);
 	}
 	

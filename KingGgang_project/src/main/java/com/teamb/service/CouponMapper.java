@@ -45,8 +45,8 @@ public class CouponMapper {
 		List<MemberDTO> list = sqlSession.selectList("memberli");
 		return list;
 	}
-/*	public boolean checkId(String id){
-		String name = sqlSession.selectOne("checkId",id);
-		return (name==null)?false:true;
-	}*/
+	public int regCoupon(CouponDTO dto){
+		int res = sqlSession.update("regCoupon",dto);
+		return res;
+	}
 }
