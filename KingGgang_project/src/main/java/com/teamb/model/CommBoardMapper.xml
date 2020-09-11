@@ -29,7 +29,7 @@
 	
 	<insert id="writeBoard" parameterType="CommboardDTO">
 		insert into commboard values(#{comm_memberNum},commboard_num.nextval, #{file_name}, #{file_size}, 
-		#{content}, #{tag},0,0,0,0,0,#{look}) 
+		#{content},0,0,0,0,0,#{look}) 
 	</insert>
 	
 	<select id="deleteBoard" parameterType="int" resultType="int">
@@ -41,7 +41,7 @@
 	</select>
 	
 	<update id="updateBoard" parameterType="CommboardDTO">
-		update commboard set file_name=#{file_name}, content=#{content}, tag=#{tag}, look=#{look} where boardNum=#{boardNum}
+		update commboard set file_name=#{file_name}, content=#{content}, look=#{look} where boardNum=#{boardNum}
 	</update>
 
 </mapper>

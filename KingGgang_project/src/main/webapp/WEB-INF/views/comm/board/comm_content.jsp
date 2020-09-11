@@ -6,6 +6,7 @@
 	설	   명 : content
  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <footer class="footer-box">
 		<div class="container">
@@ -53,7 +54,7 @@
 	
 		<tr height="30">
 			<th align="center">태그</th>
-			<td width="30%">${getBoard.tag}</td>
+			<%-- <td width="30%">${getBoard.tag}</td> --%>
 			<th align="right" width="10">
 					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
 			</th>
@@ -117,7 +118,7 @@
 	</c:if>   
     <c:forEach items="${replyList}" var="replyList">
       <li>
-        <p> 작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${replyList.rregdate}</p>
+        <p> 작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${replyList.rregdate}" pattern="yyyy년MM월dd일"/></p>
         <p> : ${replyList.rcontent}</p>
         <input type="submit" value="댓수정">
       	<input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">

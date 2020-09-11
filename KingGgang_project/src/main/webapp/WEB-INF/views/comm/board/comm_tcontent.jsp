@@ -6,6 +6,7 @@
 	설	   명 : 투게더content
  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <footer class="footer-box">
 		<div class="container">
@@ -29,7 +30,7 @@
 			<th bgcolor="orange">작 성 자</th>
 			<td width="30%">${getTogether.tname}</td>
 			<th bgcolor="orange">작 성 일</th>
-			<td width="30%">${getTogether.tregdate}</td>
+			<td width="30%"><fmt:formatDate value="${getTogether.tregdate}" pattern="yyyy년MM월dd일"/></td>
 		</tr>
 		<tr align="center" height="30">
 			<th bgcolor="orange">제 목</th>

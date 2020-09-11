@@ -318,12 +318,13 @@ public class CommBoardController {
 	}*/
 	
 	@RequestMapping(value = "/reply_deletePro.do")
-	   public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
-	      replyMapper.deleteReply(replyNum);
-	      req.setAttribute("replyNum", replyNum);
-	      req.setAttribute("boardNum", boardNum);
-	      return "comm/board/comm_content";
-	   }
+
+	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
+		replyMapper.deleteReply(replyNum);
+		req.setAttribute("replyNum", replyNum);
+		req.setAttribute("boardNum", boardNum);
+		return "comm/board/comm_content";
+	}
 	
 	//여진
 	@RequestMapping("/comm_otherPage.do")

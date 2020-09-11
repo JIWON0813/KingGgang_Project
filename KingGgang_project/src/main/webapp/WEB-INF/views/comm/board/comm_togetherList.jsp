@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <footer class="footer-box">
 		<div class="container">
@@ -41,7 +42,7 @@
 		</tr>
 	</c:if>		
 	<c:forEach var="dto" items="${togetherList}">		
-		<tr>
+		<tr align="center">
 			<td><c:out value="${dto.togetherNum}"/></td>
 			<td>
 			<c:if test="${dto.treadcount>10}">
@@ -53,15 +54,13 @@
 			</td>
 			<td>${comm_nickname}</td>
 			<td>${dto.temail}</td>
-			<td>${dto.tregdate}</td>
+			<td><fmt:formatDate value="${dto.tregdate}" pattern="yyyy년MM월dd일"/></td>
 			<td>${dto.treadcount}</td>
+			
+			
 		</tr>		
 	</c:forEach>	
 	</table>
 </div>	
 </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'yeojin' of https://github.com/JIWON0813/KingGgang_Project.git
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

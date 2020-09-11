@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 	<table width="100%">
 		<tr bgcolor="orange">
@@ -19,7 +20,7 @@
 		</tr>
 	</c:if>		
 	<c:forEach var="dto" items="${togetherList}" begin="0" end="4">		
-		<tr>
+		<tr align="center">
 			<td><c:out value="${dto.togetherNum}"/></td>
 			<td>
 				<c:if test="${dto.treadcount>10}">
@@ -31,7 +32,7 @@
 			</td>
 			<td>${comm_nickname}</td>
 			<td>${dto.temail}</td>
-			<td>${dto.tregdate}</td>
+			<td><fmt:formatDate value="${dto.tregdate}" pattern="yyyy년MM월dd일"/></td>
 			<td>${dto.treadcount}</td>
 		</tr>		
 	</c:forEach>	
