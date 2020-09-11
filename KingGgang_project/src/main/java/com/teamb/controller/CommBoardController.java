@@ -270,10 +270,9 @@ public class CommBoardController {
 			dto.setFile_size(file_size);
 		}
 		else{
-			//지은
 			CommboardDTO bdto = boardMapper.getBoard(boardNum);
-			dto.setFile_name(dto.getFile_name());
-			dto.setFile_size(dto.getFile_size());
+			dto.setFile_name(bdto.getFile_name());
+			dto.setFile_size(bdto.getFile_size());
 		}
 		
 		int res = boardMapper.updateBoard(dto);

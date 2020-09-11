@@ -18,12 +18,6 @@
 			f.content.focus()
 			return false
 		}
-	/* 	if (f.content.hashtag != "#%"){
-			alert("잘못된 해시태그 형식입니다")
-			f.content.focus()
-			return false
-		}
-		 */
 		return true
 	}
 </script>

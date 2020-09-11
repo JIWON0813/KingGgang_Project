@@ -74,8 +74,11 @@
 						 <div class="section layout_padding" style="width:60% !important; margin-left:100px;">
                             <div class="full">
                                 <h3 style="font-size: 20px !important"><font size=7>낑</font><font size=3>깡</font><font size=7>같</font><font size=3>이</font><font size=7>따</font><font size=3>러갈래?</font> 
-                                <img alt="#" src="${pageContext.request.contextPath}/resources/main/images/orange.png">
-                                <a href="comm_togetherList.do" style="font-size:10px;color:#FFFFFF;float: right;"> >> 더 알아보기</a></h3>
+                                	<img alt="#" src="${pageContext.request.contextPath}/resources/main/images/orange.png">
+                               		<c:if test="${comm_login != null }"> 
+                               			<a href="comm_togetherList.do" style="font-size:10px;color:#FFFFFF;float: right;"> >> 더 알아보기</a>
+                               		</c:if>
+                               </h3>
                             <div style="width:100%; height: 200px; " >
            					 <iframe src="${pageContext.request.contextPath}/comm_mainTogetherList" style="width: 100%; 
             				  height: 100%; border: none;" ></iframe>    
