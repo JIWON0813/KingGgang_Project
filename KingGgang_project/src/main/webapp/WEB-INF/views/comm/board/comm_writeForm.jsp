@@ -56,7 +56,7 @@
 			</tr>
 			<tr>
 				<th width="150" align="center">태그하기</th>
-				<td><input type="text" name="hashtag"></td>
+				<td><input type="text" name="hashtag" placeholder="#태그를 입력하세요"></td>
 
 			</tr>
 			<tr>
