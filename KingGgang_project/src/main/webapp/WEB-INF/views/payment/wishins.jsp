@@ -16,12 +16,12 @@
 
 
 <form action="insert.wish" method="post">
-	<p>멤버id q/a</p>
-	<p><input type = "text" name= "m_id"></p><br>
-	<p>호텔1,렌트카2</p>
-	<p><input type = "text" name= "type"></p><br>
-	<p>상품번호1/2/3</p>
-	<p><input type = "text" name= "f_no"></p><br>
+	
+	<p><input type = "hidden" name= "m_no" value="${m_no}"></p><br>
+
+	<p><input type = "hidden" name= "type" value="${type}"></p><br>
+	
+	<p><input type = "hidden" name= "f_no" value="${f_no}}"></p><br>
 	<p><input type="submit" value="찜하기"></p>
 </form>
 <a href="main.my">마이페이지로 가기</a><p>

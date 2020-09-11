@@ -34,8 +34,8 @@ public class WishlistMapper {
 		return res;
 	}
 	
-	public List<WishlistDTO> getWishlist(String m_id) {
-		return sqlSession.selectList("getWish",m_id);
+	public List<WishlistDTO> getWishlist(int m_no) {
+		return sqlSession.selectList("getWish",m_no);
 	}
 	
 	public HotelDTO getHotellist(int f_no) {

@@ -2,6 +2,7 @@ package com.teamb.controller;
 
 import java.io.IOException;
 
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.HotelDTO;
@@ -32,6 +34,7 @@ import com.teamb.service.WishlistMapper;
 /*
 이	   름 : WishController.java
 
+
 개  발   자 : 원세호
 설	   명 : 관심리스트 컨트롤러
 */
@@ -39,33 +42,54 @@ import com.teamb.service.WishlistMapper;
  
 
 
-//rroll2
+//rroll2 
 /**
  * Handles requests for the application home page.
  */
+
 @Controller
 public class WishController {
 	
 	@Autowired
 	private WishlistMapper wishlistmapper;
 	
-	
 	@RequestMapping("/main.wish")
-	public String mypageMain() {
+	public String mypageMain(HttpServletRequest req) {
+		//상품번호 호텔 = 1; 회원번호 memberNum = 1 ; 
+		int m_no = 1;
+		int no = 1;
+		int type = 1;
+		WishlistDTO dto = new WishlistDTO();
+		dto.setM_no(m_no);
+		dto.setF_no(no);
+		dto.setType(type);
 		
-		return "test/wishins";
+		List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
+		boolean check1 =true;
+		for(WishlistDTO check : noCheck) {
+			System.out.println(check.getF_no());
+			if(check.getF_no()!=no) {
+				continue;
+			}else if(check.getF_no()==no) {
+				check1 = false;
+			}
+		}
+		
+		req.setAttribute("check1", check1);
+		req.setAttribute("m_no", m_no);
+		req.setAttribute("f_no", no);
+		req.setAttribute("type", type);
+		
+		return "payment/wishins";
 		
 	}
 	
 	@RequestMapping("/insert.wish")
 	public String myPayment(HttpServletRequest req,@ModelAttribute WishlistDTO dto) {
-		//dto.setM_id(req.getParameter("m_id"));
-		//dto.setType(Integer.parseInt(req.getParameter("type")));
-		//dto.setF_no(Integer.parseInt(req.getParameter("f_no")));
+		
 		int f_no = Integer.parseInt(req.getParameter("f_no"));
 		List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
 		boolean check1 =true;
-		
 		for(WishlistDTO check : noCheck) {
 			System.out.println(check.getF_no());
 			if(check.getF_no()!=f_no) {
@@ -93,19 +117,19 @@ public class WishController {
 	}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
-		return "my/alert";
+		return "message";
 }
 	@RequestMapping("/list.wish")
 	public String wishList(HttpServletRequest req,HttpSession session,@ModelAttribute WishlistDTO dto)
 	throws IOException{
 		//session.getAttribute("id"); 로그인 세션에서 받음 
 		//
-		String m_id = "q";
-		dto.setM_id(m_id);
+		int m_no = 1;
+		dto.setNo(m_no);
 		//
 		List<HotelDTO> hlist = new ArrayList<HotelDTO> ();
 		List<RentcarDTO> rlist = new ArrayList<RentcarDTO> ();
-		List<WishlistDTO> Wlist = wishlistmapper.getWishlist(m_id);
+		List<WishlistDTO> Wlist = wishlistmapper.getWishlist(m_no);
 			for(WishlistDTO wdto : Wlist) {
 			System.out.println(wdto.getType());
 			if(wdto.getType()==1) {
@@ -134,8 +158,8 @@ public class WishController {
 		//session.getAttribute("id"); 로그인 세션에서 받음 
 		
 		//
-		String m_id = "q";
-		dto.setM_id(m_id);
+		int m_no = 4;
+		dto.setNo(m_no);
 		//
 		
 		int res = wishlistmapper.deleteWish(dto);
@@ -149,7 +173,7 @@ public class WishController {
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
-		return "my/alert";
+		return "message";
 		
 	}
 	
