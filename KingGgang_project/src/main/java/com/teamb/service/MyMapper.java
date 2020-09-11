@@ -19,10 +19,10 @@ public class MyMapper {
 	@Autowired	
 	private SqlSession sqlSession;
 	
-	public int deleteMember(String id,String password) {
+	public int deleteMember(String id,String password,int memberNum) {
 		boolean ckPw = checkPassword(id,password);
 			if(ckPw) {
-				int res = sqlSession.delete("deleteMem",id);
+				int res = sqlSession.delete("deleteMember",memberNum);
 				return res;
 			}
 			return -1;
@@ -30,14 +30,14 @@ public class MyMapper {
 	
 	public boolean checkPassword(String id, String password) {
 		MemberDTO dto = getMember(id);
-		if(dto.getPasswd().equals(password)) {
+		if(dto.getPasswd().trim().equals(password)) {
 			return true;
 		}
 		return false;
 	}
 	
 	public MemberDTO getMember(String id) {
-		MemberDTO dto = sqlSession.selectOne("getMem",id);
+		MemberDTO dto = sqlSession.selectOne("getMemberid",id);
 		return dto;
 	}
 	

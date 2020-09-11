@@ -22,11 +22,6 @@
 			ic.dis.focus()
 			return
 		}
-		if(ic.m_id.value==""){
-			alert("회원아이디를 입력해주세요")
-			ic.m_id.focus()
-			return
-		}
 		document.ic.submit()
 	} 
 </script>
@@ -51,6 +46,7 @@
 					회원아이디
 					<select name="m_id">
 					<c:forEach items="${memberli }" var="memberli">
+						<option selected></option>
 						<option>${memberli.id }</option>
 					</c:forEach>
 					</select>

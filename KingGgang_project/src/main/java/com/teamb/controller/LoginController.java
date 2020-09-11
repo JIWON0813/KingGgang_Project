@@ -62,14 +62,13 @@ public class LoginController {
 	          	session.setAttribute("name", name);
 	    	  
 	    	  session.setAttribute("mbId", dto.getId());
-	    	  session.setAttribute("memberDto", dto);
 	    	  session.setAttribute("upLoadPath", upLoadPath);
 	            if(dto.getId().equals("admin")) {
 	            msg = "관리자로 로그인 하였습니다.";
-	            url = "main.mem";
+	            url = "home.do";
 	            }else{
 	            msg = "로그인 하였습니다.";
-	            url = "main.mem";
+	            url = "home.do";
 	            }
 	            
 	            break;
