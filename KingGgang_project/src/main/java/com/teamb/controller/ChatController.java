@@ -67,14 +67,14 @@ public class ChatController {
 		session.setAttribute("croom",croom);
 		session.setAttribute("roomList",roomList);
 		
-		mv.setViewName("comm/chatView3");
+		mv.setViewName("comm/chatView");
 		return mv;
 	}
 	
 	@RequestMapping("/chat")
 	public ModelAndView chat() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("comm/chatView3");
+		mv.setViewName("comm/chatView");
 		return mv;
 	}
 	
@@ -123,7 +123,7 @@ public class ChatController {
 			req.setAttribute("roomName",croom.getRoomName());
 			req.setAttribute("msgReceiver", msgReceiver);
 			req.setAttribute("RProfile",RProfile);
-			mv.setViewName("comm/chatView3");
+			mv.setViewName("comm/chatView");
 		}else {
 			mv.setViewName("comm/chatRoom");
 		}

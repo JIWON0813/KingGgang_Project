@@ -24,7 +24,9 @@ public class CommboardMapper {
 	}
 		   
 	public int writeBoard(CommboardDTO dto) {
-		  return sqlSession.insert("writeBoard",dto);
+		 sqlSession.insert("writeBoard",dto);
+		 int boardNum = dto.getBoardNum();
+		 return boardNum;
 	}
 
 	public int deleteBoard(int boardNum) {   

@@ -309,6 +309,7 @@ public class Comm_MemberController {
 	}
 	
 	@RequestMapping("/comm_member_delete.do")
+
 	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum){
 				
 		int res = memberMapper.comm_deleteMember(comm_memberNum);
