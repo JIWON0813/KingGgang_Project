@@ -6,6 +6,34 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 상세페이지
 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+<script>
+
+function wishlist() {
+	
+    	var obj = {"no" : $('#btnLike').attr('name')}
+     
+    	$.ajax({ url: "<c:url value="/insDelwish" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공"); 
+    		
+    				var result1 = data
+    				alert(result1);
+    				if(result1.wstatus == 2){
+                       $('img#wishImg').attr('src', './resources/img/empty_heart.jpg');
+                    } else {
+                       $('img#wishImg').attr('src', './resources/img/heart.jpg');
+                    	}
+    				}, 
+    		error: function(errorThrown) { alert(errorThrown.statusText); } 
+    		}); 
+    	} 
+   </script>
+
 <h1 align="center">숙소 상세 정보</h1>
 <div align="center">
 	<table width="1200" border="1">
@@ -44,6 +72,16 @@
 		<td></td>
 		<td>리뷰</td>
 		<td></td>
+		</tr>
+		<!-- 원세호 관심리스 -->
+		<tr>
+		<td><p>관심리스트</p></td>
+		<td colspan="5">
+		<button type="button" id="btnLike" name="${dto.no}" onclick="wishlist()">
+       			<img src="${ check1 == 1 ? './resources/img/empty_heart.jpg' : './resources/img/heart.jpg' }" id="wishImg" height="50px" width="50px">
+   		</button>
+		</td>
+		</tr>
 	</table>
 </div>
 <div align="center">

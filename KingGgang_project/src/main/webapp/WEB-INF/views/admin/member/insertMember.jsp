@@ -90,8 +90,16 @@
 		   }  
 	   }
 
+<<<<<<< HEAD
       	form.submit()
 	   }
+=======
+
+	  form.submit() 
+ 	   }
+      
+>>>>>>> branch 'seho' of https://github.com/JIWON0813/KingGgang_Project.git
+
 
 	   function check(re, what, message) {
        if(re.test(what.value)) {

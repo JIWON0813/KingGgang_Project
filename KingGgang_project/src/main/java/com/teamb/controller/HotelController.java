@@ -1,7 +1,9 @@
 package com.teamb.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +22,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.teamb.model.HotelDTO;
 import com.teamb.model.RoomDTO;
 import com.teamb.model.RoomDateDTO;
+import com.teamb.model.WishlistDTO;
 import com.teamb.service.HotelMapper;
+import com.teamb.service.WishlistMapper;
 
 /*
       이	   름 : HotelController class
@@ -32,6 +36,9 @@ public class HotelController {
 
 	@Autowired
 	private HotelMapper hotelmapper;
+	
+	@Autowired
+	private WishlistMapper wishlistmapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
@@ -67,6 +74,8 @@ public class HotelController {
 		int startNum = count - ((currentPage-1) * pageSize); 		
 		req.setAttribute("boardList", list);
 		req.setAttribute("startNum", startNum);
+		
+		
 		if (count>0){
 			int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
 			int pageBlock = 10;
@@ -144,8 +153,40 @@ public class HotelController {
 	
 	@RequestMapping(value = "/hotelDetail.hotel")
 	public String hotelDetail(HttpServletRequest req, @RequestParam int no){
+		
 		HotelDTO dto = hotelmapper.getHotel(no);
+		
 		List<RoomDTO> list = hotelmapper.roomList(no);
+		
+		//원세호 관심리스트 
+		
+		//아이디 세션 
+		int m_no = 1;
+		int type =1;
+		WishlistDTO wdto = new WishlistDTO();
+		wdto.setM_no(m_no);
+		wdto.setF_no(no);
+		wdto.setType(type);
+			
+		int check1 =1;
+		
+		WishlistDTO noCheck = wishlistmapper.getNolist(wdto);
+		
+		if(noCheck == null) {
+			check1 = 1;
+		} else {
+			if(noCheck.getF_no()!=no) {
+				check1 = 1;
+			}else if(noCheck.getF_no()==no) {
+				check1 = 2;
+			}
+		}
+		
+		
+		//System.out.println(noCheck.getF_no());
+		
+					
+		req.setAttribute("check1", check1);
 		req.setAttribute("dto", dto);
 		req.setAttribute("roomList", list);
 		return "hotel/hotelDetail";
