@@ -95,9 +95,11 @@ public class CommNewsfeedController {
       int count = newsfeedMapper.getNewsCount();
       if (endRow>count) endRow = count;
       
-      System.out.println(endRow);
-     //List<CommboardDTO> list = newsfeedMapper.newfeedList(startRow, endRow);
+
       
+      
+      
+     //---------------------------------------- 
     //지은
       List<CommboardDTO> list = null;
       String look=(String) session.getAttribute("look");

@@ -18,7 +18,7 @@
 	<insert id="insertTag" parameterType="HashTagDTO">
 		insert into hashtag values(hashtag_seq.nextval, #{tagname})
 	</insert>
-	
+
 	<select id="getTagName" resultType="HashTagDTO">
 		select * from hashtag where tagid=#{tagid}
 	</select>
@@ -26,4 +26,14 @@
 	<select id="getSearchTagList" resultType="HashTagDTO">
 		select * from hashtag where tagName like '%' || #{word} || '%'
 	</select>
+	
+	<select id="getboardNumTagName" resultType="String" parameterType="java.util.Map">
+		select hashtag.tagName from post_tag join hashtag on hashtag.tagid=post_tag.tagid where post_tag.boardnum=${boardNum}
+  		and hashtag.tagname=${tagName};
+	</select>
+	
+	<select id="deleteHash" parameterType="int">
+		delete from hashtag where tagid not in(select tagid from post_tag)
+	</select>
+	
 </mapper>

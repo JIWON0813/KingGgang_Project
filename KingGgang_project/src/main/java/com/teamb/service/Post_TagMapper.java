@@ -34,4 +34,8 @@ public class Post_TagMapper {
 	public List<Post_TagDTO> getTagSearch(int tagId) {
 		 return sqlSession.selectList("getTagSearch",tagId);  
 	}
+
+	public void deletePostTag(int boardNum) {   
+		sqlSession.selectOne("deletePostTag",boardNum);    
+	}
 }
