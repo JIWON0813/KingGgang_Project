@@ -9,11 +9,6 @@
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
 
-<<<<<<< HEAD
-=======
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> branch 'seho' of https://github.com/JIWON0813/KingGgang_Project.git
     <div class="ulockd-home-slider">
         <div class="container-fluid">
             <div class="row">

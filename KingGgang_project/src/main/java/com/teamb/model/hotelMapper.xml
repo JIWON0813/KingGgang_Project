@@ -103,6 +103,9 @@
 					, endprice = #{endprice} , content = #{content} , filename = #{filename}
 		where id = #{id}
 	</update>
+	
+	
+	
 </mapper>
 
 
