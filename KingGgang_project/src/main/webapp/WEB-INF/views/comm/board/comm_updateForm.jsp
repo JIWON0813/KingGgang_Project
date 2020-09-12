@@ -39,10 +39,10 @@
 				<textarea name="content" cols="100" rows="5">${getBoard.content}</textarea>
 			</td>
 		</tr>
-	
+		
 		<tr>
 			<th>태그하기</th>
-			<td><%-- <input type="text" name="tag" value="${getBoard.tag}"> --%></td>
+			<td><textarea name="updateTag" cols="20" rows="1" placeholder="#태그를 입력하세요"><c:forEach var="tag" items="${tag}">#${tag.tagName}</c:forEach></textarea></td>
 		</tr>
 		<tr>
 			<th width="150">공개범위</th>
