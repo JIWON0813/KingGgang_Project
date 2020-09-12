@@ -211,14 +211,15 @@ public class CommBoardController {
 
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req, HttpSession session) {
-
+		
+		
 		int comm_memberNum = (Integer) session.getAttribute("comm_memberNum");
 		List<CommBookmarkDTO> list = bookmarkMapper.listMark(comm_memberNum);
 		for (CommBookmarkDTO cmdto : list) {
 			int cm = cmdto.getBoardNum();
-			CommboardDTO bdto = boardMapper.getBoard(cm);
-			cmdto.setCm_file_name(bdto.getFile_name());
-			cmdto.setCm_file_size(bdto.getFile_size());
+			CommboardDTO dto = boardMapper.getBoard(cm);
+			/*cmdto.setCm_file_name(dto.getFile_name());
+			cmdto.setCm_file_size(dto.getFile_size());*/
 		}
 		req.setAttribute("bookmarkList", list);
 

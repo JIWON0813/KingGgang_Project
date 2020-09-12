@@ -59,12 +59,12 @@
          	</c:forEach>
          	</td>
 			<th align="right" width="10">
-					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
+					<img src="${pageContext.request.contextPath}/resources/img/해녀.PNG" width="30" height="30">
 			</th>
 			<td width="10">
-				<a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}">
+				<%-- <a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"> --%>
 					<img src="${pageContext.request.contextPath}/resources/img/orange.png" width="30" height="30">
-				</a>
+				<!-- </a> -->
 			</td>
 		</tr>
 		<tr>
