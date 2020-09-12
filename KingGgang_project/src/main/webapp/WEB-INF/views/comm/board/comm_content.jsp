@@ -148,6 +148,7 @@
 <input type="text" id="comment" name="content" placeholder="댓글 입력">
 <button onClick="make_comment({blog.id})" type="submit">작성</button>
 </div> -->
+<%-- <%@ include file="/WEB-INF/views/comm/board/comment.jsp" %> --%>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
 <!-- <script>
 /*댓글기능*/

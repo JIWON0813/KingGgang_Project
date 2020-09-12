@@ -8,7 +8,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.html.HTML.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,20 +39,10 @@ public class CommBoardController {
 
 	@Autowired
 	private CommboardMapper boardMapper;
-
-	@Autowired
 	private Comm_MemberMapper comm_memberMapper;
-
-	@Autowired
 	private CommReplyMapper replyMapper;
-
-	@Autowired
 	private CommBookMarkMapper bookmarkMapper;
-
-	@Autowired
 	private HashTagMapper hashtagMapper;
-
-	@Autowired
 	private Post_TagMapper post_tagMapper;
 
 	@Resource(name = "upLoadPath")
@@ -131,24 +120,24 @@ public class CommBoardController {
 		return "message";
 	}
 
-	/*
-	 * @RequestMapping("/comm_myPage.do") public String
-	 * myPage(HttpServletRequest req, HttpSession session) {
-	 * 
-	 * MemberDTO member = (MemberDTO) session.getAttribute("login");
-	 * 
-	 * Comm_MemberDTO commmember =
-	 * (Comm_MemberDTO)session.getAttribute("commmember"); int comm_memberNum =
-	 * commmember.getComm_memberNum();
-	 * 
-	 * List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
-	 * 
-	 * req.setAttribute("boardList", list);
-	 * req.getParameter(commmember.getComm_profilename());
-	 * req.getParameter(commmember.getComm_nickname());
-	 * 
-	 * return "comm/board/comm_myPage"; }
-	 */
+	
+	 /*@RequestMapping("/comm_myPage.do") public String
+	 myPage(HttpServletRequest req, HttpSession session) {
+	  
+	 MemberDTO member = (MemberDTO) session.getAttribute("login");
+	  
+	 Comm_MemberDTO commmember =
+	 (Comm_MemberDTO)session.getAttribute("commmember"); int comm_memberNum =
+	 commmember.getComm_memberNum();
+	  
+	 List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
+	  
+	 req.setAttribute("boardList", list);
+	 req.getParameter(commmember.getComm_profilename());
+	 req.getParameter(commmember.getComm_nickname());
+	  
+	 return "comm/board/comm_myPage"; }*/
+	 
 
 	@RequestMapping("/comm_myPage.do")
 
@@ -311,8 +300,6 @@ public class CommBoardController {
 		
 		hashtagMapper.deleteHash();
 			
-		
-		
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "게시글 수정되었습니다.";
