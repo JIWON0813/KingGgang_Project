@@ -94,8 +94,6 @@
 	  form.submit() 
  	   }
 
-      	form.submit()
-	   }
 
 
 	   function check(re, what, message) {
