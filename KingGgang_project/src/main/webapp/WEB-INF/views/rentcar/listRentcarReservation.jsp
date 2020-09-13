@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+<%@ include file="/WEB-INF/views/top.jsp"%>	
+<br><br><br><br>
 	<!--  
 	이	   름 : listRentcarReservation.jsp
 	개  발   자 : 정 우 철
@@ -20,9 +21,10 @@ function del(id){
 <div align="center">
 	<b>렌 트 카 예 약 목 록</b>
 	<table border="1" width="800">
-		<tr bgcolor="green">
+		<tr bgcolor="lightgreen">
 			<th>예약 번호</th>
 			<th>회원ID</th>
+			<th>차량ID</th>
 			<th>보험ID</th>
 			<th>예약시간</th>
 			<th>수령 예정일</th>
@@ -52,10 +54,15 @@ function del(id){
 			<td>${dto.price}</td>
 			<td>${dto.pstatus}</td>
 			<td>
-			<input type="button" onclick="location.href='updateInsu.admin?id=${dto.id}'" value="수정">
-			<input type="button" onclick="javascript:del(${dto.id})" value="삭제">
+			<input type="button" onclick="location.href='updateInsu.admin?id=${dto.res_id}'" value="수정">
+			<input type="button" onclick="javascript:del(${dto.res_id})" value="삭제">
 			</td>
 		</tr>		
 	</c:forEach>
 	</table>
-</div>	
+</div>
+	<br>
+	<br>
+	<br>
+	<a href="adminHome.do">관리자 홈으로 돌아가기</a>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>	

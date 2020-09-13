@@ -90,9 +90,10 @@
                     <ul class="navbar-nav">
                         <li><a class="nav-link active" href="home.do">Home</a></li>
                         <li><a class="nav-link" href="main.hotel">호텔 관리자모드</a></li>
-                        <li><a class="nav-link" href="">렌트카</a></li>
+                        <li><a class="nav-link" href="firstPage.rentcar">렌트카</a></li>
                         <li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
                         <li><a class="nav-link" href="">Contact</a></li>
+                        <li><a class="nav-link" href="adminHome.do">관리자 홈</a>
                     </ul>
                 </div>
                      </div>
