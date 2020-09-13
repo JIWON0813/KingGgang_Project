@@ -77,6 +77,11 @@
     </div>
 	<!-- end section -->
 
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> branch 'seho' of https://github.com/JIWON0813/KingGgang_Project.git
 
     
   <%@ include file="/WEB-INF/views/bottom.jsp"%>

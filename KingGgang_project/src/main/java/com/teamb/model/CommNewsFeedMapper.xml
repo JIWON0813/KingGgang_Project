@@ -12,9 +12,24 @@
 <mapper namespace="com.teamb.model.Comm">
 
 	<select id="getSearchComm_Member" resultType="Comm_MemberDTO">
-		select * from comm_member where comm_nickname like '%'|| #{word}|| '%';
+		select comm_membernum, comm_profilename, comm_nickname from comm_member where comm_nickname like '%' || #{word} || '%'
 	</select>
 	
+	<select id="newfeedList" resultType="CommboardDTO" parameterType="java.util.Map">
+	select * from (select rownum rn, A.* from
+	(select * from commboard order by boardNum desc)A)
+	where rn between #{startRow} and #{endRow}
+	</select> 
 
+	<select id="look_newfeedList" resultType="CommboardDTO" parameterType="java.util.Map">
+		select * from (select rownum rn, A.* from
+	(select * from commboard order by boardNum desc)A)
+	where rn between #{startRow} and #{endRow} 
+	and look like '%' || #{look} || '%'
+	</select>
+
+	<select id="getNewsCount" resultType="int">
+	select count(*) from commboard
+	</select>
 
 </mapper>

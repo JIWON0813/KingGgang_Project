@@ -32,6 +32,7 @@
 	</beans:bean>
 
 	<context:component-scan base-package="com.teamb.*" />
+	<task:annotation-driven/>
 
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -51,10 +52,6 @@
 
    
    <websocket:sockjs/>
-   </websocket:handlers>
-
-
-    <beans:bean id="echoHandler" class="com.teamb.function.EchoHandler" />    
-
+   </websocket:handlers>    
+    <beans:bean id="echoHandler" class="com.teamb.function.EchoHandler" />   
 </beans:beans>
-

@@ -34,15 +34,12 @@
 	}
 	</script>
 <!-- 사용자 -->
-<c:if test="${empty a_id}">
-	<c:if test="${empty m_id}">		
+<c:if test="${empty mbId}">		
 		<script type="text/javascript">
 			alert("로그인을 해주세요")
-			location.href="login.member";
+			location.href="login.log";
 		</script>
-	</c:if>	
-</c:if>
-
+</c:if>	
 <div align="center">
 	${num}<br>
 	<form name="f" action="Q_write.board" method="post" onsubmit="return check()">

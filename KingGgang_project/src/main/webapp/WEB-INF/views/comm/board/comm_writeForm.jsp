@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 
-	이	   름 : B4_writeForm.jsp
+	이	   름 : comm_writeForm.jsp
 	개  발   자 : 최 인 아
-	설	   명 : 메인 페이지
+	설	   명 : 글쓰기폼
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
-<div class="section layout_padding">
 <script type="text/javascript">
 	function check(){
 		if (f.file_name.value==""){
@@ -19,18 +18,35 @@
 			f.content.focus()
 			return false
 		}
+	/* 	if (f.content.hashtag != "#%"){
+			alert("잘못된 해시태그 형식입니다")
+			f.content.focus()
+			return false
+		}
+		 */
 		return true
 	}
 </script>
-
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>새 게시글</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
 <div class="section layout_padding" align="center">
 	<form name="f" action="comm_writePro.do" method="post" onsubmit="return check()" enctype="multipart/form-data">
-		<header>
-			<h3>새 게시물</h3>
-		</header>
 		<table width="600">
 			<tr>
-				<th width="150">사진명</th>
+				<th width="150" align="center" bgcolor=orange>사진명</th>
 				<td><input type="file" name="file_name"></td>
 			</tr>
 			<tr>
@@ -39,8 +55,19 @@
 				</td>
 			</tr>
 			<tr>
-				<th width="150">태그하기</th>
-				<td><input type="text" name="tag"></td>
+				<th width="150" align="center">태그하기</th>
+				<td><input type="text" name="hashtag"></td>
+
+			</tr>
+			<tr>
+				<th width="150" bgcolor=orange>공개범위</th>
+				<td>
+					전체공개 <input type="checkbox" name="look" value="전체공개" />
+					&nbsp;
+           			회원공개 <input type="checkbox" name="look" value="회원공개" />
+           			&nbsp;
+					비공개 <input type="checkbox" name="look" value="비공개" />			
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -51,6 +78,5 @@
 			</tr>
 		</table>
 	</form>
-</div>
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

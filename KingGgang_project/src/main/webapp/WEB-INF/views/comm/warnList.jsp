@@ -1,39 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 
+	이	   름 : warnList.jsp
+	개  발   자 : 최 인 아
+	설	   명 : 경고목록페이지
+-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ include file="/WEB-INF/views/top.jsp"%>
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>신고목록</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
+<div class="section layout_padding">
 <div align="center">
-	<b>신 고 목 록</b>
+<form name="f" onsubmit="return check()">
 	<table width="800">
-		<tr bgcolor="pink">
-			<td align="right"><a href="commadmin.comm">뒤로가기</a></td>
-		</tr>
+		<td align="right"><a href="commadmin.comm">뒤로가기</a></td>
 	</table>
 	<table width="800">
-		<tr bgcolor="skyblue">
-			<th>번호</th>
-			<th width="40%">제목</th>
-			<th>작성자</th>
-			<th>게시글삭제</th>
+		<tr bgcolor="orange" align="center">
+			<th><font color=brown>번호</font></th>
+			<th><font color=brown>게시물번호</font></th>
+			<th><font color=brown>작성자</font></th>
+			<th><font color=brown>게시글삭제</font></th>
 		</tr> 
-	<c:if test="${empty togetherList}">		
+	<c:if test="${empty warnList}">		
 		<tr>
 			<td colspan="6">
-				등록된 신고 게시글이 없습니다.
+				! 등록된 신고 게시글이 없습니다.
 			</td>
 		</tr>
 	</c:if>		
-	<c:forEach var="dto" items="${togetherList}">		
-		<tr>
-			<td><c:out value="${dto.togetherNum}"/></td>
+	<c:forEach var="dto" items="${warnList}">		
+		<tr align="center">
+			<td><c:out value="${dto.warnNum}"/></td>
 			<td>
-				<a href="comm_tcontent.do?togetherNum=${dto.togetherNum}">
-					${dto.ttitle}
-				</a>
+				<a href="comm_content.do?boardNum=${dto.boardNum}">${dto.boardNum}</a>
 			</td>
-			<td>${dto.tname}</td>
-			<td>${dto.temail}</td>
-			<td>${dto.tregdate}</td>
+			<td>${comm_nickname}</td>
+			<td><input type="button" value="글삭제" onclick="window.location='warn_deletePro.do?warnNum=${dto.warnNum}&boardNum=${dto.boardNum}'"></td>
 		</tr>		
 	</c:forEach>	
 	</table>
+	</form>
 </div>	
+</div>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>
