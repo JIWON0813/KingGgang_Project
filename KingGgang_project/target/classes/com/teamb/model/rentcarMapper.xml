@@ -111,6 +111,11 @@
 	</select>
 
 	
+	<select id="checkAlreadyReservation" parameterType="Rentcar_ResDTO" resultType="Rentcar_ResDTO">
+		select * from rentcar_res where returnday <![CDATA[>=]]> to_date(#{receiptday},'yyyy-mm-dd/hh24:mi') and
+		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and pstatus = 0 or pstatus = 1
+	</select>
+	
 	
 	<!-- Scheduled -->
 	
@@ -139,3 +144,4 @@
 	</update>
 	 
 </mapper>
+	

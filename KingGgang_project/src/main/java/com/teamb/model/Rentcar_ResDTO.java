@@ -16,6 +16,7 @@ public class Rentcar_ResDTO {
 	private String receiptday;
 	private String returnday;
 	private String pickuptime;
+	private String returncomplete;
 	private int price;
 	private int pstatus;
 	
@@ -67,6 +68,12 @@ public class Rentcar_ResDTO {
 	public void setPickuptime(String pickuptime) {
 		this.pickuptime = pickuptime;
 	}
+	public String getReturncomplete() {
+		return returncomplete;
+	}
+	public void setReturncomplete(String returncomplete) {
+		this.returncomplete = returncomplete;
+	}
 	public int getPrice() {
 		return price;
 	}
@@ -79,5 +86,5 @@ public class Rentcar_ResDTO {
 	public void setPstatus(int pstatus) {
 		this.pstatus = pstatus;
 	}
-	
+
 }
