@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
+
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.ezen.model">
+
     
     <select id="listMember" resultType="memberDTO">
 		select * from member order by memberNum
 	</select>
 	
-    <!-- 회원가입 mapper -->
     <insert id="insertMember" parameterType="memberDTO">
      insert into member values
      (member_num.nextval,#{profile_name,jdbcType=VARCHAR},#{profile_size},
@@ -20,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="getMember" parameterType="int" resultType="memberDTO">
 		select * from member where memberNum = #{memberNum}
 	</select>
+	
 	<update id="updateMember" parameterType="memberDTO">
 		update member set profile_name=#{profile_name},profile_size=#{profile_size},passwd=#{passwd}, 
 		email=#{email}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, intro=#{intro,jdbcType=VARCHAR}, point=#{point}
@@ -35,5 +37,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "checkPw" parameterType="String"  resultType="String">
         select passwd from member where id=#{id}
     </select>    
+
 
 </mapper>

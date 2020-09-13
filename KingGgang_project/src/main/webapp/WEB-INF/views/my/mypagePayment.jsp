@@ -60,10 +60,10 @@
                                     <td><span>${dto.h_hp}</span></td>
                                 </tr>
                                  <tr>
-                                    <td><span>${dto.p_amount}</span></td>
+                                    <td><span>${dto.startdate}일 부터 ${dto.startdate}까지 </span></td>
                                 </tr>
                                 <tr>
-                                    <td><span>${dto.p_amount*dto.p_price}</span></td>
+                                    <td><span>${dto.p_price}</span></td>
                                 </tr>
                                 <tr>
                                     <td><span>${dto.p_paydate}</span></td>
@@ -143,10 +143,10 @@
                                     <td><span>${dto.r_type}</span></td>
                                 </tr>
                                 <tr>
-                                    <td><span>${dto.p_amount}</span></td>
+                                    <td><span>${dto.receiptday}일 부터 ${dto.returnday}까지</span></td>
                                 </tr>
                                 <tr>
-                                    <td><span>${dto.p_amount*dto.p_price}</span></td>
+                                    <td><span>${dto.p_price}</span></td>
                                 </tr>
                                 <tr>
                                     <td><span>${dto.p_paydate}</span></td>

@@ -8,6 +8,7 @@
 	설	   명 : 메인 페이지
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
+
     <div class="ulockd-home-slider">
         <div class="container-fluid">
             <div class="row">
@@ -75,6 +76,7 @@
         </div>
     </div>
 	<!-- end section -->
+
 
     
   <%@ include file="/WEB-INF/views/bottom.jsp"%>

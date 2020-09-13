@@ -33,10 +33,11 @@ import com.teamb.model.MemberDTO;
 import com.teamb.service.MemberMapper;
 import com.teamb.service.MyMapper;
 
-
+  
 
 /*
 이	   름 : MyController.java
+
 
 개  발   자 : 원세호
 설	   명 : 마이페이지 컨트롤러
@@ -113,8 +114,22 @@ public class MyController {
 		String password = req.getParameter("password");
 		MemberDTO dto = myMapper.getMember(id);
 		int res = myMapper.deleteMember(id,password,dto.getMemberNum());
+=======
+		//로그인 세션이 없어서 테스트 불가 
+		//String id = String.valueOf(session.getAttribute("id"));
+		//String password = String.valueOf(session.getAttribute("password"));
+		String id =  req.getParameter("id");
+		String password = req.getParameter("password");
+		System.out.println(id);
+		MemberDTO dto = myMapper.getMemberNo(id);
+		
+		int memberNum = dto.getMemberNum();
+		System.out.println(memberNum);
+		int res = myMapper.deleteMember(id,password,memberNum);
+>>>>>>> branch 'junun2' of https://github.com/JIWON0813/KingGgang_Project.git
 		String msg = null, url=null;
 		if (res > 0) {
+<<<<<<< HEAD
 			if (dto.getProfile_name() == null) {
 				url = "memberList.mem";
 				msg = "delete successed";
@@ -133,11 +148,35 @@ public class MyController {
 			url = "memberList.mem";
 			msg = "delete failed";
 		}
+=======
+	         if (dto.getProfile_name() == null) {
+	            url = "memberList.mem";
+	            msg = "delete successed";
+	         } else {
+	            String filename = dto.getProfile_name();
+	            File file = new File(upLoadPath, filename);
+	            if (file.delete()) {
+	               url = "memberList.mem";
+	               msg = "delete successed";
+	            } else {
+	               url = "memberList.mem";
+	               msg = "delete successed but image is remained";
+	            }
+	         }
+	      } else {
+	         url = "memberList.mem";
+	         msg = "delete failed";
+	      }
+>>>>>>> branch 'junun2' of https://github.com/JIWON0813/KingGgang_Project.git
 		
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
+<<<<<<< HEAD
 		return "my/alert";
 	}*/
+
+		/*return "message";*/
+	/*}*/
 	
 	@RequestMapping("/update.my")
 	public String updateForm(HttpServletRequest req) {
@@ -200,7 +239,7 @@ public class MyController {
 	}
 	req.setAttribute("url", url);
 	req.setAttribute("msg", msg);
-	return "my/alert";
+	return "message";
 	}
 	
 	@RequestMapping("/home.my")
