@@ -134,12 +134,8 @@ public class RentcarMapper {
 
 	public List<Rentcar_ResDTO> checkAlreadyReservation(Rentcar_ResDTO resDTO){
 		return sqlSession.selectList("checkAlreadyReservation",resDTO);
-
-	//렌트카 결제 (for Pstatus update) 원세호
-	public int getRes_id(String member_id){
-		return sqlSession.selectOne("getRes_id",member_id);
 	}
-	
+
 	public int changePstSuc(int res_id){
 			return sqlSession.update("changePstSuc",res_id);
 
