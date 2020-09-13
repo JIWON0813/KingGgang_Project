@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teamb.model.couponMapper">
 	<insert id="insertCoupon" parameterType="couponDTO">
-		insert into coupon values(#{no},#{name},#{dis},sysdate,#{m_id,jdbcType=VARCHAR})
+		insert into coupon values(#{no},#{name},#{dis},sysdate,#{m_id})
 	</insert>
 	<select id="couponList" resultType="CouponDTO">
 		select * from coupon
@@ -21,6 +21,9 @@
 	<select id="memberli" resultType="MemberDTO">
 		select * from member
 	</select>
+	<update id="regCoupon" parameterType="couponDTO">
+		update coupon set m_id=#{m_id} where no=#{no}
+	</update>
 	<!-- <select id="checkId" resultType="String" parameterType="String">
  		select id from member where id like #{m_id}
  	</select> -->

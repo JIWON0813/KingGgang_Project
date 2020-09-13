@@ -40,8 +40,8 @@ public class NoticeMapper
 
 	public int N_plusReadcount(int no) 
 	{
-		int res = sqlSession.update("N_plusReadcount", no);
-		return res;
+		return sqlSession.update("N_plusReadcount", no);
+		 
 	}
 
 	public NoticeDTO getNotice(int no) 
