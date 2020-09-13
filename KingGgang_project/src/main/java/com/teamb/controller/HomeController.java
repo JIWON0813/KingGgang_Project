@@ -28,7 +28,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String main() {
-		return "home1";
+		return "home";
 	}
 	
 	@RequestMapping(value = "/adminHome.do", method = RequestMethod.GET)

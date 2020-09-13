@@ -53,19 +53,19 @@
 		</c:if>
 	</table>
 	<div align="center">
-		<form action="hotelList.hotel">
+		<form action="payList.admin">
 			<input type="text" name="search" placeholder="검색어입력"> <input type="submit" value="검색">
 		</form>
 	</div>
 	<c:if test="${count>0}">
 		<c:if test="${startPage > pageBlock}">
-			[<a href="hotelList.hotel?pageNum=${startPage-1}&search=${search}">이전</a>]		
+			[<a href="payList.admin?pageNum=${startPage-1}&search=${search}">이전</a>]		
 		</c:if>
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			[<a href="hotelList.hotel?pageNum=${i}&search=${search}">${i}</a>]
+			[<a href="payList.admin?pageNum=${i}&search=${search}">${i}</a>]
 		</c:forEach>
 		<c:if test="${endPage<pageCount}">
-			[<a href="hotelList.hotel?pageNum=${endPage+1}&search=${search}">다음</a>]
+			[<a href="payList.admin?pageNum=${endPage+1}&search=${search}">다음</a>]
 		</c:if>
 	</c:if>
 	<br> <a href="main.admin">관리자 목록으로 가기</a>
