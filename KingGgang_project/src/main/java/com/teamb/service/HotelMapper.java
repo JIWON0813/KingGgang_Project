@@ -114,8 +114,9 @@ public class HotelMapper {
 	public int getCountCate(String category) {
 		return sqlSession.selectOne("getCountCate", category);
 	}
-
 	
+	//관심리스트 원세호 
+
 
 
 }
