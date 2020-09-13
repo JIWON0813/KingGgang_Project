@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <!-- 
+	이	   름 : chatRoom.jsp
+	개  발   자 : 이 여 진
+	설	   명 : 채팅 페이지
+ 	-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -13,169 +18,201 @@
 
 </head>
 
-<body>
-<body>
+<meta charset="UTF-8">
+	<title>Chating</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.container{
+			width: 450x;
+			margin: 0 auto;
+			padding: 25px
+		}
+		.container h3{
+			text-align: left;
+			padding: 5px 5px 5px 15px;
+			color: #FFBB00;
+			border-left: 3px solid #FFBB00;
+			margin-bottom: 10px;
+			float:left;
+		}
+		.chating{
+			border: 1px solid #FFBB00;
+			background-color: #FFFFFF;
+			width: 400px;
+			height: 400px;
+			overflow: auto;
+			padding: 5px 5px 5px 5px;
+		}
+		.chating .me{
+			color: #3a1e02;
+			text-align: right;
+		
+		}
+		.chating .others{
+			color: #FFE400;
+			text-align: left;
+		}
+		input{
+			width: 330px;
+			height: 25px;
+		}
+		#yourMsg{
+			display: none;
+			
+		}
+		#back{
+		float: left;
+		width: 40px;
+		height:40px;
+		color: #FFBB00;
+		border: 1px solid #FFBB00;
+		background: #FFFFFF;
+		margin-bottom: 20px;
+		margin-right:10px;
+		 
+		}
+		
+	</style>
+</head>
 
-	<div class="col-12">
-		<div class="col-2" style="float: left">
-			<span> 목록 </span>
-		</div>
-		<div class="col-8" style="float: left; text-align: center;">
-			${msgReceiver} 님과 대화</div>
-		<div class="col-2" style="float: right">
-			<span> 닫기 </span>
-		</div>
-
-
-
-	</div>
-	<div class="col-12" style="margin-top: 40px; clear: both;">
-		<div class="col-10"
-			style="margin: 20px auto; text-align: center; color: white; background-color: #01D1FE; border: 1px solid #01D1FE; padding: 10px 10px; border-radius: 8px;">
-			test. <br>(test)
-		</div>
-
-	</div>
-	<!-- 채팅 내용 -->
-	<textarea rows="10" cols="50" id="chatMessageArea"></textarea>
-
-	<!-- 채팅 입력창 -->
-	<div class="col-12" style="margin-top: 20px; margin-bottom: 15px;">
-		<div class="col-12" style="float: left">
-			<textarea class="form-control"
-				style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%"
-				id = "message"></textarea>
-			<span
-				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
-				<a
-				style="margin-top: 30px; text-align: center; color: white; font-weight: bold;" id = "sendBtn"><br>전송</a>
-			</span>
-		</div>
-
-	</div>
-
-
-<input type="text" id="nickname" value = "${msgSender}" style = "display:none">
- <input type="button" id="enterBtn" value="입장" style = "display:none">
- <input type="button" id="exitBtn" value="나가기" style = "display:none">
 <script type="text/javascript">
- connect();
+	wsOpen();
 
- function connect() {
-	 sock = new SockJS("<c:url value="/echo"/>"+"?/${msgSender}");
-	    sock.onopen = function() {
-	        console.log('open');
-	    };
-	    
-	    sock.onmessage = function(evt) {
-	    	console.log('메세지받음');
-    	 var data = e.date;
-    	   console.log(data)
-    	   
-  		   var obj = JSON.parse(data)  	   
-    	   console.log(obj)
-    	   appendMessage(obj.msgContent);
-	    };
-	    
-	    sock.onclose = function() {
-	    	 appendMessage("연결을 끊었습니다.");
-	        console.log('close');
-	    };
+	function wsOpen(){
+		//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
+		ws = new SockJS("<c:url value="/echo"/>"+"?/${chatroom_id}");
+		
+		wsEvt();
+	}
+		
+	function wsEvt() {
+		ws.onopen = function(data){
+			console.log('소켓 열림');
+			//소켓이 열리면 동작
+		}
+		
+		ws.onmessage = function(data) {
+			console.log('메세지 수신');
+			//메시지를 받으면 동작
+			var msg = data.data;
+			if(msg != null && msg.trim() != ''){
+				var d = JSON.parse(msg);
+				if(d.type == "getId"){
+					var si = d.sessionId != null ? d.sessionId : "";
+					if(si != ''){
+						$("#sessionId").val(si); 
+					}
+				}else if(d.type == "message"){
+					if(d.sessionId == $("#sessionId").val()){
+						$("#chating").append("<div style='font-size:9px; clear:both;'></div><div class = 'col-12' style = 'margin-top : 5px;background-color:#ACF3FF; padding : 10px 5px; float:right; border-radius:10px;'><span style = 'font-size : 12px;'>"+d.msgContent+"</span></div></div>");	
+					}else{
+						$("#chating").append("<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>"
+								+"<div style='font-size:9px; clear:both;'></div>"
+								+"<div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'>"
+								+"<img id='profileImg' class='img-fluid' src='http://localhost:8080/img/${RProfile}' style = 'width:30px; height:30px; border-radius:50%;'>"
+								+"</div>"
+								+"<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left; margin-left:10px;'>"
+								+"<div class = 'col-12' style = ' background-color:#FFEAAC; padding : 10px 5px; float:left; border-radius:10px;'>"
+								+"<span style = 'font-size : 12px;'>"+d.msgContent+"</span>"
+								+"</div>"
+								+"</div>"
+								+"</div>"
+								);
+					}
+						
+				}else{
+					console.warn("unknown type!")
+				}
+			}
+		}
+
+		document.addEventListener("keypress", function(e){
+			if(e.keyCode == 13){ //enter press
+				send();
+			}
+		});
 	}
 
+	function chatName(){
+		var userName = "${msgSender}";
+			$("#yourMsg").show();
+	}
 
-
-
- function send() {
-  var msg = $("#message").val();
-  if(msg != ""){
-	  message = {};
-	  message.msgContent = $("#message").val()
-  	  message.msgSender= '${msgSender}'
-  	  message.msgReceiver= '${msgReceiver}'
-  }
-
-
-  sock.send(JSON.stringify(message));
-  $("#message").val("");
- }
-
-
-
-
- function getTimeStamp() {
-   var d = new Date();
-   var s =
-     leadingZeros(d.getFullYear(), 4) + '-' +
-     leadingZeros(d.getMonth() + 1, 2) + '-' +
-     leadingZeros(d.getDate(), 2) + ' ' +
-
-     leadingZeros(d.getHours(), 2) + ':' +
-     leadingZeros(d.getMinutes(), 2) + ':' +
-     leadingZeros(d.getSeconds(), 2);
-
-   return s;
- }
-
- function leadingZeros(n, digits) {
-   var zero = '';
-   n = n.toString();
-
-   if (n.length < digits) {
-     for (i = 0; i < digits - n.length; i++)
-       zero += '0';
-   }
-   return zero + n;
- }
-
-
-
-
-
-
-
- function appendMessage(msg) {
-
-	 if(msg == ''){
-		 return false;
-	 }else{
-
-
-	 var t = getTimeStamp();
-	 $("#chatMessageArea").append("<div class='col-12 row' style = 'height : auto; margin-top : 5px;'><div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'><div style='font-size:9px; clear:both;'>${msgSender}</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px;'>"+msg+"</span></div><div col-12 style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"+t+"</span></div></div></div>")		 
-
-	  var chatAreaHeight = $("#chatArea").height();
-	  var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
-	  $("#chatArea").scrollTop(maxScroll);
-
-	 }
- }	 
-	 
- $(document).ready(function() {
-  $('#message').keypress(function(event){
-   var keycode = (event.keyCode ? event.keyCode : event.which);
-   if(keycode == '13'){
-    send();
-   }
-   event.stopPropagation();
-  });
-
-
-
-  $('#sendBtn').click(function() { 
-	  var chat = $("#chatMessageArea").val();
-		chat = chat + "\n${msgSender} : " + $("#message").val();
-	  $("#chatMessageArea").val(chat);
-	  send(); 
-	  $("#message").val("");
-  });
-  
-  
- 
- });
- 
- 
+	
+	function send() {
+		var option = {
+			type: "message",
+			chatroom_id : "${chatroom_id}",
+			sessionId : $("#sessionId").val(),
+			userName : $("#userName").val(),
+			msgContent : $("#chatting").val(),
+			msgSender : "${msgSender}",
+			msgReceiver : "${msgReceiver}"
+		}
+		ws.send(JSON.stringify(option))
+		$('#chatting').val("");
+	}
 </script>
-
+<body>
+	<div id="container" class="container">
+		<input type="button" id ="back" value="<" onclick="history.back();">
+		<h3>${roomName}의 채팅방</h3>
+		<input type="hidden" id="sessionId" value="">
+		<input type="hidden" id="userName" value="${msgReceiver}">
+		<input type="hidden" id="chatroom_id" value="${chatroom_id}">
+		<div id="chating" class="chating">
+			
+		<c:forEach var="dto" items="${msgList}">
+			<c:if test="${dto.msgSender eq msgSender}">
+				<div style='font-size:9px; clear:both;'>
+				</div>
+				<div class = 'col-12' style = 'margin-top : 5px; background-color:#ACF3FF; padding : 10px 5px; float:right; border-radius:10px;'>
+				<span style = 'font-size : 12px;'>${dto.msgContent}</span>
+				</div>
+					
+			</c:if>
+		<c:if test="${dto.msgSender ne msgSender}">
+		
+		<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>
+		<div style='font-size:9px; clear:both;'></div>
+		<div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'>
+		<img id='profileImg' class='img-fluid' src='http://localhost:8080/img/${RProfile}' style = 'width:30px; height:30px; border-radius:50%;'>
+		</div>
+		<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left; margin-left:10px;'>
+		<div class = 'col-12' style = ' background-color:#FFEAAC; padding : 10px 5px; float:left; border-radius:10px;'>
+		<span style = 'font-size : 12px;'>${dto.msgContent}</span>
+		</div>
+		</div>
+		</div>
+		</c:if>
+		
+		</c:forEach>
+		</div>
+		
+		<!-- <div id="yourName">
+			<table class="inputTable">
+				<tr>
+					<th>사용자명</th>
+					<th><input type="text" name="userName" id="userName"></th>
+					<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+				</tr>
+			</table>
+		</div> -->
+		
+		<div id="yourMsg" align="center">
+			<table class="inputTable">
+			<script type="text/javascript">
+			chatName();
+			</script>
+				<tr>
+					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+					<th><button onclick="send()" id="sendBtn">보내기</button></th>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

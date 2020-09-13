@@ -15,10 +15,15 @@
 </head>
 <script type="text/javascript">
 		function check(){
-			if (e.password.value==""){
+			if (e.passwd.value==""){
 				alert("비밀번호를 입력해 주세요!!")
-				e.password.focus()
+				e.passwd.focus()
 				return
+			}
+			if (e.passwd.value!=e.checkpw.value){
+				alert("비밀번호가 일치하지 않습니다.");
+				e.passwd.focus();
+				return;
 			}
 			document.e.submit()
 		}
@@ -40,23 +45,25 @@
                                 
                                 <tr>
                                     <th>이름</th>
-                                    <td><input type="text" name="name" value="${getMember.name}"></td>
+                                    <td><input type="text" name="name" value="${getMember.name}" readOnly></td>
                                 </tr>
                                 <tr>
                                     <th><span>비밀번호</span></th>
-                                    <td><input type="password" name="password" value="${getMember.password}"></td>
+                                    <td><input type="password" name="passwd" value="${getMember.passwd}"></td>
+                                </tr>
+                                <tr>
+                                	<th><span>비밀번호확인</span></th>
+                                	<td><input type="password" name="checkpw"></td>
                                 </tr>
                                 <tr>
                                     <th><span>이메일</span></th>
                                     <td><input type="text" name="email" value="${getMember.email}"></td>
                                 </tr>
-              <%--                   <tr>
-                                    <th><span>포인트</span></th>
-                                    <td><input type="text" name="point" value="${getMember.point}"></td>
-                                </tr> --%>
                                 <tr>
                                     <th><span>전화번호</span></th>
-                                    <td><input type="text" name="hp" value="${getMember.hp}"></td>
+                                    <td><input type="text" name="hp1" value="${getMember.hp1}"></td>-
+                                    <td><input type="text" name="hp2" value="${getMember.hp2}"></td>-
+                                    <td><input type="text" name="hp3" value="${getMember.hp3}"></td>
                                 </tr>
                                 <tr>
                                     <th><span>프로필 사진</span></th>
@@ -73,7 +80,7 @@
                         <a href="javascript:check()">수정하기</a>
                     </div>
                     <div class="btn_wrap">
-                        <a href="home">취소</a>
+                        <a href="main.my">취소</a>
                     </div>
                 </div> <!-- form_txtInput E -->
             </div><!-- content E-->

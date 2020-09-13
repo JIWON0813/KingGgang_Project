@@ -31,12 +31,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteMember" parameterType="int">
 		delete from member where memberNum = #{memberNum}
 	</delete>  
-	<!-- <delete id="deleteMemberid" parameterType="String">
-		delete from member where id = #{id}
-	</delete> -->
 	<select id = "checkPw" parameterType="String"  resultType="String">
         select passwd from member where id=#{id}
     </select>    
+    <!-- my page-->
+    <update id="updateMemberMy" parameterType="memberDTO">
+    	update member set passwd=#{passwd}, email=#{email}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, profile_name=#{profile_name}, profile_size=#{profile_size} where id=#{id}
+    </update>
 
 
 </mapper>

@@ -82,7 +82,7 @@
 		<form name="f" method="post" action="reservation_Ok.rentcar">
 		<input type="hidden" name="r_id" value="${rentcar.id}">
 		<!-- session 으로 넘겨받을 값 임의 지정 -->
-		<input type="hidden" name="member_id" value="q">
+		<input type="hidden" name="member_id" value="${mbId}">
 			<table width="600" align="center" border="1">
   				<tr>
   					<td colspan="2">차량 대여일

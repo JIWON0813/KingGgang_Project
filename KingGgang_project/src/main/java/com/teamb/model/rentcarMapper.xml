@@ -106,6 +106,9 @@
 		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and pstatus = 0 or pstatus = 1)
 	</select>
 
+	<select id="getRentcarRes" parameterType="int" resultType="Rentcar_ResDTO">
+		select * from rentcar_res where res_id = #{res_id}
+	</select>
 	
 	
 	<!-- Scheduled -->
