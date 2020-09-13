@@ -2,6 +2,7 @@ package com.teamb.service;
 
 import org.apache.ibatis.session.SqlSession;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,35 +20,38 @@ public class MyMapper {
 	@Autowired	
 	private SqlSession sqlSession;
 	
-	public int deleteMember(String id,String password) {
-		boolean ckPw = checkPassword(id,password);
-			if(ckPw) {
-				int res = sqlSession.delete("deleteMem",id);
-				return res;
-			}
-			return -1;
+	public int deleteMember(int memberNum) {
+		int res = sqlSession.delete("deleteMember",memberNum);
+			return res;
 	}
 	
-	public boolean checkPassword(String id, String password) {
-		MemberDTO dto = getMember(id);
-		if(dto.getPasswd().equals(password)) {
-			return true;
+
+	public int checkPassword(String id, String passwd) {
+		String dbPass = sqlSession.selectOne("checkPw", id);
+		if (dbPass != null) { 
+			if (dbPass.equals(passwd)) {
+				return MemberDTO.OK;
+			} else {
+				return MemberDTO.NOT_PW;
+			}
+		} else {
+			return MemberDTO.NOT_ID;
 		}
-		return false;
+	}
+	
+	public MemberDTO getMemberNo(String id) {
+		MemberDTO dto = sqlSession.selectOne("getMemberid",id);
+		return dto;
 	}
 	
 	public MemberDTO getMember(String id) {
-		MemberDTO dto = sqlSession.selectOne("getMem",id);
+		MemberDTO dto = sqlSession.selectOne("getMemberid",id);
 		return dto;
 	}
 	
 	public int updateMember(MemberDTO dto) {
-		boolean isPass = checkPassword(dto.getId(),dto.getPasswd());
-		if(isPass) {
-			int res = sqlSession.update("updateMem", dto);
-			return res;
-		}
-		return -1;
+		int res = sqlSession.update("updateMemberMy", dto);
+		return res;
 	}
 	
 	

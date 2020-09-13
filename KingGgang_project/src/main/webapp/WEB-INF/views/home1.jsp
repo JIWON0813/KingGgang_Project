@@ -9,6 +9,7 @@
 	설	   명 : 메인 페이지
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
+
 <br>
 <a href="main.admin">관리자모드로 가기</a>
 <br>
@@ -24,5 +25,6 @@
 <a href="main.wish">관심리스트등록 페이지로 가기</a><p>
 <a href="main.pay">결제 페이지로 가기</a><p>
 <a href="commhome.comm">커뮤니티 페이지로 가기</a><p>
+
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
 

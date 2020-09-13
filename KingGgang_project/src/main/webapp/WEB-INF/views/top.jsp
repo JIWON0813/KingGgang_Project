@@ -63,9 +63,9 @@
 							<li><a href="login.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그인</a></li>
 							</c:if>
 							<c:if test="${mbId != null }"> 
-							<li>${memberDto.name}님   <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그아웃</a></li>
+							<li>${name}님   <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그아웃</a><a href="main.my">마이페이지</a></li>
 							</c:if>
-                            <li><a class="join_bt" href="insertMember.mem">Join us</a></li>
+                            <li><a class="join_bt" href="insertMember.mem?join=1">Join us</a></li>
                             <%-- <c:if test="${mbId == 'admin' }"> --%>
                             <li><a href="main.admin">관리자모드</a></li>
                             <%-- </c:if> --%>
@@ -93,17 +93,13 @@
                         <li><a class="nav-link" href="firstPage.rentcar">렌트카</a></li>
                         <li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
                         <li><a class="nav-link" href="">Contact</a></li>
+
                         <li><a class="nav-link" href="adminHome.do">관리자 홈</a>
+
                     </ul>
                 </div>
                      </div>
                  </nav>
-                 <div class="search-box">
-                    <input type="text" class="search-txt" placeholder="Search">
-                    <a class="search-btn">
-                        <img src="${pageContext.request.contextPath}/resources/main/images/search_icon.png" alt="#" />
-                    </a>
-                </div> 
                 </div>
             </div>
           </div>

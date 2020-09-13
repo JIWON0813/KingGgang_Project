@@ -16,14 +16,9 @@
 </head>
 <script type="text/javascript">
 		function check(){
-			if (d.id.value==""){
-				alert("아이디를 입력해 주세요!!")
-				d.id.focus()
-				return
-			}
-			if (d.password.value==""){
+			if (d.passwd.value==""){
 				alert("비밀번호를 입력해 주세요!!")
-				d.password.focus()
+				d.passwd.focus()
 				return
 			}
 			document.d.submit()
@@ -45,14 +40,10 @@
                                 <col width="30%"/>
                                 <col width="auto"/>
                             </colgroup>
-                            <tbody>
-                                <tr>
-                                    <th><span>아이디</span></th>
-                                    <td><input type="text" name="id" placeholder="ID 를 입력하세요."></td>
-                                </tr>
+                            <tbody>                            
                                	<tr>
                                     <th><span>비밀번호</span></th>
-                                    <td><input type="password" name="password" placeholder="비밀번호를 입력해주세요."></td>
+                                    <td><input type="password" name="passwd" placeholder="비밀번호를 입력해주세요."></td>
                                 </tr>
                          </tbody>
                         </table>
@@ -75,13 +66,9 @@
                                 <col width="auto"/>
                             </colgroup>
                             <tbody>
-                                <tr>
-                                    <th><span>아이디</span></th>
-                                    <td><input type="text" name="id" placeholder="ID 를 입력하세요."></td>
-                                </tr>
                                	<tr>
                                     <th><span>비밀번호</span></th>
-                                    <td><input type="password" name="password" placeholder="비밀번호를 입력해주세요."></td>
+                                    <td><input type="password" name="passwd" placeholder="비밀번호를 입력해주세요."></td>
                                 </tr>
                          </tbody>
                         </table>

@@ -48,7 +48,7 @@ public class ChatController {
 	    croom.setMsgReceiver(Integer.parseInt(msgReceiver));
 	    croom.setMsgSender(msgSender);
 	    croom.setRoomName(Sname+" 님과 "+Rname+" 의 대화");
-	    
+	    String RProfile = chatMapper.getProfile(Integer.parseInt(msgReceiver));
 		if(chatMapper.isRoom(croom) == null ) {
 			chatMapper.createRoom(croom);
 			roomList.addAll(chatMapper.getChatList(msgSender));
@@ -63,18 +63,18 @@ public class ChatController {
 		req.setAttribute("msgSender",croom.getMsgSender());
 		req.setAttribute("roomName",croom.getRoomName());
 		req.setAttribute("msgReceiver", croom.getMsgReceiver());
-		
+		req.setAttribute("RProfile",RProfile);
 		session.setAttribute("croom",croom);
 		session.setAttribute("roomList",roomList);
 		
-		mv.setViewName("comm/chatView3");
+		mv.setViewName("comm/chatView");
 		return mv;
 	}
 	
 	@RequestMapping("/chat")
 	public ModelAndView chat() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("comm/chatView3");
+		mv.setViewName("comm/chatView");
 		return mv;
 	}
 	
@@ -105,11 +105,14 @@ public class ChatController {
 		List<ChatRoomDTO> new_list = roomList.stream().filter(o->o.getChatroom_id()==chatroom_id).collect(Collectors.toList());
 		ChatRoomDTO croom = chatMapper.getRoomList(chatroom_id);
 		
+		String RProfile;
 		int msgReceiver = 0;
 		if(msgSender == croom.getMsgSender()){
 			msgReceiver = croom.getMsgReceiver();
+			RProfile = chatMapper.getProfile(msgReceiver);
 		}else{
 			msgReceiver = croom.getMsgSender();
+			RProfile = chatMapper.getProfile(msgReceiver);
 		}
 		
 		if(new_list != null && new_list.size() > 0) {
@@ -119,10 +122,12 @@ public class ChatController {
 			req.setAttribute("msgSender",msgSender);
 			req.setAttribute("roomName",croom.getRoomName());
 			req.setAttribute("msgReceiver", msgReceiver);
-			mv.setViewName("comm/chatView3");
+			req.setAttribute("RProfile",RProfile);
+			mv.setViewName("comm/chatView");
 		}else {
 			mv.setViewName("comm/chatRoom");
 		}
 		return mv;
 	}
+
 }

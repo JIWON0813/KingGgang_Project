@@ -15,22 +15,20 @@
 
 
 <form action="insert.pay" method="post">
-	
-	<p>타입(1,2)</p>
-	<p><input type = "text" name= "type"></p><br>
-	<p>상품번호(1,2,3)</p>
-	<p><input type = "text" name= "p_no"></p><br>
-	<p>수량</p>
-	<p><input type = "text" name= "amount"></p><br>
-	<p>가격</p>
-	<p><input type = "text" name= "price"></p><br>
-	<!-- 로그인 세션에서 받아올 m_id -->
-	<p>회원아이디(q)</p>
-	<p><input type = "text" name= "m_id"></p><br>
-	<p><input type="submit" value="결제하기"></p>
+	<c:if test = "${type==1}">
+	<input type="hidden" name="id" value="${id}">
+	</c:if>
+	<c:if test = "${type==2}">
+	<input type ="hidden" name="res_id" value="${res_id}">
+	</c:if>
+	<input type = "hidden" name= "price" value="${price}">
+	<input type = "hidden" name= "type" value="${type}">
+	<!-- m_no = member_Num(session 에서 받아옴) -->
+	<input type = "hidden" name= "m_no" value="1">
+	<input type="submit" value="결제하기">
 </form>
 <a href="main.my">마이페이지로 가기</a><p>
 
-	<%=request.getContextPath()%>
+	
 
 
