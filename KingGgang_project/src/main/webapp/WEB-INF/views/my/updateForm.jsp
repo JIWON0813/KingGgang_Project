@@ -43,10 +43,6 @@
                                     <td><input type="text" name="name" value="${getMember.name}"></td>
                                 </tr>
                                 <tr>
-                                    <th><span>닉네임</span></th>
-                                    <td><input type="text" name="nickname" value="${getMember.nickname}"></td>
-                                </tr>
-                                <tr>
                                     <th><span>비밀번호</span></th>
                                     <td><input type="password" name="password" value="${getMember.password}"></td>
                                 </tr>
@@ -54,10 +50,10 @@
                                     <th><span>이메일</span></th>
                                     <td><input type="text" name="email" value="${getMember.email}"></td>
                                 </tr>
-                                <tr>
+              <%--                   <tr>
                                     <th><span>포인트</span></th>
                                     <td><input type="text" name="point" value="${getMember.point}"></td>
-                                </tr>
+                                </tr> --%>
                                 <tr>
                                     <th><span>전화번호</span></th>
                                     <td><input type="text" name="hp" value="${getMember.hp}"></td>
@@ -65,10 +61,10 @@
                                 <tr>
                                     <th><span>프로필 사진</span></th>
                                     <td>
-                                    <img src="${upLoadPath}/${getMember.filename}" width="30" height="30">
+                                    <img src="${upLoadPath}/${getMember.profile_name}" width="30" height="30">
                                     <input type="file" name="filename">
-                                    <input type="hidden" name="filename2" value="${getMember.filename}">
-                                    <input type="hidden" name="filesize2" value="${getMember.filesize}">
+                                    <input type="hidden" name="filename2" value="${getMember.profile_name}">
+                                    <input type="hidden" name="filesize2" value="${getMember.profile_size}">
                                     </td>
                                 </tr>
                             </tbody> 

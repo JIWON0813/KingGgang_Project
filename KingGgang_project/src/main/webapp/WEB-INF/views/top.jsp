@@ -63,7 +63,7 @@
 							<li><a href="login.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그인</a></li>
 							</c:if>
 							<c:if test="${mbId != null }"> 
-							<li>${name}님   <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그아웃</a></li>
+							<li>${name}님   <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그아웃</a><a href="main.my">마이페이지</a></li>
 							</c:if>
                             <li><a class="join_bt" href="insertMember.mem">Join us</a></li>
                             <%-- <c:if test="${mbId == 'admin' }"> --%>

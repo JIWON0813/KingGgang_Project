@@ -21,9 +21,9 @@
 				d.id.focus()
 				return
 			}
-			if (d.password.value==""){
+			if (d.passwd.value==""){
 				alert("비밀번호를 입력해 주세요!!")
-				d.password.focus()
+				d.passwd.focus()
 				return
 			}
 			document.d.submit()
@@ -52,7 +52,7 @@
                                 </tr>
                                	<tr>
                                     <th><span>비밀번호</span></th>
-                                    <td><input type="password" name="password" placeholder="비밀번호를 입력해주세요."></td>
+                                    <td><input type="password" name="passwd" placeholder="비밀번호를 입력해주세요."></td>
                                 </tr>
                          </tbody>
                         </table>
@@ -81,7 +81,7 @@
                                 </tr>
                                	<tr>
                                     <th><span>비밀번호</span></th>
-                                    <td><input type="password" name="password" placeholder="비밀번호를 입력해주세요."></td>
+                                    <td><input type="password" name="passwd" placeholder="비밀번호를 입력해주세요."></td>
                                 </tr>
                          </tbody>
                         </table>
