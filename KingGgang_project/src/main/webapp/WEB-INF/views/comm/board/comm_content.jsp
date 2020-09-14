@@ -9,6 +9,64 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+<script>
+
+function LikeAction() {
+	
+    	var obj = {"boardNum" : $('#btnLike').attr('name')}
+     
+    	$.ajax({ url: "<c:url value="/insDelLike" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공"); 
+    		
+    				var result1 = data
+    				alert(result1);
+    				
+    				if(result1.wstatus == 2){
+                       $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
+                    } else {
+                       $('img#likeImg').attr('src', './resources/img/heart.png');
+                    	}
+    				$('#likeCount').text(result1.likeCount)
+    				}, 
+    		error: function(errorThrown) { alert(errorThrown.statusText); } 
+    		}); 
+    	} 
+    	
+   </script>
+   
+   <script>
+
+	function marklist() {
+	
+    	var obj = {"boardNum" : $('#btnMark').attr('name')}
+     
+    	$.ajax({ url: "<c:url value="/bookmark" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공"); 
+    		
+    				var result1 = data
+    				alert(result1);
+    				if(result1.wstatus == 2){
+                       $('img#mark_img').attr('src', './resources/img/box.png');
+                    } else {
+                       $('img#mark_img').attr('src', './resources/img/heartbox.png');
+                    	}
+    				}, 
+    				
+    		error: function(errorThrown) { alert(errorThrown.statusText); } 
+    		}); 
+    	} 
+	</script>
+   
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -64,8 +122,21 @@
                   <a href="searchTag?tagId=${tag.tagId}&tagName=${tag.tagName}" style="color : blue;">#${tag.tagName} </a>
          	</c:forEach>
          	</td>
+<<<<<<< HEAD
 			<td align="center" width="10">
 					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
+=======
+			<th align="right" width="10">
+				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()" style = "outline:none;" >
+       			<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" height="50px" width="50px">
+   				</button>
+   				<span id="likeCount">${likecount}</span>			
+   			</th>
+			<td width="10">
+				<a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}">
+					<img src="${pageContext.request.contextPath}/resources/img/orange.png" width="30" height="30">
+				</a>
+>>>>>>> branch 'seho' of https://github.com/JIWON0813/KingGgang_Project.git
 			</td>
 		</tr>
 		<tr>
@@ -156,30 +227,3 @@
  </form>		
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-<script>
-
-function marklist() {
-	
-    	var obj = {"boardNum" : $('#btnMark').attr('name')}
-     
-    	$.ajax({ url: "<c:url value="/bookmark" />", 
-    		type: "POST", 
-    		data: JSON.stringify(obj), 
-    		dataType: "json", 
-    		contentType: "application/json", 
-    		
-    		success: function(data) { alert("통신성공"); 
-    		
-    				var result1 = data
-    				alert(result1);
-    				if(result1.wstatus == 2){
-                       $('img#mark_img').attr('src', './resources/img/box.png');
-                    } else {
-                       $('img#mark_img').attr('src', './resources/img/heartbox.png');
-                    	}
-    				}, 
-    				
-    		error: function(errorThrown) { alert(errorThrown.statusText); } 
-    		}); 
-    	} 
-</script>
