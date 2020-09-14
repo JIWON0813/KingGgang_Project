@@ -21,19 +21,17 @@
 	</c:if>		
 	<c:forEach var="dto" items="${togetherList}" begin="0" end="4">		
 		<tr align="center">
-			<td><c:out value="${dto.togetherNum}"/></td>
+			<td><font color="white"><c:out value="${dto.togetherNum}" /></font></td>
 			<td>
 				<c:if test="${dto.treadcount>10}">
 					<img src="${pageContext.request.contextPath}/resources/img/crown.PNG" width="30" height="30">
 				</c:if>	
-					<a href="comm_tcontent.do?togetherNum=${dto.togetherNum}">
-						${dto.ttitle}
-					</a>
+				<font color="white">${dto.ttitle}</font>
 			</td>
-			<td>${dto.tname}</td>
-			<td>${dto.temail}</td>
-			<td><fmt:formatDate value="${dto.tregdate}" pattern="yyyy-MM-dd"/></td>
-			<td>${dto.treadcount}</td>
+			<td><font color="white">${dto.tname}</font></td>
+			<td><font color="white">${dto.temail}</font></td>
+			<td><font color="white"><fmt:formatDate value="${dto.tregdate}" pattern="yyyy-MM-dd"/></font></td>
+			<td><font color="white">${dto.treadcount}</font></td>
 		</tr>		
 	</c:forEach>	
 	</table>

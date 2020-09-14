@@ -22,7 +22,7 @@
 	<select id="allListBoard" resultType="CommboardDTO">
 		select * from commboard
 	</select>
-	
+	<!-- 지은 -->
 	<!-- <select id="look_listBoard" resultType="CommboardDTO" parameterType="java.util.Map">
 		select * from commboard where comm_memberNum=#{comm_memberNum} and 
 		look like '%' || #{look} or look = '전체공개' or look ='전체공개,회원공개' order by boardNum desc
@@ -47,5 +47,4 @@
 	<update id="updateBoard" parameterType="CommboardDTO">
 		update commboard set file_name=#{file_name}, content=#{content}, look=#{look} where boardNum=#{boardNum}
 	</update>
-
 </mapper>

@@ -15,9 +15,9 @@
 		select * from together where togetherNum=#{togetherNum}
 	</select>
 
-	<!-- <select id="listTogether" resultType="CommTogetherDTO">
-		select * from together where comm_memberNum=#{comm_memberNum}
-	</select> -->
+	<select id="listTogether" resultType="CommTogetherDTO">
+		select * from together order by togetherNum desc
+	</select>
 	
 	<select id="allListTogether" resultType="CommTogetherDTO">
 		select * from together order by togetherNum desc
@@ -43,5 +43,9 @@
 	<update id="plustReadcount" parameterType="int">
 		update together set treadcount=treadcount+1 where togetherNum=#{togetherNum}
 	</update>
+	
+	<select id="getCountTogether" resultType="Integer">
+		select count(*) from together
+	</select>
 	
  </mapper>

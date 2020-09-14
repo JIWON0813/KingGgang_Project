@@ -18,14 +18,13 @@
 			f.content.focus()
 			return false
 		}
-	/* 	if (f.content.hashtag != "#%"){
-			alert("잘못된 해시태그 형식입니다")
-			f.content.focus()
+		if (f.look.value==""){
+			alert("공개범위를 선택해주세요!!")
+			f.look.focus()
 			return false
 		}
-		 */
 		return true
-	}
+}
 </script>
 <footer class="footer-box">
 		<div class="container">
@@ -57,7 +56,6 @@
 			<tr>
 				<th width="150" align="center">태그하기</th>
 				<td><input type="text" name="hashtag" placeholder="#태그를 입력하세요"></td>
-
 			</tr>
 			<tr>
 				<th width="150" bgcolor=orange>공개범위</th>
