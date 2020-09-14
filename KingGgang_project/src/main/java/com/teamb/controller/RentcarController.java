@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter; 
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -361,7 +361,7 @@ public class RentcarController {
 		int res_id = rentcarMapper.getRes_id(member_id);
 		System.out.println(res_id);
 
-		
+		 
 		/*String msg = null;
 		String url = null;
 		if(res>0){
