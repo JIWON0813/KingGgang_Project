@@ -31,6 +31,7 @@
 		 </td>
 		 <td>
 		      <h2>[   ${comm_nickname}   ]님</h2>
+		      <p>${comm_intro}</p>
 	   	 </td> 
 	</tr> 
 	

@@ -74,7 +74,7 @@
 			<td  align="right" width="10">
 				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
 				<%-- <a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"> --%>
-					<img src="${ param.check1 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
+					<img src="${ check1 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
 				<!-- </a> -->
 				</button>
 			</td>

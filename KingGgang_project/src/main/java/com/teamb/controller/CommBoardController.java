@@ -147,6 +147,7 @@ public class CommBoardController {
 		req.setAttribute("boardList", list);
 		req.setAttribute("comm_profilename", dto.getComm_profilename());
 		req.setAttribute("comm_nickname", dto.getComm_nickname());
+		req.setAttribute("comm_intro", dto.getComm_intro());
 		req.setAttribute("loginNum", comm_memberNum);
 		req.setAttribute("memberNum", comm_memberNum);
 		return "comm/board/comm_myPage";
@@ -473,6 +474,7 @@ public class CommBoardController {
 		req.setAttribute("boardList", list);
 		req.setAttribute("comm_profilename", dto.getComm_profilename());
 		req.setAttribute("comm_nickname", dto.getComm_nickname());
+		req.setAttribute("comm_intro", dto.getComm_intro());
 		req.setAttribute("loginNum", loginNum);
 		req.setAttribute("memberNum", comm_memberNum);
 		return "comm/board/comm_myPage";
@@ -486,12 +488,28 @@ public class CommBoardController {
 		if (login != null) {
 			loginNum = login.getComm_memberNum();
 		}
-
+		
+		System.out.println(boardNum);
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
-
+		
+		CommBookmarkDTO cmdto = new CommBookmarkDTO();
+		cmdto.setBoardNum(boardNum);
+		cmdto.setComm_memberNum(dto.getComm_memberNum());
+		
+		CommBookmarkDTO markCheck = bookmarkMapper.markPro(cmdto);
+		
+		int check1 = 1;
+		
+		if(markCheck == null) {
+			check1 = 1;
+		} else {
+			check1 = 2;
+		}
+		System.out.println(check1);
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		req.setAttribute("replyList", list);
+		req.setAttribute("check1", check1);
 
 		List<Post_TagDTO> post = post_tagMapper.getPostTagId(boardNum);
 		List<HashTagDTO> tag = new ArrayList<>();
@@ -507,6 +525,7 @@ public class CommBoardController {
 		req.setAttribute("comm_nickname", member.getComm_nickname());
 		req.setAttribute("memberNum", member.getComm_memberNum());
 		req.setAttribute("tag", tag);
+		
 		return "comm/board/comm_content";
 	}
 }
