@@ -79,11 +79,11 @@ public class HotelMapper {
 	}
 
 	public List<RoomDTO> roomList(int h_id){
-		return sqlSession.selectList("roomList", h_id);
+		return sqlSession.selectList("hotelroomList", h_id);
 	}
 	
 	public RoomDTO getRoom(int id){
-		return sqlSession.selectOne("getRoom", id);
+		return sqlSession.selectOne("getHotelRoom", id);
 	}
 	
 	public int insertRoom(RoomDTO dto) {
@@ -114,8 +114,9 @@ public class HotelMapper {
 	public int getCountCate(String category) {
 		return sqlSession.selectOne("getCountCate", category);
 	}
-
 	
+	//관심리스트 원세호 
+
 
 
 }

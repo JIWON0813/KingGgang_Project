@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,7 @@ import com.teamb.model.HotelDTO;
 import com.teamb.model.RentcarDTO;
 
 import com.teamb.model.WishlistDTO;
+import com.teamb.service.HotelMapper;
 import com.teamb.service.WishlistMapper;
 
 /*
@@ -53,29 +55,35 @@ public class WishController {
 	@Autowired
 	private WishlistMapper wishlistmapper;
 	
+	@Autowired
+	private HotelMapper hotelmapper;
+	
 	@RequestMapping("/main.wish")
 	public String mypageMain(HttpServletRequest req) {
 		//상품번호 호텔 = 1; 회원번호 memberNum = 1 ; 
 		int m_no = 1;
-		int no = 1;
+		int no = 3;
 		int type = 1;
+	
 		WishlistDTO dto = new WishlistDTO();
 		dto.setM_no(m_no);
 		dto.setF_no(no);
 		dto.setType(type);
 		
-		List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
-		boolean check1 =true;
+		/*List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
+		int check1 = 1;
 		for(WishlistDTO check : noCheck) {
 			System.out.println(check.getF_no());
 			if(check.getF_no()!=no) {
 				continue;
 			}else if(check.getF_no()==no) {
-				check1 = false;
+				check1 = 2;
 			}
 		}
-		
-		req.setAttribute("check1", check1);
+		*/
+			
+		//req.setAttribute("noCheck", noCheck);
+		//req.setAttribute("check1", check1);
 		req.setAttribute("m_no", m_no);
 		req.setAttribute("f_no", no);
 		req.setAttribute("type", type);
@@ -84,9 +92,54 @@ public class WishController {
 		
 	}
 	
+	@ResponseBody 
+	@RequestMapping(value = "/insDelwish", method = RequestMethod.POST) 
+	public HashMap<String, Object> init(@RequestBody HashMap<String, Object> map) {
+		
+		System.out.println(map); // {no=${dto.no} 출력 }
+		
+		int f_no = Integer.parseInt(map.get("no").toString());
+		//로그인세션
+		int m_no = 1;
+		int type = 1;
+		System.out.println(f_no);
+		WishlistDTO dto = new WishlistDTO();
+		dto.setF_no(f_no);
+		dto.setM_no(m_no);
+		dto.setType(type);
+		boolean check1 = true;
+		WishlistDTO noCheck = wishlistmapper.getNolist(dto);
+		if(noCheck ==null) {
+			check1 = true;
+		} else {
+		
+			if(noCheck.getF_no()!=f_no) {
+				check1 = true;
+			}else if(noCheck.getF_no()==f_no) {
+				check1 = false;
+			}
+		}
+		
+		System.out.println(check1);
+		
+		if(check1) {
+			int res = wishlistmapper.insertWish(dto);
+			map.put("wstatus", 1);
+			
+		} else {
+			int res = wishlistmapper.deleteWish(dto);
+			map.put("wstatus", 2);
+		}
+		
+		
+		System.out.println(map); //{"no"= ${dto.no}, "wstatus"=1}
+		
+		return map;
+	}
+	
 	@RequestMapping("/insert.wish")
 	public String myPayment(HttpServletRequest req,@ModelAttribute WishlistDTO dto) {
-		
+		/*
 		int f_no = Integer.parseInt(req.getParameter("f_no"));
 		List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
 		boolean check1 =true;
@@ -116,7 +169,7 @@ public class WishController {
 		url ="main.wish";
 	}
 		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
+		req.setAttribute("url", url);*/
 		return "message";
 }
 	@RequestMapping("/list.wish")

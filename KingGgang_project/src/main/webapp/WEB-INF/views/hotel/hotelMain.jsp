@@ -9,6 +9,7 @@
 	설	   명 : 숙소 예약 메인페이지
  -->
 
+   
 <div class="subject" align="center">
 	<h1>다양한 종류의 숙소</h1>
 </div>
@@ -32,12 +33,13 @@
 <div class="content" align="center">
 	<p style="font-size: 20px; font-weight: bold">숙소 목록</p>
 	<table class="contenttable" width="1000">
-		<c:forEach var="dto" items="${hotelList}">
+		<c:forEach var="dto" items="${hotelList}" varStatus="status">
+		
 			<tr>
 				<c:if test="${not empty dto.filename}">
 					<td rowspan="6" width="20%">
 					<a href="hotelDetail.hotel?no=${dto.no}">
-					<img src="http://localhost:9211/img/${dto.filename}" width="200" height="200">
+					<img src="http://localhost:8080/img/${dto.filename}" width="200" height="200">
 					</a>
 				</c:if>
 				<c:if test="${empty dto.filename}">
@@ -45,7 +47,9 @@
 				</c:if>
 
 				<td width="70%">${dto.name}
-				<td rowspan="6" width="10%">장바구니
+				
+   				
+   				</td>
 			</tr>
 			<tr>
 				<td>
@@ -68,7 +72,11 @@
 			<tr>
 				<td>조회수 : ${dto.readcount}</td>
 			</tr>
+			<tr>
+			<td height="10">
+			<tr>
 		</c:forEach>
+		
 	</table>
 	<c:if test="${count>0}">
 		<c:if test="${startPage > pageBlock}">

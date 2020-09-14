@@ -127,10 +127,11 @@ public class PaymentController {
 			if(type == 2) {
 				int res_id =  dto.getP_no();
 				System.out.println(res_id);
-				rentcarMapper.updatePstSuc(res_id);
+				rentcarMapper.changePstSuc(res_id);
 			}
 			url = "main.my";
 			msg = "결제성공 마이페이지로 이동합니다.";
+			req.setAttribute("status",1);
 		}else {
 			paymemtMapper.deletePayment(no);
 			url = "main.my";
@@ -186,7 +187,7 @@ public class PaymentController {
 				System.out.println(ptdto.getP_no()); 
 				System.out.println(ptdto.getType());
 				PaylistDTO prdto = paymemtMapper.getmyPaylist(ptdto);
-				
+				//System.out.println(prdto.getR_company());
 				Prlist.add(prdto);
 			}
 			
