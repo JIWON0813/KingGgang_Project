@@ -54,6 +54,7 @@ public class AdminController {
 		return "hotel/insertHotelForm";
 	}
 	
+	//관리자 권한 결제 목록보기 (김지원)
 	@RequestMapping(value = "/payList.admin")
 	public String payList(HttpServletRequest req){
 		List<PaymentDTO> list = paymemtMapper.getAdminList();
