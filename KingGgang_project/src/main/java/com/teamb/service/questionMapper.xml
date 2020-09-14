@@ -26,9 +26,9 @@
 	</select>
 	
 	<insert id="insertQuest" parameterType="QuestionDTO">
-		insert into ask values (ask_num.nextval,
+		insert into ask values (ask_num.nextval,m_id=#{m_id}
 			#{subject},sysdate,0,
-			#{content},#{a_passwd},#{ip}, 
+			#{content},#{ip}, 
 			#{re_group},#{re_step},#{re_level})  
 	</insert>
 	

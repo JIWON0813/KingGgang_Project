@@ -40,30 +40,32 @@
 			location.href="login.log";
 		</script>
 </c:if>	
-<div align="center">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
+<script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
+<%@ include file="../top.jsp" %>
+<div class="section layout_padding"></div>
+<div align="center" class="container">
 	${num}<br>
 	<form name="f" action="Q_write.board" method="post" onsubmit="return check()">
 		<input type="hidden" name="num" value="${param.num}"/>	
 		<input type="hidden" name="re_step" value="${param.re_step}"/>
 		<input type="hidden" name="re_level" value="${param.re_level}"/>
 		<input type="hidden" name="re_group" value="${param.re_group}"/>
-	<c:if test="${empty a_id}">	
-		<input type="hidden" name="m_id" value="${m_id}"/>
-	</c:if>
-		<table border="1" width="500">
-			<tr bgcolor="yellow">
-				<td align="center" colspan="2">글 쓰 기</td>
+		<input type="hidden" name="m_id" value="${mbId}"/>
+		<table class="table table-bordered">
+			<tr>
+				<th align="center" colspan="2">문 의 하 기</td>
 			</tr>
 			<tr>
-				<th width="20%" bgcolor="yellow">제 목</th>
-				<td><input type="text" name="subject" class="box" size="40"></td>
+				<th width="20%">제 목</th>
+				<td><input type="text" name="subject" size="40"></td>
 			</tr>
 			<tr>
-				<th width="20%" bgcolor="yellow">내 용</th>
-				<td><textarea name="content" rows="10" cols="40" class="box"></textarea></td>
+				<th width="20%">내 용</th>
+				<td><textarea name="content" rows="10" cols="40"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center" bgcolor="yellow">
+				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">
 					<input type="button" value="목록보기" onclick="window.location='Q_list.board'">				
@@ -72,7 +74,7 @@
 		</table>
 	</form>
 </div>
-
+<%@ include file="../bottom.jsp" %>
 
 
 

@@ -1,4 +1,7 @@
+<%@ include file="memtop.jsp"%>
+<c:if test="${mbId=='admin' }">
 <%@ include file="../admintop.jsp"%>
+</c:if>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	function checkjoin() {

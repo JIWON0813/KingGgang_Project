@@ -92,7 +92,7 @@
                         <li><a class="nav-link" href="main.hotel">호텔 관리자모드</a></li>
                         <li><a class="nav-link" href="">렌트카</a></li>
                         <li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
-                        <li><a class="nav-link" href="">Contact</a></li>
+                        <li><a class="nav-link" href="Q_list.board">문의하기</a></li>
                         <li><a class="nav-link" href="list.notice">공지사항</a></li>
                     </ul>
                 </div>

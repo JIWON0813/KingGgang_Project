@@ -4,6 +4,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
+<script>
+ 	function delen(num){
+		var dele = confirm("글을 삭제하시겠습니까?")	
+		if(dele){
+			window.location.href="delete.notice?num="+num;
+		}else{
+			window.location.href="list.notice";
+		}
+	}
+	
+ </script>
 <div class="section layout_padding"></div>
 <div align="center" class="container">
 	<table class="table table-bordered">
@@ -36,7 +47,7 @@
 				onclick="window.location='update.notice?no=${notice.no}'">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="button" value="글삭제"
-				onclick="window.location='delete.notice?no=${notice.no}'">
+				onclick="javascript:delen('${notice.no }')">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 			</c:if>
 				<input type="button" value="글목록" onclick="window.location='list.notice'">

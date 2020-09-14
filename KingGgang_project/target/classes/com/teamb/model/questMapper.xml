@@ -10,7 +10,9 @@
 	</select>
 	
 	<select id="listQuest" resultType="QuestionDTO">
-		select * from (select rownum rn, A.* from(select * from ask order by re_group desc, re_step asc)A) where rn between #{start} and #{end}
+		select * from (select rownum rn, A.* from
+		(select * from ask order by re_group desc, re_step asc)A)
+		 where rn between #{start} and #{end}
 	</select>
 	
 	<!-- insert -->
@@ -18,7 +20,7 @@
 		insert into ask values (ask_num.nextval,
 			#{m_id},#{subject},sysdate,0,
 			#{content},#{ip}, 
-			#{re_group},#{re_step},#{re_level})  
+			#{re_step},#{re_level},#{re_group})  
 	</insert>
 	
 	<select id="Q_maxNum" resultType="Integer">
