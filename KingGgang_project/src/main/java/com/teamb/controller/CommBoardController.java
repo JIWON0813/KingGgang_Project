@@ -69,6 +69,7 @@ public class CommBoardController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
+	//글쓰기
 	@RequestMapping(value = "/comm_writeForm.do", method = RequestMethod.GET)
 	public String writeForm(HttpServletRequest req) {
 		return "comm/board/comm_writeForm";
@@ -139,7 +140,8 @@ public class CommBoardController {
 		req.setAttribute("url", url);
 		return "message";
 	}
-
+	
+	//마이페이지
 	@RequestMapping("/comm_myPage.do")
 
 	public String myPage(HttpServletRequest req, HttpSession session) {
@@ -159,6 +161,7 @@ public class CommBoardController {
 		return "comm/board/comm_myPage";  
 	}
 
+	//상세보기
 	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
 	public String content(HttpServletRequest req, HttpSession session, @RequestParam int boardNum) {
 		
@@ -182,8 +185,8 @@ public class CommBoardController {
 		req.setAttribute("getBoard", dto);
 		
 		System.out.println(dto.getComm_memberNum());
-		//원세호 게시판 좋아요
 		
+		//원세호 게시판 좋아요
 		CommLikeDTO cdto =  new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(dto.getComm_memberNum());
@@ -208,6 +211,7 @@ public class CommBoardController {
 		return "comm/board/comm_content";
 	}
 	
+	//북마크
 	@ResponseBody 
 	@RequestMapping(value = "/bookmark", method = RequestMethod.POST) 
 	public HashMap<String, Object> init(HttpSession session, @RequestBody HashMap<String, Object> map) {
@@ -273,7 +277,6 @@ public class CommBoardController {
 	@RequestMapping("/comm_bookMark.do")
 	public String bookmark(HttpServletRequest req, HttpSession session) {
 		
-		
 		int comm_memberNum = (Integer) session.getAttribute("comm_memberNum");
 		List<CommBookmarkDTO> list = bookmarkMapper.listMark(comm_memberNum);
 		for (CommBookmarkDTO cmdto : list) {
@@ -285,29 +288,6 @@ public class CommBoardController {
 		req.setAttribute("bookmarkList", list);
 
 		return "comm/board/comm_bookMark";
-	}
-
-	
-	@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
-	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result,
-			@RequestParam int boardNum) {
-
-		if (result.hasErrors()) {
-			dto.setReplyNum(0);
-		}
-
-		int res = replyMapper.writeReply(dto);
-		String msg = null, url = null;
-		if (res > 0) {
-			msg = "댓글작성완료";
-			url = "comm_otherContent.do?boardNum=" + boardNum;
-		} else {
-			msg = "댓글작성실패";
-			url = "comm_content.do";
-		}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		return "message";
 	}
 	
 	//원세호 게시판 좋아요
@@ -358,6 +338,7 @@ public class CommBoardController {
 		return map;
 	}
 
+	//글수정
 	@RequestMapping(value = "/comm_updateForm.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(@RequestParam int boardNum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -423,8 +404,6 @@ public class CommBoardController {
 		
 		hashtagMapper.deleteHash();
 			
-		
-		
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "게시글 수정되었습니다.";
@@ -439,6 +418,7 @@ public class CommBoardController {
 	      return "message";
 	   }
 
+	//글삭제
 	@RequestMapping(value = "/comm_deletePro.do")
 	public ModelAndView deletePro(@RequestParam int boardNum) {
 		int res = boardMapper.deleteBoard(boardNum);
@@ -454,6 +434,29 @@ public class CommBoardController {
 		mav.addObject("url", url);
 		mav.setViewName("message");
 		return mav;
+	}
+	
+	//댓글
+	@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
+	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result,
+			@RequestParam int boardNum) {
+
+		if (result.hasErrors()) {
+			dto.setReplyNum(0);
+		}
+
+		int res = replyMapper.writeReply(dto);
+		String msg = null, url = null;
+		if (res > 0) {
+			msg = "댓글작성완료";
+			url = "comm_otherContent.do?boardNum=" + boardNum;
+		} else {
+			msg = "댓글작성실패";
+			url = "comm_content.do";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
 	}
 
 	@RequestMapping(value = "/reply_deletePro.do")
@@ -508,6 +511,7 @@ public class CommBoardController {
 			loginNum = login.getComm_memberNum();
 		}
 		
+		//인아
 		System.out.println(boardNum);
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
@@ -527,6 +531,7 @@ public class CommBoardController {
 		}
 		System.out.println(check2);
 
+		//세호
 		CommLikeDTO cdto =  new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(dto.getComm_memberNum());

@@ -10,7 +10,7 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script>
-
+//좋아요
 function LikeAction() {
 	
     	var obj = {"boardNum" : $('#btnLike').attr('name')}
@@ -40,7 +40,7 @@ function LikeAction() {
    </script>
    
    <script>
-
+	//북마크
 	function marklist() {
 	
     	var obj = {"boardNum" : $('#btnMark').attr('name')}
@@ -84,11 +84,6 @@ function LikeAction() {
 </footer>
 
 <div align="center">
-<%-- <form action="insert.mark" method="post">
-	<input type = "hidden" name= "comm_memberNum" value="${comm_memberNum}">
-	<input type = "hidden" name= "type" value="${type}">
-	<input type = "hidden" name= "boardNum" value="${boardNum}"> --%>
-	
 	<table width="400">
 	<tr>
 		<td align="right" colspan="4">
@@ -122,31 +117,19 @@ function LikeAction() {
                   <a href="searchTag?tagId=${tag.tagId}&tagName=${tag.tagName}" style="color : blue;">#${tag.tagName} </a>
          	</c:forEach>
          	</td>
-<<<<<<< HEAD
-			<td align="center" width="10">
-					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
-=======
 			<th align="right" width="10">
 				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()" style = "outline:none;" >
-       			<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" height="50px" width="50px">
+       				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" width="30" height="30">
    				</button>
    				<span id="likeCount">${likecount}</span>			
    			</th>
-			<td width="10">
-				<a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}">
-					<img src="${pageContext.request.contextPath}/resources/img/orange.png" width="30" height="30">
-				</a>
->>>>>>> branch 'seho' of https://github.com/JIWON0813/KingGgang_Project.git
-			</td>
 		</tr>
 		<tr>
 			<th align="center" width="40">공개범위</th>
 			<td colspan="2">${getBoard.look}</td>
 			<td  align="right" width="10">
 				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
-				<%-- <a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"> --%>
 					<img src="${ check1 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
-				<!-- </a> -->
 				</button>
 			</td>
 		</tr>
@@ -193,7 +176,7 @@ function LikeAction() {
 
 <!-- 댓글 -->
 <div align="center">
-<form name="f" action="reply_updateForm.do" method="post" onsubmit="return check()">
+<form name="f" method="post" onsubmit="return check()">
  <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
  <table>
   <tr>
@@ -211,10 +194,7 @@ function LikeAction() {
         	 내 용 : ${replyList.rcontent}
       	</td>
         <td> 
-         <c:if test="${loginNum == memberNum}">
-        	<!-- <input type="submit" value="댓글 수정"> -->
       		<input type="button" value="댓글 삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
-        </c:if>
       	</td>
       	<tr>
       		<td>

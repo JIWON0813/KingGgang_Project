@@ -45,7 +45,7 @@
 	<form name="f" action="comm_writePro.do" method="post" onsubmit="return check()" enctype="multipart/form-data">
 		<table width="600">
 			<tr>
-				<th width="150" align="center" bgcolor=orange>사진명</th>
+				<th width="150" align="center"><img src="${pageContext.request.contextPath}/resources/img/flower.png" width="30" height="30">사진명</th>
 				<td><input type="file" name="file_name"></td>
 			</tr>
 			<tr>
@@ -54,11 +54,11 @@
 				</td>
 			</tr>
 			<tr>
-				<th width="150" align="center">태그하기</th>
+				<th width="150" align="center"><img src="${pageContext.request.contextPath}/resources/img/flower.png" width="30" height="30">태그하기</th>
 				<td><input type="text" name="hashtag" placeholder="#태그를 입력하세요"></td>
 			</tr>
 			<tr>
-				<th width="150" bgcolor=orange>공개범위</th>
+				<th width="150"><img src="${pageContext.request.contextPath}/resources/img/flower.png" width="30" height="30">공개범위</th>
 				<td>
 					전체공개 <input type="checkbox" name="look" value="전체공개" />
 					&nbsp;

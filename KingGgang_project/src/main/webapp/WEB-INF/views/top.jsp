@@ -59,14 +59,12 @@
                     <div class="site_information">
                         <ul>
                             	<li><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />제주하면 낑깡~!</li>
-                            <c:if test="${mbId != null }"> 
-                            	<li><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />제주하면 낑깡~!</li>
-                           	</c:if>
                             <c:if test="${mbId == null }">
 								<li><a href="login.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그인</a></li>
 							</c:if>
 							<c:if test="${mbId != null }"> 
 								<li>${name}님 <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />&nbsp;&nbsp;&nbsp;로그아웃</a></li>
+								<li><a class="join_bt" href="main.my">마이페이지</a></li>
 							</c:if>
 							<c:if test="${mbId == null }">
                             	<li><a class="join_bt" href="insertMember.mem">Join us</a></li>

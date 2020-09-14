@@ -15,30 +15,45 @@
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="full">
-                                <h3>Quick Link</h3>
-                            </div>
-                            <div class="full">
-                                <ul class="menu_footer">
-                                    <li><a href="home.html">> Home</a></li>
-                                    <li><a href="about.html">> About</a></li>
-                                    <li><a href="exchange.html">> Exchange</a></li>
-                                    <li><a href="services.html">> Services</a></li>
-                                    <li><a href="new.html">> New</a></li>
-                                    <li><a href="contact.html">> Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                                <!-- 날씨 api -->
+							<h3>제주도 날씨 현황</h3>
+						</div>
+
+						<div align="center">
+							<table>
+								<tr align="center">
+									<td colspan="2" class="cdate" style="font-size:20px"></td>
+								</tr>
+								<tr>
+									<td class="cicon" rowspan="6"></td>
+								</tr>
+								<tr>
+									<td class="ctemp">현재 온도 :</td>
+								</tr>
+								<tr>
+									<td class="cfeels_like">체감 기온 :</td>
+								</tr>
+								<tr>
+									<td>최고/최저 : <font class="chightemp"></font>/<font
+										class="clowtemp"></font></td>
+								</tr>
+								<tr>
+									<td class="chumidity">습도 :</td>
+								</tr>
+							</table>
+						</div>
+						</div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="full">
                                 <div class="footer_blog full white_fonts">
-                             <h3>낑.깡.따</h3>
+                             <h3><img src="${pageContext.request.contextPath}/resources/main/images/orange.png"/>낑.깡.따<img src="${pageContext.request.contextPath}/resources/main/images/orange.png"/></h3>
                              <p>함께 여행 갈 인연을 찾아보아요!!</p>
-                             <div class="newsletter_form">
+                             <!-- <div class="newsletter_form">
                                 <form action="index.html">
                                    <input type="email" placeholder="Your Email" name="#" required="">
                                    <button>Submit</button>
                                 </form>
-                             </div>
+                             </div> -->
                          </div>
                             </div>
                         </div>
@@ -206,6 +221,34 @@ jQuery(function ($) {
 	$this.countTo(options);
   }
 });
+
+//날씨 api
+$.getJSON('http://api.openweathermap.org/data/2.5/weather?q=jeju&units=metric&appid=70393e52400da4753a885b68792731f4',
+		function(data) {
+			var $maxTemp = data.main.temp_max;
+			var $minTemp = data.main.temp_min;
+			var $cTemp = data.main.temp;
+			var $now = new Date($.now());
+			var $cDate = $now.getFullYear() + '년 '
+					+ ($now.getMonth() + 1) + '월 ' + $now.getDate()
+					+ '일';
+			var $wIcon = data.weather[0].icon;
+			var $wSpeed = data.wind.speed;
+			var $wDeg = data.wind.deg;
+			var $cFeels_like = data.main.feels_like;
+			var $cHumidity = data.main.humidity;
+			var $cWeather = data.weather[0].main;
+			$('.cweather').append($cWeather);
+			$('.chumidity').append($cHumidity + "%");
+			$('.clowtemp').append($minTemp + "ºC");
+			$('.ctemp').append($cTemp + "ºC");
+			$('.chightemp').append($maxTemp);
+			$('.cfeels_like').append($cFeels_like + "ºC");
+			$('.cdate').prepend($cDate);
+			$('.cicon').append('<img src="http://openweathermap.org/img/w/'+$wIcon+'.png", width="100", height="100"/>');
+			$('.wspeed').append($wSpeed);
+			$('.wdeg').append($wDeg);
+		});
 	</script>
 </body>
 
