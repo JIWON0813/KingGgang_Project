@@ -148,6 +148,7 @@
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
 <form name="join" action="insertMemberPro.mem" enctype="multipart/form-data" method="post">
+	    <div class="section">
 	    <div class="wrap wd668">
             <div class="container">
                 <div class="form_txtInput">
@@ -245,6 +246,7 @@
                       	<a href="javascript:checkjoin()">회원가입</a>
                     </div>
                 </div> 
+            </div>
             </div>
     </form>
 <%@ include file="../adminbottom.jsp"%>

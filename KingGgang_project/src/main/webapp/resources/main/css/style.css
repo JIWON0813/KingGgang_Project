@@ -350,7 +350,7 @@ a:hover,a:focus {
 }
 
 .site_information ul {
-    float: right;
+    float: left;
     width: 95%;
     padding: 21px 0;
 }
