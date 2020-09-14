@@ -18,8 +18,13 @@
 			f.content.focus()
 			return false
 		}
+		if (f.look.value==""){
+			alert("공개범위를 선택해주세요!!")
+			f.look.focus()
+			return false
+		}
 		return true
-	}
+}
 </script>
 <footer class="footer-box">
 		<div class="container">

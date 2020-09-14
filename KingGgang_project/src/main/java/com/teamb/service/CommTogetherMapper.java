@@ -1,10 +1,8 @@
 package com.teamb.service;
 
-	/*��	   �� : CommTogetherMapper.java
-	��  ��   �� : �� �� ��
-	��	   �� : ���Դ�Mapper*/
-
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +20,16 @@ public class CommTogetherMapper {
 		return sqlSession.selectOne("getTogether",togetherNum);    
 	}
 	
-	/*public List<CommTogetherDTO> listTogether(int comm_memberNum) {
-		return sqlSession.selectList("listTogether",comm_memberNum);
-	}*/
+	public List<CommTogetherDTO> listTogether(int startRow, int endRow) {
+		Map<String, Integer> map = new Hashtable<String, Integer>();
+		map.put("start" , startRow);
+		map.put("end", endRow);
+		return sqlSession.selectList("listTogether", map);
+	}
+	
+	public int getCountTogether() {
+		return sqlSession.selectOne("getCountTogether");
+	}
 	
 	public List<CommTogetherDTO> allListTogether() {
 		return sqlSession.selectList("allListTogether");

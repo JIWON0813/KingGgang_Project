@@ -28,7 +28,7 @@
 	<table width="800">
 		<tr align="center" height="30">
 			<th bgcolor="orange">작 성 자</th>
-			<td width="30%">${getTogether.tname}</td>
+			<td width="30%">${comm_nickname}</td>
 			<th bgcolor="orange">작 성 일</th>
 			<td width="30%"><fmt:formatDate value="${getTogether.tregdate}" pattern="yyyy년MM월dd일"/></td>
 		</tr>

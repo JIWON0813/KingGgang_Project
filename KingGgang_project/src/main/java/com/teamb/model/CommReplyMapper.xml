@@ -21,7 +21,7 @@
 	
 	<insert id="writeReply" parameterType="CommReplyDTO">
 	    insert into reply values(#{boardNum}, reply_num.nextval,
-	    #{rcontent}, #{rwriter}, sysdate)
+	    #{rcontent}, sysdate)
 	</insert>
 	
 	<select id="deleteReply" parameterType="int" resultType="int">

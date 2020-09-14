@@ -31,8 +31,8 @@
                         <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="full">
                                 <div class="footer_blog full white_fonts">
-                             <h3>Newsletter</h3>
-                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                             <h3>낑.깡.따</h3>
+                             <p>함께 여행 갈 인연을 찾아보아요!!</p>
                              <div class="newsletter_form">
                                 <form action="index.html">
                                    <input type="email" placeholder="Your Email" name="#" required="">

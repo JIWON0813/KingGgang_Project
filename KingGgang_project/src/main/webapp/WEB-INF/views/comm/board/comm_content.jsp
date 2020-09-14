@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -25,6 +26,11 @@
 </footer>
 
 <div align="center">
+<%-- <form action="insert.mark" method="post">
+	<input type = "hidden" name= "comm_memberNum" value="${comm_memberNum}">
+	<input type = "hidden" name= "type" value="${type}">
+	<input type = "hidden" name= "boardNum" value="${boardNum}"> --%>
+	
 	<table width="400">
 	<tr>
 		<td align="right" colspan="4">
@@ -52,24 +58,26 @@
 		</tr>
 	
 		<tr height="30">
-			<th align="center">태그</th>
-			<td>
+			<th align="center" width="40">태그</th>
+			<td colspan="2">
 			<c:forEach var="tag" items="${tag}">
                   <a href="searchTag?tagId=${tag.tagId}&tagName=${tag.tagName}" style="color : blue;">#${tag.tagName} </a>
          	</c:forEach>
          	</td>
-			<th align="right" width="10">
-					<img src="${pageContext.request.contextPath}/resources/img/해녀.PNG" width="30" height="30">
-			</th>
-			<td width="10">
-				<%-- <a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"> --%>
-					<img src="${pageContext.request.contextPath}/resources/img/orange.png" width="30" height="30">
-				<!-- </a> -->
+			<td align="center" width="10">
+					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
 			</td>
 		</tr>
 		<tr>
-			<th align="center">공개범위</th>
-			<td colspan="4">${getBoard.look}</td>
+			<th align="center" width="40">공개범위</th>
+			<td colspan="2">${getBoard.look}</td>
+			<td  align="right" width="10">
+				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
+				<%-- <a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"> --%>
+					<img src="${ param.check1 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
+				<!-- </a> -->
+				</button>
+			</td>
 		</tr>
 		<tr>
 			<td align="center" colspan="4">
@@ -88,6 +96,7 @@
 			</td>
 		</tr>
 	</table>
+<!-- 	</form> -->
 </div>
 <br>
 <hr color="pink">
@@ -97,7 +106,7 @@
   <table width="400">
     <tr>
     	<th>댓글 작성자</th>
-    	<td><input type="text" id="rwriter" name="rwriter"></td>
+    	<td><!-- <input type="text" id="rwriter" name="rwriter"> -->${comm_nickname}</td>
     </tr>
     
     <tr>
@@ -113,7 +122,7 @@
 
 <!-- 댓글 -->
 <div align="center">
-<form name="f" action="reply_updatePro.do" method="post" onsubmit="return check()">
+<form name="f" action="reply_updateForm.do" method="post" onsubmit="return check()">
  <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
  <table>
   <tr>
@@ -123,16 +132,18 @@
     <c:forEach items="${replyList}" var="replyList">
       <tr>
       	<td>
-        	 작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성일 : <fmt:formatDate value="${replyList.rregdate}" pattern="yyyy-MM-dd"/>
+        	 작성자 : ${replyList.rwriter}<%-- ${replyList.rwriter} --%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성일 : <fmt:formatDate value="${replyList.rregdate}" pattern="yyyy-MM-dd"/>
         </td>
        </tr>
        <tr>
         <td>	 
         	 내 용 : ${replyList.rcontent}
       	</td>
-        <td>
-        	<input type="submit" value="댓수정">
-      		<input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
+        <td> 
+         <c:if test="${loginNum == memberNum}">
+        	<!-- <input type="submit" value="댓글 수정"> -->
+      		<input type="button" value="댓글 삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
+        </c:if>
       	</td>
       	<tr>
       		<td>
@@ -144,34 +155,31 @@
   </table>
  </form>		
 </div>
-<!-- <div>
-<input type="text" id="comment" name="content" placeholder="댓글 입력">
-<button onClick="make_comment({blog.id})" type="submit">작성</button>
-</div> -->
-<%-- <%@ include file="/WEB-INF/views/comm/board/comment.jsp" %> --%>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-<!-- <script>
-/*댓글기능*/
-function make_comment(blog_id) {
-	var body = $("#comment").val();
-	&.ajax({
-		type: "POST",
-		url: "/comment/create",
-		date : {
-			'blog_id' : blog_id,
-			'body' : body,
-			'csrfmiddlewaretoken' : '{{csrf_token}}',
-		},
-		dataType: "json",
-		success: function(response) {
-			console.log(response.message);
-			$("#comment_list").append("<p>"+response.body+"</p><hr>")
-			$("#comment").val('')
-		},
-		error:funtion(request,status,error) {
-			alert(error);
-		},
-	});
-}
+<script>
+
+function marklist() {
+	
+    	var obj = {"boardNum" : $('#btnMark').attr('name')}
+     
+    	$.ajax({ url: "<c:url value="/bookmark" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공"); 
+    		
+    				var result1 = data
+    				alert(result1);
+    				if(result1.wstatus == 2){
+                       $('img#mark_img').attr('src', './resources/img/box.png');
+                    } else {
+                       $('img#mark_img').attr('src', './resources/img/heartbox.png');
+                    	}
+    				}, 
+    				
+    		error: function(errorThrown) { alert(errorThrown.statusText); } 
+    		}); 
+    	} 
 </script>
- -->

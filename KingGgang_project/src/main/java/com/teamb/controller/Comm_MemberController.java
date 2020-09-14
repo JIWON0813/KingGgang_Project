@@ -86,6 +86,7 @@ public class Comm_MemberController {
 	        session.setAttribute("commmember",memberMapper.comm_getMember(comm_memberNum));
 	        String comm_profilename = memberMapper.comm_getMember(comm_memberNum).getComm_profilename();
 	        session.setAttribute("comm_profilename", comm_profilename);
+	       
 	        //지은쓰
 			session.setAttribute("comm_login", login);
 			session.setAttribute("login_comm_memberNum", login.getComm_memberNum());
