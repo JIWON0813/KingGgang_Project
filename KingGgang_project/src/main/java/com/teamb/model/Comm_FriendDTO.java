@@ -7,8 +7,15 @@ public class Comm_FriendDTO {
 	private String f_name;
 	private String f_comm_profilename;
 	private int f_comm_profilesize;
+	private String f_comm_nickname;
 	
 	
+	public String getF_comm_nickname() {
+		return f_comm_nickname;
+	}
+	public void setF_comm_nickname(String f_comm_nickname) {
+		this.f_comm_nickname = f_comm_nickname;
+	}
 	public int getLogin_comm_memberNum() {
 		return login_comm_memberNum;
 	}

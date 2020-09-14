@@ -1,3 +1,4 @@
+  
 package com.teamb.controller;
 
 import java.util.List;
@@ -8,19 +9,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.Comm_FriendDTO;
 import com.teamb.model.Comm_MemberDTO;
-import com.teamb.model.CommboardDTO;
-import com.teamb.model.MemberDTO;
 import com.teamb.service.Comm_FriendMapper;
 import com.teamb.service.Comm_MemberMapper;
-import com.teamb.service.MemberMapper;
 
 
 /*
@@ -44,9 +39,7 @@ public class Comm_FriendController {
 	public String insertFriend(HttpServletRequest req, HttpSession session, 
 							Comm_FriendDTO dto,Comm_MemberDTO mdto) {
 		
-		//Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
-		//select * from ( list) where id = m_id
 		int comm_memberNum=dto.getComm_memberNum();
 		String msg = null, url = null;
 		
@@ -90,8 +83,8 @@ public class Comm_FriendController {
 			int m=dto2.getComm_memberNum();
 			Comm_MemberDTO mdto=memberMapper.comm_getMember(m);
 			dto2.setF_comm_profilename(mdto.getComm_profilename());
-			dto2.setF_comm_profilesize(dto2.getF_comm_profilesize());
 			dto2.setF_name(mdto.getComm_name());
+			dto2.setF_comm_nickname(mdto.getComm_nickname());
 		}
 		session.setAttribute("friendList", list);
  

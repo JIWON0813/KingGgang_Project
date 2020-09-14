@@ -66,7 +66,17 @@
 		<select id="getpayMember" parameterType="int" resultType="memberDTO">
  		select * from member where memberNum=#{m_no}
  		</select>
- 		   
+
+ 		
+ 		
+ 		<!-- admin 결제목록 (김지원) -->
+ 		
+ 		<select id="adminList" resultType="PaymentDTO">
+ 			select * from payment
+ 		</select>
+ 		
+ 		
+
 		</mapper>
 
 

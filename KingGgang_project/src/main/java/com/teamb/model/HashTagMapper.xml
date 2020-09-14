@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- 
+	이	   름 : HashTagMapper.xml
+	개  발   자 : 이 여 진
+	설	   명 : 해시태그
+-->
+ 
+<mapper namespace="com.teamb.model.Comm">
+
+	<select id="isHashTag" resultType="HashTagDTO">
+		select * from hashtag where tagname=#{tagname}
+	</select>
+
+	<insert id="insertTag" parameterType="HashTagDTO">
+		insert into hashtag values(hashtag_seq.nextval, #{tagname})
+	</insert>
+	
+	<select id="getTagName" resultType="HashTagDTO">
+		select * from hashtag where tagid=#{tagid}
+	</select>
+	
+	<select id="getSearchTagList" resultType="HashTagDTO">
+		select * from hashtag where tagName like '%' || #{word} || '%'
+	</select>
+</mapper>

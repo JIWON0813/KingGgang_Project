@@ -68,17 +68,20 @@ public class MemberController {
 				File file = new File(upLoadPath, filename);
 				if (file.delete()) {
 					url = "memberList.mem";
-					msg = "delete successed";
+					msg = "삭제 완료";
 				} else {
 					url = "memberList.mem";
-					msg = "delete successed but image is remained";
+					msg = "삭제 완료, 이미지 삭제 실패";
 				}
 			}
 		} else {
 			url = "memberList.mem";
-			msg = "delete failed";
+			msg = "삭제 실패";
 		}
-
+		HttpSession session = req.getSession();
+		if(session.getAttribute("mbId")==dto.getId()){
+			session.invalidate();
+		}
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
 		return "message";

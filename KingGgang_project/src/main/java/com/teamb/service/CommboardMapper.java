@@ -24,7 +24,9 @@ public class CommboardMapper {
 	}
 		   
 	public int writeBoard(CommboardDTO dto) {
-		  return sqlSession.insert("writeBoard",dto);
+		 sqlSession.insert("writeBoard",dto);
+		 int boardNum = dto.getBoardNum();
+		 return boardNum;
 	}
 
 	public int deleteBoard(int boardNum) {   
@@ -32,10 +34,10 @@ public class CommboardMapper {
 		  return res;
 	}
 	
-	/*public int deleteAllBoard(int comm_memberNum,int boardNum) {   
-		  int res = sqlSession.insert("deleteBoard", boardNum);
+	public int deleteAllBoard(int comm_memberNum) {
+		int res = sqlSession.delete("all_deleteBoard",comm_memberNum);
 		  return res;
-	}*/
+	}
 
 	public int updateBoard(CommboardDTO dto) {
 		int res = sqlSession.update("updateBoard", dto);
@@ -78,5 +80,9 @@ public class CommboardMapper {
 	public int comm_updateNotice(Comm_NoticeDTO dto) {
 		int res = sqlSession.update("comm_updateNotice", dto);
 		return res;
+	}
+
+	public List<CommboardDTO> allListBoard(String look) {
+		return sqlSession.selectList("look_allListBoard", look);
 	}
 }

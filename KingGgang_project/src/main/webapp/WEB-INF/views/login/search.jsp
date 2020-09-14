@@ -25,7 +25,7 @@
 			 /* document.f.submit();  */
 		}
 	</script>
-	
+	<div class="section layout_padding"></div>
 <section id="four" class="wrapper style1 special fade-up">
 	<div class="container">
 	<form name="f" action="member_search_ok.log" method="post" onsubmit="return check('${mode}')">
@@ -66,4 +66,5 @@
 		</form>
 	</div>
 </section>
+<div class="section layout_padding"></div>
 <%@ include file="../bottom.jsp"%>

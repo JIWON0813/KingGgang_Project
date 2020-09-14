@@ -2,7 +2,6 @@ package com.teamb.controller;
 
 import java.io.File;
 import java.io.IOException;
-
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -335,7 +333,7 @@ public class RentcarController {
 		List<InsuDTO> insulist = rentcarMapper.listInsu();
 		req.setAttribute("rentcar",rdto);
 		req.setAttribute("insu",insulist);
-		
+		req.setAttribute("m_id", session.getAttribute("mbId"));
 		return "rentcar/reservation";
 	}
 	

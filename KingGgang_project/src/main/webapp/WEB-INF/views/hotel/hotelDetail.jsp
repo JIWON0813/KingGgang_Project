@@ -54,7 +54,12 @@ function wishlist() {
 		</tr>
 		<tr>
 		<td width="15%">주차가능여부</td>
-		<td width="15%">${dto.parking}</td>
+		<c:if test="${dto.parking == 'ok'}">
+		<td width="15%">가능</td>
+		</c:if>
+		<c:if test="${dto.parking == 'no'}">
+		<td width="15%">불가능</td>
+		</c:if>
 		<td width="12%">체크인 가능시간</td>
 		<td width="28%">${dto.checkin}</td>
 		<td width="10%">등록 날짜</td>
@@ -81,7 +86,13 @@ function wishlist() {
 </div>
 <div align="center">
 <p>방설명</p>
+<table width="1200">
+<tr>
+<td>
 ${dto.content}
+</td>
+</tr>
+</table>
 </div>
 <!-- 여기서부터 room -->
 <div align="center">
