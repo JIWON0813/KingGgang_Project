@@ -39,11 +39,6 @@ public class MyMapper {
 		}
 	}
 	
-	public MemberDTO getMemberNo(String id) {
-		MemberDTO dto = sqlSession.selectOne("getMemberid",id);
-		return dto;
-	}
-	
 	public MemberDTO getMember(String id) {
 		MemberDTO dto = sqlSession.selectOne("getMemberid",id);
 		return dto;

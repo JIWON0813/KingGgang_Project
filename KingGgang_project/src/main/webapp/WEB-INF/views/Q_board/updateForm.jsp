@@ -2,16 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!-- 사용자 -->
-<c:if test="${empty a_id}">
-	<c:if test="${m_id != Quest.m_id}">	
-		<script type="text/javascript">
-			alert("해당 게시물은 수정할 수 없습니다.")
-			location.href="${Q_list.board}"
-		</script>	
-	</c:if>
-</c:if>		
-
 <script type="text/javascript">
 	function check(){
 		if (f.writer.value=="")
@@ -41,23 +31,26 @@
 		return true
 	}
 </script>
-<div align="center">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
+<script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
+<div class="section layout_padding"></div>
+<div align="center" class="container">
 	<form name="f" action="Q_update.board" method="post" onsubmit="return check()">
 		<input type="hidden" name="num" value="${Quest.num}"/>													
-		<table border="1" width="70%">
-			<tr bgcolor="yellow">
-				<td align="center" colspan="2">글 수 정</td>
+		<table class="table-bordered">
+			<tr>
+				<td align="center" colspan="2">수 정 하 기</td>
 			</tr>
 			<tr>
-				<th width="20%" bgcolor="yellow">제 목</th>
+				<th width="20%">제 목</th>
 				<td><input type="text" name="subject" class="box" size="40" value="${Quest.subject}"></td>
 			</tr>
 			<tr>
-				<th width="20%" bgcolor="yellow">내 용</th>
+				<th width="20%">내 용</th>
 				<td><textarea name="content" rows="10" cols="40" class="box">${Quest.content}</textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center" bgcolor="yellow">
+				<td colspan="2" align="center">
 					<input type="submit" value="글수정">
 					<input type="reset" value="다시작성">
 					<input type="button" value="목록보기" onclick="window.location='Q_list.board'">				
@@ -66,3 +59,5 @@
 		</table>
 	</form>
 </div>
+<div class="section layout_padding"></div>
+<%@ include file="../bottom.jsp"%>

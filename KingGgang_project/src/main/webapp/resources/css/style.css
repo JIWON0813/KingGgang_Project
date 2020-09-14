@@ -48,6 +48,7 @@ ul{list-style:none; }
 .join_form table th{text-align:left;}
 .join_form table td{padding:6px 0;position: relative;}
 .join_form table th span:after{content:'*';font-size:13px;color:#f95427;position:absolute;top:0;right:0px;}
+.join_form table th font{font-size:13px;color:#f95427;position:absolute;top:0;right:0px;}
 .join_form.idpwFind table th span:after{content:none;}
 .join_form table td a.btn_confirm{display: inline-block; float:left;width:115px; height:48px;margin:5px 0 0 0px;border:1px solid #cfcfcf;background:#dedede;color:#626262;text-align:center; vertical-align: top;line-height: 50px;}
 .join_form.idpwFind table td select { -webkit-appearance: none; -moz-appearance: none;  appearance: none; background: url(https://secsales.interparkb2b.co.kr/data/G94/main/sele_arr.gif) no-repeat 95% 50%;text-indent:20px; width:124px; height:50px;border:1px solid #ececec; font-size:14px; color:#ccc; float:left;}

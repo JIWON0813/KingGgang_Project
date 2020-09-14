@@ -44,7 +44,7 @@
                             <tbody>
                                 
                                 <tr>
-                                    <th>이름</th>
+                                    <th><span>이름</span></th>
                                     <td><input type="text" name="name" value="${getMember.name}" readOnly></td>
                                 </tr>
                                 <tr>
@@ -66,7 +66,7 @@
                                     <td><input type="text" name="hp3" value="${getMember.hp3}"></td>
                                 </tr>
                                 <tr>
-                                    <th><span>프로필 사진</span></th>
+                                    <th><font align="center">프로필 사진</font></th>
                                     <td>
                                     <img src="${upLoadPath}/${getMember.profile_name}" width="30" height="30">
                                     <input type="file" name="filename">

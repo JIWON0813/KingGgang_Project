@@ -24,7 +24,7 @@
 			document.d.submit()
 		}
 	</script>
-<body>
+
 
 <c:if test = "${type==1}">
 <form name="d" method="post" action="deletePro.my" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
             <div class="container">
                 <div class="form_txtInput">
                     <h1 class="sub_tit_txt">회원 탈퇴 페이지</h1>
-                    <h2 class="sub_tit_txt">아이디와 비밀번호를 입력하세요.</h2>
+                    <h2 class="sub_tit_txt">비밀번호를 입력하세요.</h2>
                     <div class="join_form">
                         <table>
                             <colgroup>
@@ -58,7 +58,7 @@
             <div class="container">
                 <div class="form_txtInput">
                 	<h1 class="sub_tit_txt">회원정보 수정페이지</h1>
-                    <h2 class="sub_tit_txt">아이디와 비밀번호를 입력하세요.</h2>
+                    <h2 class="sub_tit_txt">비밀번호를 입력하세요.</h2>
                     <div class="join_form">
                         <table>
                             <colgroup>
@@ -77,12 +77,10 @@
                     </div>
 </c:if>
                     <div class="btn_wrap">
-                        <a href="home">취소</a>
+                        <a href="main.my">취소</a>
                     </div>
                </div> <!-- form_txtInput E -->
             </div><!-- content E-->
         </div> <!-- container E -->
         </div>
     </form>
-</body>
-</html>
