@@ -39,7 +39,7 @@
 				<c:if test="${not empty dto.filename}">
 					<td rowspan="6" width="20%">
 					<a href="hotelDetail.hotel?no=${dto.no}">
-					<img src="http://localhost:9211/img/${dto.filename}" width="200" height="200">
+					<img src="http://localhost:8080/img/${dto.filename}" width="200" height="200">
 					</a>
 				</c:if>
 				<c:if test="${empty dto.filename}">

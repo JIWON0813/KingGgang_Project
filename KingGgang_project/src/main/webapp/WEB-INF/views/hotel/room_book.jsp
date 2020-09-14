@@ -9,11 +9,11 @@
  <!-- 달력으로 바꿀예정 -->
 <h1 align="center">방 상세정보</h1>
 <div align="center">
-<form action="show_regiroom.hotel"> 
+<form action="show_regiroom.hotel" > 
 <input type="hidden" name="id" value="${roomdto.id}"/>
-	<table border="1">
+	<table border="1" width="1000">
 				<tr>
-					<td colspan="2"><img src="http://localhost:9211/img/${roomdto.filename}"
+					<td colspan="2"><img src="http://localhost:8080/img/${roomdto.filename}"
 						width="250" height="250">
 					<td width="15%">방 이름
 					<td>${roomdto.name}
