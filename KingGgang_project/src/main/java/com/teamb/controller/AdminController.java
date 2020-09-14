@@ -104,7 +104,7 @@ public class AdminController {
 		}
 		List<PaymentListData> partlist = new ArrayList<>();
 		for(int i = startRow-1 ; i < endRow ; i++){
-			partlist.add(0,plist.get(i));
+			partlist.add(plist.get(i));
 
 		}
 		req.setAttribute("list", partlist);
