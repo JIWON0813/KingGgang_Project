@@ -61,8 +61,7 @@
     </footer>
     <!-- End Footer -->
    <!-- test -->
-<a href="main.admin">관리자모드로 가기</a>
-<br>
+<a href="main.admin">관리자모드로 가기</a><br>
 <a href="main.member">임시회원</a>
 <br><a href="Q_list.board">문의게시판 가기</a>
 <br><a href="list.notice">공지사항 보기</a>
@@ -76,7 +75,6 @@
 <br><a href="main.wish">관심리스트등록 페이지로 가기</a><p>
 <br><a href="main.pay">결제 페이지로 가기</a><p>
 <br><a href="payList.admin">결제 목록으로 가기(어드민)</a><p>
-
 <br><a href="commhome.comm">커뮤니티 페이지로 가기</a><p>
 <!-- test -->
     <div class="footer_bottom">
