@@ -97,6 +97,8 @@ public class CommNewsfeedController {
     //지은
       List<CommboardDTO> list = null;
       String look=(String) session.getAttribute("look");
+      int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+      System.out.println("if문 밖 comm_memberNum"+comm_memberNum);
       System.out.println("if문 밖 look"+look);
      if(look!=null){
     	// look="%"+look+"%";
@@ -105,9 +107,10 @@ public class CommNewsfeedController {
          }
          else if(look.equals("회원공개")){
             list = newsfeedMapper.newfeedList(startRow, endRow, look);
+            
          }
          else if(look.equals("비공개")){
-            list = newsfeedMapper.newfeedList(startRow, endRow, look);
+            list = newsfeedMapper.alone_newfeedList(startRow, endRow, look, comm_memberNum);
          }
       }
      else if(look==null){

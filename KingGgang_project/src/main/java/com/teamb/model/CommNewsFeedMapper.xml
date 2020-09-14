@@ -27,6 +27,12 @@
 	where rn between #{startRow} and #{endRow} 
 	</select>
 	
+	<select id="alone_look_newfeedList" resultType="CommboardDTO" parameterType="java.util.Map">
+		select * from (select rownum rn, A.* from
+	(select * from commboard where look = #{look} or look = '전체공개' or look ='전체공개,회원공개' or look='비공개' and comm_memberNum=#{comm_memberNum}  
+	 order by boardNum desc)A)
+	where rn between #{startRow} and #{endRow} 
+	</select>
 
 	<select id="getNewsCount" resultType="int">
 	select count(*) from commboard

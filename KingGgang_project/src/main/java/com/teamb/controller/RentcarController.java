@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter; 
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -353,6 +353,7 @@ public class RentcarController {
 		dto.setReceiptday(receiptday);
 		dto.setReturnday(returnday);
 		int res = rentcarMapper.insertRentcarReservation(dto);
+		
 		//결제 원세호
 		
 		String member_id =  req.getParameter("member_id");
@@ -360,7 +361,7 @@ public class RentcarController {
 		int res_id = rentcarMapper.getRes_id(member_id);
 		System.out.println(res_id);
 
-		
+		 
 		/*String msg = null;
 		String url = null;
 		if(res>0){

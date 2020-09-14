@@ -118,6 +118,7 @@ public class CommBoardController {
 
 		// 지은
 		req.setAttribute("look", dto.getLook());
+		System.out.println("look값INSERT"+dto.getLook());;
 		String msg = null, url = null;
 		if (boardNum > 0) {
 			msg = "게시물이 등록되었습니다.";
