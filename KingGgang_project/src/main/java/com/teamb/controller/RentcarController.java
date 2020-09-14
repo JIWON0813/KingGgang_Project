@@ -360,23 +360,20 @@ public class RentcarController {
 		dto.setReturnday(returnday);
 		
 		List<Rentcar_ResDTO> resCheck = rentcarMapper.checkAlreadyReservation(dto);
-		
-		//결제 원세호
-		
+	
 		String member_id =  req.getParameter("member_id");
-		System.out.println(member_id);
-		int res_id = rentcarMapper.getRes_id(member_id);
-		System.out.println(res_id);
-
 		
-		/*String msg = null;
+		String msg = null;
 		String url = null;
 		if(resCheck.size()==0){
 		int res = rentcarMapper.insertRentcarReservation(dto);
 		if(res>0){
 			rentcarMapper.updateRentcarReservation(dto.getR_id());
-			msg = "예약 성공! 5분안에 결제 해주세요!";
-			url = "windowClose.rentcar";
+			int res_id = rentcarMapper.getRes_id(member_id);
+			req.setAttribute("res_id",res_id);
+			req.setAttribute("price", dto.getPrice());
+			req.setAttribute("type", 2);
+			return "payment/payins";
 		}else{
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!";
 			url = "windowClose.rentcar";
@@ -385,18 +382,14 @@ public class RentcarController {
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!(이미 예약됨)";
 			url = "windowClose.rentcar";
 		}
+	
 		req.setAttribute("msg",msg);
-		req.setAttribute("url",url);*/
-		req.setAttribute("res_id",res_id);
-		req.setAttribute("price", dto.getPrice());
-		req.setAttribute("type", 2);
-		
-		return "payment/payins";
-			
+		req.setAttribute("url",url);
+
+		return "message";		
 	}
 	@RequestMapping(value = "windowClose.rentcar")
 	public String windowClose(){
 		return "rentcar/windowClose";
 	}
-	
 }

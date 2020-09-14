@@ -138,13 +138,11 @@ public class RentcarMapper {
 
 	public int changePstSuc(int res_id){
 			return sqlSession.update("changePstSuc",res_id);
-
 	}
 	
 	@Scheduled(fixedDelay=100000)
 	public void renewalRentcarReservation(){
 		try{
-			Rentcar_ResDTO resDTO = findReturnTimeReservation();
 			List<Rentcar_ResDTO> resList = sqlSession.selectList("findUnPaidReservation");
 			if(resList.size()>0){
 				for(int i=0;i<resList.size();i++){
