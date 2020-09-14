@@ -1,21 +1,23 @@
+<%@ include file="../top.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<div align="center">
-	<table width="800">
-		<tr align="left">
-			<th>문의게시판</th>
-		</tr>
-	</table>
-	<table width="800" border="1">
-		<tr bgcolor="green">
-			<th width="10%"></th>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
+<script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
+<div class="section layout_padding"></div>
+<div class="container" align="center">
+	<h3 align="center">문의게시판</h3>
+	<br>
+	<table class="table table-hover table-sm">
+	<thead>
+		<tr>
+			<th width="10%">no</th>
 			<th width="60%">제목</th>
-			<th width="10%">작성일</th>
 			<th width="10%">조회</th>
-			<th width="10%">IP</th>
+			<th width="10%">ID</th>
 		</tr> 
+	</thead>
+	<tbody>	 
 	<c:if test="${empty listBoard}">		
 		<tr>
 			<td colspan="5">
@@ -32,21 +34,27 @@
 			<td>
 		<c:if test="${dto.re_level > 0}">
 			<img src="resources/img/level.gif" width="${dto.re_level*10}">
-			<img src="resources/img/re.gif">
+			<b>RE:</b>
+			<!-- <img src="resources/img/re.gif"> -->
 		</c:if>	
 				<a href="Q_content.board?num=${dto.num}">
 					${dto.subject}
 				</a>
-		<c:if test="${dto.readcount>10}">
-				<img src="resources/img/hot.gif">
-		</c:if>		
 			</td>
-			<td>${dto.reg_date} </td>
 			<td>${dto.readcount}</td>
-			<td>${dto.ip}</td>
+			<c:choose>
+			<c:when test="${dto.m_id=='admin' }">
+			<td>관리자</td>
+			</c:when>
+			<c:otherwise>
+			<td>${dto.m_id }</td>
+			</c:otherwise>
+			</c:choose>
 		</tr>		
 	</c:forEach>	
+	</tbody>
 	</table>
+	<a class="btn btn-default pull-right" href="Q_write.board">문의하기</a>
 		<c:if test="${count>0}">
 			<c:if test="${startPage > pageBlock}">
 				[<a href="Q_list.board?pageNum=${startPage-1}">이전</a>]		
@@ -58,12 +66,6 @@
 				[<a href="Q_list.board?pageNum=${endPage+1}">다음</a>]
 			</c:if>
 		</c:if>
-	<table width="800">
-		<tr align="center">
-			<td align="right">
-				<button onclick="location='Q_write.board'">문의하기</button>
-			</td>
-		</tr>
-	</table>
-	
 </div>	
+<div class="section layout_padding"></div>
+<%@ include file="../bottom.jsp" %>

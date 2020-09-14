@@ -72,7 +72,7 @@
  		<!-- admin 결제목록 (김지원) -->
  		
  		<select id="adminList" resultType="PaymentDTO">
- 			select * from payment
+ 			select * from payment order by no desc
  		</select>
  		
  		

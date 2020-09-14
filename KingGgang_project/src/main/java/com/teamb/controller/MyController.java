@@ -11,6 +11,7 @@ import java.text.DateFormat;
 
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -75,44 +76,58 @@ public class MyController {
 	}
 	
 	@RequestMapping("/deletePro.my")
-	public String deletePro(HttpServletRequest req,HttpSession session) {
-		//로그인 세션이 없어서 테스트 불가 
-		//String id = String.valueOf(session.getAttribute("id"));
-		//String password = String.valueOf(session.getAttribute("password"));
-		String id =  req.getParameter("id");
-		String password = req.getParameter("password");
-		System.out.println(id);
-		MemberDTO dto = myMapper.getMemberNo(id);
-		
-		int memberNum = dto.getMemberNum();
-		System.out.println(memberNum);
-		int res = myMapper.deleteMember(id,password,memberNum);
-		String msg = null, url=null;
-		if (res > 0) {
-	         if (dto.getProfile_name() == null) {
-	            url = "memberList.mem";
-	            msg = "delete successed";
-	         } else {
-	            String filename = dto.getProfile_name();
-	            File file = new File(upLoadPath, filename);
-	            if (file.delete()) {
-	               url = "memberList.mem";
-	               msg = "delete successed";
-	            } else {
-	               url = "memberList.mem";
-	               msg = "delete successed but image is remained";
-	            }
-	         }
-	      } else {
-	         url = "memberList.mem";
-	         msg = "delete failed";
-	      }
-		
+	public String deletePro(HttpServletRequest req,HttpSession session,@RequestParam String passwd) {
+		String id = (String)session.getAttribute("mbId");
+		MemberDTO dto = myMapper.getMember(id);
+		int res = myMapper.checkPassword(id,passwd);
+		String msg=null,url=null;
+		switch(res){
+		case MemberDTO.OK:
+			if(dto.getProfile_name()==null){
+			int re = myMapper.deleteMember(dto.getMemberNum());
+				if(re>0){
+					msg="탈퇴 성공!!";
+					url="home.do";
+					session.invalidate();
+				}else{
+					msg="탈퇴 실패!! 관리자에게 문의하세요";
+					url="home.do";
+				}
+			}else{
+				String filename = dto.getProfile_name();
+				File file = new File(upLoadPath, filename);
+				int re = myMapper.deleteMember(dto.getMemberNum());
+				if(re>0){
+					if (file.delete()) {
+					
+					url = "home.do";
+					msg = "탈퇴 성공!!";
+					session.invalidate();
+					} else {
+					url = "home.do";
+					msg = "탈퇴 실패, 이미지 삭제 실패";
+					}
+				}
+			}
+		break;
+		case MemberDTO.NOT_ID:
+			msg="ID를 확인해주세요";
+			url="delete.my";
+		break;
+		case MemberDTO.NOT_PW:
+			msg="비밀번호를 확인해주세요";
+			url="delete.my";
+		break;
+		case MemberDTO.ERROR:
+			msg="에러!! 관리자에게 문의하세요";
+			url="delete.my";
+		break;
+		}	
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
 		return "message";
 	}
-	
+
 	@RequestMapping("/update.my")
 	public String updateForm(HttpServletRequest req) {
 		int upd = 2;
@@ -120,23 +135,33 @@ public class MyController {
 		return "my/confirm";
 	}
 	@RequestMapping(value = "/updateForm.my")
-	public ModelAndView updateMem(@RequestParam String id) {
-		MemberDTO dto =  myMapper.getMemberNo(id);
-		
-		ModelAndView mav = new ModelAndView("my/updateForm");
-		mav.addObject("getMember", dto);
-		mav.addObject("upLoadPath", upLoadPath);
-		return mav;
+	public String updateMem(HttpServletRequest req,HttpSession session,@RequestParam String passwd) {
+		String id = (String)session.getAttribute("mbId");
+		MemberDTO dto = myMapper.getMember(id);
+		int res = myMapper.checkPassword(id, passwd);
+		String msg=null,url=null;
+		switch(res){
+		case MemberDTO.OK:
+			req.setAttribute("getMember", dto);
+			return "my/updateForm";
+		case MemberDTO.NOT_PW:
+			msg = "비밀번호를 확인해주세요";
+			url = "update.my";
+			req.setAttribute("msg", msg);
+			req.setAttribute("url", url);
+		break;
+		case MemberDTO.ERROR:
+			msg = "에러!! 관리자에게 문의하세요";
+			url = "update.my";
+			req.setAttribute("msg", msg);
+			req.setAttribute("url", url);
+		}
+		return "message";
 	}
 	
 	@RequestMapping(value = "/updatePro.my")
-	public String updatePro(HttpServletRequest req,MemberDTO dto,BindingResult result) {
-		//if(result.hasErrors()) {
-		//	dto.setId(null);
-		//}
-		String id= req.getParameter("id");
-		dto.setId(id);
-		
+	public String updatePro(HttpServletRequest req,MemberDTO dto,BindingResult result,HttpSession session) {
+		UUID uuid = UUID.randomUUID();
 		String filename2 =  req.getParameter("filename2");
 		int filesize2 =  Integer.parseInt(req.getParameter("filesize2"));
 		
@@ -145,14 +170,14 @@ public class MyController {
 		
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
 		MultipartFile file = mr.getFile("filename");
-		File target = new File(upLoadPath,file.getOriginalFilename());
+		File target = new File(upLoadPath,uuid+file.getOriginalFilename());
 		File filedelete = new File(upLoadPath,filename2);
 		if(file.getSize()>0) {
 			try {
 			file.transferTo(target);
 			filedelete.delete();
 		}catch(IOException e) {}
-		filename = file.getOriginalFilename();
+		filename = uuid+file.getOriginalFilename();
 		filesize = (int)file.getSize();
 		
 	}else {
@@ -166,24 +191,15 @@ public class MyController {
 		String msg = null, url=null;
 	if (res>0) {
 		
-		url = "home.my";
-		msg = "update successed";
+		url = "main.my";
+		msg = "회원 수정 성공!!";
 	}else {
-		url = "home.my";
-		msg = "update failed";
+		url = "main.my";
+		msg = "회원 수정 실패!!";
 	}
 	req.setAttribute("url", url);
 	req.setAttribute("msg", msg);
 	return "message";
 	}
-	
-	@RequestMapping("/home.my")
-	public String home() {
-		
-		return "home";
-		
-	}
-	
-	
 	
 }

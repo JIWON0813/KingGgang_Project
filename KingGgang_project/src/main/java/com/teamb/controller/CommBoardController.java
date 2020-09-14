@@ -157,7 +157,32 @@ public class CommBoardController {
 
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int comm_memberNum = login.getComm_memberNum();
+		
+		//지은 수정예정
+/*	      List<CommboardDTO> list = null;
+	      String look=(String) session.getAttribute("look");
+	     // int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+	      System.out.println("if문 밖 comm_memberNum"+comm_memberNum);
+	      System.out.println("if문 밖 look"+look);
+	     if(look!=null){
+	    	// look="%"+look+"%";
+	         if(look.equals("전체공개")){
+	            list = boardMapper.listBoard(comm_memberNum,look);
+	         }
+	         else if(look.equals("회원공개")){
+	        	list = boardMapper.listBoard(comm_memberNum,look); 	
+	         }
+	         else if(look.equals("비공개")){
+	        	 list = boardMapper.listBoard(comm_memberNum,look);
+	         }
+	      }
+	     else if(look==null){
+	          look="전체공개";
+	          list = boardMapper.listBoard(comm_memberNum,look);
+	     }*/
 
+		
+		
 		List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 		Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
 

@@ -1,3 +1,4 @@
+<%@ include file="../top.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -15,6 +16,7 @@
 <title>회원 마이 페이지</title>
 </head>
 <body>
+<div class="section layout_padding"></div>
 <input type="hidden" name ="filename" value="${param.filename}"/>
 	    <div class="wrap wd668">
             <div class="container">
@@ -52,7 +54,7 @@
                          </tbody>
                         </table>
                     <div class="btn_wrap">
-                        <a href="/">홈으로</a>
+                        <a href="home.do">홈으로</a>
                     </div>
                </div> <!-- form_txtInput E -->
             </div><!-- content E-->
@@ -61,3 +63,4 @@
     </form>
 </body>
 </html>
+<%@ include file="../bottom.jsp" %>

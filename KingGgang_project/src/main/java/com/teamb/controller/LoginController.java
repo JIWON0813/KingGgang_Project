@@ -111,6 +111,7 @@ public class LoginController {
 				msg = "이름과 이메일을 확인해주세요.";
 			}
 			url = "login.log?id="+loginMapper.searchMember_id(name, email);
+			req.setAttribute("id", loginMapper.searchMember_id(name, email));
 		} else if (mode.equals("pw")) {
 			String id = req.getParameter("id");
 			if (loginMapper.searchMember_pw(name, email, id) != null) {

@@ -10,7 +10,9 @@
 	</select>
 	
 	<select id="listQuest" resultType="QuestionDTO">
-		select * from (select rownum rn, A.* from(select * from ask order by re_group desc, re_step asc)A) where rn between #{start} and #{end}
+		select * from (select rownum rn, A.* from
+		(select * from ask order by re_group desc, re_step asc)A)
+		 where rn between #{start} and #{end}
 	</select>
 	
 	<!-- insert -->

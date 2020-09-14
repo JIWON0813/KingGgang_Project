@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter; 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -179,6 +179,12 @@ public class RentcarController {
 		req.setAttribute("url",url);
 		return "message";
 	}
+	@RequestMapping(value = "listReservation.rentcar")
+	public String listRentcarReservation(HttpServletRequest req){
+		List<Rentcar_ResDTO> resList = rentcarMapper.listRentcarReservation();
+		req.setAttribute("resList",resList);
+		return "rentcar/listRentcarReservation";
+	}
 //////////////////////////보험/////////////////////////////////	
 	@RequestMapping(value = "insertInsu.admin")
 	public String insertInsu(){
@@ -317,7 +323,7 @@ public class RentcarController {
 	}
 	
 	@RequestMapping(value = "content.rentcar")
-	public String rentcarContent(HttpServletRequest req){
+	public String rentcarContent(HttpServletRequest req,HttpSession session){
 		int num = Integer.parseInt(req.getParameter("id"));
 		RentcarDTO dto = rentcarMapper.getRentcar(num);
 		req.setAttribute("rentcar",dto);
@@ -352,35 +358,38 @@ public class RentcarController {
 		String returnday = dto.getReturnday() + dto.getPickuptime();
 		dto.setReceiptday(receiptday);
 		dto.setReturnday(returnday);
-		int res = rentcarMapper.insertRentcarReservation(dto);
 		
-		//결제 원세호
-		
+		List<Rentcar_ResDTO> resCheck = rentcarMapper.checkAlreadyReservation(dto);
+	
 		String member_id =  req.getParameter("member_id");
-		System.out.println(member_id);
-		int res_id = rentcarMapper.getRes_id(member_id);
-		System.out.println(res_id);
-
-		 
-		/*String msg = null;
+		
+		String msg = null;
 		String url = null;
+		if(resCheck.size()==0){
+		int res = rentcarMapper.insertRentcarReservation(dto);
 		if(res>0){
 			rentcarMapper.updateRentcarReservation(dto.getR_id());
-			msg = "예약 성공! 5분안에 결제 해주세요!";
-			url = "rentcar/firstPage";
+			int res_id = rentcarMapper.getRes_id(member_id);
+			req.setAttribute("res_id",res_id);
+			req.setAttribute("price", dto.getPrice());
+			req.setAttribute("type", 2);
+			return "payment/payins";
 		}else{
-			msg = "예약 실패!";
-			url = "content.rentcar?id="+dto.getR_id();
+			msg = "예약 실패! 예약시간을 다시 조회해 주세요!";
+			url = "windowClose.rentcar";
 		}
+		}else{
+			msg = "예약 실패! 예약시간을 다시 조회해 주세요!(이미 예약됨)";
+			url = "windowClose.rentcar";
+		}
+	
 		req.setAttribute("msg",msg);
-		req.setAttribute("url",url);*/
-		req.setAttribute("res_id",res_id);
-		req.setAttribute("price", dto.getPrice());
-		req.setAttribute("type", 2);
-		
-		return "payment/payins";
-			
+		req.setAttribute("url",url);
+
+		return "message";		
 	}
-	
-	
+	@RequestMapping(value = "windowClose.rentcar")
+	public String windowClose(){
+		return "rentcar/windowClose";
+	}
 }

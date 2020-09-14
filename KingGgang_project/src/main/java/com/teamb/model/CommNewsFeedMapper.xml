@@ -33,9 +33,4 @@
 	 order by boardNum desc)A)
 	where rn between #{startRow} and #{endRow} 
 	</select>
-
-	<select id="getNewsCount" resultType="int">
-	select count(*) from commboard
-	</select>
-
 </mapper>

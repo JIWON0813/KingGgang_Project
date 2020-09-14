@@ -215,8 +215,8 @@ public class CommNewsfeedController {
    @RequestMapping("/comm_noticeList.do")
    public String comm_noticeList(HttpServletRequest req, HttpSession session, Comm_NoticeDTO dto) {
       String comm_mode = (String) session.getAttribute("mode");
-      List<Comm_NoticeDTO> list = boardMapper.comm_noticeAllList();
-      req.setAttribute("noticeList", list);
+ //     List<Comm_NoticeDTO> list = boardMapper.comm_noticeAllList();
+ //     req.setAttribute("noticeList", list);
       return "comm/noticeList";
    }
 

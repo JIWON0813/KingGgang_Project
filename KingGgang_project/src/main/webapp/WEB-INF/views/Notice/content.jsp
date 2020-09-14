@@ -4,6 +4,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
+<script>
+ 	function delen(no){
+		var dele = confirm("글을 삭제하시겠습니까?")	
+		if(dele){
+			window.location.href="delete.notice?no="+no;
+		}else{
+			window.location.href="list.notice";
+		}
+	}
+	
+ </script>
 <div class="section layout_padding"></div>
 <div align="center" class="container">
 	<table class="table table-bordered">
@@ -32,14 +43,12 @@
 		<tr>
 			<td colspan="4" align="right">
 			<c:if test="${mbId=='admin'}">
-				<input type="button" value="글수정"
-				onclick="window.location='update.notice?no=${notice.no}'">
+				<a class="btn btn-default pull-right" href="update.notice?no=${notice.no }">수정하기</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="button" value="글삭제"
-				onclick="window.location='delete.notice?no=${notice.no}'">
+				<a class="btn btn-default pull-right" href="javascript:delen('${notice.no }')">삭제하기</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 			</c:if>
-				<input type="button" value="글목록" onclick="window.location='list.notice'">
+				<a class="btn btn-default pull-right" href="list.notice">목록보기</a>
 			</td>
 		</tr>
 	</table>

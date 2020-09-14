@@ -73,11 +73,11 @@
 	
 	<!-- room sql -->
 	
-	<select id="roomList" parameterType="int" resultType="RoomDTO">
+	<select id="hotelroomList" parameterType="int" resultType="RoomDTO">
 		select * from room where h_id = #{h_id}
 	</select>
 	
-	<select id="getRoom" parameterType="int" resultType="RoomDTO">
+	<select id="getHotelRoom" parameterType="int" resultType="RoomDTO">
 		select * from room where id = #{id}
 	</select>
 	
@@ -89,7 +89,7 @@
 	<insert id="insertRoom" parameterType="RoomDTO">
 		insert into room
 		values(room_seq.nextval,#{name},#{maxpersons},#{dayprice},#{endprice}
-				,#{content},#{h_id},#{filename},#{filesize})
+				,#{content},#{filename},#{filesize},#{h_id})
 	</insert>
 	
 	<delete id="deleteRoom" parameterType="int">

@@ -5,7 +5,7 @@ public class QuestionDTO
 	private int num;
 	private String m_id;
 	private String subject;
-	private String reg_date;
+	private String regdate;
 	private int readcount;
 	private String content;
 	private String ip;
@@ -31,11 +31,11 @@ public class QuestionDTO
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public String getReg_date() {
-		return reg_date;
+	public String getRegdate() {
+		return regdate;
 	}
-	public void setReg_date(String reg_date) {
-		this.reg_date = reg_date;
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 	public int getReadcount() {
 		return readcount;

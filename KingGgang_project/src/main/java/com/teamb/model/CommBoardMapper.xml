@@ -23,10 +23,11 @@
 		select * from commboard
 	</select>
 	
-	<select id="look_allListBoard" resultType="CommboardDTO">
-		select * from commboard where look like '%' || #{look} || '%'
+	<!-- <select id="look_listBoard" resultType="CommboardDTO" parameterType="java.util.Map">
+		select * from commboard where comm_memberNum=#{comm_memberNum} and 
+		look like '%' || #{look} or look = '전체공개' or look ='전체공개,회원공개' order by boardNum desc
 	</select>
-	
+	 -->
 	<insert id="writeBoard" parameterType="CommboardDTO">
 		insert into commboard values(#{comm_memberNum},commboard_num.nextval, #{file_name}, #{file_size}, 
 		#{content},0,0,0,0,0,#{look}) 
