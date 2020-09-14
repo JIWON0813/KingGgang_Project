@@ -72,6 +72,9 @@
 			<tr>
 				<td>조회수 : ${dto.readcount}</td>
 			</tr>
+			<tr>
+			<td height="10">
+			<tr>
 		</c:forEach>
 		
 	</table>
