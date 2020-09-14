@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 
-	이	   름 : hotelDetail.jsp
+	이	   름 : hotelContent.jsp
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 상세페이지(관리자모드) 
  -->
@@ -11,6 +11,9 @@
 	 var regi = document.getElementById("regiroom");
 	 if(regi.style.display == 'none'){
 		 regi.style.display = 'block';
+	 }
+	 else if(regi.style.display == 'block'){
+		 regi.style.display = 'none';
 	 }
  }
  </script>
