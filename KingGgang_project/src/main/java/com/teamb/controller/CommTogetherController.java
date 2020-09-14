@@ -49,6 +49,8 @@ public class CommTogetherController {
 		HttpSession session = req.getSession();
 		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 		dto.setComm_memberNum(comm_memberNum);
+		String tname = (String)session.getAttribute("comm_nickname");
+		dto.setTname(tname);
 		
 		int res = togetherMapper.writeTogether(dto);
 		String msg = null, url = null;
@@ -69,8 +71,8 @@ public class CommTogetherController {
 	@RequestMapping("/comm_togetherList.do")
 	public String togetherList(HttpServletRequest req, HttpSession session, Comm_MemberDTO dto) {
 		
-		/*Comm_MemberDTO comm_login = (Comm_MemberDTO) session.getAttribute("comm_login");*/
-		
+	//	Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
+	//	String comm_nickname = login.getComm_nickname();
 	    int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 	    List<CommTogetherDTO> list = togetherMapper.allListTogether();
 	    req.setAttribute("togetherList", list);

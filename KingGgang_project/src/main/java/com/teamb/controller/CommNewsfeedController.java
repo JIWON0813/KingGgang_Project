@@ -1,6 +1,5 @@
 package com.teamb.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -95,15 +94,12 @@ public class CommNewsfeedController {
       int count = newsfeedMapper.getNewsCount();
       if (endRow>count) endRow = count;
       
-
-      
-      
-      
-     //---------------------------------------- 
     //지은
       List<CommboardDTO> list = null;
       String look=(String) session.getAttribute("look");
+      System.out.println("if문 밖 look"+look);
      if(look!=null){
+    	// look="%"+look+"%";
          if(look.equals("전체공개")){
             list = newsfeedMapper.newfeedList(startRow, endRow, look);
          }
@@ -151,6 +147,7 @@ public class CommNewsfeedController {
     //지은
       ModelAndView mav = new ModelAndView();
       String look=(String) session.getAttribute("look");
+      
       if(look!=null){
          if(look.equals("전체공개")){
             newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);

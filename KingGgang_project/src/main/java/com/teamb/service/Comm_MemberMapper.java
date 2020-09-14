@@ -62,7 +62,7 @@ public class Comm_MemberMapper {
 		return res;
 	}
 	
-/*	public int getComm_memberCount() {
+	public int getComm_memberCount() {
 		int count = sqlSession.selectOne("getComm_memberCount");
 		return count;
 	}
@@ -72,7 +72,7 @@ public class Comm_MemberMapper {
 		map.put("startRow",startRow);
 		map.put("endRow",endRow);
 	   return sqlSession.selectList("c_comm_memberList",map);
-	}*/
+	}
 	
 	
 }

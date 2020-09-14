@@ -25,7 +25,7 @@
  
  	<insert id="writeTogether" parameterType="CommTogetherDTO">
 	    insert into together values(#{comm_memberNum}, together_num.nextval,
-	    #{ttitle}, #{temail}, #{tcontent}, sysdate, 0)
+	    #{ttitle}, #{temail}, #{tcontent}, sysdate, 0, #{tname})
 	</insert>
 	
 	<select id="deleteTogether" parameterType="int" resultType="int">
