@@ -39,7 +39,7 @@
 		<input type="hidden" name="num" value="${Quest.num}"/>													
 		<table class="table-bordered">
 			<tr>
-				<td align="center" colspan="2">글 수 정</td>
+				<td align="center" colspan="2">수 정 하 기</td>
 			</tr>
 			<tr>
 				<th width="20%">제 목</th>

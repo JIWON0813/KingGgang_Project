@@ -206,6 +206,7 @@ jQuery(function ($) {
 	$this.countTo(options);
   }
 });
+
 	</script>
 </body>
 

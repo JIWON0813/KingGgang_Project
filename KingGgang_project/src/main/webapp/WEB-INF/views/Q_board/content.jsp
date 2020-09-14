@@ -46,19 +46,18 @@
 			<td align="right" colspan="4" align="right">
 		<!-- 사용자 -->
 		<c:if test="${Quest.m_id==mbId}">
-				<input type="button" value="글수정"
-				onclick="window.location='Q_update.board?num=${Quest.num}'">
+				<a class="btn btn-default pull-right" href="Q_update.board?num=${Quest.num }">수정하기</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="button" value="글삭제"
-				onclick="javascript:deleq('${Quest.num}')">
+				<a class="btn btn-default pull-right" href="javascript:deleq('${Quest.num }')">삭제하기</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 		</c:if>
 		<!-- 관리자 -->
 		<c:if test="${mbId == 'admin'}">
-				<input type="button" value="답글쓰기"
-				onclick="window.location='Q_write.board?num=${Quest.num}&re_group=${Quest.re_group}&re_step=${Quest.re_step}&re_level=${Quest.re_level}'">
+				<a class="btn btn-default pull-right" href="Q_write.board?num=${Quest.num}&re_group=${Quest.re_group}&re_step=${Quest.re_step}&re_level=${Quest.re_level}">
+				답변하기
+				</a>
 		</c:if>
-				<input type="button" value="글목록" onclick="window.location='Q_list.board'">
+				<a class="btn btn-default pull-right" href="Q_list.board">목록가기</a>
 			</td>
 		</tr>
 	</table>

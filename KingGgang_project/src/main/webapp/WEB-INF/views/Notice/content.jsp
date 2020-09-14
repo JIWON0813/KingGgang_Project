@@ -43,14 +43,12 @@
 		<tr>
 			<td colspan="4" align="right">
 			<c:if test="${mbId=='admin'}">
-				<input type="button" value="글수정"
-				onclick="window.location='update.notice?no=${notice.no}'">
+				<a class="btn btn-default pull-right" href="update.notice?no=${notice.no }">수정하기</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="button" value="글삭제"
-				onclick="javascript:delen('${notice.no }')">
+				<a class="btn btn-default pull-right" href="javascript:delen('${notice.no }')">삭제하기</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 			</c:if>
-				<input type="button" value="글목록" onclick="window.location='list.notice'">
+				<a class="btn btn-default pull-right" href="list.notice">목록보기</a>
 			</td>
 		</tr>
 	</table>

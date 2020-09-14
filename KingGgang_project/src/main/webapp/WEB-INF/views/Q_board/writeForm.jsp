@@ -54,9 +54,6 @@
 		<input type="hidden" name="m_id" value="${mbId}"/>
 		<table class="table table-bordered">
 			<tr>
-				<th align="center" colspan="2">문 의 하 기</td>
-			</tr>
-			<tr>
 				<th width="20%">제 목</th>
 				<td><input type="text" name="subject" size="40"></td>
 			</tr>
