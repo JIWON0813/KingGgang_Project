@@ -150,7 +150,7 @@ public class CommBoardController {
 		req.setAttribute("comm_intro", dto.getComm_intro());
 		req.setAttribute("loginNum", comm_memberNum);
 		req.setAttribute("memberNum", comm_memberNum);
-		return "comm/board/comm_myPage"; 
+		return "comm/board/comm_myPage";  
 	}
 
 	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
