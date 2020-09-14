@@ -2,11 +2,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="section layout_padding"></div>
 <%-- <c:if test="${mbId=='admin' }"> --%>
-<table align="center" width="100%" height="100%">
+<table align="center" width="75%" height="100%">
 	<tr>
-		<td valign="top" align="center" width="15%">
-			<ul><a href="memberList.mem">회원 목록</a></ul>
-			<ul><a href="couponList.co">쿠폰 목록</a></ul>
+		<td valign="top" align="center" width="30%">
+			<ul><a href="memberList.mem">회원 목록</a></ul><br>
+			<ul><a href="couponList.co">쿠폰 목록</a></ul><br>
+			<ul><a href="hotelList.hotel">호텔 목록보기(어드민)</a></ul><br>
+			<ul><a href="listRentcar.admin">렌트카 목록(어드민)</a></ul><br>
+			<ul><a href="listInsu.admin">렌트카_보험 목록(어드민)</a></ul><br>
+			<ul><a href="payList.admin">결제 목록으로 가기(어드민)</a></ul><br>
 		</td>
 		<td>
 <%-- </c:if> --%>

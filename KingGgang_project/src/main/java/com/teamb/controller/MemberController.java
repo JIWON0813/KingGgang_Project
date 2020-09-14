@@ -56,7 +56,6 @@ public class MemberController {
 	public String deletePro(HttpServletRequest req, int memberNum) throws Exception {
 
 		MemberDTO dto = memberMapper.getMember(memberNum);
-		// memberMapper.adminDeleteCoupon(id);
 		int res = memberMapper.deleteMember(memberNum);
 		String msg = null, url = null;
 		if (res > 0) {
