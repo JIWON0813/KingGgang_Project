@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teamb.model.couponMapper">
+	<insert id="insertCoupon" parameterType="couponDTO">
+		insert into coupon values(#{no},#{name},#{dis},sysdate,#{m_id})
+	</insert>
+	<select id="couponList" resultType="CouponDTO">
+		select * from coupon
+	</select>
+	<delete id="deleteCoupon" parameterType="int">
+		delete from coupon where no=#{no}
+	</delete>
+	<update id="updateCoupon" parameterType="couponDTO">
+		update coupon set name=#{name}, dis=#{dis} ,m_id=#{m_id} where no=#{no}
+	</update>
+	<select id="getCoupon" resultType="CouponDTO" parameterType="int">
+		select * from coupon where no = #{no}
+	</select>
+	<select id="memberli" resultType="MemberDTO">
+		select * from member
+	</select>
+	<update id="regCoupon" parameterType="couponDTO">
+		update coupon set m_id=#{m_id} where no=#{no}
+	</update>
+	<!-- <select id="checkId" resultType="String" parameterType="String">
+ 		select id from member where id like #{m_id}
+ 	</select> -->
+</mapper>

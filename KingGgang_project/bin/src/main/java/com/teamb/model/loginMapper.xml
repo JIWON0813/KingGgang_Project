@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teamb.model.loginMapper">
+	    <!-- 로그인 관련 mapper-->
+    <select id = "loginOk" parameterType="String"  resultType="String">
+        select passwd from member where id=#{id}
+    </select>    
+    
+    <select id="getMemberNum" parameterType="memberDTO" resultType="int">
+    	select memberNum from member where id=#{id}
+    </select>
+    <select id="getMemberName" parameterType="memberDTO" resultType="String">
+    	select name from member where id=#{id}
+    </select>
+     <select id="getMemberBirth" parameterType="memberDTO" resultType="memberDTO">
+    	select birth_y,birth_m,birth_d from member where id=#{id}
+    </select>
+    
+	<select id="getMemberid" parameterType="String" resultType="memberDTO">
+		select * from member where id = #{id}
+	</select>
+	<select id="memberNum" parameterType="memberDTO" resultType="String">
+		select memberNum from member where id=#{id}
+	</select>
+    <!-- 아이디 찾기 관련 mapper -->
+    <select id = "searchMember_id" parameterType="java.util.Map" resultType="String">
+        select id from member where name=#{name} and email=#{email}
+    </select>
+    
+    <!-- 비밀번호 찾기 관련 mapper -->
+    <select id = "searchMember_pw" parameterType="java.util.Map" resultType="String">
+        select passwd from member where name=#{name} and id=#{id} and email=#{email}
+    </select>
+    
+</mapper>

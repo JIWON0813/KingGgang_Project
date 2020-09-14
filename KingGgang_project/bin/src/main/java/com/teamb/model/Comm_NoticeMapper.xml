@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.teamb.model.Comm">
+
+	<insert id="comm_insertNotice" parameterType="Comm_NoticeDTO">
+	insert into comm_notice values
+     (comm_notice_num.nextval,#{comm_ntitle},#{comm_nnickname},#{comm_mode},
+     #{comm_ncontent},sysdate)
+	</insert>
+	<select id="comm_noticeAllList" resultType="Comm_NoticeDTO">
+		select * from comm_notice
+	</select> 
+	<select id="comm_noticeMemberList" resultType="Comm_NoticeDTO" parameterType="String">
+		select * from comm_notice where comm_mode='Member';
+	</select> 
+	<!-- <select id="comm_noticeAloneList" resultType="Comm_NoticeDTO" parameterType="int">
+		select * from comm_notice where login_comm_memberNum=#{login_comm_memberNum};
+	</select>  -->
+	<select id="comm_getNotice" parameterType="int" resultType="Comm_NoticeDTO">
+ 		select * from comm_notice where comm_noticeNum = #{comm_noticeNum}
+ 	</select>
+ 	
+ 	<select id ="comm_deleteNotice"  parameterType="int" >
+		delete from comm_notice where comm_noticeNum = #{comm_noticeNum}
+	</select>
+	
+	<update id="comm_updateNotice" parameterType="Comm_NoticeDTO" >
+		update comm_notice set comm_ntitle=#{comm_ntitle},comm_nnickname=#{comm_nnickname}
+		,comm_mode=#{comm_mode}, comm_ncontent=#{comm_ncontent} 
+		where comm_noticeNum = #{comm_noticeNum}
+	</update>
+
+</mapper>
