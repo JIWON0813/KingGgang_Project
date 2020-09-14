@@ -359,26 +359,21 @@ public class RentcarController {
 		dto.setReceiptday(receiptday);
 		dto.setReturnday(returnday);
 		
-		List<Rentcar_ResDTO> resCheck = null; 
-		
-		try{
-		resCheck = rentcarMapper.checkAlreadyReservation(dto);
-		}catch(NullPointerException e){}
-		
+		List<Rentcar_ResDTO> resCheck = rentcarMapper.checkAlreadyReservation(dto);
+	
 		String member_id =  req.getParameter("member_id");
 		
 		String msg = null;
 		String url = null;
-		if(resCheck != null){
+		if(resCheck.size()==0){
 		int res = rentcarMapper.insertRentcarReservation(dto);
 		if(res>0){
 			rentcarMapper.updateRentcarReservation(dto.getR_id());
 			int res_id = rentcarMapper.getRes_id(member_id);
-			msg = "예약 성공! 5분안에 결제 해주세요!";
-			url = "resOk.payment";
 			req.setAttribute("res_id",res_id);
 			req.setAttribute("price", dto.getPrice());
 			req.setAttribute("type", 2);
+			return "payment/payins";
 		}else{
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!";
 			url = "windowClose.rentcar";
@@ -396,10 +391,5 @@ public class RentcarController {
 	@RequestMapping(value = "windowClose.rentcar")
 	public String windowClose(){
 		return "rentcar/windowClose";
-	}
-	
-	@RequestMapping(value = "resOk.payment")
-	public String goPayment(){
-		return "payment/payins";
 	}
 }

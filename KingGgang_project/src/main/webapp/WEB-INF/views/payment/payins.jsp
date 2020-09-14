@@ -8,6 +8,11 @@
 	설	   명 : 결제 진행 페이지
  -->
 
+<c:if test ="${type==2}">
+	<script type="text/javascript">
+		alert('렌트카 예약 성공! 5분안에 결제 해 주세요');
+	</script>
+</c:if>
 <P> 결제 진행 테스트 페이지 </P>
 </body>
 </html>

@@ -103,7 +103,7 @@
 	<select id="listCanReservationRentcar" resultType="RentcarDTO" parameterType="String">
 		select * from rentcar where id not in(select 
 		r_id from rentcar_res where returnday <![CDATA[>=]]> to_date(#{receiptday},'yyyy-mm-dd/hh24:mi') and 
-		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and pstatus = 0 or pstatus = 1)
+		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and (pstatus = 0 or pstatus = 1))
 	</select>
 
 
@@ -114,7 +114,7 @@
 	
 	<select id="checkAlreadyReservation" parameterType="Rentcar_ResDTO" resultType="Rentcar_ResDTO">
 		select * from rentcar_res where returnday <![CDATA[>=]]> to_date(#{receiptday},'yyyy-mm-dd/hh24:mi') and
-		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and pstatus = 0 or pstatus = 1 and r_id = #{r_id}
+		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and (pstatus = 0 or pstatus = 1) and r_id = #{r_id}
 	</select>
 	
 	
@@ -141,7 +141,7 @@
 	</select>
 	
 	<update id="changePstSuc" parameterType="int">
-		 update rentcar_res set pstatus = 0 where res_id = #{res_id}
+		 update rentcar_res set pstatus = 1 where res_id = #{res_id}
 	</update>
 	 
 </mapper>
