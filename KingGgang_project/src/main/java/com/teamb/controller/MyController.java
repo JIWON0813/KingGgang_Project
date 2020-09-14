@@ -83,14 +83,32 @@ public class MyController {
 		String msg=null,url=null;
 		switch(res){
 		case MemberDTO.OK:
+			if(dto.getProfile_name()==null){
 			int re = myMapper.deleteMember(dto.getMemberNum());
 				if(re>0){
 					msg="탈퇴 성공!!";
 					url="home.do";
+					session.invalidate();
 				}else{
 					msg="탈퇴 실패!! 관리자에게 문의하세요";
 					url="home.do";
 				}
+			}else{
+				String filename = dto.getProfile_name();
+				File file = new File(upLoadPath, filename);
+				int re = myMapper.deleteMember(dto.getMemberNum());
+				if(re>0){
+					if (file.delete()) {
+					
+					url = "home.do";
+					msg = "탈퇴 성공!!";
+					session.invalidate();
+					} else {
+					url = "home.do";
+					msg = "탈퇴 실패, 이미지 삭제 실패";
+					}
+				}
+			}
 		break;
 		case MemberDTO.NOT_ID:
 			msg="ID를 확인해주세요";

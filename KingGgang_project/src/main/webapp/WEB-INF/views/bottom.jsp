@@ -24,7 +24,7 @@
 						<div align="right">
 							<table>
 								<tr align="center">
-									<th colspan="2" class="cdate"></th>
+									<td colspan="2" class="cdate" style="font-size:20px"></td>
 								</tr>
 								<tr>
 									<td class="cicon" rowspan="6"></td>

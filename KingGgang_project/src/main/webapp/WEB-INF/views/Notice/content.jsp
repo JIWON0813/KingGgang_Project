@@ -5,10 +5,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
 <script>
- 	function delen(num){
+ 	function delen(no){
 		var dele = confirm("글을 삭제하시겠습니까?")	
 		if(dele){
-			window.location.href="delete.notice?num="+num;
+			window.location.href="delete.notice?no="+no;
 		}else{
 			window.location.href="list.notice";
 		}

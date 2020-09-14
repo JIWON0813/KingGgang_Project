@@ -62,7 +62,7 @@ public class MemberController {
 		if (res > 0) {
 			if (dto.getProfile_name() == null) {
 				url = "memberList.mem";
-				msg = "delete successed";
+				msg = "삭제 완료";
 			} else {
 				String filename = dto.getProfile_name();
 				File file = new File(upLoadPath, filename);

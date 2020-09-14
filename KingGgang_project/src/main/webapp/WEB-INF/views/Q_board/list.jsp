@@ -14,7 +14,7 @@
 			<th width="10%">no</th>
 			<th width="60%">제목</th>
 			<th width="10%">조회</th>
-			<th width="10%">IP</th>
+			<th width="10%">ID</th>
 		</tr> 
 	</thead>
 	<tbody>	 
@@ -42,7 +42,14 @@
 				</a>
 			</td>
 			<td>${dto.readcount}</td>
-			<td>${dto.ip}</td>
+			<c:choose>
+			<c:when test="${dto.m_id=='admin' }">
+			<td>관리자</td>
+			</c:when>
+			<c:otherwise>
+			<td>${dto.m_id }</td>
+			</c:otherwise>
+			</c:choose>
 		</tr>		
 	</c:forEach>	
 	</tbody>
