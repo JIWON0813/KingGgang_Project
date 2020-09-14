@@ -118,14 +118,17 @@ public class PaymentController {
 		int valid = 1;
 		dto.setValid(valid);
 		
+		
 		int res = paymemtMapper.updatePayment(dto);
 		String msg = null, url=null;
 		if (res>0) {
 			dto = paymemtMapper.getPaymentNo(no);
 			int type =  dto.getType();
+			int res_id = dto.getP_no();
 			System.out.println(type);
+			System.out.println();
+			System.out.println(res_id);
 			if(type == 2) {
-				int res_id =  dto.getP_no();
 				System.out.println(res_id);
 				rentcarMapper.changePstSuc(res_id);
 			}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.teamb.model.Comm">
+	
+	<select id="getLikeNum" parameterType="CommLikeDTO" resultType="CommLikeDTO">
+		select * from like_Board where boardNum = #{boardNum} and comm_memberNum = #{comm_memberNum}
+	</select>
+    
+	<insert id="insertLike" parameterType="CommLikeDTO">
+		insert into like_Board values(seq_like.nextval,#{boardNum},#{comm_memberNum})
+	</insert>
+	
+	<delete id ="deleteLike"  parameterType="CommLikeDTO">
+		delete from like_Board where boardNum = #{boardNum} and comm_memberNum = #{comm_memberNum}
+	</delete>
+	
+	<update id = "plusLikeCount" parameterType="int">
+		update commboard set likecount = likecount +1 where boardNum = #{boardNum}
+	</update>
+	
+	<update id = "minusLikeCount" parameterType="int">
+		update commboard set likecount = likecount -1 where boardNum = #{boardNum}
+	</update>
+	
+	<select id = "getLikeCount" parameterType="int" resultType="int">
+		select likecount from commboard where boardNum = #{boardNum}
+	</select>
+	
+</mapper>

@@ -352,33 +352,37 @@ public class RentcarController {
 		String returnday = dto.getReturnday() + dto.getPickuptime();
 		dto.setReceiptday(receiptday);
 		dto.setReturnday(returnday);
+		
 		int res = rentcarMapper.insertRentcarReservation(dto);
 		
 		//결제 원세호
 		
 		String member_id =  req.getParameter("member_id");
 		System.out.println(member_id);
-		int res_id = rentcarMapper.getRes_id(member_id);
-		System.out.println(res_id);
-
 		 
-		/*String msg = null;
+		String msg = null;
 		String url = null;
+		
 		if(res>0){
 			rentcarMapper.updateRentcarReservation(dto.getR_id());
-			msg = "예약 성공! 5분안에 결제 해주세요!";
-			url = "rentcar/firstPage";
+			int res_id = rentcarMapper.getRes_id(member_id);
+			System.out.println(res_id);
+			req.setAttribute("res_id",res_id);
+			req.setAttribute("price", dto.getPrice());
+			req.setAttribute("type", 2);
+			req.setAttribute("m_no", member_id);
+			return "payment/payins";
+			
 		}else{
 			msg = "예약 실패!";
-			url = "content.rentcar?id="+dto.getR_id();
+			url = "windowClose.rentcar";
 		}
-		req.setAttribute("msg",msg);
-		req.setAttribute("url",url);*/
-		req.setAttribute("res_id",res_id);
-		req.setAttribute("price", dto.getPrice());
-		req.setAttribute("type", 2);
 		
-		return "payment/payins";
+		req.setAttribute("msg",msg);
+		req.setAttribute("url",url);
+		
+		
+		return "message";
 			
 	}
 	

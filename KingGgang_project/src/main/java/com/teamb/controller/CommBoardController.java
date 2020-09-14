@@ -1,8 +1,10 @@
 package com.teamb.controller;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,21 +16,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.CommBookmarkDTO;
+import com.teamb.model.CommLikeDTO;
 import com.teamb.model.CommReplyDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.model.CommboardDTO;
 import com.teamb.model.HashTagDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.model.Post_TagDTO;
+import com.teamb.model.WishlistDTO;
 import com.teamb.service.CommBookMarkMapper;
+import com.teamb.service.CommLikeMapper;
 import com.teamb.service.CommReplyMapper;
 import com.teamb.service.Comm_MemberMapper;
 import com.teamb.service.CommboardMapper;
@@ -56,6 +63,9 @@ public class CommBoardController {
 	@Autowired
 	private Post_TagMapper post_tagMapper;
 	
+	@Autowired
+	private CommLikeMapper likemapper;
+	
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
@@ -69,9 +79,7 @@ public class CommBoardController {
 
 		if (result.hasErrors()) {
 			dto.setBoardNum(0);
-			dto.setRe_step(0);
-			dto.setRe_level(0);
-			dto.setRe_group(0);
+			
 		}
 		
 		MemberDTO member = (MemberDTO)session.getAttribute("login");
@@ -168,18 +176,36 @@ public class CommBoardController {
 	
 	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
 	public String content(HttpServletRequest req, @RequestParam int boardNum) {
+		
+		System.out.println(boardNum);
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
 		
+		System.out.println(dto.getComm_memberNum());
+		//원세호 게시판 좋아요
+		
+		CommLikeDTO cdto =  new CommLikeDTO();
+		cdto.setBoardNum(boardNum);
+		cdto.setComm_memberNum(dto.getComm_memberNum());
+		
+		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
+		
+		int check1 =1;
+		
+		if(likeCheck == null) {
+			check1 = 1;
+		}else {
+			check1 = 2;
+		}
+		
+		
+		
+		System.out.println(check1);
+		req.setAttribute("check1", check1);
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		req.setAttribute("replyList", list);
 		
-		HttpSession session = req.getSession();
-		String mbId = (String) session.getAttribute("mbId");
-		boolean isLogin = false;
-		if (mbId != null)
-			isLogin = true;
-		req.setAttribute("isLogin", isLogin);
+		
 
 		return "comm/board/comm_content";
 	}
@@ -240,6 +266,53 @@ public class CommBoardController {
 	    req.setAttribute("bookmarkList", list);
 	   
 		return "comm/board/comm_bookMark";
+	}
+	//원세호 게시판 좋아요
+	@ResponseBody 
+	@RequestMapping(value = "/insDelLike", method = RequestMethod.POST) 
+	public HashMap<String, Object> init(@RequestBody HashMap<String, Object> map,HttpSession session) {
+		
+		System.out.println(map); // {no=${boardNum} 출력 }
+		
+		int boardNum = Integer.parseInt(map.get("boardNum").toString());
+		//로그인세션
+		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
+	    int comm_memberNum = login.getComm_memberNum();
+		
+		System.out.println(boardNum);
+		
+		CommLikeDTO cdto = new CommLikeDTO();
+		cdto.setBoardNum(boardNum);
+		cdto.setComm_memberNum(comm_memberNum);
+		
+		boolean check1 = true;
+		
+		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
+		if(likeCheck == null) {
+			check1 = true;
+		}else {
+			check1 = false;
+		}
+		
+		System.out.println(check1);
+		
+		if(check1) {
+			int res = likemapper.insertLike(cdto);
+			int res1 = likemapper.plusLikeCount(boardNum);
+			map.put("wstatus", 1);
+			
+		} else {
+			int res = likemapper.deleteLike(cdto);
+			int res1 = likemapper.minusLikeCount(boardNum);
+			map.put("wstatus", 2);
+		}
+		
+		int likeCount = likemapper.getLikeCount(boardNum);
+			map.put("likeCount", likeCount);
+			
+		System.out.println(map); //{"boardNum"= ${boardNum}, "wstatus"=1}
+		
+		return map;
 	}
 
 	@RequestMapping(value = "/comm_updateForm.do", method = RequestMethod.GET)
@@ -413,9 +486,29 @@ public class CommBoardController {
 		if(login != null){
 			loginNum = login.getComm_memberNum();
 		}
-		
+		System.out.println(boardNum);
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
+		
+		CommLikeDTO cdto =  new CommLikeDTO();
+		cdto.setBoardNum(boardNum);
+		cdto.setComm_memberNum(dto.getComm_memberNum());
+		
+		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
+		
+		int check1 =1;
+		
+		if(likeCheck == null) {
+			check1 = 1;
+		}else {
+			check1 = 2;
+		}
+		
+		int likeCount = likemapper.getLikeCount(boardNum);
+		req.setAttribute("likeCount", likeCount);
+		
+		System.out.println(check1);
+		req.setAttribute("check1", check1);
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		req.setAttribute("replyList", list);
