@@ -1,7 +1,12 @@
-<%@ include file="memtop.jsp"%>
-<c:if test="${mbId=='admin' }">
-<%@ include file="../admintop.jsp"%>
-</c:if>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:choose>
+	<c:when test="${mbId=='admin' }">
+	<%@ include file="../admintop.jsp"%>
+	</c:when>
+	<c:otherwise>
+	<%@ include file="../../top.jsp" %>
+	</c:otherwise>
+</c:choose>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	function checkjoin() {
@@ -152,7 +157,7 @@
                             </colgroup>                           
                             <tbody>
                                 <tr>
-                                    <th><span>아이디</span></th>
+                                    <th><span>아이디</span><font color="red">*</font></th>
                                     <td><input type="text" name="id" placeholder="ID 를 입력하세요." onkeydown="inputIdCheck()">
                                 	<input type="button" value="중복체크" onclick="idCheck()">
                                 	<input type="hidden" name= "idDuplication" value="idUnCheck"> 
@@ -160,11 +165,11 @@
                                 	                             	
                                 </tr>
                                 <tr>
-                                    <th><span>이름</span></th>
+                                    <th><span>이름</span><font color="red">*</font></th>
                                     <td><input type="text" name="name" placeholder="이름을 입력하세요."></td>
                                 </tr>
                                 <tr>
-								<th><span>성별</span></th>
+								<th><span>성별</span><font color="red">*</font></th>
 									<td>
 										<select name="gender">
 											<option value="남">남성</option>
@@ -173,15 +178,15 @@
 									</td>
 								</tr>
                                 <tr>
-                                    <th><span>비밀번호</span></th>
+                                    <th><span>비밀번호</span><font color="red">*</font></th>
                                     <td><input type="password" name="passwd" placeholder="비밀번호를 입력해주세요."></td>
                                 </tr>
                                 <tr>
-                                    <th><span>비밀번호 확인</span></th>
+                                    <th><span>비밀번호 확인</span><font color="red">*</font></th>
                                     <td><input type="password" name="checkpw" placeholder="비밀번호를 확인하세요"></td>
                                 </tr>
                                 <tr>
-									<th><span>생년월일</span></th>
+									<th><span>생년월일</span><font color="red">*</font></th>
 									<td>
 										<select name="birth_y">
 											<c:set var="year" value="2020"></c:set>
@@ -202,11 +207,11 @@
 									</td>
   								</tr>
                                 <tr>
-                                    <th><span>이메일</span></th>
+                                    <th><span>이메일</span><font color="red">*</font></th>
                                     <td><input type="text" name="email"></td>
                                 </tr>                    
                                 <tr>
-									<th><span>연락처</span></th>
+									<th><span>연락처</span><font color="red">*</font></th>
 									<td>
 										<input type="text" name="hp1"
 													size="3" maxlength="3"> -
@@ -230,6 +235,9 @@
                         </table>                 
                     </div>                   
                     </div>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <font color="red">*</font> 표시는 반드시 입력해 주세요.
                     <div class="btn_wrap">
                       	<a href="javascript:checkjoin()">회원가입</a>
                     </div>
