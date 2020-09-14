@@ -75,6 +75,6 @@
             </div>
         </div>
     </div>
-	<!-- end section -->  
+	<!-- end section -->
   <%@ include file="/WEB-INF/views/bottom.jsp"%>
  

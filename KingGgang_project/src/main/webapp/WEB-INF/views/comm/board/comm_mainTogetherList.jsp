@@ -30,7 +30,7 @@
 						${dto.ttitle}
 					</a>
 			</td>
-			<td>${comm_nickname}</td>
+			<td>${dto.tname}</td>
 			<td>${dto.temail}</td>
 			<td><fmt:formatDate value="${dto.tregdate}" pattern="yyyy-MM-dd"/></td>
 			<td>${dto.treadcount}</td>

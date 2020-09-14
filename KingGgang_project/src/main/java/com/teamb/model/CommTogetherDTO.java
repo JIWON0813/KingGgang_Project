@@ -1,8 +1,8 @@
 package com.teamb.model;
 
-/*ÀÌ	   ¸§ : CommTogetherDTO.java
-°³  ¹ß   ÀÚ : ÃÖ ÀÎ ¾Æ
-¼³	   ¸í : Åõ°Ô´õDTO*/
+/*ï¿½ï¿½	   ï¿½ï¿½ : CommTogetherDTO.java
+ï¿½ï¿½  ï¿½ï¿½   ï¿½ï¿½ : ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
+ï¿½ï¿½	   ï¿½ï¿½ : ï¿½ï¿½ï¿½Ô´ï¿½DTO*/
 
 import java.util.Date;
 
@@ -16,6 +16,7 @@ public class CommTogetherDTO {
 	private String tcontent;
 	private Date tregdate;
 	private int treadcount;
+	
 	
 	public int getComm_memberNum() {
 		return comm_memberNum;
@@ -65,4 +66,6 @@ public class CommTogetherDTO {
 	public void setTreadcount(int treadcount) {
 		this.treadcount = treadcount;
 	}
+	
+	
 }

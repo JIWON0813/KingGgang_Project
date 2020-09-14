@@ -119,7 +119,8 @@ public class CommBoardController {
 
 		// 지은
 		req.setAttribute("look", dto.getLook());
-		
+		System.out.println("look값INSERT"+dto.getLook());;
+
 		String msg = null, url = null;
 		if (boardNum > 0) {
 			msg = "게시물이 등록되었습니다.";
@@ -175,7 +176,7 @@ public class CommBoardController {
 		
 		req.setAttribute("replyList", list);
 		req.setAttribute("check1", check1);
-	
+
 		return "comm/board/comm_content";
 	}
 	
@@ -358,8 +359,8 @@ public class CommBoardController {
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 
-		return "message";
-	}
+	      return "message";
+	   }
 
 	@RequestMapping(value = "/comm_deletePro.do")
 	public ModelAndView deletePro(@RequestParam int boardNum) {

@@ -24,7 +24,7 @@
 	<input type = "hidden" name= "price" value="${price}">
 	<input type = "hidden" name= "type" value="${type}">
 	<!-- m_no = member_Num(session 에서 받아옴) -->
-	<input type = "hidden" name= "m_no" value="1">
+	<input type = "hidden" name= "m_no" value="63">
 	<input type="submit" value="결제하기">
 </form>
 <a href="main.my">마이페이지로 가기</a><p>

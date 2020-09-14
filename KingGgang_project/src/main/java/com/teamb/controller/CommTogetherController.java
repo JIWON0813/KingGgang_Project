@@ -50,6 +50,8 @@ public class CommTogetherController {
 		HttpSession session = req.getSession();
 		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
 		dto.setComm_memberNum(comm_memberNum);
+		String tname = (String)session.getAttribute("comm_nickname");
+		dto.setTname(tname);
 		
 		int res = togetherMapper.writeTogether(dto);
 		String msg = null, url = null;
@@ -69,50 +71,10 @@ public class CommTogetherController {
 	
 	@RequestMapping("/comm_togetherList.do")
 	public String togetherList(HttpServletRequest req, HttpSession session, Comm_MemberDTO dto) {
-		int pageSize = 10;
 		
-		String pageNum = req.getParameter("pageNum");
-		if (pageNum==null){
-			pageNum = "1";
-		}
-		
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = 1+pageSize*(currentPage-1);
-		int endRow = 10+pageSize*(currentPage-1);
-		int count=0;
-		
-		List<CommTogetherDTO> list = togetherMapper.listTogether(startRow, endRow);
-		count = togetherMapper.getCountTogether();
-		if (endRow>count) endRow = count;
-		int startNum = count - ((currentPage-1) * pageSize); 
-		
-		req.setAttribute("listTogether", list);
-		req.setAttribute("startNum", startNum);
-		
-		if (count>0){
-			int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
-			int pageBlock = 3;
-			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
-			int endPage = startPage + pageBlock - 1;
-			if (endPage>pageCount) endPage = pageCount;
-			
-			req.setAttribute("count", count);
-			req.setAttribute("pageCount", pageCount);
-			req.setAttribute("pageBlock", pageBlock);
-			req.setAttribute("startPage", startPage);
-			req.setAttribute("endPage", endPage);
-		}	
-		
-		/*Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
-		int comm_memberNum = login.getComm_memberNum();*/
-		
-		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-		
-	    List<CommTogetherDTO> cmlist = togetherMapper.allListTogether();
-	    comm_memberMapper.comm_getMember(comm_memberNum);
-	    
-	    req.setAttribute("togetherList", cmlist);
-	    req.getAttribute("comm_nickname");
+	    int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+	    List<CommTogetherDTO> list = togetherMapper.allListTogether();
+	    req.setAttribute("togetherList", list);
 	    
 		return "comm/board/comm_togetherList";
 	}

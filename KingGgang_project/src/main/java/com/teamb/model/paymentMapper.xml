@@ -12,7 +12,7 @@
 		<update id="updatePayment" parameterType="PaymentDTO">
 		update payment set paydate=#{paydate}, valid=#{valid} where no = #{no}
 		</update>
-		
+		   
 		<select id="deletePayment" parameterType="int">
 		delete from(select * from payment order by rownum desc) where rownum = 1 and m_no = #{m_no} no = #{no}
 		</select>
@@ -28,7 +28,7 @@
 		<select id="getPaymentNo" parameterType="int" resultType="PaymentDTO">
 		select * from payment where no = #{no}
 		</select>
-		
+		  
 		<select id="getAllPayment" parameterType="int" resultType="PaymentDTO">
 		select * from payment where valid = #{valid}
 		</select>
@@ -66,6 +66,7 @@
 		<select id="getpayMember" parameterType="int" resultType="memberDTO">
  		select * from member where memberNum=#{m_no}
  		</select>
+
  		
  		
  		<!-- admin 결제목록 (김지원) -->
@@ -75,6 +76,7 @@
  		</select>
  		
  		
+
 		</mapper>
 
 

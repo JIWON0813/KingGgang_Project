@@ -63,7 +63,6 @@ public class LoginController {
 	             MemberDTO comm_birth = loginMapper.getMemberBirth(dto.getId());
 	             	session.setAttribute("birth", comm_birth.getAllBirth());
 	            
-
 	    	  session.setAttribute("mbId", dto.getId());
 	    	  session.setAttribute("upLoadPath", upLoadPath);
 	            if(dto.getId().equals("admin")) {

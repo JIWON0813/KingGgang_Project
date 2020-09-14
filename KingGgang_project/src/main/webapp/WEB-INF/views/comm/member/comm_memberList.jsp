@@ -59,4 +59,50 @@
 	</div>
 </div>
 </div>
+
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
+<script>
+/* 더보기기능 */
+   function loadNextPage() {
+      var list_length = $("#more_list img").length+1;
+      
+      var callLength = list_length;
+      var cnt = 3;
+      
+      var startRow = list_length;
+      var endRow = startRow+cnt;
+      var obj = {"startRow":startRow,
+               "endRow":endRow};
+   
+      $.ajax({
+          type:'post', 
+          url:"<c:url value="/ajaxList.do" />",
+          data:JSON.stringify(obj),
+          dataType: 'json', 
+          contentType: "application/json;", 
+          success : function(data){
+               for(var i=0; i<data.length; i++){
+                     $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><div class='full services_blog'><a href='comm_otherContent.do?boardNum="+data[i].num+"'>/* <img class='img-responsive' src='http://localhost:8080/img/"+data[i].file+"' alt='#' />
+                    		 						<p>data[i].name</p><p>data[i].nickname</p></a></div></div>");
+                  */
+             }
+                
+             },
+          error: function(errorThrown) { alert(errorThrown.statusText); }
+       });
+                 
+   
+}
+
+   $(function() {
+       $(document).on('click', function(e) {
+           if (e.target.id === 'word') {
+              $('#searchList').show();
+           } else {
+               $('#searchList').hide();
+           }
+
+       })
+   });
+</script>
+>>>>>>> branch 'jieun' of https://github.com/JIWON0813/KingGgang_Project.git

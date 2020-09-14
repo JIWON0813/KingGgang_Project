@@ -71,7 +71,7 @@ public class AdminController {
 				rdto = hotelmapper.getRoom(pdto.getP_no());
 				//RoomDateDTO roomdatedto = 
 				hdto = hotelmapper.getHotel(rdto.getH_id());
-			}
+			} 
 			else{
 				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
 				cardto = rentcarMapper.getRentcar(resdto.getR_id());
