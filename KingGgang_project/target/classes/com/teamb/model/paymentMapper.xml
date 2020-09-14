@@ -28,7 +28,7 @@
 		<select id="getPaymentNo" parameterType="int" resultType="PaymentDTO">
 		select * from payment where no = #{no}
 		</select>
-		
+		  
 		<select id="getAllPayment" parameterType="int" resultType="PaymentDTO">
 		select * from payment where valid = #{valid}
 		</select>
