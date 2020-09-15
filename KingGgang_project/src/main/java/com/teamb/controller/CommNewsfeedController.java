@@ -184,7 +184,7 @@ public class CommNewsfeedController {
       return "comm/comm_admin";
    }
    
-   @RequestMapping("/comm_noticewrite.do")
+/*   @RequestMapping("/comm_noticewrite.do")
    public String comm_noticewriteForm(HttpSession session) {
       String comm_nnickname = (String) session.getAttribute("comm_nickname");
       return "comm/comm_notice";
@@ -215,8 +215,8 @@ public class CommNewsfeedController {
    @RequestMapping("/comm_noticeList.do")
    public String comm_noticeList(HttpServletRequest req, HttpSession session, Comm_NoticeDTO dto) {
       String comm_mode = (String) session.getAttribute("mode");
- //     List<Comm_NoticeDTO> list = boardMapper.comm_noticeAllList();
- //     req.setAttribute("noticeList", list);
+      List<Comm_NoticeDTO> list = boardMapper.comm_noticeAllList();
+      req.setAttribute("noticeList", list);
       return "comm/noticeList";
    }
 
@@ -269,6 +269,6 @@ public class CommNewsfeedController {
       req.setAttribute("msg", msg);
       req.setAttribute("url", url);
       return "message";
-   }
+   }*/
  
 }
