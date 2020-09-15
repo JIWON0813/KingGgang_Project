@@ -51,7 +51,7 @@ function LikeAction() {
     		dataType: "json", 
     		contentType: "application/json", 
     		
-    		success: function(data) { alert("통신성공"); 
+    		success: function(data) { alert("통신성공");
     		
     				var result1 = data
     				alert(result1);
@@ -66,6 +66,12 @@ function LikeAction() {
     		}); 
     	} 
 	</script>
+	<style>
+		#btnLike,#btnMark{
+			border:0;
+			background-color:white;
+		}
+	</style>
    
 <footer class="footer-box">
 		<div class="container">
@@ -118,7 +124,7 @@ function LikeAction() {
          	</c:forEach>
          	</td>
 			<th align="right" width="10">
-				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()" style = "outline:none;" >
+				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
        				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" width="30" height="30">
    				</button>
    				<span id="likeCount">${likecount}</span>			
@@ -157,16 +163,19 @@ function LikeAction() {
 <div align="center">
 <form name="replyForm" action="comm_writeReplyPro.do" method="post">
   <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}">
-  <table width="400">
+  <table>
     <tr>
-    	<th>댓글 작성자</th>
-    	<td><!-- <input type="text" id="rwriter" name="rwriter"> -->${comm_nickname}</td>
+    	<th width="85">댓글 작성자</th>
+    	<td><input type="text" id="rwriter" name="rwriter"></td>
+    	
+    	<th width="85">비 밀 번 호</th>
+    	<td><input type="password" id="rpasswd" name="rpasswd"></td>
     </tr>
     
     <tr>
-   		 <th>댓글 내용</th>
+   		 <th width="85">댓글 내용</th>
    		 <td><input type="text" id="rcontent" name="rcontent"></td>
-   		 <td><input type="submit" value="작성"></td>
+   		 <td colspan=2 align="center"><input type="submit" value="작성"></td>
     </tr>
   </table>
 </form>

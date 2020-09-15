@@ -15,9 +15,11 @@
 		select * from together where togetherNum=#{togetherNum}
 	</select>
 
-	<select id="listTogether" resultType="CommTogetherDTO">
-		select * from together order by togetherNum desc
-	</select>
+	<!-- <select id="listTogether" parameterType="java.util.Map" resultType="CommTogetherDTO">
+		select * from (select rownum rn, A.* from
+		(select * from together order by togetherNum desc)A) 
+		where rn between #{startRow} and #{endRow}
+	</select> -->
 	
 	<select id="allListTogether" resultType="CommTogetherDTO">
 		select * from together order by togetherNum desc

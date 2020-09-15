@@ -71,10 +71,36 @@ public class CommTogetherController {
 	
 	@RequestMapping("/comm_togetherList.do")
 	public String togetherList(HttpServletRequest req, HttpSession session, Comm_MemberDTO dto) {
+		/*String pageNum = req.getParameter("pageNum");
+		if (pageNum==null){
+			pageNum = "1";
+		}
+		int pageSize = 5;
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = currentPage * pageSize - (pageSize-1);
+		int endRow = currentPage * pageSize;
+		int count = togetherMapper.getCountTogether();
+		if (endRow>count) endRow = count;		
+		List<CommTogetherDTO> list = togetherMapper.listTogether(startRow, endRow);
+		req.setAttribute("togetherList", list);
+		int startNum = count - ((currentPage-1) * pageSize); 
+		if (count>0){
+			int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
+			int pageBlock = 3;
+			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
+			int endPage = startPage + pageBlock - 1;
+			if (endPage>pageCount) endPage = pageCount;
+			req.setAttribute("count", count);
+			req.setAttribute("startNum", startNum);
+			req.setAttribute("pageCount", pageCount);
+			req.setAttribute("pageBlock", pageBlock);
+			req.setAttribute("startPage", startPage);
+			req.setAttribute("endPage", endPage);
+		}*/
 		
 	    int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-	    List<CommTogetherDTO> list = togetherMapper.allListTogether();
-	    req.setAttribute("togetherList", list);
+	    List<CommTogetherDTO> tlist = togetherMapper.allListTogether();
+	    req.setAttribute("togetherList", tlist);
 	    
 		return "comm/board/comm_togetherList";
 	}

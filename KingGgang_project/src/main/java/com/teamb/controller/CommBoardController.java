@@ -458,12 +458,13 @@ public class CommBoardController {
 		req.setAttribute("url", url);
 		return "message";
 	}
-
+	
 	@RequestMapping(value = "/reply_deletePro.do")
-
-	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum) {
-
-		int res = replyMapper.deleteReply(replyNum);
+	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum, String rpasswd) {
+		int res = replyMapper.deleteReply(replyNum,rpasswd);
+		
+		boolean isPasswd = replyMapper.isPassword(replyNum, rpasswd);
+		
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "댓글삭제성공";

@@ -20,12 +20,13 @@ public class CommTogetherMapper {
 		return sqlSession.selectOne("getTogether",togetherNum);    
 	}
 	
-	public List<CommTogetherDTO> listTogether(int startRow, int endRow) {
+	/*public List<CommTogetherDTO> listTogether(int startRow, int endRow) {
 		Map<String, Integer> map = new Hashtable<String, Integer>();
 		map.put("start" , startRow);
 		map.put("end", endRow);
-		return sqlSession.selectList("listTogether", map);
-	}
+		List<CommTogetherDTO> list = sqlSession.selectList("listTogether", map);
+		return list;
+	}*/
 	
 	public int getCountTogether() {
 		return sqlSession.selectOne("getCountTogether");
