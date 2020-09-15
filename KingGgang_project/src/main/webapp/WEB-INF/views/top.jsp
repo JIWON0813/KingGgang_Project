@@ -42,7 +42,7 @@
     <div id="preloader">
         <div class="loader">
             <img src="${pageContext.request.contextPath}/resources/main/images/loader.gif" alt="#" />
-        </div>
+        </div> 
     </div>
     <!-- end loader -->
     <!-- END LOADER -->
