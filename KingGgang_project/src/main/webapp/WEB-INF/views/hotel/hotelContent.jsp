@@ -6,6 +6,7 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 상세페이지(관리자모드) 
  -->
+ <%@ include file="../top.jsp"%>
 <script>
  function regiroom(){
 	 var regi = document.getElementById("regiroom");
@@ -114,3 +115,4 @@
 <div align="center">
 	<a href="hotelList.hotel">목록으로</a>
 </div>
+<%@ include file="../bottom.jsp"%>

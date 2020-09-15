@@ -6,6 +6,7 @@
 	개  발   자 : 김 지 원
 	설	   명 : 관리자모드 숙소목록페이지
  -->
+ <%@ include file="../top.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
 <div class="section layout_padding"></div>
@@ -72,3 +73,4 @@
 	</c:if>
 	<br> <a href="main.admin">관리자 목록으로 가기</a>
 </div>
+<%@ include file="../bottom.jsp"%>

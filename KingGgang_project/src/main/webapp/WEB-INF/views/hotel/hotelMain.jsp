@@ -8,7 +8,7 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 예약 메인페이지
  -->
-
+<%@ include file="../top.jsp"%>
    
 <div class="subject" align="center">
 	<h1>다양한 종류의 숙소</h1>
@@ -90,3 +90,4 @@
 		</c:if>
 	</c:if>
 </div>
+<%@ include file="../bottom.jsp"%>
