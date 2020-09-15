@@ -188,7 +188,7 @@ public class CommBoardController {
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(dto.getComm_memberNum());
 		
-		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
+		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
 		int check1 =1;
 		
@@ -285,15 +285,23 @@ public class CommBoardController {
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(comm_memberNum);
 		
-		boolean check1 = true;
 		
-		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
-		if(likeCheck == null) {
+		
+		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
+		
+		boolean check1 = true;
+		for(CommLikeDTO check : likeCheck) {
+			if(check == null) {
 			check1 = true;
-		}else {
-			check1 = false;
+		}else{
+			if(check.getBoardNum() == boardNum) {
+				check1 = false;
+			}else {
+				check1 = true;
+			}
 		}
 		
+		}
 		System.out.println(check1);
 		
 		if(check1) {
@@ -494,16 +502,22 @@ public class CommBoardController {
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(dto.getComm_memberNum());
 		
-		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
+		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
-		int check1 =1;
-		
-		if(likeCheck == null) {
+		int check1 = 1;
+		for(CommLikeDTO check : likeCheck) {
+			if(check == null) {
 			check1 = 1;
-		}else {
-			check1 = 2;
+		}else{
+			if(check.getBoardNum() == boardNum) {
+				check1 = 2;
+			}else {
+				check1 = 1;
+			}
 		}
 		
+		}
+		System.out.println(check1);
 		int likeCount = likemapper.getLikeCount(boardNum);
 		req.setAttribute("likeCount", likeCount);
 		

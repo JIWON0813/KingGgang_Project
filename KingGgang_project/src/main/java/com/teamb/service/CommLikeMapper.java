@@ -16,8 +16,8 @@ public class CommLikeMapper {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public CommLikeDTO getCommLIke(CommLikeDTO cdto) {
-		return sqlSession.selectOne("getLikeNum", cdto);
+	public List <CommLikeDTO> getCommLike(CommLikeDTO cdto) {
+		return sqlSession.selectList("getLikeNum", cdto);
 	}
 	
 	public int insertLike(CommLikeDTO cdto) {

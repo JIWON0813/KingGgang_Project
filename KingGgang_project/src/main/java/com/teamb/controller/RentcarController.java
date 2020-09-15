@@ -23,6 +23,7 @@ import com.teamb.model.MemberDTO;
 import com.teamb.model.RentcarDTO;
 import com.teamb.model.Rentcar_ResDTO;
 import com.teamb.service.MemberMapper;
+import com.teamb.service.PaymentMapper;
 import com.teamb.service.RentcarMapper;
 
 /*
@@ -39,6 +40,9 @@ public class RentcarController {
 	
 	@Autowired
 	private MemberMapper memberMapper;
+	
+	@Autowired
+	private PaymentMapper paymentMapper;
 	
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
@@ -369,7 +373,7 @@ public class RentcarController {
 
 		
 		List<Rentcar_ResDTO> resCheck = rentcarMapper.checkAlreadyReservation(dto);
-	
+		//결제 원세호
 		String member_id =  req.getParameter("member_id");
 
 		System.out.println(member_id);
@@ -386,15 +390,15 @@ public class RentcarController {
 			int res_id = rentcarMapper.getRes_id(member_id);
 			MemberDTO mdto = memberMapper.getMemberId(member_id);
 			int memberNum = mdto.getMemberNum();
-			System.out.println(res_id);
+			MemberDTO mrdto =  paymentMapper.getpayMember(memberNum);
 			
 			
-
+			req.setAttribute("mrdto", mrdto);
 			req.setAttribute("res_id",res_id);
-			req.setAttribute("price", dto.getPrice());
+			req.setAttribute("totalPrice", dto.getPrice());
 			req.setAttribute("type", 2);
 			req.setAttribute("m_no", memberNum);
-			return "payment/payins";
+			return "payment/payins2";
 
 		}else{
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!";
