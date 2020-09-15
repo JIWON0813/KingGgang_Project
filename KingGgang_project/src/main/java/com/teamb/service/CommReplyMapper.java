@@ -1,8 +1,8 @@
 package com.teamb.service;
 
-	/*ÀÌ	   ¸§ : CommReplyMapper.java
-	°³  ¹ß   ÀÚ : ÃÖ ÀÎ ¾Æ
-	¼³	   ¸í : ¸ÞÀÎ ÆäÀÌÁö*/
+	/*ï¿½ï¿½	   ï¿½ï¿½ : CommReplyMapper.java
+	ï¿½ï¿½  ï¿½ï¿½   ï¿½ï¿½ : ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
+	ï¿½ï¿½	   ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 
 import java.util.List;
 
@@ -31,13 +31,23 @@ public class CommReplyMapper {
 		return sqlSession.insert("writeReply",dto);
 	}
 	
-	public int updateReply(CommReplyDTO dto) {
-		int res = sqlSession.update("updateReply",dto);
-		return res;
+	public boolean isPassword(int replyNum, String rpasswd) {
+		java.util.Map<String,String> map = new java.util.Hashtable<>();
+		map.put("rpasswd", rpasswd);
+		CommReplyDTO dto = sqlSession.selectOne("isPassword",map);
+		if(rpasswd == null) {
+			return false;
+		}
+		return true;
 	}
 	
-	public int deleteReply(int replyNum) {	
-		int res = sqlSession.insert("deleteReply",replyNum);
-		return res;
+	public int deleteReply(int replyNum, String rpasswd) {	
+		boolean isPass = isPassword(replyNum, rpasswd);
+		if(isPass) {
+			int res = sqlSession.insert("deleteReply");
+			return res;
+		}else {
+		return -1;
+		}
 	}
 }

@@ -31,7 +31,7 @@
 		insert into commboard values(#{comm_memberNum},commboard_num.nextval, #{file_name}, #{file_size}, 
 		#{content},0,0,#{look}) 
 		<selectKey keyProperty="boardNum" resultType="int">
-		SELECT commboard_num.CURRVAL AS boardNum FROM DUAL
+			SELECT commboard_num.CURRVAL AS boardNum FROM DUAL
 		</selectKey>
 	</insert>
 	

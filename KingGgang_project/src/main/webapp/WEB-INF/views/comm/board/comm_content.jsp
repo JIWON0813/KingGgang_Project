@@ -8,17 +8,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
-
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+<<<<<<< HEAD
 <style>
       #btnLike,#btnMark{
          border:0;
          background-color:white;
       }
    </style>
+=======
+>>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
 <script>
-
+//좋아요
 function LikeAction() {
 	
     	var obj = {"boardNum" : $('#btnLike').attr('name')}
@@ -47,6 +48,41 @@ function LikeAction() {
     	
    </script>
    
+   <script>
+	//북마크
+	function marklist() {
+	
+    	var obj = {"boardNum" : $('#btnMark').attr('name')}
+     
+    	$.ajax({ url: "<c:url value="/bookmark" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공");
+    		
+    				var result1 = data
+    				alert(result1);
+    				if(result1.wstatus == 2){
+                       $('img#mark_img').attr('src', './resources/img/box.png');
+                    } else {
+                       $('img#mark_img').attr('src', './resources/img/heartbox.png');
+                    	}
+    				}, 
+    				
+    		error: function(errorThrown) { alert(errorThrown.statusText); } 
+    		}); 
+    	} 
+	</script>
+	
+	<style>
+		#btnLike,#btnMark{
+			border:0;
+			background-color:white;
+		}
+	</style>
+   
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -54,7 +90,7 @@ function LikeAction() {
 					<div class="row">
 						<div class="col-sm-6 col-md-6 col-lg-3">
 							<div class="full">
-								<h3>글</h3>
+								<h3><img src="${pageContext.request.contextPath}/resources/img/낑깡logo.png" width="100" height="100">글</h3>
 							</div>
 						</div>
 					</div>
@@ -91,27 +127,32 @@ function LikeAction() {
 		</tr>
 	
 		<tr height="30">
-			<th align="center">태그</th>
-			<td>
+			<th align="center" width="40">태그</th>
+			<td colspan="2">
 			<c:forEach var="tag" items="${tag}">
                   <a href="searchTag?tagId=${tag.tagId}&tagName=${tag.tagName}" style="color : blue;">#${tag.tagName} </a>
          	</c:forEach>
          	</td>
 			<th align="right" width="10">
+<<<<<<< HEAD
 				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()" >
        			<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" height="50px" width="50px">
+=======
+				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
+       				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" width="30" height="30">
+>>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
    				</button>
    				<span id="likeCount">${likeCount}</span>			
    			</th>
-			<td width="10">
-				<a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}">
-					<img src="${pageContext.request.contextPath}/resources/img/orange.png" width="30" height="30">
-				</a>
-			</td>
 		</tr>
 		<tr>
-			<th align="center">공개범위</th>
-			<td colspan="4">${getBoard.look}</td>
+			<th align="center" width="40">공개범위</th>
+			<td colspan="2">${getBoard.look}</td>
+			<td  align="right" width="10">
+				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
+					<img src="${ check2 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
+				</button>
+			</td>
 		</tr>
 		<tr>
 			<td align="center" colspan="4">
@@ -130,22 +171,26 @@ function LikeAction() {
 			</td>
 		</tr>
 	</table>
+<!-- 	</form> -->
 </div>
 <br>
 <hr color="pink">
 <div align="center">
 <form name="replyForm" action="comm_writeReplyPro.do" method="post">
   <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}">
-  <table width="400">
+  <table>
     <tr>
-    	<th>댓글 작성자</th>
+    	<th width="85">댓글 작성자</th>
     	<td><input type="text" id="rwriter" name="rwriter"></td>
+    	
+    	<th width="85">비 밀 번 호</th>
+    	<td><input type="password" id="rpasswd" name="rpasswd"></td>
     </tr>
     
     <tr>
-   		 <th>댓글 내용</th>
+   		 <th width="85">댓글 내용</th>
    		 <td><input type="text" id="rcontent" name="rcontent"></td>
-   		 <td><input type="submit" value="작성"></td>
+   		 <td colspan=2 align="center"><input type="submit" value="작성"></td>
     </tr>
   </table>
 </form>
@@ -155,7 +200,7 @@ function LikeAction() {
 
 <!-- 댓글 -->
 <div align="center">
-<form name="f" action="reply_updatePro.do" method="post" onsubmit="return check()">
+<form name="f" method="post" onsubmit="return check()">
  <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
  <table>
   <tr>
@@ -165,16 +210,15 @@ function LikeAction() {
     <c:forEach items="${replyList}" var="replyList">
       <tr>
       	<td>
-        	 작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성일 : <fmt:formatDate value="${replyList.rregdate}" pattern="yyyy-MM-dd"/>
+        	 작성자 : ${replyList.rwriter}<%-- ${replyList.rwriter} --%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성일 : <fmt:formatDate value="${replyList.rregdate}" pattern="yyyy-MM-dd"/>
         </td>
        </tr>
        <tr>
         <td>	 
         	 내 용 : ${replyList.rcontent}
       	</td>
-        <td>
-        	<input type="submit" value="댓수정">
-      		<input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
+        <td> 
+      		<input type="button" value="댓글 삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
       	</td>
       	<tr>
       		<td>
@@ -186,33 +230,4 @@ function LikeAction() {
   </table>
  </form>		
 </div>
-<!-- <div>
-<input type="text" id="comment" name="content" placeholder="댓글 입력">
-<button onClick="make_comment({blog.id})" type="submit">작성</button>
-</div> -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-<!-- <script>
-/*댓글기능*/
-function make_comment(blog_id) {
-	var body = $("#comment").val();
-	&.ajax({
-		type: "POST",
-		url: "/comment/create",
-		date : {
-			'blog_id' : blog_id,
-			'body' : body,
-			'csrfmiddlewaretoken' : '{{csrf_token}}',
-		},
-		dataType: "json",
-		success: function(response) {
-			console.log(response.message);
-			$("#comment_list").append("<p>"+response.body+"</p><hr>")
-			$("#comment").val('')
-		},
-		error:funtion(request,status,error) {
-			alert(error);
-		},
-	});
-}
-</script>
- -->

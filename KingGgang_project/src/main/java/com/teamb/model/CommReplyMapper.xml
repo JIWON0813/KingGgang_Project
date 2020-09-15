@@ -21,7 +21,7 @@
 	
 	<insert id="writeReply" parameterType="CommReplyDTO">
 	    insert into reply values(#{boardNum}, reply_num.nextval,
-	    #{rcontent}, #{rwriter}, sysdate)
+	    #{rcontent}, sysdate, #{rpasswd})
 	</insert>
 	
 	<select id="deleteReply" parameterType="int" resultType="int">
@@ -31,5 +31,9 @@
 	<update id="updateReply" parameterType="CommReplyDTO">
 		update reply set content=#{content} where replyNum=#{replyNum}
 	</update>
+	
+	<select id="isPassword" parameterType="java.util.Map" resultType="CommReplyDTO">
+		select reply where rpasswd=#{rpasswd}
+	</select>
 
 </mapper>

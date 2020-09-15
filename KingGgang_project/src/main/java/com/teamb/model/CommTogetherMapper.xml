@@ -15,8 +15,10 @@
 		select * from together where togetherNum=#{togetherNum}
 	</select>
 
-	<!-- <select id="listTogether" resultType="CommTogetherDTO">
-		select * from together where comm_memberNum=#{comm_memberNum}
+	<!-- <select id="listTogether" parameterType="java.util.Map" resultType="CommTogetherDTO">
+		select * from (select rownum rn, A.* from
+		(select * from together order by togetherNum desc)A) 
+		where rn between #{startRow} and #{endRow}
 	</select> -->
 	
 	<select id="allListTogether" resultType="CommTogetherDTO">
@@ -25,7 +27,7 @@
  
  	<insert id="writeTogether" parameterType="CommTogetherDTO">
 	    insert into together values(#{comm_memberNum}, together_num.nextval,
-	    #{ttitle}, #{temail}, #{tcontent}, sysdate, 0)
+	    #{ttitle}, #{temail}, #{tcontent}, sysdate, 0, #{tname})
 	</insert>
 	
 	<select id="deleteTogether" parameterType="int" resultType="int">
@@ -43,5 +45,9 @@
 	<update id="plustReadcount" parameterType="int">
 		update together set treadcount=treadcount+1 where togetherNum=#{togetherNum}
 	</update>
+	
+	<select id="getCountTogether" resultType="Integer">
+		select count(*) from together
+	</select>
 	
  </mapper>

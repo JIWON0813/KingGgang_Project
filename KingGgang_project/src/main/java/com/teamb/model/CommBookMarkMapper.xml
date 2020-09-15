@@ -5,12 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.teamb.model.Comm">
 
-	<insert id="markPro" parameterType="CommBookmarkDTO">
-     	insert into bookmark values(#{boardNum},#{comm_memberNum},bookmark_num.nextval)
-    </insert>
+	<insert id="insertmark" parameterType="CommBookmarkDTO">
+		insert into bookmark values(#{boardNum},#{comm_memberNum},bookmark_num.nextval)
+	</insert>
+
+	<select id="markPro" parameterType="CommBookmarkDTO" resultType="CommBookmarkDTO">
+     	select * from bookmark where comm_memberNum=#{comm_memberNum} and boardNum=#{boardNum}
+    </select>
     
     <select id="listMark" resultType="CommBookmarkDTO">
 		select * from bookmark where comm_memberNum=#{comm_memberNum}
+	</select>
+	
+	<select id ="deleteMark"  parameterType="CommBookmarkDTO">
+		delete from bookmark where comm_memberNum = #{comm_memberNum} and boardNum = #{boardNum}
 	</select>
 
 	<select id="all_deleteBookmark" parameterType="int" resultType="int">

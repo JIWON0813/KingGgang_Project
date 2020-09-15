@@ -52,8 +52,6 @@ public class CommboardDTO {
 		this.content = content;
 	}
 
-	
-
 	public int getReadCount() {
 		return readCount;
 	}
