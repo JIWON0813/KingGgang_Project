@@ -12,8 +12,11 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <style>
-    button:focus { outline:none; }
-</style>
+      #btnLike,#btnMark{
+         border:0;
+         background-color:white;
+      }
+   </style>
 <script>
 
 function LikeAction() {
@@ -95,10 +98,10 @@ function LikeAction() {
          	</c:forEach>
          	</td>
 			<th align="right" width="10">
-				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()" style = "outline:none;" >
+				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()" >
        			<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" height="50px" width="50px">
    				</button>
-   				<span id="likeCount">${likecount}</span>			
+   				<span id="likeCount">${likeCount}</span>			
    			</th>
 			<td width="10">
 				<a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}">
