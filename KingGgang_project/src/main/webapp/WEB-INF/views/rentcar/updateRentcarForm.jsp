@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
+<%@ include file="/WEB-INF/views/top.jsp"%>
+<br><br><br><br>
 	<!--  
 	이	   름 : updateRentcarForm.jsp
 	개  발   자 : 정 우 철
@@ -173,3 +174,4 @@
   			</table>
 		</form>
 	</body>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

@@ -383,7 +383,7 @@ a.join_bt:focus {
 
 .site_information ul li {
     float: left;
-    width: 33.33%;
+    width: 25%;
     display: flex;
     justify-content: center;
     font-size: 17px;

@@ -56,13 +56,12 @@ public class MemberController {
 	public String deletePro(HttpServletRequest req, int memberNum) throws Exception {
 
 		MemberDTO dto = memberMapper.getMember(memberNum);
-		// memberMapper.adminDeleteCoupon(id);
 		int res = memberMapper.deleteMember(memberNum);
 		String msg = null, url = null;
 		if (res > 0) {
 			if (dto.getProfile_name() == null) {
 				url = "memberList.mem";
-				msg = "delete successed";
+				msg = "삭제 완료";
 			} else {
 				String filename = dto.getProfile_name();
 				File file = new File(upLoadPath, filename);

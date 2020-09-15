@@ -20,40 +20,33 @@ public class MyMapper {
 	@Autowired	
 	private SqlSession sqlSession;
 	
-	public int deleteMember(String id,String password,int memberNum) {
-		boolean ckPw = checkPassword(id,password,memberNum);
-			if(ckPw) {
-				int res = sqlSession.delete("deleteMember",memberNum);
-				return res;
+	public int deleteMember(int memberNum) {
+		int res = sqlSession.delete("deleteMember",memberNum);
+			return res;
+	}
+	
+
+	public int checkPassword(String id, String passwd) {
+		String dbPass = sqlSession.selectOne("checkPw", id);
+		if (dbPass != null) { 
+			if (dbPass.equals(passwd)) {
+				return MemberDTO.OK;
+			} else {
+				return MemberDTO.NOT_PW;
 			}
-			return -1;
-	}
-	
-	public boolean checkPassword(String id, String password,int memberNum) {
-		MemberDTO dto = getMember(memberNum);
-		if(dto.getPasswd().equals(password)) {
-			return true;
+		} else {
+			return MemberDTO.NOT_ID;
 		}
-		return false;
 	}
 	
-	public MemberDTO getMemberNo(String id) {
+	public MemberDTO getMember(String id) {
 		MemberDTO dto = sqlSession.selectOne("getMemberid",id);
 		return dto;
 	}
 	
-	public MemberDTO getMember(int memberNum) {
-		MemberDTO dto = sqlSession.selectOne("getMember",memberNum);
-		return dto;
-	}
-	
 	public int updateMember(MemberDTO dto) {
-		boolean isPass = checkPassword(dto.getId(),dto.getPasswd(),dto.getMemberNum());
-		if(isPass) {
-			int res = sqlSession.update("updateMember", dto);
-			return res;
-		}
-		return -1;
+		int res = sqlSession.update("updateMemberMy", dto);
+		return res;
 	}
 	
 	

@@ -62,11 +62,11 @@
 				<tr>
 					<td align="right" width="30%">아이디</td>&nbsp;
 					<td width="40%">
-							<c:if test="${empty id }">
+							<c:if test="${empty param.id }">
 							<input type="text" name="id" placeholder="아이디를 입력하세요."><input type="checkbox" name="useCookie">아이디저장<br>
 							</c:if>
-							<c:if test="${not empty id}">
-							<input type="text" name="id" value="${id}"><input type="checkbox" name="useCookie">아이디저장<br>
+							<c:if test="${not empty param.id}">
+							<input type="text" name="id" value="${param.id}"><input type="checkbox" name="useCookie">아이디저장<br>
 							</c:if>
 				</tr>
 				<tr>

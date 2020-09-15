@@ -19,10 +19,8 @@ function wishlist() {
     		dataType: "json", 
     		contentType: "application/json", 
     		
-    		success: function(data) { alert("통신성공"); 
-    		
+    		success: function(data) { 		
     				var result1 = data
-    				alert(result1);
     				if(result1.wstatus == 2){
                        $('img#wishImg').attr('src', './resources/img/empty_heart.jpg');
                     } else {
@@ -107,7 +105,7 @@ ${dto.content}
 		<h3 align="center">방 목록</h3>
 		<c:forEach var="roomdto" items="${roomList}">
 			<tr>
-				<td width="auto"><img src="http://localhost:9211/img/${roomdto.filename}" width="150" height="150">
+				<td width="auto"><img src="http://localhost:8080/img/${roomdto.filename}" width="150" height="150">
 				<td width="10%">이름</td>
 				<td width="15%">${roomdto.name}</td>
 				<td width="25%">최대수용인원</td>
