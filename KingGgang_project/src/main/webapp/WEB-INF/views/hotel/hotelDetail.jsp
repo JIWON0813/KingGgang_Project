@@ -11,7 +11,7 @@
 
 function wishlist() {
 	
-    	var obj = {"no" : $('#btnLike').attr('name')}
+    	var obj = {"no" : $('#btnWish').attr('name')}
      
     	$.ajax({ url: "<c:url value="/insDelwish" />", 
     		type: "POST", 
@@ -75,7 +75,7 @@ function wishlist() {
 		<tr>
 		<td><p>관심리스트</p></td>
 		<td colspan="5">
-		<button type="button" id="btnLike" name="${dto.no}" onclick="wishlist()">
+		<button type="button" id="btnWish" name="${dto.no}" onclick="wishlist()">
        			<img src="${ check1 == 1 ? './resources/img/empty_heart.jpg' : './resources/img/heart.jpg' }" id="wishImg" height="50px" width="50px">
    		</button>
 		</td>

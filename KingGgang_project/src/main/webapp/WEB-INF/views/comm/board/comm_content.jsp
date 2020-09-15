@@ -9,6 +9,71 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+<script>
+//좋아요
+function LikeAction() {
+	
+    	var obj = {"boardNum" : $('#btnLike').attr('name')}
+     
+    	$.ajax({ url: "<c:url value="/insDelLike" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공"); 
+    		
+    				var result1 = data
+    				alert(result1);
+    				
+    				if(result1.wstatus == 2){
+                       $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
+                    } else {
+                    	$('img#likeImg').attr('src', './resources/img/heart.png');
+                    	}
+    				$('#likeCount').text(result1.likeCount)
+    				}, 
+    		error: function(errorThrown) { alert(errorThrown.statusText); } 
+    		}); 
+    	} 
+    	
+   </script>
+   
+   <script>
+	//북마크
+	function marklist() {
+	
+    	var obj = {"boardNum" : $('#btnMark').attr('name')}
+     
+    	$.ajax({ url: "<c:url value="/bookmark" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공");
+    		
+    				var result1 = data
+    				alert(result1);
+    				if(result1.wstatus == 2){
+                       $('img#mark_img').attr('src', './resources/img/box.png');
+                    } else {
+                       $('img#mark_img').attr('src', './resources/img/heartbox.png');
+                    	}
+    				}, 
+    				
+    		error: function(errorThrown) { alert(errorThrown.statusText); } 
+    		}); 
+    	} 
+	</script>
+	
+	<style>
+		#btnLike,#btnMark{
+			border:0;
+			background-color:white;
+		}
+	</style>
+   
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -26,11 +91,6 @@
 </footer>
 
 <div align="center">
-<%-- <form action="insert.mark" method="post">
-	<input type = "hidden" name= "comm_memberNum" value="${comm_memberNum}">
-	<input type = "hidden" name= "type" value="${type}">
-	<input type = "hidden" name= "boardNum" value="${boardNum}"> --%>
-	
 	<table width="400">
 	<tr>
 		<td align="right" colspan="4">
@@ -64,18 +124,19 @@
                   <a href="searchTag?tagId=${tag.tagId}&tagName=${tag.tagName}" style="color : blue;">#${tag.tagName} </a>
          	</c:forEach>
          	</td>
-			<td align="center" width="10">
-					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
-			</td>
+			<th align="right" width="10">
+				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
+       				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" width="30" height="30">
+   				</button>
+   				<span id="likeCount">${likecount}</span>			
+   			</th>
 		</tr>
 		<tr>
 			<th align="center" width="40">공개범위</th>
 			<td colspan="2">${getBoard.look}</td>
 			<td  align="right" width="10">
 				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
-				<%-- <a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"> --%>
-					<img src="${ check1 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
-				<!-- </a> -->
+					<img src="${ check2 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
 				</button>
 			</td>
 		</tr>
@@ -103,16 +164,19 @@
 <div align="center">
 <form name="replyForm" action="comm_writeReplyPro.do" method="post">
   <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}">
-  <table width="400">
+  <table>
     <tr>
-    	<th>댓글 작성자</th>
-    	<td><!-- <input type="text" id="rwriter" name="rwriter"> -->${comm_nickname}</td>
+    	<th width="85">댓글 작성자</th>
+    	<td><input type="text" id="rwriter" name="rwriter"></td>
+    	
+    	<th width="85">비 밀 번 호</th>
+    	<td><input type="password" id="rpasswd" name="rpasswd"></td>
     </tr>
     
     <tr>
-   		 <th>댓글 내용</th>
+   		 <th width="85">댓글 내용</th>
    		 <td><input type="text" id="rcontent" name="rcontent"></td>
-   		 <td><input type="submit" value="작성"></td>
+   		 <td colspan=2 align="center"><input type="submit" value="작성"></td>
     </tr>
   </table>
 </form>
@@ -122,7 +186,7 @@
 
 <!-- 댓글 -->
 <div align="center">
-<form name="f" action="reply_updateForm.do" method="post" onsubmit="return check()">
+<form name="f" method="post" onsubmit="return check()">
  <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
  <table>
   <tr>
@@ -140,10 +204,7 @@
         	 내 용 : ${replyList.rcontent}
       	</td>
         <td> 
-         <c:if test="${loginNum == memberNum}">
-        	<!-- <input type="submit" value="댓글 수정"> -->
       		<input type="button" value="댓글 삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
-        </c:if>
       	</td>
       	<tr>
       		<td>
@@ -156,30 +217,3 @@
  </form>		
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-<script>
-
-function marklist() {
-	
-    	var obj = {"boardNum" : $('#btnMark').attr('name')}
-     
-    	$.ajax({ url: "<c:url value="/bookmark" />", 
-    		type: "POST", 
-    		data: JSON.stringify(obj), 
-    		dataType: "json", 
-    		contentType: "application/json", 
-    		
-    		success: function(data) { alert("통신성공"); 
-    		
-    				var result1 = data
-    				alert(result1);
-    				if(result1.wstatus == 2){
-                       $('img#mark_img').attr('src', './resources/img/box.png');
-                    } else {
-                       $('img#mark_img').attr('src', './resources/img/heartbox.png');
-                    	}
-    				}, 
-    				
-    		error: function(errorThrown) { alert(errorThrown.statusText); } 
-    		}); 
-    	} 
-</script>

@@ -98,10 +98,7 @@ public class CommNewsfeedController {
       List<CommboardDTO> list = null;
       String look=(String) session.getAttribute("look");
       int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-      System.out.println("if문 밖 comm_memberNum"+comm_memberNum);
-      System.out.println("if문 밖 look"+look);
      if(look!=null){
-    	// look="%"+look+"%";
          if(look.equals("전체공개")){
             list = newsfeedMapper.newfeedList(startRow, endRow, look);
          }

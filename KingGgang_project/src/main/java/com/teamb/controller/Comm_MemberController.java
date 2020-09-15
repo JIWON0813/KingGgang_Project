@@ -135,7 +135,9 @@ public class Comm_MemberController {
 	public String comminsertMemberForm(HttpServletRequest req,HttpSession session){
 		int memberNum = (Integer)session.getAttribute("memberNum");
 		String name = (String)session.getAttribute("name");
-				
+		
+		List<Comm_MemberDTO> list = memberMapper.comm_memberList();
+		req.setAttribute("comm_memberList", list);
 		return "comm/member/comm_insertMember";
 	}
 	
@@ -244,6 +246,7 @@ public class Comm_MemberController {
 		
 		session.setAttribute("comm_memberList", list);
 		
+	
 		return "comm/member/comm_memberList";
 	}
 	
@@ -309,8 +312,8 @@ public class Comm_MemberController {
 		return "message";
 	}
 	
+	
 	@RequestMapping("/comm_member_delete.do")
-
 	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum){
 				
 		int res = memberMapper.comm_deleteMember(comm_memberNum);

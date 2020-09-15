@@ -1,7 +1,7 @@
 <%@ include file="../top.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="section layout_padding"></div>
-<%-- <c:if test="${mbId=='admin' }"> --%>
+<c:if test="${mbId=='admin' }">
 <table align="center" width="75%" height="100%">
 	<tr>
 		<td valign="top" align="center" width="30%">
@@ -13,12 +13,12 @@
 			<ul><a href="payList.admin">결제 목록으로 가기(어드민)</a></ul><br>
 		</td>
 		<td>
-<%-- </c:if> --%>
+</c:if>
 	
 	
 	<!-- </tr>
 </table> -->
-<%-- <!-- 
+<!-- 
 	이	   름 : adminMain.jsp
 	개  발   자 : 김 지 원
 	설	   명 : 관리자모드 메인 페이지
@@ -36,5 +36,5 @@
 	alert("관리자만 접근 가능합니다.");
 	history.back();
 </script>
-</c:if> --%>
-<%-- <%@ include file="../bottom.jsp"%> --%>
+</c:if>
+<%@ include file="../bottom.jsp"%>

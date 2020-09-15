@@ -97,30 +97,8 @@
 			   return false;
 		   }  
 	   }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-      	form.submit()
-	   }
-=======
-=======
->>>>>>> branch 'jieun' of https://github.com/JIWON0813/KingGgang_Project.git
-
 	  form.submit() 
  	   }
-<<<<<<< HEAD
-      
->>>>>>> branch 'seho' of https://github.com/JIWON0813/KingGgang_Project.git
-=======
-
-<<<<<<< HEAD
-=======
-      	form.submit()
-	   }
->>>>>>> branch 'jieun' of https://github.com/JIWON0813/KingGgang_Project.git
->>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
-
-
 	   function check(re, what, message) {
        if(re.test(what.value)) {
            return true;
@@ -264,4 +242,15 @@
                 </div> 
             </div>
     </form>
+<c:choose>
+	<c:when test="${mbId=='admin' }">
 <%@ include file="../adminbottom.jsp"%>
+	</c:when>
+	<c:otherwise>
+<%@ include file="../../bottom.jsp"%>
+	</c:otherwise>
+</c:choose>
+    
+    
+    
+    
