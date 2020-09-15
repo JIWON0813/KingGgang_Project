@@ -66,6 +66,7 @@ function LikeAction() {
     		}); 
     	} 
 	</script>
+	
 	<style>
 		#btnLike,#btnMark{
 			border:0;
@@ -135,7 +136,7 @@ function LikeAction() {
 			<td colspan="2">${getBoard.look}</td>
 			<td  align="right" width="10">
 				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
-					<img src="${ check1 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
+					<img src="${ check2 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
 				</button>
 			</td>
 		</tr>
