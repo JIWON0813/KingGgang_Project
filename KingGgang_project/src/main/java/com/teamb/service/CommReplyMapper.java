@@ -31,23 +31,20 @@ public class CommReplyMapper {
 		return sqlSession.insert("writeReply",dto);
 	}
 	
-	public boolean isPassword(int replyNum, String rpasswd) {
-		java.util.Map<String,String> map = new java.util.Hashtable<>();
-		map.put("rpasswd", rpasswd);
-		CommReplyDTO dto = sqlSession.selectOne("isPassword",map);
-		if(rpasswd == null) {
-			return false;
-		}
-		return true;
+	 public boolean isPassword(int replyNum, String rpasswd) {
+	      CommReplyDTO dto = getReply(replyNum);
+	   if(dto.getRpasswd().equals(rpasswd)) {
+	      return true;
+	   }
+	   return false;
 	}
-	
+	 
 	public int deleteReply(int replyNum, String rpasswd) {	
 		boolean isPass = isPassword(replyNum, rpasswd);
 		if(isPass) {
-			int res = sqlSession.insert("deleteReply");
+			int res = sqlSession.delete("deleteReply", replyNum);
 			return res;
-		}else {
-		return -1;
 		}
+		return -1;
 	}
 }
