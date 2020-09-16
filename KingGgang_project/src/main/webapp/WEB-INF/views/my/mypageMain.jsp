@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style2.css">
 <title>회원 마이 페이지</title>
 </head>
 <body>
