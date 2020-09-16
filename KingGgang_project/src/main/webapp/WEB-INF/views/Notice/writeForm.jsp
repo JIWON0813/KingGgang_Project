@@ -33,6 +33,12 @@
 		return true
 	}
 </script>
+<c:if test="${empty mbId}">		
+		<script type="text/javascript">
+			alert("로그인을 해주세요")
+			location.href="login.log";
+		</script>
+</c:if>	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
 <%@ include file="../top.jsp" %>

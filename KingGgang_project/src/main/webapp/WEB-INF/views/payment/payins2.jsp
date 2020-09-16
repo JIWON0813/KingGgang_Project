@@ -30,9 +30,6 @@
     	document.n.submit()
     }
     
-  	function failpage(){
-  		document.f.submit()
-  	}
     
     $(function(){
         var IMP = window.IMP; // 생략가능
@@ -47,7 +44,7 @@
             amount : "${totalPrice}",
             buyer_email : "${mrdto.email}",
             buyer_name : "${mrdto.name}",
-            buyer_tel : "${mrdto.hp1}",
+            buyer_tel : "${mrdto.hp1} - ${mrdto.hp2} - ${mrdto.hp3}",
             buyer_addr : "aa",
             buyer_postcode : '000-000',
             //m_redirect_url : 'http://www.naver.com'
@@ -88,13 +85,16 @@
     </script>
     
  	<form name="n" action="complete.pay" method="post">
- 	<input type="hidden" name="no" value="${no}">
+ 	<input type="hidden" name="totalPrice" value="${totalPrice}">
+ 	<input type="hidden" name="type" value="${type}">
  	<input type="hidden" name="m_no" value="${m_no}">
- 	</form>
- 	
- 	<form name="f" action="delete.pay" method="post">
- 	<input type="hidden" name="m_no" value="${m_no}">
- 	<input type="hidden" name="no" value="${no}">
+ 	<input type="hidden" name="buyer_name" value="${mrdto.name}">
+ 	<c:if test = "${type==1}">
+ 	<input type="hidden" name="id" value="${id}">
+ 	</c:if>
+ 	<c:if test = "${type==2}">
+ 	<input type="hidden" name="res_id" value="${res_id}">
+ 	</c:if>
  	</form>
  	
 </body>

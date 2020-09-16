@@ -78,6 +78,7 @@ function LikeAction() {
     				var result1 = data
     				
     				if(result1.wstatus == 2){
+    					alert("좋아요 취소");
                        $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
                        $('img#likeImg').attr('src', './resources/img/heart.PNG');

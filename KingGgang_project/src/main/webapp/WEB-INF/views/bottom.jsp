@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
     <!-- Start Footer -->
     <footer class="footer-box">
@@ -73,14 +74,47 @@
                             </div>
                         </div>
 					</div>
-                </div>
-			 </div>
-        </div>
-    </footer>
-    <!-- End Footer -->
-   <!-- test -->
+
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<div class="full">
+							<div class="footer_blog full white_fonts">
+								<h3>Newsletter</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+									sed do</p>
+								<div class="newsletter_form">
+									<form action="index.html">
+										<input type="email" placeholder="Your Email" name="#"
+											required>
+										<button>Submit</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<div class="full">
+							<div class="footer_blog full white_fonts">
+								<h3>Contact us</h3>
+								<ul class="full">
+									<li><img src=""><span>London 145<br>United
+											Kingdom
+									</span></li>
+									<li><img src=""><span>demo@gmail.com</span></li>
+									<li><img src=""><span>+12586954775</span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- End Footer -->
+<!-- test -->
 <a href="main.admin">관리자모드로 가기</a>
 <br>
+
 <a href="main.member">임시회원</a>
 <br><a href="Q_list.board">문의게시판 가기</a>
 <br><a href="list.notice">공지사항 보기</a>
@@ -94,7 +128,6 @@
 <br><a href="main.wish">관심리스트등록 페이지로 가기</a><p>
 <br><a href="main.pay">결제 페이지로 가기</a><p>
 <br><a href="payList.admin">결제 목록으로 가기(어드민)</a><p>
-
 <br><a href="commhome.comm">커뮤니티 페이지로 가기</a><p>
 <!-- test -->
     <div class="footer_bottom">
@@ -107,23 +140,37 @@
         </div>
     </div>
 
-    <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
 
-    <!-- ALL JS FILES -->
-    <script src="${pageContext.request.contextPath}/resources/main/js/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/main/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="${pageContext.request.contextPath}/resources/main/js/jquery.magnific-popup.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/main/js/jquery.pogo-slider.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/main/js/slider-index.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/main/js/smoothscroll.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/main/js/form-validator.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/main/js/contact-form-script.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/main/js/isotope.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/main/js/images-loded.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/main/js/custom.js"></script>
-	<script>
+<a href="#" id="scroll-to-top" class="hvr-radial-out"><i
+	class="fa fa-angle-up"></i></a>
+
+<!-- ALL JS FILES -->
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/popper.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
+<!-- ALL PLUGINS -->
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/jquery.magnific-popup.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/jquery.pogo-slider.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/slider-index.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/smoothscroll.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/form-validator.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/contact-form-script.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/isotope.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/images-loded.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/main/js/custom.js"></script>
+<script>
 	/* counter js */
 
 (function ($) {
@@ -224,6 +271,38 @@ jQuery(function ($) {
 	$this.countTo(options);
   }
 });
+<<<<<<< HEAD
+//날씨 api
+$.getJSON('http://api.openweathermap.org/data/2.5/weather?q=jeju&units=metric&appid=70393e52400da4753a885b68792731f4',
+		function(data) {
+			var $maxTemp = data.main.temp_max;
+			var $minTemp = data.main.temp_min;
+			var $cTemp = data.main.temp;
+			var $now = new Date($.now());
+			var $cDate = $now.getFullYear() + '년 '
+					+ ($now.getMonth() + 1) + '월 ' + $now.getDate()
+					+ '일';
+			var $wIcon = data.weather[0].icon;
+			var $wSpeed = data.wind.speed;
+			var $wDeg = data.wind.deg;
+			var $cFeels_like = data.main.feels_like;
+			var $cHumidity = data.main.humidity;
+			var $cWeather = data.weather[0].main;
+
+			$('.cweather').append($cWeather);
+			$('.chumidity').append($cHumidity + "%");
+			$('.clowtemp').append($minTemp + "ºC");
+			$('.ctemp').append($cTemp + "ºC");
+			$('.chightemp').append($maxTemp);
+			$('.cfeels_like').append($cFeels_like + "ºC");
+			$('.cdate').prepend($cDate);
+			$('.cicon').append('<img src="http://openweathermap.org/img/w/'+$wIcon+'.png", width="100", height="100"/>');
+			$('.wspeed').append($wSpeed);
+			$('.wdeg').append($wDeg);
+
+		});
+		//
+
 
 //날씨 api
 $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=jeju&units=metric&appid=70393e52400da4753a885b68792731f4',

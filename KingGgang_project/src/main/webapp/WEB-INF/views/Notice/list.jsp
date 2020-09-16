@@ -47,6 +47,7 @@
 				<a class="btn btn-default pull-right" href="write.notice">글쓰기</a>
 	</c:if>
 		<c:if test="${count>0}">
+		<ul>
 			<c:if test="${startPage > pageBlock}">
 				<li><a href="list.notice?pageNum=${startPage-1}">이전</a></li>	
 			</c:if>
@@ -56,6 +57,7 @@
 			<c:if test="${endPage<pageCount}">
 				<li><a href="list.notice?pageNum=${endPage+1}">다음</a></li>
 			</c:if>
+		</ul>
 		</c:if>
 	</div>
 	<div class="section layout_padding"></div>

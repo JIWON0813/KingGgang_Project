@@ -29,12 +29,8 @@ public class QuestionController
 	private QuestionMapper questMapper;
 	
 	@RequestMapping(value = "/Q_list.board")
-	public String Q_list(HttpServletRequest req)
+	public String Q_list(HttpServletRequest req,HttpSession session)
 	{	
-		HttpSession session = req.getSession();
-		
-		System.out.println("로그인된 사용자 id = " + session.getAttribute("m_id") + ", passwd = " +session.getAttribute("m_passwd"));
-		System.out.println("로그인된 관리자 id = " + session.getAttribute("a_id") + ", passwd = " +session.getAttribute("a_passwd"));
 		
 		String pageNum = req.getParameter("pageNum");
 		if (pageNum==null)
@@ -46,14 +42,10 @@ public class QuestionController
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = currentPage * pageSize - (pageSize-1);
 		int endRow = currentPage * pageSize;
-		
-		List<QuestionDTO> list = questMapper.listQuest(startRow, endRow);
-		
 		int count = questMapper.getCount();
-
 		if (endRow>count) endRow = count;
 		int startNum = count - ((currentPage-1) * pageSize); 
-		
+		List<QuestionDTO> list = questMapper.listQuest(startRow, endRow);
 		req.setAttribute("listBoard", list);
 		req.setAttribute("startNum", startNum);
 		
@@ -89,6 +81,7 @@ public class QuestionController
 	@RequestMapping(value = "/Q_write.board", method = RequestMethod.POST)
 	public String writePro(HttpServletRequest req, @ModelAttribute QuestionDTO dto, BindingResult result)
 	{
+		HttpSession session = req.getSession();
 		if (result.hasErrors())
 		{
 			dto.setNum(0);
@@ -97,13 +90,6 @@ public class QuestionController
 			dto.setRe_level(0);
 		}
 		
-		if(dto.getM_id() == null)
-		{
-			dto.setM_id("Admin");
-		}
-		
-		System.out.println(dto.getNum()+"번 게시물, m_id 값 = "+dto.getM_id());
-		
 		dto.setIp(req.getRemoteAddr());
 		int res = questMapper.insertQuest(dto);
 	
@@ -111,15 +97,17 @@ public class QuestionController
 		if (res>0)
 		{
 			msg = "게시글을 등록하셨습니다. 메인화면으로 이동합니다.";
+			url = "Q_list.board";
 		}
 		else 
 		{
-			msg = "게시글 등록에 실패하여, 메뉴화면으로 돌아갑니다.";
+			msg = "게시글 등록 실패";
+			url = "Q_list.write";
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		
-		return "Q_board/message";
+		return "message";
 	}
 
 
@@ -133,30 +121,22 @@ public class QuestionController
 		return "Q_board/content";
 	}
 
-	@RequestMapping(value = "/Q_delete.board", method = RequestMethod.GET)
-	public String delete(HttpServletRequest req, @RequestParam int num)
-	{
-		QuestionDTO dto = questMapper.getQuest(num);
-		req.setAttribute("Quest", dto);
-		
-		HttpSession session = req.getSession();
-		System.out.print("로그인 된 id = " +session.getAttribute("m_id"));
-		System.out.println("게시글 id = " +dto.getM_id());
-		
-		return "Q_board/deleteForm";
-	}
-
-	@RequestMapping(value = "/Q_delete.board", method = RequestMethod.POST)
+	@RequestMapping(value = "/Q_delete.board")
 	public String deletePro(HttpServletRequest req, @RequestParam int num)
 	{
-		String msg = "게시글을 삭제하셨습니다. 게시판으로 이동합니다.", url = "Q_list.board";
-
-		questMapper.deleteQuest(num);
-	
+		int res = questMapper.deleteQuest(num);
+		String msg=null,url=null;
+		if(res>0){
+			msg = "삭제완료";
+			url = "Q_list.board";
+		}else{
+			msg = "삭제실패";
+			url = "Q_list.board";
+		}	
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 			
-		return "Q_board/message";
+		return "message";
 	}
 
 	@RequestMapping(value = "/Q_update.board", method = RequestMethod.GET)
@@ -187,7 +167,7 @@ public class QuestionController
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 			
-		return "Q_board/message";
+		return "message";
 	}
 
 }

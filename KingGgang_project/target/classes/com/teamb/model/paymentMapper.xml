@@ -6,12 +6,8 @@
 		<mapper namespace="paymentMapper">
 		
 		<insert id="insertPayment" parameterType="PaymentDTO">
-		insert into payment values(pay_no.nextval,#{price},#{type},#{p_no},#{m_no},'0',0)
+		insert into payment values(pay_no.nextval,#{price},#{type},#{p_no},#{m_no},sysdate)
 		</insert>
-		
-		<update id="updatePayment" parameterType="PaymentDTO">
-		update payment set paydate=#{paydate}, valid=#{valid} where no = #{no}
-		</update>
 		   
 		<select id="deletePayment" parameterType="int">
 		delete from(select * from payment order by rownum desc) where rownum = 1 and m_no = #{m_no} no = #{no}
@@ -22,7 +18,7 @@
 		</select>
 		
 		<select id="getPayment" parameterType="PaymentDTO" resultType="PaymentDTO">
-		select * from payment where m_no = #{m_no} and valid = #{valid}
+		select * from payment where m_no = #{m_no}
 		</select>
 		
 		<select id="getPaymentNo" parameterType="int" resultType="PaymentDTO">
@@ -64,7 +60,7 @@
 		</select> 
 		
 		<select id="getpayMember" parameterType="int" resultType="memberDTO">
- 		select * from member where memberNum=#{m_no}
+ 		select * from member where memberNum=#{memberNum}
  		</select>
 
  		
@@ -72,7 +68,7 @@
  		<!-- admin 결제목록 (김지원) -->
  		
  		<select id="adminList" resultType="PaymentDTO">
- 			select * from payment
+ 			select * from payment order by no desc
  		</select>
  		
  		

@@ -184,7 +184,7 @@ public class CommBoardController {
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(dto.getComm_memberNum());
 		
-		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
+		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
 		int check1 =1;
 		
@@ -223,9 +223,9 @@ public class CommBoardController {
 		if(markCheck ==null) {
 			check2 = true;
 		} else {
-				check2 = false;
+			check2 = false;
 		}
-		
+
 		if(check2) {
 			int res = bookmarkMapper.insertmark(dto);
 			map.put("wstatus", 1);
@@ -286,20 +286,26 @@ public class CommBoardController {
 	    int comm_memberNum = login.getComm_memberNum();
 		
 		System.out.println(boardNum);
-		
+		System.out.println(login.getComm_memberNum());
 		CommLikeDTO cdto = new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(comm_memberNum);
 		
-		boolean check1 = true;
+		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
-		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
-		if(likeCheck == null) {
+		boolean check1 = true;
+		for(CommLikeDTO check : likeCheck) {
+			if(check == null) {
 			check1 = true;
-		}else {
-			check1 = false;
+		}else{
+			if(check.getBoardNum() == boardNum) {
+				check1 = false;
+			}else {
+				continue;
+			}
 		}
 		
+		}
 		System.out.println(check1);
 		
 		if(check1) {
@@ -494,6 +500,7 @@ public class CommBoardController {
 			loginNum = login.getComm_memberNum();
 		}
 		
+		
 		//인아
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
@@ -511,22 +518,27 @@ public class CommBoardController {
 		} else {
 			check2 = 2;
 		}
-
+		
 		//세호
 		CommLikeDTO cdto =  new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
-		cdto.setComm_memberNum(dto.getComm_memberNum());
+		cdto.setComm_memberNum(login.getComm_memberNum());
+		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
-		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
+		int check1 = 1;
 		
-		int check1 =1;
-		
-		if(likeCheck == null) {
+		for(CommLikeDTO check : likeCheck) {
+			if(check == null) {
 			check1 = 1;
-		}else {
-			check1 = 2;
+		}else{
+			if(check.getBoardNum() == boardNum) {
+				check1 = 2;
+			}else {
+				continue;
+			}
 		}
-		
+	}
+		System.out.println(check1);
 		int likeCount = likemapper.getLikeCount(boardNum);
 		req.setAttribute("likeCount", likeCount);
 		

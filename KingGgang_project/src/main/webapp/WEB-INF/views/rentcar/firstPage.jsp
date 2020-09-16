@@ -1,7 +1,7 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 
 	<!--  
 	이	   름 : rentcarMain.jsp
@@ -87,4 +87,5 @@
 	<input type="text" name="returnday" id="datepicker2" placeholder="반납일"> 
 	<input type="button" value="조회" onclick="javascript:check()">
 </form>
+
 	</div>

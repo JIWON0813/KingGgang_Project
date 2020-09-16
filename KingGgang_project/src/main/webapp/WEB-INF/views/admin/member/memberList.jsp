@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="form_txtInput">
                     <h2 class="sub_tit_txt">회원목록</h2>
-		<table border="1" width="1000">
+		<table border="1" width="900">
 		<tr bgcolor="skyblue">
 			<th width="70">회원번호</th>
 			<th>아이디</th>

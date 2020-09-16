@@ -172,7 +172,6 @@
                  
    
 }
-
    $(function() {
        $(document).on('click', function(e) {
            if (e.target.id === 'word') {
@@ -180,7 +179,6 @@
            } else {
                $('#memberSearch').hide();
            }
-
        })
    });
 </script>
@@ -210,7 +208,6 @@ function search(target){
       error: function(errorThrown) { alert(errorThrown.statusText); 
       } 
    }); 
-
    //해시태그 검색
    var obj = {"word": word}; 
    $.ajax({ url: "<c:url value="/commHashSearch" />", 

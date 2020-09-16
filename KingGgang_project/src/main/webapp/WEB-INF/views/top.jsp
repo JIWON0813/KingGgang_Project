@@ -1,42 +1,51 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>kingGgang top</title>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- Mobile Metas -->
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- Site Metas -->
-   	<title>낑깡</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<!-- Site Metas -->
+<title>낑깡</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="#" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="#" />
+<!-- Site Icons -->
+<link rel="shortcut icon" href="#" type="image/x-icon" />
+<link rel="apple-touch-icon" href="#" />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
-    <!-- Pogo Slider CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/pogo-slider.min.css" />
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/style.css" />
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/responsive.css" />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/custom.css" />
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
+<!-- Pogo Slider CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/main/css/pogo-slider.min.css" />
+<!-- Site CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/main/css/style.css" />
+<!-- Responsive CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/main/css/responsive.css" />
+<!-- Custom CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/main/css/custom.css" />
 
 </head>
 
-<body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+<body id="home" data-spy="scroll" data-target="#navbar-wd"
+	data-offset="98">
+
 
     <!-- LOADER -->
     <div id="preloader">
@@ -46,6 +55,7 @@
     </div>
     <!-- end loader -->
     <!-- END LOADER -->
+
 
     <!-- Start header -->
     <header class="top-header">
