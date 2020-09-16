@@ -95,6 +95,7 @@
  	<c:if test = "${type==2}">
  	<input type="hidden" name="res_id" value="${res_id}">
  	</c:if>
+ 	
  	</form>
  	
 </body>

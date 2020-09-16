@@ -5,6 +5,7 @@ public class CommLikeDTO {
 	private int l_no;
 	private int boardNum;
 	private int comm_memberNum;
+	
 	public int getL_no() {
 		return l_no;
 	}

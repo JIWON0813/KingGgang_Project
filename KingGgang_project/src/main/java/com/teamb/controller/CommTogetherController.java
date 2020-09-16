@@ -21,18 +21,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamb.model.CommTogetherDTO;
 import com.teamb.model.Comm_MemberDTO;
-import com.teamb.model.NoticeDTO;
 import com.teamb.service.CommTogetherMapper;
-import com.teamb.service.Comm_MemberMapper;
 
 @Controller
 public class CommTogetherController {
 	
 	@Autowired
 	private CommTogetherMapper togetherMapper;
-	
-	@Autowired
-	private Comm_MemberMapper comm_memberMapper;
 	
 	//인아
 	@RequestMapping(value = "/comm_togetherWF.do", method = RequestMethod.GET)
@@ -71,11 +66,11 @@ public class CommTogetherController {
 	
 	@RequestMapping("/comm_togetherList.do")
 	public String togetherList(HttpServletRequest req, HttpSession session, Comm_MemberDTO dto) {
-		/*String pageNum = req.getParameter("pageNum");
+		String pageNum = req.getParameter("pageNum");
 		if (pageNum==null){
 			pageNum = "1";
 		}
-		int pageSize = 5;
+		int pageSize = 10;
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = currentPage * pageSize - (pageSize-1);
 		int endRow = currentPage * pageSize;
@@ -86,7 +81,7 @@ public class CommTogetherController {
 		int startNum = count - ((currentPage-1) * pageSize); 
 		if (count>0){
 			int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
-			int pageBlock = 3;
+			int pageBlock = 5;
 			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
 			int endPage = startPage + pageBlock - 1;
 			if (endPage>pageCount) endPage = pageCount;
@@ -96,12 +91,7 @@ public class CommTogetherController {
 			req.setAttribute("pageBlock", pageBlock);
 			req.setAttribute("startPage", startPage);
 			req.setAttribute("endPage", endPage);
-		}*/
-		
-	    int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-	    List<CommTogetherDTO> tlist = togetherMapper.allListTogether();
-	    req.setAttribute("togetherList", tlist);
-	    
+		}
 		return "comm/board/comm_togetherList";
 	}
 	
@@ -130,10 +120,10 @@ public class CommTogetherController {
 		String msg = null, url = null;
 
 		if (res > 0) {
-			msg = "湲��씠 �닔�젙�릺�뿀�뒿�땲�떎!!";
+			msg = "게시글 수정 성공";
 			url = "comm_tcontent.do";
 		}else{
-			msg = "湲� �닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎!!";
+			msg = "게시글 수정 실패";
 			url = "comm_tupdateForm.do";
 		}
 		
@@ -149,7 +139,7 @@ public class CommTogetherController {
 		String msg = null, url = null;
 
 		if (res > 0) {
-			msg = "湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.";
+			msg = "게시글이 삭제되었습니다.";
 			url = "comm_togetherList.do";
 		}
 		ModelAndView mav = new ModelAndView();

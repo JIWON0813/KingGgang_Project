@@ -97,11 +97,9 @@
 			   return false;
 		   }  
 	   }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
       	form.submit()
 	   }
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> branch 'jieun' of https://github.com/JIWON0813/KingGgang_Project.git
@@ -120,6 +118,8 @@
 >>>>>>> branch 'jieun' of https://github.com/JIWON0813/KingGgang_Project.git
 >>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
 
+=======
+>>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
 
 	   function check(re, what, message) {
        if(re.test(what.value)) {

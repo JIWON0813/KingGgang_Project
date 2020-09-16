@@ -8,8 +8,62 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<style>
+	 input{
+		border:1px solid orange;
+		background-color:rgba(0,0,0,0);
+		color:orange;
+		padding:5px;
+		
+		border-radius:5px;
+	}
+	#input_group input:hover{
+		color:white;
+		background-color:orange;
+	}
+	
+	#write_group input {
+		border:1px solid brown;
+		background-color:rgba(0,0,0,0);
+		color:brown;
+		padding:5px;
+		
+		border-radius:5px;
+	
+	}
+	
+	#write_group input:hover{
+		color:white;
+		background-color:brown;
+	}
+
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+	function check(){
+		if (f.rwriter.value==""){
+			alert("작성자를 입력해주세요")
+			f.rwriter.focus()
+			return false
+		}
+		if (f.rcontent.value==""){
+			alert("내용을 작성해주세요")
+			f.rcontent.focus()
+			return false
+		}
+		if (f.rpasswd.value==""){
+			alert("비밀번호를 입력해주세요")
+			f.rpasswd.focus()
+			return false
+		}
+		return true
+	}
+</script>
+
+>>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
 <script>
 //좋아요
 function LikeAction() {
@@ -25,14 +79,17 @@ function LikeAction() {
     		success: function(data) { alert("통신성공"); 
     		
     				var result1 = data
-    				alert(result1);
     				
     				if(result1.wstatus == 2){
     					alert("좋아요 취소");
                        $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
+<<<<<<< HEAD
                     	alert("좋아요 등록");
                        $('img#likeImg').attr('src', './resources/img/heart.png');
+=======
+                       $('img#likeImg').attr('src', './resources/img/heart.PNG');
+>>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
                     	}
     				$('#likeCount').text(result1.likeCount)
     				}, 
@@ -57,7 +114,7 @@ function LikeAction() {
     		success: function(data) { alert("통신성공");
     		
     				var result1 = data
-    				alert(result1);
+    				
     				if(result1.wstatus == 2){
                        $('img#mark_img').attr('src', './resources/img/box.png');
                     } else {
@@ -106,8 +163,7 @@ function LikeAction() {
 		 	<a href="comm_otherPage.do?comm_memberNum=${memberNum}"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50">&nbsp;&nbsp;[   ${comm_nickname}   ]</a>
 		</td>
 	</tr>
-	<br>
-	<br>
+	
 	<c:if test="${getBoard.file_size != 0}">
 		<tr align="center">
 			 <td align="center" colspan="4">
@@ -144,7 +200,7 @@ function LikeAction() {
 			</td>
 		</tr>
 		<tr>
-			<td align="center" colspan="4">
+			<td align="center" colspan="4" id="write_group">
 			 <c:if test="${loginNum == memberNum}">
 				<input type="button" value="글수정"
 				onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
@@ -160,13 +216,12 @@ function LikeAction() {
 			</td>
 		</tr>
 	</table>
-<!-- 	</form> -->
 </div>
 <br>
-<hr color="pink">
 <div align="center">
-<form name="replyForm" action="comm_writeReplyPro.do" method="post">
-  <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}">
+<form name="f" action="comm_writeReplyPro.do" method="post" onsubmit="return check()">
+  <input type="hidden" name="boardNum" value="${param.boardNum}">
+  <input type="hidden" name="replylNum" value="${param.replyNum}">
   <table>
     <tr>
     	<th width="85">댓글 작성자</th>
@@ -179,17 +234,15 @@ function LikeAction() {
     <tr>
    		 <th width="85">댓글 내용</th>
    		 <td><input type="text" id="rcontent" name="rcontent"></td>
-   		 <td colspan=2 align="center"><input type="submit" value="작성"></td>
+   		 <td colspan=2 align="center" id="input_group"><input type="submit" value="작성"></td>
     </tr>
   </table>
 </form>
 </div>
-<hr color="pink">
 <br>
-
 <!-- 댓글 -->
 <div align="center">
-<form name="f" method="post" onsubmit="return check()">
+<form name="replyList" method="post" onsubmit="return check()">
  <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
  <table>
   <tr>
@@ -199,15 +252,15 @@ function LikeAction() {
     <c:forEach items="${replyList}" var="replyList">
       <tr>
       	<td>
-        	 작성자 : ${replyList.rwriter}<%-- ${replyList.rwriter} --%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성일 : <fmt:formatDate value="${replyList.rregdate}" pattern="yyyy-MM-dd"/>
+        	 작성자 : ${replyList.rwriter}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성일 : <fmt:formatDate value="${replyList.rregdate}" pattern="yyyy-MM-dd"/>
         </td>
        </tr>
        <tr>
         <td>	 
         	 내 용 : ${replyList.rcontent}
       	</td>
-        <td> 
-      		<input type="button" value="댓글 삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
+        <td id="input_group"> 
+      		<input type="button" value="댓글 삭제" onclick="window.location='reply_deleteForm.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
       	</td>
       	<tr>
       		<td>
