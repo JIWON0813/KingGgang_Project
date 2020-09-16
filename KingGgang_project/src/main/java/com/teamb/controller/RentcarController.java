@@ -354,6 +354,8 @@ public class RentcarController {
 	
 	@RequestMapping(value = "reservation_Ok.rentcar")
 	public String rentcarReservationOk(HttpServletRequest req,Rentcar_ResDTO dto){
+		System.out.println(dto.getR_id());
+		System.out.println(dto.getInsu_id());
 		 RentcarDTO rentcarDTO = rentcarMapper.getRentcar(dto.getR_id());
 		 InsuDTO insuDTO = rentcarMapper.getInsu(dto.getInsu_id());
 		 
@@ -361,24 +363,20 @@ public class RentcarController {
 		 LocalDate d2 = LocalDate.parse(dto.getReturnday(), DateTimeFormatter.ISO_LOCAL_DATE);
 		 Duration diff = Duration.between(d1.atStartOfDay(), d2.atStartOfDay());
 		 int diffDays = (int)diff.toDays();
+		 System.out.println(diffDays);
 		 dto.setPrice(diffDays*(rentcarDTO.getPrice()+insuDTO.getPrice()));
-		 
+		 System.out.println(dto.getPrice());
 		String receiptday = dto.getReceiptday() + dto.getPickuptime(); 
 		String returnday = dto.getReturnday() + dto.getPickuptime();
 		dto.setReceiptday(receiptday);
 		dto.setReturnday(returnday);
 
-		
-	
-
-		
 		List<Rentcar_ResDTO> resCheck = rentcarMapper.checkAlreadyReservation(dto);
 		//결제 원세호
 		String member_id =  req.getParameter("member_id");
 
 		System.out.println(member_id);
 		 
-
 		String msg = null;
 		String url = null;
 

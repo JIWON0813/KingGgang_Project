@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -73,7 +72,6 @@
 								<li><a href="login.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />로그인</a></li>
 							</c:if>
 							<c:if test="${mbId != null }"> 
-								<li>${profile_name}</li>
 								<li>${name}님 <a href="logout.log"><img src="${pageContext.request.contextPath}/resources/main/images/orange.png" alt="#" />&nbsp;&nbsp;&nbsp;로그아웃</a></li>
 								<li><a class="join_bt" href="main.my">마이페이지</a></li>
 							</c:if>

@@ -26,6 +26,25 @@
 		return true
 }
 </script>
+<style>
+	 input{
+		border:1px solid red;
+		background-color:rgba(0,0,0,0);
+		color:white;
+		padding:5px;
+		
+		border-radius:5px;
+	}
+	textarea{
+		border:1px solid red;
+		border-radius:5px;
+	}
+	#input_group input:hover{
+		color:red;
+		background-color:white;
+	}
+
+</style>
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -68,8 +87,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="글쓰기">
+				<td colspan="2" align="center" id="#input_group">
+					<input type="submit" value="글쓰기" >
 					<input type="reset" value="다시작성">	
 					<input type="button" value="뒤로가기" onclick="window.location='comm_myPage.do'">
 				</td>

@@ -178,7 +178,6 @@ public class PaymentController {
 		//pdto.setM_id(m_id);
 		//
 		pdto.setM_no(m_no);
-		pdto.setValid(valid);
 		
 		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(pdto);
 		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
@@ -252,8 +251,7 @@ public class PaymentController {
 		MemberDTO mdto = memberMapper.getMember(memberNum);
 		int m_no =  mdto.getMemberNum();
 		pdto.setM_no(m_no);
-		int valid = 1;
-		pdto.setValid(valid);
+		
 		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(pdto);
 		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
 		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();

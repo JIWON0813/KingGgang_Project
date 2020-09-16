@@ -9,13 +9,11 @@
  -->
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 <title>마이결제리스트</title>
 </head>
 <body>
-
 
 <!-- 호텔 결제내역 -->
 <c:if test="${status == 1}">
