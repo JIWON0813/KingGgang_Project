@@ -35,6 +35,7 @@ import com.teamb.model.RentcarDTO;
 
 import com.teamb.model.WishlistDTO;
 import com.teamb.model.PaylistDTO;
+import com.teamb.service.HotelMapper;
 import com.teamb.service.MemberMapper;
 import com.teamb.service.PaymentMapper;
 import com.teamb.service.RentcarMapper;
@@ -59,6 +60,9 @@ public class PaymentController {
 	@Autowired
 	private RentcarMapper rentcarMapper;
 
+	@Autowired
+	private HotelMapper hotelmapper;
+
 		
 	@RequestMapping("/main.pay")
 	public String payMain() {
@@ -68,7 +72,9 @@ public class PaymentController {
 	@RequestMapping("/insert.pay")
 	public String paymentInsert(HttpServletRequest req,@ModelAttribute PaymentDTO pdto,MemberDTO mdto) {
 		//로그인 세션에서 가져오는아이디 값
+		System.out.println(req.getParameter("m_no"));
 		int m_no = Integer.parseInt(req.getParameter("m_no"));
+		System.out.println(m_no);
 		int type = Integer.parseInt(req.getParameter("type"));
 		int totalPrice= Integer.parseInt(req.getParameter("price"));
 		
@@ -128,15 +134,22 @@ public class PaymentController {
 				int res_id =  dto.getP_no();
 				System.out.println(res_id);
 				rentcarMapper.changePstSuc(res_id);
+				req.setAttribute("status",1);
+			}
+			else{
+				int id = dto.getP_no();
+				hotelmapper.changevaild(id);
+				req.setAttribute("status",0);
 			}
 			url = "main.my";
 			msg = "결제성공 마이페이지로 이동합니다.";
-			req.setAttribute("status",1);
+			
 		}else {
 			paymemtMapper.deletePayment(no);
 			url = "main.my";
 			msg = "결제실패 마이페이지로 이동합니다.";
 		}
+		
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
 		return "message";
