@@ -78,10 +78,10 @@ public class CommboardMapper {
 	}
 
 	//지은
-/*	public List<CommboardDTO> listBoard(int comm_memberNum, String look) {
+	public List<CommboardDTO> listBoard(int comm_memberNum, String look) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("comm_memberNum", comm_memberNum);
 		map.put("look", look);
 		   return sqlSession.selectList("look_listBoard",map);
 	}
-*/}
+}

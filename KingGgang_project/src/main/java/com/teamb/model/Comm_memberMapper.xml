@@ -30,6 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from comm_member where comm_memberNum = #{comm_memberNum}
  	</select>
  	
+ 	<select id="login_comm_getMember" parameterType="int" resultType="comm_memberDTO">
+ 		select * from comm_member where comm_memberNum = #{login_comm_memberNum}
+ 	</select>
+ 	
  	<select id ="comm_deleteMember"  parameterType="int" >
 		delete from comm_member where comm_memberNum = #{comm_memberNum}
 	</select>
@@ -46,13 +50,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where comm_memberNum = #{comm_memberNum}
 	</update>
 	
+	<update id="updateFriend" parameterType="Comm_MemberDTO" >
+		update comm_member set comm_friendCount=#{comm_friendCount}
+		where comm_memberNum = #{comm_memberNum}
+	</update>
+	
 	<select id="getComm_memberCount" resultType="int">
 	select count(*) from comm_member
 	</select>
 	
 	<select id="c_comm_memberList" resultType="Comm_MemberDTO" parameterType="java.util.Map">
 	select * from (select rownum rn, A.* from
-	(select * from comm_member order by boardNum desc)A)
+	(select * from comm_member order by memberNum desc)A)
 	where rn between #{startRow} and #{endRow}
 	</select> 
     

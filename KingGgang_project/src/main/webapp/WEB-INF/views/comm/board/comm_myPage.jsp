@@ -43,7 +43,7 @@
 			<a class="join_bt" href="comm_bookMark.do" style="display: inline-block; margin-left:30px;">BookMark</a>
 		</td>
 		<td>
-			<a class="join_bt" href="comm_friendAll.do?comm_memberNum=${comm_memberNum}" style="display: inline-block; margin-left:30px;">친구</a>
+			<a class="join_bt" href="comm_friendAll.do?comm_memberNum=${memberNum}" style="display: inline-block; margin-left:30px;">친구(${comm_friendCount})</a>
 		</td>
 		<c:if test="${loginNum == memberNum}">
 		<td>

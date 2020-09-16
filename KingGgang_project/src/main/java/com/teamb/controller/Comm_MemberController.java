@@ -96,7 +96,16 @@ public class Comm_MemberController {
 			session.setAttribute("login_comm_memberNum", login.getComm_memberNum());
 			String comm_nickname = memberMapper.comm_getMember(comm_memberNum).getComm_nickname();
 	        session.setAttribute("comm_nickname", comm_nickname);
-	        session.setAttribute("look", "회원공개");
+	        System.out.println("로그인햇을때loginnum"+login.getComm_memberNum());
+	        //System.out.println("로그인했을때reqnum"+(Integer)req.getAttribute("comm_memberNum"));
+	        
+	  //      if(login.getComm_memberNum() == (Integer)req.getAttribute("comm_memberNum")){
+	        	session.setAttribute("look", "비공개");
+	        	System.out.println("look값"+session.getAttribute("look"));
+	    //    }
+	  //      else{
+	//        	session.setAttribute("look", "회원공개");
+	 //       }
 			msg = "로그인 하였습니다";
 			url = "commhome.comm";
         	}
@@ -185,10 +194,11 @@ public class Comm_MemberController {
 		req.setAttribute("url", url);
 		return "message";
 	}
-/*	
-	 @SuppressWarnings("unchecked")
+
+// 더보기	
+/*	 @SuppressWarnings("unchecked")
 	   @ResponseBody
-	   @RequestMapping(value = "/ajaxList.do", method = RequestMethod.POST)
+	   @RequestMapping(value = "/memberajaxList.do", method = RequestMethod.POST)
 	   public Object moerContent(@RequestBody HashMap<String, Object> map, HttpServletRequest req,HttpSession session){
 	      
 	      int startRow = (int) map.get("startRow");
@@ -203,7 +213,7 @@ public class Comm_MemberController {
 	      for (int i = 0; i < list.size(); i++) {
 	         json = new JSONObject();
 	         Comm_MemberDTO dto = (Comm_MemberDTO) list.get(i);
-	         json.put("num", dto.getComm_memberNum());
+	        // json.put("num", dto.getComm_memberNum());
 	         json.put("file", dto.getComm_profilename());
 	         json.put("name", dto.getComm_name());
 	         json.put("nickname", dto.getComm_nickname());
@@ -236,8 +246,7 @@ public class Comm_MemberController {
 	      return mav;
 		}
 	 
-	*/
-	
+*/	
 
 	@RequestMapping(value = "/comm_memberList.do")
 	public String commlistMember(HttpServletRequest req,HttpSession session,Comm_MemberDTO dto){
@@ -318,6 +327,7 @@ public class Comm_MemberController {
 				
 		int res = memberMapper.comm_deleteMember(comm_memberNum);
 		Comm_MemberDTO login = memberMapper.comm_getMember(comm_memberNum);
+		
 		String msg = null, url = null;
 		if(res>0){
 			HttpSession session = req.getSession();
@@ -332,4 +342,5 @@ public class Comm_MemberController {
 		req.setAttribute("url", url);
 		return "message";	
 	}
+	
 }
