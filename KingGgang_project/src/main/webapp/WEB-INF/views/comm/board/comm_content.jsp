@@ -76,11 +76,13 @@ function LikeAction() {
     		success: function(data) { alert("통신성공"); 
     		
     				var result1 = data
+    				alert(result1);
     				
     				if(result1.wstatus == 2){
     					alert("좋아요 취소");
                        $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
+                    	alert("좋아요 등록");
                        $('img#likeImg').attr('src', './resources/img/heart.PNG');
                     	}
     				$('#likeCount').text(result1.likeCount)
@@ -106,7 +108,7 @@ function LikeAction() {
     		success: function(data) { alert("통신성공");
     		
     				var result1 = data
-    				
+    				alert(result1);
     				if(result1.wstatus == 2){
                        $('img#mark_img').attr('src', './resources/img/box.png');
                     } else {
@@ -176,10 +178,12 @@ function LikeAction() {
          	</c:forEach>
          	</td>
 			<th align="right" width="10">
+
 				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
        				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.PNG' }" id="likeImg" width="30" height="30">
    				</button>
-   				<span id="likeCount">${likecount}</span>			
+   				<span id="likeCount">${likeCount}</span>			
+
    			</th>
 		</tr>
 		<tr>

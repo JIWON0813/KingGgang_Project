@@ -264,6 +264,7 @@ $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=jeju&units=metric&ap
 			$('.wdeg').append($wDeg);
 
 		});
+		//
 	</script>
 </body>
 </html>

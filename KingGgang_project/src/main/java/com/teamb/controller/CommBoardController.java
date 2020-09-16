@@ -166,7 +166,7 @@ public class CommBoardController {
 		cmdto.setBoardNum(boardNum);
 		cmdto.setComm_memberNum(cmdto.getComm_memberNum());
 		
-		CommBookmarkDTO markCheck = bookmarkMapper.markPro(cmdto);
+		List<CommBookmarkDTO> markCheck = bookmarkMapper.markPro(cmdto);
 		
 		int check2 = 1;
 		
@@ -212,25 +212,31 @@ public class CommBoardController {
 		
 		int boardNum = Integer.parseInt(map.get("boardNum").toString());
 		
-		CommBookmarkDTO dto = new CommBookmarkDTO();
-		dto.setBoardNum(boardNum);
-		dto.setComm_memberNum(comm_memberNum);
+		CommBookmarkDTO cmdto = new CommBookmarkDTO();
+		cmdto.setBoardNum(boardNum);
+		cmdto.setComm_memberNum(comm_memberNum);
+	
+		List<CommBookmarkDTO> markCheck = bookmarkMapper.markPro(cmdto);
 		
 		boolean check2 = true;
-		
-		CommBookmarkDTO markCheck = bookmarkMapper.markPro(dto);
-		
+		for(CommBookmarkDTO check : markCheck) {
 		if(markCheck ==null) {
 			check2 = true;
 		} else {
-			check2 = false;
+			if(check.getBoardNum() == boardNum) {
+				check2 = false;
+			}else {
+				continue;
+			}
+		}
+			
 		}
 
 		if(check2) {
-			int res = bookmarkMapper.insertmark(dto);
+			int res = bookmarkMapper.insertmark(cmdto);
 			map.put("wstatus", 1);
 		} else {
-			int res = bookmarkMapper.deleteMark(dto);
+			int res = bookmarkMapper.deleteMark(cmdto);
 			map.put("wstatus", 2);
 		}
 		
@@ -458,10 +464,10 @@ public class CommBoardController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "댓글삭제성공";
-			url = "comm_content.do?boardNum=" + boardNum; 
+			url = "comm_otherContent.do?boardNum=" + boardNum;
 		} else {
 			msg = "댓글삭제실패!!";
-			url = "comm_content.do?boardNum=" + boardNum;
+			url = "comm_otherContent.do?boardNum=" + boardNum;
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
@@ -509,14 +515,21 @@ public class CommBoardController {
 		cmdto.setBoardNum(boardNum);
 		cmdto.setComm_memberNum(dto.getComm_memberNum());
 		
-		CommBookmarkDTO markCheck = bookmarkMapper.markPro(cmdto);
+		List<CommBookmarkDTO> markCheck = bookmarkMapper.markPro(cmdto);
 		
 		int check2 = 1;
 		
-		if(markCheck == null) {
+		for(CommBookmarkDTO bmcheck : markCheck) {
+		if(bmcheck == null) {
 			check2 = 1;
 		} else {
-			check2 = 2;
+			if(bmcheck.getBoardNum() == boardNum) {
+				check2 = 2;
+			}else {
+				continue;
+			}
+		}
+			
 		}
 		
 		//세호
