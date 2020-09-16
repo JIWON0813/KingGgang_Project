@@ -6,10 +6,10 @@
 	개  발   자 : 김 지 원
 	설	   명 : 관리자모드 숙소목록페이지
  -->
+ <%@ include file="../top.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
-<div class="section layout_padding"></div>
-<div class="container" align="center">
+<div class="section layout_padding" align="center">
 	<h3 align="center">숙 소 목 록</h3>
 	<br>
 	<table class="table table-hover table-sm">
@@ -19,7 +19,7 @@
 			<th>구 분</th>
 			<th>작성일</th>
 			<th>조회수</th>
-			<th></th>
+			<th><button type="button" onclick="location.href='insertHotelForm.hotel' ">글쓰기</button></th>
 		</tr>
 		<c:if test="${empty hotelList}">
 			<tr>
@@ -72,3 +72,4 @@
 	</c:if>
 	<br> <a href="main.admin">관리자 목록으로 가기</a>
 </div>
+<%@ include file="../bottom.jsp"%>

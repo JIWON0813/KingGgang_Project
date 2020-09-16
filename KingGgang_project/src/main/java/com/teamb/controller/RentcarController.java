@@ -376,9 +376,6 @@ public class RentcarController {
 		//결제 원세호
 		String member_id =  req.getParameter("member_id");
 
-		System.out.println(member_id);
-		 
-
 		String msg = null;
 		String url = null;
 

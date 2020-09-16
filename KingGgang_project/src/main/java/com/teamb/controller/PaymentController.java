@@ -65,12 +65,56 @@ public class PaymentController {
 	@Autowired
 	private HotelMapper hotelMapper;
 
+	@Autowired
+	private HotelMapper hotelmapper;
+
 		
 	@RequestMapping("/main.pay")
 	public String payMain() {
 		return "payment/payins";
 	}
 	
+<<<<<<< HEAD
+=======
+	@RequestMapping("/insert.pay")
+	public String paymentInsert(HttpServletRequest req,@ModelAttribute PaymentDTO pdto,MemberDTO mdto) {
+		//로그인 세션에서 가져오는아이디 값
+		System.out.println(req.getParameter("m_no"));
+		int m_no = Integer.parseInt(req.getParameter("m_no"));
+		System.out.println(m_no);
+		int type = Integer.parseInt(req.getParameter("type"));
+		int totalPrice= Integer.parseInt(req.getParameter("price"));
+		
+		if(type == 2) {
+			pdto.setP_no(Integer.parseInt(req.getParameter("res_id")));
+		} else {
+			pdto.setP_no(Integer.parseInt(req.getParameter("id")));
+		}
+		
+		System.out.println(pdto.getP_no());
+		int res =  paymemtMapper.insertPayment(pdto);
+		String msg=null,url=null;
+		if(res>0){
+			int no = paymemtMapper.getPayno(pdto.getM_no());
+			System.out.println(no);
+			req.setAttribute("no", no);
+			System.out.println(totalPrice);
+			req.setAttribute("totalPrice", totalPrice);
+			MemberDTO mrdto =  paymemtMapper.getpayMember(m_no);
+			System.out.println(mrdto.getEmail());
+			req.setAttribute("mrdto", mrdto);
+			req.setAttribute("m_no", m_no);
+			return "payment/payins2";
+		} else {
+			msg = "결제 실패!! 상품리스트로 돌아갑니다.";
+			url = "main.pay";
+			req.setAttribute("msg", msg);
+			req.setAttribute("url", url);
+			return "message";
+		}
+	}
+	
+>>>>>>> branch 'jiwon' of https://github.com/JIWON0813/KingGgang_Project.git
 	@RequestMapping("/complete.pay")
 	public String payMained(HttpServletRequest req,@ModelAttribute PaymentDTO dto) {
 		//로그인 세션에서 가져오는 값
@@ -91,11 +135,28 @@ public class PaymentController {
 		int res =  paymemtMapper.insertPayment(dto);
 		String msg = null, url=null;
 		if (res>0) {
+<<<<<<< HEAD
 			int status = 1;
 			if(dto.getType() == 2) {
 				rentcarMapper.changePstSuc(dto.getP_no());
 				status = 2;
+=======
+			dto = paymemtMapper.getPaymentNo(no);
+			int type =  dto.getType();
+			System.out.println(type);
+			if(type == 2) {
+				int res_id =  dto.getP_no();
+				System.out.println(res_id);
+				rentcarMapper.changePstSuc(res_id);
+				req.setAttribute("status",1);
 			}
+			else{
+				int id = dto.getP_no();
+				hotelmapper.changevaild(id);
+				req.setAttribute("status",0);
+>>>>>>> branch 'jiwon' of https://github.com/JIWON0813/KingGgang_Project.git
+			}
+<<<<<<< HEAD
 			//결제내역
 			int no = paymemtMapper.getPayno(m_no);
 			
@@ -122,11 +183,16 @@ public class PaymentController {
 			req.setAttribute("buyer_name", buyer_name);
 		
 			return "payment/paycomplete";
+=======
+			url = "main.my";
+			msg = "결제성공 마이페이지로 이동합니다.";
+>>>>>>> branch 'jiwon' of https://github.com/JIWON0813/KingGgang_Project.git
 			
 		}else {
 			url = "main.my";
 			msg = "결제실패 마이페이지로 이동합니다.";
 		}
+		
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
 		return "message";

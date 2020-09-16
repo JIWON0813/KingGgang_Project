@@ -38,6 +38,7 @@
 	}
 
 </style>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 
 <script type="text/javascript">
@@ -77,21 +78,21 @@ function LikeAction() {
     		
     				var result1 = data
     				alert(result1);
-    				
+    				  
     				if(result1.wstatus == 2){
     					alert("좋아요 취소");
                        $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
                     	alert("좋아요 등록");
-                       $('img#likeImg').attr('src', './resources/img/heart.png');
-                    	}
-    				$('#likeCount').text(result1.likeCount)
-    				}, 
-    		error: function(errorThrown) { alert(errorThrown.statusText); } 
-    		}); 
-    	} 
-    	
-   </script>
+                        $('img#likeImg').attr('src', './resources/img/heart.png');
+                	}
+				$('#likeCount').text(result1.likeCount)
+				}, 
+		error: function(errorThrown) { alert(errorThrown.statusText); } 
+		}); 
+	} 
+	
+	</script>
    
    <script>
 	//북마크

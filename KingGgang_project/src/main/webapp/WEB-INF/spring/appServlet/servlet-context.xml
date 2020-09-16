@@ -24,6 +24,7 @@
    <resources mapping="/resources/**" location="/resources/" />
    <resources mapping="/img/**" location="/Users/sehowon/files" />
 
+
    <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
       in the /WEB-INF/views directory -->
    <beans:bean
@@ -42,6 +43,7 @@
 
    <beans:bean id="upLoadPath" class="java.lang.String">
       <beans:constructor-arg value="/Users/sehowon/files"></beans:constructor-arg>
+
    </beans:bean>
 
     <websocket:handlers>

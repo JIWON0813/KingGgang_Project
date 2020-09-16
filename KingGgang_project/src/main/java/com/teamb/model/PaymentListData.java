@@ -17,8 +17,19 @@ public class PaymentListData{
 	int price;
 	String payDate;
 	
-	public PaymentListData(PaymentDTO pdto, MemberDTO mdto, RoomDTO rdto, HotelDTO hdto, Rentcar_ResDTO resdto, RentcarDTO cardto) {
+	public PaymentListData(PaymentDTO pdto, MemberDTO mdto, RoomDateDTO rddto, RoomDTO rdto, HotelDTO hdto, Rentcar_ResDTO resdto, RentcarDTO cardto) {
 		if(pdto.getType() == 1){
+			this.no = pdto.getNo();
+			this.p_name = hdto.getName() + " " + rdto.getName();
+			this.type = pdto.getType();
+			this.hp = hdto.getHp();
+			this.id = mdto.getId();
+			this.m_name = mdto.getName();
+			this.email = mdto.getEmail();
+			this.startDate = rddto.getStartdate();
+			this.endDate = rddto.getEnddate();
+			this.price = pdto.getPrice();
+			this.payDate = pdto.getPaydate();
 		}
 		else{
 			this.no = pdto.getNo();
