@@ -33,7 +33,9 @@
 			alert("퇴실 날짜를 입실날짜 이후로 지정해주세요!!")
 			return false;
 		}
-		if (+start < +today) {
+		var s = new Date(start);
+		var t = new Date(today);
+		if (s < t) {
 			alert("이전 날짜는 예약할 수 없습니다.")
 			return false;
 		}
