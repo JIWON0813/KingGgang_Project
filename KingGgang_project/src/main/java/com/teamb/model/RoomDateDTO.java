@@ -60,18 +60,7 @@ public class RoomDateDTO {
 	public void setEnddate(String enddate) {
 		this.enddate = enddate;
 	}
-	public String getStart() {
-		return startdate;
-	}
-	public void setStart(String start) {
-		this.startdate = start;
-	}
-	public String getEnd() {
-		return enddate;
-	}
-	public void setEnd(String end) {
-		this.enddate = end;
-	}
+
 	public String getM_id() {
 		return m_id;
 	}

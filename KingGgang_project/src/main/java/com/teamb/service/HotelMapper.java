@@ -152,6 +152,11 @@ public class HotelMapper {
 	public int getrecentdate() {
 		return sqlSession.selectOne("getrecentdate");
 	}
+
+	public RoomDateDTO getRoomDate(int id) {
+		return sqlSession.selectOne("getroomdate", id);
+	}
+
 	
 	//관심리스트 원세호 
 
