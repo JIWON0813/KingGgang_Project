@@ -229,19 +229,19 @@ public class CommBoardController {
 		dto.setBoardNum(boardNum);
 		dto.setComm_memberNum(comm_memberNum);
 		
-		boolean check1 = true;
+		boolean check2= true;
 		
 		CommBookmarkDTO markCheck = bookmarkMapper.markPro(dto);
 		
 		if(markCheck ==null) {
-			check1 = true;
+			check2 = true;
 		} else {
-				check1 = false;
+			check2 = false;
 		}
 		
-		System.out.println(check1);
+		System.out.println(check2);
 		
-		if(check1) {
+		if(check2) {
 			int res = bookmarkMapper.insertmark(dto);
 			map.put("wstatus", 1);
 		} else {
@@ -303,7 +303,7 @@ public class CommBoardController {
 	    int comm_memberNum = login.getComm_memberNum();
 		
 		System.out.println(boardNum);
-		
+		System.out.println(login.getComm_memberNum());
 		CommLikeDTO cdto = new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(comm_memberNum);
@@ -320,7 +320,7 @@ public class CommBoardController {
 			if(check.getBoardNum() == boardNum) {
 				check1 = false;
 			}else {
-				check1 = true;
+				continue;
 			}
 		}
 		
@@ -520,6 +520,7 @@ public class CommBoardController {
 			loginNum = login.getComm_memberNum();
 		}
 		
+		
 		//인아
 		System.out.println(boardNum);
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
@@ -539,15 +540,17 @@ public class CommBoardController {
 			check2 = 2;
 		}
 		System.out.println(check2);
-
+		
+		System.out.println(login.getComm_memberNum());
+		
 		//세호
 		CommLikeDTO cdto =  new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
-		cdto.setComm_memberNum(dto.getComm_memberNum());
-		
+		cdto.setComm_memberNum(login.getComm_memberNum());
 		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
 		int check1 = 1;
+		
 		for(CommLikeDTO check : likeCheck) {
 			if(check == null) {
 			check1 = 1;
@@ -555,11 +558,10 @@ public class CommBoardController {
 			if(check.getBoardNum() == boardNum) {
 				check1 = 2;
 			}else {
-				check1 = 1;
+				continue;
 			}
 		}
-		
-		}
+	}
 		System.out.println(check1);
 		int likeCount = likemapper.getLikeCount(boardNum);
 		req.setAttribute("likeCount", likeCount);
@@ -569,7 +571,7 @@ public class CommBoardController {
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		req.setAttribute("replyList", list);
-		req.setAttribute("check1", check1);
+		req.setAttribute("check2", check2);
 
 		List<Post_TagDTO> post = post_tagMapper.getPostTagId(boardNum);
 		List<HashTagDTO> tag = new ArrayList<>();

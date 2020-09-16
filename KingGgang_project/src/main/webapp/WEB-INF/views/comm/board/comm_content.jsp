@@ -9,15 +9,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
-<<<<<<< HEAD
-<style>
-      #btnLike,#btnMark{
-         border:0;
-         background-color:white;
-      }
-   </style>
-=======
->>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
+
 <script>
 //좋아요
 function LikeAction() {
@@ -36,8 +28,10 @@ function LikeAction() {
     				alert(result1);
     				
     				if(result1.wstatus == 2){
+    					alert("좋아요 취소");
                        $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
+                    	alert("좋아요 등록");
                        $('img#likeImg').attr('src', './resources/img/heart.png');
                     	}
     				$('#likeCount').text(result1.likeCount)
@@ -134,14 +128,9 @@ function LikeAction() {
          	</c:forEach>
          	</td>
 			<th align="right" width="10">
-<<<<<<< HEAD
 				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()" >
        			<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" height="50px" width="50px">
-=======
-				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
-       				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" width="30" height="30">
->>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
-   				</button>
+       			</button>
    				<span id="likeCount">${likeCount}</span>			
    			</th>
 		</tr>

@@ -2,60 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<<<<<<< HEAD
-<!-- Start Footer -->
-<footer class="footer-box">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 white_fonts">
-				<div class="row">
-					<div class="col-sm-6 col-md-6 col-lg-3">
-						<div class="full">
-							<img class="img-responsive"
-								src="${pageContext.request.contextPath}/resources/main/images/logo.png"
-								alt="#" />
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-6 col-lg-3">
-						<div class="full">
-							<!-- 날씨 api -->
-							<h3>제주도 날씨 현황</h3>
-						</div>
 
-						<div align="right">
-							<table>
-								<tr align="center">
-									<td colspan="2" class="cdate" style="font-size:20px"></td>
-								</tr>
-								<tr>
-									<td class="cicon" rowspan="6"></td>
-								</tr>
-								<tr>
-									<td class="ctemp">현재 온도 :</td>
-								</tr>
-								<tr>
-									<td class="cfeels_like">체감 기온 :</td>
-								</tr>
-								<tr>
-									<td>최고/최저 : <font class="chightemp"></font>/<font
-										class="clowtemp"></font></td>
-								</tr>
-								<tr>
-									<td class="chumidity">습도 :</td>
-								</tr>
-							</table>
-						</div>
-						<!-- <div class="full">
-                                <ul class="menu_footer">
-                                    <li><a href="home.html">> Home</a></li>
-                                    <li><a href="about.html">> About</a></li>
-                                    <li><a href="exchange.html">> Exchange</a></li>
-                                    <li><a href="services.html">> Services</a></li>
-                                    <li><a href="new.html">> New</a></li>
-                                    <li><a href="contact.html">> Contact</a></li>
-                                </ul>
-                            </div> -->
-=======
     <!-- Start Footer -->
     <footer class="footer-box">
         <div class="container">
@@ -123,7 +70,6 @@
                          </div>
                             </div>
                         </div>
->>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
 					</div>
 
 					<div class="col-sm-6 col-md-6 col-lg-3">
@@ -353,7 +299,7 @@ $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=jeju&units=metric&ap
 
 		});
 		//
-=======
+
 
 //날씨 api
 $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=jeju&units=metric&appid=70393e52400da4753a885b68792731f4',
@@ -382,7 +328,6 @@ $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=jeju&units=metric&ap
 			$('.wspeed').append($wSpeed);
 			$('.wdeg').append($wDeg);
 		});
->>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
 	</script>
 </body>
 
