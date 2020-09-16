@@ -113,8 +113,6 @@ public class HotelMapper {
 		map.put("start", startdate);
 		map.put("end", enddate);
 		map.put("r_id", id);
-		System.out.println("데이터 : " + startdate);
-		System.out.println("데이터 : " + enddate);
 		int res = 0;
 		if(sqlSession.selectOne("checkroomdate", map) != null){
 			res = sqlSession.selectOne("checkroomdate", map);
@@ -135,11 +133,9 @@ public class HotelMapper {
 	
 	@Scheduled(fixedDelay=240000)
 	public void checkPay(){
-		System.out.println("유효성체크1");
 		List<RoomDateDTO> list = sqlSession.selectList("roomdatelist");
 		for(RoomDateDTO dto : list){
 			if(dto.getValid() == 0){
-				System.out.println("유효성체크2");
 				sqlSession.delete("deleteunpaidroomdate", dto.getId());
 			}
 		}

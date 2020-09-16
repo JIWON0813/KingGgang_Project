@@ -321,8 +321,6 @@ public class HotelController {
 		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd") ;
 		    Date sDate = dateFormat.parse(startdate.replaceAll("-", ""));
 		    Date eDate = dateFormat.parse(enddate.replaceAll("-", ""));
-		    System.out.println(sDate);
-		    System.out.println(eDate);
 		    Calendar startcal = Calendar.getInstance() ;
 		    startcal.setTime(sDate);	     
 		    int startDayNum = startcal.get(Calendar.DAY_OF_WEEK);
@@ -330,8 +328,6 @@ public class HotelController {
 		    Calendar endcal = Calendar.getInstance() ;
 		    endcal.setTime(eDate);	     
 		    int endDayNum = endcal.get(Calendar.DAY_OF_WEEK);
-		    System.out.println(startDayNum);
-		    System.out.println(endDayNum);
 		    int totalprice = 0;
 		    while(startDayNum != endDayNum){
 		    	if(startDayNum == 5 || startDayNum == 6){
