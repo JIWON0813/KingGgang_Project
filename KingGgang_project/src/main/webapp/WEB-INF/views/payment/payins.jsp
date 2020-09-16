@@ -8,11 +8,6 @@
 	설	   명 : 결제 진행 페이지
  -->
 
-<c:if test ="${type==2}">
-	<script type="text/javascript">
-		alert('렌트카 예약 성공! 5분안에 결제 해 주세요');
-	</script>
-</c:if>
 <P> 결제 진행 테스트 페이지 </P>
 </body>
 </html>
@@ -29,7 +24,7 @@
 	<input type = "hidden" name= "price" value="${price}">
 	<input type = "hidden" name= "type" value="${type}">
 	<!-- m_no = member_Num(session 에서 받아옴) -->
-	<input type = "hidden" name= "m_no" value="1">
+	<input type = "hidden" name= "m_no" value="63">
 	<input type="submit" value="결제하기">
 </form>
 <a href="main.my">마이페이지로 가기</a><p>

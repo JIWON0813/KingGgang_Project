@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter; 
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,8 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.teamb.model.InsuDTO;
+import com.teamb.model.MemberDTO;
 import com.teamb.model.RentcarDTO;
 import com.teamb.model.Rentcar_ResDTO;
+import com.teamb.service.MemberMapper;
+import com.teamb.service.PaymentMapper;
 import com.teamb.service.RentcarMapper;
 
 /*
@@ -34,6 +37,12 @@ public class RentcarController {
 	
 	@Autowired
 	private RentcarMapper rentcarMapper;
+	
+	@Autowired
+	private MemberMapper memberMapper;
+	
+	@Autowired
+	private PaymentMapper paymentMapper;
 	
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
@@ -358,35 +367,52 @@ public class RentcarController {
 		String returnday = dto.getReturnday() + dto.getPickuptime();
 		dto.setReceiptday(receiptday);
 		dto.setReturnday(returnday);
+
+		
+	
+
 		
 		List<Rentcar_ResDTO> resCheck = rentcarMapper.checkAlreadyReservation(dto);
-	
+		//결제 원세호
 		String member_id =  req.getParameter("member_id");
-		
+
 		String msg = null;
 		String url = null;
+
 		if(resCheck.size()==0){
 		int res = rentcarMapper.insertRentcarReservation(dto);
+
 		if(res>0){
 			rentcarMapper.updateRentcarReservation(dto.getR_id());
 			int res_id = rentcarMapper.getRes_id(member_id);
+			MemberDTO mdto = memberMapper.getMemberId(member_id);
+			int memberNum = mdto.getMemberNum();
+			MemberDTO mrdto =  paymentMapper.getpayMember(memberNum);
+			
+			
+			req.setAttribute("mrdto", mrdto);
 			req.setAttribute("res_id",res_id);
-			req.setAttribute("price", dto.getPrice());
+			req.setAttribute("totalPrice", dto.getPrice());
 			req.setAttribute("type", 2);
-			return "payment/payins";
+			req.setAttribute("m_no", memberNum);
+			return "payment/payins2";
+
 		}else{
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!";
 			url = "windowClose.rentcar";
 		}
+		req.setAttribute("msg",msg);
+		req.setAttribute("url",url);
+		return "message";
 		}else{
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!(이미 예약됨)";
 			url = "windowClose.rentcar";
 		}
-	
 		req.setAttribute("msg",msg);
 		req.setAttribute("url",url);
 
 		return "message";		
+
 	}
 	@RequestMapping(value = "windowClose.rentcar")
 	public String windowClose(){

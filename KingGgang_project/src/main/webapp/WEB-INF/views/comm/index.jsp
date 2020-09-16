@@ -28,21 +28,21 @@
 							<div class="full">
 								<ul class="menu_footer">
 									<c:if test="${comm_login != null }">
-									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="comm_writeForm.do"> Write</a></li>
-									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="comm_myPage.do"> Mypage</a></li>
-									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="comm_bookMark.do"> BookMark</a></li>
+									<li><img src="${pageContext.request.contextPath}/resources/img/flower.png" width="30" height="30"><a href="comm_writeForm.do"> Write</a></li>
+									<li><img src="${pageContext.request.contextPath}/resources/img/하르방.png" width="30" height="30"><a href="comm_myPage.do"> Mypage</a></li>
+									<li><img src="${pageContext.request.contextPath}/resources/img/mountain.PNG" width="30" height="30"><a href="comm_bookMark.do"> BookMark</a></li>
 									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="commadmin.comm"> 관리자모드</a></li>
-									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">
+									<li><img src="${pageContext.request.contextPath}/resources/img/유채꽃.PNG" width="30" height="30">
 											<a href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">회원탈퇴</a>
 											<a href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">>수정</a>
 									</li>
-									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">			
+									<li><img src="${pageContext.request.contextPath}/resources/img/해녀.PNG" width="30" height="30">			
 											<a href="comm_memberList.do"> 회원목록</a>
 										</li>
-											<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">
+											<li><img src="${pageContext.request.contextPath}/resources/img/수국.PNG" width="30" height="30">
 											<a href="comm_friendAll.do?comm_memberNum=${comm_memberNum }">
 													Friends 목록</a></li>
-											<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30">
+											<li><img src="${pageContext.request.contextPath}/resources/img/스쿠버.PNG" width="30" height="30">
 											<a href="#"
 												onclick="window.open('roomList', '_blank', 'width=600 height=600')">
 													채팅 목록</a></li>
@@ -74,8 +74,11 @@
 						 <div class="section layout_padding" style="width:60% !important; margin-left:100px;">
                             <div class="full">
                                 <h3 style="font-size: 20px !important"><font size=7>낑</font><font size=3>깡</font><font size=7>같</font><font size=3>이</font><font size=7>따</font><font size=3>러갈래?</font> 
-                                <img alt="#" src="${pageContext.request.contextPath}/resources/main/images/orange.png">
-                                <a href="comm_togetherList.do" style="font-size:10px;color:#FFFFFF;float: right;"> >> 더 알아보기</a></h3>
+                                	<img alt="#" src="${pageContext.request.contextPath}/resources/main/images/orange.png">
+                               		<c:if test="${comm_login != null }"> 
+                               			<a href="comm_togetherList.do" style="font-size:10px;color:#FFFFFF;float: right;"> >> 더 알아보기</a>
+                               		</c:if>
+                               </h3>
                             <div style="width:100%; height: 200px; " >
            					 <iframe src="${pageContext.request.contextPath}/comm_mainTogetherList" style="width: 100%; 
             				  height: 100%; border: none;" ></iframe>    
@@ -169,7 +172,6 @@
                  
    
 }
-
    $(function() {
        $(document).on('click', function(e) {
            if (e.target.id === 'word') {
@@ -177,7 +179,6 @@
            } else {
                $('#memberSearch').hide();
            }
-
        })
    });
 </script>
@@ -207,7 +208,6 @@ function search(target){
       error: function(errorThrown) { alert(errorThrown.statusText); 
       } 
    }); 
-
    //해시태그 검색
    var obj = {"word": word}; 
    $.ajax({ url: "<c:url value="/commHashSearch" />", 

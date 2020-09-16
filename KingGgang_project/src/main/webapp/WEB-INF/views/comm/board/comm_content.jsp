@@ -8,6 +8,127 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<style>
+	 input{
+		border:1px solid orange;
+		background-color:rgba(0,0,0,0);
+		color:orange;
+		padding:5px;
+		
+		border-radius:5px;
+	}
+	#input_group input:hover{
+		color:white;
+		background-color:orange;
+	}
+	
+	#write_group input {
+		border:1px solid brown;
+		background-color:rgba(0,0,0,0);
+		color:brown;
+		padding:5px;
+		
+		border-radius:5px;
+	
+	}
+	
+	#write_group input:hover{
+		color:white;
+		background-color:brown;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+
+<script type="text/javascript">
+	function check(){
+		if (f.rwriter.value==""){
+			alert("작성자를 입력해주세요")
+			f.rwriter.focus()
+			return false
+		}
+		if (f.rcontent.value==""){
+			alert("내용을 작성해주세요")
+			f.rcontent.focus()
+			return false
+		}
+		if (f.rpasswd.value==""){
+			alert("비밀번호를 입력해주세요")
+			f.rpasswd.focus()
+			return false
+		}
+		return true
+	}
+</script>
+
+<script>
+//좋아요
+function LikeAction() {
+	
+    	var obj = {"boardNum" : $('#btnLike').attr('name')}
+     
+    	$.ajax({ url: "<c:url value="/insDelLike" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공"); 
+    		
+    				var result1 = data
+    				alert(result1);
+    				  
+    				if(result1.wstatus == 2){
+    					alert("좋아요 취소");
+                       $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
+                    } else {
+                    	alert("좋아요 등록");
+                        $('img#likeImg').attr('src', './resources/img/heart.png');
+                	}
+				$('#likeCount').text(result1.likeCount)
+				}, 
+		error: function(errorThrown) { alert(errorThrown.statusText); } 
+		}); 
+	} 
+	
+	</script>
+   
+   <script>
+	//북마크
+	function marklist() {
+	
+    	var obj = {"boardNum" : $('#btnMark').attr('name')}
+     
+    	$.ajax({ url: "<c:url value="/bookmark" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공");
+    		
+    				var result1 = data
+    				alert(result1);
+    				if(result1.wstatus == 2){
+                       $('img#mark_img').attr('src', './resources/img/box.png');
+                    } else {
+                       $('img#mark_img').attr('src', './resources/img/heartbox.png');
+                    	}
+    				}, 
+    				
+    		error: function(errorThrown) { alert(errorThrown.statusText); } 
+    		}); 
+    	} 
+	</script>
+	
+	<style>
+		#btnLike,#btnMark{
+			border:0;
+			background-color:white;
+		}
+	</style>
+   
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -15,7 +136,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6 col-lg-3">
 							<div class="full">
-								<h3>글</h3>
+								<h3><img src="${pageContext.request.contextPath}/resources/img/낑깡logo.png" width="100" height="100">글</h3>
 							</div>
 						</div>
 					</div>
@@ -37,8 +158,7 @@
 		 	<a href="comm_otherPage.do?comm_memberNum=${memberNum}"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50">&nbsp;&nbsp;[   ${comm_nickname}   ]</a>
 		</td>
 	</tr>
-	<br>
-	<br>
+	
 	<c:if test="${getBoard.file_size != 0}">
 		<tr align="center">
 			 <td align="center" colspan="4">
@@ -52,27 +172,30 @@
 		</tr>
 	
 		<tr height="30">
-			<th align="center">태그</th>
-			<td>
+			<th align="center" width="40">태그</th>
+			<td colspan="2">
 			<c:forEach var="tag" items="${tag}">
                   <a href="searchTag?tagId=${tag.tagId}&tagName=${tag.tagName}" style="color : blue;">#${tag.tagName} </a>
          	</c:forEach>
          	</td>
 			<th align="right" width="10">
-					<img src="${pageContext.request.contextPath}/resources/img/heart.PNG" width="30" height="30">
-			</th>
-			<td width="10">
-				<a href="comm_bookMarkPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}">
-					<img src="${pageContext.request.contextPath}/resources/img/orange.png" width="30" height="30">
-				</a>
+				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()" >
+       			<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" height="50px" width="50px">
+       			</button>
+   				<span id="likeCount">${likeCount}</span>			
+   			</th>
+		</tr>
+		<tr>
+			<th align="center" width="40">공개범위</th>
+			<td colspan="2">${getBoard.look}</td>
+			<td  align="right" width="10">
+				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
+					<img src="${ check2 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
+				</button>
 			</td>
 		</tr>
 		<tr>
-			<th align="center">공개범위</th>
-			<td colspan="4">${getBoard.look}</td>
-		</tr>
-		<tr>
-			<td align="center" colspan="4">
+			<td align="center" colspan="4" id="write_group">
 			 <c:if test="${loginNum == memberNum}">
 				<input type="button" value="글수정"
 				onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
@@ -90,30 +213,31 @@
 	</table>
 </div>
 <br>
-<hr color="pink">
 <div align="center">
-<form name="replyForm" action="comm_writeReplyPro.do" method="post">
-  <input type="hidden" id="boardNum" name="boardNum" value="${param.boardNum}">
-  <table width="400">
+<form name="f" action="comm_writeReplyPro.do" method="post" onsubmit="return check()">
+  <input type="hidden" name="boardNum" value="${param.boardNum}">
+  <input type="hidden" name="replylNum" value="${param.replyNum}">
+  <table>
     <tr>
-    	<th>댓글 작성자</th>
+    	<th width="85">댓글 작성자</th>
     	<td><input type="text" id="rwriter" name="rwriter"></td>
+    	
+    	<th width="85">비 밀 번 호</th>
+    	<td><input type="password" id="rpasswd" name="rpasswd"></td>
     </tr>
     
     <tr>
-   		 <th>댓글 내용</th>
+   		 <th width="85">댓글 내용</th>
    		 <td><input type="text" id="rcontent" name="rcontent"></td>
-   		 <td><input type="submit" value="작성"></td>
+   		 <td colspan=2 align="center" id="input_group"><input type="submit" value="작성"></td>
     </tr>
   </table>
 </form>
 </div>
-<hr color="pink">
 <br>
-
 <!-- 댓글 -->
 <div align="center">
-<form name="f" action="reply_updatePro.do" method="post" onsubmit="return check()">
+<form name="replyList" method="post" onsubmit="return check()">
  <input type="hidden" id="replyNum" name="replyNum" value="${param.replyNum}"/>
  <table>
   <tr>
@@ -130,9 +254,8 @@
         <td>	 
         	 내 용 : ${replyList.rcontent}
       	</td>
-        <td>
-        	<input type="submit" value="댓수정">
-      		<input type="button" value="댓삭제" onclick="window.location='reply_deletePro.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
+        <td id="input_group"> 
+      		<input type="button" value="댓글 삭제" onclick="window.location='reply_deleteForm.do?replyNum=${replyList.replyNum}&boardNum=${getBoard.boardNum}'">
       	</td>
       	<tr>
       		<td>
@@ -144,33 +267,4 @@
   </table>
  </form>		
 </div>
-<!-- <div>
-<input type="text" id="comment" name="content" placeholder="댓글 입력">
-<button onClick="make_comment({blog.id})" type="submit">작성</button>
-</div> -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-<!-- <script>
-/*댓글기능*/
-function make_comment(blog_id) {
-	var body = $("#comment").val();
-	&.ajax({
-		type: "POST",
-		url: "/comment/create",
-		date : {
-			'blog_id' : blog_id,
-			'body' : body,
-			'csrfmiddlewaretoken' : '{{csrf_token}}',
-		},
-		dataType: "json",
-		success: function(response) {
-			console.log(response.message);
-			$("#comment_list").append("<p>"+response.body+"</p><hr>")
-			$("#comment").val('')
-		},
-		error:funtion(request,status,error) {
-			alert(error);
-		},
-	});
-}
-</script>
- -->

@@ -47,4 +47,13 @@ public class CommNewsFeedMapper {
 	   return sqlSession.selectList("look_newfeedList",map);
 	}
 	
+	public List<CommboardDTO> alone_newfeedList(int startRow, int endRow, String look,int comm_memberNum) {
+		java.util.Map<String,Object> map = new Hashtable<String, Object>();
+		map.put("startRow",startRow);
+		map.put("endRow",endRow);
+		map.put("look", look);
+		map.put("comm_memberNum", comm_memberNum);
+	   return sqlSession.selectList("alone_look_newfeedList",map);
+	}
+	
 }

@@ -12,7 +12,7 @@
 
 function wishlist() {
 	
-    	var obj = {"no" : $('#btnLike').attr('name')}
+    	var obj = {"no" : $('#btnWish').attr('name')}
      
     	$.ajax({ url: "<c:url value="/insDelwish" />", 
     		type: "POST", 
@@ -34,11 +34,11 @@ function wishlist() {
    </script>
 <%@ include file="../top.jsp"%>
 <h1 align="center">숙소 상세 정보</h1>
-<div align="center">
+<div class="session layout_padding" align="center">
 	<table width="1200" border="1">
 		<tr>
 			<td width="15%"><img
-				src="http://localhost:9211/img/${dto.filename}" width="auto"
+				src="http://localhost:8080/img/${dto.filename}" width="auto"
 				height="150">
 			<td colspan="2">숙소 이름</td>
 			<td colspan="3">${dto.name}</td>
@@ -76,7 +76,7 @@ function wishlist() {
 		<tr>
 		<td><p>관심리스트</p></td>
 		<td colspan="5">
-		<button type="button" id="btnLike" name="${dto.no}" onclick="wishlist()">
+		<button type="button" id="btnWish" name="${dto.no}" onclick="wishlist()">
        			<img src="${ check1 == 1 ? './resources/img/empty_heart.jpg' : './resources/img/heart.jpg' }" id="wishImg" height="50px" width="50px">
    		</button>
 		</td>

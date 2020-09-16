@@ -366,8 +366,24 @@ a.join_bt {
     font-weight: 300;
 }
 
+a.join_bt2 {
+    background: #ff880e;
+    width: 180px;
+    text-align: center;
+    height: 38px;
+    line-height: 38px;
+    color: #fff;
+    font-weight: 300;
+}
+
 a.join_bt:hover,
 a.join_bt:focus {
+	background: #222;
+	color: #fff !important;
+}
+
+a.join_bt2:hover,
+a.join_bt2:focus {
 	background: #222;
 	color: #fff !important;
 }
@@ -1808,6 +1824,7 @@ footer.footer-box h3 {
 footer.footer-box h3 {
     font-size: 30px;
     border-bottom: solid #d66c0b 4px;
+    border-width: 30%;
     margin-bottom: 25px;
 }
 
