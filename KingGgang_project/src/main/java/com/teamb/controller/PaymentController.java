@@ -35,6 +35,7 @@ import com.teamb.model.PaymentListData;
 import com.teamb.model.RentcarDTO;
 import com.teamb.model.Rentcar_ResDTO;
 import com.teamb.model.RoomDTO;
+import com.teamb.model.RoomDateDTO;
 import com.teamb.model.WishlistDTO;
 import com.teamb.model.PaylistDTO;
 import com.teamb.service.HotelMapper;
@@ -65,11 +66,16 @@ public class PaymentController {
 	@Autowired
 	private HotelMapper hotelMapper;
 
+	@Autowired
+	private HotelMapper hotelmapper;
+
 		
 	@RequestMapping("/main.pay")
 	public String payMain() {
 		return "payment/payins";
 	}
+	
+
 	
 	@RequestMapping("/complete.pay")
 	public String payMained(HttpServletRequest req,@ModelAttribute PaymentDTO dto) {
@@ -87,15 +93,23 @@ public class PaymentController {
 			dto.setP_no(Integer.parseInt(req.getParameter("res_id")));
 		}
 		
-		
+		int status = 1;
 		int res =  paymemtMapper.insertPayment(dto);
 		String msg = null, url=null;
 		if (res>0) {
-			int status = 1;
-			if(dto.getType() == 2) {
-				rentcarMapper.changePstSuc(dto.getP_no());
-				status = 2;
+			int type =  dto.getType();
+			System.out.println(type);
+			if(type == 2) {
+				int res_id =  dto.getP_no();
+				rentcarMapper.changePstSuc(res_id);
+				req.setAttribute("status",1);
 			}
+			else{
+				int id = dto.getP_no();
+				hotelmapper.changevaild(id);
+				req.setAttribute("status",0);
+			}
+
 			//결제내역
 			int no = paymemtMapper.getPayno(m_no);
 			
@@ -107,15 +121,17 @@ public class PaymentController {
 			HotelDTO hdto= null;
 			Rentcar_ResDTO resdto = null;
 			RentcarDTO cardto= null;
+			RoomDateDTO rddto = null;
 			if(pdto.getType() == 1){
-				rdto = hotelMapper.getRoom(pdto.getP_no()); 
+				rddto = hotelmapper.getRoomDate(pdto.getP_no());
+				rdto = hotelmapper.getRoom(rddto.getRoom_id());
 				hdto = hotelMapper.getHotel(rdto.getH_id());
 			} 
 			else{
 				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
 				cardto = rentcarMapper.getRentcar(resdto.getR_id());
 			}
-			PaymentListData pldto = new PaymentListData(pdto, mdto, rdto,hdto,resdto,cardto);
+			PaymentListData pldto = new PaymentListData(pdto,mdto,rddto,rdto,hdto,resdto,cardto);
 			
 			req.setAttribute("status", status);
 			req.setAttribute("pldto", pldto);
@@ -127,6 +143,7 @@ public class PaymentController {
 			url = "main.my";
 			msg = "결제실패 마이페이지로 이동합니다.";
 		}
+		
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
 		return "message";

@@ -6,7 +6,7 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 정보 수정 폼
  -->
- <div align="center">
+<div align="center">
 	<form name="f" action="updateHotel.hotel" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="no" value="${dto.no}" />
 		<table border="1" width="1000">

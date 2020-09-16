@@ -8,8 +8,10 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 예약 메인페이지
  -->
-
-   
+<%@ include file="../top.jsp"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
+<script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
+<div class="session layout_padding" align="center"></div> 
 <div class="subject" align="center">
 	<h1>다양한 종류의 숙소</h1>
 </div>
@@ -90,3 +92,4 @@
 		</c:if>
 	</c:if>
 </div>
+<%@ include file="../bottom.jsp"%>

@@ -1,14 +1,21 @@
 package com.teamb.controller;
 
 import java.io.File;
-import java.util.HashMap;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.apache.commons.logging.Log;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,10 +27,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.teamb.model.HotelDTO;
+import com.teamb.model.MemberDTO;
 import com.teamb.model.RoomDTO;
 import com.teamb.model.RoomDateDTO;
 import com.teamb.model.WishlistDTO;
 import com.teamb.service.HotelMapper;
+import com.teamb.service.MemberMapper;
+import com.teamb.service.PaymentMapper;
 import com.teamb.service.WishlistMapper;
 
 /*
@@ -39,6 +49,13 @@ public class HotelController {
 	
 	@Autowired
 	private WishlistMapper wishlistmapper;
+	
+	//결제 원세호 
+	@Autowired
+	private MemberMapper membermapper;
+	
+	@Autowired
+	private PaymentMapper paymentmapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
@@ -153,9 +170,8 @@ public class HotelController {
 	
 	@RequestMapping(value = "/hotelDetail.hotel")
 	public String hotelDetail(HttpServletRequest req, @RequestParam int no){
-		
-		HotelDTO dto = hotelmapper.getHotel(no);
-		
+		hotelmapper.increasecount(no);
+		HotelDTO dto = hotelmapper.getHotel(no);	
 		List<RoomDTO> list = hotelmapper.roomList(no);
 		
 		//원세호 관심리스트 
@@ -192,6 +208,11 @@ public class HotelController {
 		return "hotel/hotelDetail";
 	}
 
+	@RequestMapping(value = "insertHotelForm.hotel")
+	public String insertHotelForm(){
+		return "hotel/insertHotelForm";
+	}
+	
 	@RequestMapping(value = "/insertHotel.hotel")
 	public String insertHotel(HttpServletRequest req, @ModelAttribute HotelDTO dto, BindingResult result) {
 		String filename = "";
@@ -280,19 +301,100 @@ public class HotelController {
 		req.setAttribute("url", url);
 		return "message";
 	}
+
 	
-	@RequestMapping(value="/show_regiroom.hotel")
-	public String showRegiroom(@RequestParam String startdate , @RequestParam String enddate){
-		boolean check = hotelmapper.checkRoomdate(startdate , enddate);
-		return "message";
+	@RequestMapping(value="/payment.hotel")
+	public String payment(HttpServletRequest req,HttpSession session, @RequestParam int id, @RequestParam int price){		
+		//결제 원세호 
+		
+		String member_id = (String) session.getAttribute("mbId");
+		MemberDTO mdto = membermapper.getMemberId(member_id);
+		int memberNum = mdto.getMemberNum();
+		MemberDTO mrdto =  paymentmapper.getpayMember(memberNum);
+		req.setAttribute("mrdto", mrdto);
+		req.setAttribute("id", id);
+		req.setAttribute("type", 1);
+		req.setAttribute("totalPrice", price);
+		req.setAttribute("m_no", memberNum);
+		return "payment/payins2";
 	}
 	
 	@RequestMapping(value="/room_book.hotel")
 	public String BookRoom(HttpServletRequest req ,@RequestParam int id){
-		
 		RoomDTO dto = hotelmapper.getRoom(id);
 		req.setAttribute("roomdto", dto);
-		return "hotel/room_book";
+		return "hotel/room_book";		
+	}
+	
+	@RequestMapping(value="/show_regiroom.hotel")
+	public String showRegiroom(HttpServletRequest req, HttpServletResponse response, @RequestParam int id, @RequestParam String startdate , @RequestParam String enddate) throws IOException, ParseException{
+		boolean check = hotelmapper.checkRoomdate(startdate , enddate, id);
+		RoomDTO roomdto = hotelmapper.getRoom(id);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		req.setAttribute("roomdto", roomdto);
+		if(!check){
+			String msg = "이미 예약되어있는 날짜입니다 다른 날짜를 선택해 주세요";		
+			out.println("<script>alert('"+msg+"')");
+			out.println("location.href='room_book.hotel?id="+id+"'</script>");
+			out.close();
+		}	     
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd") ;
+		    Date sDate = dateFormat.parse(startdate.replaceAll("-", ""));
+		    Date eDate = dateFormat.parse(enddate.replaceAll("-", ""));
+		    Calendar startcal = Calendar.getInstance() ;
+		    startcal.setTime(sDate);	     
+		    int startDayNum = startcal.get(Calendar.DAY_OF_WEEK);
+		    
+		    Calendar endcal = Calendar.getInstance() ;
+		    endcal.setTime(eDate);	     
+		    int endDayNum = endcal.get(Calendar.DAY_OF_WEEK);
+
+		    int totalprice = 0;
+		    while(startDayNum != endDayNum){
+		    	if(startDayNum == 5 || startDayNum == 6){
+		    		totalprice += roomdto.getEndprice();
+		    	}
+		    	else{
+		    		totalprice += roomdto.getDayprice();
+		    	}
+		    	startDayNum++;
+		    	if(startDayNum == 8){
+		    		startDayNum = 1;
+		    	}
+		    }
+		    HttpSession session = req.getSession();
+		    String m_id = (String) session.getAttribute("mbId");
+		    if(m_id == null){
+		    	String msg = "로그인을해주세요";	
+				out.println("<script>alert('"+msg+"')");
+				out.println("location.href='room_book.hotel?id="+id+"'</script>");
+				out.close();
+		    }
+		RoomDateDTO dto = new RoomDateDTO(startdate,enddate,totalprice,m_id,roomdto.getId(),0);
+
+		int rdid = 0;
+		int res = hotelmapper.insertRoomDate(dto);
+		if(res == 0){
+			String msg = "예약 실패했습니다. 관리자에게 문의해주십시오";
+			out.println("<script>alert('"+msg+"')");
+			out.println("location.href='room_book.hotel?id="+id+"'</script>");
+			out.close();			
+		}
+		else if(res == 2){
+			String msg = "이미 예약된 방입니다. 다른 방을 예약해 주세요.";
+			out.println("<script>alert('"+msg+"')");
+			out.println("location.href='main.hotel?'</script>");
+			out.close();
+		}
+		else if(res == 1){
+			rdid = hotelmapper.getrecentdate();
+		}
+		dto.setId(rdid);
+		req.setAttribute("dto", dto);
+		req.setAttribute("totalprice", totalprice);
+		return "hotel/room_paypage";
 	}
 	
 	@RequestMapping(value="/insertRoom.hotel")
