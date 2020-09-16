@@ -40,8 +40,6 @@
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 
-<<<<<<< HEAD
-=======
 <script type="text/javascript">
 	function check(){
 		if (f.rwriter.value==""){
@@ -63,7 +61,6 @@
 	}
 </script>
 
->>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
 <script>
 //좋아요
 function LikeAction() {
@@ -79,17 +76,14 @@ function LikeAction() {
     		success: function(data) { alert("통신성공"); 
     		
     				var result1 = data
+    				alert(result1);
     				
     				if(result1.wstatus == 2){
     					alert("좋아요 취소");
                        $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
-<<<<<<< HEAD
                     	alert("좋아요 등록");
                        $('img#likeImg').attr('src', './resources/img/heart.png');
-=======
-                       $('img#likeImg').attr('src', './resources/img/heart.PNG');
->>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
                     	}
     				$('#likeCount').text(result1.likeCount)
     				}, 
@@ -114,7 +108,7 @@ function LikeAction() {
     		success: function(data) { alert("통신성공");
     		
     				var result1 = data
-    				
+    				alert(result1);
     				if(result1.wstatus == 2){
                        $('img#mark_img').attr('src', './resources/img/box.png');
                     } else {

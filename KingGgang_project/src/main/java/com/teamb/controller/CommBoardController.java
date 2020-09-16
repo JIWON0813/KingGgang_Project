@@ -458,10 +458,10 @@ public class CommBoardController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "댓글삭제성공";
-			url = "comm_content.do?boardNum=" + boardNum; 
+			url = "comm_otherContent.do?boardNum=" + boardNum;
 		} else {
 			msg = "댓글삭제실패!!";
-			url = "comm_content.do?boardNum=" + boardNum;
+			url = "comm_otherContent.do?boardNum=" + boardNum;
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
