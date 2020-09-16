@@ -6,7 +6,7 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 등록 폼
  -->
- <%@ include file="../top.jsp"%>
+
  <div align="center">
 	<form name="f" action="insertHotel.hotel" method="post" enctype="multipart/form-data">
 		<table border="1" width="1000">
@@ -76,4 +76,3 @@
 		</table>
 	</form>
 </div>
- <%@ include file="../bottom.jsp"%>

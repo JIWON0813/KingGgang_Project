@@ -20,7 +20,7 @@
 			<th>구 분</th>
 			<th>작성일</th>
 			<th>조회수</th>
-			<th></th>
+			<th><button type="button" onclick="location.href='insertHotelForm.hotel' ">글쓰기</button></th>
 		</tr>
 		<c:if test="${empty hotelList}">
 			<tr>
