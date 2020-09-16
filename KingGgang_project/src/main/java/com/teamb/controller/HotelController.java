@@ -159,9 +159,8 @@ public class HotelController {
 	
 	@RequestMapping(value = "/hotelDetail.hotel")
 	public String hotelDetail(HttpServletRequest req, @RequestParam int no){
-		
-		HotelDTO dto = hotelmapper.getHotel(no);
-		
+		hotelmapper.increasecount(no);
+		HotelDTO dto = hotelmapper.getHotel(no);	
 		List<RoomDTO> list = hotelmapper.roomList(no);
 		
 		//원세호 관심리스트 
