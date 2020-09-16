@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    <%@ include file="../top.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- 
 	이	   름 : confirm.jsp
@@ -11,7 +12,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
 <title>회원탈퇴페이지</title>
 </head>
 <script type="text/javascript">
@@ -32,8 +33,7 @@
 	    <div class="wrap wd668">
             <div class="container">
                 <div class="form_txtInput">
-                    <h1 class="sub_tit_txt">회원 탈퇴 페이지</h1>
-                    <h2 class="sub_tit_txt">비밀번호를 입력하세요.</h2>
+                    <h2 class="sub_tit_txt">회원탈퇴 <br>비밀번호를 입력하세요.</h2>
                     <div class="join_form">
                         <table>
                             <colgroup>
@@ -56,9 +56,8 @@
 <!-- <input type="hidden" name ="filename" value="${param.filename}"/> -->
 	    <div class="wrap wd668">
             <div class="container">
-                <div class="form_txtInput">
-                	<h1 class="sub_tit_txt">회원정보 수정페이지</h1>
-                    <h2 class="sub_tit_txt">비밀번호를 입력하세요.</h2>
+                <div class="form_txtInput">               	
+                    <h2 class="sub_tit_txt">회원수정 <br>비밀번호를 입력하세요.</h2>
                     <div class="join_form">
                         <table>
                             <colgroup>
@@ -84,3 +83,4 @@
         </div> <!-- container E -->
         </div>
     </form>
+    <%@ include file="../bottom.jsp" %>

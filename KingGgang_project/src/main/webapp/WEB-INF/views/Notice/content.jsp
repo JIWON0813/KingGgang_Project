@@ -19,29 +19,23 @@
 <div align="center" class="container">
 	<table class="table table-bordered">
 		<tr height="30">
-			<th width="20%">No</th>
-			<td align="center" width="30%">${notice.no}</td>
-			<th width="20%">조회수</th>
-			<td align="center" width="30%">${notice.readcount}</td>
+			<th width="20%" bgcolor="orange">제목</th>
+			<td align="left" width="80%">${notice.subject}</td>
 		</tr>
 		<tr height="30">
-			<th width="20%">작성일</th>
-			<td colspan="3" align="center" width="30%">${notice.regdate}</td>
+			<th width="20%" bgcolor="orange">작성자</th>
+			<td align="left" width="80%">${notice.name}</td>
 		</tr>
 		<tr height="30">
-			<th width="20%">글제목</th>
-			<td align="center" colspan="3">
-				${notice.subject}
+			<td colspan="2">작성일&nbsp;&nbsp;${notice.regdate }&nbsp;&nbsp;&nbsp;&nbsp;조회수&nbsp;&nbsp;${notice.readcount }
 			</td>
 		</tr>
-		<tr height="80">
-			<th width="20%">글내용</th>
-			<td colspan="3" >
+		<tr height="80%">
+			<td colspan="2">
 				${notice.content}
 			</td>
-		</tr> 
-		<tr>
-			<td colspan="4" align="right">
+		</tr>
+		</table> 
 			<c:if test="${mbId=='admin'}">
 				<a class="btn btn-default pull-right" href="update.notice?no=${notice.no }">수정하기</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;
@@ -49,9 +43,6 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;
 			</c:if>
 				<a class="btn btn-default pull-right" href="list.notice">목록보기</a>
-			</td>
-		</tr>
-	</table>
 </div>
 <div class="section layout_padding"></div>
 <%@ include file="../bottom.jsp"%>

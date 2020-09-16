@@ -1,13 +1,6 @@
-@charset "utf-8";
 * {margin:0;padding:0;}
 html {height:100%;}
 body {height:100%; font-family: 'Noto Sans KR';}
-table, tr, td, th, div, p, em, ol, ul, li, dl, dt, dd, a, address, img, h1, h2, h3, h4, h5, h6 {font-size:11pt; color:#666;text-decoration: none;}
-img {border:0; }
-h1 { float:left; padding:0 0 0 0px;}
-h2 {padding:0 0 0 0px;}
-ul, li { list-style:none;}
-ul{list-style:none; }
 .red_txt{color:#ee7272;}
 .blind {display:block;overflow:hidden;position:absolute;left:0;top:-5000px}
 .wrap{max-width:960px; margin: 0 auto;}
@@ -23,15 +16,6 @@ ul{list-style:none; }
 .btn_wrap{text-align:center; margin:40px 0 30px;}
 .btn_wrap a{color: #fff; background-color: #4380ce; font-weight: bold; padding: 5px;  height: 30px; line-height: 30px; width: 168px; display: block; text-align: center; margin: 0 auto;}
 .btn_wrap a.wide{width:587px;margin: 0 0 0 20px;}
-.find_txt ul li{color:#9a9a9a;font-size:13px;text-align:center; line-height:17px; margin:0 0 20px;}
-.form_txtInput .checkbox_wrap {position: relative;padding: 5px;text-align: right;}
-.form_txtInput .checkbox_wrap input[type="checkbox"] {position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0,0,0,0);border: 0;}
-.form_txtInput .checkbox_wrap input[type="checkbox"] + label {display: inline-block; line-height:14px;position: relative;padding-left: 20px;font-size: 13px;color: #818181;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;}
-.form_txtInput .checkbox_wrap input[type="checkbox"] + label:before {content: '';position: absolute;top: 0px;left: 0;width: 12px;height: 12px;text-align: center;background: #fff;border: 1px solid #c2c2c2;}
-.form_txtInput .checkbox_wrap input[type="checkbox"] + label:active:before, .checkbox_wrap input[type="checkbox"]:checked + label:active:before {box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);}
-.form_txtInput .checkbox_wrap input[type="checkbox"]:checked + label:before {background: #fff;border-color: #ddd;}
-.form_txtInput .checkbox_wrap input[type="checkbox"]:checked + label:after {content: '✓';color: #0094ff;position: absolute;top:0px;left:2px;width: 7px;height: 7px;font-size: 13px;font-weight: bold;}
-.exTxt{font-size:14px;color:#9a9a9a;display: block;margin:0 0 45px 20px;}
 .join_form{width:100%;max-width:668px;}
 .join_form table {border-spacing: 0;margin:0;padding:0; border:0;width:100%;}
 /* .join_form table input{ border:1px solid #ececec;font-size:14px;color:#4c4c4c; height:35px; padding:10px; width:100%; float:left;}
@@ -46,7 +30,6 @@ ul{list-style:none; }
 .join_form table th span{color:#404040;font-size:14px; display:inline-block; position:relative;padding:0 10px 0 0; text-indent:20px;}
 .join_form table th{text-align:left;}
 .join_form table td{padding:6px 0;position: relative;}
-.join_form table th span:after{content:"*";font-size:13px;color:#f95427;position:absolute;top:0;right:0px;}
 .join_form.idpwFind table th span:after{content:none;}
 .join_form table td a.btn_confirm{display: inline-block; float:left;width:115px; height:48px;margin:5px 0 0 0px;border:1px solid #cfcfcf;background:#dedede;color:#626262;text-align:center; vertical-align: top;line-height: 50px;}
 .join_form.idpwFind table td select { -webkit-appearance: none; -moz-appearance: none;  appearance: none; background: url(https://secsales.interparkb2b.co.kr/data/G94/main/sele_arr.gif) no-repeat 95% 50%;text-indent:20px; width:124px; height:50px;border:1px solid #ececec; font-size:14px; color:#ccc; float:left;}
@@ -97,20 +80,9 @@ ul{list-style:none; }
   .exTxt{margin:0 0 25px 0px}
   .wrap.wd668.line .sub_tit_txt,.wrap .sub_tit_txt{margin:0 0 10px 0;}
   .btn_wrap a,.btn_wrap a.wide{width:auto;margin:0;}
-  .btn_wrap{overflow: hidden;}
   .join_form.idpwFind table td select{width:30%;height:37px; float:left;}
   .join_form.idpwFind table tr.email input:after,.mar10:after,  .join_form.idpwFind table td select:after{content:'';display: block;clear:both;}
   .popWrap{right: auto; max-width: 80vw; margin: 30px auto 0; left: 50%; transform: translateX(-50%);}
   .join_form table td a.btn_confirm{width: 100px; height: 35px;line-height: 35px; font-size: 12px;margin:5px 0 0 ;}
   .join_form table input.send_number + a{margin:0 0 0 5px;}
 }
-/* 레이어 팝업 */
-#layer {display: none; position: fixed; left: 50px; top: 50px; width: 700px; 
-	border: 10px solid #dceff7; box-shadow: 3px 3px 10px rgba(0,0,0,0.4);}
-#layer img {width: 100%; display: block;}
-#layer .close {position: absolute; right: 20px; top: 20px; 
-	background: #0093bd; padding: 1px 6px; color: #fff;}
-#layer .close:hover {text-decoration: underline;}
-
-
-/* */

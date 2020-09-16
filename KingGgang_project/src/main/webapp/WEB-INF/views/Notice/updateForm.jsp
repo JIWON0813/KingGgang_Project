@@ -38,7 +38,8 @@
 <div class="section layout_padding"></div>
 <div align="center" class="container">
 	<form name="f" action="update.notice" method="post" onsubmit="return check()">
-		<input type="hidden" name="no" value="${notice.no}"/>													
+		<input type="hidden" name="no" value="${notice.no}"/>
+		<input type="hidden" name="name" value="${notice.name }">													
 		<table class="table-bordered">
 			<tr>
 				<td align="center" colspan="2"><b>글 수 정</b></td>

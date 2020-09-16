@@ -61,7 +61,6 @@
 					<input type="hidden" name="t_id" value="${t_id }">
 					<input type="hidden" name="name" value="${r_name }">
 					<input type="hidden" name="filename" value="${filename }">
-					<input type="hidden" name="price" value="${price }">
 				</td>
 			</tr>
 		</table>

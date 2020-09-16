@@ -13,8 +13,9 @@
 		<tr>
 			<th width="10%">no</th>
 			<th width="60%">제목</th>
-			<th width="10%">조회</th>
 			<th width="10%">ID</th>
+			<th width="10%">작성일</th>
+			<th width="10%">조회</th>
 		</tr> 
 	</thead>
 	<tbody>	 
@@ -41,7 +42,6 @@
 					${dto.subject}
 				</a>
 			</td>
-			<td>${dto.readcount}</td>
 			<c:choose>
 			<c:when test="${dto.m_id=='admin' }">
 			<td>관리자</td>
@@ -50,6 +50,8 @@
 			<td>${dto.m_id }</td>
 			</c:otherwise>
 			</c:choose>
+			<td>${dto.regdate}</td>
+			<td>${dto.readcount }</td>		
 		</tr>		
 	</c:forEach>	
 	</tbody>

@@ -22,8 +22,8 @@
 <meta name="author" content="">
 
 <!-- Site Icons -->
-<link rel="shortcut icon" href="#" type="image/x-icon" />
-<link rel="apple-touch-icon" href="#" />
+<!-- <link rel="shortcut icon" href="" type="image/x-icon" />
+<link rel="apple-touch-icon" href="" /> --> <!-- 메소드 두번실행 오류-->
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -81,10 +81,16 @@
 						<c:if test="${mbId != null }">
 							<li>${name}님<a href="logout.log"><img
 									src="${pageContext.request.contextPath}/resources/main/images/orange.png"
-									alt="#" />로그아웃</a><a href="main.my">마이페이지</a></li>
+									alt="#" />로그아웃</a>
+							</li>
+							<li>
+								<a href="main.my">마이페이지</a>
+							</li>
 						</c:if>
+						<c:if test="${mbId == null }">			
 						<li><a class="join_bt" href="insertMember.mem?join=1">Join
 								us</a></li>
+						</c:if>
 						<c:if test="${mbId == 'admin' }">
 							<li><a href="main.admin">관리자모드</a></li>
 						</c:if>

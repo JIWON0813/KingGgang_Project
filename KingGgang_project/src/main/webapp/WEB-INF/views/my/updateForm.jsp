@@ -68,7 +68,7 @@
                                 <tr>
                                     <th><font align="center">프로필 사진</font></th>
                                     <td>
-                                    <img src="${upLoadPath}/${getMember.profile_name}" width="30" height="30">
+                                    <img src="http://localhost:8080/img/${getMember.profile_name}" width="30" height="30">
                                     <input type="file" name="filename">
                                     <input type="hidden" name="filename2" value="${getMember.profile_name}">
                                     <input type="hidden" name="filesize2" value="${getMember.profile_size}">

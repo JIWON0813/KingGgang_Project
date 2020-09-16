@@ -146,12 +146,14 @@
 	   
 	   
 </script>
+<div class="section layout_padding">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
 <form name="join" action="insertMemberPro.mem" enctype="multipart/form-data" method="post">
 	    <div class="section">
 	    <div class="wrap wd668">
             <div class="container">
                 <div class="form_txtInput">
+                <img class="d-block mx-auto mb-4" src="${pageContext.request.contextPath}/resources/main/images/logo.png" alt="">
                     <h2 class="sub_tit_txt">회원가입</h2>
                     <div class="join_form">
                         <table>
@@ -161,7 +163,7 @@
                             </colgroup>                           
                             <tbody>
                                 <tr>
-                                    <th><span>아이디</span><font color="red">*</font></th>
+                                    <th><font color="red">* </font><span>아이디</span></th>
                                     <td><input type="text" name="id" placeholder="ID 를 입력하세요." onkeydown="inputIdCheck()">
                                 	<input type="button" value="중복체크" onclick="idCheck()">
                                 	<input type="hidden" name= "idDuplication" value="idUnCheck"> 
@@ -169,11 +171,11 @@
                                 	                             	
                                 </tr>
                                 <tr>
-                                    <th><span>이름</span><font color="red">*</font></th>
+                                    <th><font color="red">* </font><span>이름</span></th>
                                     <td><input type="text" name="name" placeholder="이름을 입력하세요."></td>
                                 </tr>
                                 <tr>
-								<th><span>성별</span><font color="red">*</font></th>
+								<th><font color="red">* </font><span>성별</span></th>
 									<td>
 										<select name="gender">
 											<option value="남">남성</option>
@@ -182,15 +184,15 @@
 									</td>
 								</tr>
                                 <tr>
-                                    <th><span>비밀번호</span><font color="red">*</font></th>
+                                    <th><font color="red">* </font><span>비밀번호</span></th>
                                     <td><input type="password" name="passwd" placeholder="비밀번호를 입력해주세요."></td>
                                 </tr>
                                 <tr>
-                                    <th><span>비밀번호 확인</span><font color="red">*</font></th>
+                                    <th><font color="red">* </font><span>비밀번호 확인</span></th>
                                     <td><input type="password" name="checkpw" placeholder="비밀번호를 확인하세요"></td>
                                 </tr>
                                 <tr>
-									<th><span>생년월일</span><font color="red">*</font></th>
+									<th><font color="red">* </font><span>생년월일</span></th>
 									<td>
 										<select name="birth_y">
 											<c:set var="year" value="2020"></c:set>
@@ -211,18 +213,18 @@
 									</td>
   								</tr>
                                 <tr>
-                                    <th><span>이메일</span><font color="red">*</font></th>
+                                    <th><font color="red">* </font><span>이메일</span></th>
                                     <td><input type="text" name="email"></td>
                                 </tr>                    
                                 <tr>
-									<th><span>연락처</span><font color="red">*</font></th>
+									<th><font color="red">* </font><span>연락처</span></th>
 									<td>
 										<input type="text" name="hp1"
-													size="3" maxlength="3"> -
+													size="3" maxlength="3" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"> -
 										<input type="text" name="hp2"
-													size="4" maxlength="4"> -
+													size="4" maxlength="4" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"> -
 										<input type="text" name="hp3"
-													size="4" maxlength="4">
+													size="4" maxlength="4" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 									</td>
   								</tr>
   								<tr>
@@ -249,4 +251,5 @@
             </div>
             </div>
     </form>
+    </div>
 <%@ include file="../adminbottom.jsp"%>

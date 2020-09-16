@@ -179,7 +179,7 @@ public class MemberController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "회원가입 완료.";
-			url = "home.do";
+			url = "login.log";
 		}else{
 			msg = "회원가입 실패.";
 			url = "home.do";

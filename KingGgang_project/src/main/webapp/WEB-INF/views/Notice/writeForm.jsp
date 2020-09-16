@@ -61,7 +61,8 @@
 				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">
-					<input type="button" value="목록보기" onclick="window.location='list.notice'">				
+					<input type="button" value="목록보기" onclick="window.location='list.notice'">
+					<input type="hidden" name="name" value="${mbId}">				
 				</td>
 			</tr>
 		</table>
