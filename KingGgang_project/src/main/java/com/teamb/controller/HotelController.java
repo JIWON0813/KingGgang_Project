@@ -198,6 +198,11 @@ public class HotelController {
 		return "hotel/hotelDetail";
 	}
 
+	@RequestMapping(value = "insertHotelForm.hotel")
+	public String insertHotelForm(){
+		return "hotel/insertHotelForm";
+	}
+	
 	@RequestMapping(value = "/insertHotel.hotel")
 	public String insertHotel(HttpServletRequest req, @ModelAttribute HotelDTO dto, BindingResult result) {
 		String filename = "";
@@ -328,6 +333,7 @@ public class HotelController {
 		    Calendar endcal = Calendar.getInstance() ;
 		    endcal.setTime(eDate);	     
 		    int endDayNum = endcal.get(Calendar.DAY_OF_WEEK);
+
 		    int totalprice = 0;
 		    while(startDayNum != endDayNum){
 		    	if(startDayNum == 5 || startDayNum == 6){
