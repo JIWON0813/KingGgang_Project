@@ -37,10 +37,10 @@
 		select 
 		<choose>
 		<when test="type==1">
-		d.startdate, d.enddate, h.name as h_name, h.category as h_category, h.hp as h_hp, p.price as p_price, p.paydate as p_paydate, p.type as p_type, p.valid as p_valid from payment p, room r, hotel h, roomdate d where p.p_no = r.id and r.id = d.room_id and r.h_id = h.no
+		d.startdate, d.enddate, r.id as h_id, r.filename as h_filename, h.name as h_name, h.category as h_category, h.hp as h_hp, p.price as p_price, p.paydate as p_paydate, p.type as p_type, p.valid as p_valid from payment p, room r, hotel h, roomdate d where p.p_no = r.id and r.id = d.room_id and r.h_id = h.no
 		</when>
 		<when test="type==2">
-		e.receiptday, e.returnday, r.name as r_name, r.company as r_company, r.type as r_type, p.price as p_price, p.paydate as p_paydate, p.type as p_type, p.valid as p_valid from payment p, rentcar_res e, rentcar r where p.p_no = e.res_id and e.r_id = r.id
+		e.receiptday, e.returnday, r.id as r_id, r.filename as r_filename, r.name as r_name, r.company as r_company, r.type as r_type, p.price as p_price, p.paydate as p_paydate, p.type as p_type, p.valid as p_valid from payment p, rentcar_res e, rentcar r where p.p_no = e.res_id and e.r_id = r.id
 		</when>
 		</choose>
 		and p.m_no=#{m_no} and p.type=#{type} and p.no=#{no}

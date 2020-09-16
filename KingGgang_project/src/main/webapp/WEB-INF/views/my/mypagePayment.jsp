@@ -73,7 +73,7 @@
                         </table>
                         <!-- 이용날짜와 현재 날짜 비교 해서 지났으면 생기도록 -->
                     <div class="btn_wrap">
-                        <a href="/">이용자 후기 작성하기</a>
+                        <a href="insertReview.re?type=1&t_id=${dto.h_id }&name=${dto.h_name}&filename=${dto.h_filename}">이용자 후기 작성하기</a>
                     </div>
                </div> <!-- form_txtInput E -->
             </div><!-- content E-->
@@ -150,12 +150,12 @@
                                 </tr>
                                 <tr>
                                     <td><span>${dto.p_paydate}</span></td>
-                                </tr>
+                                </tr>                        
                             </tbody>
                         </table>
                     <!-- 이용날짜와 현재 날짜 비교 해서 지났으면 생기도록 -->
                     <div class="btn_wrap">
-                        <a href="/">이용자 후기 작성하기</a>
+                        <a href="insertReview.re?type=2&t_id=${dto.r_id}&name=${dto.r_name}&filename=${dto.r_filename}">이용자 후기 작성하기</a>
                     </div>
                </div> <!-- form_txtInput E -->
             </div><!-- content E-->

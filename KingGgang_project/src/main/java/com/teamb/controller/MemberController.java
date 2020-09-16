@@ -25,7 +25,6 @@ import com.teamb.service.MemberMapper;
 
 @Controller
 public class MemberController {
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
 	private MemberMapper memberMapper;

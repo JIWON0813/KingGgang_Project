@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamb.model.reviewMapper">
+	<select id="listReview" resultType="ReviewDTO">
+		select * from review order by num desc
+	</select>
+	
+	<select id="reviewCount" resultType="Integer">
+		select count(*) from notice
+	</select>
+	<insert id="insertReview" parameterType="ReviewDTO">
+		insert into review values(re_num.nextval,#{type},#{t_id},#{name},#{filename},#{subject},#{content},#{m_id},sysdate)
+	</insert>
+	<delete id="deleteReview" parameterType="ReviewDTO">
+		delete from review where num = #{num}
+	</delete>
+	<select id="getReview" resultType="ReviewDTO">
+		select * from review where num = #{num}
+	</select>
+	<update id="updateReview" parameterType="ReviewDTO">
+		update review set subject=#{subject},content=#{content} where num=#{num}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

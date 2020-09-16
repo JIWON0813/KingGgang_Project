@@ -55,7 +55,7 @@
                                 </ul>
                             </div> -->
 					</div>
-<<<<<<< HEAD
+
 					<div class="col-sm-6 col-md-6 col-lg-3">
 						<div class="full">
 							<div class="footer_blog full white_fonts">
@@ -65,7 +65,7 @@
 								<div class="newsletter_form">
 									<form action="index.html">
 										<input type="email" placeholder="Your Email" name="#"
-											required="">
+											required>
 										<button>Submit</button>
 									</form>
 								</div>
@@ -95,60 +95,12 @@
 <!-- test -->
 <a href="main.admin">관리자모드로 가기</a>
 <br>
-=======
-                </div>
-			 </div>
-        </div>
-    </footer>
-    <!-- End Footer -->
-   <!-- test -->
-<a href="main.admin">관리자모드로 가기</a><br>
->>>>>>> refs/remotes/origin/master
-<a href="main.member">임시회원</a>
-<<<<<<< HEAD
-<br>
-<a href="Q_list.board">문의게시판 가기</a>
-<br>
-<a href="list.notice">공지사항 보기</a>
-<br>
-<a href="main.my">마이페이지로 가기</a>
-<p>
-	<br>
-	<a href="main.mem">멤버 페이지로 가기</a>
-<p>
-	<br>
-	<a href="main.hotel">호텔 예약하기</a> <br>
-	<a href="hotelList.hotel">호텔 목록보기(어드민)</a> <br>
-	<a href="listRentcar.admin">렌트카 목록(어드민)</a> <br>
-	<a href="listInsu.admin">렌트카_보험 목록(어드민)</a> <br>
-	<a href="firstPage.rentcar">렌트카 메인(회원)</a> <br>
-	<a href="main.wish">관심리스트등록 페이지로 가기</a>
-<p>
-	<br>
-	<a href="main.pay">결제 페이지로 가기</a>
-<p>
-	<br>
-	<a href="payList.admin">결제 목록으로 가기(어드민)</a>
-<p>
 
-	<br>
-	<a href="commhome.comm">커뮤니티 페이지로 가기</a>
-<p>
-	<!-- test -->
-<div class="footer_bottom">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<p class="crp">Team B Project</p>
-			</div>
-		</div>
-	</div>
-</div>
-=======
+<a href="main.member">임시회원</a>
 <br><a href="Q_list.board">문의게시판 가기</a>
 <br><a href="list.notice">공지사항 보기</a>
 <br><a href="main.my">마이페이지로 가기</a><p>
-<br><a href="main.mem">멤버 페이지로 가기</a><p>
+<br><a href="listReview.re">후기게시판</a><p>
 <br><a href="main.hotel">호텔 예약하기</a>
 <br><a href="hotelList.hotel">호텔 목록보기(어드민)</a>
 <br><a href="listRentcar.admin">렌트카 목록(어드민)</a>
@@ -168,7 +120,7 @@
             </div>
         </div>
     </div>
->>>>>>> refs/remotes/origin/master
+
 
 <a href="#" id="scroll-to-top" class="hvr-radial-out"><i
 	class="fa fa-angle-up"></i></a>
