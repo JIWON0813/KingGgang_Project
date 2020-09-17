@@ -24,8 +24,8 @@ public class CommBookMarkMapper {
 		return sqlSession.selectList("listMark",comm_memberNum);
 	}
 	
-	public CommBookmarkDTO markPro(CommBookmarkDTO cmdto) {
-		return sqlSession.selectOne("markPro",cmdto);
+	public List <CommBookmarkDTO> markPro(CommBookmarkDTO cmdto) {
+		return sqlSession.selectList("markPro",cmdto);
 	}
 	
 	public int deleteMark(CommBookmarkDTO dto) {

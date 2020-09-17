@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -34,7 +33,6 @@
                 todayBtn: true,
                 minView: '2',
             });
-
             $('#datepicker2').datetimepicker({
                 format: 'YYYY-MM-DD',
                 language: 'ko',
@@ -42,7 +40,6 @@
                 todayBtn: true,
                 minView: '2',
             });
-
         })
         
        	function check(){

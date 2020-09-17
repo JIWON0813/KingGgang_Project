@@ -46,6 +46,10 @@ public class Comm_MemberMapper {
 		return sqlSession.selectOne("comm_getMember",comm_memberNum);
 	}
 	
+	public Comm_MemberDTO login_comm_getMember(int login_comm_memberNum){
+		return sqlSession.selectOne("login_comm_getMember",login_comm_memberNum);
+	}
+	
 	
 	public int comm_updateMember(Comm_MemberDTO dto) {
 		int res = sqlSession.update("comm_updateMember", dto);
@@ -73,6 +77,10 @@ public class Comm_MemberMapper {
 		map.put("endRow",endRow);
 	   return sqlSession.selectList("c_comm_memberList",map);
 	}
-	
+
+	public int updateFriend(Comm_MemberDTO mdto) {
+		int res = sqlSession.update("updateFriend", mdto);
+		return res;
+	}
 	
 }

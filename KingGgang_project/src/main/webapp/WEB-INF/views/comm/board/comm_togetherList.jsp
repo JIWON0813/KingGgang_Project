@@ -51,6 +51,7 @@
 	<c:forEach var="dto" items="${togetherList}">		
 		<tr align="center">
 			<td>
+				
 				<c:out value="${startNum}"/>
 			</td>
 			<c:set var="startNum" value="${startNum-1}"/>
@@ -71,13 +72,13 @@
 	<div align="center">
 	<c:if test="${count>0}">
 			<c:if test="${startPage > pageBlock}">
-				[<a href="comm_togetherList.do?pageNum=${startPage-1}">이전</a>]
+				<a href="comm_togetherList.do?pageNum=${startPage-1}">이전</a>
 			</c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				[<a href="comm_togetherList.do?pageNum=${i}">${i}</a>]
+				<a href="comm_togetherList.do?pageNum=${i}">${i}</a>
 			</c:forEach>
 			<c:if test="${endPage<pageCount}">
-				[<a href="comm_togetherList.do?pageNum=${endPage+1}">다음</a>]
+				<a href="comm_togetherList.do?pageNum=${endPage+1}">다음</a>
 			</c:if>
 		</c:if>
 	</div>

@@ -34,8 +34,10 @@ function wishlist() {
    </script>
 <%@ include file="../top.jsp"%>
 <h1 align="center">숙소 상세 정보</h1>
+
 <div class="session layout_padding" align="center">
 	<table width="1200" border="1" style="text-align : center;">
+
 		<tr>
 			<td width="15%"><img
 				src="http://192.168.0.184:8080/img/${dto.filename}" width="auto"

@@ -108,9 +108,9 @@
                         <a href="rentcarFin.pay">확인</a>
                     </div>
                     
-                </div> <!-- form_txtInput E -->
-            </div><!-- content E-->
-        </div> <!-- container E -->
+                </div> 
+            </div>
+        </div> 
     </form>
 </c:if> 
 </body>

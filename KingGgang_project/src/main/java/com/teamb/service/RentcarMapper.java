@@ -131,15 +131,11 @@ public class RentcarMapper {
 		return sqlSession.update("updatePstatus",res_id);
 	}
 	
-
-
-
 	public List<Rentcar_ResDTO> checkAlreadyReservation(Rentcar_ResDTO resDTO){
 		return sqlSession.selectList("checkAlreadyReservation",resDTO);
 	}
 
 	//렌트카 결제 (for Pstatus update) 원세호
-
 	@Scheduled(fixedDelay=100000)
 	public void renewalRentcarReservation(){
 		try{

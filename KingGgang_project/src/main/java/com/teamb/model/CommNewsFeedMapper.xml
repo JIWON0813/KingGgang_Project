@@ -15,25 +15,25 @@
 		select comm_membernum, comm_profilename, comm_nickname from comm_member where comm_nickname like '%' || #{word} || '%'
 	</select>
 	
-	<select id="newfeedList" resultType="CommboardDTO" parameterType="java.util.Map">
+<!-- 	<select id="newfeedList" resultType="CommboardDTO" parameterType="java.util.Map">
 	select * from (select rownum rn, A.* from
 	(select * from commboard order by boardNum desc)A)
 	where rn between #{startRow} and #{endRow}
-	</select> 
+	</select>  -->
 
 	<select id="look_newfeedList" resultType="CommboardDTO" parameterType="java.util.Map">
 		select * from (select rownum rn, A.* from
-	(select * from commboard where look = #{look} or look = '전체공개' or look ='전체공개,회원공개' order by boardNum desc)A)
+	(select * from commboard where look = #{look} or look = '전체공개' order by boardNum desc)A)
 	where rn between #{startRow} and #{endRow} 
 	</select>
 	
 	<select id="alone_look_newfeedList" resultType="CommboardDTO" parameterType="java.util.Map">
 		select * from (select rownum rn, A.* from
-	(select * from commboard where look = #{look} or look = '전체공개' or look ='전체공개,회원공개' or look='비공개' and comm_memberNum=#{comm_memberNum}  
+	(select * from commboard where (look = #{look} and comm_memberNum=#{comm_memberNum}) or look = '전체공개' or look='회원공개'
 	 order by boardNum desc)A)
 	where rn between #{startRow} and #{endRow} 
 	</select>
-
+	
 	<select id="getNewsCount" resultType="int">
 	select count(*) from commboard
 	</select>
