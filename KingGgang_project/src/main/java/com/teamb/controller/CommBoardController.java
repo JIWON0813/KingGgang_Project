@@ -562,7 +562,7 @@ public class CommBoardController {
 		
 		CommBookmarkDTO cmdto = new CommBookmarkDTO();
 		cmdto.setBoardNum(boardNum);
-		cmdto.setComm_memberNum(dto.getComm_memberNum());
+		cmdto.setComm_memberNum(login.getComm_memberNum());
 		
 		CommBookmarkDTO markCheck = bookmarkMapper.markPro(cmdto);
 		
