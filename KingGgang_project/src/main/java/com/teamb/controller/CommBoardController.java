@@ -196,7 +196,7 @@ public class CommBoardController {
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		
-		req.setAttribute("replyList", list);
+		req.setAttribute("replyList", list); 
 		req.setAttribute("check1", check1);
 		req.setAttribute("check2", check2);
 
