@@ -9,7 +9,7 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script>
-
+ 
 function wishlist() {
 	
     	var obj = {"no" : $('#btnLike').attr('name')}
@@ -38,7 +38,7 @@ function wishlist() {
 	<table width="1200" border="1">
 		<tr>
 			<td width="15%"><img
-				src="http://localhost:8080/img/${dto.filename}" width="auto"
+				src="http://192.168.0.184:8080/img/${dto.filename}" width="auto"
 				height="150">
 			<td colspan="2">숙소 이름</td>
 			<td colspan="3">${dto.name}</td>
