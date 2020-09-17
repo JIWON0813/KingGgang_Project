@@ -43,7 +43,6 @@
 		color:red;
 		background-color:white;
 	}
-
 </style>
 <footer class="footer-box">
 		<div class="container">
