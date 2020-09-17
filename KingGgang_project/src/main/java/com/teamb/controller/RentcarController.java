@@ -395,7 +395,7 @@ public class RentcarController {
 			req.setAttribute("totalPrice", dto.getPrice());
 			req.setAttribute("type", 2);
 			req.setAttribute("m_no", memberNum);
-			return "payment/payins2";
+			return "payment/connectPayApi";
 
 		}else{
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!";

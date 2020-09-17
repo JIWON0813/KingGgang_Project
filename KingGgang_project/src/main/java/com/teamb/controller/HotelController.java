@@ -197,7 +197,6 @@ public class HotelController {
 		}
 		
 		
-		//System.out.println(noCheck.getF_no());
 		
 					
 		req.setAttribute("check1", check1);
@@ -311,7 +310,7 @@ public class HotelController {
 		req.setAttribute("type", 1);
 		req.setAttribute("totalPrice", price);
 		req.setAttribute("m_no", memberNum);
-		return "payment/payins2";
+		return "payment/connectPayApi";
 	}
 	
 	@RequestMapping(value="/room_book.hotel")
