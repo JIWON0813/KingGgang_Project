@@ -28,7 +28,7 @@
 	<br>
 	<table class="table table-striped">
 		<thead>
-		<tr>
+		<tr bgcolor="#ff880e">
 			<th width="3%">no</th>
 			<th>이미지</th>
 			<th width="50%">제목</th>
