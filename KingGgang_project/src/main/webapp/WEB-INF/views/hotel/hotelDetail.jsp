@@ -106,7 +106,7 @@ ${dto.content}
 		<h3 align="center">방 목록</h3>
 		<c:forEach var="roomdto" items="${roomList}">
 			<tr>
-				<td width="auto"><img src="http://localhost:8080/img/${roomdto.filename}" width="150" height="150">
+				<td width="auto"><img src="http://192.168.0.184:8080/img/${roomdto.filename}" width="150" height="150">
 				<td width="10%">이름</td>
 				<td width="15%">${roomdto.name}</td>
 				<td width="25%">최대수용인원</td>

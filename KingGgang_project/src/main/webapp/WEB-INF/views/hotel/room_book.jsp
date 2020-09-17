@@ -39,19 +39,18 @@
 			alert("이전 날짜는 예약할 수 없습니다.")
 			return false;
 		}
-
 		return true;
 	}
 </script>
+<%@ include file="../top.jsp"%>
 <h1 align="center">방 상세정보</h1>
-<div align="center">
+<div class="session layout_padding" align="center">
 	<form name="f" action="show_regiroom.hotel" method='post'
 		onSubmit='return check();'>
 		<input type="hidden" name="id" value="${roomdto.id}" />
 		<table border="1" width="1000">
 			<tr>
-				<td colspan="2"><img
-					src="http://localhost:8080/img/${roomdto.filename}" width="250"
+				<td colspan="2"><img src="http://192.168.0.184:8080/img/${roomdto.filename}" width="250"
 					height="250">
 				<td width="15%">방 이름
 				<td>${roomdto.name}
@@ -74,4 +73,8 @@
 			</tr>
 		</table>
 	</form>
+	<div align="center">
+	<button type="button" onclick="location.href='javascript:history.go(-1)'">돌아가기</button>
+	</div>
 </div>
+<%@ include file="../bottom.jsp"%>

@@ -113,9 +113,9 @@
 								<li><a class="nav-link" href="main.hotel">호텔 예약</a></li>
 								<li><a class="nav-link" href="firstPage.rentcar">렌트카 예약</a></li>
 								<li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
-								<li><a class="nav-link" href="">Contact</a></li>
-
-								<li><a class="nav-link" href="adminHome.do">관리자 홈</a>
+								<li><a class="nav-link" href="Q_list.board">문의</a></li>
+								<li><a class="nav-link" href="list.notice">공지사항</a></li>
+								<li><a class="nav-link" href="main.admin">관리자 홈</a>
 							</ul>
 						</div>
 					</div>
