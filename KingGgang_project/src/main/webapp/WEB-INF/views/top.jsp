@@ -93,7 +93,6 @@
                         <li><a class="nav-link" href="firstPage.rentcar">렌트카</a></li>
                         <li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
                         <li><a class="nav-link" href="">Contact</a></li>
-
                         <li><a class="nav-link" href="adminHome.do">관리자 홈</a>
 
                     </ul>

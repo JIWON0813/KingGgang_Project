@@ -1,8 +1,9 @@
+<%@ include file="/WEB-INF/views/top.jsp"%>
+<br><br><br><br>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="/WEB-INF/views/top.jsp"%>
-<br><br><br><br>
+
 	<!--  
 	이	   름 : updateRentcarForm.jsp
 	개  발   자 : 정 우 철
@@ -90,20 +91,20 @@
 					</td>
   				</tr>
   				<tr>
-					<td width="150" class="m3">24시간 기준 대여료</td>
-					<td class="m3">
-						<input type="text" name="price" class="box" value="${rentcar.price}">
+					<td width="150">24시간 기준 대여료</td>
+					<td>
+						<input type="text" name="price" value="${rentcar.price}">
 					</td>
   				</tr>
   				<tr>
-					<td width="150" class="m3">차량 이름</td>
-					<td class="m3">
-						<input type="text" name="name" class="box" value="${rentcar.name}">
+					<td width="150">차량 이름</td>
+					<td>
+						<input type="text" name="name" value="${rentcar.name}">
 					</td>
   				</tr>
   				<tr>
-					<td width="150" class="m3">연료 종류</td>
-					<td class="m3">
+					<td width="150">연료 종류</td>
+					<td>
 						<select name="fuel">
 							<option value="휘발유"
 							<c:if test="${rentcar.fuel eq '휘발유'}">
@@ -134,27 +135,27 @@
   				</tr>
   				<tr>
 					<th width="20%" bgcolor="orange">차량 사진</th>
-					<td><input type="file" name="filename" class="box" size="30">
+					<td><input type="file" name="filename" size="30">
 						<c:if test="${!(rentcar.filename == null)}">
-							${rentcar.filename}
+							현재 사진 이름 : ${rentcar.filename}
 						</c:if>
 					</td>
 				</tr>
 				<tr>
 					<th width="20%">상품소개</th>
 					<td align="left">
-					<textarea name="contents" rows="7" cols="60" class="box">${rentcar.contents}</textarea>
+					<textarea name="contents" rows="7" cols="60">${rentcar.contents}</textarea>
 				</td>
 				</tr>
 				<tr>
 					<td width="150">업체명</td>
-					<td class="m3">
+					<td>
 						<input type="text" name="rentcom" value="${rentcar.rentcom}">
 					</td>
 				</tr>
 				<tr>
 					<td width="150">업체 번호</td>
-					<td class="m3">
+					<td>
 						<input type="text" name="renthp1" style="width:40px;" maxlength="3" value="${rentcar.renthp1}">-
 						<input type="text" name="renthp2" style="width:40px" maxlength="4" value="${rentcar.renthp2}">-
 						<input type="text" name="renthp3" style="width:40px" maxlength="4" value="${rentcar.renthp3}">
@@ -170,6 +171,9 @@
   				<td><input type="hidden" name="ogFilename" value="${rentcar.filename}"></td>
   				<td><input type="hidden" name="ogFilesize" value="${rentcar.filesize}"></td>
   				<td><input type="hidden" name="id" value="${rentcar.id}"></td>
+  				<td><input type="hidden" name="pickupplace" value="${rentcar.pickupplace}"></td>
+  				<td><input type="hidden" name="lat" value="${rentcar.lat}"></td>
+  				<td><input type="hidden" name="lng" value="${rentcar.lng}"></td>
   				</tr>
   			</table>
 		</form>

@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/views/top.jsp"%><br><br><br><br>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,41 +9,55 @@
 	설	   명 : 렌트카 첫 페이지
 	-->
 	
-	<!-- jquery -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-	
-	<!-- bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="${pageContext.request.contextPath}/resources/jquery-3.5.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
+    <link href="${pageContext.request.contextPath}/resources/datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Air datepicker css -->
+    <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.js"></script> <!-- Air datepicker js -->
+    <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
 
-	<!-- moment -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" integrity="sha256-ABVkpwb9K9PxubvRrHMkk6wmWcIHUE9eBxNZLXYQ84k=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js" integrity="sha256-XWrGUqSiENmD8bL+BVeLl7iCfhs+pkPyIqrZQcS2Te8=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ko.js" integrity="sha256-52Xn0wi4kPGcROqCAA5EoontBDks09MLjv7fd5WAj3U=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+	var newJquery = $.noConflict(true);
+	</script>
+    <script type="text/javascript">
+    	var date = new Date();
+    	var minRd = new Date();
+    	minRd.setDate(minRd.getDate()+1);
+    	
+        newJquery(document).ready(function () {
+        var dp = newJquery('	#datepicker1').datepicker({
+            	startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+            	language: 'ko',
+            	minDate : new Date(),
+            	autoClose: true,
+            	onSelect: function (date) {
+            	   var endNum = date;
+            	   var endDate = new Date(endNum);
+            	   endDate.setDate(endDate.getDate()+1);
+            	   newJquery('#datepicker2').datepicker({
+            	       minDate: endDate
+            	   });
+            	}
+            }).data('datepicker');
 
-	<!-- bootstrap datetimepicker -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.4/css/bootstrap-datetimepicker.min.css" integrity="sha256-Fl1s8EQCc9mKf/njo8mWr0MPJR8TnOQb0h0rmVKRoP8=" crossorigin="anonymous" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.4/js/bootstrap-datetimepicker.min.js" integrity="sha256-sU6nRhzXDAC31Wdrirz7X2A2rSRWj10WnP9CA3vpYKw=" crossorigin="anonymous"></script>
-
-    <script>
-        $(function () {
-            $('#datepicker1').datetimepicker({
-                format: 'YYYY-MM-DD',
-                language: 'ko',
-                autoclose: true,
-                todayBtn: true,
-                minView: '2',
-            });
-
-            $('#datepicker2').datetimepicker({
-                format: 'YYYY-MM-DD',
-                language: 'ko',
-                autoclose: true,
-                todayBtn: true,
-                minView: '2',
-            });
-
-        })
+            newJquery('#datepicker2').datepicker({
+            	
+            	
+            	startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+            	language: 'ko',
+            	minDate : minRd, 
+            	autoClose: true,
+            	onSelect: function (date) {
+          	      var startNum = date;
+          	      var startDate = new Date(startNum);
+          	      startDate.setDate(startDate.getDate()-1);
+          	      newJquery('#datepicker1').datepicker({
+          	          maxDate: startDate
+          	      });
+          	  }
+          	}).data('datepicker');
+            
+            
+        });           
         
        	function check(){
 			if (f.receiptday.value==""){
@@ -65,7 +80,8 @@
     </script>
     <div align="center">	
 <form name="f" method="post" action="main.rentcar">
-	<h3>날짜 선택</h3>
+	<h3>여행 날짜 선택</h3>
+	<hr width="500">
 	<input type="text" name="receiptday" id="datepicker1" placeholder="예약일">
 			<select name="pickuptime">
   					<option selected value="0">
@@ -85,5 +101,8 @@
   			</select>
 	<input type="text" name="returnday" id="datepicker2" placeholder="반납일"> 
 	<input type="button" value="조회" onclick="javascript:check()">
+	<hr width="500">
+	<br><br><br>
 </form>
 	</div>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

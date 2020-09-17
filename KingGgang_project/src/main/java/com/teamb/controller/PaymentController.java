@@ -131,7 +131,6 @@ public class PaymentController {
 			}
 			url = "main.my";
 			msg = "결제성공 마이페이지로 이동합니다.";
-			req.setAttribute("status",1);
 		}else {
 			paymemtMapper.deletePayment(no);
 			url = "main.my";

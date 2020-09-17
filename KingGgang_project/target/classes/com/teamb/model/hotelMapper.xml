@@ -109,6 +109,7 @@
 	<select id="getRoomdate" parameterType="int" resultType="RoomDateDTO">
 		select * from roomdate where no = #{no}
 	</select>
+
 </mapper>
 
 
