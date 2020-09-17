@@ -4,46 +4,53 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mybatis.hotelMapper">
-		
+
 	<select id="hotelList" resultType="hotelDTO">
-		select * from hotel order by no desc
+		select * from hotel order by
+		no desc
 	</select>
-	
-	<select id="hotelCateList" parameterType="java.util.Map" resultType="hotelDTO">
-		select * from (select rownum rn, A.* from 
+
+	<select id="hotelCateList" parameterType="java.util.Map"
+		resultType="hotelDTO">
+		select * from (select rownum rn, A.* from
 		(select * from hotel where category = #{category} order by no desc)A)
-		where rn between #{start} and #{end} and category = #{category} order by no desc
+		where rn
+		between #{start} and #{end} and category = #{category} order by no
+		desc
 	</select>
-	
+
 	<select id="hotelMain" parameterType="java.util.Map" resultType="hotelDTO">
-		select * from (select rownum rn, A.* from 
+		select * from (select rownum rn, A.* from
 		(select * from hotel order by no desc)A)
-		where rn between #{start} and #{end} order by no desc
+		where rn between #{start} and #{end}
+		order by no desc
 	</select>
-	
+
 	<select id="getCount" resultType="Integer">
 		select count(*) from hotel
 	</select>
-	
+
 	<select id="getCountCate" parameterType="String" resultType="int">
 		select count(*) from hotel where category = #{category}
 	</select>
-	
+
 	<select id="getCountSearch" parameterType="String" resultType="int">
 		select count(*) from hotel where name like #{search}
 	</select>
-	
-	<select id="searchHotelList" parameterType="java.util.Map" resultType="hotelDTO">
-		select * from (select rownum rn, A.* from 
+
+	<select id="searchHotelList" parameterType="java.util.Map"
+		resultType="hotelDTO">
+		select * from (select rownum rn, A.* from
 		(select * from hotel where name like #{search} order by no desc)A)
-		where rn between #{start} and #{end} and name like #{search} order by no desc
+		where rn
+		between #{start} and #{end} and name like #{search} order by no desc
 	</select>
-	
-	
+
+
 	<insert id="insertHotel" parameterType="HotelDTO">
 		insert into hotel
 		values(hotel_seq.nextval,#{name},#{category},#{location},#{hp},#{checkin},
-				#{content},#{parking},sysdate,#{filename},#{filesize},0)
+		#{content},#{parking},sysdate,#{filename},#{filesize},0)
 	</insert>
 
 	<delete id="deleteHotel" parameterType="int">
@@ -52,62 +59,104 @@
 	</delete>
 
 	<update id="updateHotel" parameterType="HotelDTO">
-		update hotel 
+		update hotel
 		set category = #{category} , location = #{location} , hp = #{hp} ,
-						checkin = #{checkin} , content = #{content} ,
-						parking = #{parking} , filename = #{filename} 
+		checkin = #{checkin} , content = #{content} ,
+		parking = #{parking} , filename = #{filename}
 		where no = #{no}
 	</update>
 
 	<select id="getHotel" parameterType="int" resultType="hotelDTO">
 		select *
-		from hotel 
+		from hotel
 		where no = #{no}
 	</select>
 
 	<update id="increaseRead" parameterType="int">
-		update hotel 
-		set	readcount = readcount+1 
+		update hotel
+		set readcount = readcount+1
 		where no = #{no}
 	</update>
-	
+
 	<!-- room sql -->
-	
+
 	<select id="hotelroomList" parameterType="int" resultType="RoomDTO">
 		select * from room where h_id = #{h_id}
 	</select>
-	
+
 	<select id="getHotelRoom" parameterType="int" resultType="RoomDTO">
-		select * from room where id = #{id}
+		select
+		* from room where id = #{id}
 	</select>
+
 	
-	<select id="checkroomdate" parameterType="java.util.Map">
-		select count(*) from roomdate
-		where startdate between #{start} and #{end}
-	</select>
-	
+
 	<insert id="insertRoom" parameterType="RoomDTO">
 		insert into room
 		values(room_seq.nextval,#{name},#{maxpersons},#{dayprice},#{endprice}
-				,#{content},#{filename},#{filesize},#{h_id})
+		,#{content},#{filename},#{filesize},#{h_id})
 	</insert>
-	
+
 	<delete id="deleteRoom" parameterType="int">
 		delete from room
-		where id = #{id}
+		where id =
+		#{id}
 	</delete>
-	
+
 	<update id="updateRoom" parameterType="RoomDTO">
 		update room
-		set name = #{name} , maxpersons = #{maxpersons} , dayprice = #{dayprice}
-					, endprice = #{endprice} , content = #{content} , filename = #{filename}
+		set name =
+		#{name} , maxpersons = #{maxpersons} , dayprice = #{dayprice}
+		, endprice = #{endprice} , content = #{content} , filename =
+		#{filename}
 		where id = #{id}
 	</update>
 
-	<select id="getRoomdate" parameterType="int" resultType="RoomDateDTO">
-		select * from roomdate where no = #{no}
+<select id="checkroomdate" parameterType="java.util.Map"
+		resultType="int">
+		<![CDATA[
+		select count(*) from roomdate
+		where startdate >=  to_date(#{start},'yyyymmdd') and enddate <= to_date(#{end},'yyyymmdd') 
+		and room_id = #{r_id}
+		group by room_id
+		]]>
 	</select>
 
+	<select id="getRoomdate" parameterType="int" resultType="RoomDateDTO">
+		select *
+		from roomdate where no = #{no}
+	</select>
+	
+	<select id="getrecentdate" resultType="int">
+		select id
+		from roomdate
+		where rownum=1
+		order by id desc
+	</select>
+	
+	<select id="roomdatelist" resultType="RoomDateDTO">
+		select * from roomdate
+	</select>
+
+	<select id="getroomdate" parameterType="int" resultType="RoomDateDTO">
+		select * from roomdate where id = #{id}
+	</select>
+
+	<insert id="insertroomdate" parameterType="RoomDateDTO">
+		insert into roomdate
+		values(roomdate_seq.nextval,#{startdate},#{enddate},#{totalprice},#{m_id},#{room_id},0)
+	</insert>
+
+	<delete id="deleteunpaidroomdate" parameterType="int">
+		delete from
+		roomdate where id = #{id}
+	</delete>
+
+	<update id="changvaildroomdate" parameterType="int">
+		update roomdate
+		set valid = 1 where id = #{id}
+	</update>
+	
 </mapper>
 
 
