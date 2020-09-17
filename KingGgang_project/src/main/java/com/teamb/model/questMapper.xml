@@ -18,8 +18,8 @@
 	<!-- insert -->
 	<insert id="insertQuest" parameterType="QuestionDTO">
 		insert into ask values (ask_num.nextval,
-			#{m_id},#{subject},sysdate,0,
-			#{content},#{ip}, 
+			#{name},#{passwd},#{email},#{subject},sysdate,0,
+			#{content},#{closed},#{ip}, 
 			#{re_group},#{re_step},#{re_level})  
 	</insert>
 	
@@ -48,7 +48,7 @@
 	
 	<!-- update -->
 	<update id="updateQuest" parameterType="QuestionDTO">
-		update ask set subject=#{subject}, content=#{content}
+		update ask set subject=#{subject},name=#{name},email=#{email},content=#{content},passwd=#{passwd},closed=#{closed}
 		where num = #{num}
 	</update>
 

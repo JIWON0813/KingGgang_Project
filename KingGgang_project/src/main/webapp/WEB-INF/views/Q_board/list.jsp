@@ -10,7 +10,7 @@
 	<br>
 	<table class="table table-hover table-sm">
 	<thead>
-		<tr>
+		<tr bgcolor="#ff880e">
 			<th width="10%">no</th>
 			<th width="60%">제목</th>
 			<th width="10%">ID</th>
@@ -38,18 +38,23 @@
 			<b>RE:</b>
 			<!-- <img src="resources/img/re.gif"> -->
 		</c:if>	
+		<c:if test="${dto.closed==2 }">
+			<c:if test="${mbId == 'admin' }">
+				<a href="Q_content.board?num=${dto.num }">
+			</c:if>
+			<c:if test="${mbId != 'admin' }">
+				<a href="Q_passck.board?num=${dto.num }&type=1">
+			</c:if>
+					비밀글 입니다.
+				</a>
+		</c:if>
+		<c:if test="${dto.closed==1 }">
 				<a href="Q_content.board?num=${dto.num}">
 					${dto.subject}
 				</a>
+		</c:if>
 			</td>
-			<c:choose>
-			<c:when test="${dto.m_id=='admin' }">
-			<td>관리자</td>
-			</c:when>
-			<c:otherwise>
-			<td>${dto.m_id }</td>
-			</c:otherwise>
-			</c:choose>
+			<td>${dto.name}</td>
 			<td>${dto.regdate}</td>
 			<td>${dto.readcount }</td>		
 		</tr>		

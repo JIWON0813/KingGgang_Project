@@ -91,7 +91,7 @@
 									alt="#" />로그아웃</a>
 							</li>
 							<li>
-								<a href="main.my">마이페이지</a>
+								<a class="join_bt" href="main.my">마이페이지</a>
 							</li>
 						</c:if>
 						<c:if test="${mbId == null }">			

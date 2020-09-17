@@ -74,6 +74,7 @@ public class QuestionController
 	@RequestMapping(value = "/Q_write.board", method = RequestMethod.GET)
 	public String write()
 	{
+		
 		return "Q_board/writeForm";
 	}
 
@@ -109,53 +110,95 @@ public class QuestionController
 		
 		return "message";
 	}
-
-
+	
 	@RequestMapping(value = "/Q_content.board")
-	public String content(HttpServletRequest req, @RequestParam int num)
-	{
+	public String content(HttpServletRequest req, @RequestParam int num){
 		questMapper.Q_plusReadcount(num);
 		QuestionDTO dto = questMapper.getQuest(num);
 		req.setAttribute("Quest", dto);
-		
 		return "Q_board/content";
 	}
 
-	@RequestMapping(value = "/Q_delete.board")
-	public String deletePro(HttpServletRequest req, @RequestParam int num)
-	{
-		int res = questMapper.deleteQuest(num);
+	@RequestMapping("/Q_passck.board")
+	public String contentpass(HttpServletRequest req, @RequestParam int num){
+		req.setAttribute("num", num);
+		return "Q_board/passck";
+	}
+	@RequestMapping(value = "/Q_contentpassok.board")
+	public String contentpassok(HttpServletRequest req, @RequestParam int num){
+		
+		questMapper.Q_plusReadcount(num);
+		QuestionDTO dto = questMapper.getQuest(num);
+		System.out.println(dto.getPasswd()+req.getParameter("passwd"));
+		boolean passck = questMapper.checkPw(dto.getPasswd(), req.getParameter("passwd"));
 		String msg=null,url=null;
-		if(res>0){
-			msg = "삭제완료";
-			url = "Q_list.board";
+		if(passck){
+			req.setAttribute("Quest", dto);
+			return "Q_board/content";
 		}else{
-			msg = "삭제실패";
-			url = "Q_list.board";
-		}	
-		req.setAttribute("msg", msg);
+			msg="비밀번호를 확인해주세요";
+			url="Q_list.board";
+		}
+		req.setAttribute("msg",msg);
 		req.setAttribute("url", url);
-			
 		return "message";
 	}
-
-	@RequestMapping(value = "/Q_update.board", method = RequestMethod.GET)
-	public ModelAndView update(@RequestParam int num)
+	
+	@RequestMapping(value = "/Q_deletepassok.board")
+	public String deletePro(HttpServletRequest req,HttpSession session, @RequestParam int num)
 	{
 		QuestionDTO dto = questMapper.getQuest(num);
-		
-		return new ModelAndView("Q_board/updateForm", "Quest", dto);
+		String mbId = (String)session.getAttribute("mbId");
+		String msg=null,url=null;
+		if(mbId.trim().equals("admin")){
+			int res = questMapper.deleteQuest(num);
+			if(res>0){
+				msg = "삭제완료";
+				url = "Q_list.board";
+			}else{
+			msg = "삭제실패";
+			url = "Q_list.board";
+			}
+			req.setAttribute("msg", msg);
+			req.setAttribute("url", url);
+			return "message";
+		}else{
+			boolean passck = questMapper.checkPw(dto.getPasswd(), req.getParameter("passwd"));
+			if(passck){
+				int res = questMapper.deleteQuest(num);
+				if(res>0){
+					msg = "삭제완료";
+					url = "Q_list.board";
+				}else{
+				msg = "삭제실패";
+				url = "Q_list.board";
+				}
+			}else{
+				msg = "비밀번호를 확인해주세요";
+				url = "Q_list.board";
+			}
+			req.setAttribute("msg", msg);
+			req.setAttribute("url", url);
+				
+			return "message";
+		}
+	}
+
+	@RequestMapping(value = "/Q_updatepassok.board")
+	public String update(HttpServletRequest req,@RequestParam int num)
+	{
+		QuestionDTO dto = questMapper.getQuest(num);
+		req.setAttribute("Quest", dto);
+		return "Q_board/updateForm";
 	}
 
 
-	@RequestMapping(value = "/Q_update.board", method = RequestMethod.POST)
+	@RequestMapping(value = "/Q_updatepro.board")
 	public String updatePro(HttpServletRequest req, @ModelAttribute QuestionDTO dto)
 	{
 		String msg = null, url = "Q_list.board";
-		
-
-		int res = questMapper.updateQuest(dto);
-			
+		int res = questMapper.updateQuest(dto);	
+		System.out.println(res);
 		if (res>0)
 		{
 			msg = "게시글이 수정되었습니다. 메인화면으로 이동합니다.";

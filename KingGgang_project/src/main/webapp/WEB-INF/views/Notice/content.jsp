@@ -19,21 +19,22 @@
 <div align="center" class="container">
 	<table class="table table-bordered">
 		<tr height="30">
-			<th width="20%" bgcolor="orange">제목</th>
-			<td align="left" width="80%">${notice.subject}</td>
+			<th width="20%" bgcolor="#ff880e">제목</th>
+			<td colspan="3" align="left" width="80%">${notice.subject}</td>
 		</tr>
 		<tr height="30">
-			<th width="20%" bgcolor="orange">작성자</th>
-			<td align="left" width="80%">${notice.name}</td>
+			<th width="20%" bgcolor="#ff880e">작성자</th>
+			<td colspan="3" align="left" width="80%">${notice.name}</td>
 		</tr>
 		<tr height="30">
-			<td colspan="2">작성일&nbsp;&nbsp;${notice.regdate }&nbsp;&nbsp;&nbsp;&nbsp;조회수&nbsp;&nbsp;${notice.readcount }
-			</td>
+			<th bgcolor="#ff880e">작성일</th>
+			<td width="50%" align="center">${notice.regdate }</td>
+			<th bgcolor="#ff880e">조회수</th>
+			<td>${notice.readcount }</td>
 		</tr>
-		<tr height="80%">
-			<td colspan="2">
-				${notice.content}
-			</td>
+		<tr height="350">
+			<th width="20%" bgcolor="#ff880e">내용</th>
+			<td colspan="3" align="left" width="80%">${notice.content}</td>
 		</tr>
 		</table> 
 			<c:if test="${mbId=='admin'}">
@@ -46,17 +47,3 @@
 </div>
 <div class="section layout_padding"></div>
 <%@ include file="../bottom.jsp"%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

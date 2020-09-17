@@ -64,20 +64,6 @@ public class QuestionMapper
 		QuestionDTO dto = sqlSession.selectOne("getQuest", num);
 		return dto;
 	}
-
-	public  boolean isId(int num, String m_id)
-	{
-		String dbPass = sqlSession.selectOne("isId", num);
-		if (dbPass.equals(m_id))
-		//전송받은 로그인된 아이디와 게시글 번호에 저장된 아이디값 비교
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
 	
 	public int deleteQuest(int num) 
 	{
@@ -90,5 +76,8 @@ public class QuestionMapper
 		int res = sqlSession.update("updateQuest", dto);
 		return res;
 	}
-
+	
+	public boolean checkPw(String dbpass,String passwd){
+		return dbpass.trim().equals(passwd);
+	}
 }
