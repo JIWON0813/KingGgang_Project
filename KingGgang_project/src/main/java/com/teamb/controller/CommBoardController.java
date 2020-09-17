@@ -489,8 +489,35 @@ public class CommBoardController {
 		}
 
 		int comm_memberNum = Integer.parseInt(req.getParameter("comm_memberNum"));
-		List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
-		Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
+	      
+	      int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
+	      int comm_friendCount = (Integer) comm_friendMapper.getfriendCount(login_comm_memberNum, comm_memberNum);
+	      Comm_MemberDTO mdto = comm_memberMapper.login_comm_getMember(login_comm_memberNum);
+	      mdto.setComm_friendCount(comm_friendCount);
+	      int res1 = comm_memberMapper.updateFriend(mdto);
+	      req.setAttribute("comm_friendCount", comm_friendCount);
+	      
+	      //지은 수정예정
+	         List<CommboardDTO> list = null;
+	         String look=(String) session.getAttribute("look");
+	        if(look!=null){
+	           if(look.equals("전체공개")){
+	                 list = boardMapper.listBoard(comm_memberNum,look);    
+	               }
+	            if(look.equals("회원공개")){
+	              list = boardMapper.listBoard(comm_memberNum,look);    
+	            }
+	            else if(look.equals("비공개")){
+	               list = boardMapper.listBoard(comm_memberNum,look);
+	            }
+	         }
+	        else if(look==null){
+	             look="전체공개";
+	             list = boardMapper.listBoard(comm_memberNum,look);
+	        }
+	      
+	      //List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
+	      Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
 
 		req.setAttribute("boardList", list);
 		req.setAttribute("comm_profilename", dto.getComm_profilename());
@@ -553,11 +580,9 @@ public class CommBoardController {
 			}
 		}
 	}
-		System.out.println(check1);
+
 		int likeCount = likemapper.getLikeCount(boardNum);
 		req.setAttribute("likeCount", likeCount);
-		
-		System.out.println(check1);
 		req.setAttribute("check1", check1);
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
