@@ -31,7 +31,7 @@
 <body>
 <form name="e" action="updatePro.my" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="id" value="${getMember.id}">
-	    <div class="wrap wd668">
+	    
             <div class="container">
                 <div class="form_txtInput">
                     <h2 class="sub_tit_txt">회원수정 페이지</h2>

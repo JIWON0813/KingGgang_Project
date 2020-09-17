@@ -31,11 +31,6 @@ public class PaymentMapper {
 		return res;
 	}
 	
-	public int updatePayment(PaymentDTO dto) {
-		int res =  sqlSession.update("updatePayment",dto);
-		return res;
-	}
-	
 	public int deletePayment(int no) {
 		int res =  sqlSession.delete("deletePayment",no);
 		return res;
@@ -54,17 +49,8 @@ public class PaymentMapper {
 		return sqlSession.selectOne("getPaymentNo",no);
 	}
 	
-	public List<PaymentDTO> getAllPaymentlist(int valid){
-		return sqlSession.selectList("getAllPayment",valid);
-	}
-	
 	public PaylistDTO getmyPaylist(PaymentDTO ptdto) {
 		return sqlSession.selectOne("getMyPaylist",ptdto);
-	}
-	
-	public PaylistDTO getadPaylist(PaymentDTO ptdto) {
-		
-		return sqlSession.selectOne("getAdPaylist",ptdto);
 	}
 	
 	public int getpayCount(){
@@ -72,10 +58,10 @@ public class PaymentMapper {
 			return count;
 	}
 	
-	public MemberDTO getpayMember(int m_no){
-		return sqlSession.selectOne("getpayMember",m_no);
+	public MemberDTO getpayMember(int memberNum){
+		return sqlSession.selectOne("getpayMember",memberNum);
 	}
-
+	
 	public List<PaymentDTO> getAdminList() {
 		return sqlSession.selectList("adminList");
 	}
@@ -83,15 +69,3 @@ public class PaymentMapper {
 }	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-

@@ -2,26 +2,25 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- Start Footer -->
-<footer class="footer-box">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 white_fonts">
-				<div class="row">
-					<div class="col-sm-6 col-md-6 col-lg-3">
-						<div class="full">
-							<img class="img-responsive"
-								src="${pageContext.request.contextPath}/resources/main/images/logo.png"
-								alt="#" />
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-6 col-lg-3">
-						<div class="full">
-							<!-- 날씨 api -->
+
+    <!-- Start Footer -->
+    <footer class="footer-box">
+        <div class="container">
+            <div class="row">
+               <div class="col-md-12 white_fonts">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="full">
+                                <img class="img-responsive" src="${pageContext.request.contextPath}/resources/main/images/logo.png" alt="#" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="full">
+                                <!-- 날씨 api -->
 							<h3>제주도 날씨 현황</h3>
 						</div>
 
-						<div align="right">
+						<div align="center">
 							<table>
 								<tr align="center">
 									<td colspan="2" class="cdate" style="font-size:20px"></td>
@@ -44,47 +43,36 @@
 								</tr>
 							</table>
 						</div>
-						<!-- <div class="full">
-                                <ul class="menu_footer">
-                                    <li><a href="home.html">> Home</a></li>
-                                    <li><a href="about.html">> About</a></li>
-                                    <li><a href="exchange.html">> Exchange</a></li>
-                                    <li><a href="services.html">> Services</a></li>
-                                    <li><a href="new.html">> New</a></li>
-                                    <li><a href="contact.html">> Contact</a></li>
-                                </ul>
-                            </div> -->
-					</div>
-
-					<div class="col-sm-6 col-md-6 col-lg-3">
-						<div class="full">
-							<div class="footer_blog full white_fonts">
-								<h3>Newsletter</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-									sed do</p>
-								<div class="newsletter_form">
-									<form action="index.html">
-										<input type="email" placeholder="Your Email" name="#"
-											required>
-										<button>Submit</button>
-									</form>
-								</div>
-							</div>
 						</div>
-					</div>
-					<div class="col-sm-6 col-md-6 col-lg-3">
-						<div class="full">
-							<div class="footer_blog full white_fonts">
-								<h3>Contact us</h3>
-								<ul class="full">
-									<li><img src=""><span>London 145<br>United
-											Kingdom
-									</span></li>
-									<li><img src=""><span>demo@gmail.com</span></li>
-									<li><img src=""><span>+12586954775</span></li>
-								</ul>
-							</div>
-						</div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="full">
+                                <div class="footer_blog full white_fonts">
+                             <h3><img src="${pageContext.request.contextPath}/resources/main/images/orange.png"/>낑.같.따<img src="${pageContext.request.contextPath}/resources/main/images/orange.png"/></h3>
+                             <p>함께 여행 갈 인연을 찾아보아요!!</p>
+                             <a class="join_bt" style="display: inline-block; margin-left:30px;" href="comm_checkMember.do?memberNum=${memberNum}">
+                             	<b><font color="white">가 입 하 기</font></b>
+                             </a>
+                             <!-- <div class="newsletter_form">
+                                <form action="index.html">
+                                   <input type="email" placeholder="Your Email" name="#" required="">
+                                   <button>Submit</button>
+                                </form>
+                             </div> -->
+                         </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="full">
+                                <div class="footer_blog full white_fonts">
+                             <h3>Contact us</h3>
+                             <ul class="full">
+                               <li><img src=""><span>London 145<br>United Kingdom</span></li>
+                               <li><img src=""><span>demo@gmail.com</span></li>
+                               <li><img src=""><span>+12586954775</span></li>
+                             </ul>
+                         </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -92,24 +80,6 @@
 	</div>
 </footer>
 <!-- End Footer -->
-<!-- test -->
-<a href="main.admin">관리자모드로 가기</a>
-<br>
-
-<a href="main.member">임시회원</a>
-<br><a href="Q_list.board">문의게시판 가기</a>
-<br><a href="list.notice">공지사항 보기</a>
-<br><a href="main.my">마이페이지로 가기</a><p>
-<br><a href="listReview.re">후기게시판</a><p>
-<br><a href="main.hotel">호텔 예약하기</a>
-<br><a href="hotelList.hotel">호텔 목록보기(어드민)</a>
-<br><a href="listRentcar.admin">렌트카 목록(어드민)</a>
-<br><a href="listInsu.admin">렌트카_보험 목록(어드민)</a>
-<br><a href="firstPage.rentcar">렌트카 메인(회원)</a>
-<br><a href="main.wish">관심리스트등록 페이지로 가기</a><p>
-<br><a href="main.pay">결제 페이지로 가기</a><p>
-<br><a href="payList.admin">결제 목록으로 가기(어드민)</a><p>
-<br><a href="commhome.comm">커뮤니티 페이지로 가기</a><p>
 <!-- test -->
     <div class="footer_bottom">
         <div class="container">
@@ -252,6 +222,7 @@ jQuery(function ($) {
 	$this.countTo(options);
   }
 });
+
 //날씨 api
 $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=jeju&units=metric&appid=70393e52400da4753a885b68792731f4',
 		function(data) {

@@ -23,6 +23,7 @@ import com.teamb.model.PaymentListData;
 import com.teamb.model.RentcarDTO;
 import com.teamb.model.Rentcar_ResDTO;
 import com.teamb.model.RoomDTO;
+import com.teamb.model.RoomDateDTO;
 import com.teamb.service.HotelMapper;
 import com.teamb.service.MemberMapper;
 import com.teamb.service.PaymentMapper;
@@ -68,17 +69,18 @@ public class AdminController {
 			HotelDTO hdto= null;
 			Rentcar_ResDTO resdto = null;
 			RentcarDTO cardto= null;
-			if(pdto.getType() == 1){
-				rdto = hotelmapper.getRoom(pdto.getP_no());
-				//RoomDateDTO roomdatedto = 
+			RoomDateDTO rddto = null;
+			if(pdto.getType() == 1){			
+				rddto = hotelmapper.getRoomDate(pdto.getP_no());
+				rdto = hotelmapper.getRoom(rddto.getRoom_id());
 				hdto = hotelmapper.getHotel(rdto.getH_id());
-			}
+			} 
 			else{
 				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
 				cardto = rentcarMapper.getRentcar(resdto.getR_id());
 			}
 			
-			plist.add(new PaymentListData(pdto, mdto, rdto,hdto,resdto,cardto));
+			plist.add(new PaymentListData(pdto, mdto, rddto, rdto,hdto,resdto,cardto));
 		}
 		String pageNum = req.getParameter("pageNum");
 		if (pageNum==null){

@@ -59,9 +59,9 @@ public class WishController {
 	private HotelMapper hotelmapper;
 	
 	@RequestMapping("/main.wish")
-	public String mypageMain(HttpServletRequest req) {
-		//상품번호 호텔 = 1; 회원번호 memberNum = 1 ; 
-		int m_no = 1;
+	public String mypageMain(HttpServletRequest req,HttpSession session) {
+		int m_no = (int)session.getAttribute("memberNum");
+		
 		int no = 3;
 		int type = 1;
 	
@@ -70,20 +70,7 @@ public class WishController {
 		dto.setF_no(no);
 		dto.setType(type);
 		
-		/*List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
-		int check1 = 1;
-		for(WishlistDTO check : noCheck) {
-			System.out.println(check.getF_no());
-			if(check.getF_no()!=no) {
-				continue;
-			}else if(check.getF_no()==no) {
-				check1 = 2;
-			}
-		}
-		*/
-			
-		//req.setAttribute("noCheck", noCheck);
-		//req.setAttribute("check1", check1);
+		
 		req.setAttribute("m_no", m_no);
 		req.setAttribute("f_no", no);
 		req.setAttribute("type", type);

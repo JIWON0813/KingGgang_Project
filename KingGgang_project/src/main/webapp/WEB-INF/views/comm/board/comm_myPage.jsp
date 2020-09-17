@@ -14,7 +14,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6 col-lg-3">
 							<div class="full">
-								<h3>MyPage</h3>
+								<h3><img src="${pageContext.request.contextPath}/resources/img/낑깡logo.png" width="100" height="100">MyPage</h3>
 							</div>
 						</div>
 					</div>
@@ -31,6 +31,7 @@
 		 </td>
 		 <td>
 		      <h2>[   ${comm_nickname}   ]님</h2>
+		      <p>${comm_intro}</p>
 	   	 </td> 
 	</tr> 
 	
@@ -64,7 +65,6 @@
 	   </c:if>   
 	   <c:forEach var="dto" items="${boardList}">
 	   <a href="comm_otherContent.do?boardNum=${dto.boardNum}">
-	   		<%-- <a href="comm_content.do?boardNum=${dto.boardNum}"> --%>
 	        	<img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300">
 	        </a>
 	   </c:forEach>          

@@ -1,4 +1,3 @@
-  
 package com.teamb.controller;
 
 import java.util.List;

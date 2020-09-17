@@ -8,8 +8,10 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 예약 메인페이지
  -->
-
-   
+<%@ include file="../top.jsp"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
+<script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
+<div class="session layout_padding" align="center"></div> 
 <div class="subject" align="center">
 	<h1>다양한 종류의 숙소</h1>
 </div>
@@ -39,11 +41,11 @@
 				<c:if test="${not empty dto.filename}">
 					<td rowspan="6" width="20%">
 					<a href="hotelDetail.hotel?no=${dto.no}">
-					<img src="http://localhost:8080/img/${dto.filename}" width="200" height="200">
+					<img src="http://192.168.0.184:8080/img/${dto.filename}" width="200" height="200">
 					</a>
 				</c:if>
 				<c:if test="${empty dto.filename}">
-					<td rowspan="6" width="200"	height="200">이미지가 존재하지 않습니다.</td>
+					<td rowspan="6" width="200"	height="200"><a href="hotelDetail.hotel?no=${dto.no}">이미지가 존재하지 않습니다.</a></td>
 				</c:if>
 
 				<td width="70%">${dto.name}
@@ -90,3 +92,4 @@
 		</c:if>
 	</c:if>
 </div>
+<%@ include file="../bottom.jsp"%>

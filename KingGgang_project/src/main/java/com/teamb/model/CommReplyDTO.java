@@ -1,8 +1,8 @@
 package com.teamb.model;
  
-	/*ÀÌ	   ¸§ : CommRelyDTO.java
-	°³  ¹ß   ÀÚ : ÃÖ ÀÎ ¾Æ
-	¼³	   ¸í : ´ñ±ÛDTO*/
+	/*ï¿½ï¿½	   ï¿½ï¿½ : CommRelyDTO.java
+	ï¿½ï¿½  ï¿½ï¿½   ï¿½ï¿½ : ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
+	ï¿½ï¿½	   ï¿½ï¿½ : ï¿½ï¿½ï¿½DTO*/
 
 import java.util.Date;
 
@@ -11,8 +11,9 @@ public class CommReplyDTO {
 	private int boardNum;
 	private int replyNum;
 	private String rcontent;
-	private String rwriter;
 	private Date rregdate;
+	private String rpasswd;
+	private String rwriter;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -32,17 +33,23 @@ public class CommReplyDTO {
 	public void setRcontent(String rcontent) {
 		this.rcontent = rcontent;
 	}
-	public String getRwriter() {
-		return rwriter;
-	}
-	public void setRwriter(String rwriter) {
-		this.rwriter = rwriter;
-	}
 	public Date getRregdate() {
 		return rregdate;
 	}
 	public void setRregdate(Date rregdate) {
 		this.rregdate = rregdate;
+	}
+	public String getRpasswd() {
+		return rpasswd;
+	}
+	public void setRpasswd(String rpasswd) {
+		this.rpasswd = rpasswd;
+	}
+	public String getRwriter() {
+		return rwriter;
+	}
+	public void setRwriter(String rwriter) {
+		this.rwriter = rwriter;
 	}
 
 }

@@ -67,6 +67,7 @@ public class LoginController {
 	             String profile_name = loginMapper.getMemberProfile(dto.getId());
 	             	session.setAttribute("profilename", profile_name);
 
+
 	    	  session.setAttribute("mbId", dto.getId());
 	    	  session.setAttribute("upLoadPath", upLoadPath);
 	            if(dto.getId().equals("admin")) {

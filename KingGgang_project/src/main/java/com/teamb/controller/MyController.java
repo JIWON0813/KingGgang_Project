@@ -54,12 +54,11 @@ public class MyController {
 	@Autowired
 	//private MemberMapper memberMapper;
 	private MyMapper myMapper;
-	
+	 
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MyController.class);
-	
 	
 	@RequestMapping("/main.my")
 	public String mypageMain() {
@@ -134,6 +133,7 @@ public class MyController {
 		req.setAttribute("type", upd);
 		return "my/confirm";
 	}
+	
 	@RequestMapping(value = "/updateForm.my")
 	public String updateMem(HttpServletRequest req,HttpSession session,@RequestParam String passwd) {
 		String id = (String)session.getAttribute("mbId");

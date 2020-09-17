@@ -6,12 +6,13 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 상세페이지
 -->
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script>
-
+ 
 function wishlist() {
 	
-    	var obj = {"no" : $('#btnLike').attr('name')}
+    	var obj = {"no" : $('#btnWish').attr('name')}
      
     	$.ajax({ url: "<c:url value="/insDelwish" />", 
     		type: "POST", 
@@ -31,13 +32,13 @@ function wishlist() {
     		}); 
     	} 
    </script>
-
+<%@ include file="../top.jsp"%>
 <h1 align="center">숙소 상세 정보</h1>
-<div align="center">
+<div class="session layout_padding" align="center">
 	<table width="1200" border="1">
 		<tr>
 			<td width="15%"><img
-				src="http://localhost:9211/img/${dto.filename}" width="auto"
+				src="http://192.168.0.184:8080/img/${dto.filename}" width="auto"
 				height="150">
 			<td colspan="2">숙소 이름</td>
 			<td colspan="3">${dto.name}</td>
@@ -75,7 +76,7 @@ function wishlist() {
 		<tr>
 		<td><p>관심리스트</p></td>
 		<td colspan="5">
-		<button type="button" id="btnLike" name="${dto.no}" onclick="wishlist()">
+		<button type="button" id="btnWish" name="${dto.no}" onclick="wishlist()">
        			<img src="${ check1 == 1 ? './resources/img/empty_heart.jpg' : './resources/img/heart.jpg' }" id="wishImg" height="50px" width="50px">
    		</button>
 		</td>
@@ -105,7 +106,7 @@ ${dto.content}
 		<h3 align="center">방 목록</h3>
 		<c:forEach var="roomdto" items="${roomList}">
 			<tr>
-				<td width="auto"><img src="http://localhost:8080/img/${roomdto.filename}" width="150" height="150">
+				<td width="auto"><img src="http://192.168.0.184:8080/img/${roomdto.filename}" width="150" height="150">
 				<td width="10%">이름</td>
 				<td width="15%">${roomdto.name}</td>
 				<td width="25%">최대수용인원</td>
@@ -119,3 +120,4 @@ ${dto.content}
 <div align="center">
 	<a href="main.hotel">목록으로</a>
 </div>
+<%@ include file="../bottom.jsp"%>
