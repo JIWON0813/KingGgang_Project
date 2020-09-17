@@ -41,11 +41,11 @@
 				<c:if test="${not empty dto.filename}">
 					<td rowspan="6" width="20%">
 					<a href="hotelDetail.hotel?no=${dto.no}">
-					<img src="http://localhost:8080/img/${dto.filename}" width="200" height="200">
+					<img src="http://192.168.0.184:8080/img/${dto.filename}" width="200" height="200">
 					</a>
 				</c:if>
 				<c:if test="${empty dto.filename}">
-					<td rowspan="6" width="200"	height="200">이미지가 존재하지 않습니다.</td>
+					<td rowspan="6" width="200"	height="200"><a href="hotelDetail.hotel?no=${dto.no}">이미지가 존재하지 않습니다.</a></td>
 				</c:if>
 
 				<td width="70%">${dto.name}

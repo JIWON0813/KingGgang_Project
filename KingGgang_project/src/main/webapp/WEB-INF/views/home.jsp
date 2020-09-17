@@ -76,10 +76,5 @@
         </div>
     </div>
 	<!-- end section -->
-<<<<<<< HEAD
-
-    
-=======
->>>>>>> branch 'ina2' of https://github.com/JIWON0813/KingGgang_Project.git
   <%@ include file="/WEB-INF/views/bottom.jsp"%>
  
