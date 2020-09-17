@@ -23,9 +23,11 @@ function wishlist() {
     		success: function(data) { 		
     				var result1 = data
     				if(result1.wstatus == 2){
-                       $('img#wishImg').attr('src', './resources/img/empty_heart.jpg');
+    					alert("관심리스트 등록");
+                       $('img#wishImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
-                       $('img#wishImg').attr('src', './resources/img/heart.jpg');
+                    	alert("관심리스트 제외");
+                       $('img#wishImg').attr('src', './resources/img/heart.png');
                     	}
     				}, 
     		error: function(errorThrown) { alert(errorThrown.statusText); } 
@@ -77,7 +79,7 @@ function wishlist() {
 		<td><p>관심리스트</p></td>
 		<td colspan="5">
 		<button type="button" id="btnWish" name="${dto.no}" onclick="wishlist()">
-       			<img src="${ check1 == 1 ? './resources/img/empty_heart.jpg' : './resources/img/heart.jpg' }" id="wishImg" height="50px" width="50px">
+       			<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="wishImg" height="50px" width="50px">
    		</button>
 		</td>
 		</tr>
