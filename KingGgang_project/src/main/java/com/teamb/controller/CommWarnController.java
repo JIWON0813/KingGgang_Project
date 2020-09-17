@@ -38,7 +38,6 @@ public class CommWarnController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 	
-	//인아
 	@RequestMapping("/comm_warnPro.do")
 	public String warnPro(HttpServletRequest req, HttpSession session,
 			CommWarnDTO dto, Comm_MemberDTO mdto, @RequestParam int boardNum) {
@@ -52,7 +51,7 @@ public class CommWarnController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "신고등록되었습니다.";
-			url = "comm_content.do?boardNum="+boardNum;
+			url = "comm_otherContent.do?boardNum="+boardNum;
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);

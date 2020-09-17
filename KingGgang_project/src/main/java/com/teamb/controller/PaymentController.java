@@ -31,8 +31,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.teamb.model.HotelDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.model.PaymentDTO;
+import com.teamb.model.PaymentListData;
 import com.teamb.model.RentcarDTO;
-
+import com.teamb.model.Rentcar_ResDTO;
+import com.teamb.model.RoomDTO;
+import com.teamb.model.RoomDateDTO;
 import com.teamb.model.WishlistDTO;
 import com.teamb.model.PaylistDTO;
 import com.teamb.service.HotelMapper;
@@ -59,6 +62,9 @@ public class PaymentController {
 	
 	@Autowired
 	private RentcarMapper rentcarMapper;
+	
+	@Autowired
+	private HotelMapper hotelMapper;
 
 	@Autowired
 	private HotelMapper hotelmapper;
@@ -69,70 +75,32 @@ public class PaymentController {
 		return "payment/payins";
 	}
 	
-	@RequestMapping("/insert.pay")
-	public String paymentInsert(HttpServletRequest req,@ModelAttribute PaymentDTO pdto,MemberDTO mdto) {
-		//로그인 세션에서 가져오는아이디 값
-		System.out.println(req.getParameter("m_no"));
-		int m_no = Integer.parseInt(req.getParameter("m_no"));
-		System.out.println(m_no);
-		int type = Integer.parseInt(req.getParameter("type"));
-		int totalPrice= Integer.parseInt(req.getParameter("price"));
-		
-		if(type == 2) {
-			pdto.setP_no(Integer.parseInt(req.getParameter("res_id")));
-		} else {
-			pdto.setP_no(Integer.parseInt(req.getParameter("id")));
-		}
-		
-		System.out.println(pdto.getP_no());
-		int res =  paymemtMapper.insertPayment(pdto);
-		String msg=null,url=null;
-		if(res>0){
-			int no = paymemtMapper.getPayno(pdto.getM_no());
-			System.out.println(no);
-			req.setAttribute("no", no);
-			System.out.println(totalPrice);
-			req.setAttribute("totalPrice", totalPrice);
-			MemberDTO mrdto =  paymemtMapper.getpayMember(m_no);
-			System.out.println(mrdto.getEmail());
-			req.setAttribute("mrdto", mrdto);
-			req.setAttribute("m_no", m_no);
-			return "payment/payins2";
-		} else {
-			msg = "결제 실패!! 상품리스트로 돌아갑니다.";
-			url = "main.pay";
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		}
-	}
+
 	
 	@RequestMapping("/complete.pay")
-	public String payMained(HttpServletRequest req,@RequestParam int no,PaymentDTO dto ,RentcarDTO rdto) {
+	public String payMained(HttpServletRequest req,@ModelAttribute PaymentDTO dto) {
 		//로그인 세션에서 가져오는 값
+		String buyer_name = req.getParameter("buyer_name");
+		int m_no = Integer.parseInt(req.getParameter("m_no"));
 		
-		System.out.println(no);
-		//dto.setP_no(Integer.parseInt(req.getParameter("r_id")));
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
-		Date now = new Date();
+		dto.setM_no(m_no);
+		dto.setType(Integer.parseInt(req.getParameter("type")));
+		dto.setPrice(Integer.parseInt(req.getParameter("totalPrice")));
 		
-		String paydate =  format1.format(now);
-		System.out.println(paydate);
-		dto.setNo(no);
-		dto.setPaydate(paydate);
-		//valid 결제전 0 결제후 1
-		int valid = 1;
-		dto.setValid(valid);
+		if(dto.getType() == 1) {
+			dto.setP_no(Integer.parseInt(req.getParameter("id")));
+		} else {
+			dto.setP_no(Integer.parseInt(req.getParameter("res_id")));
+		}
 		
-		int res = paymemtMapper.updatePayment(dto);
+		int status = 1;
+		int res =  paymemtMapper.insertPayment(dto);
 		String msg = null, url=null;
 		if (res>0) {
-			dto = paymemtMapper.getPaymentNo(no);
 			int type =  dto.getType();
 			System.out.println(type);
 			if(type == 2) {
 				int res_id =  dto.getP_no();
-				System.out.println(res_id);
 				rentcarMapper.changePstSuc(res_id);
 				req.setAttribute("status",1);
 			}
@@ -141,11 +109,37 @@ public class PaymentController {
 				hotelmapper.changevaild(id);
 				req.setAttribute("status",0);
 			}
-			url = "main.my";
-			msg = "결제성공 마이페이지로 이동합니다.";
+
+			//결제내역
+			int no = paymemtMapper.getPayno(m_no);
+			
+			PaymentDTO pdto = paymemtMapper.getPaymentNo(no);
+			
+			MemberDTO mdto = memberMapper.getMember(pdto.getM_no());
+			//1일경우 호텔, 2일경우 렌트
+			RoomDTO rdto= null;
+			HotelDTO hdto= null;
+			Rentcar_ResDTO resdto = null;
+			RentcarDTO cardto= null;
+			RoomDateDTO rddto = null;
+			if(pdto.getType() == 1){
+				rddto = hotelmapper.getRoomDate(pdto.getP_no());
+				rdto = hotelmapper.getRoom(rddto.getRoom_id());
+				hdto = hotelMapper.getHotel(rdto.getH_id());
+			} 
+			else{
+				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
+				cardto = rentcarMapper.getRentcar(resdto.getR_id());
+			}
+			PaymentListData pldto = new PaymentListData(pdto,mdto,rddto,rdto,hdto,resdto,cardto);
+			
+			req.setAttribute("status", status);
+			req.setAttribute("pldto", pldto);
+			req.setAttribute("buyer_name", buyer_name);
+		
+			return "payment/paycomplete";
 			
 		}else {
-			paymemtMapper.deletePayment(no);
 			url = "main.my";
 			msg = "결제실패 마이페이지로 이동합니다.";
 		}
@@ -154,6 +148,26 @@ public class PaymentController {
 		req.setAttribute("msg", msg);
 		return "message";
 		
+	}
+	
+	@RequestMapping("/rentcarFin.pay")
+	public String rentcarFin(HttpServletRequest req) {
+		String url = "main.my";
+		String msg = "마이페이지로 이동합니다.";
+		req.setAttribute("url", url);
+		req.setAttribute("msg", msg);
+		req.setAttribute("status", 1);
+		return "message";
+	}
+	
+	@RequestMapping("/HotelFin.pay")
+	public String HotelFin(HttpServletRequest req) {
+		String url = "main.my";
+		String msg = "마이페이지로 이동합니다.";
+		req.setAttribute("url", url);
+		req.setAttribute("msg", msg);
+		req.setAttribute("status", 0);
+		return "message";
 	}
 	
 	@RequestMapping("/delete.pay")
@@ -174,120 +188,29 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/payment.my")
-	public String myPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
-		//session.getAttribute("id"); 로그인 세션에서 받음
-		//
-		int m_no = 1;
-		int valid = 1;//결제완료 = 1;
-		//pdto.setM_id(m_id);
-		//
-		pdto.setM_no(m_no);
-		pdto.setValid(valid);
+	public String myPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req,HttpSession session) {
+		
+		String member_id = (String) session.getAttribute("mbId");
+		MemberDTO mdto = memberMapper.getMemberId(member_id);
+		int memberNum = mdto.getMemberNum();
+		pdto.setM_no(memberNum);
+		
 		
 		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(pdto);
 		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
 		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
 		for(PaymentDTO ptdto : Plist) {
-			if(ptdto.getType()==1) {//호텔결제내역 
-				System.out.println(ptdto.getM_no());
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
+			if(ptdto.getType()==1) {
 				PaylistDTO phdto = paymemtMapper.getmyPaylist(ptdto);
-				System.out.println(phdto.getH_name());
 				Phlist.add(phdto);
 			} else {
-				System.out.println(ptdto.getM_no());
-				System.out.println(ptdto.getP_no()); 
-				System.out.println(ptdto.getType());
 				PaylistDTO prdto = paymemtMapper.getmyPaylist(ptdto);
-				//System.out.println(prdto.getR_company());
 				Prlist.add(prdto);
 			}
-			
 		}
 		req.setAttribute("Phlist", Phlist);
 		req.setAttribute("Prlist", Prlist);
-		
-		//paytestDTO dt = paymemtMapper.getPaytest(m_id);
-		
-		
-		return "my/mypagePayment";
-	}
-	
-	@RequestMapping("/adpayment.my")
-	public String adPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
-		int valid =1;//결제완료 = 1;
-		
-		List<PaymentDTO> Plist = paymemtMapper.getAllPaymentlist(valid);
-		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
-		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
-		for(PaymentDTO ptdto : Plist) {
-			if(ptdto.getType()==1) {//호텔결제내역 
-				System.out.println(ptdto.getM_no());
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
-				PaylistDTO phdto = paymemtMapper.getadPaylist(ptdto);
-				System.out.println(phdto.getH_name());
-				Phlist.add(phdto);
-			} else {//렌트카 결제내
-				System.out.println(ptdto.getM_no()); 
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
-				PaylistDTO prdto = paymemtMapper.getadPaylist(ptdto);
-				
-				Prlist.add(prdto);
-			}
-			
-		}
-		//전체 보기 타입1
-		int type = 1;
-		req.setAttribute("type", type);
-		req.setAttribute("Phlist", Phlist);
-		req.setAttribute("Prlist", Prlist);
-		
-		
-		return "my/adminPayment";
-	} 
-	
-	@RequestMapping("/adpayfind.my")//찾
-	public String adpayfind(HttpServletRequest req,PaymentDTO pdto) {
-		int memberNum = 1;
-		String id = req.getParameter("id");
-		MemberDTO mdto = memberMapper.getMember(memberNum);
-		int m_no =  mdto.getMemberNum();
-		pdto.setM_no(m_no);
-		int valid = 1;
-		pdto.setValid(valid);
-		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(pdto);
-		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
-		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
-		for(PaymentDTO ptdto : Plist) {
-			if(ptdto.getType()==1) {//호텔결제내역 
-				System.out.println(ptdto.getM_no());
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
-				PaylistDTO phdto = paymemtMapper.getadPaylist(ptdto);
-				System.out.println(phdto.getH_name());
-				Phlist.add(phdto);
-			} else {
-				System.out.println(ptdto.getM_no()); 
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
-				PaylistDTO prdto = paymemtMapper.getadPaylist(ptdto);
-				System.out.println(prdto.getH_name());
-				Prlist.add(prdto);
-			}
-			
-		}
-		//찾기 타입 2
-		int type = 2;
-		req.setAttribute("type", type);
-		req.setAttribute("Phlist", Phlist);
-		req.setAttribute("Prlist", Prlist);
-		
-		
-		return "my/adminPayment";
-		
+			return "my/mypagePayment";
 	}
 
 	
