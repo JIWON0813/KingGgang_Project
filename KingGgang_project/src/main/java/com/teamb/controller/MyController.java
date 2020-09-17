@@ -133,6 +133,7 @@ public class MyController {
 		req.setAttribute("type", upd);
 		return "my/confirm";
 	}
+	
 	@RequestMapping(value = "/updateForm.my")
 	public String updateMem(HttpServletRequest req,HttpSession session,@RequestParam String passwd) {
 		String id = (String)session.getAttribute("mbId");

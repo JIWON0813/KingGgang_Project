@@ -353,7 +353,7 @@ public class RentcarController {
 	}
 	
 	@RequestMapping(value = "reservation_Ok.rentcar")
-	public String rentcarReservationOk(HttpServletRequest req,Rentcar_ResDTO dto){
+	public String rentcarReservationOk(HttpServletRequest req,Rentcar_ResDTO dto,HttpSession session){
 		 RentcarDTO rentcarDTO = rentcarMapper.getRentcar(dto.getR_id());
 		 InsuDTO insuDTO = rentcarMapper.getInsu(dto.getInsu_id());
 		 
@@ -385,8 +385,8 @@ public class RentcarController {
 		if(res>0){
 			rentcarMapper.updateRentcarReservation(dto.getR_id());
 			int res_id = rentcarMapper.getRes_id(member_id);
-			MemberDTO mdto = memberMapper.getMemberId(member_id);
-			int memberNum = mdto.getMemberNum();
+			
+			int memberNum = (int) session.getAttribute("memberNum");
 			MemberDTO mrdto =  paymentMapper.getpayMember(memberNum);
 			
 			

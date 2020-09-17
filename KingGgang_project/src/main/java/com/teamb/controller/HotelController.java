@@ -50,9 +50,7 @@ public class HotelController {
 	@Autowired
 	private WishlistMapper wishlistmapper;
 	
-	//결제 원세호 
-	@Autowired
-	private MemberMapper membermapper;
+	//결제 원세호
 	
 	@Autowired
 	private PaymentMapper paymentmapper;
@@ -306,10 +304,7 @@ public class HotelController {
 	@RequestMapping(value="/payment.hotel")
 	public String payment(HttpServletRequest req,HttpSession session, @RequestParam int id, @RequestParam int price){		
 		//결제 원세호 
-		
-		String member_id = (String) session.getAttribute("mbId");
-		MemberDTO mdto = membermapper.getMemberId(member_id);
-		int memberNum = mdto.getMemberNum();
+		int memberNum = (int) session.getAttribute("memberNum");
 		MemberDTO mrdto =  paymentmapper.getpayMember(memberNum);
 		req.setAttribute("mrdto", mrdto);
 		req.setAttribute("id", id);
