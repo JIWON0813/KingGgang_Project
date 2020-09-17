@@ -58,6 +58,8 @@ public class HotelController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
+	
+	//호텔 목록(사용자)
 	@RequestMapping(value = "/main.hotel")
 	public String hotelMain(HttpServletRequest req) {
 		String pageNum = req.getParameter("pageNum");
@@ -115,6 +117,8 @@ public class HotelController {
 		return "hotel/hotelMain";
 	}
 
+	
+	//관리자버전 호텔 목록(호텔 등록,수정,삭제)
 	@RequestMapping(value = "/hotelList.hotel")
 	public String hotelList(HttpServletRequest req) {
 		

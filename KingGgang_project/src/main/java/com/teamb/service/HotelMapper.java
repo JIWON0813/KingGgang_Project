@@ -154,8 +154,6 @@ public class HotelMapper {
 	}
 
 	
-	//관심리스트 원세호 
-
 
 
 }
