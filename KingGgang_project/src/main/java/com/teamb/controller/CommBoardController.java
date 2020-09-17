@@ -510,7 +510,8 @@ public class CommBoardController {
 	              list = boardMapper.listBoard(comm_memberNum,look);    
 	            }
 	            else if(look.equals("비공개")){
-	               list = boardMapper.listBoard(comm_memberNum,look);
+	            	 list = boardMapper.listBoard(comm_memberNum,look);    
+	             //  list = boardMapper.mylistBoard(login_comm_memberNum, look);
 	            }
 	         }
 	        else if(look==null){
@@ -520,7 +521,7 @@ public class CommBoardController {
 	      
 	      //List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 	      Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
-
+	      System.out.println(dto.getComm_profilename());
 		req.setAttribute("boardList", list);
 		req.setAttribute("comm_profilename", dto.getComm_profilename());
 		req.setAttribute("comm_nickname", dto.getComm_nickname());

@@ -49,10 +49,11 @@
 				| <a style="color: red" href="" onclick="window.open('room?comm_memberNum=${dto.comm_memberNum}&comm_nickname=${dto.comm_nickname}', '_blank', 'width=600 height=600')">채팅하기</a></p>
 		</div>
 		</c:forEach>
-		</div>
-    	</div>
-         <div class="row" id="moreList">
+		</div> 
+		<div class="row" id="moreList">
          </div>
+    	</div>
+        
 </div>
       
          <div class="row margin-top_30">
@@ -69,13 +70,13 @@
 </body>
 
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-<!-- <style>
+<style>
 #moreList{
 width:200;
 height:200;
 }
-</style> -->
-<!-- <script>
+</style>
+<script>
 /* 더보기기능 */
    function loadNextPage() {
       var list_length = $("#more_list img").length+1;
@@ -96,7 +97,11 @@ height:200;
           contentType: "application/json;", 
           success : function(data){
                for(var i=0; i<data.length; i++){
-                     $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><div class='full services_blog'><img class='img-responsive' src='http://localhost:8080/img/"+data[i].file+"' alt='#' top='200' height='200' /><p><font size=5>"+data[i].name+"</font><font size=5>("+data[i].nickname+")</font></p></a></div></div>");
+                     $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><img src='http://localhost:8080/img/"+data[i].file+"' width='200' height='200' alt='#' /><p><font size=5>"+data[i].name+"</font><font size=5>("+data[i].nickname+")</font></p>"+
+                    		 						"<p>"+data[i].birth+"</p><p>"+data[i].intro+"</p>"+
+                    		 						"<p><a style='color: blue' href='comm_friend_insert.do?login_comm_memberNum="+data[i].login+
+                    		 						"&comm_memberNum="+data[i].num+"'>친구추가</a> | "+
+                    		 						"<a style='color: red' href='' onclick='window.open('room?comm_memberNum="+data[i].num+"&comm_nickname="+data[i].nickname+"','_blank', 'width=600 height=600')'>채팅하기</a></p></div>");
              }
                 
              },
@@ -108,4 +113,16 @@ height:200;
 
 
 </script>
- -->
+
+
+<script type="text/javascript">
+$(function() {
+    $(document).on('click', function(e) {
+        if (e.target.id === 'word') {
+           $('#memberSearch').show();
+        } else {
+            $('#memberSearch').hide();
+        }
+    })
+});
+</script>

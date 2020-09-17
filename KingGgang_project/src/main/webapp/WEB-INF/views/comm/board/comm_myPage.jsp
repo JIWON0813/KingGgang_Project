@@ -27,7 +27,12 @@
 <table>
    <tr>
 	  	 <td width="120" height="120">
-		      <img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
+	  	 	<c:if test="${comm_profilename eq 'basic.jpg'}">
+					<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="180" height="180">
+			</c:if>
+				<c:if test="${comm_profilename ne 'basic.jpg'}">
+			 		<img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
+				</c:if>
 		 </td>
 		 <td>
 		      <h2>[   ${comm_nickname}   ]님</h2>

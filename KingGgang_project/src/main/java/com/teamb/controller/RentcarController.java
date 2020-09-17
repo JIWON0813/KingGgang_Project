@@ -19,8 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.teamb.model.InsuDTO;
+import com.teamb.model.MemberDTO;
 import com.teamb.model.RentcarDTO;
 import com.teamb.model.Rentcar_ResDTO;
+import com.teamb.service.MemberMapper;
+import com.teamb.service.PaymentMapper;
 import com.teamb.service.RentcarMapper;
 
 /*
@@ -34,6 +37,12 @@ public class RentcarController {
    
    @Autowired
    private RentcarMapper rentcarMapper;
+   
+   @Autowired
+	private MemberMapper memberMapper;
+	
+	@Autowired
+	private PaymentMapper paymentMapper;
    
    @Resource(name="upLoadPath")
    private String upLoadPath;
@@ -258,133 +267,148 @@ public class RentcarController {
    }
    
 //////////////////////////////////////////////////////////////
-   
-   @RequestMapping(value="firstPage.rentcar")
-   public String rentcarFirstPage(HttpServletRequest req){
-      return "rentcar/firstPage";
-   }
-   
-   @RequestMapping(value = "main.rentcar")
-   public String rentcarMain(HttpServletRequest req,HttpSession session){
-      String mode = req.getParameter("mode");
-      String receiptday = req.getParameter("receiptday") + req.getParameter("pickuptime");
-      String returnday = req.getParameter("returnday") + req.getParameter("pickuptime");
-      String dpreceiptday = req.getParameter("receiptday");
-      String dpreturnday = req.getParameter("returnday");
-      String dppickuptime = req.getParameter("pickuptime");
-      
-      if (mode == null){
-      session.setAttribute("dpreceiptday",dpreceiptday);
-      session.setAttribute("dpreturnday",dpreturnday);
-      session.setAttribute("dppickuptime",dppickuptime);
-      List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
-      req.setAttribute("rentcar",list);
-      }else if(mode.equals("lowPrice")){
-         receiptday = (String)session.getAttribute("dpreceiptday") + session.getAttribute("dppickuptime");
-         returnday = (String)session.getAttribute("dpreturnday") + session.getAttribute("dppickuptime");
-         List<RentcarDTO> list = rentcarMapper.listLowPriceRentcar(receiptday,returnday);
-         req.setAttribute("rentcar",list);
-      }else if(mode.equals("type") || mode.equals("fuel")){
-         receiptday = (String)session.getAttribute("dpreceiptday") + session.getAttribute("dppickuptime");
-         returnday = (String)session.getAttribute("dpreturnday") + session.getAttribute("dppickuptime");
-         Object obj = req.getParameter("obj");
-         List<RentcarDTO> list = rentcarMapper.findRentcar(mode,obj,receiptday,returnday);
-         req.setAttribute("rentcar",list);
-      }else if(mode.equals("date")){
-         dpreceiptday = req.getParameter("receiptday");
-         dpreturnday = req.getParameter("returnday");
-         dppickuptime = req.getParameter("pickuptime");
-         
-         session.removeAttribute("dpreceiptday");
-         session.removeAttribute("dpreturnday");
-         session.removeAttribute("dppickuptime");
-         
-         session.setAttribute("dpreceiptday",dpreceiptday);
-         session.setAttribute("dpreturnday",dpreturnday);
-         session.setAttribute("dppickuptime",dppickuptime);
+	
+	@RequestMapping(value="firstPage.rentcar")
+	public String rentcarFirstPage(HttpServletRequest req){
+		return "rentcar/firstPage";
+	}
+	
+	@RequestMapping(value = "main.rentcar")
+	public String rentcarMain(HttpServletRequest req,HttpSession session){
+		String mode = req.getParameter("mode");
+		String receiptday = req.getParameter("receiptday") + req.getParameter("pickuptime");
+		String returnday = req.getParameter("returnday") + req.getParameter("pickuptime");
+		String dpreceiptday = req.getParameter("receiptday");
+		String dpreturnday = req.getParameter("returnday");
+		String dppickuptime = req.getParameter("pickuptime");
+		
+		if (mode == null){
+		session.setAttribute("dpreceiptday",dpreceiptday);
+		session.setAttribute("dpreturnday",dpreturnday);
+		session.setAttribute("dppickuptime",dppickuptime);
+		List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
+		req.setAttribute("rentcar",list);
+		}else if(mode.equals("lowPrice")){
+			receiptday = (String)session.getAttribute("dpreceiptday") + session.getAttribute("dppickuptime");
+			returnday = (String)session.getAttribute("dpreturnday") + session.getAttribute("dppickuptime");
+			List<RentcarDTO> list = rentcarMapper.listLowPriceRentcar(receiptday,returnday);
+			req.setAttribute("rentcar",list);
+		}else if(mode.equals("type") || mode.equals("fuel")){
+			receiptday = (String)session.getAttribute("dpreceiptday") + session.getAttribute("dppickuptime");
+			returnday = (String)session.getAttribute("dpreturnday") + session.getAttribute("dppickuptime");
+			Object obj = req.getParameter("obj");
+			List<RentcarDTO> list = rentcarMapper.findRentcar(mode,obj,receiptday,returnday);
+			req.setAttribute("rentcar",list);
+		}else if(mode.equals("date")){
+			dpreceiptday = req.getParameter("receiptday");
+			dpreturnday = req.getParameter("returnday");
+			dppickuptime = req.getParameter("pickuptime");
+			
+			session.removeAttribute("dpreceiptday");
+			session.removeAttribute("dpreturnday");
+			session.removeAttribute("dppickuptime");
+			
+			session.setAttribute("dpreceiptday",dpreceiptday);
+			session.setAttribute("dpreturnday",dpreturnday);
+			session.setAttribute("dppickuptime",dppickuptime);
 
-         List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
-         req.setAttribute("rentcar",list);
-      }else if(mode.equals("all")){
-         receiptday = (String)session.getAttribute("dpreceiptday") + session.getAttribute("dppickuptime");
-         returnday = (String)session.getAttribute("dpreturnday");
-         List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
-         req.setAttribute("rentcar",list);
-      }
-      
-      
-      return "rentcar/rentcarMain";
-   }
-   
-   @RequestMapping(value = "content.rentcar")
-   public String rentcarContent(HttpServletRequest req){
-      int num = Integer.parseInt(req.getParameter("id"));
-      RentcarDTO dto = rentcarMapper.getRentcar(num);
-      req.setAttribute("rentcar",dto);
-      req.setAttribute("upLoadPath",upLoadPath);
-      
-      return "rentcar/contentRentcar";
-   }
-   
-   @RequestMapping(value = "reservation.rentcar")
-   public String rentcarReservation(HttpServletRequest req,HttpSession session){
-      int r_id = Integer.parseInt(req.getParameter("id"));
-      RentcarDTO rdto = rentcarMapper.getRentcar(r_id);
-      List<InsuDTO> insulist = rentcarMapper.listInsu();
-      req.setAttribute("rentcar",rdto);
-      req.setAttribute("insu",insulist);
-      req.setAttribute("m_id", session.getAttribute("mbId"));
-      return "rentcar/reservation";
-   }
-   
-   @RequestMapping(value = "reservation_Ok.rentcar")
-   public String rentcarReservationOk(HttpServletRequest req,Rentcar_ResDTO dto){
-       RentcarDTO rentcarDTO = rentcarMapper.getRentcar(dto.getR_id());
-       InsuDTO insuDTO = rentcarMapper.getInsu(dto.getInsu_id());
-       
-       LocalDate d1 = LocalDate.parse(dto.getReceiptday(), DateTimeFormatter.ISO_LOCAL_DATE);
-       LocalDate d2 = LocalDate.parse(dto.getReturnday(), DateTimeFormatter.ISO_LOCAL_DATE);
-       Duration diff = Duration.between(d1.atStartOfDay(), d2.atStartOfDay());
-       int diffDays = (int)diff.toDays();
-       dto.setPrice(diffDays*(rentcarDTO.getPrice()+insuDTO.getPrice()));
-       
-      String receiptday = dto.getReceiptday() + dto.getPickuptime(); 
-      String returnday = dto.getReturnday() + dto.getPickuptime();
-      dto.setReceiptday(receiptday);
-      dto.setReturnday(returnday);
-      
-      int res = rentcarMapper.insertRentcarReservation(dto);
-      
-      //결제 원세호
-      
-      String member_id =  req.getParameter("member_id");
-      System.out.println(member_id);
-       
-      String msg = null;
-      String url = null;
-      
-      if(res>0){
-         rentcarMapper.updateRentcarReservation(dto.getR_id());
-         int res_id = rentcarMapper.getRes_id(member_id);
-         System.out.println(res_id);
-         req.setAttribute("res_id",res_id);
-         req.setAttribute("price", dto.getPrice());
-         req.setAttribute("type", 2);
-         req.setAttribute("m_no", member_id);
-         return "payment/payins";
-         
-      }else{
-         msg = "예약 실패!";
-         url = "windowClose.rentcar";
-      }
-      
-      req.setAttribute("msg",msg);
-      req.setAttribute("url",url);
-      
-      
-      return "message";
-         
-   }
-   
-   
+			List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
+			req.setAttribute("rentcar",list);
+		}else if(mode.equals("all")){
+			receiptday = (String)session.getAttribute("dpreceiptday") + session.getAttribute("dppickuptime");
+			returnday = (String)session.getAttribute("dpreturnday");
+			List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
+			req.setAttribute("rentcar",list);
+		}
+		
+		
+		return "rentcar/rentcarMain";
+	}
+	
+	@RequestMapping(value = "content.rentcar")
+	public String rentcarContent(HttpServletRequest req,HttpSession session){
+		int num = Integer.parseInt(req.getParameter("id"));
+		RentcarDTO dto = rentcarMapper.getRentcar(num);
+		req.setAttribute("rentcar",dto);
+		req.setAttribute("upLoadPath",upLoadPath);
+		
+		return "rentcar/contentRentcar";
+	}
+	
+	@RequestMapping(value = "reservation.rentcar")
+	public String rentcarReservation(HttpServletRequest req,HttpSession session){
+		int r_id = Integer.parseInt(req.getParameter("id"));
+		RentcarDTO rdto = rentcarMapper.getRentcar(r_id);
+		List<InsuDTO> insulist = rentcarMapper.listInsu();
+		req.setAttribute("rentcar",rdto);
+		req.setAttribute("insu",insulist);
+		req.setAttribute("m_id", session.getAttribute("mbId"));
+		return "rentcar/reservation";
+	}
+	
+	@RequestMapping(value = "reservation_Ok.rentcar")
+	public String rentcarReservationOk(HttpServletRequest req,Rentcar_ResDTO dto,HttpSession session){
+		 RentcarDTO rentcarDTO = rentcarMapper.getRentcar(dto.getR_id());
+		 InsuDTO insuDTO = rentcarMapper.getInsu(dto.getInsu_id());
+		 
+		 LocalDate d1 = LocalDate.parse(dto.getReceiptday(), DateTimeFormatter.ISO_LOCAL_DATE);
+		 LocalDate d2 = LocalDate.parse(dto.getReturnday(), DateTimeFormatter.ISO_LOCAL_DATE);
+		 Duration diff = Duration.between(d1.atStartOfDay(), d2.atStartOfDay());
+		 int diffDays = (int)diff.toDays();
+		 dto.setPrice(diffDays*(rentcarDTO.getPrice()+insuDTO.getPrice()));
+		 
+		String receiptday = dto.getReceiptday() + dto.getPickuptime(); 
+		String returnday = dto.getReturnday() + dto.getPickuptime();
+		dto.setReceiptday(receiptday);
+		dto.setReturnday(returnday);
+
+		
+	
+
+		
+		List<Rentcar_ResDTO> resCheck = rentcarMapper.checkAlreadyReservation(dto);
+		//결제 원세호
+		String member_id =  req.getParameter("member_id");
+
+		String msg = null;
+		String url = null;
+
+		if(resCheck.size()==0){
+		int res = rentcarMapper.insertRentcarReservation(dto);
+
+		if(res>0){
+			rentcarMapper.updateRentcarReservation(dto.getR_id());
+			int res_id = rentcarMapper.getRes_id(member_id);
+			int memberNum = (int)session.getAttribute("memberNum");
+			MemberDTO mrdto =  paymentMapper.getpayMember(memberNum);
+			
+			
+			req.setAttribute("mrdto", mrdto);
+			req.setAttribute("res_id",res_id);
+			req.setAttribute("totalPrice", dto.getPrice());
+			req.setAttribute("type", 2);
+			req.setAttribute("m_no", memberNum);
+			return "payment/payins2";
+
+		}else{
+			msg = "예약 실패! 예약시간을 다시 조회해 주세요!";
+			url = "windowClose.rentcar";
+		}
+		req.setAttribute("msg",msg);
+		req.setAttribute("url",url);
+		return "message";
+		}else{
+			msg = "예약 실패! 예약시간을 다시 조회해 주세요!(이미 예약됨)";
+			url = "windowClose.rentcar";
+		}
+		req.setAttribute("msg",msg);
+		req.setAttribute("url",url);
+
+		return "message";		
+
+	}
+	@RequestMapping(value = "windowClose.rentcar")
+	public String windowClose(){
+		return "rentcar/windowClose";
+	}
 }

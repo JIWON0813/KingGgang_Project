@@ -19,6 +19,10 @@
 		select * from commboard where comm_memberNum=#{comm_memberNum} order by boardNum desc
 	</select>
 	
+	<select id="mylook_listBoard" resultType="CommboardDTO">
+		select * from commboard where comm_memberNum=#{login_comm_memberNum} order by boardNum desc
+	</select>
+	
 	<select id="allListBoard" resultType="CommboardDTO">
 		select * from commboard
 	</select>

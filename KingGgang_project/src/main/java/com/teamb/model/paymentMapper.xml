@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+		<mapper namespace="paymentMapper">
+		
+		<insert id="insertPayment" parameterType="PaymentDTO">
+		insert into payment values(pay_no.nextval,#{price},#{type},#{p_no},#{m_no},sysdate)
+		</insert>
+		   
+		<select id="deletePayment" parameterType="int">
+		delete from(select * from payment order by rownum desc) where rownum = 1 and m_no = #{m_no} no = #{no}
+		</select>
+	
+		<select id="getPayno" parameterType="int" resultType="int">
+			select no from(select * from payment order by rownum desc) where rownum = 1 and m_no = #{m_no}
+		</select>
+		
+		<select id="getPayment" parameterType="PaymentDTO" resultType="PaymentDTO">
+		select * from payment where m_no = #{m_no}
+		</select>
+		
+		<select id="getPaymentNo" parameterType="int" resultType="PaymentDTO">
+		select * from payment where no = #{no}
+		</select>
+		  
+		<select id="getMyPaylist" parameterType="PaymentDTO" resultType="PaylistDTO" >
+		select 
+		<choose>
+		<when test="type==1">
+		d.startdate, d.enddate, h.name as h_name, h.category as h_category, h.hp as h_hp, p.price as p_price, p.paydate as p_paydate, p.type as p_type from payment p, room r, hotel h, roomdate d where p.p_no = r.id and r.id = d.room_id and r.h_id = h.no
+		</when>
+		<when test="type==2">
+		e.receiptday, e.returnday, r.name as r_name, r.company as r_company, r.type as r_type, p.price as p_price, p.paydate as p_paydate, p.type as p_type from payment p, rentcar_res e, rentcar r where p.p_no = e.res_id and e.r_id = r.id
+		</when>
+		</choose>
+		and p.m_no=#{m_no} and p.type=#{type} and p.no=#{no}
+		</select>
+		
+		<select id="getpayCount" resultType="int">
+		select count(*) from payment
+		</select> 
+		
+		<select id="getpayMember" parameterType="int" resultType="memberDTO">
+ 		select * from member where memberNum=#{memberNum}
+ 		</select>
+
+ 		<!-- admin 결제목록 (김지원) -->
+ 		
+ 		<select id="adminList" resultType="PaymentDTO">
+ 			select * from payment order by no desc
+ 		</select>
+ 		
+ 		
+
+		</mapper>
+
+

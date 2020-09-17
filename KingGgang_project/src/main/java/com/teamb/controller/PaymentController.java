@@ -166,6 +166,7 @@ public class PaymentController {
 		String msg = "마이페이지로 이동합니다.";
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
+		req.setAttribute("status", 0);
 		return "message";
 	}
 	
@@ -187,120 +188,28 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/payment.my")
-	public String myPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
-		//session.getAttribute("id"); 로그인 세션에서 받음
-		//
-		int m_no = 1;
-		int valid = 1;//결제완료 = 1;
-		//pdto.setM_id(m_id);
-		//
-		pdto.setM_no(m_no);
-		pdto.setValid(valid);
+	public String myPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req,HttpSession session) {
+		
+		
+		int memberNum = (int)session.getAttribute("memberNum");
+		pdto.setM_no(memberNum);
+		
 		
 		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(pdto);
 		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
 		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
 		for(PaymentDTO ptdto : Plist) {
-			if(ptdto.getType()==1) {//호텔결제내역 
-				System.out.println(ptdto.getM_no());
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
+			if(ptdto.getType()==1) {
 				PaylistDTO phdto = paymemtMapper.getmyPaylist(ptdto);
-				System.out.println(phdto.getH_name());
 				Phlist.add(phdto);
 			} else {
-				System.out.println(ptdto.getM_no());
-				System.out.println(ptdto.getP_no()); 
-				System.out.println(ptdto.getType());
 				PaylistDTO prdto = paymemtMapper.getmyPaylist(ptdto);
-				//System.out.println(prdto.getR_company());
 				Prlist.add(prdto);
 			}
-			
 		}
 		req.setAttribute("Phlist", Phlist);
 		req.setAttribute("Prlist", Prlist);
-		
-		//paytestDTO dt = paymemtMapper.getPaytest(m_id);
-		
-		
-		return "my/mypagePayment";
-	}
-	
-	@RequestMapping("/adpayment.my")
-	public String adPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req) {
-		int valid =1;//결제완료 = 1;
-		
-		List<PaymentDTO> Plist = paymemtMapper.getAllPaymentlist(valid);
-		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
-		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
-		for(PaymentDTO ptdto : Plist) {
-			if(ptdto.getType()==1) {//호텔결제내역 
-				System.out.println(ptdto.getM_no());
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
-				PaylistDTO phdto = paymemtMapper.getadPaylist(ptdto);
-				System.out.println(phdto.getH_name());
-				Phlist.add(phdto);
-			} else {//렌트카 결제내
-				System.out.println(ptdto.getM_no()); 
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
-				PaylistDTO prdto = paymemtMapper.getadPaylist(ptdto);
-				
-				Prlist.add(prdto);
-			}
-			
-		}
-		//전체 보기 타입1
-		int type = 1;
-		req.setAttribute("type", type);
-		req.setAttribute("Phlist", Phlist);
-		req.setAttribute("Prlist", Prlist);
-		
-		
-		return "my/adminPayment";
-	} 
-	
-	@RequestMapping("/adpayfind.my")//찾
-	public String adpayfind(HttpServletRequest req,PaymentDTO pdto) {
-		int memberNum = 1;
-		String id = req.getParameter("id");
-		MemberDTO mdto = memberMapper.getMember(memberNum);
-		int m_no =  mdto.getMemberNum();
-		pdto.setM_no(m_no);
-		int valid = 1;
-		pdto.setValid(valid);
-		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(pdto);
-		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
-		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
-		for(PaymentDTO ptdto : Plist) {
-			if(ptdto.getType()==1) {//호텔결제내역 
-				System.out.println(ptdto.getM_no());
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
-				PaylistDTO phdto = paymemtMapper.getadPaylist(ptdto);
-				System.out.println(phdto.getH_name());
-				Phlist.add(phdto);
-			} else {
-				System.out.println(ptdto.getM_no()); 
-				System.out.println(ptdto.getP_no());
-				System.out.println(ptdto.getType());
-				PaylistDTO prdto = paymemtMapper.getadPaylist(ptdto);
-				System.out.println(prdto.getH_name());
-				Prlist.add(prdto);
-			}
-			
-		}
-		//찾기 타입 2
-		int type = 2;
-		req.setAttribute("type", type);
-		req.setAttribute("Phlist", Phlist);
-		req.setAttribute("Prlist", Prlist);
-		
-		
-		return "my/adminPayment";
-		
+			return "my/mypagePayment";
 	}
 
 	

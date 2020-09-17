@@ -88,13 +88,17 @@
     </script>
     
  	<form name="n" action="complete.pay" method="post">
- 	<input type="hidden" name="no" value="${no}">
+ 	<input type="hidden" name="totalPrice" value="${totalPrice}">
+ 	<input type="hidden" name="type" value="${type}">
  	<input type="hidden" name="m_no" value="${m_no}">
- 	</form>
+ 	<input type="hidden" name="buyer_name" value="${mrdto.name}">
+ 	<c:if test = "${type==1}">
+ 	<input type="hidden" name="id" value="${id}">
+ 	</c:if>
+ 	<c:if test = "${type==2}">
+ 	<input type="hidden" name="res_id" value="${res_id}">
+ 	</c:if>
  	
- 	<form name="f" action="delete.pay" method="post">
- 	<input type="hidden" name="m_no" value="${m_no}">
- 	<input type="hidden" name="no" value="${no}">
  	</form>
  	
 </body>

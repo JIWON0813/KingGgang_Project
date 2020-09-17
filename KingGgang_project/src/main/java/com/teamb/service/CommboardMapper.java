@@ -84,4 +84,11 @@ public class CommboardMapper {
 		map.put("look", look);
 		   return sqlSession.selectList("look_listBoard",map);
 	}
+	
+	public List<CommboardDTO> mylistBoard(int login_comm_memberNum, String look) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("login_comm_memberNum", login_comm_memberNum);
+		map.put("look", look);
+		   return sqlSession.selectList("mylook_listBoard",map);
+	}
 }

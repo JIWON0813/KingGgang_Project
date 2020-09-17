@@ -46,7 +46,7 @@
 		<tr align="center">
 			<td><c:out value="${dto.warnNum}"/></td>
 			<td>
-				<a href="comm_content.do?boardNum=${dto.boardNum}">${dto.boardNum}</a>
+				<a href="comm_otherContent.do?boardNum=${dto.boardNum}">${dto.boardNum}</a>
 			</td>
 			<td>${comm_nickname}</td>
 			<td><input type="button" value="글삭제" onclick="window.location='warn_deletePro.do?warnNum=${dto.warnNum}&boardNum=${dto.boardNum}'"></td>

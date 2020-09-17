@@ -77,12 +77,8 @@ public class Comm_FriendController {
 	public String listFriend(HttpServletRequest req, Comm_FriendDTO dto,
 				HttpSession session) {
 		// Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
-		System.out.println("메롱");
 		int comm_memberNum= Integer.parseInt(req.getParameter("comm_memberNum"));
-		System.out.println(comm_memberNum);
 		int login_comm_memberNum=(Integer)session.getAttribute("login_comm_memberNum");
-		System.out.println("friendAll에서의 login값comm_memberNum"+login_comm_memberNum); 
-		System.out.println("friendAll에서의 comm_memberNum"+comm_memberNum);
 		
 		List<Comm_FriendDTO> list = null;
 		if(login_comm_memberNum==comm_memberNum){

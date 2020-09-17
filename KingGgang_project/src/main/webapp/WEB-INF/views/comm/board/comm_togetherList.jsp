@@ -51,10 +51,10 @@
 	<c:forEach var="dto" items="${togetherList}">		
 		<tr align="center">
 			<td>
-				<c:out value="${dto.togetherNum}"/>
-				<%-- <c:out value="${startNum}"/>
+				
+				<c:out value="${startNum}"/>
 			</td>
-			<c:set var="startNum" value="${startNum-1}"/> --%>
+			<c:set var="startNum" value="${startNum-1}"/>
 			<td>
 			<c:if test="${dto.treadcount>10}">
 				<img src="${pageContext.request.contextPath}/resources/img/crown.PNG" width="30" height="30">
@@ -69,7 +69,7 @@
 	</c:forEach>	
 	</table>
 	<br>
-	<%-- <div align="center">
+	<div align="center">
 	<c:if test="${count>0}">
 			<c:if test="${startPage > pageBlock}">
 				<a href="comm_togetherList.do?pageNum=${startPage-1}">이전</a>
@@ -81,7 +81,7 @@
 				<a href="comm_togetherList.do?pageNum=${endPage+1}">다음</a>
 			</c:if>
 		</c:if>
-	</div> --%>
+	</div>
 </div>	
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
