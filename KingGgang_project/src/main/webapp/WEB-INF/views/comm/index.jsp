@@ -31,7 +31,6 @@
 									<li><img src="${pageContext.request.contextPath}/resources/img/flower.png" width="30" height="30"><a href="comm_writeForm.do"> Write</a></li>
 									<li><img src="${pageContext.request.contextPath}/resources/img/하르방.png" width="30" height="30"><a href="comm_myPage.do"> Mypage</a></li>
 									<li><img src="${pageContext.request.contextPath}/resources/img/mountain.PNG" width="30" height="30"><a href="comm_bookMark.do"> BookMark</a></li>
-									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="commadmin.comm"> 관리자모드</a></li>
 									<li><img src="${pageContext.request.contextPath}/resources/img/유채꽃.PNG" width="30" height="30">
 											<a href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">회원탈퇴</a>
 											<a href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">>수정</a>

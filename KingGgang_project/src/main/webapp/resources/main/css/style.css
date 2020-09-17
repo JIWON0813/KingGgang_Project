@@ -1786,6 +1786,7 @@ select.form-control:not([size]):not([multiple]) {
     font-family: 'poppins', sans-serif;
     font-size: 15px;
     font-weight: 300;
+    font-color: white;
 }
 
 .menu_footer li a:hover,

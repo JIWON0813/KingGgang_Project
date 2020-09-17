@@ -241,9 +241,6 @@
                 </div> 
             </div>
     </form>
-<<<<<<< HEAD
+
 <%@ include file="../adminbottom.jsp"%>
-=======
-<%@ include file="../adminbottom.jsp"%>
->>>>>>> refs/remotes/origin/ina2
->>>>>>> branch 'yeojin' of https://github.com/JIWON0813/KingGgang_Project.git
+

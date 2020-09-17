@@ -14,7 +14,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6 col-lg-3">
 							<div class="full">
-								<h3><img src="${pageContext.request.contextPath}/resources/img/낑깡logo.png" width="100" height="100">신고목록</h3>
+								<h3>신고목록</h3>
 							</div>
 						</div>
 					</div>

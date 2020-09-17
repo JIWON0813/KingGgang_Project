@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/views/top.jsp"%>
+<%@ include file="/WEB-INF/views/admin/admintop.jsp" %>
 <br><br><br><br>
 	<!--  
 	이	   름 : listRentcar_Admin.jsp
 	개  발   자 : 정 우 철
 	설	   명 : 관리자 렌트카 목록 페이지
 	-->
-	
+<style>
+input{
+border:1px solid green;
+background-color:rgba(0,0,0,0);
+color:green;
+padding:5px;  
+border-radius:5px;
+}
+
+input:hover{
+color:white;
+background-color:green;
+}
+
+</style>	
 <script type="text/javascript">
 function del(id){
 	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
@@ -20,15 +34,16 @@ function del(id){
 </script>
 <div align="center">
 	<b>렌 트 카 목 록</b>
+	<br>
 	<table border="1" width="800">
-		<tr bgcolor="green">
-			<th>회사</th>
-			<th width="40%">차량 이름</th>
-			<th>대차료</th>
-			<th>차량 분류</th>
-			<th>연료</th>
-			<th>예약 가능 여부</th>
-			<th>수정 / 삭제</th>
+		<tr bgcolor="green" align="center">
+			<th><font color="white">회사</font></th>
+			<th width="40%"><font color="white">차량 이름</font></th>
+			<th><font color="white">대차료</font></th>
+			<th><font color="white">차량 분류</font></th>
+			<th><font color="white">연료</font></th>
+			<th><font color="white">예약 가능 여부</font></th>
+			<th><font color="white">수정  / 삭제</font></th>
 		</tr> 
 	<c:if test="${empty rentcarList}">		
 		<tr>
@@ -73,7 +88,7 @@ function del(id){
 	<br>
 	<br>
 	<br>
-	<a href="adminHome.do">관리자 홈으로 돌아가기</a>
+	<a href="main.admin">관리자 홈으로 돌아가기</a>
 	</div>
 </div>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
+<%@ include file="/WEB-INF/views/admin/adminbottom.jsp"%>

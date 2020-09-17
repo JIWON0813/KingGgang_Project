@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="/WEB-INF/views/top.jsp"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지글</title>
-</head>
-<body>
+<footer class="footer-box">
+		<div class="container"> 
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>공지사항목록</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
 	<div class="section">
 		<div class="container">
 			<div class="row">
@@ -16,16 +24,13 @@
 						<div class="heading_main text_align_left">
 							<div class="container">
 								<div class="form_txtInput">
-									<div class="heading_main text_align_left">
-										<h2>
-											<span class="theme_color">글목록 
-										</h2>
+									<div class="heading_main text_align_left"></div>
 									</div>
 									<table border="1" width="800">
-										<tr bgcolor="orange">
+										<tr bgcolor="orange" align="center">
 											<th>글제목</th>
 											<th>글쓴이</th>
-											<th>mode</th>
+											<th colspan="2">mode</th>
 										</tr>
 										<c:if test="${empty noticeList}">
 											<tr>
@@ -56,6 +61,4 @@
 				</div>
 			</div>
 		</div>
-</body>
-</html>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

@@ -1,13 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/views/top.jsp"%>
+<%@ include file="/WEB-INF/views/admin/admintop.jsp" %>
 <br><br><br><br>	
 	<!--  
 	이	   름 : listInsu_Admin.jsp
 	개  발   자 : 정 우 철
 	설	   명 : 관리자 보험 목록 페이지
 	-->
+<style>
+input{
+border:1px solid green;
+background-color:rgba(0,0,0,0);
+color:green;
+padding:5px;  
+border-radius:5px;
+}
+
+input:hover{
+color:white;
+background-color:green;
+}
+
+</style>
 
 <script type="text/javascript">
 function del(id){
@@ -20,13 +34,14 @@ function del(id){
 </script>
 <div align="center">
 	<b>렌 트 카 보 험 목 록</b>
+	<br>
 	<table border="1" width="800">
-		<tr bgcolor="green">
-			<th>보험 번호</th>
-			<th>보험사</th>
-			<th width="40%">보험명</th>
-			<th>보험료</th>
-			<th>수정 / 삭제</th>
+		<tr bgcolor="green" align="center">
+			<th><font color="white">보험 번호</font></th>
+			<th><font color="white">보험사</font></th>
+			<th width="40%"><font color="white">보험명</font></th>
+			<th><font color="white">보험료</font></th>
+			<th><font color="white">수정  / 삭제</font></th>
 		</tr> 
 	<c:if test="${empty insuList}">		
 		<tr>
@@ -58,7 +73,7 @@ function del(id){
 	<br>
 	<br>
 	<br>
-	<a href="adminHome.do">관리자 홈으로 돌아가기</a>
+	<a href="main.admin">관리자 홈으로 돌아가기</a>
 	</div>
 </div>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>	
+<%@ include file="/WEB-INF/views/admin/adminbottom.jsp"%>

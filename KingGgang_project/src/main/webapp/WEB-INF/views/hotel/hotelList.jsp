@@ -6,10 +6,38 @@
 	개  발   자 : 김 지 원
 	설	   명 : 관리자모드 숙소목록페이지
  -->
- <%@ include file="../top.jsp"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
+<%@ include file="/WEB-INF/views/admin/admintop.jsp" %>
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" /> --%>
+<style>
+
+button {
+border:1px solid gray;
+background-color:rgba(0,0,0,0);
+color:gray;
+padding:5px;  
+border-radius:5px;
+}
+
+button:hover {
+color:white;
+background-color:gray;
+}
+
+#searchbutton {
+border:1px solid gray;
+background-color:rgba(0,0,0,0);
+color:gray;
+padding:5px;  
+border-radius:5px;
+}
+
+#searchbutton input:hover {
+color:white;
+background-color:gray;
+}
+
+</style>
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
-<div class="section layout_padding" align="center">
 	<h3 align="center">숙 소 목 록</h3>
 	<br>
 	<table class="table table-hover table-sm">
@@ -56,9 +84,10 @@
 	<div align="center">
 		<form action="hotelList.hotel">
 			<input type="text" name="search" placeholder="검색어입력"> <input
-				type="submit" value="검색">
+				type="submit" value="검색" id="searchbutton">
 		</form>
-	</div>
+	<br>
+	<br>
 	<c:if test="${count>0}">
 		<c:if test="${startPage > pageBlock}">
 			[<a href="hotelList.hotel?pageNum=${startPage-1}&search=${search}">이전</a>]		
@@ -70,6 +99,8 @@
 			[<a href="hotelList.hotel?pageNum=${endPage+1}&search=${search}">다음</a>]
 		</c:if>
 	</c:if>
-	<br> <a href="main.admin">관리자 목록으로 가기</a>
-</div>
-<%@ include file="../bottom.jsp"%>
+	<br><br><a href="main.admin">관리자 홈으로 돌아가기</a>
+	</div>
+
+
+<%@ include file="/WEB-INF/views/admin/adminbottom.jsp"%>
