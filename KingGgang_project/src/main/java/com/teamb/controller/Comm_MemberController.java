@@ -274,6 +274,8 @@ public class Comm_MemberController {
 	public ModelAndView commMemberEdit(HttpServletRequest req,HttpSession session,
 											@RequestParam int comm_memberNum){
 		Comm_MemberDTO dto = memberMapper.comm_getMember(comm_memberNum);
+		List<Comm_MemberDTO> list = memberMapper.comm_memberList();
+		req.setAttribute("comm_memberList", list);
 		ModelAndView mav = new ModelAndView
 				("comm/member/comm_member_edit", "comm_getMember", dto);
 		
