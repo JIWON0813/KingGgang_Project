@@ -109,10 +109,12 @@ function LikeAction() {
     		success: function(data) { alert("통신성공");
     		
     				var result1 = data
-    				alert(result1);
+    				
     				if(result1.wstatus == 2){
+    					alert("북마크 취소");
                        $('img#mark_img').attr('src', './resources/img/box.png');
                     } else {
+                    	alert("북마크 저장");
                        $('img#mark_img').attr('src', './resources/img/heartbox.png');
                     	}
     				}, 
