@@ -141,6 +141,7 @@
 		document.join.idDuplication.value = "idUnCheck";
 	}
 </script>
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/adminmember.css">
 <form name="join" action="insertMemberPro.mem"
@@ -199,6 +200,7 @@
 								</select> 월 <select name="birth_d">
 										<c:forEach var="d" begin="1" end="31">
 											<option value="${d}">${d}</option>
+
 										</c:forEach>
 								</select> 일</td>
 							</tr>
