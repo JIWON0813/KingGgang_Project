@@ -62,6 +62,13 @@
 				<td>${roomdto.content}
 			</tr>
 			<tr>
+				<td>주중가
+				<td>${roomdto.dayprice}
+				<td>주말가
+				<td>${roomdto.endprice}
+			</tr>
+			<tr>
+			<tr>
 				<td>예약날짜
 				<td><input type="date" id="room_in" name="startdate">
 				<td>퇴실날짜
