@@ -17,6 +17,7 @@ import com.teamb.model.ChatMsgDTO;
 import com.teamb.model.ChatRoomDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.service.ChatMapper;
+import com.teamb.service.Comm_MemberMapper;
 
 /*
 이	   름 : ChatController
@@ -29,6 +30,10 @@ public class ChatController {
 	
 	@Autowired
 	private ChatMapper chatMapper;
+	
+	@Autowired
+	private Comm_MemberMapper memberMapper;
+	
 	
 	List<ChatRoomDTO> roomList = new ArrayList<ChatRoomDTO>();
 	
@@ -47,12 +52,20 @@ public class ChatController {
 		ChatRoomDTO croom  = new ChatRoomDTO();
 	    croom.setMsgReceiver(Integer.parseInt(msgReceiver));
 	    croom.setMsgSender(msgSender);
-	    croom.setRoomName(Sname+" 님과 "+Rname+" 의 대화");
+	    croom.setSname(Sname);
+	    croom.setRname(Rname);
 	    String RProfile = chatMapper.getProfile(Integer.parseInt(msgReceiver));
+	    
+	    roomList.clear();
 		if(chatMapper.isRoom(croom) == null ) {
 			chatMapper.createRoom(croom);
 			roomList.addAll(chatMapper.getChatList(msgSender));
 		}else{
+			if(!Sname.equals(chatMapper.isRoom(croom).getSname())){
+				chatMapper.updateSname(Sname, msgSender);
+				chatMapper.updateRname(Sname, msgSender);
+				System.out.println("닉네임 변경 완료");
+			}
 			roomList.addAll(chatMapper.getChatList(msgSender));
 
 		}
@@ -61,9 +74,12 @@ public class ChatController {
 		req.setAttribute("msgList",msgList);
 		req.setAttribute("chatroom_id",chatMapper.getRoomId(croom));
 		req.setAttribute("msgSender",croom.getMsgSender());
-		req.setAttribute("roomName",croom.getRoomName());
 		req.setAttribute("msgReceiver", croom.getMsgReceiver());
+		
+		req.setAttribute("Sname",croom.getSname());
+		req.setAttribute("Rname",croom.getRname());
 		req.setAttribute("RProfile",RProfile);
+		
 		session.setAttribute("croom",croom);
 		session.setAttribute("roomList",roomList);
 		
@@ -83,13 +99,18 @@ public class ChatController {
 		ModelAndView mv = new ModelAndView();
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int msgSender = login.getComm_memberNum();
+		Comm_MemberDTO dto = memberMapper.comm_getMember(msgSender);
+		String Sname = dto.getComm_nickname();
+		chatMapper.updateSname(Sname, msgSender);
+		chatMapper.updateRname(Sname, msgSender);
+		
 		roomList.clear();
 		roomList.addAll(chatMapper.getChatList(msgSender));
 		
-		HashSet<ChatRoomDTO> temp = new HashSet<ChatRoomDTO>(roomList);
-		List<ChatRoomDTO> rooms = new ArrayList<ChatRoomDTO>(temp);
+	/*	HashSet<ChatRoomDTO> temp = new HashSet<ChatRoomDTO>(roomList);
+		List<ChatRoomDTO> rooms = new ArrayList<ChatRoomDTO>(temp);*/
 		
-		req.setAttribute("roomList",rooms);
+		req.setAttribute("roomList",roomList);
 		session.setAttribute("msgSender",msgSender);
 		mv.setViewName("comm/chatRoom");
 		
@@ -120,7 +141,7 @@ public class ChatController {
 			req.setAttribute("msgList",msgList);
 			req.setAttribute("chatroom_id",chatroom_id);
 			req.setAttribute("msgSender",msgSender);
-			req.setAttribute("roomName",croom.getRoomName());
+		/*	req.setAttribute("roomName",croom.getRoomName());*/
 			req.setAttribute("msgReceiver", msgReceiver);
 			req.setAttribute("RProfile",RProfile);
 			mv.setViewName("comm/chatView");

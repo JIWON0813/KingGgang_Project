@@ -1,5 +1,6 @@
 package com.teamb.service;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -50,6 +51,19 @@ public class ChatMapper {
 		return sqlSession.selectOne("getRoomId",dto);
 	}
 	
+	public void updateSname(String Sname, int msgSender) throws Exception {
+		java.util.Map<String,Object> map = new Hashtable<String, Object>();
+		map.put("Sname",Sname);
+		map.put("msgSender",msgSender);
+		sqlSession.selectOne("updateSname",map);
+	}
+	
+	public void updateRname(String Sname, int msgSender) throws Exception {
+		java.util.Map<String,Object> map = new Hashtable<String, Object>();
+		map.put("Sname",Sname);
+		map.put("msgSender",msgSender);
+		sqlSession.selectOne("updateRname",map);
+	}
 	
 	//메세지
 	
