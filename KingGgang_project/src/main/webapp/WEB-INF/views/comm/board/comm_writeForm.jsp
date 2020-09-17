@@ -23,6 +23,7 @@
 			alert("공개범위를 선택해주세요!!")
 			f.look.focus()
 			return false
+
 		}
 		return true
 }
@@ -90,6 +91,7 @@
 			<tr>
 				<td colspan="2" align="center" id="input_group">
 					<input type="submit" value="글쓰기" >
+
 					<input type="reset" value="다시작성">	
 					<input type="button" value="뒤로가기" onclick="window.location='comm_myPage.do'">
 				</td>

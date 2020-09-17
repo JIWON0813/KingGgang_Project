@@ -49,6 +49,7 @@
 	}
 
 </style>
+
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -83,6 +84,7 @@
 			<tr align="center">
 				<th width="20%" bgcolor="brown"><font color="white">내 용</font></th>
 				<td><textarea name="tcontent" rows="10" cols="50"></textarea></td>
+
 			</tr>
 			<tr>
 				<td colspan="2" align="center" id="input_group">

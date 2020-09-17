@@ -8,6 +8,7 @@ public class PaymentDTO {
 	private int p_no;
 	private int m_no;
 	private String paydate;
+	private int valid;
 	
 	public int getNo() {
 		return no;
@@ -46,5 +47,12 @@ public class PaymentDTO {
 	public void setPaydate(String paydate) {
 		this.paydate = paydate;
 	}
+	public int getValid() {
+		return valid;
+	}
+	public void setValid(int valid) {
+		this.valid = valid;
+	}
+	
 	
 }

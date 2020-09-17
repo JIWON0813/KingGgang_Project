@@ -9,11 +9,13 @@
  -->
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 <title>마이결제리스트</title>
 </head>
 <body>
+
 
 <!-- 호텔 결제내역 -->
 <c:if test="${status == 1}">
@@ -106,9 +108,9 @@
                         <a href="rentcarFin.pay">확인</a>
                     </div>
                     
-                </div> <!-- form_txtInput E -->
-            </div><!-- content E-->
-        </div> <!-- container E -->
+                </div> 
+            </div>
+        </div> 
     </form>
 </c:if> 
 </body>

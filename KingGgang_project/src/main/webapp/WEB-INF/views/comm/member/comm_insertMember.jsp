@@ -1,5 +1,5 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
 <script type="text/javascript">
@@ -13,20 +13,20 @@ function comm_checkjoin() {
 		}
 	   
 	   if(join.comm_idDuplication.value!="comm_idCheck"){
-		   alert("닉네임 중복체크를 해주세요.");
+		   alert("아이디 중복체크를 해주세요.");
 		   return;
 	   }
-	   var list = new Array();
-	   <c:forEach items="${comm_memberList}" var="userid">
-	   list.push("${userid.comm_nickname}");
+	   var clist = new Array();
+	   <c:forEach items="${comm_memberList}" var="id">
+	   clist.push("${id.comm_nickname}");
 	   </c:forEach> 
 	   if(join.comm_nickname.value==""){
     	   alert("닉네임을 입력해 주세요")
     	   join.comm_nickname.focus();
     	   return false;
 		}
-	   for(var i = 0;i<list.length;i++){
-		   if(join.comm_nickname.value == list[i]){
+	   for(var i = 0;i<clist.length;i++){
+		   if(join.comm_nickname.value == clist[i]){
 			   alert("이미 가입된 닉네임 입니다.");
 			   join.comm_nickname.focus();
 			   return false;
@@ -34,19 +34,28 @@ function comm_checkjoin() {
 	   }
       	form.submit()		      
 }
+function check(re, what, message) {
+    if(re.test(what.value)) {
+        return true;
+    }
+    alert(message);
+    what.value = "";
+    what.focus();
+    return false;
+}  
 function comm_idCheck(){
 	   join.comm_idDuplication.value="comm_idCheck";
-	   var list = new Array();
-	   <c:forEach items="${comm_memberList}" var="userid">
-	   list.push("${userid.comm_nickname}");
+	   var clist = new Array();
+	   <c:forEach items="${comm_memberList}" var="id">
+	   clist.push("${id.comm_nickname}");
 	   </c:forEach> 
 	   if(join.comm_nickname.value==""){
     	   alert("닉네임을 입력해 주세요")
     	   join.comm_nickname.focus();
     	   return;
 		}
-	   for(var i = 0;i<list.length;i++){
-		   if(join.comm_nickname.value == list[i]){
+	   for(var i = 0;i<clist.length;i++){
+		   if(join.comm_nickname.value == clist[i]){
 			   alert("이미 가입된 닉네임 입니다.");
 			   join.comm_nickname.focus();
 			   return;

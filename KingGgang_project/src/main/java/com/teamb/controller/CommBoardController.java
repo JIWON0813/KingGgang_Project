@@ -48,6 +48,9 @@ public class CommBoardController {
 
 	@Autowired
 	private Comm_MemberMapper comm_memberMapper;
+	
+	@Autowired
+	private Comm_FriendMapper comm_friendMapper;
 
 	@Autowired
 	private CommReplyMapper replyMapper;
@@ -63,13 +66,11 @@ public class CommBoardController {
 
 	@Autowired
 	private CommLikeMapper likemapper;
-	
-	@Autowired
-	private Comm_FriendMapper comm_friendMapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
+	//글쓰기
 	@RequestMapping(value = "/comm_writeForm.do", method = RequestMethod.GET)
 	public String writeForm(HttpServletRequest req) {
 		return "comm/board/comm_writeForm";
@@ -124,6 +125,8 @@ public class CommBoardController {
 			post_tagMapper.insertPostTag(boardNum, list.getTagId());
 		}
 
+		// 지은
+		req.setAttribute("comm_memberNum", dto.getComm_memberNum());
 
 		String msg = null, url = null;
 		if (boardNum > 0) {
@@ -138,6 +141,7 @@ public class CommBoardController {
 		return "message";
 	}
 	
+	//마이페이지
 	@RequestMapping("/comm_myPage.do")
 
 	public String myPage(HttpServletRequest req, HttpSession session) {
@@ -200,7 +204,6 @@ public class CommBoardController {
 		}
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
-		
 		req.setAttribute("replyList", list); 
 		req.setAttribute("check1", check1);
 		req.setAttribute("check2", check2);
@@ -292,11 +295,11 @@ public class CommBoardController {
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 	    int comm_memberNum = login.getComm_memberNum();
 		
-		System.out.println(boardNum);
-		System.out.println(login.getComm_memberNum());
 		CommLikeDTO cdto = new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(comm_memberNum);
+		
+		
 		
 		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
@@ -311,6 +314,7 @@ public class CommBoardController {
 				continue;
 			}
 		}
+
 	}
 		
 		if(check1) {
@@ -409,6 +413,7 @@ public class CommBoardController {
 	      return "message";
 	   }
 
+	//글삭제
 	@RequestMapping(value = "/comm_deletePro.do")
 	public ModelAndView deletePro(@RequestParam int boardNum) {
 		int res = boardMapper.deleteBoard(boardNum);
@@ -426,6 +431,7 @@ public class CommBoardController {
 		return mav;
 	}
 	
+	//댓글
 	@RequestMapping(value = "/comm_writeReplyPro.do", method = RequestMethod.POST)
 	public String writeReplyPro(HttpServletRequest req, CommReplyDTO dto, BindingResult result,
 			@RequestParam int boardNum) {
@@ -448,16 +454,12 @@ public class CommBoardController {
 		return "message";
 	}
 	
-	@RequestMapping(value = "/reply_deleteForm.do")
-	public String deleteForm() {
-		return "comm/board/comm_replydeleteForm";
-	}
-	
 	@RequestMapping(value = "/reply_deletePro.do")
-	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, @RequestParam int boardNum, String rpasswd) {
-		
+	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum, String rpasswd) {
 		int res = replyMapper.deleteReply(replyNum,rpasswd);
-	  
+		
+		boolean isPasswd = replyMapper.isPassword(replyNum, rpasswd);
+		
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "댓글삭제성공";
@@ -468,7 +470,9 @@ public class CommBoardController {
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
-		
+		req.setAttribute("replyNum", replyNum);
+		req.setAttribute("boardNum", boardNum);
+
 		return "message";
 	}
 
@@ -501,7 +505,8 @@ public class CommBoardController {
 	              list = boardMapper.listBoard(comm_memberNum,look);    
 	            }
 	            else if(look.equals("비공개")){
-	               list = boardMapper.listBoard(comm_memberNum,look);
+	            	 list = boardMapper.listBoard(comm_memberNum,look);    
+	             //  list = boardMapper.mylistBoard(login_comm_memberNum, look);
 	            }
 	         }
 	        else if(look==null){
@@ -511,7 +516,6 @@ public class CommBoardController {
 	      
 	      //List<CommboardDTO> list = boardMapper.listBoard(comm_memberNum);
 	      Comm_MemberDTO dto = comm_memberMapper.comm_getMember(comm_memberNum);
-
 		req.setAttribute("boardList", list);
 		req.setAttribute("comm_profilename", dto.getComm_profilename());
 		req.setAttribute("comm_nickname", dto.getComm_nickname());

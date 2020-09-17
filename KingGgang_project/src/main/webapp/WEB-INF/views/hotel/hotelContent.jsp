@@ -19,7 +19,7 @@
  }
  </script>
 <h1 align="center">숙소 상세 정보</h1>
-<div class="session layout_padding" align="center">
+<div align="center">
 	<table width="1200" border="1">
 		<tr>
 			<td width="15%"><img
@@ -56,7 +56,7 @@
 		<h3 align="center">등록되어있는 방 목록</h3>
 		<c:forEach var="roomdto" items="${roomList}">
 			<tr>
-				<td><img src="http://localhost:9211/img/${roomdto.filename}"
+				<td><img src="http://localhost:8080/img/${roomdto.filename}"
 					width="100" height="100">
 				<td>이름 : </td>
 				<td>${roomdto.name}</td>

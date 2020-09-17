@@ -58,18 +58,7 @@ public class CommboardMapper {
 		 int res = sqlSession.insert("comm_insertNotice", dto);
 		  return res;
 	}
-	public List<Comm_NoticeDTO> comm_noticeAllList() {
-		  return sqlSession.selectList("comm_noticeAllList");
-	}
 	
-	public List<Comm_NoticeDTO> comm_noticeMemberList(String comm_mode) {
-		  return sqlSession.selectList("comm_noticeMemberList",comm_mode);
-	}
-	
-	/*public List<Comm_NoticeDTO> comm_noticeAloneList() {
-		  return sqlSession.selectList("comm_noticeAloneList");
-	}*/
-
 	public int comm_deleteNotice(int comm_noticeNum) {
 		int res = sqlSession.insert("comm_deleteNotice",comm_noticeNum);
 		  return res;
@@ -87,12 +76,19 @@ public class CommboardMapper {
 	public List<CommboardDTO> allListBoard(String look) {
 		return sqlSession.selectList("look_allListBoard", look);
 	}
-	
+
 	//지은
-		public List<CommboardDTO> listBoard(int comm_memberNum, String look) {
-			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("comm_memberNum", comm_memberNum);
-			map.put("look", look);
-			   return sqlSession.selectList("look_listBoard",map);
-		}
+	public List<CommboardDTO> listBoard(int comm_memberNum, String look) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("comm_memberNum", comm_memberNum);
+		map.put("look", look);
+		   return sqlSession.selectList("look_listBoard",map);
+	}
+	
+	public List<CommboardDTO> mylistBoard(int login_comm_memberNum, String look) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("login_comm_memberNum", login_comm_memberNum);
+		map.put("look", look);
+		   return sqlSession.selectList("mylook_listBoard",map);
+	}
 }

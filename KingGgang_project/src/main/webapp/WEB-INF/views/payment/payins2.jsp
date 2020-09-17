@@ -30,6 +30,9 @@
     	document.n.submit()
     }
     
+  	function failpage(){
+  		document.f.submit()
+  	}
     
     $(function(){
         var IMP = window.IMP; // 생략가능
@@ -44,7 +47,7 @@
             amount : "${totalPrice}",
             buyer_email : "${mrdto.email}",
             buyer_name : "${mrdto.name}",
-            buyer_tel : "${mrdto.hp1} - ${mrdto.hp2} - ${mrdto.hp3}",
+            buyer_tel : "${mrdto.hp1}",
             buyer_addr : "aa",
             buyer_postcode : '000-000',
             //m_redirect_url : 'http://www.naver.com'

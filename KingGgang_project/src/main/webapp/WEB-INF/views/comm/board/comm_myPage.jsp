@@ -27,13 +27,13 @@
 <table>
    <tr>
 	  	 <td width="120" height="120">
-	  	 	<c:if test="${comm_profilename  == null}">
-				<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="180" height="180">
+
+	  	 	<c:if test="${comm_profilename eq 'basic.jpg'}">
+					<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="180" height="180">
 			</c:if>
-			<c:if test="${comm_profilename  != null}">
-			 	<img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
-			</c:if>
-		     
+				<c:if test="${comm_profilename ne 'basic.jpg'}">
+			 		<img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
+				</c:if>
 		 </td>
 		 <td>
 		      <h2>[   ${comm_nickname}   ]님</h2>
@@ -71,6 +71,7 @@
 	   </c:if>   
 	   <c:forEach var="dto" items="${boardList}">
 	   <a href="comm_otherContent.do?boardNum=${dto.boardNum}">
+	   		<%-- <a href="comm_content.do?boardNum=${dto.boardNum}"> --%>
 	        	<img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300">
 	        </a>
 	   </c:forEach>          

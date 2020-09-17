@@ -33,7 +33,6 @@
                 todayBtn: true,
                 minView: '2',
             });
-
             $('#datepicker2').datetimepicker({
                 format: 'YYYY-MM-DD',
                 language: 'ko',
@@ -41,7 +40,6 @@
                 todayBtn: true,
                 minView: '2',
             });
-
         })
     </script>
 <script type="text/javascript">

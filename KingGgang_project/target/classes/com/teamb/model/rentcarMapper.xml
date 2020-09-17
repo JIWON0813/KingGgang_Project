@@ -28,11 +28,11 @@
 	</select>
 	
 	<update id="updateRentcar" parameterType="RentcarDTO">
-		update rentcar set company=#{company},type=#{type},price=#{price},name=#{name},filename=#{filename},
-		filesize=#{filesize},contents=#{contents},
-		renthp1=#{renthp1},renthp2=#{renthp2},
-		renthp3=#{renthp3},renttel=#{renttel},pickupplace=#{pickupplace},coordinates=#{coordinates} where id=#{id}
-	</update>
+      update rentcar set company=#{company},type=#{type},price=#{price},name=#{name},filename=#{filename},
+      filesize=#{filesize},contents=#{contents},
+      renthp1=#{renthp1},renthp2=#{renthp2},
+      renthp3=#{renthp3},renttel=#{renttel},pickupplace=#{pickupplace},lat=#{lat},lng=#{lng} where id=#{id}
+   </update>
 	
 	<delete id="deleteRentcar" parameterType="int">
 		delete from rentcar where id = #{id}
@@ -109,14 +109,11 @@
 	<select id="getRentcarRes" parameterType="int" resultType="Rentcar_ResDTO">
 		select * from rentcar_res where res_id = #{res_id}
 	</select>
-
-
 	
 	<select id="checkAlreadyReservation" parameterType="Rentcar_ResDTO" resultType="Rentcar_ResDTO">
 		select * from rentcar_res where returnday <![CDATA[>=]]> to_date(#{receiptday},'yyyy-mm-dd/hh24:mi') and
 		receiptday <![CDATA[<=]]> to_date(#{returnday},'yyyy-mm-dd/hh24:mi') and (pstatus = 0 or pstatus = 1) and r_id = #{r_id}
 	</select>
-	
 	
 	<!-- Scheduled -->
 	

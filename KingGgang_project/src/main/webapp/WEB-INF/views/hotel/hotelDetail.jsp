@@ -34,7 +34,7 @@ function wishlist() {
    </script>
 <%@ include file="../top.jsp"%>
 <h1 align="center">숙소 상세 정보</h1>
-<div class="session layout_padding" align="center">
+<div align="center">
 	<table width="1200" border="1">
 		<tr>
 			<td width="15%"><img

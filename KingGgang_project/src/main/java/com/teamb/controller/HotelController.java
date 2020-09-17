@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -305,10 +306,8 @@ public class HotelController {
 	@RequestMapping(value="/payment.hotel")
 	public String payment(HttpServletRequest req,HttpSession session, @RequestParam int id, @RequestParam int price){		
 		//결제 원세호 
-		
-		String member_id = (String) session.getAttribute("mbId");
-		MemberDTO mdto = membermapper.getMemberId(member_id);
-		int memberNum = mdto.getMemberNum();
+	
+		int memberNum = (int)session.getAttribute("memberNum");
 		MemberDTO mrdto =  paymentmapper.getpayMember(memberNum);
 		req.setAttribute("mrdto", mrdto);
 		req.setAttribute("id", id);

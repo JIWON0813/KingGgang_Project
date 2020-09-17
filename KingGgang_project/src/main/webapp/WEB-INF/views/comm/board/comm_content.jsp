@@ -82,6 +82,7 @@ function LikeAction() {
    
        var obj = {"boardNum" : $('#btnLike').attr('name')}
      
+<<<<<<< HEAD
     	$.ajax({ url: "<c:url value="/insDelLike" />", 
     		type: "POST", 
     		data: JSON.stringify(obj), 
@@ -114,6 +115,7 @@ function LikeAction() {
    
        var obj = {"boardNum" : $('#btnMark').attr('name')}
      
+<<<<<<< HEAD
     	$.ajax({ url: "<c:url value="/bookmark" />", 
     		type: "POST", 
     		data: JSON.stringify(obj), 
@@ -126,6 +128,7 @@ function LikeAction() {
     				
     				if(result1.wstatus == 2){
     					alert("북마크 취소");
+
                        $('img#mark_img').attr('src', './resources/img/box.png');
                     } else {
                     	alert("북마크 저장");
@@ -232,6 +235,7 @@ function LikeAction() {
 			</td>
 		</tr>
 	</table>
+
 </div>
 <br>
 <div align="center">
