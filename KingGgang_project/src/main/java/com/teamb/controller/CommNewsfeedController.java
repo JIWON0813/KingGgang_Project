@@ -86,7 +86,7 @@ public class CommNewsfeedController {
    
    @SuppressWarnings("unchecked")
    @ResponseBody
-   @RequestMapping(value = "/ajaxList.do", method = RequestMethod.POST)
+   @RequestMapping(value = "/newsfeedList", method = RequestMethod.POST)
    public Object moerContent(@RequestBody HashMap<String, Object> map, HttpServletRequest req,HttpSession session){
       
       int startRow = (int) map.get("startRow");
@@ -97,12 +97,17 @@ public class CommNewsfeedController {
     //지은
       List<CommboardDTO> list = null;
       String look=(String) session.getAttribute("look");
-      int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-      System.out.println("if문 밖 comm_memberNum"+comm_memberNum);
-      System.out.println("if문 밖 look"+look);
+
+      System.out.println("look값"+look);
+     
+
      if(look!=null){
-    	// look="%"+look+"%";
-         if(look.equals("전체공개")){
+
+    	 int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+         System.out.println("newsfeed에서의 comm_memberNum값"+comm_memberNum);
+         
+        if(look.equals("전체공개")){
+
             list = newsfeedMapper.newfeedList(startRow, endRow, look);
          }
          else if(look.equals("회원공개")){

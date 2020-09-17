@@ -54,8 +54,6 @@
     </div>
     <!-- end loader -->
     <!-- END LOADER -->
-
-
     <!-- Start header -->
     <header class="top-header">
         <div class="header_top">
@@ -114,3 +112,4 @@
           </div>
         </div>       
     </header>
+
