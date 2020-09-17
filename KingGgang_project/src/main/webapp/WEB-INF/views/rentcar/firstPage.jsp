@@ -33,7 +33,6 @@
                 todayBtn: true,
                 minView: '2',
             });
-
             $('#datepicker2').datetimepicker({
                 format: 'YYYY-MM-DD',
                 language: 'ko',
@@ -41,7 +40,6 @@
                 todayBtn: true,
                 minView: '2',
             });
-
         })
         
        	function check(){
@@ -86,4 +84,5 @@
 	<input type="text" name="returnday" id="datepicker2" placeholder="반납일"> 
 	<input type="button" value="조회" onclick="javascript:check()">
 </form>
-</div>
+
+	</div>
