@@ -29,6 +29,7 @@
 		select 
 		<choose>
 		<when test="type==1">
+
 		d.startdate, d.enddate, h.name as h_name, h.category as h_category, h.hp as h_hp, p.price as p_price, p.paydate as p_paydate, p.type as p_type from payment p, room r, hotel h, roomdate d where p.p_no = r.id and r.id = d.room_id and r.h_id = h.no
 		</when>
 		<when test="type==2">

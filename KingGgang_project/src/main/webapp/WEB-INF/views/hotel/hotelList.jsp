@@ -32,7 +32,7 @@
 				<tr>
 					<td>${dto.no}</td>
 					<c:if test="${not empty dto.filename}">
-						<td width="15%"><img src="http://localhost:8080/img/${dto.filename}" style="width : 150px ; height : 100px ; "></td>
+						<td width="15%"><img src="http://192.168.0.184:8080/img/${dto.filename}" style="width : 150px ; height : 100px ; "></td>
 					</c:if>
 					<c:if test="${empty dto.filename}">
 						<td width="15%">이미지가 존재하지 않습니다.</td>

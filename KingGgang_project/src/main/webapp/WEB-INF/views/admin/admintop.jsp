@@ -11,15 +11,15 @@
 	<tr>
 		<td valign="top" align="left" width="30%" class="admin">
 			<ul><a href="memberList.mem">회원 목록</a></ul><br>
+
 			<ul><a href="hotelList.hotel">호텔 목록보기</a></ul><br>
 			<ul><a href="listRentcar.admin">렌트카 목록</a></ul><br>
 			<ul><a href="listInsu.admin">렌트카_보험 목록</a></ul><br>
 			<ul><a href="payList.admin">결제 목록으로 가기</a></ul><br>
 			<ul><a href="commadmin.comm">돌하르방</a></ul>
+
 		</td>
-<<<<<<< HEAD
-		<td>
-=======
+
 		<td>
 </c:if>
 	
@@ -46,4 +46,4 @@
 </script>
 </c:if>
 <%@ include file="../bottom.jsp"%>
->>>>>>> refs/remotes/origin/jieun
+
