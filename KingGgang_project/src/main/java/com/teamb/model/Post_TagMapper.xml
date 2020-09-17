@@ -26,5 +26,4 @@
 	<select id="deletePostTag" parameterType="int">
 		delete from post_tag where boardNum=#{boardNum}
 	</select>
-
 </mapper>

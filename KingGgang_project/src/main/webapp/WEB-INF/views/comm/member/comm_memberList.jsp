@@ -29,7 +29,6 @@
 			<th>삭제</th>
 		</tr> -->
 <div class="section layout_padding" align="center">
-		<div id="more_list">
 		<div class="row">
 			<c:if test="${empty comm_memberList}">
 				<h2>가입한 회원이 없습니다.</h2>
@@ -49,33 +48,20 @@
 				| <a style="color: red" href="" onclick="window.open('room?comm_memberNum=${dto.comm_memberNum}&comm_nickname=${dto.comm_nickname}', '_blank', 'width=600 height=600')">채팅하기</a></p>
 		</div>
 		</c:forEach>
+	<div class="row margin-top_30">
+		<div class="col-sm-12">
+			<div class="full">
+				<div class="center">
+						<a class="main_bt" href="#">See More ></a>
+				</div>
+			</div>
 		</div>
-    	</div>
-         <div class="row" id="moreList">
-         </div>
+	</div>
 </div>
-      
-         <div class="row margin-top_30">
-            <div class="col-sm-12">
-               <div class="full">
-                  <br>
-                  <div class="center">
-                     <a class="main_bt" id="more_btn_a"
-                        href="javascript:loadNextPage();">See More ></a>
-                  </div>
-               </div>
-            </div>
-         </div>
-</body>
+</div>
 
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
-<!-- <style>
-#moreList{
-width:200;
-height:200;
-}
-</style> -->
-<!-- <script>
+<script>
 /* 더보기기능 */
    function loadNextPage() {
       var list_length = $("#more_list img").length+1;
@@ -90,13 +76,15 @@ height:200;
    
       $.ajax({
           type:'post', 
-          url:"<c:url value="/memberajaxList.do" />",
+          url:"<c:url value="/ajaxList.do" />",
           data:JSON.stringify(obj),
           dataType: 'json', 
           contentType: "application/json;", 
           success : function(data){
                for(var i=0; i<data.length; i++){
-                     $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><div class='full services_blog'><img class='img-responsive' src='http://localhost:8080/img/"+data[i].file+"' alt='#' top='200' height='200' /><p><font size=5>"+data[i].name+"</font><font size=5>("+data[i].nickname+")</font></p></a></div></div>");
+                     $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><div class='full services_blog'><a href='comm_otherContent.do?boardNum="+data[i].num+"'>/* <img class='img-responsive' src='http://localhost:8080/img/"+data[i].file+"' alt='#' />
+                    		 						<p>data[i].name</p><p>data[i].nickname</p></a></div></div>");
+                  */
              }
                 
              },
@@ -106,6 +94,15 @@ height:200;
    
 }
 
+   $(function() {
+       $(document).on('click', function(e) {
+           if (e.target.id === 'word') {
+              $('#searchList').show();
+           } else {
+               $('#searchList').hide();
+           }
 
+       })
+   });
 </script>
- -->
+>>>>>>> branch 'jieun' of https://github.com/JIWON0813/KingGgang_Project.git

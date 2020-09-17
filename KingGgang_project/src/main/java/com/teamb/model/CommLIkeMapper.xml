@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.teamb.model.Comm">
 	
 	<select id="getLikeNum" parameterType="CommLikeDTO" resultType="CommLikeDTO">
-		select * from like_Board where boardNum = #{boardNum} and comm_memberNum = #{comm_memberNum}
+		select * from like_Board where comm_memberNum = #{comm_memberNum}
 	</select>
     
 	<insert id="insertLike" parameterType="CommLikeDTO">

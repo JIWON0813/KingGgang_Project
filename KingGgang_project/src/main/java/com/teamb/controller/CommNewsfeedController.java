@@ -97,13 +97,13 @@ public class CommNewsfeedController {
     //지은
       List<CommboardDTO> list = null;
       String look=(String) session.getAttribute("look");
+
       System.out.println("look값"+look);
      
      if(look!=null){
-    	 int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-         System.out.println("newsfeed에서의 comm_memberNum값"+comm_memberNum);
          
         if(look.equals("전체공개")){
+
             list = newsfeedMapper.newfeedList(startRow, endRow, look);
          }
          else if(look.equals("회원공개")){
@@ -111,7 +111,9 @@ public class CommNewsfeedController {
             
          }
          else if(look.equals("비공개")){
-            list = newsfeedMapper.alone_newfeedList(startRow, endRow, look, comm_memberNum);
+        	 int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+        	 System.out.println("newsfeed에서의 comm_memberNum값"+comm_memberNum);
+        	 list = newsfeedMapper.alone_newfeedList(startRow, endRow, look, comm_memberNum);
          }
       }
      else if(look==null){
@@ -150,7 +152,6 @@ public class CommNewsfeedController {
       
     //지은
       ModelAndView mav = new ModelAndView();
-  
       String look=(String) session.getAttribute("look");
       
       if(look!=null){
@@ -163,8 +164,7 @@ public class CommNewsfeedController {
             mav.addObject("boardList", newsfeed);
          }
          else if(look.equals("비공개")){
-        	int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-            newsfeed = newsfeedMapper.alone_newfeedList(startRow, endRow, look, comm_memberNum);
+            newsfeed = newsfeedMapper.newfeedList(startRow, endRow, look);
             mav.addObject("boardList", newsfeed);
          }
       }
@@ -187,7 +187,7 @@ public class CommNewsfeedController {
       return "comm/comm_admin";
    }
    
-/*   @RequestMapping("/comm_noticewrite.do")
+   @RequestMapping("/comm_noticewrite.do")
    public String comm_noticewriteForm(HttpSession session) {
       String comm_nnickname = (String) session.getAttribute("comm_nickname");
       return "comm/comm_notice";
@@ -272,6 +272,6 @@ public class CommNewsfeedController {
       req.setAttribute("msg", msg);
       req.setAttribute("url", url);
       return "message";
-   }*/
+   }
  
 }

@@ -51,7 +51,6 @@
 	<c:forEach var="dto" items="${togetherList}">		
 		<tr align="center">
 			<td>
-				<%-- <c:out value="${dto.togetherNum}"/> --%>
 				<c:out value="${startNum}"/>
 			</td>
 			<c:set var="startNum" value="${startNum-1}"/>

@@ -86,4 +86,5 @@
 	<input type="text" name="returnday" id="datepicker2" placeholder="반납일"> 
 	<input type="button" value="조회" onclick="javascript:check()">
 </form>
-</div>
+
+	</div>

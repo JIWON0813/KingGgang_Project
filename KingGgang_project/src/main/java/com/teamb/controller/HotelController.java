@@ -1,6 +1,7 @@
 package com.teamb.controller;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -25,10 +26,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.teamb.model.HotelDTO;
+import com.teamb.model.MemberDTO;
 import com.teamb.model.RoomDTO;
 import com.teamb.model.RoomDateDTO;
 import com.teamb.model.WishlistDTO;
 import com.teamb.service.HotelMapper;
+import com.teamb.service.MemberMapper;
+import com.teamb.service.PaymentMapper;
 import com.teamb.service.WishlistMapper;
 
 /*
@@ -44,6 +48,13 @@ public class HotelController {
 	
 	@Autowired
 	private WishlistMapper wishlistmapper;
+	
+	//결제 원세호 
+	@Autowired
+	private MemberMapper membermapper;
+	
+	@Autowired
+	private PaymentMapper paymentmapper;
 
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
@@ -158,9 +169,8 @@ public class HotelController {
 	
 	@RequestMapping(value = "/hotelDetail.hotel")
 	public String hotelDetail(HttpServletRequest req, @RequestParam int no){
-		
-		HotelDTO dto = hotelmapper.getHotel(no);
-		
+		hotelmapper.increasecount(no);
+		HotelDTO dto = hotelmapper.getHotel(no);	
 		List<RoomDTO> list = hotelmapper.roomList(no);
 		
 		//원세호 관심리스트 
@@ -290,15 +300,22 @@ public class HotelController {
 		req.setAttribute("url", url);
 		return "message";
 	}
-	
 
 	
 	@RequestMapping(value="/payment.hotel")
-	public String payment(HttpServletRequest req, @RequestParam int id, @RequestParam int price){		
+	public String payment(HttpServletRequest req,HttpSession session, @RequestParam int id, @RequestParam int price){		
+		//결제 원세호 
+		
+		String member_id = (String) session.getAttribute("mbId");
+		MemberDTO mdto = membermapper.getMemberId(member_id);
+		int memberNum = mdto.getMemberNum();
+		MemberDTO mrdto =  paymentmapper.getpayMember(memberNum);
+		req.setAttribute("mrdto", mrdto);
 		req.setAttribute("id", id);
 		req.setAttribute("type", 1);
-		req.setAttribute("price", price);
-		return "payment/payins";
+		req.setAttribute("totalPrice", price);
+		req.setAttribute("m_no", memberNum);
+		return "payment/payins2";
 	}
 	
 	@RequestMapping(value="/room_book.hotel")

@@ -37,7 +37,16 @@
 			</div>
 			</c:forEach>
 		</div>
-</div>		
-		
+	<div class="row margin-top_30">
+		<div class="col-sm-12">
+			<div class="full">
+				<div class="center">
+						<a class="main_bt" id="more_btn_a"
+                        href="javascript:loadNextPage();">See More ></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
 

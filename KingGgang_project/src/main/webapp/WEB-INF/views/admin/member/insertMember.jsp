@@ -98,7 +98,7 @@
 		   }  
 	   }
 	  form.submit() 
- 	   }
+	}
 	   function check(re, what, message) {
        if(re.test(what.value)) {
            return true;
@@ -138,8 +138,7 @@
 	   function inputIdCheck(){
 		   document.join.idDuplication.value="idUnCheck";
 	   }
-	   
-	   
+	    
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
 <form name="join" action="insertMemberPro.mem" enctype="multipart/form-data" method="post">
@@ -242,12 +241,4 @@
                 </div> 
             </div>
     </form>
-<c:choose>
-	<c:when test="${mbId=='admin' }">
 <%@ include file="../adminbottom.jsp"%>
-	</c:when>
-	<c:otherwise>
-<%@ include file="../../bottom.jsp"%>
-	</c:otherwise>
-</c:choose>
-

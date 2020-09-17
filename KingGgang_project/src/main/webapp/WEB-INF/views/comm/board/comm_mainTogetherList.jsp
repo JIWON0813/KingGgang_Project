@@ -5,7 +5,6 @@
 
 	<table width="100%">
 		<tr bgcolor="orange">
-			<th>번호</th>
 			<th width="30%">제목</th>
 			<th>작성자</th>
 			<th>이메일</th>
@@ -21,7 +20,6 @@
 	</c:if>		
 	<c:forEach var="dto" items="${togetherList}" begin="0" end="4">		
 		<tr align="center">
-			<td><font color="white"><c:out value="${dto.togetherNum}" /></font></td>
 			<td>
 				<c:if test="${dto.treadcount>10}">
 					<img src="${pageContext.request.contextPath}/resources/img/crown.PNG" width="30" height="30">

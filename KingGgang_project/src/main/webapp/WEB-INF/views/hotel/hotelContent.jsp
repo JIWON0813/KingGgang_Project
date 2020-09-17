@@ -19,7 +19,7 @@
  }
  </script>
 <h1 align="center">숙소 상세 정보</h1>
-<div align="center">
+<div class="session layout_padding" align="center">
 	<table width="1200" border="1">
 		<tr>
 			<td width="15%"><img

@@ -48,9 +48,6 @@ public class CommBoardController {
 
 	@Autowired
 	private Comm_MemberMapper comm_memberMapper;
-	
-	@Autowired
-	private Comm_FriendMapper comm_friendMapper;
 
 	@Autowired
 	private CommReplyMapper replyMapper;
@@ -67,8 +64,9 @@ public class CommBoardController {
 	@Autowired
 	private CommLikeMapper likemapper;
 	
-	
-	
+	@Autowired
+	private Comm_FriendMapper comm_friendMapper;
+
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
@@ -126,8 +124,6 @@ public class CommBoardController {
 			post_tagMapper.insertPostTag(boardNum, list.getTagId());
 		}
 
-		// 지은
-		req.setAttribute("comm_memberNum", dto.getComm_memberNum());
 
 		String msg = null, url = null;
 		if (boardNum > 0) {
@@ -159,7 +155,6 @@ public class CommBoardController {
 		req.setAttribute("loginNum", comm_memberNum);
 		req.setAttribute("memberNum", comm_memberNum);
 		
-		
 		 int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
 		 int comm_friendCount = (Integer)comm_friendMapper.getfriendCount(login_comm_memberNum,comm_memberNum);
 		 dto.setComm_friendCount(comm_friendCount);
@@ -169,7 +164,7 @@ public class CommBoardController {
 		return "comm/board/comm_myPage";  
 	}
 
-	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
 	public String content(HttpServletRequest req, HttpSession session, @RequestParam int boardNum) {
 		
 		CommBookmarkDTO cmdto = new CommBookmarkDTO();
@@ -212,7 +207,7 @@ public class CommBoardController {
 
 		return "comm/board/comm_content";
 	}
-	
+	*/
 	@ResponseBody 
 	@RequestMapping(value = "/bookmark", method = RequestMethod.POST) 
 	public HashMap<String, Object> init(HttpSession session, @RequestBody HashMap<String, Object> map) {
@@ -239,9 +234,7 @@ public class CommBoardController {
 				continue;
 			}
 		}
-			
-		}
-
+	}
 		if(check2) {
 			int res = bookmarkMapper.insertmark(cmdto);
 			map.put("wstatus", 1);
@@ -531,6 +524,12 @@ public class CommBoardController {
 	// 여진
 	@RequestMapping(value = "/comm_otherContent.do", method = RequestMethod.GET)
 	public String otherContent(HttpServletRequest req, @RequestParam int boardNum, HttpSession session) {
+		/*MemberDTO home_login = (MemberDTO)session.getAttribute("memberNum");
+		int memberNum = 0;
+		if( home_login != null) {
+			memberNum = home_login.getMemberNum();
+		}*/
+		
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int loginNum = 0;
 		if (login != null) {
@@ -543,7 +542,9 @@ public class CommBoardController {
 		
 		CommBookmarkDTO cmdto = new CommBookmarkDTO();
 		cmdto.setBoardNum(boardNum);
-		cmdto.setComm_memberNum(login.getComm_memberNum());
+		if (login != null) {
+			cmdto.setComm_memberNum(login.getComm_memberNum());
+		}
 		
 		List<CommBookmarkDTO> markCheck = bookmarkMapper.markPro(cmdto);
 		
@@ -560,11 +561,13 @@ public class CommBoardController {
 			}
 		}	
 	}
-		
+		if (login != null) {
 		//세호
 		CommLikeDTO cdto =  new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
-		cdto.setComm_memberNum(login.getComm_memberNum());
+		
+			cdto.setComm_memberNum(login.getComm_memberNum());
+		
 		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
 		int check1 = 1;
@@ -584,6 +587,7 @@ public class CommBoardController {
 		int likeCount = likemapper.getLikeCount(boardNum);
 		req.setAttribute("likeCount", likeCount);
 		req.setAttribute("check1", check1);
+		}
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		req.setAttribute("replyList", list);

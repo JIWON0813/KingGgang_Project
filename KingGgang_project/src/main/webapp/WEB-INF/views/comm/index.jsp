@@ -1,15 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script type="text/javascript">
-function delok(comm_memberNum){
-    result = confirm('정말로 삭제 하시겠습니까?');
-    if(result == true){	
-        location.href = "comm_member_delete.do?comm_memberNum="+comm_memberNum;
-    }else{
-    return false;
-    }
-}
-</script>	
 <!-- 
 	이	   름 : index.jsp
 	개  발   자 : 이 여 진
@@ -43,7 +33,7 @@ function delok(comm_memberNum){
 									<li><img src="${pageContext.request.contextPath}/resources/img/mountain.PNG" width="30" height="30"><a href="comm_bookMark.do"> BookMark</a></li>
 									<li><img src="${pageContext.request.contextPath}/resources/img/palmtree.PNG" width="30" height="30"><a href="commadmin.comm"> 관리자모드</a></li>
 									<li><img src="${pageContext.request.contextPath}/resources/img/유채꽃.PNG" width="30" height="30">
-											<a href="javascript:delok('${comm_memberNum}')">회원탈퇴</a>
+											<a href="comm_member_delete.do?comm_memberNum=${comm_memberNum }">회원탈퇴</a>
 											<a href="comm_member_edit.do?comm_memberNum=${comm_memberNum }">>수정</a>
 									</li>
 									<li><img src="${pageContext.request.contextPath}/resources/img/해녀.PNG" width="30" height="30">			
@@ -100,7 +90,7 @@ function delok(comm_memberNum){
 			</div>
 		</div>
 	</footer>
-<div class="section layout_padding">
+	<div class="section layout_padding">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">

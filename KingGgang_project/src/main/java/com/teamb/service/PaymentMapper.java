@@ -31,11 +31,6 @@ public class PaymentMapper {
 		return res;
 	}
 	
-	public int updatePayment(PaymentDTO dto) {
-		int res =  sqlSession.update("updatePayment",dto);
-		return res;
-	}
-	
 	public int deletePayment(int no) {
 		int res =  sqlSession.delete("deletePayment",no);
 		return res;
@@ -72,8 +67,8 @@ public class PaymentMapper {
 			return count;
 	}
 	
-	public MemberDTO getpayMember(int m_no){
-		return sqlSession.selectOne("getpayMember",m_no);
+	public MemberDTO getpayMember(int memberNum){
+		return sqlSession.selectOne("getpayMember",memberNum);
 	}
 
 	public List<PaymentDTO> getAdminList() {
@@ -83,15 +78,3 @@ public class PaymentMapper {
 }	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-

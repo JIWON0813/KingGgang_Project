@@ -9,8 +9,7 @@
  <%@ include file="../top.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
-<div class="section layout_padding"></div>
-<div class="container" align="center">
+<div class="section layout_padding" align="center">
 	<h3 align="center">숙 소 목 록</h3>
 	<br>
 	<table class="table table-hover table-sm">

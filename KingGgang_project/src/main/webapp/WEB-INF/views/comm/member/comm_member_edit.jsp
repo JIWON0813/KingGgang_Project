@@ -1,6 +1,24 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
+
+<style>
+
+	#input_group input {
+		border:1px solid gray;
+		background-color:rgba(0,0,0,0);
+		color:gray;
+		padding:5px;
+		border-radius:5px;
+	}
+	
+	#input_group input:hover{
+		color:white;
+		background-color:gray;
+	}
+
+</style>
+
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -28,7 +46,7 @@
     <tr>
 		<th width="150" align="center"><img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">닉네임</th>
 		<td><input type="text" name="comm_nickname" value="${comm_getMember.comm_nickname}">
-			<input type="button" value="중복체크" onclick="comm_idCheck()">
+			<input type="button" value="중복체크" onclick="comm_idCheck()"/>
 		</td>
 	</tr>
 	<tr>
@@ -47,7 +65,7 @@
 		<td><textarea name="comm_intro" rows="5" cols="60">${comm_getMember.comm_intro}</textarea></td>
 	</tr>
 	<tr>
-		<td colspan="2" align="center">
+		<td colspan="2" align="center" id="input_group">
 			<input type="submit" value="수정">
 			<input type="button" value="취소" onclick="window.location='commhome.comm'" >
 		</td>
