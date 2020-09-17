@@ -20,14 +20,16 @@
 	</script>
     <script type="text/javascript">
     	var date = new Date();
-    	var minRd = new Date();
-    	minRd.setDate(minRd.getDate()+1);
+    	var minRcd = new Date();
+    	var minRtd = new Date();
+    	minRcd.setDate(minRcd.getDate()+1);
+    	minRtd.setDate(minRtd.getDate()+2);
     	
         newJquery(document).ready(function () {
         var dp = newJquery('	#datepicker1').datepicker({
             	startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
             	language: 'ko',
-            	minDate : new Date(),
+            	minDate : minRcd,
             	autoClose: true,
             	onSelect: function (date) {
             	   var endNum = date;
@@ -44,7 +46,7 @@
             	
             	startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
             	language: 'ko',
-            	minDate : minRd, 
+            	minDate : minRtd, 
             	autoClose: true,
             	onSelect: function (date) {
           	      var startNum = date;
