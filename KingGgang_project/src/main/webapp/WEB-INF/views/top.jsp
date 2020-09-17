@@ -45,15 +45,55 @@
 <body id="home" data-spy="scroll" data-target="#navbar-wd"
 	data-offset="98">
 
+	<!-- LOADER -->
+	<div id="preloader">
+		<div class="loader">
+			<img
+				src="${pageContext.request.contextPath}/resources/main/images/loader.gif"
+				alt="#" />
+		</div>
+	</div>
+	<!-- end loader -->
+	<!-- END LOADER -->
 
-    <!-- LOADER -->
-    <div id="preloader">
-        <div class="loader">
-            <img src="${pageContext.request.contextPath}/resources/main/images/loader.gif" alt="#" />
-        </div> 
-    </div>
-    <!-- end loader -->
-    <!-- END LOADER -->
+	<!-- Start header -->
+	<header class="top-header">
+	<div class="header_top">
+
+		<div class="container">
+			<div class="row">
+				<div class="logo_section">
+					<a class="navbar-brand" href="home.do"><img
+						src="${pageContext.request.contextPath}/resources/main/images/logo.png"
+						alt="image"></a>
+				</div>
+				<div class="site_information">
+					<ul>
+						<li><a href="#"><img
+								src="${pageContext.request.contextPath}/resources/main/images/orange.png"
+								alt="#" />제주하면 낑깡~!</a></li>
+						<c:if test="${mbId == null }">
+							<li><a href="login.log"><img
+									src="${pageContext.request.contextPath}/resources/main/images/orange.png"
+									alt="#" />로그인</a></li>
+						</c:if>
+						<c:if test="${mbId != null }">
+							<li>${name}님<a href="logout.log"><img
+									src="${pageContext.request.contextPath}/resources/main/images/orange.png"
+									alt="#" />로그아웃</a><a href="main.my">마이페이지</a></li>
+						</c:if>
+						<li><a class="join_bt" href="insertMember.mem?join=1">Join
+								us</a></li>
+						<c:if test="${mbId == 'admin' }">
+							<li><a href="main.admin">관리자모드</a></li>
+						</c:if>
+					</ul>
+				</div>
+			</div>
+		</div>
+    
+     <!-- Start header -->
+    <header class="top-header">
 	</div>
 	<div class="header_bottom">
 		<div class="container">
