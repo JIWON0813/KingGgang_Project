@@ -5,7 +5,7 @@ public class CommWarnDTO {
 	private int boardNum;
 	private int comm_memberNum;
 	private int warnNum;
-	private String w_comm_nickname;
+	private String wname;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -25,10 +25,10 @@ public class CommWarnDTO {
 	public void setWarnNum(int warnNum) {
 		this.warnNum = warnNum;
 	}
-	public String getW_comm_nickname() {
-		return w_comm_nickname;
+	public String getWname() {
+		return wname;
 	}
-	public void setW_comm_nickname(String w_comm_nickname) {
-		this.w_comm_nickname = w_comm_nickname;
+	public void setWname(String wname) {
+		this.wname = wname;
 	}
 }

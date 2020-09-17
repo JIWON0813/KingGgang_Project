@@ -60,6 +60,24 @@ function comm_inputIdCheck(){
 		   document.join.comm_idDuplication.value="comm_idUnCheck";
 }   
 </script>
+
+<style>
+
+	#input_group input {
+		border:1px solid gray;
+		background-color:rgba(0,0,0,0);
+		color:gray;
+		padding:5px;
+		border-radius:5px;
+	}
+	
+	#input_group input:hover{
+		color:white;
+		background-color:gray;
+	}
+
+</style>
+
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -109,7 +127,7 @@ function comm_inputIdCheck(){
 					<td><textarea name="comm_intro" rows="5" cols="60"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center">
+					<td colspan="2" align="center" id="input_group">
 						<input type="button" value="등록" onclick="javascript:comm_checkjoin()">
 						<input type="button" value="취소" onclick="window.location='commhome.comm'" >
 					</td>

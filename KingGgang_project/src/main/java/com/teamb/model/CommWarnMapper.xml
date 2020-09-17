@@ -5,11 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.teamb.model.Comm">
 	<insert id="warnPro" parameterType="CommWarnDTO">
-     insert into warn values(#{boardNum},#{comm_memberNum},warn_num.nextval)
+     insert into warn values(#{boardNum},#{comm_memberNum},warn_num.nextval,#{wname})
     </insert>
     
     <select id="listWarn" resultType="CommWarnDTO">
-		select * from warn where comm_memberNum=#{comm_memberNum}
+		select * from warn order by warnNum desc
 	</select>
 	
 	<select id="deleteWarn" parameterType="int" resultType="int">

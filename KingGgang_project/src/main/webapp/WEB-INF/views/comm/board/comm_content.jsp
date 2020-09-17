@@ -9,6 +9,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <style>
+
     input{
       border:1px solid orange;
       background-color:rgba(0,0,0,0);
@@ -29,13 +30,17 @@
       padding:5px;
       
       border-radius:5px;
-   
    }
    
    #write_group input:hover{
       color:white;
       background-color:brown;
    }
+   
+    #btnLike,#btnMark{
+         border:0;
+         background-color:white;
+      }
 
 </style>
 
@@ -60,7 +65,16 @@
       }
       return true
    }
-</script>
+   
+   function delok(warnNum){
+       result = confirm('정말로 신고 하시겠습니까?');
+       if(result == true){
+           location.href = "comm_warnPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}";
+       }else{
+       return false;
+       }
+   }
+   </script>   
 
 <script>
 //좋아요
@@ -125,13 +139,6 @@ function LikeAction() {
        } 
    </script>
    
-   <style>
-      #btnLike,#btnMark{
-         border:0;
-         background-color:white;
-      }
-   </style>
-   
 <footer class="footer-box">
       <div class="container">
          <div class="row">
@@ -152,8 +159,7 @@ function LikeAction() {
    <table width="400">
    <tr>
       <td align="right" colspan="4">
-         <p onclick="confirm('신고하시겠습니까? 버튼을 눌러주세요')">신고
-            <a href="comm_warnPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"><img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a></p>
+            <a href="javascript:delok('${getBoard.boardNum}&${comm_memberNum}')">신고<img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a>
       </td>
    </tr>
    <tr>
@@ -183,22 +189,30 @@ function LikeAction() {
          	</td>
 			<th align="right" width="10">
 			
+			<c:if test="${loginNum == 0}">	
+   			</c:if>
+   			
+   			<c:if test="${loginNum != 0}">
 				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
        				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.PNG' }" id="likeImg" width="30" height="30">
    				</button>
-   				<span id="likeCount">${likeCount}</span>			
-		
+   				<span id="likeCount">${likeCount}</span>
+   			</c:if>	
+ 
    			</th>
 		</tr>
 		<tr>
 			<th align="center" width="40">공개범위</th>
 			<td colspan="2">${getBoard.look}</td>
 			<td  align="right" width="10">
+			<c:if test="${loginNum == 0}">	
+   			</c:if>
 			
+			<c:if test="${loginNum != 0}">
 				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
 					<img src="${ check2 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
 				</button>
-			
+			</c:if>
 			</td>
 		</tr>
 		<tr>

@@ -164,7 +164,7 @@ public class CommBoardController {
 		return "comm/board/comm_myPage";  
 	}
 
-	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
 	public String content(HttpServletRequest req, HttpSession session, @RequestParam int boardNum) {
 		
 		CommBookmarkDTO cmdto = new CommBookmarkDTO();
@@ -207,7 +207,7 @@ public class CommBoardController {
 
 		return "comm/board/comm_content";
 	}
-	
+	*/
 	@ResponseBody 
 	@RequestMapping(value = "/bookmark", method = RequestMethod.POST) 
 	public HashMap<String, Object> init(HttpSession session, @RequestBody HashMap<String, Object> map) {
@@ -524,6 +524,12 @@ public class CommBoardController {
 	// 여진
 	@RequestMapping(value = "/comm_otherContent.do", method = RequestMethod.GET)
 	public String otherContent(HttpServletRequest req, @RequestParam int boardNum, HttpSession session) {
+		/*MemberDTO home_login = (MemberDTO)session.getAttribute("memberNum");
+		int memberNum = 0;
+		if( home_login != null) {
+			memberNum = home_login.getMemberNum();
+		}*/
+		
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int loginNum = 0;
 		if (login != null) {
@@ -536,7 +542,9 @@ public class CommBoardController {
 		
 		CommBookmarkDTO cmdto = new CommBookmarkDTO();
 		cmdto.setBoardNum(boardNum);
-		cmdto.setComm_memberNum(login.getComm_memberNum());
+		if (login != null) {
+			cmdto.setComm_memberNum(login.getComm_memberNum());
+		}
 		
 		List<CommBookmarkDTO> markCheck = bookmarkMapper.markPro(cmdto);
 		
@@ -553,11 +561,13 @@ public class CommBoardController {
 			}
 		}	
 	}
-		
+		if (login != null) {
 		//세호
 		CommLikeDTO cdto =  new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
-		cdto.setComm_memberNum(login.getComm_memberNum());
+		
+			cdto.setComm_memberNum(login.getComm_memberNum());
+		
 		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
 		int check1 = 1;
@@ -577,6 +587,7 @@ public class CommBoardController {
 		int likeCount = likemapper.getLikeCount(boardNum);
 		req.setAttribute("likeCount", likeCount);
 		req.setAttribute("check1", check1);
+		}
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		req.setAttribute("replyList", list);
