@@ -48,7 +48,7 @@
 		<tr height="200">
 			<th width="20%" bgcolor="skyblue">이미지</th>
 			<td colspan="3">
-				<img src="http://localhost:8010/img/${getMember.profile_name}" width="150" height="150">
+				<img src="http://localhost:8080/img/${getMember.profile_name}" width="150" height="150">
 			</td>
 		</tr>
 		</c:if>

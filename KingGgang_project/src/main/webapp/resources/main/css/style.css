@@ -350,7 +350,7 @@ a:hover,a:focus {
 }
 
 .site_information ul {
-    float: right;
+    float: left;
     width: 95%;
     padding: 21px 0;
 }
@@ -407,7 +407,7 @@ a.join_bt2:focus {
 }
 
 .site_information ul li img {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .logo_section {

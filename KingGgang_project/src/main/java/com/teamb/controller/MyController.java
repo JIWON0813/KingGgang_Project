@@ -143,7 +143,7 @@ public class MyController {
 		switch(res){
 		case MemberDTO.OK:
 			req.setAttribute("getMember", dto);
-			return "my/updateForm";
+			return "admin/member/updateForm";
 		case MemberDTO.NOT_PW:
 			msg = "비밀번호를 확인해주세요";
 			url = "update.my";

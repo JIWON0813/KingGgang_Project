@@ -148,7 +148,7 @@ a.join_bt2:focus {
                                 <tr>
                                 	<td>결제날</td>
                                     <td><span>${dto.p_paydate}</span></td>
-                                </tr>
+                                </tr>                        
                             </tbody>
                         </table>
                         <br>

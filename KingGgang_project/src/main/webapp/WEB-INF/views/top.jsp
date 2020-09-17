@@ -21,8 +21,8 @@
 <meta name="author" content="">
 
 <!-- Site Icons -->
-<link rel="shortcut icon" href="#" type="image/x-icon" />
-<link rel="apple-touch-icon" href="#" />
+<!-- <link rel="shortcut icon" href="" type="image/x-icon" />
+<link rel="apple-touch-icon" href="" /> --> <!-- 메소드 두번실행 오류-->
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -78,12 +78,25 @@
 									alt="#" />로그인</a></li>
 						</c:if>
 						<c:if test="${mbId != null }">
-							<li>${name}님<a href="logout.log"><img
+							<li>
+								<c:if test="${profilename == null }">
+								<img src="http://localhost:8080/img/default.jpg" width="25" height="25">	
+								</c:if>
+								<c:if test="${profilename != null }">		
+								<img src="http://localhost:8080/img/${profilename}" width="25" height="25">
+								</c:if>
+									${name}님&nbsp;&nbsp;&nbsp;&nbsp;<a href="logout.log"><img
 									src="${pageContext.request.contextPath}/resources/main/images/orange.png"
-									alt="#" />로그아웃</a><a href="main.my">마이페이지</a></li>
+									alt="#" />로그아웃</a>
+							</li>
+							<li>
+								<a class="join_bt" href="main.my">마이페이지</a>
+							</li>
 						</c:if>
+						<c:if test="${mbId == null }">			
 						<li><a class="join_bt" href="insertMember.mem?join=1">Join
 								us</a></li>
+						</c:if>
 						<c:if test="${mbId == 'admin' }">
 							<li><a href="main.admin">관리자모드</a></li>
 						</c:if>
@@ -115,8 +128,7 @@
 								<li><a class="nav-link" href="firstPage.rentcar">렌트카 예약</a></li>
 								<li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
 								<li><a class="nav-link" href="Q_list.board">문의</a></li>
-								<li><a class="nav-link" href="list.notice">공지사항</a></li>
-								<li><a class="nav-link" href="main.admin">관리자 홈</a>
+								<li><a class="nav-link" href="list.notice">공지사항</a>
 							</ul>
 						</div>
 					</div>
