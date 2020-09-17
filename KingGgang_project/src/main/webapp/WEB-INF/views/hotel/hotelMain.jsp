@@ -17,7 +17,7 @@
 </div>
 <div class="category" align="center">
 	<table class="categorytable" width="1000" height="100">
-		<tr>
+		<tr align="center">
 			<td width="20%" class="catetd"><a href="main.hotel?cate=all">전체</a></td>
 			<td width="20%" class="catetd"><a href="main.hotel?cate=hotel">호텔</a></td>
 			<td width="20%" class="catetd"><a href="main.hotel?cate=motel">모텔</a></td>

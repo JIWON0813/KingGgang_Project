@@ -77,10 +77,10 @@
 						<c:if test="${mbId != null }">
 							<li>
 								<c:if test="${profilename == null }">
-								<img src="http://localhost:8080/img/default.jpg" width="25" height="25">	
+								<img src="http://192.168.0.184:8080/img/default.jpg" width="25" height="25">	
 								</c:if>
 								<c:if test="${profilename != null }">		
-								<img src="http://localhost:8080/img/${profilename}" width="25" height="25">
+								<img src="http://192.168.0.184:8080/img/${profilename}" width="25" height="25">
 								</c:if>
 									${name}님&nbsp;&nbsp;&nbsp;&nbsp;<a href="logout.log"><img
 									src="${pageContext.request.contextPath}/resources/main/images/orange.png"
