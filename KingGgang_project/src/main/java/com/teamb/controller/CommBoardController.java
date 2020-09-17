@@ -10,7 +10,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.html.HTML.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +32,6 @@ import com.teamb.model.CommboardDTO;
 import com.teamb.model.HashTagDTO;
 import com.teamb.model.MemberDTO;
 import com.teamb.model.Post_TagDTO;
-import com.teamb.model.WishlistDTO;
 import com.teamb.service.CommBookMarkMapper;
 import com.teamb.service.CommLikeMapper;
 import com.teamb.service.CommReplyMapper;
@@ -127,9 +125,6 @@ public class CommBoardController {
 			post_tagMapper.insertPostTag(boardNum, list.getTagId());
 		}
 
-		// 지은
-		req.setAttribute("look", dto.getLook());
-		System.out.println("look값INSERT"+dto.getLook());;
 
 		String msg = null, url = null;
 		if (boardNum > 0) {
@@ -240,8 +235,7 @@ public class CommBoardController {
 				continue;
 			}
 		}
-			
-		}
+	}
 
 		if(check2) {
 			int res = bookmarkMapper.insertmark(cmdto);
@@ -581,11 +575,9 @@ public class CommBoardController {
 			}
 		}
 	}
-		System.out.println(check1);
+		
 		int likeCount = likemapper.getLikeCount(boardNum);
 		req.setAttribute("likeCount", likeCount);
-		
-		System.out.println(check1);
 		req.setAttribute("check1", check1);
 		
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);

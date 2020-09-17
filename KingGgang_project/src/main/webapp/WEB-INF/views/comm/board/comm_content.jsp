@@ -181,21 +181,23 @@ function LikeAction() {
          	</c:forEach>
          	</td>
 			<th align="right" width="10">
-
+			
 				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
        				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.PNG' }" id="likeImg" width="30" height="30">
    				</button>
    				<span id="likeCount">${likeCount}</span>			
-
+		
    			</th>
 		</tr>
 		<tr>
 			<th align="center" width="40">공개범위</th>
 			<td colspan="2">${getBoard.look}</td>
 			<td  align="right" width="10">
+			
 				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
 					<img src="${ check2 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
 				</button>
+			
 			</td>
 		</tr>
 		<tr>
