@@ -16,7 +16,7 @@
 <title>회원 마이 페이지</title>
 </head>
 <body>
-<div class="section layout_padding"></div>
+<div class="section layout_padding">
 <input type="hidden" name ="filename" value="${param.filename}"/>
 	    <div class="wrap wd668">
             <div class="container">
@@ -50,6 +50,7 @@
                                 </tr><td></td></tr>
                          </tbody>
                         </table>
+                      
                     <div class="btn_wrap">
                         <a href="home.do">홈으로</a>
                     </div>
@@ -57,7 +58,8 @@
             </div><!-- content E-->
         </div> <!-- container E -->
         </div>
-    </form>
+    </div>
+
 </body>
 </html>
 <%@ include file="../bottom.jsp" %>
