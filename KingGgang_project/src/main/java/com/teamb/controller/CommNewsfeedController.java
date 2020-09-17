@@ -100,11 +100,7 @@ public class CommNewsfeedController {
 
       System.out.println("look값"+look);
      
-
      if(look!=null){
-
-    	 int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-         System.out.println("newsfeed에서의 comm_memberNum값"+comm_memberNum);
          
         if(look.equals("전체공개")){
 
@@ -115,7 +111,9 @@ public class CommNewsfeedController {
             
          }
          else if(look.equals("비공개")){
-            list = newsfeedMapper.alone_newfeedList(startRow, endRow, look, comm_memberNum);
+        	 int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+        	 System.out.println("newsfeed에서의 comm_memberNum값"+comm_memberNum);
+        	 list = newsfeedMapper.alone_newfeedList(startRow, endRow, look, comm_memberNum);
          }
       }
      else if(look==null){
