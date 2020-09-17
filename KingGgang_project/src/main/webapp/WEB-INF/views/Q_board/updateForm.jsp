@@ -45,6 +45,10 @@
 			<tr>
 				<th width="20%">제 목</th>
 				<td>
+				<c:if test="${mbId=='admin' }">
+				<input type="text" name="subject" size="40">
+				</c:if>
+				<c:if test="${mbId!='admin' }">
 				<select name="subject">
 					<option selected>${Quest.subject }</option>
 					<option>호텔 상품 문의</option>
@@ -52,6 +56,7 @@
 					<option>커뮤니티 관련 문의</option>
 					<option>기타 문의</option>
 				</select>
+				</c:if>
 				<!-- <input type="text" name="subject" size="40"> -->
 				</td>
 			</tr>

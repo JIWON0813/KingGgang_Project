@@ -129,7 +129,6 @@ public class QuestionController
 		
 		questMapper.Q_plusReadcount(num);
 		QuestionDTO dto = questMapper.getQuest(num);
-		System.out.println(dto.getPasswd()+req.getParameter("passwd"));
 		boolean passck = questMapper.checkPw(dto.getPasswd(), req.getParameter("passwd"));
 		String msg=null,url=null;
 		if(passck){
@@ -137,7 +136,7 @@ public class QuestionController
 			return "Q_board/content";
 		}else{
 			msg="비밀번호를 확인해주세요";
-			url="Q_list.board";
+			url="Q_passck.board?type=1&num="+num;
 		}
 		req.setAttribute("msg",msg);
 		req.setAttribute("url", url);
@@ -148,21 +147,8 @@ public class QuestionController
 	public String deletePro(HttpServletRequest req,HttpSession session, @RequestParam int num)
 	{
 		QuestionDTO dto = questMapper.getQuest(num);
-		String mbId = (String)session.getAttribute("mbId");
 		String msg=null,url=null;
-		if(mbId.trim().equals("admin")){
-			int res = questMapper.deleteQuest(num);
-			if(res>0){
-				msg = "삭제완료";
-				url = "Q_list.board";
-			}else{
-			msg = "삭제실패";
-			url = "Q_list.board";
-			}
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			return "message";
-		}else{
+		if(session.getAttribute("mbId")==null||!session.getAttribute("mbId").toString().equals("admin")){
 			boolean passck = questMapper.checkPw(dto.getPasswd(), req.getParameter("passwd"));
 			if(passck){
 				int res = questMapper.deleteQuest(num);
@@ -175,20 +161,43 @@ public class QuestionController
 				}
 			}else{
 				msg = "비밀번호를 확인해주세요";
-				url = "Q_list.board";
+				url = "Q_passck.board?type=3&num="+num;
 			}
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-				
-			return "message";
+		}else if(session.getAttribute("mbId").toString().trim().equals("admin")){
+			int res = questMapper.deleteQuest(num);
+			if(res>0){
+				msg = "삭제완료";
+				url = "Q_list.board";
+			}else{
+			msg = "삭제실패";
+			url = "Q_list.board";
+			}
 		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", url);
+		return "message";
 	}
 
 	@RequestMapping(value = "/Q_updatepassok.board")
-	public String update(HttpServletRequest req,@RequestParam int num)
+	public String update(HttpServletRequest req,HttpSession session,@RequestParam int num)
 	{
 		QuestionDTO dto = questMapper.getQuest(num);
-		req.setAttribute("Quest", dto);
+		String msg=null,url=null;
+		if(session.getAttribute("mbId")==null||!session.getAttribute("mbId").toString().equals("admin")){
+			boolean passck = questMapper.checkPw(dto.getPasswd(), req.getParameter("passwd"));
+			if(passck){
+				req.setAttribute("Quest", dto);
+				return "Q_board/updateForm";
+			}else{
+				msg = "비밀번호를 확인해주세요";
+				url = "Q_passck.board?type=2&num="+num;
+				req.setAttribute("msg", msg);
+				req.setAttribute("url", url);
+				return "message";
+			}
+		}else if(session.getAttribute("mbId").toString().trim().equals("admin")){
+			req.setAttribute("Quest", dto);
+		}
 		return "Q_board/updateForm";
 	}
 
@@ -198,7 +207,6 @@ public class QuestionController
 	{
 		String msg = null, url = "Q_list.board";
 		int res = questMapper.updateQuest(dto);	
-		System.out.println(res);
 		if (res>0)
 		{
 			msg = "게시글이 수정되었습니다. 메인화면으로 이동합니다.";

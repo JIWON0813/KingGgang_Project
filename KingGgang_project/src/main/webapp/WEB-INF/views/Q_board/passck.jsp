@@ -54,14 +54,17 @@
                         </table>
                     <div class="btn_wrap">
                     	<c:if test="${param.type==1 }">
-                        <a href="javascript:cont('${num }')">확인</a>
+                        <a href="javascript:cont('${param.num }')">확인</a>
                         </c:if>
                     	<c:if test="${param.type==2 }">
-                        <a href="javascript:upda('${num }')">확인</a>
+                        <a href="javascript:upda('${param.num }')">확인</a>
                         </c:if>
                     	<c:if test="${param.type==3 }">
-                        <a href="javascript:dele('${num }')">확인</a>
+                        <a href="javascript:dele('${param.num }')">확인</a>
                         </c:if>
+                    </div>
+                    <div class="btn_wrap">
+                    	<a href="javascript:history.back()">뒤로가기</a>
                     </div>
                  </div>
             </div>
