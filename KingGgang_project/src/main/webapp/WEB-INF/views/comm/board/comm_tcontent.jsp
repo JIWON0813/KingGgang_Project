@@ -8,6 +8,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<style>
+#together input {
+
+border:1px solid orange;
+background-color:rgba(0,0,0,0);
+color:orange;
+padding:5px;
+border-radius:5px;
+
+}
+
+#together input:hover {
+color:white;
+background-color:orange;
+
+}
+</style>
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -47,7 +64,8 @@
 		</tr>
 	
 		<tr>
-			<td align="center" colspan="4">
+			<td align="center" colspan="4" id="together">
+			<c:if test="${loginNum == memberNum}">
 				<input type="button" value="글수정"
 				onclick="window.location='comm_tupdateForm.do?togetherNum=${getTogether.togetherNum}'">
 				&nbsp;&nbsp;&nbsp;&nbsp;
@@ -55,6 +73,10 @@
 				onclick="window.location='comm_tdeletePro.do?togetherNum=${getTogether.togetherNum}'">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="button" value="글목록" onclick="window.location='comm_togetherList.do'">
+				 </c:if>
+			 <c:if test="${loginNum != memberNum}">
+			 	<input type="button" value="뒤로가기" onclick="history.back()">
+			 </c:if>
 			</td>
 		</tr>
 	</table>

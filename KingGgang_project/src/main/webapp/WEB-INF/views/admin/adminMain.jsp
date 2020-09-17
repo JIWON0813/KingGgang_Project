@@ -45,4 +45,4 @@
 </script>
 </c:if> --%>
 
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
+<%@ include file="../bottom.jsp"%>

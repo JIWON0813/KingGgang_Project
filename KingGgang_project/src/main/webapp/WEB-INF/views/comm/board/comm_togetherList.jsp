@@ -8,6 +8,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<style>
+a.togetherList {
+border:1px solid orange;
+border-radius:5px;
+padding:4px;
+}
+</style>
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -27,11 +34,6 @@
 </footer>
 <div class="section layout_padding">
 <div align="center">
-	<table width="800">
-		<tr>
-			<td align="right"><a href="commhome.comm">뒤로가기</a>|<a href="comm_togetherWF.do">글쓰기</a></td>
-		</tr>
-	</table>
 	<table width="800" id="eventTable">
 		<tr bgcolor="orange" align="center">
 			<th>번호</th>
@@ -81,6 +83,12 @@
 			</c:if>
 		</c:if>
 	</div>
+	<br>
+	<table>
+		<tr>
+			<td align="right"><a class="togetherList" href="commhome.comm">뒤로가기</a> <a class="togetherList" href="comm_togetherWF.do">글쓰기</a></td>
+		</tr>
+	</table>
 </div>	
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

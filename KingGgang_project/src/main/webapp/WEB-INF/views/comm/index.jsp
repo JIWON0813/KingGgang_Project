@@ -136,6 +136,7 @@
                </div>
             </div>
          </div>
+         <div class="section layout_padding"></div>
 </body>
 <!-- End Footer -->
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
