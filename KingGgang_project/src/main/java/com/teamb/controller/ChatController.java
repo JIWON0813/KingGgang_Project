@@ -107,9 +107,6 @@ public class ChatController {
 		roomList.clear();
 		roomList.addAll(chatMapper.getChatList(msgSender));
 		
-	/*	HashSet<ChatRoomDTO> temp = new HashSet<ChatRoomDTO>(roomList);
-		List<ChatRoomDTO> rooms = new ArrayList<ChatRoomDTO>(temp);*/
-		
 		req.setAttribute("roomList",roomList);
 		session.setAttribute("msgSender",msgSender);
 		mv.setViewName("comm/chatRoom");
@@ -141,7 +138,6 @@ public class ChatController {
 			req.setAttribute("msgList",msgList);
 			req.setAttribute("chatroom_id",chatroom_id);
 			req.setAttribute("msgSender",msgSender);
-		/*	req.setAttribute("roomName",croom.getRoomName());*/
 			req.setAttribute("msgReceiver", msgReceiver);
 			req.setAttribute("RProfile",RProfile);
 			mv.setViewName("comm/chatView");

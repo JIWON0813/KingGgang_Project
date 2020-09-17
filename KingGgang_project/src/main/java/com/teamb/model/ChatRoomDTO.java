@@ -4,7 +4,6 @@ public class ChatRoomDTO {
 	private int chatroom_id;
 	private int msgSender;
 	private int msgReceiver;
-/*	private String roomName;*/
 	private String Sname;
 	private String Rname;
 	
@@ -27,12 +26,6 @@ public class ChatRoomDTO {
 	public void setMsgReceiver(int msgReceiver) {
 		this.msgReceiver = msgReceiver;
 	}
-/*	public String getRoomName() {
-		return roomName;
-	}
-	public void setRoomName(String roomName) {
-		this.roomName = roomName;
-	}*/
 	
 	public String getSname() {
 		return Sname;
@@ -46,21 +39,6 @@ public class ChatRoomDTO {
 	public void setRname(String rname) {
 		Rname = rname;
 	}
-	
-	/* @Override
-     public int hashCode() {
-         return (this.chatroom_id + this.roomName.hashCode());
-     }
-	@Override
-    public boolean equals(Object obj) {
-        if(obj instanceof ChatRoomDTO) {
-        	ChatRoomDTO temp = (ChatRoomDTO) obj;
-            if(this.chatroom_id==(temp.chatroom_id) && this.roomName.equals(temp.roomName)) {
-                return true;
-            }
-        }
-        return false;
-    }*/
 	
 	
 	
