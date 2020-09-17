@@ -166,7 +166,7 @@ function delok(comm_memberNum){
    
    $.ajax({
       type:'post', 
-      url:"<c:url value="/ajaxList.do" />",
+      url: "<c:url value="/newsfeedList" />", 
       data:JSON.stringify(obj),
       dataType: 'json', 
       contentType: "application/json;", 
@@ -182,20 +182,24 @@ function delok(comm_memberNum){
                  
    
 }
-   $(function() {
-       $(document).on('click', function(e) {
-           if (e.target.id === 'word') {
-              $('#memberSearch').show();
-           } else {
-               $('#memberSearch').hide();
-           }
-       })
-   });
+
 </script>
 
 
+<script type="text/javascript">
+$(function() {
+    $(document).on('click', function(e) {
+        if (e.target.id === 'word') {
+           $('#memberSearch').show();
+        } else {
+            $('#memberSearch').hide();
+        }
+    })
+});
+</script>
+
 <script> 
-/* 친구 검색기능 */
+/* 검색기능 */
 function search(target){
    var word = target.value; 
    
