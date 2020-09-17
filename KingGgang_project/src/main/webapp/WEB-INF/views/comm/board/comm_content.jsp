@@ -74,11 +74,8 @@ function LikeAction() {
     		dataType: "json", 
     		contentType: "application/json", 
     		
-    		success: function(data) { alert("통신성공"); 
-    		
+    		success: function(data) {  
     				var result1 = data
-    				alert(result1);
-    				  
     				if(result1.wstatus == 2){
     					alert("좋아요 취소");
                        $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
