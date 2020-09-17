@@ -104,6 +104,7 @@ public class ChatController {
 		chatMapper.updateSname(Sname, msgSender);
 		chatMapper.updateRname(Sname, msgSender);
 		
+		
 		roomList.clear();
 		roomList.addAll(chatMapper.getChatList(msgSender));
 		
