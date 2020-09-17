@@ -172,7 +172,6 @@ public class CommBoardController {
 		return "comm/board/comm_myPage";  
 	}
 
-	//상세보기
 	@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
 	public String content(HttpServletRequest req, HttpSession session, @RequestParam int boardNum) {
 		
@@ -190,19 +189,15 @@ public class CommBoardController {
 			check2 = 2;
 		}
 
-		System.out.println(boardNum);
-
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
-		
-		System.out.println(dto.getComm_memberNum());
 		
 		//원세호 게시판 좋아요
 		CommLikeDTO cdto =  new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(dto.getComm_memberNum());
 		
-		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
+		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
 		int check1 =1;
 		
@@ -212,46 +207,36 @@ public class CommBoardController {
 			check1 = 2;
 		}
 		
-		System.out.println(check1);
-		req.setAttribute("check1", check1);
 		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
 		
 		req.setAttribute("replyList", list);
+		req.setAttribute("check1", check1);
 		req.setAttribute("check2", check2);
 
 		return "comm/board/comm_content";
 	}
 	
-	//북마크
 	@ResponseBody 
 	@RequestMapping(value = "/bookmark", method = RequestMethod.POST) 
 	public HashMap<String, Object> init(HttpSession session, @RequestBody HashMap<String, Object> map) {
 		
-		System.out.println(map);
-		
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int comm_memberNum = login.getComm_memberNum();
-		System.out.println("로그인"+comm_memberNum);
 		
 		int boardNum = Integer.parseInt(map.get("boardNum").toString());
 		
-		System.out.println(boardNum);
 		CommBookmarkDTO dto = new CommBookmarkDTO();
 		dto.setBoardNum(boardNum);
 		dto.setComm_memberNum(comm_memberNum);
 		
-		boolean check2 = true;
-		
+		boolean check2= true;		
 		CommBookmarkDTO markCheck = bookmarkMapper.markPro(dto);
 		
 		if(markCheck ==null) {
 			check2 = true;
 		} else {
-				check2 = false;
+			check2 = false;
 		}
-		
-		System.out.println(check2);
-		
 		if(check2) {
 			int res = bookmarkMapper.insertmark(dto);
 			map.put("wstatus", 1);
@@ -259,8 +244,6 @@ public class CommBoardController {
 			int res = bookmarkMapper.deleteMark(dto);
 			map.put("wstatus", 2);
 		}
-		
-		System.out.println(map);
 		
 		return map;
 	}
@@ -314,20 +297,28 @@ public class CommBoardController {
 	    int comm_memberNum = login.getComm_memberNum();
 		
 		System.out.println(boardNum);
-		
+		System.out.println(login.getComm_memberNum());
 		CommLikeDTO cdto = new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
 		cdto.setComm_memberNum(comm_memberNum);
 		
-		boolean check1 = true;
 		
-		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
-		if(likeCheck == null) {
+		
+		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
+		
+		boolean check1 = true;
+		for(CommLikeDTO check : likeCheck) {
+			if(check == null) {
 			check1 = true;
-		}else {
-			check1 = false;
+		}else{
+			if(check.getBoardNum() == boardNum) {
+				check1 = false;
+			}else {
+				continue;
+			}
 		}
 		
+		}
 		System.out.println(check1);
 		
 		if(check1) {
@@ -349,7 +340,6 @@ public class CommBoardController {
 		return map;
 	}
 
-	//글수정
 	@RequestMapping(value = "/comm_updateForm.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(@RequestParam int boardNum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -555,14 +545,14 @@ public class CommBoardController {
 			loginNum = login.getComm_memberNum();
 		}
 		
+		
 		//인아
-		System.out.println(boardNum);
 		CommboardDTO dto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", dto);
 		
 		CommBookmarkDTO cmdto = new CommBookmarkDTO();
 		cmdto.setBoardNum(boardNum);
-		cmdto.setComm_memberNum(login.getComm_memberNum());
+		cmdto.setComm_memberNum(dto.getComm_memberNum());
 		
 		CommBookmarkDTO markCheck = bookmarkMapper.markPro(cmdto);
 		
@@ -573,23 +563,27 @@ public class CommBoardController {
 		} else {
 			check2 = 2;
 		}
-		System.out.println(check2);
-
+		
 		//세호
 		CommLikeDTO cdto =  new CommLikeDTO();
 		cdto.setBoardNum(boardNum);
-		cdto.setComm_memberNum(dto.getComm_memberNum());
+		cdto.setComm_memberNum(login.getComm_memberNum());
+		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
 		
-		CommLikeDTO likeCheck = likemapper.getCommLIke(cdto);
+		int check1 = 1;
 		
-		int check1 =1;
-		
-		if(likeCheck == null) {
+		for(CommLikeDTO check : likeCheck) {
+			if(check == null) {
 			check1 = 1;
-		}else {
-			check1 = 2;
+		}else{
+			if(check.getBoardNum() == boardNum) {
+				check1 = 2;
+			}else {
+				continue;
+			}
 		}
-		
+	}
+		System.out.println(check1);
 		int likeCount = likemapper.getLikeCount(boardNum);
 		req.setAttribute("likeCount", likeCount);
 		

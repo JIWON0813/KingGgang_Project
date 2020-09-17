@@ -1,9 +1,6 @@
 package com.teamb.service;
 
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +17,13 @@ public class CommTogetherMapper {
 		return sqlSession.selectOne("getTogether",togetherNum);    
 	}
 	
-	/*public List<CommTogetherDTO> listTogether(int startRow, int endRow) {
-		Map<String, Integer> map = new Hashtable<String, Integer>();
-		map.put("start" , startRow);
-		map.put("end", endRow);
+	public List<CommTogetherDTO> listTogether(Integer startRow, Integer endRow) {
+		java.util.Map<String, Integer> map = new java.util.Hashtable<>();
+		map.put("startRow" , startRow);
+		map.put("endRow", endRow);
 		List<CommTogetherDTO> list = sqlSession.selectList("listTogether", map);
 		return list;
-	}*/
+	}
 	
 	public int getCountTogether() {
 		return sqlSession.selectOne("getCountTogether");
