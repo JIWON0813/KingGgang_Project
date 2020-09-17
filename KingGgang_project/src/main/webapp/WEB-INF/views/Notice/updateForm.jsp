@@ -32,7 +32,14 @@
 		}
 		return true
 	}
+	
 </script>
+<c:if test="${empty mbId}">		
+		<script type="text/javascript">
+			alert("관리자만 사용가능합니다.")
+			location.href="login.log";
+		</script>
+</c:if>	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
 <div class="section layout_padding"></div>

@@ -35,7 +35,7 @@
 </script>
 <c:if test="${empty mbId}">		
 		<script type="text/javascript">
-			alert("로그인을 해주세요")
+			alert("관리자만 사용가능합니다.")
 			location.href="login.log";
 		</script>
 </c:if>	

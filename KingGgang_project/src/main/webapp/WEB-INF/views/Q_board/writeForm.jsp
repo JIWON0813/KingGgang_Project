@@ -4,10 +4,10 @@
 <script type="text/javascript">
 	function check()
 	{
-		if (f.writer.value=="")
+		if (f.name.value=="")
 		{
 			alert("이름을 입력하세요!!")
-			f.writer.focus()
+			f.name.focus()
 			return false
 		}
 		if (f.subject.value=="")
