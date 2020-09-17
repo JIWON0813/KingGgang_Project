@@ -10,12 +10,12 @@ public class CommTogetherDTO {
 	
 	private int comm_memberNum;
 	private int togetherNum;
-	private String tname;
 	private String ttitle;
 	private String temail;
 	private String tcontent;
 	private Date tregdate;
 	private int treadcount;
+	private String tname;
 	
 	
 	public int getComm_memberNum() {
@@ -29,12 +29,6 @@ public class CommTogetherDTO {
 	}
 	public void setTogetherNum(int togetherNum) {
 		this.togetherNum = togetherNum;
-	}
-	public String getTname() {
-		return tname;
-	}
-	public void setTname(String tname) {
-		this.tname = tname;
 	}
 	public String getTtitle() {
 		return ttitle;
@@ -66,6 +60,10 @@ public class CommTogetherDTO {
 	public void setTreadcount(int treadcount) {
 		this.treadcount = treadcount;
 	}
-	
-	
+	public String getTname() {
+		return tname;
+	}
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
 }

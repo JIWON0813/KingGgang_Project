@@ -18,6 +18,7 @@
 			f.content.focus()
 			return false
 		}
+<<<<<<< HEAD
 		if (!$("input:checked[name='look']").is(":checked")){ 
 			alert("공개범위를 선택해주세요."); 
 			$("#look").focus(); 
@@ -25,6 +26,9 @@
 		}
 		
 		/* if (f.look.value==""){
+=======
+		if (f.look.checked == false){
+>>>>>>> refs/remotes/origin/ina2
 			alert("공개범위를 선택해주세요!!")
 			f.look.focus()
 			return false

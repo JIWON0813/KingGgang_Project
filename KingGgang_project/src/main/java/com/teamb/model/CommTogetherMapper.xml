@@ -15,11 +15,9 @@
 		select * from together where togetherNum=#{togetherNum}
 	</select>
 
-	<!-- <select id="listTogether" parameterType="java.util.Map" resultType="CommTogetherDTO">
-		select * from (select rownum rn, A.* from
-		(select * from together order by togetherNum desc)A) 
-		where rn between #{startRow} and #{endRow}
-	</select> -->
+	<select id="listTogether" parameterType="java.util.Map" resultType="CommTogetherDTO">
+		select * from (select rownum rn, A.* from together A) where rn between #{startRow} and #{endRow} order by togetherNum desc
+	</select>
 	
 	<select id="allListTogether" resultType="CommTogetherDTO">
 		select * from together order by togetherNum desc
@@ -46,7 +44,7 @@
 		update together set treadcount=treadcount+1 where togetherNum=#{togetherNum}
 	</update>
 	
-	<select id="getCountTogether" resultType="Integer">
+	<select id="getCountTogether" resultType="int">
 		select count(*) from together
 	</select>
 	
