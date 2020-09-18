@@ -66,7 +66,7 @@
 				<td>${roomdto.dayprice}</td>
 				<td>주말가 : </td>
 				<td>${roomdto.endprice}</td>
-				<td><a href="updateroom.hotel?id=${roomdto.id}">수정</a> <a
+				<td><a href="updateRoom.hotel?id=${roomdto.id}">수정</a> <a
 					href="deleteRoom.hotel?id=${roomdto.id}">삭제</a></td>
 			</tr>
 		</c:forEach>

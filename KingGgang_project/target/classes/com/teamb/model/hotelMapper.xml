@@ -94,7 +94,7 @@
 	<insert id="insertRoom" parameterType="RoomDTO">
 		insert into room
 		values(room_seq.nextval,#{name},#{maxpersons},#{dayprice},#{endprice}
-		,#{content},#{filename},#{filesize},#{h_id})
+		,#{content},#{h_id},#{filename},#{filesize})
 	</insert>
 
 	<delete id="deleteRoom" parameterType="int">
@@ -105,10 +105,8 @@
 
 	<update id="updateRoom" parameterType="RoomDTO">
 		update room
-		set name =
-		#{name} , maxpersons = #{maxpersons} , dayprice = #{dayprice}
-		, endprice = #{endprice} , content = #{content} , filename =
-		#{filename}
+		set name = #{name} , maxpersons = #{maxpersons} , dayprice = #{dayprice}
+		, endprice = #{endprice} , content = #{content} , filename = #{filename}
 		where id = #{id}
 	</update>
 
@@ -142,7 +140,6 @@
 		select * from roomdate where id = #{id}
 	</select>
 
-
 	<insert id="insertroomdate" parameterType="RoomDateDTO">
 		insert into roomdate
 		values(roomdate_seq.nextval,#{startdate},#{enddate},#{totalprice},#{m_id},#{room_id},0)
@@ -157,7 +154,7 @@
 		update roomdate
 		set valid = 1 where id = #{id}
 	</update>
-
+	
 </mapper>
 
 
