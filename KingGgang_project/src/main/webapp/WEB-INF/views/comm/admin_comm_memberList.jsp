@@ -43,7 +43,7 @@
 					<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="50" height="50">
 				</c:if>
 				<c:if test="${dto.comm_profilename  != null}">
-			 		<img src="http://localhost:8080/img/${dto.comm_profilename}" width="50" height="50">
+			 		<img src="http://192.168.0.184:8080/img/${dto.comm_profilename}" width="50" height="50">
 				</c:if>
 			</td>
 			<td>${dto.comm_name}</td>

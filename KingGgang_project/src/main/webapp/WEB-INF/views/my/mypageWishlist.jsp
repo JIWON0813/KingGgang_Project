@@ -58,7 +58,7 @@
                                 <c:if test="${dto.filesize>0}">
 								<tr height="30">
 								<td><span>
-								<img src="http://localhost:8080/img/${dto.filename}" width="50" height="50">
+								<img src="http://192.168.0.184:8080/img/${dto.filename}" width="50" height="50">
 								${dto.filename}</a>
 								</span></td>
 								</tr>	

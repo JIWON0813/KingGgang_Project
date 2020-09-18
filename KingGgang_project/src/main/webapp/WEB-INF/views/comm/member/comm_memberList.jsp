@@ -40,7 +40,7 @@
 				<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200">
 			</c:if>
 			<c:if test="${dto.comm_profilename  != null}">
-			 	<img src="http://localhost:8080/img/${dto.comm_profilename}" width="200" height="200">
+			 	<img src="http://192.168.0.184:8080/img/${dto.comm_profilename}" width="200" height="200">
 			</c:if>
 				<p><font size=5>${dto.comm_name}(${dto.comm_nickname})</font></p>
 				<p>${dto.comm_birth }</p>
@@ -97,7 +97,7 @@ height:200;
           contentType: "application/json;", 
           success : function(data){
                for(var i=0; i<data.length; i++){
-                     $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><img src='http://localhost:8080/img/"+data[i].file+"' width='200' height='200' alt='#' /><p><font size=5>"+data[i].name+"</font><font size=5>("+data[i].nickname+")</font></p>"+
+                     $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><img src='http://192.168.0.184:8080/img/"+data[i].file+"' width='200' height='200' alt='#' /><p><font size=5>"+data[i].name+"</font><font size=5>("+data[i].nickname+")</font></p>"+
                     		 						"<p>"+data[i].birth+"</p><p>"+data[i].intro+"</p>"+
                     		 						"<p><a style='color: blue' href='comm_friend_insert.do?login_comm_memberNum="+data[i].login+
                     		 						"&comm_memberNum="+data[i].num+"'>친구추가</a> | "+

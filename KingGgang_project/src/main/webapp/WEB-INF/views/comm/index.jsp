@@ -126,7 +126,7 @@ function delok(comm_memberNum){
                <div class="full services_blog">
                   <a href="comm_otherContent.do?boardNum=${dto.boardNum}"> <img
                      class="img-responsive"
-                     src="http://localhost:8080/img/${dto.file_name}" alt="#" />
+                     src="http://192.168.0.184:8080/img/${dto.file_name}" alt="#" />
                   </a>
                </div>
             </div>
@@ -172,7 +172,7 @@ function delok(comm_memberNum){
       contentType: "application/json;", 
       success : function(data){
            for(var i=0; i<data.length; i++){
-                 $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><div class='full services_blog'><a href='comm_otherContent.do?boardNum="+data[i].num+"'><img class='img-responsive' src='http://localhost:8080/img/"+data[i].file+"' alt='#' /></a></div></div>");
+                 $('#moreList').append("<div class='col-md-3 col-sm-6 col-xs-12'><div class='full services_blog'><a href='comm_otherContent.do?boardNum="+data[i].num+"'><img class='img-responsive' src='http://192.168.0.184:8080/img/"+data[i].file+"' alt='#' /></a></div></div>");
              
          }
             
@@ -215,7 +215,7 @@ function search(target){
           var checkWord = $("#word").val(); 
           if(checkWord.length > 0 && data.length > 0){
           for(var i=0; i<data.length; i++){
-                 $('#memberSearch').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
+                 $('#memberSearch').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://192.168.0.184:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
              }
          }
       }, 

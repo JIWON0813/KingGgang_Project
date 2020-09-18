@@ -164,14 +164,14 @@ function LikeAction() {
    </tr>
    <tr>
       <td align="left" colspan="4">
-          <a href="comm_otherPage.do?comm_memberNum=${memberNum}"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50">&nbsp;&nbsp;[   ${comm_nickname}   ]</a>
+          <a href="comm_otherPage.do?comm_memberNum=${memberNum}"><img src="http://192.168.0.184:8080/img/${comm_profilename}" width="50" height="50">&nbsp;&nbsp;[   ${comm_nickname}   ]</a>
       </td>
    </tr>
    
    <c:if test="${getBoard.file_size != 0}">
       <tr align="center">
           <td align="center" colspan="4">
-             <img src="http://localhost:8080/img/${getBoard.file_name}" width="400" height="400">
+             <img src="http://192.168.0.184:8080/img/${getBoard.file_name}" width="400" height="400">
           </td>
       </tr>
    </c:if>

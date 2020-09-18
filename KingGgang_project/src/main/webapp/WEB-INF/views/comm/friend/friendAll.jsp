@@ -28,7 +28,7 @@
 			 		<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200">
 			 	</c:if>
 				<c:if test="${dto.f_comm_profilename  != null}">
-			 		<img src="http://localhost:8080/img/${dto.f_comm_profilename}" width="200" height="200">
+			 		<img src="http://192.168.0.184:8080/img/${dto.f_comm_profilename}" width="200" height="200">
 			 	</c:if>
 			 		<a href="comm_otherPage.do?comm_memberNum=${dto.comm_memberNum}">
 						<p><font size=5>${dto.f_name }(${dto.f_comm_nickname })</font></p>

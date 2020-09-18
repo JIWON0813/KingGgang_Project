@@ -32,7 +32,7 @@
 					<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="180" height="180">
 			</c:if>
 				<c:if test="${comm_profilename ne 'basic.jpg'}">
-			 		<img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
+			 		<img src="http://192.168.0.184:8080/img/${comm_profilename}" width="180" height="180">
 				</c:if>
 		 </td>
 		 <td>
@@ -72,7 +72,7 @@
 	   <c:forEach var="dto" items="${boardList}">
 	   <a href="comm_otherContent.do?boardNum=${dto.boardNum}">
 	   		<%-- <a href="comm_content.do?boardNum=${dto.boardNum}"> --%>
-	        	<img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300">
+	        	<img src="http://192.168.0.184:8080/img/${dto.file_name}" width="300" height="300">
 	        </a>
 	   </c:forEach>          
 </div>

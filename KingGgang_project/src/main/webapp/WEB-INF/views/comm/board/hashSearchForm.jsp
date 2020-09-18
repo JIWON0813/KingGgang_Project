@@ -33,7 +33,7 @@
                <div class="full services_blog">
                   <a href="comm_otherContent.do?boardNum=${dto.boardNum}"> <img
                      class="img-responsive"
-                     src="http://localhost:8080/img/${dto.file_name}" alt="#" />
+                     src="http://192.168.0.184:8080/img/${dto.file_name}" alt="#" />
                   </a>
                </div>
             </div>

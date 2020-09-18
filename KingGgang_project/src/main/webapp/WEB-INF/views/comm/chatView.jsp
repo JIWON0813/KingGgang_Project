@@ -112,7 +112,7 @@
 						$("#chating").append("<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>"
 								+"<div style='font-size:9px; clear:both;'></div>"
 								+"<div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'>"
-								+"<img id='profileImg' class='img-fluid' src='http://localhost:8080/img/${RProfile}' style = 'width:30px; height:30px; border-radius:50%;'>"
+								+"<img id='profileImg' class='img-fluid' src='http://192.168.0.184:8080/img/${RProfile}' style = 'width:30px; height:30px; border-radius:50%;'>"
 								+"</div>"
 								+"<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left; margin-left:10px;'>"
 								+"<div class = 'col-12' style = ' background-color:#FFEAAC; padding : 10px 5px; float:left; border-radius:10px;'>"
@@ -158,8 +158,8 @@
 </script>
 <body>
 	<div id="container" class="container">
-		<input type="button" id ="back" value="<" onclick="location.href='roomList'">
-		<h3>${Sname}님과 ${Rname}님의 채팅방</h3>
+		<input type="button" id ="back" value="<" onclick="history.back();">
+		<h3>${roomName}의 채팅방</h3>
 		<input type="hidden" id="sessionId" value="">
 		<input type="hidden" id="userName" value="${msgReceiver}">
 		<input type="hidden" id="chatroom_id" value="${chatroom_id}">
@@ -179,7 +179,7 @@
 		<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>
 		<div style='font-size:9px; clear:both;'></div>
 		<div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'>
-		<img id='profileImg' class='img-fluid' src='http://localhost:8080/img/${RProfile}' style = 'width:30px; height:30px; border-radius:50%;'>
+		<img id='profileImg' class='img-fluid' src='http://192.168.0.184:8080/img/${RProfile}' style = 'width:30px; height:30px; border-radius:50%;'>
 		</div>
 		<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left; margin-left:10px;'>
 		<div class = 'col-12' style = ' background-color:#FFEAAC; padding : 10px 5px; float:left; border-radius:10px;'>

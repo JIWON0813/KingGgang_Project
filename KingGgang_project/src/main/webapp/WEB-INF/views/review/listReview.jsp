@@ -53,7 +53,7 @@
 			</td>
 			<c:set var="startNum" value="${startNum-1}" />
 			<td>
-				<img src="http://localhost:8080/img/${dto.filename}" width="150" height="150">
+				<img src="http://192.168.0.184:8080/img/${dto.filename}" width="150" height="150">
 			</td>
 			<td>	
 				<b>${dto.subject }</b><br>
