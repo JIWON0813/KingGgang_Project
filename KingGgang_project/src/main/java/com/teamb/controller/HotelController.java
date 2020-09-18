@@ -186,19 +186,20 @@ public class HotelController {
 			
 		int check1 =1;
 		
-		WishlistDTO noCheck = wishlistmapper.getNolist(wdto);
+		List<WishlistDTO> wlist = wishlistmapper.getNolist(wdto);
 		
-		if(noCheck == null) {
+		for(WishlistDTO checkdto : wlist) {
+			
+		if(checkdto == null) {
 			check1 = 1;
 		} else {
-			if(noCheck.getF_no()!=no) {
-				check1 = 1;
-			}else if(noCheck.getF_no()==no) {
+			if(checkdto.getF_no()!=no) {
+				continue;
+			}else if(checkdto.getF_no()==no) {
 				check1 = 2;
 			}
 		}
-		
-					
+	}
 		req.setAttribute("check1", check1);
 		req.setAttribute("dto", dto);
 		req.setAttribute("roomList", list);

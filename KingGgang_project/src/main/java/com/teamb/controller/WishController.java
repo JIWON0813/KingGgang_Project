@@ -71,17 +71,20 @@ public class WishController {
 		dto.setM_no(m_no);
 		dto.setType(type);
 		boolean check1 = true;
-		WishlistDTO noCheck = wishlistmapper.getNolist(dto);
-		if(noCheck ==null) {
+		List<WishlistDTO> wlist = wishlistmapper.getNolist(dto);
+		
+		for(WishlistDTO checkdto : wlist) {
+			
+		if(checkdto == null) {
 			check1 = true;
 		} else {
-		
-			if(noCheck.getF_no()!=f_no) {
-				check1 = true;
-			}else if(noCheck.getF_no()==f_no) {
+			if(checkdto.getF_no()!=f_no) {
+				continue;
+			}else if(checkdto.getF_no()==f_no) {
 				check1 = false;
 			}
 		}
+	}
 	
 		if(check1) {
 			int res = wishlistmapper.insertWish(dto);

@@ -612,7 +612,7 @@ a.navbar-brand {
 .menu_orange_section {
     float: right;
     position: relative;
-    width: 70%;
+    width: 100%;
 }
 
 .menu_orange_section::after {

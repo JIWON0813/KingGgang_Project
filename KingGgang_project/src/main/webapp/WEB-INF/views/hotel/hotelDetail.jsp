@@ -9,7 +9,7 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script>
- 
+ //관심리스트 원세
 function wishlist() {
 	
     	var obj = {"no" : $('#btnWish').attr('name')}
@@ -23,10 +23,10 @@ function wishlist() {
     		success: function(data) { 		
     				var result1 = data
     				if(result1.wstatus == 2){
-    					alert("관심리스트 등록");
+    					alert("관심리스트 제외");
                        $('img#wishImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
-                    	alert("관심리스트 제외");
+                    	alert("관심리스트 등록");
                        $('img#wishImg').attr('src', './resources/img/heart.png');
                     	}
     				}, 
@@ -34,6 +34,13 @@ function wishlist() {
     		}); 
     	} 
    </script>
+   
+   <style>
+		#btnWish{
+			border:0;
+			background-color:white;
+		}
+	</style>
 <%@ include file="../top.jsp"%>
 <h1 align="center">숙소 상세 정보</h1>
 <div class="session layout_padding" align="center">

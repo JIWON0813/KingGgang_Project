@@ -190,9 +190,8 @@ public class PaymentController {
 	@RequestMapping("/payment.my")
 	public String myPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req,HttpSession session) {
 		
-		String member_id = (String) session.getAttribute("mbId");
-		MemberDTO mdto = memberMapper.getMemberId(member_id);
-		int memberNum = mdto.getMemberNum();
+		
+		int memberNum = (int)session.getAttribute("memberNum");
 		pdto.setM_no(memberNum);
 		
 		
