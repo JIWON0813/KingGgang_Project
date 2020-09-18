@@ -82,7 +82,6 @@ function LikeAction() {
    
        var obj = {"boardNum" : $('#btnLike').attr('name')}
      
-<<<<<<< HEAD
     	$.ajax({ url: "<c:url value="/insDelLike" />", 
     		type: "POST", 
     		data: JSON.stringify(obj), 
@@ -112,7 +111,7 @@ function LikeAction() {
    
        var obj = {"boardNum" : $('#btnMark').attr('name')}
      
-<<<<<<< HEAD
+
     	$.ajax({ url: "<c:url value="/bookmark" />", 
     		type: "POST", 
     		data: JSON.stringify(obj), 
