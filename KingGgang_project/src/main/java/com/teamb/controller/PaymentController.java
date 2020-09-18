@@ -104,41 +104,9 @@ public class PaymentController {
 				rentcarMapper.changePstSuc(res_id);
 				req.setAttribute("status",1);
 			}
-			else{
-				int id = dto.getP_no();
-				hotelmapper.changevaild(id);
-				req.setAttribute("status",0);
-			}
 
-			//결제내역
-			int no = paymemtMapper.getPayno(m_no);
-			
-			PaymentDTO pdto = paymemtMapper.getPaymentNo(no);
-			
-			MemberDTO mdto = memberMapper.getMember(pdto.getM_no());
-			//1일경우 호텔, 2일경우 렌트
-			RoomDTO rdto= null;
-			HotelDTO hdto= null;
-			Rentcar_ResDTO resdto = null;
-			RentcarDTO cardto= null;
-			RoomDateDTO rddto = null;
-			if(pdto.getType() == 1){
-				rddto = hotelmapper.getRoomDate(pdto.getP_no());
-				rdto = hotelmapper.getRoom(rddto.getRoom_id());
-				hdto = hotelMapper.getHotel(rdto.getH_id());
-			} 
-			else{
-				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
-				cardto = rentcarMapper.getRentcar(resdto.getR_id());
-			}
-			PaymentListData pldto = new PaymentListData(pdto,mdto,rddto,rdto,hdto,resdto,cardto);
-			
-			req.setAttribute("status", status);
-			req.setAttribute("pldto", pldto);
-			req.setAttribute("buyer_name", buyer_name);
-		
-			return "payment/paycomplete";
-			
+			url = "main.my";
+			msg = "결제성공 마이페이지로 이동합니다.";
 		}else {
 			url = "main.my";
 			msg = "결제실패 마이페이지로 이동합니다.";

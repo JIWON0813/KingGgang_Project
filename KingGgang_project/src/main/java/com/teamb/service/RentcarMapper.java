@@ -104,10 +104,6 @@ public class RentcarMapper {
 		return sqlSession.insert("updateRentcar_Reservation",r_id);
 	}
 	
-	public List<RentcarDTO> listNotReservationRentcar(){
-		return sqlSession.selectList("listNotReservationRentcar");
-	}
-	
 	public List<RentcarDTO> listLowPriceRentcar(String receiptday,String returnday){
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("receiptday",receiptday);

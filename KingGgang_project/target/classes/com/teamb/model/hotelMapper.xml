@@ -142,6 +142,7 @@
 		select * from roomdate where id = #{id}
 	</select>
 
+
 	<insert id="insertroomdate" parameterType="RoomDateDTO">
 		insert into roomdate
 		values(roomdate_seq.nextval,#{startdate},#{enddate},#{totalprice},#{m_id},#{room_id},0)
@@ -156,7 +157,7 @@
 		update roomdate
 		set valid = 1 where id = #{id}
 	</update>
-	
+
 </mapper>
 
 
