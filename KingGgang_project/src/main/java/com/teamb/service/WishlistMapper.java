@@ -51,8 +51,8 @@ public class WishlistMapper {
 		return res;
 	}
 	
-	public WishlistDTO getNolist(WishlistDTO wdto) {
-		return sqlSession.selectOne("getwishNo",wdto);
+	public List<WishlistDTO> getNolist(WishlistDTO wdto) {
+		return sqlSession.selectList("getwishNo",wdto);
 	}
 	
 }	

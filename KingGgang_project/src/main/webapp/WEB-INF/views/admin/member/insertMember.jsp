@@ -11,7 +11,6 @@
 	pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	function checkjoin() {
-<<<<<<< HEAD
        var reid = /^[a-zA-Z0-9]{4,12}$/; 
        var repass = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; 
        var reemail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -141,7 +140,6 @@
 		   document.join.idDuplication.value="idUnCheck";
 	   }
 	    
-=======
 		var reid = /^[a-zA-Z0-9]{4,12}$/;
 		var repass = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		var reemail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -271,7 +269,6 @@
 	function inputIdCheck() {
 		document.join.idDuplication.value = "idUnCheck";
 	}
->>>>>>> refs/remotes/origin/master
 </script>
 
 <link rel="stylesheet" type="text/css"
