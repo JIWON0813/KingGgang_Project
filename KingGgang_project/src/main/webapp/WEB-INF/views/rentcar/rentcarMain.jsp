@@ -81,7 +81,6 @@
     </script>
 <div align="center">
 <form name="f" method="post" action="main.rentcar?mode=date">
-	
 	<input type="text" name="receiptday" id="datepicker1" value="${dpreceiptday}">
 	<select name="pickuptime">
    					<option value="0" <c:if test="${dppickuptime eq null}">selected</c:if>>
@@ -154,7 +153,9 @@
 <table>
 <tr>
 		<c:forEach var="dto" items="${rentcar}">
+		<tr>
 		<th>
+			<hr>
 			<a href="content.rentcar?id=${dto.id}">
 			<img src="http://localhost:8080/img/${dto.filename}" width="100px" height="100px">
 			</a>
@@ -166,10 +167,12 @@
 			<br>
 			${dto.price}원
 		</td>
-		<td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+		<td>${dto.contents}</td>
+		<tr>
 		</c:forEach>
 <tr>
 </table>
 </form>
 </div>
+<br><br>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

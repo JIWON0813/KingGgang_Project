@@ -99,6 +99,7 @@ public class RentcarController {
     	  List<Rentcar_ResDTO> rentcarRes = rentcarMapper.listRentcarReservationTime(list.get(i).getId());
     	  if(rentcarRes.size()==0){
     		  rentcarMapper.updateRentcarReservation2(list.get(i).getId());
+    		  list.get(i).setReservation(0);
     	  }
       }
       req.setAttribute("rentcarList",list);

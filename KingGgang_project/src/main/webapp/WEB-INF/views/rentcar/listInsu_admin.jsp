@@ -20,8 +20,8 @@ function del(id){
 </script>
 <div align="center">
 	<b>렌 트 카 보 험 목 록</b>
-	<table border="1" width="800">
-		<tr bgcolor="green">
+	<table border="1" width="800" align="center">
+		<tr bgcolor="orange">
 			<th>보험 번호</th>
 			<th>보험사</th>
 			<th width="40%">보험명</th>
