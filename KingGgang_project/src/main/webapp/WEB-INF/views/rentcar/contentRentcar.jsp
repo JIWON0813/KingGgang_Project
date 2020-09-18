@@ -36,7 +36,7 @@
 		<tr>
 			<th width="15%">사진</th>
 			<td width="40%" align="center" colspan="3">
-				<img src="http://localhost:8080/img/${rentcar.filename}" style="width:450px; height:400px auto;">
+				<img src="http://192.168.0.184:8080/img/${rentcar.filename}" style="width:450px; height:400px auto;">
 			</td>
 		</tr>
 		<tr>
