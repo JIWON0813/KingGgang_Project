@@ -53,7 +53,7 @@ function del(id){
 			<td>${dto.fuel}</td>
 			<td>
 			<c:if test="${dto.reservation == 0}">
-			예약 가능
+			예약 없음
 			</c:if>
 			<c:if test="${dto.reservation == 1}">
 			예약중

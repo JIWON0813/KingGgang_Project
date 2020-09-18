@@ -80,13 +80,6 @@
 		}
     </script>
 <div align="center">
- 
-<div class="logo_section">
-<a class="navbar-brand" href="home.do">
-<img src="${pageContext.request.contextPath}/resources/main/images/logo.png" alt="image"></a>
-</div>
-<br><br><br>
-
 <form name="f" method="post" action="main.rentcar?mode=date">
 	
 	<input type="text" name="receiptday" id="datepicker1" value="${dpreceiptday}">
@@ -146,7 +139,7 @@
 	<a href="main.rentcar?mode=fuel&obj=휘발유">
 	휘발유|
 	</a>
-	<a href="main.rentcar?mode=fuel&obj=경유">6
+	<a href="main.rentcar?mode=fuel&obj=경유">
 	경유|
 	</a>
 	<a href="main.rentcar?mode=fuel&obj=LPG">
@@ -161,10 +154,13 @@
 <table>
 <tr>
 		<c:forEach var="dto" items="${rentcar}">
-		<td>
+		<th>
 			<a href="content.rentcar?id=${dto.id}">
 			<img src="http://localhost:8080/img/${dto.filename}" width="100px" height="100px">
 			</a>
+		</th>
+		<td>
+			(${dto.rentcom})
 			<br>
 			${dto.name}
 			<br>

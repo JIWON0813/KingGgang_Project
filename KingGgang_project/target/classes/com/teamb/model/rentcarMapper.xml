@@ -41,8 +41,13 @@
 	</delete>
 	
 	<select id="listRentcarReservationTime" resultType="Rentcar_ResDTO" parameterType="int">
-		select * from rentcar_res where r_id = #{r_id} and returnday <![CDATA[>=]]> sysdate order by receiptday
+		select * from rentcar_res where r_id = #{r_id} and returnday <![CDATA[>=]]> sysdate 
+		and (pstatus = 0 or pstatus = 1) order by receiptday
 	</select>
+	
+	<update id="updateRentcarReservation2" parameterType="int">
+		update rentcar set reservation = 0 where id = #{id}
+	</update>
 	
 <!-- 보험 어드민-->
 	
@@ -110,10 +115,6 @@
 	</select>
 	
 	<!-- Scheduled -->
-	
-	<select id="findReturnTimeReservation" resultType="Rentcar_ResDTO">
-		select * from rentcar_res where returnday <![CDATA[<=]]> sysdate 
-	</select>
 		
 	<select id="findUnPaidReservation" resultType="Rentcar_ResDTO">
 		select * from rentcar_res where pstatus = 0
