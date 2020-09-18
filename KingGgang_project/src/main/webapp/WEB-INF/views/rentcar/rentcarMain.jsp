@@ -146,7 +146,7 @@
 	<a href="main.rentcar?mode=fuel&obj=휘발유">
 	휘발유|
 	</a>
-	<a href="main.rentcar?mode=fuel&obj=경유">
+	<a href="main.rentcar?mode=fuel&obj=경유">6
 	경유|
 	</a>
 	<a href="main.rentcar?mode=fuel&obj=LPG">

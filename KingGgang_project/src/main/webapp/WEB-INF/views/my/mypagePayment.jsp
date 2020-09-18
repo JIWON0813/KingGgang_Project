@@ -150,7 +150,7 @@
                                 </tr>
                                 <tr>
                                     <td><span>${dto.p_paydate}</span></td>
-                                </tr>
+                                </tr>                        
                             </tbody>
                         </table>
                     <!-- 이용날짜와 현재 날짜 비교 해서 지났으면 생기도록 -->

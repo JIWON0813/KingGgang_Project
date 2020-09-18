@@ -37,14 +37,7 @@
 			</div>
 			</c:forEach>
 		</div>
-	<div class="row margin-top_30">
-		<div class="col-sm-12">
-			<div class="full">
-				<div class="center">
-						<a class="main_bt" href="#">See More ></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+</div>		
+		
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
+

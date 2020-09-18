@@ -5,6 +5,7 @@ package com.teamb.service;
 설	   명 : 해시태그 관련 서비스
 */
 
+import java.util.Hashtable;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,20 +21,30 @@ public class HashTagMapper {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public HashTagDTO isHashTag(String isHashTag) {
-	      return sqlSession.selectOne("isHashTag",isHashTag);
+	public HashTagDTO isHashTag(String tagName) {
+	      return sqlSession.selectOne("isHashTag",tagName);
 	}
 	   
-	public HashTagDTO insertTag(String isHashTag) {
-	      return sqlSession.selectOne("insertTag",isHashTag);    
+	public HashTagDTO insertTag(String tagName) {
+	      return sqlSession.selectOne("insertTag",tagName);    
+	}
+	
+	public String getboardNumTagName(String tagName,int boardNum) {
+		java.util.Map<String,Object> map = new Hashtable<String, Object>();
+		map.put("boardNum",boardNum);
+		map.put("tagName",tagName);
+	    return sqlSession.selectOne("updateTag",map);   
 	}
 	
 	public HashTagDTO getTagName(int tagId) {
 	      return sqlSession.selectOne("getTagName",tagId);   
 	}
 	
-public List<HashTagDTO> getSearchTagList(String word){
+	public List<HashTagDTO> getSearchTagList(String word){
 		return sqlSession.selectList("getSearchTagList",word); 
 	}
 	
+	public void deleteHash(){
+		sqlSession.selectOne("deleteHash");
+	}
 }

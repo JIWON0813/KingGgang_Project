@@ -158,8 +158,8 @@
 </script>
 <body>
 	<div id="container" class="container">
-		<input type="button" id ="back" value="<" onclick="history.back();">
-		<h3>${roomName}의 채팅방</h3>
+		<input type="button" id ="back" value="<" onclick="location.href='roomList'">
+		<h3>${Sname}님과 ${Rname}님의 채팅방</h3>
 		<input type="hidden" id="sessionId" value="">
 		<input type="hidden" id="userName" value="${msgReceiver}">
 		<input type="hidden" id="chatroom_id" value="${chatroom_id}">

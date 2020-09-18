@@ -10,14 +10,16 @@
 	</select>
 	
 	<select id="listQuest" resultType="QuestionDTO">
-		select * from (select rownum rn, A.* from(select * from ask order by re_group desc, re_step asc)A) where rn between #{start} and #{end}
+		select * from (select rownum rn, A.* from
+		(select * from ask order by re_group desc, re_step asc)A)
+		 where rn between #{start} and #{end}
 	</select>
 	
 	<!-- insert -->
 	<insert id="insertQuest" parameterType="QuestionDTO">
 		insert into ask values (ask_num.nextval,
-			#{m_id},#{subject},sysdate,0,
-			#{content},#{ip}, 
+			#{name},#{passwd},#{email},#{subject},sysdate,0,
+			#{content},#{closed},#{ip}, 
 			#{re_group},#{re_step},#{re_level})  
 	</insert>
 	
@@ -46,7 +48,7 @@
 	
 	<!-- update -->
 	<update id="updateQuest" parameterType="QuestionDTO">
-		update ask set subject=#{subject}, content=#{content}
+		update ask set subject=#{subject},name=#{name},email=#{email},content=#{content},passwd=#{passwd},closed=#{closed}
 		where num = #{num}
 	</update>
 

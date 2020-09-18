@@ -15,6 +15,7 @@
     <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.js"></script> <!-- Air datepicker js -->
     <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
 
+
 	<script type="text/javascript">
 	var newJquery = $.noConflict(true);
 	</script>
@@ -60,6 +61,7 @@
             
             
         }); 
+
     </script>
 <script type="text/javascript">
   function showPopupMap(){ 

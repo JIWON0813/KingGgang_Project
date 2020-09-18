@@ -34,35 +34,22 @@ public class QuestionMapper
 
 	public int insertQuest(QuestionDTO dto) 
 	{
-		if (dto.getNum()==0)
-		{
-			Integer num = sqlSession.selectOne("Q_maxNum");
-			
-			if (num == null)
-			{
+		if(dto.getNum()==0){
+			Integer max = sqlSession.selectOne("Q_maxNum");
+			if(max==null){
 				dto.setRe_group(1);
+			}else{
+				dto.setRe_group(max+1);
 			}
-			else 
-			{
-				dto.setRe_group(num + 1);
-			}
-		}
-		else 
-		{
-			Map<String, Integer> map = new Hashtable<String, Integer>();
+		}else{
+			java.util.Map<String,Integer> map = new java.util.Hashtable<>();
 			map.put("re_step", dto.getRe_step());
 			map.put("re_group", dto.getRe_group());
-			
-			int res = sqlSession.update("plusRe_step", map);
-			dto.setRe_step(dto.getRe_step() + 1);
-			dto.setRe_level(dto.getRe_level() + 1);
+			sqlSession.update("plusRe_step",map);
+			dto.setRe_step(dto.getRe_step()+1);
+			dto.setRe_level(dto.getRe_level()+1);
 		}
-		
-		//System.out.println("a="+dto.getA_passwd() + " b="+dto.getIp() + " c="+dto.getContent() + " d="+dto.getNum() + " e="+dto.getRe_group());
-		//System.out.println(" f="+dto.getRe_level() + " g="+dto.getRe_step() + " h="+dto.getReadcount() + " i="+dto.getReg_date() + " j="+dto.getSubject());
-		
-		int res = sqlSession.insert("insertQuest", dto);
-		
+		int res = sqlSession.insert("insertQuest",dto);
 		return res;
 	}
 	
@@ -77,20 +64,6 @@ public class QuestionMapper
 		QuestionDTO dto = sqlSession.selectOne("getQuest", num);
 		return dto;
 	}
-
-	public  boolean isId(int num, String m_id)
-	{
-		String dbPass = sqlSession.selectOne("isId", num);
-		if (dbPass.equals(m_id))
-		//전송받은 로그인된 아이디와 게시글 번호에 저장된 아이디값 비교
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
 	
 	public int deleteQuest(int num) 
 	{
@@ -103,5 +76,8 @@ public class QuestionMapper
 		int res = sqlSession.update("updateQuest", dto);
 		return res;
 	}
-
+	
+	public boolean checkPw(String dbpass,String passwd){
+		return dbpass.trim().equals(passwd);
+	}
 }

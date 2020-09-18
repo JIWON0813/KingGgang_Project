@@ -2,6 +2,7 @@ package com.teamb.model;
 
 public class PaylistDTO {
 	//rentcar
+	
 	private String r_name;
 	private String r_company;
 	private String r_type;
@@ -24,7 +25,37 @@ public class PaylistDTO {
 	private int m_no;
 	private String m_id;
 	
+	//review
+	private int r_id;
+	private int h_id;
+	private String r_filename;
+	private String h_filename;
 	
+	
+	public int getR_id() {
+		return r_id;
+	}
+	public void setR_id(int r_id) {
+		this.r_id = r_id;
+	}
+	public int getH_id() {
+		return h_id;
+	}
+	public void setH_id(int h_id) {
+		this.h_id = h_id;
+	}
+	public String getR_filename() {
+		return r_filename;
+	}
+	public void setR_filename(String r_filename) {
+		this.r_filename = r_filename;
+	}
+	public String getH_filename() {
+		return h_filename;
+	}
+	public void setH_filename(String h_filename) {
+		this.h_filename = h_filename;
+	}
 	public String getReturnday() {
 		return returnday;
 	}

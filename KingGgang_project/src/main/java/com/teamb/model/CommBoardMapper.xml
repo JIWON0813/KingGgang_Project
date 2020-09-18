@@ -19,12 +19,17 @@
 		select * from commboard where comm_memberNum=#{comm_memberNum} order by boardNum desc
 	</select>
 	
+	<select id="mylook_listBoard" resultType="CommboardDTO">
+		select * from commboard where comm_memberNum=#{login_comm_memberNum} order by boardNum desc
+	</select>
+	
 	<select id="allListBoard" resultType="CommboardDTO">
 		select * from commboard
 	</select>
-	
-	<select id="look_allListBoard" resultType="CommboardDTO">
-		select * from commboard where look like '%' || #{look} || '%'
+	<!-- 지은 -->
+	<select id="look_listBoard" resultType="CommboardDTO" parameterType="java.util.Map">
+		select * from commboard 
+		where comm_memberNum=#{comm_memberNum} and (look = '전체공개' or look ='회원공개') order by boardNum desc
 	</select>
 	
 	<insert id="writeBoard" parameterType="CommboardDTO">
@@ -46,5 +51,4 @@
 	<update id="updateBoard" parameterType="CommboardDTO">
 		update commboard set file_name=#{file_name}, content=#{content}, look=#{look} where boardNum=#{boardNum}
 	</update>
-
 </mapper>

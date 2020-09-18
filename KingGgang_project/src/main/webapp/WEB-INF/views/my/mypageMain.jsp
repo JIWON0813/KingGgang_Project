@@ -12,11 +12,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style2.css">
 <title>회원 마이 페이지</title>
 </head>
 <body>
-<div class="section layout_padding"></div>
+<div class="section layout_padding">
 <input type="hidden" name ="filename" value="${param.filename}"/>
 	    <div class="wrap wd668">
             <div class="container">
@@ -34,10 +34,6 @@
                                 </tr>
                                 <tr><td></td></tr>
                                 <tr>
-                                    <th><a href="point.my">&nbsp&nbsp&nbsp&nbsp&nbsp쿠폰 포인트 확인</a></th>
-                                </tr>
-                                <tr><td></td></tr>
-                                <tr>
                                     <th><a href="list.wish">&nbsp&nbsp&nbsp&nbsp&nbsp관심리스트</a></th>
                                 </tr>
                                  <tr><td></td></tr>
@@ -48,11 +44,9 @@
                                 <tr>
                                     <th><a href="delete.my">&nbsp&nbsp&nbsp&nbsp&nbsp탈퇴 하기</a></th>
                                 </tr><td></td></tr>
-                                 <tr>
-                                    <th><a href="adpayment.my">&nbsp&nbsp&nbsp&nbsp&nbsp관리자 계정 결제 리스트</a></th>
-                                </tr>
                          </tbody>
                         </table>
+                      
                     <div class="btn_wrap">
                         <a href="home.do">홈으로</a>
                     </div>
@@ -60,7 +54,8 @@
             </div><!-- content E-->
         </div> <!-- container E -->
         </div>
-    </form>
+    </div>
+
 </body>
 </html>
 <%@ include file="../bottom.jsp" %>

@@ -21,6 +21,10 @@ public class Comm_FriendMapper {
 		return sqlSession.selectList("comm_listFriend",login_comm_memberNum);
 	}
 	
+	public List<Comm_FriendDTO> other_listFriend(int comm_memberNum) {
+		return sqlSession.selectList("other_comm_listFriend",comm_memberNum);
+	}
+	
 	public int insertFriend(Comm_FriendDTO dto) {
 		int res = sqlSession.insert("comm_insertFriend", dto);
 		
@@ -46,6 +50,14 @@ public class Comm_FriendMapper {
 
 	public int deleteAllFriend(int comm_memberNum) {
 		int res = sqlSession.insert("all_comm_deleteFriend", comm_memberNum);
+		return res;
+	}
+
+	public Integer getfriendCount(int login_comm_memberNum,int comm_memberNum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("login_comm_memberNum", login_comm_memberNum);
+		map.put("comm_memberNum", comm_memberNum);
+		int res = sqlSession.selectOne("getfriendCount",map);
 		return res;
 	}
 

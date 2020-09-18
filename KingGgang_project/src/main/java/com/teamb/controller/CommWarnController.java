@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +39,6 @@ public class CommWarnController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 	
-	//인아
 	@RequestMapping("/comm_warnPro.do")
 	public String warnPro(HttpServletRequest req, HttpSession session,
 			CommWarnDTO dto, Comm_MemberDTO mdto, @RequestParam int boardNum) {
@@ -46,16 +46,21 @@ public class CommWarnController {
 		CommboardDTO bdto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", bdto);
 		
-		int comm_memberNum = mdto.getComm_memberNum();
+		/*int comm_memberNum = mdto.getComm_memberNum();*/
+		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+		dto.setComm_memberNum(comm_memberNum);
+		String wname = (String)session.getAttribute("comm_nickname");
+		dto.setWname(wname);
 		
 		int res = warnMapper.warnPro(dto);
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "신고등록되었습니다.";
-			url = "comm_content.do?boardNum="+boardNum;
+			url = "comm_otherContent.do?boardNum="+boardNum;
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
+		req.getAttribute("comm_nickname");
 		return "message";
 	}
 	
@@ -65,11 +70,11 @@ public class CommWarnController {
 		CommboardDTO bdto = (CommboardDTO) session.getAttribute("boardNum");
 		
 		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
-		List<CommWarnDTO> list = warnMapper.listWarn(comm_memberNum);
+		List<CommWarnDTO> list = warnMapper.listWarn();
 		for(CommWarnDTO wdto: list) {
 			int w=wdto.getComm_memberNum();
 			Comm_MemberDTO mdto=memberMapper.comm_getMember(w);
-			wdto.setW_comm_nickname(wdto.getW_comm_nickname());
+			wdto.setWname(wdto.getWname());
 		}
 		session.setAttribute("warnList", list);
 		return "comm/warnList";

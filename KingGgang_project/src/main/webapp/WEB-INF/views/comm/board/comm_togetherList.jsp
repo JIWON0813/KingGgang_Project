@@ -15,7 +15,9 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6 col-lg-3">
 							<div class="full">
-								<h3><font size=7>낑</font><font size=3>깡</font><font size=7>같</font><font size=3>이</font><font size=7>따</font><font size=3>러갈래?</font></h3>
+								<h3>
+									<font size=7>낑</font><font size=3>깡</font><font size=7>같</font><font size=3>이</font><font size=7>따</font><font size=3>러갈래?</font>
+								</h3>
 							</div>
 						</div>
 					</div>
@@ -49,21 +51,37 @@
 	<c:forEach var="dto" items="${togetherList}">		
 		<tr align="center">
 			<td>
-				<c:out value="${dto.togetherNum}"/>
+				
+				<c:out value="${startNum}"/>
 			</td>
+			<c:set var="startNum" value="${startNum-1}"/>
 			<td>
 			<c:if test="${dto.treadcount>10}">
 				<img src="${pageContext.request.contextPath}/resources/img/crown.PNG" width="30" height="30">
 			</c:if>	
 				<a href="comm_tcontent.do?togetherNum=${dto.togetherNum}">${dto.ttitle}</a>
 			</td>
-			<td>${comm_nickname}</td>
+			<td>${dto.tname}</td>
 			<td>${dto.temail}</td>
 			<td><fmt:formatDate value="${dto.tregdate}" pattern="yyyy-MM-dd"/></td>
 			<td>${dto.treadcount}</td>
 		</tr>		
 	</c:forEach>	
 	</table>
+	<br>
+	<div align="center">
+	<c:if test="${count>0}">
+			<c:if test="${startPage > pageBlock}">
+				<a href="comm_togetherList.do?pageNum=${startPage-1}">이전</a>
+			</c:if>
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<a href="comm_togetherList.do?pageNum=${i}">${i}</a>
+			</c:forEach>
+			<c:if test="${endPage<pageCount}">
+				<a href="comm_togetherList.do?pageNum=${endPage+1}">다음</a>
+			</c:if>
+		</c:if>
+	</div>
 </div>	
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

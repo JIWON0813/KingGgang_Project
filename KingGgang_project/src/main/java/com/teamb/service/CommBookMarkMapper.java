@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamb.model.CommBookmarkDTO;
+import com.teamb.model.WishlistDTO;
 
 @Service
 public class CommBookMarkMapper {
@@ -14,13 +15,22 @@ public class CommBookMarkMapper {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int markPro(CommBookmarkDTO dto) {
-		int res = sqlSession.insert("markPro", dto);
+	public int insertmark(CommBookmarkDTO dto) {
+		int res = sqlSession.insert("insertmark", dto);
 		return res;
 	}
 	
 	public List<CommBookmarkDTO> listMark(int comm_memberNum) {
 		return sqlSession.selectList("listMark",comm_memberNum);
+	}
+	
+	public List <CommBookmarkDTO> markPro(CommBookmarkDTO cmdto) {
+		return sqlSession.selectList("markPro",cmdto);
+	}
+	
+	public int deleteMark(CommBookmarkDTO dto) {
+		int res = sqlSession.delete("deleteMark",dto);
+		return res;
 	}
 	
 	public int deleteAllBookmark(int boardnum) {

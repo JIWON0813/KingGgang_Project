@@ -1,5 +1,6 @@
 package com.teamb.service;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,6 +46,10 @@ public class Comm_MemberMapper {
 		return sqlSession.selectOne("comm_getMember",comm_memberNum);
 	}
 	
+	public Comm_MemberDTO login_comm_getMember(int login_comm_memberNum){
+		return sqlSession.selectOne("login_comm_getMember",login_comm_memberNum);
+	}
+	
 	
 	public int comm_updateMember(Comm_MemberDTO dto) {
 		int res = sqlSession.update("comm_updateMember", dto);
@@ -60,4 +65,22 @@ public class Comm_MemberMapper {
 		int res = sqlSession.insert("admin_comm_deleteMember",comm_nickname);
 		return res;
 	}
+	
+	public int getComm_memberCount() {
+		int count = sqlSession.selectOne("getComm_memberCount");
+		return count;
+	}
+
+	public List<Comm_MemberDTO> comm_memberList(int startRow, int endRow) {
+		java.util.Map<String,Integer> map = new Hashtable<String, Integer>();
+		map.put("startRow",startRow);
+		map.put("endRow",endRow);
+	   return sqlSession.selectList("c_comm_memberList",map);
+	}
+
+	public int updateFriend(Comm_MemberDTO mdto) {
+		int res = sqlSession.update("updateFriend", mdto);
+		return res;
+	}
+	
 }

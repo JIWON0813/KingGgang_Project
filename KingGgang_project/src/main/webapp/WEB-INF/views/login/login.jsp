@@ -55,23 +55,23 @@
 <section id="four" class="wrapper style1 special fade-up">
 	<div class="container">
 						<header class="major">
-							<h2 align="center">로그인</h2>
+							<h1 align="center"><b>로그인</b></h1>
 						</header>
 		<form name="f" action="loginOk.log" method="post">
 			<table width="600" align="center" height="120">
 				<tr>
-					<td align="right" width="30%">아이디</td>&nbsp;
+					<td align="right" width="30%">아이디&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</td>
 					<td width="40%">
-							<c:if test="${empty id }">
-							<input type="text" name="id" placeholder="아이디를 입력하세요."><input type="checkbox" name="useCookie">아이디저장<br>
+							<c:if test="${empty param.id }">
+							<input type="text" name="id" placeholder="아이디를 입력하세요.">&nbsp;&nbsp;&nbsp;<input type="checkbox" name="useCookie">아이디저장<br>
 							</c:if>
-							<c:if test="${not empty id}">
-							<input type="text" name="id" value="${id}"><input type="checkbox" name="useCookie">아이디저장<br>
+							<c:if test="${not empty param.id}">
+							<input type="text" name="id" value="${param.id}"><input type="checkbox" name="useCookie">아이디저장<br>
 							</c:if>
 				</tr>
 				<tr>
-					<td align="right">비밀번호</td>
-					<td><input type="password" name="passwd" placeholder='비밀번호를 입력하세요.'>&nbsp;<input type="button" value="로그인" onclick="javascript:loginCheck()"></td>
+					<td align="right">비밀번호&nbsp;&nbsp;&nbsp;</td>
+					<td><input type="password" name="passwd" placeholder='비밀번호를 입력하세요.'>&nbsp;&nbsp;&nbsp;<input type="button" value="로그인" onclick="javascript:loginCheck()"></td>
 				</tr>
 				<tr>
 					<td colspan="3" align="center">

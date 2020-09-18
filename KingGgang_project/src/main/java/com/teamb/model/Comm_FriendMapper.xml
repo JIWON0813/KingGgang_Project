@@ -6,7 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.teamb.model.Comm">
     
     <select id="comm_listFriend" resultType="Comm_FriendDTO">
-		select * from comm_friend where login_comm_memberNum=#{login_comm_memberNum}
+		select * from comm_friend where login_comm_memberNum=#{login_comm_memberNum} order by comm_memberNum desc
+	</select>
+	
+	 <select id="other_comm_listFriend" resultType="Comm_FriendDTO">
+		select * from comm_friend where login_comm_memberNum=#{comm_memberNum} order by comm_memberNum desc
 	</select>
 	
     <insert id="comm_insertFriend" parameterType="Comm_FriendDTO">
@@ -31,4 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from comm_friend where comm_memberNum = #{comm_memberNum}
 	</delete>  
     
+    <select id="getfriendCount" parameterType="java.util.Map" resultType="int">
+    	select count(#{comm_memberNum}) from comm_friend where login_comm_memberNum=#{comm_memberNum}
+    </select>
 </mapper>

@@ -33,6 +33,12 @@
 		return true
 	}
 </script>
+<c:if test="${empty mbId}">		
+		<script type="text/javascript">
+			alert("관리자만 사용가능합니다.")
+			location.href="login.log";
+		</script>
+</c:if>	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
 <%@ include file="../top.jsp" %>
@@ -55,7 +61,8 @@
 				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">
-					<input type="button" value="목록보기" onclick="window.location='list.notice'">				
+					<input type="button" value="목록보기" onclick="window.location='list.notice'">
+					<input type="hidden" name="name" value="${mbId}">				
 				</td>
 			</tr>
 		</table>

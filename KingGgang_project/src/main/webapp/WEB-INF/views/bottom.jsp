@@ -15,30 +15,45 @@
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="full">
-                                <h3>Quick Link</h3>
-                            </div>
-                            <div class="full">
-                                <ul class="menu_footer">
-                                    <li><a href="home.html">> Home</a></li>
-                                    <li><a href="about.html">> About</a></li>
-                                    <li><a href="exchange.html">> Exchange</a></li>
-                                    <li><a href="services.html">> Services</a></li>
-                                    <li><a href="new.html">> New</a></li>
-                                    <li><a href="contact.html">> Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                                <!-- 날씨 api -->
+                     <h3>제주도 날씨 현황</h3>
+                  </div>
+
+                  <div align="center">
+                     <table>
+                        <tr align="center">
+                           <td colspan="2" class="cdate" style="font-size:20px"></td>
+                        </tr>
+                        <tr>
+                           <td class="cicon" rowspan="6"></td>
+                        </tr>
+                        <tr>
+                           <td class="ctemp">현재 온도 :</td>
+                        </tr>
+                        <tr>
+                           <td class="cfeels_like">체감 기온 :</td>
+                        </tr>
+                        <tr>
+                           <td>최고/최저 : <font class="chightemp"></font>/<font
+                              class="clowtemp"></font></td>
+                        </tr>
+                        <tr>
+                           <td class="chumidity">습도 :</td>
+                        </tr>
+                     </table>
+                  </div>
+                  </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="full">
                                 <div class="footer_blog full white_fonts">
-                             <h3>Newsletter</h3>
-                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                             <div class="newsletter_form">
+                             <h3><img src="${pageContext.request.contextPath}/resources/main/images/orange.png"/>낑.깡.따<img src="${pageContext.request.contextPath}/resources/main/images/orange.png"/></h3>
+                             <p>함께 여행 갈 인연을 찾아보아요!!</p>
+                             <!-- <div class="newsletter_form">
                                 <form action="index.html">
                                    <input type="email" placeholder="Your Email" name="#" required="">
                                    <button>Submit</button>
                                 </form>
-                             </div>
+                             </div> -->
                          </div>
                             </div>
                         </div>
@@ -54,30 +69,15 @@
                          </div>
                             </div>
                         </div>
-					</div>
-                </div>
-			 </div>
-        </div>
-    </footer>
-    <!-- End Footer -->
-   <!-- test -->
-<a href="main.admin">관리자모드로 가기</a>
-<br>
-<a href="main.member">임시회원</a>
-<br><a href="Q_list.board">문의게시판 가기</a>
-<br><a href="list.notice">공지사항 보기</a>
-<br><a href="main.my">마이페이지로 가기</a><p>
-<br><a href="main.mem">멤버 페이지로 가기</a><p>
-<br><a href="main.hotel">호텔 예약하기</a>
-<br><a href="hotelList.hotel">호텔 목록보기(어드민)</a>
-<br><a href="listRentcar.admin">렌트카 목록(어드민)</a>
-<br><a href="listInsu.admin">렌트카_보험 목록(어드민)</a>
-<br><a href="firstPage.rentcar">렌트카 메인(회원)</a>
-<br><a href="main.wish">관심리스트등록 페이지로 가기</a><p>
-<br><a href="main.pay">결제 페이지로 가기</a><p>
-<br><a href="payList.admin">결제 목록으로 가기(어드민)</a><p>
 
-<br><a href="commhome.comm">커뮤니티 페이지로 가기</a><p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- End Footer -->
+
 <!-- test -->
     <div class="footer_bottom">
         <div class="container">
@@ -93,7 +93,7 @@
 
     <!-- ALL JS FILES -->
     <script src="${pageContext.request.contextPath}/resources/main/js/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/main/js/popper.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/main/js/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
     <script src="${pageContext.request.contextPath}/resources/main/js/jquery.magnific-popup.min.js"></script>
@@ -105,108 +105,136 @@
     <script src="${pageContext.request.contextPath}/resources/main/js/isotope.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/main/js/images-loded.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/main/js/custom.js"></script>
-	<script>
-	/* counter js */
+   <script>
+   /* counter js */
 
 (function ($) {
-	$.fn.countTo = function (options) {
-		options = options || {};
-		
-		return $(this).each(function () {
-			// set options for current element
-			var settings = $.extend({}, $.fn.countTo.defaults, {
-				from:            $(this).data('from'),
-				to:              $(this).data('to'),
-				speed:           $(this).data('speed'),
-				refreshInterval: $(this).data('refresh-interval'),
-				decimals:        $(this).data('decimals')
-			}, options);
-			
-			// how many times to update the value, and how much to increment the value on each update
-			var loops = Math.ceil(settings.speed / settings.refreshInterval),
-				increment = (settings.to - settings.from) / loops;
-			
-			// references & variables that will change with each update
-			var self = this,
-				$self = $(this),
-				loopCount = 0,
-				value = settings.from,
-				data = $self.data('countTo') || {};
-			
-			$self.data('countTo', data);
-			
-			// if an existing interval can be found, clear it first
-			if (data.interval) {
-				clearInterval(data.interval);
-			}
-			data.interval = setInterval(updateTimer, settings.refreshInterval);
-			
-			// initialize the element with the starting value
-			render(value);
-			
-			function updateTimer() {
-				value += increment;
-				loopCount++;
-				
-				render(value);
-				
-				if (typeof(settings.onUpdate) == 'function') {
-					settings.onUpdate.call(self, value);
-				}
-				
-				if (loopCount >= loops) {
-					// remove the interval
-					$self.removeData('countTo');
-					clearInterval(data.interval);
-					value = settings.to;
-					
-					if (typeof(settings.onComplete) == 'function') {
-						settings.onComplete.call(self, value);
-					}
-				}
-			}
-			
-			function render(value) {
-				var formattedValue = settings.formatter.call(self, value, settings);
-				$self.html(formattedValue);
-			}
-		});
-	};
-	
-	$.fn.countTo.defaults = {
-		from: 0,               // the number the element should start at
-		to: 0,                 // the number the element should end at
-		speed: 1000,           // how long it should take to count between the target numbers
-		refreshInterval: 100,  // how often the element should be updated
-		decimals: 0,           // the number of decimal places to show
-		formatter: formatter,  // handler for formatting the value before rendering
-		onUpdate: null,        // callback method for every time the element is updated
-		onComplete: null       // callback method for when the element finishes updating
-	};
-	
-	function formatter(value, settings) {
-		return value.toFixed(settings.decimals);
-	}
+   $.fn.countTo = function (options) {
+      options = options || {};
+      
+      return $(this).each(function () {
+         // set options for current element
+         var settings = $.extend({}, $.fn.countTo.defaults, {
+            from:            $(this).data('from'),
+            to:              $(this).data('to'),
+            speed:           $(this).data('speed'),
+            refreshInterval: $(this).data('refresh-interval'),
+            decimals:        $(this).data('decimals')
+         }, options);
+         
+         // how many times to update the value, and how much to increment the value on each update
+         var loops = Math.ceil(settings.speed / settings.refreshInterval),
+            increment = (settings.to - settings.from) / loops;
+         
+         // references & variables that will change with each update
+         var self = this,
+            $self = $(this),
+            loopCount = 0,
+            value = settings.from,
+            data = $self.data('countTo') || {};
+         
+         $self.data('countTo', data);
+         
+         // if an existing interval can be found, clear it first
+         if (data.interval) {
+            clearInterval(data.interval);
+         }
+         data.interval = setInterval(updateTimer, settings.refreshInterval);
+         
+         // initialize the element with the starting value
+         render(value);
+         
+         function updateTimer() {
+            value += increment;
+            loopCount++;
+            
+            render(value);
+            
+            if (typeof(settings.onUpdate) == 'function') {
+               settings.onUpdate.call(self, value);
+            }
+            
+            if (loopCount >= loops) {
+               // remove the interval
+               $self.removeData('countTo');
+               clearInterval(data.interval);
+               value = settings.to;
+               
+               if (typeof(settings.onComplete) == 'function') {
+                  settings.onComplete.call(self, value);
+               }
+            }
+         }
+         
+         function render(value) {
+            var formattedValue = settings.formatter.call(self, value, settings);
+            $self.html(formattedValue);
+         }
+      });
+   };
+   
+   $.fn.countTo.defaults = {
+      from: 0,               // the number the element should start at
+      to: 0,                 // the number the element should end at
+      speed: 1000,           // how long it should take to count between the target numbers
+      refreshInterval: 100,  // how often the element should be updated
+      decimals: 0,           // the number of decimal places to show
+      formatter: formatter,  // handler for formatting the value before rendering
+      onUpdate: null,        // callback method for every time the element is updated
+      onComplete: null       // callback method for when the element finishes updating
+   };
+   
+   function formatter(value, settings) {
+      return value.toFixed(settings.decimals);
+   }
 }(jQuery));
 
 jQuery(function ($) {
   // custom formatting example
   $('.count-number').data('countToOptions', {
-	formatter: function (value, options) {
-	  return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
-	}
+   formatter: function (value, options) {
+     return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+   }
   });
   
   // start all the timers
   $('.timer').each(count);  
   
   function count(options) {
-	var $this = $(this);
-	options = $.extend({}, options || {}, $this.data('countToOptions') || {});
-	$this.countTo(options);
+   var $this = $(this);
+   options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+   $this.countTo(options);
   }
 });
-	</script>
+
+//날씨 api
+$.getJSON('http://api.openweathermap.org/data/2.5/weather?q=jeju&units=metric&appid=70393e52400da4753a885b68792731f4',
+      function(data) {
+         var $maxTemp = data.main.temp_max;
+         var $minTemp = data.main.temp_min;
+         var $cTemp = data.main.temp;
+         var $now = new Date($.now());
+         var $cDate = $now.getFullYear() + '년 '
+               + ($now.getMonth() + 1) + '월 ' + $now.getDate()
+               + '일';
+         var $wIcon = data.weather[0].icon;
+         var $wSpeed = data.wind.speed;
+         var $wDeg = data.wind.deg;
+         var $cFeels_like = data.main.feels_like;
+         var $cHumidity = data.main.humidity;
+         var $cWeather = data.weather[0].main;
+         $('.cweather').append($cWeather);
+         $('.chumidity').append($cHumidity + "%");
+         $('.clowtemp').append($minTemp + "ºC");
+         $('.ctemp').append($cTemp + "ºC");
+         $('.chightemp').append($maxTemp);
+         $('.cfeels_like').append($cFeels_like + "ºC");
+         $('.cdate').prepend($cDate);
+         $('.cicon').append('<img src="http://openweathermap.org/img/w/'+$wIcon+'.png", width="100", height="100"/>');
+         $('.wspeed').append($wSpeed);
+         $('.wdeg').append($wDeg);
+      });
+   </script>
 </body>
 
 </html>

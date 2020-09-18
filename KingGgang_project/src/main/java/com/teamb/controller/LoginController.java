@@ -63,6 +63,10 @@ public class LoginController {
 	             MemberDTO comm_birth = loginMapper.getMemberBirth(dto.getId());
 	             	session.setAttribute("birth", comm_birth.getAllBirth());
 	            
+	             //프로필사진
+	             String profile_name = loginMapper.getMemberProfile(dto.getId());
+	             	session.setAttribute("profilename", profile_name);
+
 
 	    	  session.setAttribute("mbId", dto.getId());
 	    	  session.setAttribute("upLoadPath", upLoadPath);
@@ -112,6 +116,7 @@ public class LoginController {
 				msg = "이름과 이메일을 확인해주세요.";
 			}
 			url = "login.log?id="+loginMapper.searchMember_id(name, email);
+			req.setAttribute("id", loginMapper.searchMember_id(name, email));
 		} else if (mode.equals("pw")) {
 			String id = req.getParameter("id");
 			if (loginMapper.searchMember_pw(name, email, id) != null) {

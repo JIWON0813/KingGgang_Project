@@ -8,7 +8,6 @@
 	개  발   자 : 정 우 철
 	설	   명 : 렌트카 첫 페이지
 	-->
-	
 	<script src="${pageContext.request.contextPath}/resources/jquery-3.5.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
     <link href="${pageContext.request.contextPath}/resources/datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
     <!-- Air datepicker css -->
@@ -60,6 +59,7 @@
             
             
         });           
+
         
        	function check(){
 			if (f.receiptday.value==""){

@@ -14,7 +14,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6 col-lg-3">
 							<div class="full">
-								<h3>MyPage</h3>
+								<h3><img src="${pageContext.request.contextPath}/resources/img/낑깡logo.png" width="100" height="100">MyPage</h3>
 							</div>
 						</div>
 					</div>
@@ -27,10 +27,17 @@
 <table>
    <tr>
 	  	 <td width="120" height="120">
-		      <img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
+
+	  	 	<c:if test="${comm_profilename eq 'basic.jpg'}">
+					<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="180" height="180">
+			</c:if>
+				<c:if test="${comm_profilename ne 'basic.jpg'}">
+			 		<img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
+				</c:if>
 		 </td>
 		 <td>
 		      <h2>[   ${comm_nickname}   ]님</h2>
+		      <p>${comm_intro}</p>
 	   	 </td> 
 	</tr> 
 	
@@ -42,7 +49,7 @@
 			<a class="join_bt" href="comm_bookMark.do" style="display: inline-block; margin-left:30px;">BookMark</a>
 		</td>
 		<td>
-			<a class="join_bt" href="comm_friendAll.do?comm_memberNum=${comm_memberNum}" style="display: inline-block; margin-left:30px;">친구</a>
+			<a class="join_bt" href="comm_friendAll.do?comm_memberNum=${memberNum}" style="display: inline-block; margin-left:30px;">친구(${comm_friendCount})</a>
 		</td>
 		<c:if test="${loginNum == memberNum}">
 		<td>

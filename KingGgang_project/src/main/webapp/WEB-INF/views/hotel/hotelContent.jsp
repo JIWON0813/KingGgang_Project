@@ -2,15 +2,19 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 
-	이	   름 : hotelDetail.jsp
+	이	   름 : hotelContent.jsp
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 상세페이지(관리자모드) 
  -->
+ <%@ include file="../top.jsp"%>
 <script>
  function regiroom(){
 	 var regi = document.getElementById("regiroom");
 	 if(regi.style.display == 'none'){
 		 regi.style.display = 'block';
+	 }
+	 else if(regi.style.display == 'block'){
+		 regi.style.display = 'none';
 	 }
  }
  </script>
@@ -19,7 +23,7 @@
 	<table width="1200" border="1">
 		<tr>
 			<td width="15%"><img
-				src="http://localhost:9211/img/${dto.filename}" width="auto"
+				src="http://192.168.0.184:8080/img/${dto.filename}" width="auto"
 				height="150">
 			<td colspan="2">숙소 이름</td>
 			<td colspan="3">${dto.name}</td>
@@ -52,7 +56,7 @@
 		<h3 align="center">등록되어있는 방 목록</h3>
 		<c:forEach var="roomdto" items="${roomList}">
 			<tr>
-				<td><img src="http://localhost:9211/img/${roomdto.filename}"
+				<td><img src="http://localhost:8080/img/${roomdto.filename}"
 					width="100" height="100">
 				<td>이름 : </td>
 				<td>${roomdto.name}</td>
@@ -111,3 +115,4 @@
 <div align="center">
 	<a href="hotelList.hotel">목록으로</a>
 </div>
+<%@ include file="../bottom.jsp"%>

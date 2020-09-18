@@ -10,7 +10,7 @@
 <mapper namespace="com.teamb.model.Comm">
 
 <insert  id = "createRoom" parameterType="ChatRoomDTO">
-insert into ChatRoom values(chatroom_seq.nextval,#{msgSender},#{msgReceiver},#{roomName})
+insert into ChatRoom values(chatroom_seq.nextval,#{msgSender},#{msgReceiver},#{Sname},#{Rname}})
 </insert>
 
 <select id ="isRoom" parameterType="ChatRoomDTO" resultType = "ChatRoomDTO">
@@ -35,6 +35,13 @@ or  msgSender = #{msgReceiver} and msgReceiver = #{msgSender}
 select comm_profilename from comm_member WHERE comm_memberNum = #{msgReceiver}
 </select>
 
+<update id="updateSname" parameterType="java.util.Map">
+		update ChatRoom set Sname=#{Sname} where msgSender = #{msgSender}
+</update>
+
+<update id="updateRname" parameterType="java.util.Map">
+		update ChatRoom set Rname=#{Sname} where msgReceiver = #{msgSender}
+</update>
 
 <!-- 메세지 -->
 

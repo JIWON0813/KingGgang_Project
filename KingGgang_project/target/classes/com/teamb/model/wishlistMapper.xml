@@ -27,7 +27,7 @@
 		</select>
 		
 		<select id="getwishNo" parameterType="WishlistDTO" resultType="WishlistDTO">
-		select * from wishlist where m_no = #{m_no} and type = #{type}
+			select * from wishlist where m_no = #{m_no} and type = #{type}
 		</select>
 		
 		</mapper>
