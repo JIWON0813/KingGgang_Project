@@ -69,7 +69,7 @@
 						<c:if test="${mbId != null }">
 							<li>
 								<c:if test="${profilename == null }">
-								<img src="http://192.168.0.184:8080/img/default.jpg" width="25" height="25">	
+								<img src="${pageContext.request.contextPath}/resources/img/default.jpg" width="25" height="25">	
 								</c:if>
 								<c:if test="${profilename != null }">		
 								<img src="http://192.168.0.184:8080/img/${profilename}" width="25" height="25">
@@ -113,7 +113,6 @@
 								<li><a class="nav-link" href="firstPage.rentcar">렌트카 예약</a></li>
 								<li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
 								<li><a class="nav-link" href="list.notice">고객지원</a></li> <!-- 문의랑 공지사항 같이 넣기 -->
-								<li><a class="nav-link" href="main.admin">관리자 홈</a>
 							</ul>
 						</div>
 					</div>

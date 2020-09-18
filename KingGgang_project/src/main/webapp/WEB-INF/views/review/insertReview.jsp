@@ -37,10 +37,10 @@
 			<tr>
 			<c:choose>
 				<c:when test="${type==1 }">
-					<td align="center" colspan="2">호텔 후기</td>
+					<td align="center" colspan="2">호텔 후기&nbsp;&nbsp;&nbsp;${r_name }</td>
 				</c:when>
 				<c:otherwise>
-					<td align="center" colspan="2">렌트카 후기</td>
+					<td align="center" colspan="2">렌트카 후기&nbsp;&nbsp;&nbsp;${r_name }</td>
 				</c:otherwise>
 			</c:choose>
 			</tr>
@@ -50,7 +50,17 @@
 			</tr>
 			<tr align="center">
 				<th>내 용</th>
-				<td align="left"><textarea name="content" rows="10" cols="60"></textarea></td>
+				<td align="left"><textarea name="content" rows="10" cols="60" maxlength="2000"></textarea></td>
+			</tr>
+			<tr align="center">
+				<th>만족도</th>
+				<td align="left">
+				<input type="radio" name="star" value="1"><font color="#ff880e">★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="star" value="2"><font color="#ff880e">★★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="star" value="3"><font color="#ff880e">★★★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="star" value="4"><font color="#ff880e">★★★★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="star" value="5" checked><font color="#ff880e">★★★★★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -58,7 +68,6 @@
 					<input type="reset" value="다시작성">
 					<input type="button" value="목록보기" onclick="window.location='listReview.re'">
 					<input type="hidden" name="type" value="${type }">
-					<input type="hidden" name="t_id" value="${t_id }">
 					<input type="hidden" name="name" value="${r_name }">
 					<input type="hidden" name="filename" value="${filename }">
 				</td>

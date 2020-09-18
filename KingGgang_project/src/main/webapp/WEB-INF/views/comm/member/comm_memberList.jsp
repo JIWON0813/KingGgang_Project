@@ -36,10 +36,10 @@
 			</c:if>				
 		<c:forEach var="dto" items="${comm_memberList }">
 		<div class="col-md-3 col-sm-6 col-xs-12">
-			<c:if test="${dto.comm_profilename  == null}">
+			<c:if test="${dto.comm_profilename  == 'basic.jpg'}">
 				<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200">
 			</c:if>
-			<c:if test="${dto.comm_profilename  != null}">
+			<c:if test="${dto.comm_profilename  != 'basic.jpg'}">
 			 	<img src="http://192.168.0.184:8080/img/${dto.comm_profilename}" width="200" height="200">
 			</c:if>
 				<p><font size=5>${dto.comm_name}(${dto.comm_nickname})</font></p>
@@ -101,7 +101,7 @@ height:200;
                     		 						"<p>"+data[i].birth+"</p><p>"+data[i].intro+"</p>"+
                     		 						"<p><a style='color: blue' href='comm_friend_insert.do?login_comm_memberNum="+data[i].login+
                     		 						"&comm_memberNum="+data[i].num+"'>친구추가</a> | "+
-                    		 						"<a style='color: red' href='' onclick='window.open('room?comm_memberNum="+data[i].num+"&comm_nickname="+data[i].nickname+"','_blank', 'width=600 height=600')'>채팅하기</a></p></div>");
+                    		 						"<a style='color: red' href='' onclick=\"window.open('room?comm_memberNum="+data[i].num+"&comm_nickname="+data[i].nickname+"','_blank', 'width=600 height=600')\">채팅하기</a></p></div>");
              }
                 
              },

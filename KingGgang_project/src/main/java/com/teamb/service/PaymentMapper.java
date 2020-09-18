@@ -54,10 +54,6 @@ public class PaymentMapper {
 		return sqlSession.selectOne("getPaymentNo",no);
 	}
 	
-	public PaylistDTO getmyPaylist(PaymentDTO ptdto) {
-		return sqlSession.selectOne("getMyPaylist",ptdto);
-	}
-	
 	public int getpayCount(){
 		int count = sqlSession.selectOne("getpayCount");
 			return count;
@@ -71,6 +67,9 @@ public class PaymentMapper {
 		return sqlSession.selectList("adminList");
 	}
 	
+	public List<PaymentDTO> getmyPaylist(int memberNum) {
+		return sqlSession.selectList("mypayList",memberNum);
+	}
 }	
 	
 	

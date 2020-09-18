@@ -13,8 +13,14 @@ public class ReviewDTO {
 	private String m_id;
 	private String regdate;
 	private int readcount;
+	private int star;
 	
-	
+	public int getStar() {
+		return star;
+	}
+	public void setStar(int star) {
+		this.star = star;
+	}
 	public String getName() {
 		return name;
 	}

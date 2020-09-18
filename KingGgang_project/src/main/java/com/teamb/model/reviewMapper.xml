@@ -12,7 +12,7 @@
 		select count(*) from notice
 	</select>
 	<insert id="insertReview" parameterType="ReviewDTO">
-		insert into review values(re_num.nextval,#{type},#{t_id},#{name},#{filename},#{subject},#{content},#{m_id},sysdate)
+		insert into review values(re_num.nextval,#{type},#{t_id},#{name},#{filename},#{subject},#{content},#{m_id},sysdate,#{star})
 	</insert>
 	<delete id="deleteReview" parameterType="ReviewDTO">
 		delete from review where num = #{num}
@@ -21,7 +21,7 @@
 		select * from review where num = #{num}
 	</select>
 	<update id="updateReview" parameterType="ReviewDTO">
-		update review set subject=#{subject},content=#{content} where num=#{num}
+		update review set subject=#{subject},content=#{content},star=#{star} where num=#{num}
 	</update>
 </mapper>
 

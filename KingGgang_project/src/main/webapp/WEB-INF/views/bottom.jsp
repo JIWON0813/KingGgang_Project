@@ -59,9 +59,9 @@
                                 <div class="footer_blog full white_fonts">
                              <h3>Contact us</h3>
                              <ul class="full">
-                               <li><img src=""><span>London 145<br>United Kingdom</span></li>
-                               <li><img src=""><span>demo@gmail.com</span></li>
-                               <li><img src=""><span>+12586954775</span></li>
+                               <li><a href="list.notice"><span>공지사항</span></a></li>
+                               <li><a href="Q_list.board"><span>Q&A</span></a></li>
+                               <li><a href="listReview.re"><span>Review</span></a></li>
                              </ul>
                          </div>
                             </div>

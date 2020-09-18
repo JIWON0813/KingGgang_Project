@@ -40,11 +40,9 @@ a.join_bt2:focus {
                         <table> 
                             <tbody>
                             <tr>
-                            <c:if test = "${empty Phlist}">
-                            	<td>호텔 결제 내역이 없습니다.</td>
-                            </tr>
-                            </c:if>
-             				<c:forEach var="dto" items="${Phlist}" varStatus="status">
+                            <c:if test = "${check1 ==1}">
+                            
+             				<c:forEach var="dto" items="${plist}" varStatus="status">
                                 <td>
                                 <div>
             					<div>
@@ -55,35 +53,35 @@ a.join_bt2:focus {
                             	<!-- 사진을 누르면 해당 품목의 메인화면으로 a -->
                             	<tr>
                             		<td>호텔 이름</td>
-                               		<td><span>${dto.h_name}</span></td>
+                               		<td><span>${dto.p_name}</span></td>
                                 </tr>
                                 <tr>
                                 	<td>숙 소</td>
-                                    <td><span>${dto.h_category}</span></td>
+                                    <td><span>${dto.type}</span></td>
                                 </tr>
                                  <tr>
                                  	<td>숙소 연락처</td>
-                                    <td><span>${dto.h_hp}</span></td>
+                                    <td><span>${dto.hp}</span></td>
                                 </tr>
                                  <tr>
                                  	<td>예약 날짜</td>
-                                    <td><span>${dto.startdate}
-                                    			~ ${dto.startdate}</span></td>
+                                    <td><span>${dto.startDate}
+                                    			~ ${dto.endDate}</span></td>
                                 </tr>
                                 <tr>
                                 	<td>가 격</td>
-                                    <td><span>${dto.p_price}</span></td>
+                                    <td><span>${dto.price}</span></td>
                                 </tr>
                                 <tr>
                                 	<td>결제한 날</td>
-                                    <td><span>${dto.p_paydate}</span></td>
+                                    <td><span>${dto.payDate}</span></td>
                                 </tr>
                                  
                             </tbody>
                         </table>
                         <!-- 이용날짜와 현재 날짜 비교 해서 지났으면 생기도록 -->
                     <div>
-                        <a class="join_bt2" style="display: inline-block; margin-left:30px;" href="/">이용자 후기 작성하기</a>
+                        <a class="join_bt2" style="display: inline-block; margin-left:30px;" href="insertReview.re?type=1&name=${dto.p_name}&filename=${dto.filename}">이용자 후기 작성하기</a>
                     </div>
                </div> <!-- form_txtInput E -->
             </div><!-- content E-->
@@ -100,6 +98,7 @@ a.join_bt2:focus {
                                	</c:choose>
                                	
                      </c:forEach>
+                     </c:if>
                         </tr>    
                          </tbody>
                         </table>
@@ -112,11 +111,9 @@ a.join_bt2:focus {
                         <table>
                             <tbody>
                             <tr>
-                            <c:if test = "${empty Prlist}">
-                            	<td>등록된 관심 상품이 없습니다.</td>
-                            </tr>
-                            </c:if>
-             				<c:forEach var="dto" items="${Prlist}" varStatus="status">
+                            <c:if test = "${check1 == 2}">
+                            
+             				<c:forEach var="dto" items="${plist}" varStatus="status">
                                 <td>
                                 <div align="center">
                                 <br>
@@ -126,28 +123,28 @@ a.join_bt2:focus {
                             	<!-- 사진을 누르면 해당 품목의 메인화면으로 a -->
                             	<tr>
                             	<td>렌트카 이름</td>
-                                <td><span>${dto.r_name}</span></td>
+                                <td><span>${dto.p_name}</span></td>
                                 </tr>
                                  <tr>
-                                 <td>렌트카 회사</td>
-                                    <td><span>${dto.r_company}</span></td>
+                                 <td>렌트카 회사 전화번호</td>
+                                    <td><span>${dto.hp}</span></td>
                                 </tr>
                                  <tr>
                                  	<td>차 종</td>
-                                    <td><span>${dto.r_type}</span></td>
+                                    <td><span>${dto.type}</span></td>
                                 </tr>
                                 <tr>
                                 	<td>예약날짜</td>
-                                    <td><span>${dto.receiptday}<br>
-                                    			 ~ ${dto.returnday}</span></td>
+                                    <td><span>${dto.startDate}<br>
+                                    			 ~ ${dto.endDate}</span></td>
                                 </tr>
                                 <tr>
                                 	<td>가 격</td>
-                                    <td><span>${dto.p_price}</span></td>
+                                    <td><span>${dto.price}</span></td>
                                 </tr>
                                 <tr>
                                 	<td>결제날</td>
-                                    <td><span>${dto.p_paydate}</span></td>
+                                    <td><span>${dto.payDate}</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -156,7 +153,7 @@ a.join_bt2:focus {
                         </div>
                     <!-- 이용날짜와 현재 날짜 비교 해서 지났으면 생기도록 -->
                     <div>
-                        <a class="join_bt2" style="display: inline-block; margin-left:30px;" href="/">이용자 후기 작성하기</a>
+                        <a class="join_bt2" style="display: inline-block; margin-left:30px;" href="insertReview.re?type=2&name=${dto.p_name}&filename=${dto.filename}">이용자 후기 작성하기</a>
                     </div>
                                  	</td>
                                 <c:choose>
@@ -169,6 +166,7 @@ a.join_bt2:focus {
                                	</c:choose>
                                	
                      </c:forEach>
+                     </c:if>
 						</tr>
                          </tbody>
                         </table>
@@ -178,9 +176,9 @@ a.join_bt2:focus {
                     <div align="center">
                         <a class="join_bt" style="display: inline-block; margin-left:30px;" href="main.my">마이페이지</a>
                     </div>
-               </div> <!— form_txtInput E —>
-            </div><!— content E—>
-        </div> <!— container E —>
+               </div> <!-- form_txtInput E -->
+            </div><!-- content E-->
+        </div> <!-- container E -->
         </div>
 							</div>
 						</div>

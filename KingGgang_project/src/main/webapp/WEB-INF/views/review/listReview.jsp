@@ -7,9 +7,14 @@
 <script>
  function cont(num){
 	 var con = document.getElementById("content"+num);
+	 var reviewdown = document.getElementById("reviewdown"+num);
+	 var reviewup = document.getElementById("reviewup"+num);
 	 if(con.style.display == 'none'){
+		 reviewdown.style.display = 'none';
+		 reviewup.style.display = '';
 		 con.style.display = '';
 	 }else{
+		 reviewdown.style.display = '';
 		 con.style.display = 'none';
 	 }
  } 
@@ -24,14 +29,14 @@
 </script>
 <div class="section layout_padding"></div>
 <div class="container" align="center">
-	<h3 align="center">후기게시판</h3>
+	<h3 align="center">Review</h3>
 	<br>
 	<table class="table table-striped">
 		<thead>
 		<tr bgcolor="#ff880e">
 			<th width="3%">no</th>
 			<th>이미지</th>
-			<th width="50%">제목</th>
+			<th width="50%" colspan="2">제목</th>
 			<th width="20%">작성일</th>
 			<th width="10%">ID</th>
 		</tr> 
@@ -56,7 +61,8 @@
 				<img src="http://192.168.0.184:8080/img/${dto.filename}" width="150" height="150">
 			</td>
 			<td>	
-				<b>${dto.subject }</b><br>
+				<b>&nbsp;&nbsp;&nbsp;&nbsp;${dto.subject }</b>
+				<br>
 				<c:if test="${dto.type==1 }">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>▶호텔◀</b><br>
 				</c:if>
@@ -65,7 +71,31 @@
 				</c:if>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>${dto.name }</b><br>				
 				<br>
-				<a href="javascript:cont('${dto.num }')">리뷰 보기 </a>		
+				<a href="javascript:cont('${dto.num }')" id="reviewdown${dto.num}" style="display:'';font-size:15px;color:gray;text-valign:bottom;">더 보기.. </a>	
+			</td>
+			<td width="5%">
+				<c:choose>
+				<c:when test="${dto.star==1 }">
+				<div style="text-align:right;color:#ff880e;">★☆☆☆☆</div>
+				<div style="text-align:right;color:gray;font-size:10px;">별로에요</div>	
+				</c:when>
+				<c:when test="${dto.star==2 }">
+				<div style="text-align:right;color:#ff880e;">★★☆☆☆</div>
+				<div style="text-align:right;color:gray;font-size:10px;">그냥 그래요</div>
+				</c:when>
+				<c:when test="${dto.star==3 }">
+				<div style="text-align:right;color:#ff880e;">★★★☆☆</div>
+				<div style="text-align:right;color:gray;font-size:10px;">보통이에요</div>
+				</c:when>
+				<c:when test="${dto.star==4 }">
+				<div style="text-align:right;color:#ff880e;">★★★★☆</div>
+				<div style="text-align:right;color:gray;font-size:10px;">좋아요</div>
+				</c:when>
+				<c:otherwise>
+				<div style="text-align:right;color:#ff880e;">★★★★★</div>
+				<div style="text-align:right;color:gray;font-size:10px;">아주 좋아요</div>
+				</c:otherwise>
+				</c:choose>
 			</td>
 			<td>${dto.regdate }</td>
 			<td>
@@ -79,8 +109,9 @@
 		</tr>		
 		<tr id="content${dto.num}" style="display:none;" align="center" height="150">
 			<td colspan="2" bgcolor="white"></td>
-			<td align="left">${dto.content }</td>
-			<td></td>
+			<td colspan="2" align="left" style="position:relative;">&nbsp;&nbsp;&nbsp;&nbsp;${dto.content }
+			<a href="javascript:cont('${dto.num }')" id="reviewup${dto.num}" style="display:none;font-size:15px;color:gray;position:absolute;left:30px;bottom:10px;">접기▲</a>
+			</td>
 		</tr>
 	</c:forEach>
 	</tbody>

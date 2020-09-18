@@ -454,27 +454,29 @@ public class CommBoardController {
 		return "message";
 	}
 	
-	@RequestMapping(value = "/reply_deletePro.do")
-	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum, String rpasswd) {
-		int res = replyMapper.deleteReply(replyNum,rpasswd);
-		
-		boolean isPasswd = replyMapper.isPassword(replyNum, rpasswd);
-		
-		String msg = null, url = null;
-		if (res > 0) {
-			msg = "댓글삭제성공";
-			url = "comm_otherContent.do?boardNum=" + boardNum;
-		} else {
-			msg = "댓글삭제실패!!";
-			url = "comm_otherContent.do?boardNum=" + boardNum;
-		}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		req.setAttribute("replyNum", replyNum);
-		req.setAttribute("boardNum", boardNum);
-
-		return "message";
-	}
+	@RequestMapping(value = "/reply_deleteForm.do")
+	   public String deleteForm() {
+	      return "comm/board/comm_replydeleteForm";
+	   }
+	   
+	   @RequestMapping(value = "/reply_deletePro.do")
+	   public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, @RequestParam int boardNum, String rpasswd) {
+	      
+	      int res = replyMapper.deleteReply(replyNum,rpasswd);
+	     
+	      String msg = null, url = null;
+	      if (res > 0) {
+	         msg = "댓글삭제성공";
+	         url = "comm_otherContent.do?boardNum=" + boardNum;
+	      } else {
+	         msg = "댓글삭제실패!!";
+	         url = "comm_otherContent.do?boardNum=" + boardNum;
+	      }
+	      req.setAttribute("msg", msg);
+	      req.setAttribute("url", url);
+	      
+	      return "message";
+	   }
 
 	// 여진
 	@RequestMapping("/comm_otherPage.do")
