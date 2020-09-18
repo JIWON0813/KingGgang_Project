@@ -43,8 +43,10 @@ function wishlist() {
 	</style>
 <%@ include file="../top.jsp"%>
 <h1 align="center">숙소 상세 정보</h1>
+
 <div class="session layout_padding" align="center">
-	<table width="1200" border="1">
+	<table width="1200" border="1" style="text-align : center;">
+
 		<tr>
 			<td width="15%"><img
 				src="http://192.168.0.184:8080/img/${dto.filename}" width="auto"
@@ -94,7 +96,7 @@ function wishlist() {
 </div>
 <div align="center">
 <p>방설명</p>
-<table width="1200">
+<table style="width : 800px ;">
 <tr>
 <td>
 ${dto.content}
@@ -102,9 +104,10 @@ ${dto.content}
 </tr>
 </table>
 </div>
+<br><br><br>
 <!-- 여기서부터 room -->
 <div align="center">
-<table border="1" width="600">
+<table width="600" style="font-size : 17px ; text-align : center;">
 	<c:if test="${empty roomList}">
 		<tr>
 			<td colspan="6" align="center">등록된 방이 없습니다.
@@ -115,12 +118,18 @@ ${dto.content}
 		<h3 align="center">방 목록</h3>
 		<c:forEach var="roomdto" items="${roomList}">
 			<tr>
-				<td width="auto"><img src="http://192.168.0.184:8080/img/${roomdto.filename}" width="150" height="150">
+				<td rowspan="2" width="auto"><img src="http://192.168.0.184:8080/img/${roomdto.filename}" width="150" height="150">
 				<td width="10%">이름</td>
 				<td width="15%">${roomdto.name}</td>
 				<td width="25%">최대수용인원</td>
 				<td width="10%">${roomdto.maxpersons}</td>
-				<td width="15%"><a href="room_book.hotel?id=${roomdto.id}">예약하기</a>
+				<td rowspan="2" width="15%"><a href="room_book.hotel?id=${roomdto.id}">예약하기</a>
+				</tr>
+				<tr>
+				<td width="10%">주중가</td>
+				<td width="15%">${roomdto.dayprice}</td>
+				<td width="25%">주말가</td>
+				<td width="10%">${roomdto.endprice}</td>				
 			</tr>
 		</c:forEach>
 	</c:if>

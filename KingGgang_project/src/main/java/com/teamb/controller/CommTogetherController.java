@@ -1,4 +1,4 @@
-package com.teamb.controller;
+ package com.teamb.controller;
 
 /*�씠	   由� : CommTogetherController.java
 媛�  諛�   �옄 : 理� �씤 �븘

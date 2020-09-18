@@ -111,7 +111,7 @@ button {
 				<c:forEach var="dto" items="${roomList}">
 					<tr>
 						<td class='num'>${dto.chatroom_id}</td>
-						<td class='room'>${dto.roomName}</td>
+						<td class='room'>${dto.sname}님과 ${dto.rname}님의 대화</td>
 						<td class='go'>
 							<button type='button'
 								onclick="location.href='moveChating?chatroom_id=${dto.chatroom_id}'">보내기</button>

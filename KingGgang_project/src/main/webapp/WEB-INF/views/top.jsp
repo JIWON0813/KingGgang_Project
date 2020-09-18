@@ -1,28 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>kingGgang top</title>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!-- Mobile Metas -->
-<meta name="viewport"
-	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<!-- Site Metas -->
-<title>낑깡</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
 
-<!-- Site Icons -->
-<link rel="shortcut icon" href="#" type="image/x-icon" />
-<link rel="apple-touch-icon" href="#" />
+    <!-- Site Metas -->
+      <title>낑깡</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -40,26 +37,18 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/main/css/custom.css" />
 
+
 </head>
 
-<body id="home" data-spy="scroll" data-target="#navbar-wd"
-	data-offset="98">
 
-	<!-- LOADER -->
-	<div id="preloader">
-		<div class="loader">
-			<img
-				src="${pageContext.request.contextPath}/resources/main/images/loader.gif"
-				alt="#" />
-		</div>
-	</div>
-	<!-- end loader -->
-	<!-- END LOADER -->
+<body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
 
-	<!-- Start header -->
+
+
+    
+<!-- Start header -->
 	<header class="top-header">
 	<div class="header_top">
-
 		<div class="container">
 			<div class="row">
 				<div class="logo_section">
@@ -78,8 +67,16 @@
 									alt="#" />로그인</a></li>
 						</c:if>
 						<c:if test="${mbId != null }">
-							<li>${name}님<a href="logout.log"><img
+							<li>
+								<c:if test="${profilename == null }">
+								<img src="http://192.168.0.184:8080/img/default.jpg" width="25" height="25">	
+								</c:if>
+								<c:if test="${profilename != null }">		
+								<img src="http://192.168.0.184:8080/img/${profilename}" width="25" height="25">
+								</c:if>
+									${name}님&nbsp;&nbsp;&nbsp;&nbsp;<a href="logout.log"><img
 									src="${pageContext.request.contextPath}/resources/main/images/orange.png"
+
 									alt="#" />로그아웃</a></li>
 						<c:if test="${mbId != 'admin' }">
 									<li><a class="join_bt" href="main.my">마이페이지</a></li>
@@ -96,10 +93,6 @@
 				</div>
 			</div>
 		</div>
-    
-     <!-- Start header -->
-    <header class="top-header">
-	</div>
 	<div class="header_bottom">
 		<div class="container">
 			<div class="col-sm-12">
@@ -130,3 +123,4 @@
 		</div>
 	<!-- </div> -->
 	</header>
+

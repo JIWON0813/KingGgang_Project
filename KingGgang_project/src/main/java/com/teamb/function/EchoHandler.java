@@ -47,18 +47,10 @@ public class EchoHandler extends TextWebSocketHandler {
 
 	@Override
 	   protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		System.out.println("메세지 수신!!");
-		System.out.println(message.getPayload());
-		   /*ChatMsgDTO msg =  ChatMsgDTO.convertMessage(message.getPayload());
-	      System.out.println("1 : " + msg.toString());
-	      JSONObject obj = new JSONObject(message.getPayload());*/
 		
 		ChatMsgDTO msg = ChatMsgDTO.convertMessage(message.getPayload());
-		System.out.println("1 : " + msg.toString());
 	     
-		//db에 메세지 저장
 		chatMapper.insertMessage(msg);
-	     System.out.println("메세지 등록 성공!");
  
 		JSONObject obj = new JSONObject(message.getPayload());
 		
@@ -90,10 +82,6 @@ public class EchoHandler extends TextWebSocketHandler {
 			}
 		}
 	
-		/*msg.setChatroom_id(setroom.getChatroom_id());
-      	chatMapper.insertMessage(msg);
-      	System.out.println("메세지 등록 성공!");
-      	*/
 
 	}
 	      
@@ -112,9 +100,7 @@ public class EchoHandler extends TextWebSocketHandler {
 		connectedUsers.add(session);
 		boolean flag = false;
 		String url = session.getUri().toString();
-		System.out.println(url);
 		String chatroom_id = url.split("/?/?/?/?/?/?/?/")[7];
-		System.out.println(chatroom_id);
 		
 		int idx = rls.size(); //방의 사이즈를 조사한다.
 		if(rls.size() > 0) {
@@ -147,7 +133,6 @@ public class EchoHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println("연결종료됨");
 		//소켓 종료
 		if(rls.size() > 0) { //소켓이 종료되면 해당 세션값들을 찾아서 지운다.
 			for(int i=0; i<rls.size(); i++) {

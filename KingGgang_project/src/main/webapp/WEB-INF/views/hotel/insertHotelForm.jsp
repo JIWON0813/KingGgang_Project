@@ -6,10 +6,11 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 등록 폼
  -->
-<div align="center">
+
+ <div align="center">
 	<form name="f" action="insertHotel.hotel" method="post" enctype="multipart/form-data">
 		<table border="1" width="1000">
-			<tr>
+			<tr bgcolor="yellow">
 				<td align="center" colspan="2">숙소 등록하기</td>
 			</tr>
 			<tr>

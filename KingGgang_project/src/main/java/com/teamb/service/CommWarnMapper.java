@@ -1,9 +1,6 @@
 package com.teamb.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +14,11 @@ public class CommWarnMapper {
 	private SqlSession sqlSession;
 	
 	public int warnPro(CommWarnDTO dto) {
-		int res = sqlSession.insert("warnPro", dto);
-		return res;
+		return sqlSession.insert("warnPro", dto);
 	}
 	
-	public List<CommWarnDTO> listWarn(int comm_memberNum) {
-		return sqlSession.selectList("listWarn",comm_memberNum);
+	public List<CommWarnDTO> listWarn() {
+		return sqlSession.selectList("listWarn");
 	}
 	
 	public int deleteWarn(int warnNum) {	

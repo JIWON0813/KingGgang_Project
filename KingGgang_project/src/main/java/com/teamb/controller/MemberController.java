@@ -25,7 +25,6 @@ import com.teamb.service.MemberMapper;
 
 @Controller
 public class MemberController {
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
 	private MemberMapper memberMapper;
@@ -180,7 +179,7 @@ public class MemberController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "회원가입 완료.";
-			url = "home.do";
+			url = "login.log";
 		}else{
 			msg = "회원가입 실패.";
 			url = "home.do";

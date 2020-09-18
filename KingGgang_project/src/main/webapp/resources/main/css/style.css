@@ -350,7 +350,7 @@ a:hover,a:focus {
 }
 
 .site_information ul {
-    float: right;
+    float: left;
     width: 95%;
     padding: 21px 0;
 }
@@ -366,24 +366,8 @@ a.join_bt {
     font-weight: 300;
 }
 
-a.join_bt2 {
-    background: #ff880e;
-    width: 180px;
-    text-align: center;
-    height: 38px;
-    line-height: 38px;
-    color: #fff;
-    font-weight: 300;
-}
-
 a.join_bt:hover,
 a.join_bt:focus {
-	background: #222;
-	color: #fff !important;
-}
-
-a.join_bt2:hover,
-a.join_bt2:focus {
 	background: #222;
 	color: #fff !important;
 }
@@ -407,7 +391,7 @@ a.join_bt2:focus {
 }
 
 .site_information ul li img {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .logo_section {
@@ -480,7 +464,7 @@ a.navbar-brand {
 .top-header .navbar .navbar-collapse ul li {
 	margin: 0 2px;
 }
-
+/*
 .top-header.fixed-menu {
 	width: 100%;
 	position: fixed;
@@ -494,7 +478,7 @@ a.navbar-brand {
 	background: #fff;
 	z-index: 20;
 }
-
+*/
 .header_bottom {
     float: left;
     width: 100%;
@@ -1824,7 +1808,6 @@ footer.footer-box h3 {
 footer.footer-box h3 {
     font-size: 30px;
     border-bottom: solid #d66c0b 4px;
-    border-width: 30%;
     margin-bottom: 25px;
 }
 

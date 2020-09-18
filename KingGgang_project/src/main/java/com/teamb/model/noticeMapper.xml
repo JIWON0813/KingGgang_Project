@@ -13,7 +13,7 @@
 	</select>
 	
 	<insert id="insertNotice" parameterType="NoticeDTO">
-		insert into notice values (notice_no.nextval,#{subject},sysdate,0,#{content})  
+		insert into notice values (notice_no.nextval,#{subject},sysdate,0,#{content},#{name})  
 	</insert>
 	
 	<update id="N_plusReadcount" parameterType="int">
@@ -30,7 +30,7 @@
 	</delete>
 	
 	<update id="updateNotice" parameterType="NoticeDTO">
-		update notice set subject=#{subject}, content=#{content}
+		update notice set subject=#{subject}, content=#{content}, name=#{name}
 		where no = #{no}
 	</update>
 </mapper>

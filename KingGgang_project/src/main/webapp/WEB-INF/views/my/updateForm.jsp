@@ -31,7 +31,7 @@
 <body>
 <form name="e" action="updatePro.my" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="id" value="${getMember.id}">
-	    
+	    <div class="wrap wd668">
             <div class="container">
                 <div class="form_txtInput">
                     <h2 class="sub_tit_txt">회원수정 페이지</h2>
@@ -68,7 +68,7 @@
                                 <tr>
                                     <th><font align="center">프로필 사진</font></th>
                                     <td>
-                                    <img src="${upLoadPath}/${getMember.profile_name}" width="30" height="30">
+                                    <img src="http://localhost:8080/img/${getMember.profile_name}" width="30" height="30">
                                     <input type="file" name="filename">
                                     <input type="hidden" name="filename2" value="${getMember.profile_name}">
                                     <input type="hidden" name="filesize2" value="${getMember.profile_size}">
