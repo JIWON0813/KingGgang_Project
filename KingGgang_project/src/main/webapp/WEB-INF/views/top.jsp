@@ -76,53 +76,51 @@
 								</c:if>
 									${name}님&nbsp;&nbsp;&nbsp;&nbsp;<a href="logout.log"><img
 									src="${pageContext.request.contextPath}/resources/main/images/orange.png"
-									alt="#" />로그아웃</a>
-							</li>
-							<li>
-								<a class="join_bt" href="main.my">마이페이지</a>
-							</li>
+
+									alt="#" />로그아웃</a></li>
+						<c:if test="${mbId != 'admin' }">
+									<li><a class="join_bt" href="main.my">마이페이지</a></li>
 						</c:if>
-						<c:if test="${mbId == null }">			
+						</c:if>
+						<c:if test="${mbId == null }">
 						<li><a class="join_bt" href="insertMember.mem?join=1">Join
 								us</a></li>
 						</c:if>
 						<c:if test="${mbId == 'admin' }">
-							<li><a href="main.admin">관리자모드</a></li>
+							<li><a class="join_bt" href="main.admin">관리자모드</a></li>
 						</c:if>
 					</ul>
 				</div>
 			</div>
 		</div>
-
-        <div class="header_bottom">
-          <div class="container">
-            <div class="col-sm-12">
-                <div class="menu_orange_section" style="background: #ff880e;">
-                   <nav class="navbar header-nav navbar-expand-lg"> 
-                     <div class="menu_section">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
-                    <ul class="navbar-nav">
-                        <li><a class="nav-link active" href="home.do">Home</a></li>
-                        <li><a class="nav-link" href="main.hotel">호텔</a></li>
-                        <li><a class="nav-link" href="firstPage.rentcar">렌트카</a></li>
-                        <li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
-                        <li><a class="nav-link" href="list.notice">공지사항</a></li>
-                        <%-- <c:if test="${mbId == 'admin' }"> --%>
-                        <li><a class="nav-link" href="main.admin">관리자모드</a></li>
-                        <%-- </c:if> --%>
-                    </ul>
-                </div>
-                     </div>
-                 </nav>
-                </div>
-            </div>
-          </div>
-        </div>       
-    </header>
-    
+	<div class="header_bottom">
+		<div class="container">
+			<div class="col-sm-12">
+				<div class="menu_orange_section" style="background: #ff880e;">
+					<nav class="navbar header-nav navbar-expand-lg">
+					<!-- <div class="menu_section"> -->
+						<button class="navbar-toggler" type="button"
+							data-toggle="collapse" data-target="#navbar-wd"
+							aria-controls="navbar-wd" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span></span> <span></span> <span></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-end"
+							id="navbar-wd">
+							<ul class="navbar-nav">
+								<li><a class="nav-link" href="home.do">Home</a></li>
+								<li><a class="nav-link" href="main.hotel">호텔 예약</a></li>
+								<li><a class="nav-link" href="firstPage.rentcar">렌트카 예약</a></li>
+								<li><a class="nav-link" href="commhome.comm">커뮤니티</a></li>
+								<li><a class="nav-link" href="list.notice">고객지원</a></li> <!-- 문의랑 공지사항 같이 넣기 -->
+								<li><a class="nav-link" href="main.admin">관리자 홈</a>
+							</ul>
+						</div>
+					</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	<!-- </div> -->
+	</header>
 

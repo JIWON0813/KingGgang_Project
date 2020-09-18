@@ -58,8 +58,6 @@ public class MyController {
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
 	
-	private static final Logger logger = LoggerFactory.getLogger(MyController.class);
-	
 	@RequestMapping("/main.my")
 	public String mypageMain() {
 		

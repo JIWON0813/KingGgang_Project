@@ -34,10 +34,6 @@
                                 </tr>
                                 <tr><td></td></tr>
                                 <tr>
-                                    <th><a href="point.my">&nbsp&nbsp&nbsp&nbsp&nbsp쿠폰 포인트 확인</a></th>
-                                </tr>
-                                <tr><td></td></tr>
-                                <tr>
                                     <th><a href="list.wish">&nbsp&nbsp&nbsp&nbsp&nbsp관심리스트</a></th>
                                 </tr>
                                  <tr><td></td></tr>
