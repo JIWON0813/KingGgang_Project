@@ -6,7 +6,7 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 정보 수정 폼
  -->
- <%@ include file="../top.jsp"%>
+
  <div align="center">
 	<form name="f" action="updateHotel.hotel" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="no" value="${dto.no}" />
@@ -78,4 +78,3 @@
 		</table>
 	</form>
 </div>
-<%@ include file="../bottom.jsp"%>

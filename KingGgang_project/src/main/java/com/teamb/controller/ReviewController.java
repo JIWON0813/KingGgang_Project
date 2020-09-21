@@ -71,8 +71,8 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/insertReview.re")
-	public String insertReview(HttpServletRequest req,@RequestParam int type,@RequestParam int t_id,@RequestParam String name,@RequestParam String filename){
-		req.setAttribute("t_id", t_id);
+	public String insertReview(HttpServletRequest req,@RequestParam int type,@RequestParam String name,@RequestParam String filename){
+		
 		req.setAttribute("type", type);
 		req.setAttribute("r_name", name);
 		req.setAttribute("filename", filename);

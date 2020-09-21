@@ -22,12 +22,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.teamb.model.CommTogetherDTO;
 import com.teamb.model.Comm_MemberDTO;
 import com.teamb.service.CommTogetherMapper;
+import com.teamb.service.Comm_MemberMapper;
 
 @Controller
 public class CommTogetherController {
 	
 	@Autowired
 	private CommTogetherMapper togetherMapper;
+	
+	@Autowired
+	private Comm_MemberMapper comm_memberMapper;
 	
 	//인아
 	@RequestMapping(value = "/comm_togetherWF.do", method = RequestMethod.GET)
@@ -96,14 +100,26 @@ public class CommTogetherController {
 	}
 	
 	@RequestMapping(value = "/comm_tcontent.do", method = RequestMethod.GET)
-	public String tcontent(HttpServletRequest req, @RequestParam int togetherNum) {
+	   public String tcontent(HttpSession session, HttpServletRequest req, @RequestParam int togetherNum) {
+			String name = (String)session.getAttribute("mbId");
+		session.setAttribute("name", name);
 		
-		togetherMapper.plustReadcount(togetherNum);
-		CommTogetherDTO dto = togetherMapper.getTogether(togetherNum);
-		req.setAttribute("getTogether",dto);
-		
-		return "comm/board/comm_tcontent";
-	}
+	      Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
+	      int loginNum = 0;
+	      if (login != null) {
+	         loginNum = login.getComm_memberNum();
+	      }
+	      
+	      togetherMapper.plustReadcount(togetherNum);
+	      CommTogetherDTO dto = togetherMapper.getTogether(togetherNum);
+	      req.setAttribute("getTogether",dto);
+	      
+	      Comm_MemberDTO member = comm_memberMapper.comm_getMember(dto.getComm_memberNum());
+	      req.setAttribute("loginNum", loginNum);
+	      req.setAttribute("memberNum", member.getComm_memberNum());
+	      
+	      return "comm/board/comm_tcontent";
+	   }
 	
 	@RequestMapping(value = "/comm_tupdateForm.do", method = RequestMethod.GET)
 	public ModelAndView tupdateForm(@RequestParam int togetherNum) {
@@ -121,7 +137,7 @@ public class CommTogetherController {
 
 		if (res > 0) {
 			msg = "게시글 수정 성공";
-			url = "comm_tcontent.do";
+			url = "comm_tcontent.do?togetherNum="+togetherNum;
 		}else{
 			msg = "게시글 수정 실패";
 			url = "comm_tupdateForm.do";

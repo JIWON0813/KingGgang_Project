@@ -104,35 +104,38 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/member_search_ok.log")
-	public String searchMember_id(HttpServletRequest req) {
-		String mode = req.getParameter("mode");
-		String name = req.getParameter("name");
-		String email = req.getParameter("email");
-		String msg = null, url = null;
-		if (mode.equals("search_id")) {
-			if (loginMapper.searchMember_id(name, email) != null) {
-				msg = "회원님 아이디는 " + loginMapper.searchMember_id(name, email) + " 입니다.";
-			} else {
-				msg = "이름과 이메일을 확인해주세요.";
-			}
-			url = "login.log?id="+loginMapper.searchMember_id(name, email);
-			req.setAttribute("id", loginMapper.searchMember_id(name, email));
-		} else if (mode.equals("pw")) {
-			String id = req.getParameter("id");
-			if (loginMapper.searchMember_pw(name, email, id) != null) {
-				msg = "회원님 비밀번호는 " + loginMapper.searchMember_pw(name, email, id) + " 입니다.";
-			} else {
-				msg = "이름과 이메일, 아이디를 확인해 주세요.";
-			}
-			url = "login.log";
-		} else {
-			msg = "잘못 입력 하였습니다..";
-			url = "login.log";
-		}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
+	   public String searchMember_id(HttpServletRequest req) {
+	      String mode = req.getParameter("mode");
+	      String name = req.getParameter("name");
+	      String email = req.getParameter("email");
+	      String msg = null, url = null;
+	      if (mode.equals("search_id")) {
+	         if (loginMapper.searchMember_id(name, email) != null) {
+	            String sid = loginMapper.searchMember_id(name, email);
+	            msg = "회원님 아이디는 " + sid + " 입니다.";
+	            url = "login.log?searchid="+sid;
+	         } else {
+	            msg = "이름과 이메일을 확인해주세요.";
+	            url = "member_search.log?mode=search_id";
+	         }
+	      } else if (mode.equals("pw")) {
+	         String id = req.getParameter("id");
+	         if (loginMapper.searchMember_pw(name, email, id) != null) {
+	            String sid = loginMapper.searchMember_id(name, email);
+	            msg = "회원님 비밀번호는 " + loginMapper.searchMember_pw(name, email, id) + " 입니다.";
+	            url = "login.log?searchid="+sid;
+	         } else {
+	            msg = "이름과 이메일, 아이디를 확인해 주세요.";
+	            url = "member_search.log?mode=pw";
+	         }
+	      } else {
+	         msg = "잘못 입력 하였습니다..";
+	         url = "login.log";
+	      }
+	      req.setAttribute("msg", msg);
+	      req.setAttribute("url", url);
 
-		return "message";
+	      return "message";
 
-	}
+	   }
 }

@@ -6,7 +6,7 @@
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
 <div class="section layout_padding"></div>
 <div class="container" align="center">
-	<h3 align="center">공지사항</h3>
+	<h3 align="center">Notice</h3>
 	<br>
 	<table class="table table-hover table-sm">
 		<thead>

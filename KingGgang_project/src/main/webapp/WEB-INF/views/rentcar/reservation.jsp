@@ -214,7 +214,7 @@
  
   					<tr>
   					<th>사진</th>
-  					<td colspan="2"><img src="http://localhost:8080/img/${rentcar.filename}" style="width:400px; height:300px"></td>
+  					<td colspan="2"><img src="http://192.168.0.184:8080/img/${rentcar.filename}" style="width:400px; height:300px"></td>
   					</tr>
   				<tr>
   					<th>차량 이름</th>

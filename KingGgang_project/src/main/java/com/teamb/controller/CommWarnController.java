@@ -46,8 +46,8 @@ public class CommWarnController {
 		CommboardDTO bdto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", bdto);
 		
-		/*int comm_memberNum = mdto.getComm_memberNum();*/
 		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+		
 		dto.setComm_memberNum(comm_memberNum);
 		String wname = (String)session.getAttribute("comm_nickname");
 		dto.setWname(wname);

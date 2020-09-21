@@ -157,7 +157,7 @@
 		<th>
 			<hr>
 			<a href="content.rentcar?id=${dto.id}">
-			<img src="http://localhost:8080/img/${dto.filename}" width="100px" height="100px">
+			<img src="http://192.168.0.184:8080/img/${dto.filename}" width="100px" height="100px">
 			</a>
 		</th>
 		<td>

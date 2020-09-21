@@ -56,7 +56,7 @@
 		<h3 align="center">등록되어있는 방 목록</h3>
 		<c:forEach var="roomdto" items="${roomList}">
 			<tr>
-				<td><img src="http://localhost:8080/img/${roomdto.filename}"
+				<td><img src="http://192.168.0.184:8080/img/${roomdto.filename}"
 					width="100" height="100">
 				<td>이름 : </td>
 				<td>${roomdto.name}</td>
@@ -66,7 +66,7 @@
 				<td>${roomdto.dayprice}</td>
 				<td>주말가 : </td>
 				<td>${roomdto.endprice}</td>
-				<td><a href="updateroom.hotel?id=${roomdto.id}">수정</a> <a
+				<td><a href="updateRoom.hotel?id=${roomdto.id}">수정</a> <a
 					href="deleteRoom.hotel?id=${roomdto.id}">삭제</a></td>
 			</tr>
 		</c:forEach>

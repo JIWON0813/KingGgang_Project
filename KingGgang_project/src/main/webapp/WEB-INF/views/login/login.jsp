@@ -60,15 +60,15 @@
 		<form name="f" action="loginOk.log" method="post">
 			<table width="600" align="center" height="120">
 				<tr>
-					<td align="right" width="30%">아이디&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</td>
-					<td width="40%">
-							<c:if test="${empty param.id }">
-							<input type="text" name="id" placeholder="아이디를 입력하세요.">&nbsp;&nbsp;&nbsp;<input type="checkbox" name="useCookie">아이디저장<br>
-							</c:if>
-							<c:if test="${not empty param.id}">
-							<input type="text" name="id" value="${param.id}"><input type="checkbox" name="useCookie">아이디저장<br>
-							</c:if>
-				</tr>
+               <td align="right" width="30%">아이디&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</td>
+               <td width="40%">
+                     <c:if test="${empty param.searchid }">
+                     <input type="text" name="id" placeholder="아이디를 입력하세요.">&nbsp;&nbsp;&nbsp;<input type="checkbox" name="useCookie">아이디저장<br>
+                     </c:if>
+                     <c:if test="${not empty param.searchid}">
+                     <input type="text" name="id" value="${param.searchid}"><input type="checkbox" name="useCookie">아이디저장<br>
+                     </c:if>
+            </tr>
 				<tr>
 					<td align="right">비밀번호&nbsp;&nbsp;&nbsp;</td>
 					<td><input type="password" name="passwd" placeholder='비밀번호를 입력하세요.'>&nbsp;&nbsp;&nbsp;<input type="button" value="로그인" onclick="javascript:loginCheck()"></td>

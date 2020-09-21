@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/views/top.jsp"%>
+<%@ include file="/WEB-INF/views/admin/admintop.jsp"%>
 <br><br><br><br>	
 	<!--  
 	이	   름 : listInsu_Admin.jsp
@@ -58,7 +58,7 @@ function del(id){
 	<br>
 	<br>
 	<br>
-	<a href="#" onClick="history.back()">돌아가기</a>
+	<a href="main.admin">관리자 홈으로 돌아가기</a>
 	</div>
 </div>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>	
+<%@ include file="/WEB-INF/views/admin/adminbottom.jsp"%>	

@@ -26,9 +26,6 @@
 <div align="center">
 <form name="f" onsubmit="return check()">
 	<table width="800">
-		<td align="right"><a href="commadmin.comm">뒤로가기</a></td>
-	</table>
-	<table width="800">
 		<tr bgcolor="orange" align="center">
 			<th><font color=brown>번호</font></th>
 			<th><font color=brown>게시물번호</font></th>
@@ -54,6 +51,7 @@
 	</c:forEach>	
 	</table>
 	</form>
+	<br><br> <a href="main.admin">관리자 목록으로 가기</a>
 </div>	
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
