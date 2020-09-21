@@ -73,7 +73,7 @@ function del(id){
 	<br>
 	<br>
 	<br>
-	<a href="adminHome.do">관리자 홈으로 돌아가기</a>
+	<a href="#" onClick="history.back()">돌아가기</a>
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
