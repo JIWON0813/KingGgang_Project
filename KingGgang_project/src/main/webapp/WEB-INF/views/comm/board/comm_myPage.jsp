@@ -42,12 +42,14 @@
 	</tr> 
 	
 	<tr>
+		<c:if test="${loginNum == memberNum}">
 		<td>
 			<a class="join_bt" href="comm_writeForm.do" style="display: inline-block; margin-left:30px;">Write</a>
 		</td>
 		<td>
 			<a class="join_bt" href="comm_bookMark.do" style="display: inline-block; margin-left:30px;">BookMark</a>
 		</td>
+		</c:if>
 		<td>
 			<a class="join_bt" href="comm_friendAll.do?comm_memberNum=${memberNum}" style="display: inline-block; margin-left:30px;">친구(${comm_friendCount})</a>
 		</td>

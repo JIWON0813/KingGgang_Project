@@ -45,7 +45,7 @@
 			<c:if test="${mbId != 'admin' }">
 				<a href="Q_passck.board?num=${dto.num }&type=1">
 			</c:if>
-					비밀글 입니다<img src="http://192.168.0.184:8080-/img/lock.png" width="10" height="10">
+					비밀글 입니다<img src="http://192.168.0.184:8080/img/lock.png" width="10" height="10">
 				</a>
 		</c:if>
 		<c:if test="${dto.closed==1 }">

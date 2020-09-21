@@ -33,7 +33,9 @@
 			 		<a href="comm_otherPage.do?comm_memberNum=${dto.comm_memberNum}">
 						<p><font size=5>${dto.f_name }(${dto.f_comm_nickname })</font></p>
 					</a>
-						<p><a href="comm_deleteFriend.do?friendNum=${dto.friendNum}">친구삭제</a></p>
+				<c:if test="${login_comm_memberNum == comm_memberNum }">   
+                  <p><a href="comm_deleteFriend.do?friendNum=${dto.friendNum}">친구삭제</a></p>
+            	</c:if>      
 			</div>
 			</c:forEach>
 		</div>

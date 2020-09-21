@@ -95,6 +95,8 @@ public class Comm_FriendController {
 			dto2.setF_comm_nickname(mdto.getComm_nickname());
 		}
 		session.setAttribute("friendList", list);
+		req.setAttribute("login_comm_memberNum", login_comm_memberNum);
+	    req.setAttribute("comm_memberNum", comm_memberNum);
  
 
       return "comm/friend/friendAll";
