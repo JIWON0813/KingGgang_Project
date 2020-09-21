@@ -92,17 +92,13 @@ function wishlist() {
    		</button>
 		</td>
 		</tr>
+		<tr>
+		<td>방설명
+		</td>
+		<td colspan="5">${dto.content}
+		</td>
+		</tr>
 	</table>
-</div>
-<div align="center">
-<p>방설명</p>
-<table style="width : 800px ;">
-<tr>
-<td>
-${dto.content}
-</td>
-</tr>
-</table>
 </div>
 <br><br><br>
 <!-- 여기서부터 room -->

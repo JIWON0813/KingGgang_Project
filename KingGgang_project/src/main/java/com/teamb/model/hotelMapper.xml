@@ -85,8 +85,7 @@
 	</select>
 
 	<select id="getHotelRoom" parameterType="int" resultType="RoomDTO">
-		select
-		* from room where id = #{id}
+		select * from room where id = #{id}
 	</select>
 
 	

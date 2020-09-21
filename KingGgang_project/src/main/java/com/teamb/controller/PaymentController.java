@@ -96,7 +96,6 @@ public class PaymentController {
 		String msg = null, url=null;
 		if (res>0) {
 			int type =  dto.getType();
-			System.out.println(type);
 			if(type == 2) {
 				int res_id =  dto.getP_no();
 				rentcarMapper.changePstSuc(res_id);
