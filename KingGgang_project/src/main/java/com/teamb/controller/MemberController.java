@@ -31,11 +31,6 @@ public class MemberController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
-	@RequestMapping("/main.mem")
-	public String mainMember() {
-		return "admin/member/memberMain";
-	}
-
 	@RequestMapping("/memberList.mem")
 	public String memberList(HttpServletRequest req, MemberDTO dto) {
 		List<MemberDTO> list = memberMapper.listMember();

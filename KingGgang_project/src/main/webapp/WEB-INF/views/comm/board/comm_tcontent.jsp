@@ -61,6 +61,15 @@ background-color:orange;
    
       <tr>
          <td align="center" colspan="4" id="together">
+         <c:if test="${name == 'admin'}">
+				<input type="button" value="글수정"
+				onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="글삭제"
+				onclick="window.location='comm_deletePro.do?boardNum=${getBoard.boardNum}'">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="글목록" onclick="window.location='comm_myPage.do'">
+			</c:if>
          <c:if test="${loginNum == memberNum}">
             <input type="button" value="글수정"
             onclick="window.location='comm_tupdateForm.do?togetherNum=${getTogether.togetherNum}'">
@@ -71,6 +80,7 @@ background-color:orange;
             <input type="button" value="글목록" onclick="window.location='comm_togetherList.do'">
              </c:if>
           <c:if test="${loginNum != memberNum}">
+          	&nbsp;&nbsp;&nbsp;&nbsp;
              <input type="button" value="뒤로가기" onclick="history.back()">
           </c:if>
          </td>

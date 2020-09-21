@@ -101,7 +101,9 @@ public class CommTogetherController {
 	
 	@RequestMapping(value = "/comm_tcontent.do", method = RequestMethod.GET)
 	   public String tcontent(HttpSession session, HttpServletRequest req, @RequestParam int togetherNum) {
-	      
+			String name = (String)session.getAttribute("mbId");
+		session.setAttribute("name", name);
+		
 	      Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 	      int loginNum = 0;
 	      if (login != null) {
@@ -135,7 +137,7 @@ public class CommTogetherController {
 
 		if (res > 0) {
 			msg = "게시글 수정 성공";
-			url = "comm_tcontent.do";
+			url = "comm_tcontent.do?togetherNum="+togetherNum;
 		}else{
 			msg = "게시글 수정 실패";
 			url = "comm_tupdateForm.do";

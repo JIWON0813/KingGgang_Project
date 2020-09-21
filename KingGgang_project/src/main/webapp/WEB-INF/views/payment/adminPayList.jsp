@@ -1,11 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="../top.jsp"%>
 <!-- 
 	이	   름 : hotelList.jsp
 	개  발   자 : 김 지 원
 	설	   명 : 관리자모드 숙소목록페이지
  -->
+ <footer class="footer-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 white_fonts">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<div class="full">
+							<h3>결제목록</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
 <div class="section layout_padding"></div>
@@ -60,6 +76,7 @@
 			<input type="text" name="search" placeholder="검색어입력"> <input type="submit" value="검색">
 		</form>
 	</div>
+	<br><br>
 	<c:if test="${count>0}">
 		<c:if test="${startPage > pageBlock}">
 			[<a href="payList.admin?pageNum=${startPage-1}&search=${search}">이전</a>]		
@@ -71,5 +88,7 @@
 			[<a href="payList.admin?pageNum=${endPage+1}&search=${search}">다음</a>]
 		</c:if>
 	</c:if>
-	<br> <a href="main.admin">관리자 목록으로 가기</a>
+	<br><br> <a href="main.admin">관리자 목록으로 가기</a>
 </div>
+<div class="section layout_padding"></div>
+<%@ include file="../bottom.jsp"%>

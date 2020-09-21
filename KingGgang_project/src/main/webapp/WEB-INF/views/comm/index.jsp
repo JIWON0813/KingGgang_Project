@@ -215,7 +215,19 @@ function search(target){
           var checkWord = $("#word").val(); 
           if(checkWord.length > 0 && data.length > 0){
           for(var i=0; i<data.length; i++){
-                 $('#memberSearch').append("<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'><img src='http://192.168.0.184:8080/img/"+data[i].profile+"' width='50' height='50'/> "+data[i].nick+"</a></li>");
+        	  if(data[i].profile == 'basic.jpg'){
+                  $('#memberSearch').append(
+                 "<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'>"
+                + "<img src='${pageContext.request.contextPath}/resources/img/basic.jpg' width='50' height='50'/>"
+                +data[i].nick+"</a></li>"
+                );
+              }else{
+                $('#memberSearch').append(
+                "<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'>"
+                 +"<img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/>"
+                 +data[i].nick+"</a></li>"
+                );    
+              }
              }
          }
       }, 

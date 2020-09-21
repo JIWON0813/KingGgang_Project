@@ -113,6 +113,7 @@ public class AdminController {
 		req.setAttribute("list", partlist);
 		return "payment/adminPayList";
 	}
+
 }
 
 

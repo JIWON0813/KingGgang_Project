@@ -42,16 +42,7 @@ import com.teamb.service.CommboardMapper;
 public class Comm_MemberController {
 	@Autowired
 	private Comm_MemberMapper memberMapper;
-	@Autowired
-	private CommboardMapper boardMapper;
-	@Autowired
-	private Comm_FriendMapper friendMapper;
-	@Autowired
-	private CommTogetherMapper togetherMapper;
-	@Autowired
-	private CommWarnMapper warnMapper;
-	@Autowired
-	private CommBookMarkMapper bookmarkMapper;
+
 	
 	
 	@Resource(name="upLoadPath")
@@ -75,8 +66,17 @@ public class Comm_MemberController {
 	}
 	
 	@RequestMapping(value = "/comm_loginOk.do")
-	public String comm_loginOk(Comm_MemberDTO dto, HttpServletRequest req,HttpSession session) {
-		Comm_MemberDTO login = memberMapper.comm_loginOk(dto);
+	   public String comm_loginOk(Comm_MemberDTO dto, HttpServletRequest req,HttpSession session) {
+	      Comm_MemberDTO login = memberMapper.comm_loginOk(dto);
+	      
+	      if (session.getAttribute("memberNum") == null) {
+	         String msg = "낑깡 로그인 후 이용가능합니다.";
+	         String url = "login.log";
+	         req.setAttribute("msg", msg);
+	         req.setAttribute("url", url);
+	         return "message";
+	         
+	      }
 		String msg = null, url = null;
         	if (login == null) {
 			session.setAttribute("comm_login", null);
