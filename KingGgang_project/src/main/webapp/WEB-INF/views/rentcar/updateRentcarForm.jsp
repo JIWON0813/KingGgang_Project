@@ -165,7 +165,7 @@
 				<tr>
 					<td colspan="2" align="center">
 						<a href="javascript:check()">[전송]</a>
-						<a href="listRentcar.admin">[취소]</a>
+						<a href="#" onclick="history.back()">[취소]</a>
 					</td>
   				</tr>
   				<tr>

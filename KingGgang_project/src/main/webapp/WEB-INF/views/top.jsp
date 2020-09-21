@@ -144,7 +144,7 @@
 
 								<c:if test="${profilename == null }">
 
-								<img src="http://192.168.0.184:8080/img/default.jpg" width="25" height="25">	
+								<img src="${pageContext.request.contextPath}/resources/img/default.jpg" width="25" height="25">	
 
 								</c:if>
 

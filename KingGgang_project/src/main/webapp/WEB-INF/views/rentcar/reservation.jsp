@@ -310,6 +310,7 @@
   			<input type="button" value="조회" onclick="javascript:calc()">
   			<br>
 			<input type="button" value="예약하기" onclick="javascript:check()">
+			<input type="button" value="돌아가기" onclick="history.back()">
 			</div>		
 		</form>
 		

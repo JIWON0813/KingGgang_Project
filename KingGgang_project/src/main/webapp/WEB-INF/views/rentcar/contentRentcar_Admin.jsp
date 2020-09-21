@@ -8,10 +8,17 @@
 	개  발   자 : 정 우 철
 	설	   명 : 관리자 렌트카 상세 페이지
 	-->
-
+<script type="text/javascript">
+function del(id){
+	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+	    location.href="deleteRentcar.admin?id="+id
+	}else{   //취소
+	    return
+	}
+	}
+</script>
 <div align="center">
 	<table border="1" width="50%">
-		<caption>차량 상세 보기</caption>
 		<tr>
 			<th width="15%" class="m2">차량 번호</th>
 			<td width="35%" align="center">${rentcar.id}</td>
@@ -27,7 +34,7 @@
 		<tr>
 			<th width="15%" class="m2">사진</th>
 			<td width="40%" align="center" colspan="3">
-				<img src="http://세호병합:8080/img/${rentcar.filename}" style="width:450px; height:400px auto;">
+				<img src="http://192.168.0.184:8080/img/${rentcar.filename}" style="width:450px; height:400px auto;">
 			</td>
 		</tr>
 		<tr>
@@ -60,12 +67,12 @@
 				</textarea>
 			</td>
 		</tr>
-		<tr>
-			<td colspan="4" align="center" class="m1">
-			</td>
-		</tr>
 	</table>
 	<input type="button" value="돌아가기" 
-									onclick="window.location='listRentcar.admin'">
+				onClick="window.location='listRentcar.admin'">
+	<input type="button" 
+				onClick="location.href='updateRentcar.admin?id=${rentcar.id}'" value="수정">
+	<input type="button" 
+				onClick="javascript:del(${rentcar.id})" value="삭제">
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>
