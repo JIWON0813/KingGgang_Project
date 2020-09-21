@@ -414,7 +414,7 @@ public class RentcarController {
 		return "message";
 		}else{
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!(이미 예약됨)";
-			url = "windowClose.rentcar";
+			url = "home.do";
 		}
 		req.setAttribute("msg",msg);
 		req.setAttribute("url",url);
