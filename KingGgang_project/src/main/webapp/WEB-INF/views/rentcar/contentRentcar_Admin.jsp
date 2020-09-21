@@ -62,10 +62,10 @@
 		</tr>
 		<tr>
 			<td colspan="4" align="center" class="m1">
-				<input type="button" value="돌아가기" 
-									onclick="window.location='listRentcar.admin'">
 			</td>
 		</tr>
 	</table>
+	<input type="button" value="돌아가기" 
+									onclick="window.location='listRentcar.admin'">
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

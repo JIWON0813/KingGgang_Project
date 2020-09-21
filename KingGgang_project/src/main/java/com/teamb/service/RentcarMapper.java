@@ -61,6 +61,10 @@ public class RentcarMapper {
 		return sqlSession.selectList("listRentcarReservationTime",r_id);
 	}
 	
+	public int updateRentcarReservation2(int id){
+		return sqlSession.update("updateRentcarReservation2",id);
+	}
+	
 
 	//렌트카_회원 페이지
 	public List<RentcarDTO> findRentcar(String str,Object obj,String receiptday,String returnday){
@@ -117,10 +121,6 @@ public class RentcarMapper {
 		map.put("returnday",returnday);
 		List<RentcarDTO> canResCarList = sqlSession.selectList("listCanReservationRentcar",map);
 		return canResCarList;
-	}
-	
-	public Rentcar_ResDTO findReturnTimeReservation(){
-		return sqlSession.selectOne("findReturnTimeReservation");
 	}
 	
 	public int updatePstatus(int res_id){

@@ -95,6 +95,13 @@ public class RentcarController {
    @RequestMapping(value = "listRentcar.admin")
    public String listRentcar(HttpServletRequest req){
       List<RentcarDTO> list = rentcarMapper.listRentcar();
+      for(int i=0;i<list.size();i++){
+    	  List<Rentcar_ResDTO> rentcarRes = rentcarMapper.listRentcarReservationTime(list.get(i).getId());
+    	  if(rentcarRes.size()==0){
+    		  rentcarMapper.updateRentcarReservation2(list.get(i).getId());
+    		  list.get(i).setReservation(0);
+    	  }
+      }
       req.setAttribute("rentcarList",list);
       return "rentcar/listRentcar_Admin";
    }
@@ -103,12 +110,9 @@ public class RentcarController {
    public String contentRentcar(HttpServletRequest req){
       int r_id = Integer.parseInt(req.getParameter("id"));
       RentcarDTO rentcar = rentcarMapper.getRentcar(r_id);
-      req.setAttribute("rentcar",rentcar);
-      
-      if(rentcar.getReservation()==1){
       List<Rentcar_ResDTO> rentcarRes = rentcarMapper.listRentcarReservationTime(r_id);
+      req.setAttribute("rentcar",rentcar);
       req.setAttribute("rentcarRes",rentcarRes);
-      }
       
       return "rentcar/contentRentcar_Admin";
    }
@@ -410,7 +414,7 @@ public class RentcarController {
 		return "message";
 		}else{
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!(이미 예약됨)";
-			url = "windowClose.rentcar";
+			url = "home.do";
 		}
 		req.setAttribute("msg",msg);
 		req.setAttribute("url",url);

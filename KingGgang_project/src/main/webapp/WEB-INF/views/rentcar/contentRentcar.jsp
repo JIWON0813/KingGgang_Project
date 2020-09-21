@@ -90,7 +90,6 @@
 			<td colspan="4" align="center">
 				<input type="button" value="돌아가기" 
 									onclick="window.history.back()">
-
 				<input type="submit" value="예약하기">
 				<input type="hidden" name="id" value="${rentcar.id}">
 			</td>

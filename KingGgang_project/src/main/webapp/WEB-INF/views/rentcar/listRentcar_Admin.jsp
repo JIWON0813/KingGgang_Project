@@ -21,7 +21,7 @@ function del(id){
 <div align="center">
 	<b>렌 트 카 목 록</b>
 	<table border="1" width="800">
-		<tr bgcolor="green">
+		<tr bgcolor="orange">
 			<th>회사</th>
 			<th width="40%">차량 이름</th>
 			<th>대차료</th>
@@ -53,7 +53,7 @@ function del(id){
 			<td>${dto.fuel}</td>
 			<td>
 			<c:if test="${dto.reservation == 0}">
-			예약 가능
+			예약 없음
 			</c:if>
 			<c:if test="${dto.reservation == 1}">
 			예약중
