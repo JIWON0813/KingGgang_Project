@@ -32,7 +32,7 @@
 					<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="180" height="180">
 			</c:if>
 				<c:if test="${comm_profilename ne 'basic.jpg'}">
-			 		<img src="http://localhost:8080/img/${comm_profilename}" width="180" height="180">
+			 		<img src="http://192.168.0.184:8080/img/${comm_profilename}" width="180" height="180">
 				</c:if>
 		 </td>
 		 <td>
@@ -42,12 +42,19 @@
 	</tr> 
 	
 	<tr>
+		<c:if test="${loginNum == memberNum}">
 		<td>
 			<a class="join_bt" href="comm_writeForm.do" style="display: inline-block; margin-left:30px;">Write</a>
 		</td>
 		<td>
 			<a class="join_bt" href="comm_bookMark.do" style="display: inline-block; margin-left:30px;">BookMark</a>
 		</td>
+		</c:if>
+		<%-- <c:if test="${loginNum != memberNum }">
+		<td>
+		<a class="join_bt" href="style="display: inline-block; margin-left:30px; comm_friend_insert.do?login_comm_memberNum=${login_comm_memberNum }&comm_memberNum=${dto.comm_memberNum }">친구추가</a>
+		</td>
+		</c:if> --%>
 		<td>
 			<a class="join_bt" href="comm_friendAll.do?comm_memberNum=${memberNum}" style="display: inline-block; margin-left:30px;">친구(${comm_friendCount})</a>
 		</td>
@@ -72,7 +79,7 @@
 	   <c:forEach var="dto" items="${boardList}">
 	   <a href="comm_otherContent.do?boardNum=${dto.boardNum}">
 	   		<%-- <a href="comm_content.do?boardNum=${dto.boardNum}"> --%>
-	        	<img src="http://localhost:8080/img/${dto.file_name}" width="300" height="300">
+	        	<img src="http://192.168.0.184:8080/img/${dto.file_name}" width="300" height="300">
 	        </a>
 	   </c:forEach>          
 </div>

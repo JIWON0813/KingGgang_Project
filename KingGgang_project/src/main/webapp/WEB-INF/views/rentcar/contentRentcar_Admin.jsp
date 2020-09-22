@@ -1,49 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <br><br><br><br>	
 	<!--  
-	ÀÌ	   ¸§ : contentRentcar_Admin.jsp
-	°³  ¹ß   ÀÚ : Á¤ ¿ì Ã¶
-	¼³	   ¸í : °ü¸®ÀÚ ·»Æ®Ä« »ó¼¼ ÆäÀÌÁö
+	ì´	   ë¦„ : contentRentcar_Admin.jsp
+	ê°œ  ë°œ   ì : ì • ìš° ì² 
+	ì„¤	   ëª… : ê´€ë¦¬ì ë ŒíŠ¸ì¹´ ìƒì„¸ í˜ì´ì§€
 	-->
-
+<script type="text/javascript">
+function del(id){
+	if (confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ??") == true){    //í™•ì¸
+	    location.href="deleteRentcar.admin?id="+id
+	}else{   //ì·¨ì†Œ
+	    return
+	}
+	}
+</script>
 <div align="center">
 	<table border="1" width="50%">
-		<caption>Â÷·® »ó¼¼ º¸±â</caption>
 		<tr>
-			<th width="15%" class="m2">Â÷·® ¹øÈ£</th>
+			<th width="15%" class="m2">ì°¨ëŸ‰ ë²ˆí˜¸</th>
 			<td width="35%" align="center">${rentcar.id}</td>
-			<th width="15%" class="m2">Â÷·® ºĞ·ù</th>
+			<th width="15%" class="m2">ì°¨ëŸ‰ ë¶„ë¥˜</th>
 			<td width="35%" align="center">${rentcar.type}</td>
 		</tr>
 		<tr>
-			<th width="15%" class="m2">»óÇ°¸í</th>
+			<th width="15%" class="m2">ìƒí’ˆëª…</th>
 			<td width="35%" align="center">${rentcar.name}</td>
-			<th width="15%" class="m2">Á¦Á¶È¸»ç</th>
+			<th width="15%" class="m2">ì œì¡°íšŒì‚¬</th>
 			<td width="35%" align="center">${rentcar.company}</td>
 		</tr>
 		<tr>
-			<th width="15%" class="m2">»çÁø</th>
+			<th width="15%" class="m2">ì‚¬ì§„</th>
 			<td width="40%" align="center" colspan="3">
-				<img src="http://localhost:8080/img/${rentcar.filename}" style="width:450px; height:400px auto;">
+				<img src="http://192.168.0.184:8080/img/${rentcar.filename}" style="width:450px; height:400px auto;">
 			</td>
 		</tr>
 		<tr>
-			<th width="15%" class="m2">¾÷Ã¼¸í</th>
+			<th width="15%" class="m2">ì—…ì²´ëª…</th>
 			<td width="35%" align="center">${rentcar.rentcom}</td>
-			<th width="15%" class="m2">¾÷Ã¼ ¹øÈ£</th>
+			<th width="15%" class="m2">ì—…ì²´ ë²ˆí˜¸</th>
 			<td width="35%" align="center">${rentcar.renttel}</td>
 		</tr>
 		<tr>
-			<th width="30%">¿¹¾à °¡´É ¿©ºÎ</th>
+			<th width="30%">ì˜ˆì•½ ê°€ëŠ¥ ì—¬ë¶€</th>
 			<td align="center" colspan="4">
 				<c:if test="${rentcar.reservation == 0}">
-					¿¹¾à ¾øÀ½
+					ì˜ˆì•½ ì—†ìŒ
 				</c:if>
 				<c:if test="${rentcar.reservation == 1}">
-					¿¹¾àÁß
+					ì˜ˆì•½ì¤‘
 					<br>
 					<c:forEach var="dto" items="${rentcarRes}">
 						[${dto.receiptday}~${dto.returnday}]
@@ -54,18 +61,18 @@
 			
 		</tr>
 		<tr>
-			<th width="15%" class="m2">Â÷·® ¼Ò°³</th>
+			<th width="15%" class="m2">ì°¨ëŸ‰ ì†Œê°œ</th>
 			<td width="85%" colspan="3">
 				<textarea name="contents" rows="5" cols="80" readOnly>${rentcar.contents}
 				</textarea>
 			</td>
 		</tr>
-		<tr>
-			<td colspan="4" align="center" class="m1">
-				<input type="button" value="µ¹¾Æ°¡±â" 
-									onclick="window.location='listRentcar.admin'">
-			</td>
-		</tr>
 	</table>
+	<input type="button" value="ëŒì•„ê°€ê¸°" 
+				onClick="window.location='listRentcar.admin'">
+	<input type="button" 
+				onClick="location.href='updateRentcar.admin?id=${rentcar.id}'" value="ìˆ˜ì •">
+	<input type="button" 
+				onClick="javascript:del(${rentcar.id})" value="ì‚­ì œ">
 </div>
 <%@ include file="/WEB-INF/views/bottom.jsp"%>

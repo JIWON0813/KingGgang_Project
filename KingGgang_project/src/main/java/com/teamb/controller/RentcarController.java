@@ -95,6 +95,13 @@ public class RentcarController {
    @RequestMapping(value = "listRentcar.admin")
    public String listRentcar(HttpServletRequest req){
       List<RentcarDTO> list = rentcarMapper.listRentcar();
+      for(int i=0;i<list.size();i++){
+    	  List<Rentcar_ResDTO> rentcarRes = rentcarMapper.listRentcarReservationTime(list.get(i).getId());
+    	  if(rentcarRes.size()==0){
+    		  rentcarMapper.updateRentcarReservation2(list.get(i).getId());
+    		  list.get(i).setReservation(0);
+    	  }
+      }
       req.setAttribute("rentcarList",list);
       return "rentcar/listRentcar_Admin";
    }
@@ -103,12 +110,9 @@ public class RentcarController {
    public String contentRentcar(HttpServletRequest req){
       int r_id = Integer.parseInt(req.getParameter("id"));
       RentcarDTO rentcar = rentcarMapper.getRentcar(r_id);
-      req.setAttribute("rentcar",rentcar);
-      
-      if(rentcar.getReservation()==1){
       List<Rentcar_ResDTO> rentcarRes = rentcarMapper.listRentcarReservationTime(r_id);
+      req.setAttribute("rentcar",rentcar);
       req.setAttribute("rentcarRes",rentcarRes);
-      }
       
       return "rentcar/contentRentcar_Admin";
    }
@@ -269,7 +273,15 @@ public class RentcarController {
 //////////////////////////////////////////////////////////////
 	
 	@RequestMapping(value="firstPage.rentcar")
-	public String rentcarFirstPage(HttpServletRequest req){
+	public String rentcarFirstPage(HttpServletRequest req,HttpSession session){
+		String member_id = (String) session.getAttribute("mbId");
+		if(member_id == null){
+			String msg = "로그인 후 이용 해 주세요!";
+			String url = "home.do";
+			req.setAttribute("msg",msg);
+			req.setAttribute("url",url);
+			return "message";
+		}
 		return "rentcar/firstPage";
 	}
 	
@@ -281,7 +293,6 @@ public class RentcarController {
 		String dpreceiptday = req.getParameter("receiptday");
 		String dpreturnday = req.getParameter("returnday");
 		String dppickuptime = req.getParameter("pickuptime");
-		
 		if (mode == null){
 		session.setAttribute("dpreceiptday",dpreceiptday);
 		session.setAttribute("dpreturnday",dpreturnday);
@@ -316,10 +327,11 @@ public class RentcarController {
 			req.setAttribute("rentcar",list);
 		}else if(mode.equals("all")){
 			receiptday = (String)session.getAttribute("dpreceiptday") + session.getAttribute("dppickuptime");
-			returnday = (String)session.getAttribute("dpreturnday");
+			returnday = (String)session.getAttribute("dpreturnday") + session.getAttribute("dppickuptime");
 			List<RentcarDTO> list = rentcarMapper.listCanReservationRentcar(receiptday, returnday);
 			req.setAttribute("rentcar",list);
 		}
+		
 		
 		
 		return "rentcar/rentcarMain";
@@ -343,6 +355,7 @@ public class RentcarController {
 		req.setAttribute("rentcar",rdto);
 		req.setAttribute("insu",insulist);
 		req.setAttribute("m_id", session.getAttribute("mbId"));
+
 		return "rentcar/reservation";
 	}
 	
@@ -401,7 +414,7 @@ public class RentcarController {
 		return "message";
 		}else{
 			msg = "예약 실패! 예약시간을 다시 조회해 주세요!(이미 예약됨)";
-			url = "windowClose.rentcar";
+			url = "home.do";
 		}
 		req.setAttribute("msg",msg);
 		req.setAttribute("url",url);

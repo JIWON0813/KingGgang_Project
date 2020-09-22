@@ -131,7 +131,7 @@ public class HotelMapper {
 		return res;
 	}
 	
-	@Scheduled(fixedDelay=240000)
+	@Scheduled(fixedDelay=500000)
 	public void checkPay(){
 		List<RoomDateDTO> list = sqlSession.selectList("roomdatelist");
 		for(RoomDateDTO dto : list){

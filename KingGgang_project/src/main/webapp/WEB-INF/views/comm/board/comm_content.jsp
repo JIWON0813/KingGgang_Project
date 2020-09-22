@@ -162,14 +162,14 @@ function LikeAction() {
    </tr>
    <tr>
       <td align="left" colspan="4">
-          <a href="comm_otherPage.do?comm_memberNum=${memberNum}"><img src="http://localhost:8080/img/${comm_profilename}" width="50" height="50">&nbsp;&nbsp;[   ${comm_nickname}   ]</a>
+          <a href="comm_otherPage.do?comm_memberNum=${memberNum}"><img src="http://192.168.0.184:8080/img/${comm_profilename}" width="50" height="50">&nbsp;&nbsp;[   ${comm_nickname}   ]</a>
       </td>
    </tr>
    
    <c:if test="${getBoard.file_size != 0}">
       <tr align="center">
           <td align="center" colspan="4">
-             <img src="http://localhost:8080/img/${getBoard.file_name}" width="400" height="400">
+             <img src="http://192.168.0.184:8080/img/${getBoard.file_name}" width="400" height="400">
           </td>
       </tr>
    </c:if>
@@ -215,6 +215,15 @@ function LikeAction() {
 		</tr>
 		<tr>
 			<td align="center" colspan="4" id="write_group">
+			<c:if test="${name == 'admin'}">
+				<input type="button" value="글수정"
+				onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="글삭제"
+				onclick="window.location='comm_deletePro.do?boardNum=${getBoard.boardNum}'">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="글목록" onclick="window.location='comm_myPage.do'">
+			</c:if>
 			 <c:if test="${loginNum == memberNum}">
 				<input type="button" value="글수정"
 				onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
@@ -225,6 +234,7 @@ function LikeAction() {
 				<input type="button" value="글목록" onclick="window.location='comm_myPage.do'">
 			 </c:if>
 			 <c:if test="${loginNum != memberNum}">
+			 	&nbsp;&nbsp;&nbsp;&nbsp;
 			 	<input type="button" value="뒤로가기" onclick="history.back()">
 			 </c:if>
 			</td>

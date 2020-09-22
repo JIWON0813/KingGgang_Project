@@ -6,7 +6,7 @@
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
 <div class="section layout_padding"></div>
 <div class="container" align="center">
-	<h3 align="center">문의하기</h3>
+	<h3 align="center">Q&A</h3>
 	<br>
 	<table class="table table-hover table-sm">
 	<thead>
@@ -34,7 +34,7 @@
 			<c:set var="startNum" value="${startNum-1}" />
 			<td>
 		<c:if test="${dto.re_level > 0}">
-			<img src="resources/img/level.gif" width="${dto.re_level*10}">
+			<img src="http://192.168.0.184:8080/img/level.gif" width="${dto.re_level*10}">
 			<b>RE:</b>
 			<!-- <img src="resources/img/re.gif"> -->
 		</c:if>	
@@ -45,7 +45,7 @@
 			<c:if test="${mbId != 'admin' }">
 				<a href="Q_passck.board?num=${dto.num }&type=1">
 			</c:if>
-					비밀글 입니다.
+					비밀글 입니다<img src="http://192.168.0.184:8080/img/lock.png" width="10" height="10">
 				</a>
 		</c:if>
 		<c:if test="${dto.closed==1 }">

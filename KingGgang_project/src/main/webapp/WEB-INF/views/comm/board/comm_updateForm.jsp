@@ -30,7 +30,7 @@
 		<tr align="center">
 			 <td align="center" colspan="3">
 			 	<input type="file" name="filename">
-			 	<img src="http://localhost:8080/img/${getBoard.file_name}" width="200" height="200">
+			 	<img src="http://192.168.0.184:8080/img/${getBoard.file_name}" width="200" height="200">
 			 </td>
 		</tr>
 		

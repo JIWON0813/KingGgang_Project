@@ -454,38 +454,48 @@ public class CommBoardController {
 		return "message";
 	}
 	
-	@RequestMapping(value = "/reply_deletePro.do")
-	public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, int boardNum, String rpasswd) {
-		int res = replyMapper.deleteReply(replyNum,rpasswd);
-		
-		boolean isPasswd = replyMapper.isPassword(replyNum, rpasswd);
-		
-		String msg = null, url = null;
-		if (res > 0) {
-			msg = "댓글삭제성공";
-			url = "comm_otherContent.do?boardNum=" + boardNum;
-		} else {
-			msg = "댓글삭제실패!!";
-			url = "comm_otherContent.do?boardNum=" + boardNum;
-		}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);
-		req.setAttribute("replyNum", replyNum);
-		req.setAttribute("boardNum", boardNum);
-
-		return "message";
-	}
+	@RequestMapping(value = "/reply_deleteForm.do")
+	   public String deleteForm() {
+	      return "comm/board/comm_replydeleteForm";
+	   }
+	   
+	   @RequestMapping(value = "/reply_deletePro.do")
+	   public String deletereplyPro(HttpServletRequest req, @RequestParam int replyNum, @RequestParam int boardNum, String rpasswd) {
+	      
+	      int res = replyMapper.deleteReply(replyNum,rpasswd);
+	     
+	      String msg = null, url = null;
+	      if (res > 0) {
+	         msg = "댓글삭제성공";
+	         url = "comm_otherContent.do?boardNum=" + boardNum;
+	      } else {
+	         msg = "댓글삭제실패!!";
+	         url = "comm_otherContent.do?boardNum=" + boardNum;
+	      }
+	      req.setAttribute("msg", msg);
+	      req.setAttribute("url", url);
+	      
+	      return "message";
+	   }
 
 	// 여진
-	@RequestMapping("/comm_otherPage.do")
-	public String otherPage(HttpServletRequest req, HttpSession session) {
-		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
-		int loginNum = 0;
-		if (login != null) {
-			loginNum = login.getComm_memberNum();
-		}
+	   @RequestMapping("/comm_otherPage.do")
+	   public String otherPage(HttpServletRequest req, HttpSession session) {
+	      Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
+	      int loginNum = 0;
+	      if (login != null) {
+	         loginNum = login.getComm_memberNum();
+	      }
 
-		int comm_memberNum = Integer.parseInt(req.getParameter("comm_memberNum"));
+	      int comm_memberNum = Integer.parseInt(req.getParameter("comm_memberNum"));
+	         
+	      if (session.getAttribute("login_comm_memberNum") == null) {
+	         String msg = "돌하르방 로그인 후 이용가능합니다.";
+	         String url = "comm_login.do";
+	         req.setAttribute("msg", msg);
+	         req.setAttribute("url", url);
+	         return "message";
+	      }
 	      
 	      int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
 	      int comm_friendCount = (Integer) comm_friendMapper.getfriendCount(login_comm_memberNum, comm_memberNum);
@@ -528,6 +538,11 @@ public class CommBoardController {
 	// 여진
 	@RequestMapping(value = "/comm_otherContent.do", method = RequestMethod.GET)
 	public String otherContent(HttpServletRequest req, @RequestParam int boardNum, HttpSession session) {
+
+		//인아
+		String name = (String)session.getAttribute("mbId");
+		session.setAttribute("name", name);
+		
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int loginNum = 0;
 		if (login != null) {

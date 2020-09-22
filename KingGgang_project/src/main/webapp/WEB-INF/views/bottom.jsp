@@ -48,12 +48,9 @@
                                 <div class="footer_blog full white_fonts">
                              <h3><img src="${pageContext.request.contextPath}/resources/main/images/orange.png"/>낑.깡.따<img src="${pageContext.request.contextPath}/resources/main/images/orange.png"/></h3>
                              <p>함께 여행 갈 인연을 찾아보아요!!</p>
-                             <!-- <div class="newsletter_form">
-                                <form action="index.html">
-                                   <input type="email" placeholder="Your Email" name="#" required="">
-                                   <button>Submit</button>
-                                </form>
-                             </div> -->
+                             <a class="join_bt" style="display: inline-block; margin-left:30px;" href="comm_checkMember.do?memberNum=${memberNum}">
+                                <b><font color="white">가 입 하 기</font></b>
+                             </a>
                          </div>
                             </div>
                         </div>
@@ -62,9 +59,9 @@
                                 <div class="footer_blog full white_fonts">
                              <h3>Contact us</h3>
                              <ul class="full">
-                               <li><img src=""><span>London 145<br>United Kingdom</span></li>
-                               <li><img src=""><span>demo@gmail.com</span></li>
-                               <li><img src=""><span>+12586954775</span></li>
+                               <li><a href="list.notice"><span>공지사항</span></a></li>
+                               <li><a href="Q_list.board"><span>Q&A</span></a></li>
+                               <li><a href="listReview.re"><span>Review</span></a></li>
                              </ul>
                          </div>
                             </div>

@@ -171,15 +171,13 @@ public class HotelController {
 	}
 	
 	@RequestMapping(value = "/hotelDetail.hotel")
-	public String hotelDetail(HttpServletRequest req, @RequestParam int no){
+	public String hotelDetail(HttpServletRequest req, @RequestParam int no,HttpSession session){
 		hotelmapper.increasecount(no);
 		HotelDTO dto = hotelmapper.getHotel(no);	
 		List<RoomDTO> list = hotelmapper.roomList(no);
 		
 		//원세호 관심리스트 
-		
-		//아이디 세션 
-		int m_no = 1;
+		int m_no = (int) session.getAttribute("memberNum");
 		int type =1;
 		WishlistDTO wdto = new WishlistDTO();
 		wdto.setM_no(m_no);
@@ -188,21 +186,20 @@ public class HotelController {
 			
 		int check1 =1;
 		
-		WishlistDTO noCheck = wishlistmapper.getNolist(wdto);
+		List<WishlistDTO> wlist = wishlistmapper.getNolist(wdto);
 		
-		if(noCheck == null) {
+		for(WishlistDTO checkdto : wlist) {
+			
+		if(checkdto == null) {
 			check1 = 1;
 		} else {
-			if(noCheck.getF_no()!=no) {
-				check1 = 1;
-			}else if(noCheck.getF_no()==no) {
+			if(checkdto.getF_no()!=no) {
+				continue;
+			}else if(checkdto.getF_no()==no) {
 				check1 = 2;
 			}
 		}
-		
-		
-		
-					
+	}
 		req.setAttribute("check1", check1);
 		req.setAttribute("dto", dto);
 		req.setAttribute("roomList", list);

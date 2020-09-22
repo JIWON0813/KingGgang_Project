@@ -16,6 +16,7 @@ public class PaymentListData{
 	String endDate;
 	int price;
 	String payDate;
+	String filename;
 	
 	public PaymentListData(PaymentDTO pdto, MemberDTO mdto, RoomDateDTO rddto, RoomDTO rdto, HotelDTO hdto, Rentcar_ResDTO resdto, RentcarDTO cardto) {
 		if(pdto.getType() == 1){
@@ -30,6 +31,7 @@ public class PaymentListData{
 			this.endDate = rddto.getEnddate();
 			this.price = pdto.getPrice();
 			this.payDate = pdto.getPaydate();
+			this.filename = rdto.getFilename();
 		}
 		else{
 			this.no = pdto.getNo();
@@ -43,6 +45,7 @@ public class PaymentListData{
 			this.endDate = resdto.getReturnday();
 			this.price = pdto.getPrice();
 			this.payDate = pdto.getPaydate();
+			this.filename = cardto.getFilename();
 		}
 	}
 
@@ -133,6 +136,15 @@ public class PaymentListData{
 	public void setPayDate(String payDate) {
 		this.payDate = payDate;
 	}
+	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
 	
 	
 	

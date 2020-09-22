@@ -11,7 +11,6 @@
 	pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	function checkjoin() {
-<<<<<<< HEAD
        var reid = /^[a-zA-Z0-9]{4,12}$/; 
        var repass = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; 
        var reemail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -140,138 +139,7 @@
 	   function inputIdCheck(){
 		   document.join.idDuplication.value="idUnCheck";
 	   }
-	    
-=======
-		var reid = /^[a-zA-Z0-9]{4,12}$/;
-		var repass = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-		var reemail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		/* 휴대폰 번호 ,이미지파일
-		   var rehp = /^\d{3}-\d{3,4}-\d{4}$/; */
-		/* var reimg = /(.*?)\.(jpg|jpeg|png|gif|bmp|"")$/; */
-
-		var form = document.join;
-
-		if (join.id.value == "") {
-			alert("아이디를 입력해 주세요")
-			join.id.focus();
-			return;
-		}
-		if (!check(reid, join.id, "아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-			return;
-		}
-
-		if (join.idDuplication.value != "idCheck") {
-			alert("아이디 중복체크를 해주세요.");
-			return;
-		}
-
-		if (join.name.value == "") {
-			alert("이름을 입력해 주세요");
-			join.name.focus();
-			return;
-		}
-		if (!join.passwd.value) {
-			alert("비밀번호를 입력해 주세요");
-			join.passwd.focus();
-			return;
-		}
-		if (!check(repass, join.passwd,
-				"비밀번호는 8~16자의 영문 대소문자와 숫자와 특수문자를 포함하여 입력")) {
-			return;
-		}
-		if (!join.checkpw.value) {
-			alert("비밀번호를 확인해 주세요")
-			join.checkpw.focus();
-			return;
-		}
-		if (join.passwd.value != join.checkpw.value) {
-			alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
-			join.checkpw.value = "";
-			join.checkpw.focus();
-			return;
-		}
-		if (!join.email.value) {
-			alert("이메일을 입력해 주세요");
-			join.email.focus();
-			return;
-		}
-		if (!check(reemail, join.email, "이메일을 정확히 입력")) {
-			return;
-		}
-		if (!join.hp1.value) {
-			alert("연락처를 입력해 주세요");
-			join.hp1.focus();
-			return;
-		}
-		if (!join.hp2.value) {
-			alert("연락처를 입력해 주세요");
-			join.hp2.focus();
-			return;
-		}
-		if (!join.hp3.value) {
-			alert("연락처를 입력해 주세요");
-			join.hp3.focus();
-			return;
-		}
-		var list = new Array();
-		<c:forEach items="${memberList}" var="userid">
-		list.push("${userid.id}");
-		</c:forEach>
-		if (join.id.value == "") {
-			alert("아이디를 입력해 주세요")
-			join.id.focus();
-			return false;
-		}
-		for (var i = 0; i < list.length; i++) {
-			if (join.id.value == list[i]) {
-				alert("이미 가입된 아이디 입니다.");
-				join.id.focus();
-				return false;
-			}
-		}
-		form.submit()
-	}
-
-	function check(re, what, message) {
-		if (re.test(what.value)) {
-			return true;
-		}
-		alert(message);
-		what.value = "";
-		what.focus();
-		return false;
-	}
-
-	function idCheck() {
-		var reid = /^[a-zA-Z0-9]{4,12}$/;
-		join.idDuplication.value = "idCheck";
-		if (!check(reid, join.id, "아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-			return;
-		}
-		var list = new Array();
-		<c:forEach items="${memberList}" var="userid">
-		list.push("${userid.id}");
-		</c:forEach>
-		if (join.id.value == "") {
-			alert("아이디를 입력해 주세요")
-			join.id.focus();
-			return;
-		}
-		for (var i = 0; i < list.length; i++) {
-			if (join.id.value == list[i]) {
-				alert("이미 가입된 아이디 입니다.");
-				join.id.focus();
-				return;
-			}
-		}
-		alert("사용 가능한 아이디 입니다.");
-		join.name.focus();
-		return;
-	}
-	function inputIdCheck() {
-		document.join.idDuplication.value = "idUnCheck";
-	}
->>>>>>> refs/remotes/origin/master
+	   
 </script>
 
 <link rel="stylesheet" type="text/css"

@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -62,9 +63,6 @@ public class PaymentController {
 	
 	@Autowired
 	private RentcarMapper rentcarMapper;
-	
-	@Autowired
-	private HotelMapper hotelMapper;
 
 	@Autowired
 	private HotelMapper hotelmapper;
@@ -98,7 +96,6 @@ public class PaymentController {
 		String msg = null, url=null;
 		if (res>0) {
 			int type =  dto.getType();
-			System.out.println(type);
 			if(type == 2) {
 				int res_id =  dto.getP_no();
 				rentcarMapper.changePstSuc(res_id);
@@ -125,7 +122,7 @@ public class PaymentController {
 			if(pdto.getType() == 1){
 				rddto = hotelmapper.getRoomDate(pdto.getP_no());
 				rdto = hotelmapper.getRoom(rddto.getRoom_id());
-				hdto = hotelMapper.getHotel(rdto.getH_id());
+				hdto = hotelmapper.getHotel(rdto.getH_id());
 			} 
 			else{
 				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
@@ -188,27 +185,40 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/payment.my")
-	public String myPayment(PaylistDTO tdto,PaymentDTO pdto,HttpServletRequest req,HttpSession session) {
+	public String myPayment(HttpServletRequest req,HttpSession session) {
 		
 		
 		int memberNum = (int)session.getAttribute("memberNum");
-		pdto.setM_no(memberNum);
 		
-		
-		List<PaymentDTO> Plist = paymemtMapper.getPaymentlist(pdto);
-		List<PaylistDTO> Phlist = new ArrayList<PaylistDTO>();
-		List<PaylistDTO> Prlist = new ArrayList<PaylistDTO>();
-		for(PaymentDTO ptdto : Plist) {
-			if(ptdto.getType()==1) {
-				PaylistDTO phdto = paymemtMapper.getmyPaylist(ptdto);
-				Phlist.add(phdto);
-			} else {
-				PaylistDTO prdto = paymemtMapper.getmyPaylist(ptdto);
-				Prlist.add(prdto);
+		List<PaymentDTO> list = paymemtMapper.getmyPaylist(memberNum);
+		List<PaymentListData> plist = new ArrayList<PaymentListData>();
+		Iterator<PaymentDTO> iter = list.iterator();
+		while(iter.hasNext()){
+			PaymentDTO pdto = iter.next();
+			MemberDTO mdto = memberMapper.getMember(pdto.getM_no());
+			//1일경우 호텔, 2일경우 렌트
+			RoomDTO rdto= null;
+			HotelDTO hdto= null;
+			Rentcar_ResDTO resdto = null;
+			RentcarDTO cardto= null;
+			RoomDateDTO rddto = null;
+			if(pdto.getType() == 1){			
+				rddto = hotelmapper.getRoomDate(pdto.getP_no());
+				rdto = hotelmapper.getRoom(rddto.getRoom_id());
+				hdto = hotelmapper.getHotel(rdto.getH_id());
+				req.setAttribute("check1", 1);
+			} 
+			else{
+				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
+				cardto = rentcarMapper.getRentcar(resdto.getR_id());
+				req.setAttribute("check1", 2);
 			}
+			
+			plist.add(new PaymentListData(pdto, mdto, rddto, rdto,hdto,resdto,cardto));
 		}
-		req.setAttribute("Phlist", Phlist);
-		req.setAttribute("Prlist", Prlist);
+		
+		req.setAttribute("plist", plist);
+		
 			return "my/mypagePayment";
 	}
 

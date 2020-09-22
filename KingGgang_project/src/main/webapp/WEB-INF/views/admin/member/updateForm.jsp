@@ -109,7 +109,7 @@
                                     <th><span>프로필 사진</span></th>
                                     <td>
                                     <c:if test="${getMember.profile_size>0 }">
-                                    <img src="http://localhost:8080/img/${getMember.profile_name}" width="30" height="30">
+                                    <img src="http://192.168.0.184:8080/img/${getMember.profile_name}" width="30" height="30">
                                     </c:if>
                                     <input type="file" name="profile_name" accept="image/*">
                                     <input type="hidden" name="filename2" value="${getMember.profile_name}">

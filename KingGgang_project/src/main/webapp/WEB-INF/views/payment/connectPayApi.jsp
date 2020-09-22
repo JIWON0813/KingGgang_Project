@@ -30,6 +30,10 @@
     	document.n.submit()
     }
     
+    function failpage(){
+    	document.f.submit()
+    }
+    
     
     $(function(){
         var IMP = window.IMP; // 생략가능
@@ -71,7 +75,7 @@
                 //성공시 이동할 페이지
                 nextpage();
             } else {
-                msg = '결제에 실패하였습니다.';
+                msg = '결제에 실패하였습니다. 메인페이지로 이동합니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
                 alert(msg);
@@ -96,6 +100,8 @@
  	<input type="hidden" name="res_id" value="${res_id}">
  	</c:if>
  	
+ 	</form>
+ 	<form name="f" action="home.do">
  	</form>
  	
 </body>

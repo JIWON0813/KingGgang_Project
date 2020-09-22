@@ -1,49 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- 
-	ÀÌ	   ¸§ : updateRoomForm.jsp
-	°³  ¹ß   ÀÚ : ±è Áö ¿ø
-	¼³	   ¸í : ¹æ Á¤º¸ ¼öÁ¤ Æû
+	ì´	   ë¦„ : updateRoomForm.jsp
+	ê°œ  ë°œ   ìž : ê¹€ ì§€ ì›
+	ì„¤	   ëª… : ë°© ì •ë³´ ìˆ˜ì • í¼
  -->
- <%@ include file="../top.jsp"%>
+
  <div align="center">
  <form action="updateRoom.hotel" method="post" enctype="multipart/form-data">
  <input type="hidden" name="h_id" value="${dto.h_id}"/>
  <table>
  <tr>
  <td cols="2">
- <img src="http://192.168.0.184:8080/img/${roomdto.filename}" width="200" height="200">
+ <img src="http://192.168.0.184:8080/img/${dto.filename}" width="200" height="200">
  </td>
  </tr>
  <tr>
- <td>ÀÌ¸§</td>
+ <td>ì´ë¦„</td>
  <td><input type="text" name="name" value="${dto.name}"></td>
  </tr>
  <tr>
- <td>ÀÎ¿ø</td>
+ <td>ì¸ì›</td>
  <td><input type="text" name="maxpersons" value="${dto.maxpersons}"></td>
  </tr>
  <tr>
- <td>ÁÖÁß°¡</td>
+ <td>ì£¼ì¤‘ê°€</td>
  <td><input type="text" name="dayprice" value="${dto.dayprice}"></td>
  </tr>
  <tr>
- <td>ÁÖ¸»°¡</td>
+ <td>ì£¼ë§ê°€</td>
  <td><input type="text" name="endprice" value="${dto.endprice}"></td>
  </tr>
  <tr>
- <td>³»¿ë</td>
+ <td>ë‚´ìš©</td>
  <td><textarea name="content" rows="10" cols="50">${dto.content}</textarea></td>
  </tr>
  <tr>
- <td>ÀÌ¹ÌÁö</td>
+ <td>ì´ë¯¸ì§€</td>
  <td><input type="file" name="file" cols="40"></td>
  </tr>
  <tr>
- <td><input type="submit" value="¼öÁ¤ÇÏ±â">
- <td><input type="reset" value="ÃÊ±âÈ­ÇÏ±â">
+ <td><input type="submit" value="ìˆ˜ì •í•˜ê¸°">
+ <td><input type="reset" value="ì´ˆê¸°í™”í•˜ê¸°">
  </tr>
  </table>
  </form>
  </div>
- <%@ include file="../bottom.jsp"%>

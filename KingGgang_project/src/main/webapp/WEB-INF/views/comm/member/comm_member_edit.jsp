@@ -108,7 +108,7 @@ function comm_inputIdCheck(){
 		<th width="150" align="center"><img src="${pageContext.request.contextPath}/resources/img/돌하르방.PNG" width="25" height="25">프로필사진</th>
 		<td><input type="file" name="filename">
 			<!-- <input type="hidden" name="comm_profilesize"> -->
-			<img src="http://localhost:8080/img/${comm_getMember.comm_profilename}" width="100" height="100">
+			<img src="http://192.168.0.184:8080/img/${comm_getMember.comm_profilename}" width="100" height="100">
 		</td>
 	</tr>
 	<tr>

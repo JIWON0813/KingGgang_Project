@@ -50,7 +50,17 @@
 			</tr>
 			<tr align="center">
 				<th>내 용</th>
-				<td align="left"><textarea name="content" rows="10" cols="60">${getReview.content }</textarea></td>
+				<td align="left"><textarea name="content" rows="10" cols="60" maxlength="2000">${getReview.content }</textarea></td>
+			</tr>
+			<tr align="center">
+				<th>만족도</th>
+				<td align="left">
+				<input type="radio" name="star" value="1" <c:if test="${getReview.star==1 }">checked</c:if>><font color="#ff880e">★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="star" value="2" <c:if test="${getReview.star==2 }">checked</c:if>><font color="#ff880e">★★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="star" value="3" <c:if test="${getReview.star==3 }">checked</c:if>><font color="#ff880e">★★★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="star" value="4" <c:if test="${getReview.star==4 }">checked</c:if>><font color="#ff880e">★★★★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="star" value="5" <c:if test="${getReview.star==5 }">checked</c:if>><font color="#ff880e">★★★★★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
