@@ -54,25 +54,6 @@ public class CommboardMapper {
 		   return sqlSession.selectList("allListBoard");
 	}
 
-	public int comm_insertNotice(Comm_NoticeDTO dto) {
-		 int res = sqlSession.insert("comm_insertNotice", dto);
-		  return res;
-	}
-	
-	public int comm_deleteNotice(int comm_noticeNum) {
-		int res = sqlSession.insert("comm_deleteNotice",comm_noticeNum);
-		  return res;
-	}
-
-	public Comm_NoticeDTO comm_getNotice(int comm_noticeNum) {
-		 return sqlSession.selectOne("comm_getNotice",comm_noticeNum);    
-	}
-	
-	public int comm_updateNotice(Comm_NoticeDTO dto) {
-		int res = sqlSession.update("comm_updateNotice", dto);
-		return res;
-	}
-
 	public List<CommboardDTO> allListBoard(String look) {
 		return sqlSession.selectList("look_allListBoard", look);
 	}

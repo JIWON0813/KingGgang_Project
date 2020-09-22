@@ -528,12 +528,6 @@ public class CommBoardController {
 	// 여진
 	@RequestMapping(value = "/comm_otherContent.do", method = RequestMethod.GET)
 	public String otherContent(HttpServletRequest req, @RequestParam int boardNum, HttpSession session) {
-		/*MemberDTO home_login = (MemberDTO)session.getAttribute("memberNum");
-		int memberNum = 0;
-		if( home_login != null) {
-			memberNum = home_login.getMemberNum();
-		}*/
-		
 		Comm_MemberDTO login = (Comm_MemberDTO) session.getAttribute("comm_login");
 		int loginNum = 0;
 		if (login != null) {

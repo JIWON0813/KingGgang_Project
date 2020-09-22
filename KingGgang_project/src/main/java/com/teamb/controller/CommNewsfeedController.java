@@ -30,9 +30,6 @@ import com.teamb.service.HashTagMapper;
 public class CommNewsfeedController {
 
    @Autowired
-   private CommboardMapper boardMapper;
-   
-   @Autowired
    private CommNewsFeedMapper newsfeedMapper;
 
    @Autowired
@@ -179,7 +176,7 @@ public class CommNewsfeedController {
       return mav;
    }
    
-// 지은
+// 지은(HashMap): Object
    @RequestMapping("/commadmin.comm")
    public String admin(HttpServletRequest req) {
       return "comm/comm_admin";

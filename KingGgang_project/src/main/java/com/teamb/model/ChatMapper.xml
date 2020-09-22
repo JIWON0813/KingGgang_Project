@@ -10,7 +10,7 @@
 <mapper namespace="com.teamb.model.Comm">
 
 <insert  id = "createRoom" parameterType="ChatRoomDTO">
-insert into ChatRoom values(chatroom_seq.nextval,#{msgSender},#{msgReceiver},#{Sname},#{Rname}})
+insert into ChatRoom values(chatroom_seq.nextval,#{msgSender},#{msgReceiver},#{Sname},#{Rname})
 </insert>
 
 <select id ="isRoom" parameterType="ChatRoomDTO" resultType = "ChatRoomDTO">

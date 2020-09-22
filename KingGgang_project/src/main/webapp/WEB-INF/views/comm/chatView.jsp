@@ -43,7 +43,7 @@
 			background-color: #FFFFFF;
 			width: 400px;
 			height: 400px;
-			overflow: auto;
+			overflow:scroll;
 			padding: 5px 5px 5px 5px;
 		}
 		.chating .me{
@@ -112,7 +112,12 @@
 						$("#chating").append("<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>"
 								+"<div style='font-size:9px; clear:both;'></div>"
 								+"<div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'>"
+								+"<c:if test='${RProfile == \"basic.jpg\"}'>"
+								+"<img id='profileImg' class='img-fluid' src='${pageContext.request.contextPath}/resources/img/basic.jpg' style = 'width:30px; height:30px; border-radius:50%;'>"
+								+"</c:if>"
+								+"<c:if test='${RProfile != \"basic.jpg\"}'>"
 								+"<img id='profileImg' class='img-fluid' src='http://localhost:8080/img/${RProfile}' style = 'width:30px; height:30px; border-radius:50%;'>"
+								+"</c:if>"
 								+"</div>"
 								+"<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left; margin-left:10px;'>"
 								+"<div class = 'col-12' style = ' background-color:#FFEAAC; padding : 10px 5px; float:left; border-radius:10px;'>"
@@ -172,7 +177,6 @@
 				<div class = 'col-12' style = 'margin-top : 5px; background-color:#ACF3FF; padding : 10px 5px; float:right; border-radius:10px;'>
 				<span style = 'font-size : 12px;'>${dto.msgContent}</span>
 				</div>
-					
 			</c:if>
 		<c:if test="${dto.msgSender ne msgSender}">
 		
