@@ -133,6 +133,7 @@ public class MyController {
 		req.setAttribute("type", upd);
 		return "my/confirm";
 	}
+	
 	@RequestMapping(value = "/updateForm.my")
 	public String updateMem(HttpServletRequest req,HttpSession session,@RequestParam String passwd) {
 		String id = (String)session.getAttribute("mbId");
@@ -142,7 +143,7 @@ public class MyController {
 		switch(res){
 		case MemberDTO.OK:
 			req.setAttribute("getMember", dto);
-			return "my/updateForm";
+			return "admin/member/updateForm";
 		case MemberDTO.NOT_PW:
 			msg = "비밀번호를 확인해주세요";
 			url = "update.my";

@@ -7,7 +7,15 @@ public class NoticeDTO
 	private String regdate;
 	private String readcount;
 	private String content;
+	private String name;
 	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getNo() {
 		return no;
 	}

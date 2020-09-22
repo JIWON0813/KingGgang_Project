@@ -50,9 +50,7 @@ public class HotelController {
 	@Autowired
 	private WishlistMapper wishlistmapper;
 	
-	//결제 원세호 
-	@Autowired
-	private MemberMapper membermapper;
+	//결제 원세호
 	
 	@Autowired
 	private PaymentMapper paymentmapper;
@@ -60,6 +58,8 @@ public class HotelController {
 	@Resource(name = "upLoadPath")
 	private String upLoadPath;
 
+	
+	//호텔 목록(사용자)
 	@RequestMapping(value = "/main.hotel")
 	public String hotelMain(HttpServletRequest req) {
 		String pageNum = req.getParameter("pageNum");
@@ -117,6 +117,8 @@ public class HotelController {
 		return "hotel/hotelMain";
 	}
 
+	
+	//관리자버전 호텔 목록(호텔 등록,수정,삭제)
 	@RequestMapping(value = "/hotelList.hotel")
 	public String hotelList(HttpServletRequest req) {
 		
@@ -199,7 +201,6 @@ public class HotelController {
 		}
 		
 		
-		//System.out.println(noCheck.getF_no());
 		
 					
 		req.setAttribute("check1", check1);
@@ -306,15 +307,16 @@ public class HotelController {
 	@RequestMapping(value="/payment.hotel")
 	public String payment(HttpServletRequest req,HttpSession session, @RequestParam int id, @RequestParam int price){		
 		//결제 원세호 
-	
-		int memberNum = (int)session.getAttribute("memberNum");
+
+		int memberNum = (int) session.getAttribute("memberNum");
+
 		MemberDTO mrdto =  paymentmapper.getpayMember(memberNum);
 		req.setAttribute("mrdto", mrdto);
 		req.setAttribute("id", id);
 		req.setAttribute("type", 1);
 		req.setAttribute("totalPrice", price);
 		req.setAttribute("m_no", memberNum);
-		return "payment/payins2";
+		return "payment/connectPayApi";
 	}
 	
 	@RequestMapping(value="/room_book.hotel")

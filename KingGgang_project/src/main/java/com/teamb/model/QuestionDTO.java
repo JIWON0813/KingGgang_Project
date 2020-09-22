@@ -3,21 +3,43 @@ package com.teamb.model;
 public class QuestionDTO 
 {
 	private int num;
-	private String m_id;
+	private String name;
+	private String passwd;
+	private String email;
 	private String subject;
 	private String regdate;
 	private int readcount;
 	private String content;
+	private int closed;
 	private String ip;
 	private int re_group;
 	private int re_step;
 	private int re_level;
 	
-	public String getM_id() {
-		return m_id;
+	
+	public String getName() {
+		return name;
 	}
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getClosed() {
+		return closed;
+	}
+	public void setClosed(int closed) {
+		this.closed = closed;
 	}
 	public int getNum() {
 		return num;

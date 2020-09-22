@@ -10,7 +10,7 @@
 	<br>
 	<table class="table table-hover table-sm">
 		<thead>
-		<tr>
+		<tr bgcolor="#ff880e">
 			<th width="10%">글번호</th>
 			<th width="50%">제목</th>
 			<th width="20%">작성일</th>
@@ -62,16 +62,3 @@
 	</div>
 	<div class="section layout_padding"></div>
 <%@ include file="../bottom.jsp" %>
-
-
-
-
-
-
-
-
-
-
-
-
-
