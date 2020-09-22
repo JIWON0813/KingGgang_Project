@@ -224,7 +224,7 @@ function search(target){
               }else{
                 $('#memberSearch').append(
                 "<li><a href='comm_otherPage.do?comm_memberNum="+data[i].num+"'>"
-                 +"<img src='http://localhost:8080/img/"+data[i].profile+"' width='50' height='50'/>"
+                 +"<img src='http://192.168.0.184:8080/img/"+data[i].profile+"' width='50' height='50'/>"
                  +data[i].nick+"</a></li>"
                 );    
               }
