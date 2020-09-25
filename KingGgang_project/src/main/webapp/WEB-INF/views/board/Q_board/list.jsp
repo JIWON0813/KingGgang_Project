@@ -49,7 +49,7 @@
 			<c:set var="startNum" value="${startNum-1}" />
 			<td>
 		<c:if test="${dto.re_level > 0}">
-			<img src="http://localhost:8080/img/level.gif" width="${dto.re_level*10}">
+			<img src="http://192.168.0.184:8080/img/level.gif" width="${dto.re_level*10}">
 			<b>RE:</b>
 		</c:if>	
 		<c:if test="${dto.closed==2 }">
