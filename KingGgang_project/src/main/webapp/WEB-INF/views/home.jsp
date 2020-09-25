@@ -31,14 +31,28 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="slide_text white_fonts">
-                                  	  <h3>호텔 & 렌트카<br><strong>낑깡</strong></h3>
+                                  	  <h3>JEJU 호텔 <br><strong>혼자옵서예</strong></h3>
                                         <br>
-                                        <a class="start_exchange_bt" href="#">예약하러 가기 ></a>
+                                        <a class="start_exchange_bt" href="main.hotel">예약하러 가기 ></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="pogoSlider-slide" style="background-image:url(${pageContext.request.contextPath}/resources/main/images/banner3.JPG);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="slide_text white_fonts">
+                                  	  <h3>JEJU 렌트카<br><strong>말달리자</strong></h3>
+                                        <br>
+                                        <a class="start_exchange_bt" href="firstPage.rentcar">예약하러 가기 ></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <!-- .pogoSlider -->
             </div>
@@ -69,7 +83,7 @@
                         	</p>
                     </div>
                     <div class="full paddding_left_15">
-                        <a class="main_bt" href="#">About more ></a>
+                        <a class="main_bt" href="list.notice">About more ></a>
                     </div>
                 </div>
             </div>

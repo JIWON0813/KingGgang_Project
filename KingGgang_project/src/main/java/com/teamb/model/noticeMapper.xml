@@ -5,7 +5,9 @@
 
 <mapper namespace="mybatis.questionMapper">
 	<select id="listNotice" resultType="NoticeDTO">
-		select * from notice order by no desc
+		select * from (select rownum rn, A.* from
+		(select * from notice order by regdate desc)A)
+		 where rn between #{start} and #{end}
 	</select>
 	
 	<select id="noticeCount" resultType="Integer">

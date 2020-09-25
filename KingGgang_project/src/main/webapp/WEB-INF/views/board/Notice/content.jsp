@@ -1,4 +1,4 @@
-<%@ include file="../top.jsp"%>
+<%@ include file="../boardtop.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -46,4 +46,4 @@
 				<a class="btn btn-default pull-right" href="list.notice">목록보기</a>
 </div>
 <div class="section layout_padding"></div>
-<%@ include file="../bottom.jsp"%>
+<%@ include file="../boardbottom.jsp"%>

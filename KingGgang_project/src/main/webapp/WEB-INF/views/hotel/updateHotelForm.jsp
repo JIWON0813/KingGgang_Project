@@ -6,7 +6,23 @@
 	개  발   자 : 김 지 원
 	설	   명 : 숙소 정보 수정 폼
  -->
-
+<%@ include file="/WEB-INF/views/top.jsp"%>
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>수정</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
+<div class="section layout_padding"></div>
  <div align="center">
 	<form name="f" action="updateHotel.hotel" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="no" value="${dto.no}" />
@@ -17,7 +33,7 @@
 			</tr>
 			<tr>
 				<th width="20%" bgcolor="orange">이 름</th>
-				<td><input type="text" name="name" value="${dto.name}" readonly class="box"></td>
+				<td><input type="text" name="name" value="${dto.name}" readonly ></td>
 			</tr>
 			<tr>
 				<th width="20%" bgcolor="orange">종 류 </th>
@@ -30,11 +46,11 @@
 			</tr>
 			<tr>
 				<th width="20%" bgcolor="orange">위치</th>
-				<td><input type="text" name="location" value="${dto.location}" class="box" size="40"></td>
+				<td><input type="text" name="location" value="${dto.location}"  size="40"></td>
 			</tr>
 			<tr>
 				<th width="20%" bgcolor="orange">전화번호</th>
-				<td><input type="text" name="hp" value="${dto.hp}"class="box" size="40"></td>
+				<td><input type="text" name="hp" value="${dto.hp}" size="40"></td>
 			</tr>
 			<tr>
 				<th width="20%" bgcolor="orange">체크인시간</th>
@@ -61,11 +77,11 @@
 			</tr>
 			<tr>
 				<th width="40%" bgcolor="orange">내 용</th>
-				<td><textarea name="content" rows="20" cols="100" class="box">${dto.content}</textarea></td>
+				<td><textarea name="content" rows="20" cols="100" >${dto.content}</textarea></td>
 			</tr>
 			<tr>
 				<th width="10%" bgcolor="orange">숙소사진</th>
-				<td><input type="file" name="filename" class="box" size="40"></td>
+				<td><input type="file" name="filename"  size="40"></td>
 			</tr>
 			
 			<tr>
@@ -78,3 +94,5 @@
 		</table>
 	</form>
 </div>
+<div class="section layout_padding"></div>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>

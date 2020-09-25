@@ -3,7 +3,7 @@ package com.teamb.model;
 public class CommWarnDTO {
 	
 	private int boardNum;
-	private int comm_memberNum;
+	private int memberNum;
 	private int warnNum;
 	private String wname;
 	
@@ -13,11 +13,11 @@ public class CommWarnDTO {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	public int getComm_memberNum() {
-		return comm_memberNum;
+	public int getMemberNum() {
+		return memberNum;
 	}
-	public void setComm_memberNum(int comm_memberNum) {
-		this.comm_memberNum = comm_memberNum;
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
 	}
 	public int getWarnNum() {
 		return warnNum;

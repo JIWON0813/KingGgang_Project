@@ -6,7 +6,7 @@
 	설	   명 : 글쓰기폼
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script type="text/javascript">
 	function check(){
 		if (f.file_name.value==""){
@@ -19,20 +19,20 @@
 			f.content.focus()
 			return false
 		}
-		if (f.look.checked == false){
+		if (f.look.value == ""){
 			alert("공개범위를 선택해주세요!!")
-			f.look.focus()
+			f.content.focus()
 			return false
-
 		}
 		return true
+		
 }
 </script>
 
 <style>
 
 	#input_group input {
-		border:1px solid red;
+		border:1px solid red;      
 		background-color:rgba(0,0,0,0);
 		color:red;
 		padding:5px;
@@ -81,11 +81,11 @@
 			<tr>
 				<th width="150"><img src="${pageContext.request.contextPath}/resources/img/flower.png" width="30" height="30">공개범위</th>
 				<td>
-					전체공개 <input type="checkbox" name="look" value="전체공개" />
+					전체공개 <input type="radio" name="look" value="전체공개" />
 					&nbsp;
-           			회원공개 <input type="checkbox" name="look" value="회원공개" />
+           			회원공개 <input type="radio" name="look" value="회원공개" />
            			&nbsp;
-					비공개 <input type="checkbox" name="look" value="비공개" />			
+					비공개 <input type="radio" name="look" value="비공개" />			
 				</td>
 			</tr>
 			<tr>

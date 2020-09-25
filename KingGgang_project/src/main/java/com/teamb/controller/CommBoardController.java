@@ -168,49 +168,6 @@ public class CommBoardController {
 		return "comm/board/comm_myPage";  
 	}
 
-	/*@RequestMapping(value = "/comm_content.do", method = RequestMethod.GET)
-	public String content(HttpServletRequest req, HttpSession session, @RequestParam int boardNum) {
-		
-		CommBookmarkDTO cmdto = new CommBookmarkDTO();
-		cmdto.setBoardNum(boardNum);
-		cmdto.setComm_memberNum(cmdto.getComm_memberNum());
-		
-		List<CommBookmarkDTO> markCheck = bookmarkMapper.markPro(cmdto);
-		
-		int check2 = 1;
-		
-		if(markCheck == null) {
-			check2 = 1;
-		} else {
-			check2 = 2;
-		}
-
-		CommboardDTO dto = boardMapper.getBoard(boardNum);
-		req.setAttribute("getBoard", dto);
-		
-		//원세호 게시판 좋아요
-		CommLikeDTO cdto =  new CommLikeDTO();
-		cdto.setBoardNum(boardNum);
-		cdto.setComm_memberNum(dto.getComm_memberNum());
-		
-		List<CommLikeDTO> likeCheck = likemapper.getCommLike(cdto);
-		
-		int check1 =1;
-		
-		if(likeCheck == null) {
-			check1 = 1;
-		}else {
-			check1 = 2;
-		}
-		
-		List<CommReplyDTO> list = replyMapper.listReply(boardNum);
-		req.setAttribute("replyList", list); 
-		req.setAttribute("check1", check1);
-		req.setAttribute("check2", check2);
-
-		return "comm/board/comm_content";
-	}
-	*/
 	@ResponseBody 
 	@RequestMapping(value = "/bookmark", method = RequestMethod.POST) 
 	public HashMap<String, Object> init(HttpSession session, @RequestBody HashMap<String, Object> map) {
@@ -420,7 +377,7 @@ public class CommBoardController {
 		String msg = null, url = null;
 		if (res > 0) {
 			msg = "게시글이 삭제되었습니다.";
-			url = "comm_myPage.do";
+			url = "commhome.comm";
 		}
 		post_tagMapper.deletePostTag(boardNum);
 		hashtagMapper.deleteHash();

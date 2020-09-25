@@ -9,8 +9,8 @@
 		insert into wishlist values(wish_no.nextval,#{m_no},#{type},#{f_no})
 		</insert>
 		
-		<select id="getWish" parameterType="int" resultType="WishlistDTO">
-		select * from wishlist where m_no = #{m_no}
+		<select id="getWish" parameterType="int" resultType="HotelDTO">
+		select h.* from wishlist w, hotel h where w.f_no = h.no and m_no = #{m_no}
 		</select>
 		
 		<select id="getwishHotel" parameterType="java.util.List" resultType="HotelDTO">
@@ -22,9 +22,9 @@
 		select * from rentcar where r_id = #{f_no}
 		</select>
 		
-		<select id ="deleteWish"  parameterType="WishlistDTO">
+		<delete id ="deleteWish"  parameterType="WishlistDTO">
 			delete from wishlist where m_no = #{m_no} and f_no = #{f_no}
-		</select>
+		</delete>
 		
 		<select id="getwishNo" parameterType="WishlistDTO" resultType="WishlistDTO">
 			select * from wishlist where m_no = #{m_no} and type = #{type}

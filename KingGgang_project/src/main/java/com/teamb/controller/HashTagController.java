@@ -49,6 +49,17 @@ public class HashTagController {
 
 	@RequestMapping("/searchTag")
     public String searchTag(HttpServletRequest req, HttpSession session) {
+		
+		if (session.getAttribute("login_comm_memberNum") == null) {
+            String msg = "돌하르방 로그인 후 이용가능합니다.";
+            String url = "comm_login.do";
+            req.setAttribute("msg", msg);
+            req.setAttribute("url", url);
+            return "message";
+         }
+		
+		
+		
 		int tagId = Integer.parseInt(req.getParameter("tagId"));
 		String tag = req.getParameter("tagName");
 		List<CommboardDTO> hashtagList = new ArrayList<CommboardDTO>();

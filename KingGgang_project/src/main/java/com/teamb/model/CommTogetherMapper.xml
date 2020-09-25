@@ -4,48 +4,48 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <!-- 
-	이	   름 : CommTogetherMapper.xml
-	개  발   자 : 최 인 아
-	설	   명 : 투게더게시판
+   이      름 : CommTogetherMapper.xml
+   개  발   자 : 최 인 아
+   설      명 : 투게더게시판
  -->
  
  <mapper namespace="com.team.model.Comm">
  
-	 <select id="getTogether" resultType="CommTogetherDTO" parameterType="int">
-		select * from together where togetherNum=#{togetherNum}
-	</select>
+    <select id="getTogether" resultType="CommTogetherDTO" parameterType="int">
+      select * from together where togetherNum=#{togetherNum}
+   </select>
 
-	<select id="listTogether" parameterType="java.util.Map" resultType="CommTogetherDTO">
-		select * from (select rownum rn, A.* from together A) where rn between #{startRow} and #{endRow} order by togetherNum desc
-	</select>
-	
-	<select id="allListTogether" resultType="CommTogetherDTO">
-		select * from together order by togetherNum desc
-	</select>
+   <select id="listTogether" parameterType="java.util.Map" resultType="CommTogetherDTO">
+      select * from (select rownum rn, A.* from together A order by togetherNum desc) where rn between #{startRow} and #{endRow} order by togetherNum desc
+   </select>
+   
+   <select id="allListTogether" resultType="CommTogetherDTO">
+      select * from together order by togetherNum desc
+   </select>
  
- 	<insert id="writeTogether" parameterType="CommTogetherDTO">
-	    insert into together values(#{comm_memberNum}, together_num.nextval,
-	    #{ttitle}, #{temail}, #{tcontent}, sysdate, 0, #{tname})
-	</insert>
-	
-	<select id="deleteTogether" parameterType="int" resultType="int">
-		delete from together where togetherNum=#{togetherNum} 
-	</select>
-	
-	<select id="all_deleteTogether" parameterType="int" resultType="int">
-		delete from together where comm_memberNum=#{comm_memberNum} 
-	</select>
-	
-	<update id="updateTogether" parameterType="CommTogetherDTO">
-		update together set ttitle=#{ttitle}, temail=#{temail}, tcontent=#{tcontent} where togetherNum=#{togetherNum}
-	</update>
-	
-	<update id="plustReadcount" parameterType="int">
-		update together set treadcount=treadcount+1 where togetherNum=#{togetherNum}
-	</update>
-	
-	<select id="getCountTogether" resultType="int">
-		select count(*) from together
-	</select>
-	
+    <insert id="writeTogether" parameterType="CommTogetherDTO">
+       insert into together values(#{comm_memberNum}, together_num.nextval,
+       #{ttitle}, #{temail}, #{tcontent}, sysdate, 0, #{tname})
+   </insert>
+   
+   <select id="deleteTogether" parameterType="int" resultType="int">
+      delete from together where togetherNum=#{togetherNum} 
+   </select>
+   
+   <select id="all_deleteTogether" parameterType="int" resultType="int">
+      delete from together where comm_memberNum=#{comm_memberNum} 
+   </select>
+   
+   <update id="updateTogether" parameterType="CommTogetherDTO">
+      update together set ttitle=#{ttitle}, temail=#{temail}, tcontent=#{tcontent} where togetherNum=#{togetherNum}
+   </update>
+   
+   <update id="plustReadcount" parameterType="int">
+      update together set treadcount=treadcount+1 where togetherNum=#{togetherNum}
+   </update>
+   
+   <select id="getCountTogether" resultType="int">
+      select count(*) from together
+   </select>
+   
  </mapper>

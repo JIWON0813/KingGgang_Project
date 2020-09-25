@@ -24,10 +24,10 @@
 			</c:if>
 			<c:forEach var="dto" items="${friendList }">
 			<div class="col-md-3 col-sm-6 col-xs-12">
-				<c:if test="${dto.f_comm_profilename  == null}">
-			 		<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200">
+				<c:if test="${dto.f_comm_profilename eq 'basic.jpg'}">
+					<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200">
 			 	</c:if>
-				<c:if test="${dto.f_comm_profilename  != null}">
+				<c:if test="${dto.f_comm_profilename  ne 'basic.jpg'}">
 			 		<img src="http://192.168.0.184:8080/img/${dto.f_comm_profilename}" width="200" height="200">
 			 	</c:if>
 			 		<a href="comm_otherPage.do?comm_memberNum=${dto.comm_memberNum}">

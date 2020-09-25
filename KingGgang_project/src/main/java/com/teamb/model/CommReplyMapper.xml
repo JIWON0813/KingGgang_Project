@@ -6,7 +6,7 @@
   <!-- 
 	이	   름 : CommReplyMapper.xml
 	개  발   자 : 최 인 아
-	설	   명 : 메인 페이지
+	설	   명 : 댓글
  -->
   
 <mapper namespace="com.team.model.Comm">
@@ -16,7 +16,7 @@
 	</select>
 
 	<select id="listReply" resultType="CommReplyDTO">
-		select * from reply where boardNum=#{boardNum}
+		select * from reply where boardNum=#{boardNum} order by replyNum desc
 	</select>
 	
 	<insert id="writeReply" parameterType="CommReplyDTO">

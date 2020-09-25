@@ -63,16 +63,11 @@ public class Comm_FriendController {
 				url="comm_friendAll.do?comm_memberNum="+login_comm_memberNum;
 			}
 		}
-		/*int comm_friendCount = (Integer)friendMapper.getfriendCount(login_comm_memberNum,comm_memberNum);
-		Comm_MemberDTO mdto = memberMapper.login_comm_getMember(login_comm_memberNum);
-		mdto.setComm_friendCount(comm_friendCount);
-		int res1 = memberMapper.updateFriend(mdto);*/
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
 		return "message";
 	}
-	
-	
+		
 	@RequestMapping(value = "/comm_friendAll.do")
 	public String listFriend(HttpServletRequest req, Comm_FriendDTO dto,
 				HttpSession session) {
@@ -102,10 +97,8 @@ public class Comm_FriendController {
       return "comm/friend/friendAll";
    }
 
-   
-   
    @RequestMapping(value = "/comm_deleteFriend.do")
-   public String deleteFriend(HttpServletRequest req,HttpSession session,@RequestParam int friendNum,Comm_FriendDTO dto) {
+   	public String deleteFriend(HttpServletRequest req,HttpSession session,@RequestParam int friendNum,Comm_FriendDTO dto) {
 	   int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
       int res = friendMapper.deleteFriend(friendNum);
       String msg = null, url = null;
@@ -113,26 +106,11 @@ public class Comm_FriendController {
          msg = "친구삭제 성공. 친구목록페이지로 이동";
          url = "comm_friendAll.do?comm_memberNum="+login_comm_memberNum;
       }
-     /* int login_comm_memberNum = (int) session.getAttribute("login_comm_memberNum");
-      int comm_memberNum=dto.getComm_memberNum();
-      int comm_friendCount = (Integer)friendMapper.getfriendCount(login_comm_memberNum,comm_memberNum);
-      Comm_MemberDTO mdto = memberMapper.login_comm_getMember(login_comm_memberNum);
-      mdto.setComm_friendCount(comm_friendCount);
-      int res1 = memberMapper.updateFriend(mdto);*/
       req.setAttribute("msg", msg);
       req.setAttribute("url", url);
       return "message";
    }
    
-   @RequestMapping(value = "/comm_friendContent.do")
-   public String content(HttpServletRequest req, HttpSession session,@RequestParam int friendNum) {
-      int comm_memberNum=(Integer)session.getAttribute("comm_memberNum");
-      Comm_FriendDTO dto = friendMapper.getFriend(friendNum);
-      
-      session.setAttribute("getFriend", dto);
-
-      return "comm/friend/friendcontent";
-   }
    
    
 }

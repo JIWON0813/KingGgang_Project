@@ -48,11 +48,6 @@ public class Comm_FriendMapper {
 		return res;
 	}
 
-	public int deleteAllFriend(int comm_memberNum) {
-		int res = sqlSession.insert("all_comm_deleteFriend", comm_memberNum);
-		return res;
-	}
-
 	public Integer getfriendCount(int login_comm_memberNum,int comm_memberNum) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("login_comm_memberNum", login_comm_memberNum);

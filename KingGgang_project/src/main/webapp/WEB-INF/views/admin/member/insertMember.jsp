@@ -9,16 +9,29 @@
 </c:choose>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<style>
+a.join_bt2 {
+
+	background: #ff880e;
+	width: 180px;
+	text-align: center;
+	height: 38px;
+	color: #fff;
+	font-weight: 300;
+
+	}
+
+a.join_bt2:hover, a.join_bt2:focus {
+	background: #222;
+	color: #fff !important;
+
+	}
+ </style>
 <script type="text/javascript">
 	function checkjoin() {
        var reid = /^[a-zA-Z0-9]{4,12}$/; 
        var repass = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; 
-       var reemail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-       /* 휴대폰 번호 ,이미지파일
-          var rehp = /^\d{3}-\d{3,4}-\d{4}$/; */
-	   /* var reimg = /(.*?)\.(jpg|jpeg|png|gif|bmp|"")$/; */
-	   
-       
+        
 	   var form = document.join;
 	   
 	   if(join.id.value==""){
@@ -59,14 +72,16 @@
            join.checkpw.focus();
            return;
        }
-       if(!join.email.value){
+       if(!join.email1.value){
     	   alert("이메일을 입력해 주세요");
-    	   join.email.focus();
+    	   join.email1.focus();
     	   return;
        }
-       if(!check(reemail,join.email,"이메일을 정확히 입력")){
-	   	   return;
-	   }
+       if(!join.email2.value){
+    	   alert("이메일을 입력해 주세요");
+    	   join.email2.focus();
+    	   return;
+       }
        if(!join.hp1.value){
     	   alert("연락처를 입력해 주세요");
     	   join.hp1.focus();
@@ -139,17 +154,37 @@
 	   function inputIdCheck(){
 		   document.join.idDuplication.value="idUnCheck";
 	   }
+	   function selectEmail(ele){
+		    var $ele = $(ele);
+		    var $email2 = $('input[name=email2]');
+
+		    if($ele.val() == "1"){
+		        $email2.attr('readonly', false);
+		        $email2.val('');
+		    } else {
+		        $email2.attr('readonly', true);
+		        $email2.val($ele.val());
+		    }
+		}
 	   
 </script>
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/adminmember.css">
+	<div class="section layout_padding"></div>
 <form name="join" action="insertMemberPro.mem"
 	enctype="multipart/form-data" method="post">
 	<div class="wrap wd668">
 		<div class="container">
 			<div class="form_txtInput">
-				<h2 class="sub_tit_txt">회원가입</h2>
+				    <c:choose>
+                		<c:when test="${mbId=='admin' }">
+                		<h2 class="sub_tit_txt">회원등록</h2>
+                		</c:when>
+                		<c:otherwise>
+                		<h2 class="sub_tit_txt">회원가입</h2>
+                		</c:otherwise>
+                	</c:choose>
 				<div class="join_form">
 					<table>
 						<colgroup>
@@ -204,13 +239,32 @@
 										</c:forEach>
 								</select> 일</td>
 							</tr>
+							
 							<tr>
 								<th><span>이메일</span><font color="red">*</font></th>
-								<td><input type="text" name="email"></td>
+                                    <td>
+                                    <input name="email1" type="text" size="10"> @ <input name="email2" type="text" size="10"> 
+										<select name="select_email" onChange="selectEmail(this)"> 
+											<option value="" selected>선택하세요</option> 
+											<option value="naver.com">naver.com</option> 
+											<option value="gmail.com">gmail.com</option> 
+											<option value="hanmail.com">hanmail.com</option> 
+											<option value="nate.com">nate.com</option>
+											<option value="1">직접입력</option> 
+										</select>
+									</td>
 							</tr>
 							<tr>
 								<th><span>연락처</span><font color="red">*</font></th>
-								<td><input type="text" name="hp1" size="3" maxlength="3">
+								<td>
+									<select name="hp1">
+										<option value="010">010</option>
+										<option value="011">011</option>
+										<option value="016">016</option>
+										<option value="017">017</option>
+										<option value="018">018</option>
+										<option value="019">019</option>
+									</select>
 									- <input type="text" name="hp2" size="4" maxlength="4">
 									- <input type="text" name="hp3" size="4" maxlength="4">
 								</td>
@@ -229,10 +283,20 @@
 			</div>
 			<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font
 				color="red">*</font> 표시는 반드시 입력해 주세요.
-			<div class="btn_wrap">
-				<a href="javascript:checkjoin()">회원가입</a>
+			<br><br>
+			<div align="center">
+			     	<c:choose>
+                		<c:when test="${mbId=='admin' }">
+                		<a class="join_bt2" style="display: inline-block; margin-left: 30px;" href="javascript:checkjoin()">회원등록</a>
+                		</c:when>
+                		<c:otherwise>
+                		<a class="join_bt2" style="display: inline-block; margin-left: 30px;" href="javascript:checkjoin()">회원가입</a>
+                		</c:otherwise>
+                	</c:choose>
+                	<a class="join_bt2" style="display: inline-block; margin-left: 30px;" href="javascript:history.back()">취소</a>
 			</div>
 		</div>
 	</div>
 </form>
 <%@ include file="../adminbottom.jsp"%>
+							

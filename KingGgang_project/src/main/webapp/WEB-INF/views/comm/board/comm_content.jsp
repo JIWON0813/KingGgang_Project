@@ -69,7 +69,7 @@
    function delok(warnNum){
        result = confirm('정말로 신고 하시겠습니까?');
        if(result == true){
-           location.href = "comm_warnPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}";
+           location.href = "comm_warnPro.do?boardNum=${getBoard.boardNum}&memberNum=${memberNum}";
        }else{
        return false;
        }
@@ -91,10 +91,8 @@ function LikeAction() {
     		success: function(data) {  
     				var result1 = data
     				if(result1.wstatus == 2){
-    					alert("좋아요 취소");
                        $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
-                    	alert("좋아요 등록");
                         $('img#likeImg').attr('src', './resources/img/heart.png');
                 	}
 				$('#likeCount').text(result1.likeCount)
@@ -118,21 +116,14 @@ function LikeAction() {
     		dataType: "json", 
     		contentType: "application/json", 
     		
-    		success: function(data) { alert("통신성공");
-    		
+    		success: function(data) { 
     				var result1 = data
-    				
     				if(result1.wstatus == 2){
-    					alert("북마크 취소");
-
                        $('img#mark_img').attr('src', './resources/img/box.png');
                     } else {
-                    	alert("북마크 저장");
-
                        $('img#mark_img').attr('src', './resources/img/heartbox.png');
                        }
                 }, 
-                
           error: function(errorThrown) { alert(errorThrown.statusText); } 
           }); 
        } 
@@ -158,7 +149,7 @@ function LikeAction() {
    <table width="400">
    <tr>
       <td align="right" colspan="4">
-            <a href="javascript:delok('${getBoard.boardNum}&${comm_memberNum}')">신고<img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a>
+            <a href="javascript:delok('${getBoard.boardNum}&${memberNum}')">신고<img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a>
       </td>
    </tr>
    <tr>
@@ -193,7 +184,7 @@ function LikeAction() {
    			
    			<c:if test="${loginNum != 0}">
 				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
-       				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.PNG' }" id="likeImg" width="30" height="30">
+       				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png' }" id="likeImg" width="30" height="30">
    				</button>
    				<span id="likeCount">${likeCount}</span>
    			</c:if>	

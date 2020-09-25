@@ -17,7 +17,21 @@
 		 regi.style.display = 'none';
 	 }
  }
+ function check(){
+	 fm = document.f;
+	 var fi = document.getElementById('file');
+	 if(!fi.value){
+		 alert('이미지를 넣어주세요');
+		 return false;
+	 }
+	 if(fm.name.value == "" || fm.maxpersons.value == "" || fm.dayprice.value == "" || fm.endprice.value == ""){
+		 alert('입력값을 모두 넣어주세요');
+		 return false;
+	 }
+	 return true;
+ }
  </script>
+<div class="section layout_padding" align="center"></div>
 <h1 align="center">숙소 상세 정보</h1>
 <div align="center">
 	<table width="1200" border="1">
@@ -78,7 +92,7 @@
 <button onclick="regiroom()">방 등록하기</button>
 </div>
 <div id="regiroom" style="display: none;" align="center">
-	<form action="insertRoom.hotel" method="post" enctype="multipart/form-data">
+	<form name="f" action="insertRoom.hotel" onsubmit="return check();" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="h_id" value="${dto.no}">
 		<table>
 			<tr>
@@ -103,7 +117,7 @@
 			<tr>
 			<tr>
 				<td>이미지 등록
-				<td><input type="file" name="file">
+				<td><input id="file" type="file" name="file">
 			<tr>
 			<tr>
 				<td><input type="submit" value="방 등록">
@@ -115,4 +129,5 @@
 <div align="center">
 	<a href="hotelList.hotel">목록으로</a>
 </div>
+<div class="section layout_padding" align="center"></div>
 <%@ include file="../bottom.jsp"%>

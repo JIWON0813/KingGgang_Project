@@ -15,6 +15,7 @@ function check(){
 </script>
 
 <%@ include file="../top.jsp"%>
+<div class="section layout_padding"></div>
 <h1 align="center">내 역 확 인</h1>
 <div align="center">
 <form action="payment.hotel" >
@@ -49,4 +50,5 @@ function check(){
 	</table>
 	</form>
 </div>
+<div class="section layout_padding"></div>
 <%@ include file="../bottom.jsp"%>

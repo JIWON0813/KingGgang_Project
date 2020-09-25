@@ -2,12 +2,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- 
 	이	   름 : mypageMain.jsp
 	개  발   자 : 원세호
 	설	   명 : 마이페이지 메인 페이지
  -->
+ <style>
+a.join_bt2 {
+
+	background: #ff880e;
+	width: 180px;
+	text-align: center;
+	height: 38px;
+	color: #fff;
+	font-weight: 300;
+
+}
+
+a.join_bt2:hover, a.join_bt2:focus {
+	background: #222;
+	color: #fff !important;
+
+}
+ </style>
 
 <html>
 <head>
@@ -30,26 +47,28 @@
                             </colgroup>
                             <tbody>
                          		<tr>
-                                    <th><a href="payment.my">&nbsp&nbsp&nbsp&nbsp&nbsp결제내역확인</a></th>
+                                    <th><a href="payment.my">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제내역확인</a></th>
                                 </tr>
                                 <tr><td></td></tr>
                                 <tr>
-                                    <th><a href="list.wish">&nbsp&nbsp&nbsp&nbsp&nbsp관심리스트</a></th>
+                                    <th><a href="list.wish">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관심리스트</a></th>
                                 </tr>
                                  <tr><td></td></tr>
                                 <tr>
-                                    <th><a href="update.my">&nbsp&nbsp&nbsp&nbsp&nbsp회원 정보 변경</a></th>
+                                    <th><a href="update.my">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원 정보 변경</a></th>
                                 </tr>
                                 <tr><td></td></tr>
                                 <tr>
-                                    <th><a href="delete.my">&nbsp&nbsp&nbsp&nbsp&nbsp탈퇴 하기</a></th>
+                                    <th><a href="delete.my">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;탈퇴 하기</a></th>
                                 </tr><td></td></tr>
                          </tbody>
                         </table>
-                      
-                    <div class="btn_wrap">
-                        <a href="home.do">홈으로</a>
-                    </div>
+                      <br><br>
+                    	<div align="center">
+							<a class="join_bt2" 
+									style="display: inline-block; margin-left: 30px;" href="home.do">
+									홈으로 가기</a>
+						</div>
                </div> <!-- form_txtInput E -->
             </div><!-- content E-->
         </div> <!-- container E -->

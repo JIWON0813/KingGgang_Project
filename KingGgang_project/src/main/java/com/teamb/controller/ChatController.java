@@ -141,6 +141,8 @@ public class ChatController {
 			req.setAttribute("msgSender",msgSender);
 			req.setAttribute("msgReceiver", msgReceiver);
 			req.setAttribute("RProfile",RProfile);
+			req.setAttribute("Rname",croom.getRname());
+			req.setAttribute("Sname",croom.getSname());
 			mv.setViewName("comm/chatView");
 		}else {
 			mv.setViewName("comm/chatRoom");

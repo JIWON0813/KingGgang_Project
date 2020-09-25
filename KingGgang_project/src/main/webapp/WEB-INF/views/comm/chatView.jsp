@@ -98,6 +98,7 @@
          console.log('메세지 수신');
          //메시지를 받으면 동작
          var msg = data.data;
+         $('#chating').animate({ scrollTop: $('#chating')[0].scrollHeight }, 1000);
          if(msg != null && msg.trim() != ''){
             var d = JSON.parse(msg);
             if(d.type == "getId"){
@@ -161,6 +162,13 @@
       $('#chatting').val("");
    }
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#chating").scrollTop($("#chating")[0].scrollHeight);
+	
+});
+</script>
+
 <body>
    <div id="container" class="container">
       <input type="button" id ="back" value="<" onclick="location.href='roomList'">

@@ -119,10 +119,6 @@
 		]]>
 	</select>
 
-	<select id="getRoomdate" parameterType="int" resultType="RoomDateDTO">
-		select *
-		from roomdate where no = #{no}
-	</select>
 	
 	<select id="getrecentdate" resultType="int">
 		select id

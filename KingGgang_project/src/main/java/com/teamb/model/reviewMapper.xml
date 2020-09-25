@@ -5,11 +5,13 @@
 
 <mapper namespace="com.teamb.model.reviewMapper">
 	<select id="listReview" resultType="ReviewDTO">
-		select * from review order by num desc
+		select * from (select rownum rn, A.* from
+		(select * from review order by regdate desc)A)
+		 where rn between #{start} and #{end}
 	</select>
 	
 	<select id="reviewCount" resultType="Integer">
-		select count(*) from notice
+		select count(*) from review
 	</select>
 	<insert id="insertReview" parameterType="ReviewDTO">
 		insert into review values(re_num.nextval,#{type},#{t_id},#{name},#{filename},#{subject},#{content},#{m_id},sysdate,#{star})

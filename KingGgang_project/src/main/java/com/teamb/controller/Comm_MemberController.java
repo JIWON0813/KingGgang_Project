@@ -168,14 +168,15 @@ public class Comm_MemberController {
 			comm_profilesize=(int)file.getSize();
 		}
 		
-		if(dto.getComm_profilename() == null){
-			dto.setComm_profilename("basic.jpg");;
+		if(comm_profilename.equals("")){
+			dto.setComm_profilename("basic.jpg");
+			dto.setComm_profilesize(comm_profilesize);
 		}else{
 			dto.setComm_profilename(comm_profilename);
+			dto.setComm_profilesize(comm_profilesize);
 		}
 			dto.setMemberNum(memberNum);
 			dto.setComm_name(comm_name);
-			dto.setComm_profilesize(comm_profilesize);
 			
 			
 		    int res = memberMapper.comm_insertMember(dto);
@@ -323,7 +324,6 @@ public class Comm_MemberController {
 		req.setAttribute("url", url);
 		return "message";
 	}
-	
 	
 	@RequestMapping("/comm_member_delete.do")
 	public String memberDelete(HttpServletRequest req,@RequestParam int comm_memberNum){

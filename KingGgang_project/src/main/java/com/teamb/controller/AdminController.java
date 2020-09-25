@@ -31,89 +31,118 @@ import com.teamb.service.RentcarMapper;
 
 @Controller
 public class AdminController {
-	
+
 	@Autowired
 	private PaymentMapper paymemtMapper;
-		
+
 	@Autowired
 	private MemberMapper memberMapper;
-	
+
 	@Autowired
 	private RentcarMapper rentcarMapper;
-	
+
 	@Autowired
 	private HotelMapper hotelmapper;
-	
+
 	@RequestMapping(value = "/main.admin")
-	public String adminMain(){
-		
+	public String adminMain() {
+
 		return "admin/adminMain";
 	}
-	
+
 	@RequestMapping(value = "insertHotel.admin")
-	public String insertHotelForm(){
+	public String insertHotelForm() {
 		return "hotel/insertHotelForm";
 	}
-	
-	//관리자 권한 결제 목록보기 (김지원)
+
+	// 관리자 권한 결제 목록보기 (김지원)
 	@RequestMapping(value = "/payList.admin")
-	public String payList(HttpServletRequest req){
-		List<PaymentDTO> list = paymemtMapper.getAdminList();
+	public String payList(HttpServletRequest req) {
+		List<PaymentDTO> list = paymemtMapper.getgetAdminList();
 		List<PaymentListData> plist = new ArrayList<PaymentListData>();
-		Iterator<PaymentDTO> iter = list.iterator();
-		while(iter.hasNext()){
-			PaymentDTO pdto = iter.next();
-			MemberDTO mdto = memberMapper.getMember(pdto.getM_no());
-			//1일경우 호텔, 2일경우 렌트
-			RoomDTO rdto= null;
-			HotelDTO hdto= null;
+
+		for (PaymentDTO pdto : list) {
+			MemberDTO mdto = null;
+			mdto = memberMapper.getMember(pdto.getM_no());
+			// 1일경우 호텔, 2일경우 렌트
+			RoomDTO rdto = null;
+			HotelDTO hdto = null;
 			Rentcar_ResDTO resdto = null;
-			RentcarDTO cardto= null;
+			RentcarDTO cardto = null;
 			RoomDateDTO rddto = null;
-			if(pdto.getType() == 1){			
-				rddto = hotelmapper.getRoomDate(pdto.getP_no());
-				rdto = hotelmapper.getRoom(rddto.getRoom_id());
-				hdto = hotelmapper.getHotel(rdto.getH_id());
-			} 
-			else{
-				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
-				cardto = rentcarMapper.getRentcar(resdto.getR_id());
+			if (mdto == null) {
+			} else {
 			}
-			
-			plist.add(new PaymentListData(pdto, mdto, rddto, rdto,hdto,resdto,cardto));
-		}
-		String pageNum = req.getParameter("pageNum");
-		if (pageNum==null){
-			pageNum = "1";
-		}
-		int pageSize = 10;
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = currentPage * pageSize - (pageSize-1);
-		int endRow = currentPage * pageSize;
-		int count = plist.size();
-		if (endRow>count) endRow = count;
-		int startNum = count - ((currentPage-1) * pageSize); 		
-		if (count>0){
-			int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
-			int pageBlock = 5;
-			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
-			int endPage = startPage + pageBlock - 1;
-			if (endPage>pageCount) endPage = pageCount;
-			req.setAttribute("count", count);
-			req.setAttribute("pageCount", pageCount);
-			req.setAttribute("pageBlock", pageBlock);
-			req.setAttribute("startPage", startPage);
-			req.setAttribute("endPage", endPage);
-		}
-		List<PaymentListData> partlist = new ArrayList<>();
-		for(int i = startRow-1 ; i < endRow ; i++){
-			partlist.add(plist.get(i));
+			if (pdto.getType() == 1) {
+				rddto = hotelmapper.getRoomDate(pdto.getP_no());
+				if (rddto == null) {
+				} else {
+					rdto = hotelmapper.getRoom(rddto.getRoom_id());
+					if (rdto != null)
+						hdto = hotelmapper.getHotel(rdto.getH_id());
+				}
+			} else {
+				// System.out.println("test: "+pdto.getType());
+				// System.out.println("test: "+pdto.getP_no());
+				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
+				if (resdto != null)
+					cardto = rentcarMapper.getRentcar(resdto.getR_id());
+			}
 
+			plist.add(new PaymentListData(pdto, mdto, rddto, rdto, hdto, resdto, cardto));
 		}
-		req.setAttribute("list", partlist);
-		return "payment/adminPayList";
+			/*
+			 * Iterator<PaymentDTO> iter = list.iterator();
+			 * while(iter.hasNext()){ PaymentDTO pdto = iter.next();
+			 * System.out.println(pdto.getType()); MemberDTO mdto =
+			 * memberMapper.getMember(pdto.getM_no()); //1일경우 호텔, 2일경우 렌트
+			 * RoomDTO rdto= null; HotelDTO hdto= null; Rentcar_ResDTO resdto =
+			 * null; RentcarDTO cardto= null; RoomDateDTO rddto = null;
+			 * if(pdto.getType() == 1){ rddto =
+			 * hotelmapper.getRoomDate(pdto.getP_no()); rdto =
+			 * hotelmapper.getRoom(rddto.getRoom_id()); hdto =
+			 * hotelmapper.getHotel(rdto.getH_id()); } else{
+			 * //System.out.println("test: "+pdto.getType());
+			 * //System.out.println("test: "+pdto.getP_no()); resdto =
+			 * rentcarMapper.getRentcarRes(pdto.getP_no()); cardto =
+			 * rentcarMapper.getRentcar(resdto.getR_id()); }
+			 * 
+			 * plist.add(new PaymentListData(pdto, mdto, rddto,
+			 * rdto,hdto,resdto,cardto)); }
+			 */
+			String pageNum = req.getParameter("pageNum");
+			if (pageNum == null) {
+				pageNum = "1";
+			}
+			int pageSize = 10;
+			int currentPage = Integer.parseInt(pageNum);
+			int startRow = currentPage * pageSize - (pageSize - 1);
+			int endRow = currentPage * pageSize;
+			int count = plist.size();
+			if (endRow > count)
+				endRow = count;
+			int startNum = count - ((currentPage - 1) * pageSize);
+			if (count > 0) {
+				int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+				int pageBlock = 5;
+				int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+				int endPage = startPage + pageBlock - 1;
+				if (endPage > pageCount)
+					endPage = pageCount;
+				req.setAttribute("count", count);
+				req.setAttribute("pageCount", pageCount);
+				req.setAttribute("pageBlock", pageBlock);
+				req.setAttribute("startPage", startPage);
+				req.setAttribute("endPage", endPage);
+			}
+			List<PaymentListData> partlist = new ArrayList<>();
+			for (int i = startRow - 1; i < endRow; i++) {
+				partlist.add(plist.get(i));
+
+			}
+			req.setAttribute("list", partlist);
+			return "payment/adminPayList";
+		}
+
 	}
-
-}
-
 

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.teamb.model.MemberDTO;
 import com.teamb.model.QuestionDTO;
 
 @Service
@@ -20,6 +21,26 @@ public class QuestionMapper
 	{
 		int count = sqlSession.selectOne("questCount");
 		return count;
+	}
+	
+	public int getSCount(String search, String searchString){
+		Map<String,String> map = new Hashtable<String,String>();
+		map.put("search", search);
+		map.put("searchString", searchString);
+		int count = sqlSession.selectOne("getSCount",map);
+		return count;
+	}
+	
+	public List<QuestionDTO> searchQuest(String search,String searchString){
+		java.util.Map<String,String> map = new java.util.Hashtable<>();
+		if(search == null||searchString==null){
+			search="";
+			searchString="";
+		}
+		map.put("search", search);
+		map.put("searchString", searchString);
+		List<QuestionDTO> find = sqlSession.selectList("searchQuest",map);		
+		return find;
 	}
 	
 	public List<QuestionDTO> listQuest(int startRow, int endRow) 

@@ -26,11 +26,11 @@ public class CommWarnMapper {
 		return res;
 	}
 
-	public int deleteAllWarn(int comm_memberNum) {
+	public int deleteAllWarn(int memberNum) {
 		//Map<String,Integer> map = new HashMap<String,Integer>();
 		//map.put("comm_memberNum", comm_memberNum);
 		//map.put("boardNum", boardNum);
-		int res = sqlSession.insert("all_deleteWarn",comm_memberNum);
+		int res = sqlSession.insert("all_deleteWarn",memberNum);
 		return res;
 	}
 

@@ -5,11 +5,11 @@
 
 	<table width="100%">
 		<tr bgcolor="orange">
-			<th width="30%">제목</th>
+			<th width="45%">제목</th>
 			<th>작성자</th>
 			<th>이메일</th>
-			<th>작성일</th>
-			<th>조회</th>
+			<th width="15%">작성일</th>
+			<th width="7%">조회</th>
 		</tr> 
 	<c:if test="${empty togetherList}">		
 		<tr>

@@ -1,4 +1,4 @@
-<%@ include file="../top.jsp" %>
+<%@ include file="../boardtop.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -27,7 +27,6 @@
 		}
 }
 </script>
-<div class="section layout_padding"></div>
 <div class="container" align="center">
 	<h3 align="center">Review</h3>
 	<br>
@@ -121,21 +120,19 @@
 				<!-- <a class="btn btn-default pull-right" href="insertReview.re">글쓰기</a> -->
 	</c:if>
 		<c:if test="${count>0}">
-		<ul>
 			<c:if test="${startPage > pageBlock}">
-				<li><a href="list.notice?pageNum=${startPage-1}">이전</a></li>	
+				<a href="listReview.re?pageNum=${startPage-1}">&nbsp;이전&nbsp;</a>	
 			</c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<li><a href="list.notice?pageNum=${i}">${i}</a></li>
+				<a href="listReview.re?pageNum=${i}">&nbsp;${i}&nbsp;</a>
 			</c:forEach>
 			<c:if test="${endPage<pageCount}">
-				<li><a href="list.notice?pageNum=${endPage+1}">다음</a></li>
+				<a href="listReview.re?pageNum=${endPage+1}">&nbsp;다음&nbsp;</a>
 			</c:if>
-		</ul>
 		</c:if>
 	</div>
 	<div class="section layout_padding"></div>
-<%@ include file="../bottom.jsp" %>
+<%@ include file="../boardbottom.jsp" %>
 
 
 

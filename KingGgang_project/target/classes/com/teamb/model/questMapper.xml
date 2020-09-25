@@ -56,6 +56,47 @@
 	<update id="plusRe_step" parameterType="java.util.Map">
 		update ask set re_step=re_step+1 where re_step>#{re_step} and re_group = #{re_group}
 	</update>
+	
+	<select id="searchQuest" parameterType="java.util.Map" resultType="QuestionDTO">
+    	select * from ask 
+ 		<if test="searchString != ''"> 
+ 		where ${search} like '%' || #{searchString} || '%'
+ 		</if>
+ 		<if test="searchString == ''">
+ 		where subject like '%' || #{searchString} || '%'
+ 	</if>
+    </select>
+	
+	<select id="getSCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from ask
+		<if test="searchString != ''"> 
+ 		where ${search} like '%' || #{searchString} || '%'
+ 		</if>
+ 		<if test="searchString == ''">
+ 		where subject like '%' || #{searchString} || '%'
+ 	</if>
+	</select>
+<!-- 	
+	<select id="searchCount" parameterType="java.util.Map" resultType="Integer">
+		select count(*) from ask
+		<if test="searchString != ''"> 
+ 		where ${search} like '%' || #{searchString} || '%'
+ 		</if>
+ 		<if test="searchString == ''">
+ 		where subject like '%' || #{searchString} || '%'
+ 		</if>
+	</select>
+	<select id="searchQuest" parameterType="java.util.Map" resultType="QuestionDTO">
+		select * from (select rownum rn, A.* from
+		(select * from ask order by re_group desc, re_step asc)A)
+		 where rn between #{start} and #{end} and
+		 <if test="searchString != ''"> 
+ 		${search} like '%' || #{searchString} || '%'
+ 		</if>
+ 		<if test="searchString == ''">
+ 		subject like '%' || #{searchString} || '%'
+ 		</if>
+	</select> -->
 </mapper>
 
 

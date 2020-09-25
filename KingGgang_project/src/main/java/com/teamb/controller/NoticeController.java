@@ -43,21 +43,17 @@ public class NoticeController
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = currentPage * pageSize - (pageSize-1);
 		int endRow = currentPage * pageSize;
-		
-		List<NoticeDTO> list = noticeMapper.listNotice(startRow, endRow);
-		
 		int count = noticeMapper.getCount();
-
 		if (endRow>count) endRow = count;
-		int startNum = count - ((currentPage-1) * pageSize); 
-		
+		int startNum = count - ((currentPage-1) * pageSize);
+		List<NoticeDTO> list = noticeMapper.listNotice(startRow, endRow);
 		req.setAttribute("listNotice", list);
 		req.setAttribute("startNum", startNum);
 		
 		if (count>0)
 		{
 			int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1);
-			int pageBlock = 3;
+			int pageBlock = 5;
 			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;
 			int endPage = startPage + pageBlock - 1;
 			
@@ -73,28 +69,28 @@ public class NoticeController
 			req.setAttribute("endPage", endPage);
 		}	
 		
-		return "Notice/list";
+		return "board/Notice/list";
 	}
 	
 	@RequestMapping(value = "/write.notice", method = RequestMethod.GET)
 	public String write()
 	{
-		return "Notice/writeForm";
+		return "board/Notice/writeForm";
 	}
 	
 	@RequestMapping(value = "/write.notice", method = RequestMethod.POST)
-	public String writePro(HttpServletRequest req, @ModelAttribute NoticeDTO dto, BindingResult result)
+	public String writePro(HttpServletRequest req, @ModelAttribute NoticeDTO dto)
 	{
 		int res = noticeMapper.insertNotice(dto);
 	
 		String msg = null, url = "list.notice";
 		if (res>0)
 		{
-			msg = "등록 성공";
+			msg = "게시글이 등록되었습니다.";
 		}
 		else 
 		{
-			msg = "등록 실패";
+			msg = "게시글 등록 실패";
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
@@ -107,7 +103,7 @@ public class NoticeController
 		noticeMapper.N_plusReadcount(no);
 		NoticeDTO dto = noticeMapper.getNotice(no);
 		req.setAttribute("notice", dto);
-		return "Notice/content";
+		return "board/Notice/content";
 	}
 	
 	@RequestMapping(value = "/delete.notice")
@@ -118,11 +114,11 @@ public class NoticeController
 	
 		if (res>0)
 		{
-			msg = "삭제 성공";
+			msg = "게시글이 삭제되었습니다.";
 		}
 		else 
 		{
-			msg = "삭제 실패";
+			msg = "게시글 삭제 실패";
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
@@ -134,7 +130,7 @@ public class NoticeController
 	public ModelAndView update(@RequestParam int no)
 	{
 		NoticeDTO dto = noticeMapper.getNotice(no);
-		return new ModelAndView("Notice/updateForm", "notice", dto);
+		return new ModelAndView("board/Notice/updateForm", "notice", dto);
 	}
 	
 	@RequestMapping(value = "/update.notice", method = RequestMethod.POST)
@@ -145,11 +141,11 @@ public class NoticeController
 		int res = noticeMapper.updateNotice(dto);	
 		if (res>0)
 		{
-			msg = "게시글이 수정되었습니다. 메인화면으로 이동합니다.";
+			msg = "게시글이 수정되었습니다.";
 		}
 		else 
 		{
-			msg = "해당 게시글은 수정할 수 없습니다. 관리자에게 문의해주세요.";
+			msg = "게시글 수정 실패";
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);

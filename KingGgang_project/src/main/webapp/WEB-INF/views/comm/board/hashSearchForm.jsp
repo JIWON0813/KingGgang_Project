@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-md-12 white_fonts">
 					<div class="row">
-						<div class="col-sm-6 col-md-6 col-lg-3">
+						<div>
 							<div class="full">
 								<h3>#${tag} 검색 결과</h3>
 							</div>

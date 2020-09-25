@@ -2,10 +2,16 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <!-- 
+   이      름 : CommWarnMapper.xml
+   개  발   자 : 최 인 아
+   설      명 : 게시물경고
+ -->
  
 <mapper namespace="com.teamb.model.Comm">
 	<insert id="warnPro" parameterType="CommWarnDTO">
-     insert into warn values(#{boardNum},#{comm_memberNum},warn_num.nextval,#{wname})
+     insert into warn values(#{boardNum},#{memberNum},warn_num.nextval,#{wname})
     </insert>
     
     <select id="listWarn" resultType="CommWarnDTO">
@@ -17,6 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="all_deleteWarn" parameterType="int" resultType="int">
-		delete from warn where comm_memberNum=#{comm_memberNum}
+		delete from warn where memberNum=#{memberNum}
 	</select>
 </mapper>

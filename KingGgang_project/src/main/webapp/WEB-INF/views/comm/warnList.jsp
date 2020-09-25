@@ -5,6 +5,7 @@
 	개  발   자 : 최 인 아
 	설	   명 : 경고목록페이지
 -->
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <footer class="footer-box">
@@ -41,10 +42,13 @@
 	</c:if>		
 	<c:forEach var="dto" items="${warnList}">		
 		<tr align="center">
+		
+		
 			<td><c:out value="${dto.warnNum}"/></td>
 			<td>
 				<a href="comm_otherContent.do?boardNum=${dto.boardNum}">${dto.boardNum}</a>
 			</td>
+		
 			<td>${dto.wname}</td>
 			<td><input type="button" value="삭제" onclick="window.location='warn_deletePro.do?warnNum=${dto.warnNum}&boardNum=${dto.boardNum}'"></td>
 		</tr>		

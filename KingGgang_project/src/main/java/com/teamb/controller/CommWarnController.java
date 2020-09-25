@@ -46,9 +46,9 @@ public class CommWarnController {
 		CommboardDTO bdto = boardMapper.getBoard(boardNum);
 		req.setAttribute("getBoard", bdto);
 		
-		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+		int memberNum = (Integer)session.getAttribute("memberNum");
 		
-		dto.setComm_memberNum(comm_memberNum);
+		dto.setMemberNum(memberNum);
 		String wname = (String)session.getAttribute("comm_nickname");
 		dto.setWname(wname);
 		
@@ -69,10 +69,10 @@ public class CommWarnController {
 		
 		CommboardDTO bdto = (CommboardDTO) session.getAttribute("boardNum");
 		
-		int comm_memberNum = (Integer)session.getAttribute("comm_memberNum");
+		int memberNum = (Integer)session.getAttribute("memberNum");
 		List<CommWarnDTO> list = warnMapper.listWarn();
 		for(CommWarnDTO wdto: list) {
-			int w=wdto.getComm_memberNum();
+			int w=wdto.getMemberNum();
 			Comm_MemberDTO mdto=memberMapper.comm_getMember(w);
 			wdto.setWname(wdto.getWname());
 		}

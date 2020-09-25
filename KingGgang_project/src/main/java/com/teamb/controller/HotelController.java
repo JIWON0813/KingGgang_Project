@@ -177,29 +177,33 @@ public class HotelController {
 		List<RoomDTO> list = hotelmapper.roomList(no);
 		
 		//원세호 관심리스트 
-		int m_no = (int) session.getAttribute("memberNum");
-		int type =1;
-		WishlistDTO wdto = new WishlistDTO();
-		wdto.setM_no(m_no);
-		wdto.setF_no(no);
-		wdto.setType(type);
-			
-		int check1 =1;
-		
-		List<WishlistDTO> wlist = wishlistmapper.getNolist(wdto);
-		
-		for(WishlistDTO checkdto : wlist) {
-			
-		if(checkdto == null) {
-			check1 = 1;
-		} else {
-			if(checkdto.getF_no()!=no) {
-				continue;
-			}else if(checkdto.getF_no()==no) {
-				check1 = 2;
-			}
-		}
-	}
+				int check1 =1;
+				if(session.getAttribute("memberNum")==null) {
+					check1 = 3;
+					
+				}else{
+					int m_no = (int) session.getAttribute("memberNum");
+					int type =1;
+					WishlistDTO wdto = new WishlistDTO();
+					wdto.setM_no(m_no);
+					wdto.setF_no(no);
+					wdto.setType(type);
+						
+					List<WishlistDTO> wlist = wishlistmapper.getNolist(wdto);
+					
+					for(WishlistDTO checkdto : wlist) {
+						
+					if(checkdto == null) {
+						check1 = 1;
+					} else {
+						if(checkdto.getF_no()!=no) {
+							continue;
+						}else if(checkdto.getF_no()==no) {
+							check1 = 2;
+						}
+					}
+				}
+				}
 		req.setAttribute("check1", check1);
 		req.setAttribute("dto", dto);
 		req.setAttribute("roomList", list);
@@ -467,7 +471,7 @@ public class HotelController {
 			RoomDTO temp = hotelmapper.getRoom(dto.getId());
 			dto.setFilename(temp.getFilename());
 			dto.setFilesize(temp.getFilesize());
-		}
+			}
 		int res = hotelmapper.updateRoom(dto);
 		String msg = null, url = "hotelContent.hotel?no="+dto.getH_id();
 		if (res > 0)

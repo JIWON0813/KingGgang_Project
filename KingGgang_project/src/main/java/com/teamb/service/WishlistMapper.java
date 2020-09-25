@@ -34,13 +34,10 @@ public class WishlistMapper {
 		return res;
 	}
 	
-	public List<WishlistDTO> getWishlist(int m_no) {
+	public List<HotelDTO> getWishlist(int m_no) {
 		return sqlSession.selectList("getWish",m_no);
 	}
 	
-	public HotelDTO getHotellist(int f_no) {
-		return sqlSession.selectOne("getwishHotel",f_no);
-	}
 
 	public RentcarDTO getRentlist(int f_no) {
 		return sqlSession.selectOne("getwishRent",f_no);

@@ -25,7 +25,10 @@ public class HotelMapper {
 	}
 
 	public HotelDTO getHotel(int no) {
-		return sqlSession.selectOne("getHotel", no);
+		HotelDTO dto = sqlSession.selectOne("getHotel", no);
+		if(dto == null)
+			return null;
+		return dto;
 	}
 	
 	public void increasecount(int no){
@@ -74,7 +77,10 @@ public class HotelMapper {
 	}
 	
 	public RoomDTO getRoom(int id){
-		return sqlSession.selectOne("getHotelRoom", id);
+		RoomDTO dto = sqlSession.selectOne("getHotelRoom", id);
+		if(dto == null)
+			return null;
+		return dto;
 	}
 	
 	public int insertRoom(RoomDTO dto) {
@@ -150,7 +156,12 @@ public class HotelMapper {
 	}
 
 	public RoomDateDTO getRoomDate(int id) {
-		return sqlSession.selectOne("getroomdate", id);
+		RoomDateDTO dto =sqlSession.selectOne("getroomdate", id);
+		if(dto==null){
+			System.out.println("no");
+			return null;
+		}
+		return dto;
 	}
 
 	

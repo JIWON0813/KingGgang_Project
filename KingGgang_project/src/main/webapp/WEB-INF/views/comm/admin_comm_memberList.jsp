@@ -27,7 +27,6 @@
 			<th>이름</th>
 			<th>닉네임</th>
 			<th>생년월일</th>
-			<th>자기소개</th>
 			<th>삭제</th>
 		</tr> 
 
@@ -42,19 +41,18 @@
 	<c:forEach var="dto" items="${comm_memberList }">
 		<tr align="center">
 			<td><c:out value="${dto.comm_memberNum}"/></td>
-			<td><c:if test="${dto.comm_profilename  == null}">
+			<td><c:if test="${dto.comm_profilename  == 'basic.jpg'}">
 					<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="50" height="50">
 				</c:if>
 
-				<c:if test="${dto.comm_profilename  != null}">
-			 		<img src="http://localhost:8080/img/${dto.comm_profilename}" width="50" height="50">
+				<c:if test="${dto.comm_profilename  != 'basic.jpg'}">
+			 		<img src="http://192.168.0.184:8080/img/${dto.comm_profilename}" width="50" height="50">
 				</c:if>
 			</td>
 
 			<td>${dto.comm_name}</td>
 			<td>${dto.comm_nickname}</td>
 			<td>${dto.comm_birth }</td>
-			<td>${dto.comm_intro }</td>
 			<td><a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a></td>
 		</tr>		
 	</c:forEach>

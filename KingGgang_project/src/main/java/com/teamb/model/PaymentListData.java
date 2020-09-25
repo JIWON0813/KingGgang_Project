@@ -1,10 +1,11 @@
 package com.teamb.model;
+
 /*
  	김지원
   	관리자모드 결제 목록
  
  */
-public class PaymentListData{
+public class PaymentListData {
 	int no;
 	String p_name;
 	int type;
@@ -17,30 +18,42 @@ public class PaymentListData{
 	int price;
 	String payDate;
 	String filename;
-	
-	public PaymentListData(PaymentDTO pdto, MemberDTO mdto, RoomDateDTO rddto, RoomDTO rdto, HotelDTO hdto, Rentcar_ResDTO resdto, RentcarDTO cardto) {
-		if(pdto.getType() == 1){
+
+	public PaymentListData(PaymentDTO pdto, MemberDTO mdto, RoomDateDTO rddto, RoomDTO rdto, HotelDTO hdto,
+			Rentcar_ResDTO resdto, RentcarDTO cardto) {
+		if (pdto.getType() == 1) {
 			this.no = pdto.getNo();
 			this.p_name = hdto.getName() + " " + rdto.getName();
 			this.type = pdto.getType();
 			this.hp = hdto.getHp();
-			this.id = mdto.getId();
-			this.m_name = mdto.getName();
-			this.email = mdto.getEmail();
+			if (mdto == null) {
+				this.id = "탈퇴한 회원";
+				this.m_name = "탈퇴한 회원";
+				this.email = "탈퇴한 회원";
+			} else {
+				this.id = mdto.getId();
+				this.m_name = mdto.getName();
+				this.email = mdto.getEmail();
+			}
 			this.startDate = rddto.getStartdate();
 			this.endDate = rddto.getEnddate();
 			this.price = pdto.getPrice();
 			this.payDate = pdto.getPaydate();
 			this.filename = rdto.getFilename();
-		}
-		else{
+		} else {
 			this.no = pdto.getNo();
 			this.p_name = cardto.getName();
 			this.type = pdto.getType();
 			this.hp = cardto.getRenttel();
-			this.id = mdto.getId();
-			this.m_name = mdto.getName();
-			this.email = mdto.getEmail();
+			if (mdto == null) {
+				this.id = "탈퇴한 회원";
+				this.m_name = "탈퇴한 회원";
+				this.email = "탈퇴한 회원";
+			} else {
+				this.id = mdto.getId();
+				this.m_name = mdto.getName();
+				this.email = mdto.getEmail();
+			}	
 			this.startDate = resdto.getReceiptday();
 			this.endDate = resdto.getReturnday();
 			this.price = pdto.getPrice();
@@ -136,7 +149,7 @@ public class PaymentListData{
 	public void setPayDate(String payDate) {
 		this.payDate = payDate;
 	}
-	
+
 	public String getFilename() {
 		return filename;
 	}
@@ -145,7 +158,4 @@ public class PaymentListData{
 		this.filename = filename;
 	}
 
-	
-	
-	
 }

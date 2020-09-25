@@ -53,10 +53,10 @@ background-color:orange;
       </tr>
       <tr align="center" height="30">
          <th bgcolor="orange">이 메 일</th>
-         <td width="30%">${getTogether.temail}</td>
+         <td width="30%" colspan=3>${getTogether.temail}</td>
       </tr>
       <tr height="80">
-         <td>${getTogether.tcontent}</td>
+         <td colspan=4>${getTogether.tcontent}</td>
       </tr>
    
       <tr>

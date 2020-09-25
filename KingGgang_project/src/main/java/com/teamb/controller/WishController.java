@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -103,37 +104,24 @@ public class WishController {
 	throws IOException{
 		
 		int m_no = (int)session.getAttribute("memberNum");
-		dto.setNo(m_no);
+		System.out.println(m_no);
+		dto.setM_no(m_no);
 		
-		List<HotelDTO> hlist = new ArrayList<HotelDTO> ();
-		List<RentcarDTO> rlist = new ArrayList<RentcarDTO> ();
-		List<WishlistDTO> Wlist = wishlistmapper.getWishlist(m_no);
-			for(WishlistDTO wdto : Wlist) {
-			System.out.println(wdto.getType());
-			if(wdto.getType()==1) {
-				HotelDTO hdto =  wishlistmapper.getHotellist(wdto.getF_no());
-				hlist.add(hdto);
-			} else {
-				RentcarDTO rdto = wishlistmapper.getRentlist(wdto.getF_no());
-				rlist.add(rdto);
-			}
-		}
-			for(HotelDTO hdto : hlist) {
-				System.out.println(hdto.getCategory());
-			}
+		List<HotelDTO> hlist = wishlistmapper.getWishlist(m_no);
+	
+			req.setAttribute("hlist",hlist);
 			
-			req.setAttribute("hlist", hlist);
-			req.setAttribute("rlist", rlist);
 			return "my/mypageWishlist";
 	}
 	
 	@RequestMapping("/delete.wish")
-	public String deleteWish(HttpServletRequest req,HttpSession session,@ModelAttribute WishlistDTO dto) {
-		int f_no = Integer.parseInt(req.getParameter("f_no"));
+	public String deleteWish(HttpServletRequest req,HttpSession session,@RequestParam int f_no) {
+		
 		int m_no = (int)session.getAttribute("memberNum");
 		
+		WishlistDTO dto =  new WishlistDTO();
 		dto.setF_no(f_no);
-		dto.setNo(m_no);
+		dto.setM_no(m_no);
 				
 		int res = wishlistmapper.deleteWish(dto);
 		String msg=null,url=null;
@@ -141,7 +129,7 @@ public class WishController {
 			msg = "관심상품 삭제 성공!!,관심리스트로 이동합니다. ";
 			url = "list.wish";
 		}else{
-			msg = "관심상품 등록 실패!!,관심리스트로 이동합니다.";
+			msg = "관심상품 삭제 실패!!,관심리스트로 이동합니다.";
 			url = "list.wish";
 		}
 		req.setAttribute("msg", msg);

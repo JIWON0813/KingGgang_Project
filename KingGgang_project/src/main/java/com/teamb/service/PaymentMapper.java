@@ -70,6 +70,10 @@ public class PaymentMapper {
 	public List<PaymentDTO> getmyPaylist(int memberNum) {
 		return sqlSession.selectList("mypayList",memberNum);
 	}
+	
+	public List<PaymentDTO> getgetAdminList() {
+		return sqlSession.selectList("admingetList");
+	}
 }	
 	
 	

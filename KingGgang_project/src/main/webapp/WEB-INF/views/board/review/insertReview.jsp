@@ -29,31 +29,31 @@
 </c:if>	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/bootstrap.min.css" />
 <script src="${pageContext.request.contextPath}/resources/main/js/bootstrap.min.js"></script>
-<%@ include file="../top.jsp" %>
+<%@ include file="../boardtop.jsp" %>
 <div class="section layout_padding"></div>
 <div align="center" class="container">
 	<form name="f" action="insertReviewPro.re" method="post" onsubmit="return check()">
-		<table class="table table-bordered">
-			<tr>
+		<table class="table">
+			<tr bgcolor="#ff880e">
 			<c:choose>
 				<c:when test="${type==1 }">
-					<td align="center" colspan="2">호텔 후기&nbsp;&nbsp;&nbsp;${r_name }</td>
+					<td align="center" colspan="2"><b>호텔 이용 후기</b>&nbsp;&nbsp;&nbsp;</td>
 				</c:when>
 				<c:otherwise>
-					<td align="center" colspan="2">렌트카 후기&nbsp;&nbsp;&nbsp;${r_name }</td>
+					<td align="center" colspan="2"><b>렌트카 이용 후기</b>&nbsp;&nbsp;&nbsp;</td>
 				</c:otherwise>
 			</c:choose>
 			</tr>
 			<tr align="center">
-				<th width="20%">제 목</th>
+				<th width="20%" bgcolor="#ff880e">제 목</th>
 				<td align="left"><input type="text" name="subject" size="60"></td>
 			</tr>
 			<tr align="center">
-				<th>내 용</th>
+				<th bgcolor="#ff880e">내 용</th>
 				<td align="left"><textarea name="content" rows="10" cols="60" maxlength="2000"></textarea></td>
 			</tr>
 			<tr align="center">
-				<th>만족도</th>
+				<th bgcolor="#ff880e">만족도</th>
 				<td align="left">
 				<input type="radio" name="star" value="1"><font color="#ff880e">★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="star" value="2"><font color="#ff880e">★★</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -64,9 +64,9 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="글쓰기">
-					<input type="reset" value="다시작성">
-					<input type="button" value="목록보기" onclick="window.location='listReview.re'">
+					<input type="submit" value="글쓰기" class="btn btn-outline-primary btn-sm">
+					<input type="reset" value="다시작성" class="btn btn-outline-primary btn-sm">
+					<input type="button" value="목록보기" onclick="window.location='listReview.re'" class="btn btn-outline-primary btn-sm">
 					<input type="hidden" name="type" value="${type }">
 					<input type="hidden" name="name" value="${r_name }">
 					<input type="hidden" name="filename" value="${filename }">
@@ -76,4 +76,4 @@
 	</form>
 </div>
 <div class="section layout_padding"></div>
-<%@ include file="../bottom.jsp" %>
+<%@ include file="../boardbottom.jsp" %>

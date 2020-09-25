@@ -37,10 +37,10 @@
 		<c:forEach var="dto" items="${comm_memberList }">
 		<div class="col-md-3 col-sm-6 col-xs-12">
 			<c:if test="${dto.comm_profilename  == 'basic.jpg'}">
-				<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200">
+				<a href="comm_otherPage.do?comm_memberNum=${dto.comm_memberNum}"><img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="200" height="200"></a>
 			</c:if>
 			<c:if test="${dto.comm_profilename  != 'basic.jpg'}">
-			 	<img src="http://192.168.0.184:8080/img/${dto.comm_profilename}" width="200" height="200">
+			 	<a href="comm_otherPage.do?comm_memberNum=${dto.comm_memberNum}"><img src="http://192.168.0.184:8080/img/${dto.comm_profilename}" width="200" height="200"></a>
 			</c:if>
 				<p><font size=5>${dto.comm_name}(${dto.comm_nickname})</font></p>
 				<p>${dto.comm_birth }</p>

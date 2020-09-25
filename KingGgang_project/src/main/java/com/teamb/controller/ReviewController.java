@@ -37,14 +37,10 @@ public class ReviewController {
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = currentPage * pageSize - (pageSize-1);
 		int endRow = currentPage * pageSize;
-		
-		List<ReviewDTO> list = reviewMapper.listReview(startRow, endRow); 
-		
 		int count = reviewMapper.getCount();
-
 		if (endRow>count) endRow = count;
-		int startNum = count - ((currentPage-1) * pageSize); 
-		
+		int startNum = count - ((currentPage-1) * pageSize);
+		List<ReviewDTO> list = reviewMapper.listReview(startRow, endRow); 
 		req.setAttribute("listReview", list);
 		req.setAttribute("startNum", startNum);
 		
@@ -67,7 +63,7 @@ public class ReviewController {
 			req.setAttribute("endPage", endPage);
 		}	
 		
-		return "review/listReview";
+		return "board/review/listReview";
 	}
 	
 	@RequestMapping("/insertReview.re")
@@ -76,7 +72,7 @@ public class ReviewController {
 		req.setAttribute("type", type);
 		req.setAttribute("r_name", name);
 		req.setAttribute("filename", filename);
-		return "review/insertReview";
+		return "board/review/insertReview";
 	}
 	
 	@RequestMapping("/insertReviewPro.re")
@@ -86,11 +82,11 @@ public class ReviewController {
 		int res = reviewMapper.insertReview(dto);
 		String msg=null,url=null;
 		if(res>0){
-			msg="리뷰 등록 성공!!";
+			msg="게시글이 등록되었습니다.";
 			url="listReview.re";
 		}else{
-			msg="리뷰 등록 실패!!";
-			url="listReview.re";
+			msg="게시글 등록 실패";
+			url="payment.my";
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("url", url);
@@ -103,10 +99,10 @@ public class ReviewController {
 		int res = reviewMapper.deleteReview(num);
 		String msg=null,url=null;
 		if(res>0){
-			msg="리뷰 삭제 성공!!";
+			msg="게시글이 삭제되었습니다.";
 			url="listReview.re";
 		}else{
-			msg="리뷰 삭제 실패!!";
+			msg="게시글 삭제 실패";
 			url="listReview.re";
 		}
 		req.setAttribute("msg", msg);
@@ -118,19 +114,18 @@ public class ReviewController {
 	public String updateReview(HttpServletRequest req,@RequestParam int num){
 		ReviewDTO dto = reviewMapper.getReview(num);
 		req.setAttribute("getReview", dto);
-		return "review/updateReview";
+		return "board/review/updateReview";
 	}
 	 
 	@RequestMapping("/updateReviewPro.re")
-	public String updateReview(HttpServletRequest req,@ModelAttribute ReviewDTO dto){
-		System.out.println(dto.getNum());
+	public String updateReviewPro(HttpServletRequest req,@ModelAttribute ReviewDTO dto){
 		int res = reviewMapper.updateReview(dto);
 		String msg=null,url=null;
 		if(res>0){
-			msg="리뷰 수정 성공!!";
+			msg="게시글이 수정되었습니다.";
 			url="listReview.re";
 		}else{
-			msg="리뷰 수정 실패!!";
+			msg="게시글 수정 실패";
 			url="listReview.re";
 		}
 		req.setAttribute("msg", msg);

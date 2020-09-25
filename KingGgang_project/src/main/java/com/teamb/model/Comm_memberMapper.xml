@@ -38,11 +38,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from comm_member where comm_memberNum = #{comm_memberNum}
 	</select>
 	
-	<select id ="admin_comm_deleteMember"  parameterType="String" >
-		delete from comm_member where comm_nickname = #{comm_nickname}
-	</select>
-	
-	
 	<update id="comm_updateMember" parameterType="Comm_MemberDTO" >
 		update comm_member set comm_nickname=#{comm_nickname}
 		,comm_profilename=#{comm_profilename}, <!-- comm_profilesize=#{comm_profilesize}, -->

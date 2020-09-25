@@ -7,15 +7,30 @@
 	<%@ include file="../../top.jsp" %>
 	</c:otherwise>
 </c:choose>
+<style>
+a.join_bt2 {
+
+	background: #ff880e;
+	width: 180px;
+	text-align: center;
+	height: 38px;
+	color: #fff;
+	font-weight: 300;
+
+}
+
+a.join_bt2:hover, a.join_bt2:focus {
+	background: #222;
+	color: #fff !important;
+
+}
+ </style>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	
 	function checkUp() {
 
-    /* 이메일, 휴대폰 번호 , 이미지파일
-    var reemail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    var rehp = /^\d{3}-\d{3,4}-\d{4}$/; */
-	  /*  var reimg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/; */
+   
 	   var form = document.e;	  
 	   var repass = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 	   var reemail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -88,6 +103,7 @@
                                     	<input type="text" name="hp3" size="4" maxlength="4" value="${getMember.hp3}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
                                     </td>
                                 </tr>
+                                <c:if test="${mbId!='admin' }">
                                 <tr>
                                     <th><font color="red">* </font><span>비밀번호</span></th>
                                     <td><input type="password" name="passwd" value="${getMember.passwd}"></td>
@@ -97,6 +113,18 @@
                                     <td><input type="password" name="checkpw" placeholder="비밀번호를 확인하세요"></td>
                                 </tr>
                                 <tr>
+                                </c:if>
+                                <c:if test="${mbId=='admin' }">
+                                <tr>
+                                    <th><font color="red">* </font><span>비밀번호</span></th>
+                                    <td><input type="text" name="passwd" value="${getMember.passwd}"></td>
+                                </tr>
+                                <tr>
+                                    <th><font color="red">* </font><span>비밀번호 확인</span></th>
+                                    <td><input type="text" name="checkpw" value="${getMember.passwd}"></td>
+                                </tr>
+                                <tr>
+                                </c:if>
                                     <th><font color="red">* </font><span>이메일</span></th>
                                     <td><input type="text" name="email" value="${getMember.email}"></td>
                                 </tr>                           
@@ -125,12 +153,15 @@
                         <br>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <font color="red">*</font> 표시는 반드시 입력해 주세요.
-                    <div class="btn_wrap">
-                        <a href="javascript:checkUp()">수정하기</a>
-                    </div>
-                    <div class="btn_wrap">
-                        <a href="memberContent.mem">취소</a>
-                    </div>
+                    <div align="center">
+							<a class="join_bt2" 
+									style="display: inline-block; margin-left: 30px;" href="javascript:checkUp()">
+									수정하기</a>
+			
+							<a class="join_bt2" 
+									style="display: inline-block; margin-left: 30px;" href="memberContent.mem">
+									취소</a>
+						</div>
                 </div> <!-- form_txtInput E -->
             </div><!-- content E-->
         </div> <!-- container E -->

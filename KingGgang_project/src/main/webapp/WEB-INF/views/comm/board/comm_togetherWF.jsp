@@ -82,8 +82,9 @@
 				<td><input type="text" name="temail" size="48" class="te"></td>
 			</tr>
 			<tr align="center">
-				<th width="20%" bgcolor="brown"><font color="white">내 용</font></th>
-				<td><textarea name="tcontent" rows="10" cols="50"></textarea></td>
+				<th width="20%" bgcolor="brown" ><font color="white">내 용</font></th>
+				<td><textarea name="tcontent" rows="10" cols="50" placeholder="*공지*
+[날짜/성별/모집하는 인원수는 작성 필수 입니다. 조건에 해당되지 않을 시 게시물은 삭제 됩니다!!]"></textarea></td>
 
 			</tr>
 			<tr>

@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<!-- 
+   이      름 : comm_replydeleteForm.jsp
+   개  발   자 : 최 인 아
+   설      명 : 댓글 삭제 폼
+ -->
 <style>
     input{
       border:1px solid orange;

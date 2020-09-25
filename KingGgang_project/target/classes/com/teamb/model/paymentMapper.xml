@@ -36,6 +36,10 @@
 		<select id="getpayMember" parameterType="int" resultType="memberDTO">
  		select * from member where memberNum=#{memberNum}
  		</select>
+ 		
+ 		<select id="admingetList" resultType="PaymentDTO">
+ 			select * from payment
+ 		</select>
 
  		<!-- admin 결제목록 (김지원) -->
  		

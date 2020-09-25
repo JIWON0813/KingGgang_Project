@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-    <%@ include file="../top.jsp" %>
+    <%@ include file="../boardtop.jsp" %>
 <script type="text/javascript">
 		function dele(num){
 			if (d.passwd.value==""){
@@ -31,7 +31,24 @@
 			document.d.submit()
 		}
 	</script>
+<style>
+a.join_bt2 {
 
+	background: #ff880e;
+	width: 180px;
+	text-align: center;
+	height: 38px;
+	color: #fff;
+	font-weight: 300;
+
+}
+
+a.join_bt2:hover, a.join_bt2:focus {
+	background: #222;
+	color: #fff !important;
+
+}
+ </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
 <form name="d" method="post" enctype="multipart/form-data">
@@ -52,23 +69,28 @@
                                 </tr>
                          </tbody>
                         </table>
-                    <div class="btn_wrap">
+                    	<br>
                     	<c:if test="${param.type==1 }">
-                        <a href="javascript:cont('${param.num }')">확인</a>
+                        <a class="join_bt2" style="display: inline-block; margin-left: 30px;" href="javascript:cont('${param.num }')">확인</a>
                         </c:if>
                     	<c:if test="${param.type==2 }">
-                        <a href="javascript:upda('${param.num }')">확인</a>
+                        <a class="join_bt2" style="display: inline-block; margin-left: 30px;" href="javascript:upda('${param.num }')">확인</a>
                         </c:if>
                     	<c:if test="${param.type==3 }">
-                        <a href="javascript:dele('${param.num }')">확인</a>
+                        <a class="join_bt2" style="display: inline-block; margin-left: 30px;" href="javascript:dele('${param.num }')">확인</a>
                         </c:if>
-                    </div>
-                    <div class="btn_wrap">
-                    	<a href="javascript:history.back()">뒤로가기</a>
-                    </div>
+                    
+                    
+                    	<c:if test="${param.type==1 }">
+                    	<a class="join_bt2" style="display: inline-block; margin-left: 30px;" href="Q_list.board">뒤로가기</a>
+                    	</c:if>
+                    	<c:if test="${param.type==2||param.type==3 }">
+                    	<a class="join_bt2" style="display: inline-block; margin-left: 30px;" href="Q_content.board?num=${param.num }">뒤로가기</a>
+                    	</c:if>
+                 
                  </div>
             </div>
         </div>
     </div>
 </form>
-<%@ include file="../bottom.jsp" %>
+<%@ include file="../boardbottom.jsp" %>

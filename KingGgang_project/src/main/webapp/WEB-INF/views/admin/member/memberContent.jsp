@@ -29,16 +29,14 @@
 			<td align="center" width="30%">${getMember.email}</td>
 		</tr>
 		<tr height="80">
-			<th width="20%" bgcolor="skyblue">가입일</th>
-			<td align="center">${getMember.regdate}</td>
+			<th width="20%" bgcolor="skyblue">생년월일</th>
+			<td align="center">${getMember.getAllBirth() }</td>
 			<th width="20%" bgcolor="skyblue">연락처</th>
 			<td align="center">${getMember.getAllHp() } </td>
 		</tr>
 		<tr height="80">
-			<th width="20%" bgcolor="skyblue">생년월일</th>
-			<td align="center">${getMember.getAllBirth() }</td>
-			<th width="20%" bgcolor="skyblue">포인트</th>
-			<td align="center">${getMember.point }</td>
+			<th width="20%" bgcolor="skyblue">가입일</th>
+			<td colspan="3" align="center">${getMember.regdate}</td>
 		</tr>
 		<tr height="200">
 			<th width="20%" bgcolor="skyblue">자기소개</th>

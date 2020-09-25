@@ -5,10 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.teamb.model">
-
+	<select id="getMcount" resultType="int">
+		select count(*) from member
+	</select>
     
     <select id="listMember" resultType="memberDTO">
 		select * from member order by memberNum
+	</select>
+	
+	<select id="listMembernum" parameterType="java.util.Map" resultType="memberDTO">
+		select * from (select rownum rn, A.* from
+		(select * from member order by regdate desc)A)
+		 where rn between #{start} and #{end}
 	</select>
 	
     <insert id="insertMember" parameterType="memberDTO">
@@ -38,6 +46,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateMemberMy" parameterType="memberDTO">
     	update member set passwd=#{passwd}, email=#{email}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, profile_name=#{profile_name}, profile_size=#{profile_size} where id=#{id}
     </update>
+    
+    <select id="adminSearchMember" parameterType="java.util.Map" resultType="memberDTO">
+    	select * from member 
+ 		<if test="searchString != ''"> 
+ 		where ${search} like '%' || #{searchString} || '%'
+ 		</if>
+ 		<if test="searchString == ''">
+ 		where id like '%' || #{searchString} || '%'
+ 	</if>
+    </select>
 
 
 </mapper>

@@ -106,7 +106,8 @@ public class PaymentController {
 				hotelmapper.changevaild(id);
 				req.setAttribute("status",0);
 			}
-
+			
+			
 			//결제내역
 			int no = paymemtMapper.getPayno(m_no);
 			
@@ -181,7 +182,7 @@ public class PaymentController {
 		}
 		req.setAttribute("url", url);
 		req.setAttribute("msg", msg);
-		return "message";
+		return "message";	
 	}
 	
 	@RequestMapping("/payment.my")
@@ -192,6 +193,7 @@ public class PaymentController {
 		
 		List<PaymentDTO> list = paymemtMapper.getmyPaylist(memberNum);
 		List<PaymentListData> plist = new ArrayList<PaymentListData>();
+		List<PaymentListData> rlist = new ArrayList<PaymentListData>();
 		Iterator<PaymentDTO> iter = list.iterator();
 		while(iter.hasNext()){
 			PaymentDTO pdto = iter.next();
@@ -206,18 +208,19 @@ public class PaymentController {
 				rddto = hotelmapper.getRoomDate(pdto.getP_no());
 				rdto = hotelmapper.getRoom(rddto.getRoom_id());
 				hdto = hotelmapper.getHotel(rdto.getH_id());
-				req.setAttribute("check1", 1);
+				plist.add(new PaymentListData(pdto, mdto, rddto, rdto,hdto,resdto,cardto));
 			} 
 			else{
 				resdto = rentcarMapper.getRentcarRes(pdto.getP_no());
 				cardto = rentcarMapper.getRentcar(resdto.getR_id());
-				req.setAttribute("check1", 2);
+				rlist.add(new PaymentListData(pdto, mdto, rddto, rdto,hdto,resdto,cardto));
 			}
 			
-			plist.add(new PaymentListData(pdto, mdto, rddto, rdto,hdto,resdto,cardto));
+			
 		}
 		
 		req.setAttribute("plist", plist);
+		req.setAttribute("rlist", rlist);
 		
 			return "my/mypagePayment";
 	}

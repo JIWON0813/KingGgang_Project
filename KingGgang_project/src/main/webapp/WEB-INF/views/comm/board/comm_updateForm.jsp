@@ -47,9 +47,9 @@
 		<tr>
 			<th width="150">공개범위</th>
 			<td>
-				전체공개 <input type="checkbox" name="look" value="전체공개" />
-           		회원공개 <input type="checkbox" name="look" value="회원공개" />
-				비공개 <input type="checkbox" name="look" value="비공개" />			
+				전체공개 <input type="radio" name="look" value="전체공개" />
+           		회원공개 <input type="radio" name="look" value="회원공개" />
+				비공개 <input type="radio" name="look" value="비공개" />			
 			</td>
 		</tr>
 		<tr>

@@ -22,7 +22,7 @@ ul{list-style:none; }
 .left_margin{margin:0 0 0 20px;}
 .con_term .term_txt div.txt_bold{font-weight: bold; margin:0 0 25px;}
 .btn_wrap{text-align:center; margin:40px 0 30px;}
-.btn_wrap a{color: #fff; background-color: #4380ce; font-weight: bold; padding: 10px;  height: 30px; line-height: 30px; width: 168px; display: block; text-align: center; margin: 0 auto;}
+.btn_wrap a{color: #fff; background-color: orange; font-weight: bold; padding: 10px;  height: 30px; line-height: 30px; width: 168px; display: block; text-align: center; margin: 0 auto;}
 .btn_wrap a.wide{width:587px;margin: 0 0 0 20px;}
 .find_txt ul li{color:#9a9a9a;font-size:13px;text-align:center; line-height:17px; margin:0 0 20px;}
 .form_txtInput .checkbox_wrap {position: relative;padding: 5px;text-align: right;}

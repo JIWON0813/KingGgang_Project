@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ include file="../top.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <!-- 
@@ -8,7 +9,7 @@
 	개  발   자 : 원세호
 	설	   명 : 관심리스트 페이지
  -->
-
+<div class="section layout_padding"></div>
 <html>
 <head>
 
@@ -45,41 +46,27 @@
              				    <div class="form_txtInput">
                				    <h2 class="sub_tit_txt"></h2>
                   				<div class="join_form">
-                        		<table>
-                           		 <!--<colgroup>
-                                <col width="30%"/>
-                                <col width="auto"/>
-                            	</colgroup>-->
+                        		<table>             
                             	<tbody>
-                            	<!-- 사진을 누르면 해당 품목의 메인화면으로 a -->
-                            	<tr>
-                                <td><span>${dto.name}</span></td>
+                            	<tr align="center">
+                                <td><b>${dto.name}</b></td>
                                 </tr>
                                 <c:if test="${dto.filesize>0}">
 								<tr height="30">
 								<td><span>
-								<img src="http://192.168.0.184:8080/img/${dto.filename}" width="50" height="50">
-								${dto.filename}</a>
+								<a href="hotelDetail.hotel?no=${dto.no}">
+								<img src="http://192.168.0.184:8080/img/${dto.filename}" width="350" height="350">
+								</a>
 								</span></td>
 								</tr>	
-								</c:if>	
-                                 <tr>
-                                    <td><span>${dto.content}</span></td>
-                                </tr>
-                                 <tr>
-                                    <td><span>${dto.category}</span></td>
-                                </tr>
-                                 <tr>
-                                    <td><span>${dto.location}</span></td>
-                                </tr>
-                                 <tr>
-                                    <td><span>${status.count}</span></td>
-                                </tr>
+								</c:if>	           
                             </tbody>
                         </table>
-                    <div class="btn_wrap">
-                        <a href="delete.wish?f_no=${dto.no}">관심리스트에서 삭제하기</a>
-                    </div>
+                        <div align="center">
+							<a class="join_bt2" 
+									style="display: inline-block; margin-left: 30px;" href="delete.wish?f_no=${dto.no}">
+									관심리스트 삭제</a>
+						</div>
                </div> <!-- form_txtInput E -->
             </div><!-- content E-->
         </div> <!-- container E -->
@@ -99,9 +86,12 @@
 						</tr>
                          </tbody>
                         </table>
-                    <div class="btn_wrap">
-                        <a href="main.my">마이페이지</a>
-                    </div>
+                    <br><br>
+                    	<div align="center">
+							<a class="join_bt2" 
+									style="display: inline-block; margin-left: 30px;" href="main.my">
+									마이페이지로 가기</a>
+						</div>
                </div> <!-- form_txtInput E -->
             </div><!-- content E-->
         </div> <!-- container E -->
@@ -110,3 +100,5 @@
     
 </body>
 </html>
+<div class="section layout_padding"></div>
+<%@ include file="../bottom.jsp" %>

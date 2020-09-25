@@ -3,6 +3,7 @@ package com.teamb.controller;
 import java.io.File;
 
 
+
 import java.io.IOException;
 import java.text.DateFormat;
 
@@ -52,8 +53,10 @@ import com.teamb.service.MyMapper;
 public class MyController {
 	
 	@Autowired
-	//private MemberMapper memberMapper;
 	private MyMapper myMapper;
+	
+	@Autowired
+	private MemberMapper memberMapper;
 	 
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
@@ -141,7 +144,7 @@ public class MyController {
 		switch(res){
 		case MemberDTO.OK:
 			req.setAttribute("getMember", dto);
-			return "admin/member/updateForm";
+			return "my/updateForm";
 		case MemberDTO.NOT_PW:
 			msg = "비밀번호를 확인해주세요";
 			url = "update.my";
@@ -160,44 +163,45 @@ public class MyController {
 	@RequestMapping(value = "/updatePro.my")
 	public String updatePro(HttpServletRequest req,MemberDTO dto,BindingResult result,HttpSession session) {
 		UUID uuid = UUID.randomUUID();
-		String filename2 =  req.getParameter("filename2");
-		int filesize2 =  Integer.parseInt(req.getParameter("filesize2"));
+		String filename2 = req.getParameter("filename2");
+		int filesize2 = Integer.parseInt(req.getParameter("filesize2"));
 		
-		String filename="";
-		int filesize =0;
-		
-		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
-		MultipartFile file = mr.getFile("filename");
-		File target = new File(upLoadPath,uuid+file.getOriginalFilename());
-		File filedelete = new File(upLoadPath,filename2);
-		if(file.getSize()>0) {
+		String profile_name = "";
+		int profile_size = 0;
+
+		MultipartHttpServletRequest mr = (MultipartHttpServletRequest) req;
+		MultipartFile file = mr.getFile("profile_name");
+		File target = new File(upLoadPath, uuid + file.getOriginalFilename());
+		if (file.getSize() > 0) {
 			try {
-			file.transferTo(target);
-			filedelete.delete();
-		}catch(IOException e) {}
-		filename = uuid+file.getOriginalFilename();
-		filesize = (int)file.getSize();
-		
-	}else {
-	filename=filename2;
-	filesize=filesize2;
+				file.transferTo(target);
+				if (filename2 != null) {
+					File filedelete = new File(upLoadPath, filename2);
+					filedelete.delete();
+				}
+				profile_name = uuid+file.getOriginalFilename();
+				profile_size = (int) file.getSize();
+			} catch (IOException e) {		
+			}
+		} else {
+			profile_name = filename2;
+			profile_size = filesize2;
+		}
+		dto.setProfile_name(profile_name);
+		dto.setProfile_size(profile_size);
+
+		int res = memberMapper.updateMember(dto);
+		String msg = null, url = null;
+		if (res > 0) {
+			url = "main.my";
+			msg = "회원 수정 성공";
+		} else {
+			url = "main.my";
+			msg = "회원 수정 실패";
+		}
+		req.setAttribute("url", url);
+		req.setAttribute("msg", msg);
+		return "message";
+
 	}
-		dto.setProfile_name(filename);
-		dto.setProfile_size(filesize);
-	
-		int res = myMapper.updateMember(dto);
-		String msg = null, url=null;
-	if (res>0) {
-		
-		url = "main.my";
-		msg = "회원 수정 성공!!";
-	}else {
-		url = "main.my";
-		msg = "회원 수정 실패!!";
-	}
-	req.setAttribute("url", url);
-	req.setAttribute("msg", msg);
-	return "message";
-	}
-	
 }

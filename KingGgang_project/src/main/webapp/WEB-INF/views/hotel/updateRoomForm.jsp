@@ -5,9 +5,26 @@
 	개  발   자 : 김 지 원
 	설	   명 : 방 정보 수정 폼
  -->
-
+<%@ include file="/WEB-INF/views/top.jsp"%>
+<footer class="footer-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white_fonts">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3">
+							<div class="full">
+								<h3>방 수정</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
+<div class="section layout_padding"></div>
  <div align="center">
  <form action="updateRoom.hotel" method="post" enctype="multipart/form-data">
+ <input type="hidden" name="id" value="${dto.id}" />
  <input type="hidden" name="h_id" value="${dto.h_id}"/>
  <table>
  <tr>
@@ -46,3 +63,5 @@
  </table>
  </form>
  </div>
+ <div class="section layout_padding"></div>
+<%@ include file="/WEB-INF/views/bottom.jsp"%>
