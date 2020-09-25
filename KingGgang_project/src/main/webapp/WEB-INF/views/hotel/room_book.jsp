@@ -6,7 +6,59 @@
 	개  발   자 : 김 지 원
 	설	   명 : 방 예약페이지
  -->
+ <script src="${pageContext.request.contextPath}/resources/jquery-3.5.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
+    <link href="${pageContext.request.contextPath}/resources/datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Air datepicker css -->
+    <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.js"></script> <!-- Air datepicker js -->
+    <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+ <script type="text/javascript">
+	var newJquery = $.noConflict(true);
+	</script>
+ 
 <script type="text/javascript">
+
+var date = new Date();
+var minRcd = new Date();
+var minRtd = new Date();
+minRcd.setDate(minRcd.getDate()+1);
+minRtd.setDate(minRtd.getDate()+2);
+
+newJquery(document).ready(function () {
+var dp = newJquery('#room_in').datepicker({
+    	startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+    	language: 'ko',
+    	minDate : minRcd,
+    	autoClose: true,
+    	onSelect: function (date) {
+    	   var endNum = date;
+    	   var endDate = new Date(endNum);
+    	   endDate.setDate(endDate.getDate()+1);
+    	   newJquery('#room_out').datepicker({
+    	       minDate: endDate
+    	   });
+    	}
+    }).data('datapicker');
+
+    newJquery('#room_out').datepicker({
+    	
+    	
+    	startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+    	language: 'ko',
+    	minDate : minRtd, 
+    	autoClose: true,
+    	onSelect: function (date) {
+  	      var startNum = date;
+  	      var startDate = new Date(startNum);
+  	      startDate.setDate(startDate.getDate()-1);
+  	      newJquery('#room_in').datepicker({
+  	          maxDate: startDate
+  	      });
+  	  }
+  	}).data('datapicker');
+    
+    
+});
+
 	function check() {
 		var start = f.startdate.value;
 		var end = f.enddate.value;
@@ -72,9 +124,9 @@
 			<tr>
 			<tr>
 				<td>예약날짜
-				<td><input type="date" id="room_in" name="startdate">
+				<td><input type="date" id="room_in" name="startdate" readOnly>
 				<td>퇴실날짜
-				<td><input type="date" id="room_out" name="enddate">
+				<td><input type="date" id="room_out" name="enddate" readOnly>
 			</tr>
 			<tr>
 				<td colspan="4" align="center"><input type="submit"
