@@ -58,7 +58,7 @@ public class AdminController {
 	// 관리자 권한 결제 목록보기 (김지원)
 	@RequestMapping(value = "/payList.admin")
 	public String payList(HttpServletRequest req) {
-		List<PaymentDTO> list = paymemtMapper.getgetAdminList();
+		List<PaymentDTO> list = paymemtMapper.getAdminList();
 		List<PaymentListData> plist = new ArrayList<PaymentListData>();
 
 		for (PaymentDTO pdto : list) {

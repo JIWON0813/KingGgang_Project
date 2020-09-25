@@ -136,12 +136,12 @@ public class HotelMapper {
 		}
 		return res;
 	}
-	
-	@Scheduled(fixedDelay=500000)
+	@Scheduled(fixedDelay=300000)
 	public void checkPay(){
 		List<RoomDateDTO> list = sqlSession.selectList("roomdatelist");
 		for(RoomDateDTO dto : list){
 			if(dto.getValid() == 0){
+				System.out.println("호텔 예약 취소");
 				sqlSession.delete("deleteunpaidroomdate", dto.getId());
 			}
 		}
@@ -158,7 +158,6 @@ public class HotelMapper {
 	public RoomDateDTO getRoomDate(int id) {
 		RoomDateDTO dto =sqlSession.selectOne("getroomdate", id);
 		if(dto==null){
-			System.out.println("no");
 			return null;
 		}
 		return dto;

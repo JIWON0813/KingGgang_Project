@@ -308,7 +308,7 @@ public class HotelController {
 	@RequestMapping(value="/payment.hotel")
 	public String payment(HttpServletRequest req,HttpSession session, @RequestParam int id, @RequestParam int price){		
 		//결제 원세호 
-
+		hotelmapper.checkPay();
 		int memberNum = (int) session.getAttribute("memberNum");
 
 		MemberDTO mrdto =  paymentmapper.getpayMember(memberNum);

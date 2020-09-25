@@ -185,8 +185,6 @@
 
 								<li><a class="nav-link" href="list.notice">고객지원</a></li> <!-- 문의랑 공지사항 같이 넣기 -->
 
-								<li><a class="nav-link" href="main.admin">관리자 홈</a>
-
 							</ul>
 
 						</div>

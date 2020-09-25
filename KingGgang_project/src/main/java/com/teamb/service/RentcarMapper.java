@@ -132,7 +132,7 @@ public class RentcarMapper {
 	}
 
 	//렌트카 결제 (for Pstatus update) 원세호
-	@Scheduled(fixedDelay=100000)
+	@Scheduled(fixedDelay=300000)
 	public void renewalRentcarReservation(){
 		try{
 			List<Rentcar_ResDTO> resList = sqlSession.selectList("findUnPaidReservation");

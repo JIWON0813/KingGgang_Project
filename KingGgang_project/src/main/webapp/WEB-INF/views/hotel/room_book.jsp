@@ -6,11 +6,10 @@
 	개  발   자 : 김 지 원
 	설	   명 : 방 예약페이지
  -->
- <script src="${pageContext.request.contextPath}/resources/jquery-3.5.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
+ <script src="${pageContext.request.contextPath}/resources/jquery-3.5.1.min.js"></script>
     <link href="${pageContext.request.contextPath}/resources/datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
-    <!-- Air datepicker css -->
-    <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.js"></script> <!-- Air datepicker js -->
-    <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+    <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/datepicker/js/datepicker.ko.js"></script> 
  <script type="text/javascript">
 	var newJquery = $.noConflict(true);
 	</script>
@@ -37,7 +36,7 @@ var dp = newJquery('#room_in').datepicker({
     	       minDate: endDate
     	   });
     	}
-    }).data('datapicker');
+    }).data('datepicker');
 
     newJquery('#room_out').datepicker({
     	
@@ -54,7 +53,7 @@ var dp = newJquery('#room_in').datepicker({
   	          maxDate: startDate
   	      });
   	  }
-  	}).data('datapicker');
+  	}).data('datepicker');
     
     
 });
