@@ -9,6 +9,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <style>
+
     input{
       border:1px solid orange;
       background-color:rgba(0,0,0,0);
@@ -29,13 +30,18 @@
       padding:5px;
       
       border-radius:5px;
-   
    }
    
    #write_group input:hover{
       color:white;
       background-color:brown;
    }
+   
+    #btnLike,#btnMark{
+         border:0;
+         background-color:white;
+      }
+
 </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
@@ -59,7 +65,16 @@
       }
       return true
    }
-</script>
+   
+   function delok(warnNum){
+       result = confirm('정말로 신고 하시겠습니까?');
+       if(result == true){
+           location.href = "comm_warnPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}";
+       }else{
+       return false;
+       }
+   }
+   </script>   
 
 <script>
 //좋아요
@@ -67,30 +82,29 @@ function LikeAction() {
    
        var obj = {"boardNum" : $('#btnLike').attr('name')}
      
-       $.ajax({ url: "<c:url value="/insDelLike" />", 
-          type: "POST", 
-          data: JSON.stringify(obj), 
-          dataType: "json", 
-          contentType: "application/json",
-          
-          success: function(data) { alert("통신성공"); 
-          var result1 = data
-                alert(result1);
-                  
-                if(result1.wstatus == 2){
-                   alert("좋아요 취소");
+<<<<<<< HEAD
+    	$.ajax({ url: "<c:url value="/insDelLike" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) {  
+    				var result1 = data
+    				if(result1.wstatus == 2){
+    					alert("좋아요 취소");
                        $('img#likeImg').attr('src', './resources/img/empty_heart.PNG');
                     } else {
-                       alert("좋아요 등록");
+                    	alert("좋아요 등록");
                         $('img#likeImg').attr('src', './resources/img/heart.png');
-                   }
-            $('#likeCount').text(result1.likeCount)
-            }, 
-      error: function(errorThrown) { alert(errorThrown.statusText); } 
-      }); 
-   } 
-   
-   </script>
+                	}
+				$('#likeCount').text(result1.likeCount)
+				}, 
+		error: function(errorThrown) { alert(errorThrown.statusText); } 
+		}); 
+	} 
+	
+	</script>
 
    <script>
    //북마크
@@ -98,21 +112,24 @@ function LikeAction() {
    
        var obj = {"boardNum" : $('#btnMark').attr('name')}
      
-       $.ajax({ url: "<c:url value="/bookmark" />", 
-          type: "POST", 
-          data: JSON.stringify(obj), 
-          dataType: "json", 
-          contentType: "application/json", 
-          
-          success: function(data) { alert("통신성공");
-          
-                var result1 = data
-                
-                if(result1.wstatus == 2){
-                   alert("북마크 취소");
+<<<<<<< HEAD
+    	$.ajax({ url: "<c:url value="/bookmark" />", 
+    		type: "POST", 
+    		data: JSON.stringify(obj), 
+    		dataType: "json", 
+    		contentType: "application/json", 
+    		
+    		success: function(data) { alert("통신성공");
+    		
+    				var result1 = data
+    				
+    				if(result1.wstatus == 2){
+    					alert("북마크 취소");
+
                        $('img#mark_img').attr('src', './resources/img/box.png');
                     } else {
-                       alert("북마크 저장");
+                    	alert("북마크 저장");
+
                        $('img#mark_img').attr('src', './resources/img/heartbox.png');
                        }
                 }, 
@@ -121,13 +138,6 @@ function LikeAction() {
           }); 
        } 
    </script>
-   
-   <style>
-      #btnLike,#btnMark{
-         border:0;
-         background-color:white;
-      }
-   </style>
    
 <footer class="footer-box">
       <div class="container">
@@ -149,8 +159,7 @@ function LikeAction() {
    <table width="400">
    <tr>
       <td align="right" colspan="4">
-         <p onclick="confirm('신고하시겠습니까? 버튼을 눌러주세요')">신고
-            <a href="comm_warnPro.do?boardNum=${getBoard.boardNum}&comm_memberNum=${comm_memberNum}"><img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a></p>
+            <a href="javascript:delok('${getBoard.boardNum}&${comm_memberNum}')">신고<img src="${pageContext.request.contextPath}/resources/img/warn.png" width="21" height="21"></a>
       </td>
    </tr>
    <tr>
@@ -176,43 +185,54 @@ function LikeAction() {
          <td colspan="2">
          <c:forEach var="tag" items="${tag}">
                   <a href="searchTag?tagId=${tag.tagId}&tagName=${tag.tagName}" style="color : blue;">#${tag.tagName} </a>
-            </c:forEach>
-            </td>
-         <th align="right" width="10">
+         	</c:forEach>
+         	</td>
+			<th align="right" width="10">
+			
+			<c:if test="${loginNum == 0}">	
+   			</c:if>
+   			
+   			<c:if test="${loginNum != 0}">
+				<button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
+       				<img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.PNG' }" id="likeImg" width="30" height="30">
+   				</button>
+   				<span id="likeCount">${likeCount}</span>
+   			</c:if>	
+ 
+   			</th>
+		</tr>
+		<tr>
+			<th align="center" width="40">공개범위</th>
+			<td colspan="2">${getBoard.look}</td>
+			<td  align="right" width="10">
+			<c:if test="${loginNum == 0}">	
+   			</c:if>
+			
+			<c:if test="${loginNum != 0}">
+				<button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
+					<img src="${ check2 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
+				</button>
+			</c:if>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="4" id="write_group">
+			 <c:if test="${loginNum == memberNum}">
+				<input type="button" value="글수정"
+				onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="글삭제"
+				onclick="window.location='comm_deletePro.do?boardNum=${getBoard.boardNum}'">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="글목록" onclick="window.location='comm_myPage.do'">
+			 </c:if>
+			 <c:if test="${loginNum != memberNum}">
+			 	<input type="button" value="뒤로가기" onclick="history.back()">
+			 </c:if>
+			</td>
+		</tr>
+	</table>
 
-            <button type="button" id="btnLike" name="${getBoard.boardNum}" onclick="LikeAction()">
-                   <img src="${ check1 == 1 ? './resources/img/empty_heart.PNG' : './resources/img/heart.png'}" id="likeImg" width="30" height="30">
-               </button>
-               <span id="likeCount">${likeCount}</span>         
-
-            </th>
-      </tr>
-      <tr>
-         <th align="center" width="40">공개범위</th>
-         <td colspan="2">${getBoard.look}</td>
-         <td  align="right" width="10">
-            <button type="button" id="btnMark" name="${getBoard.boardNum}" onclick="marklist()">
-               <img src="${ check2 == 1 ? './resources/img/box.png' : './resources/img/heartbox.png' }"  id="mark_img" width="30" height="30">
-            </button>
-         </td>
-      </tr>
-      <tr>
-         <td align="center" colspan="4" id="write_group">
-          <c:if test="${loginNum == memberNum}">
-            <input type="button" value="글수정"
-            onclick="window.location='comm_updateForm.do?boardNum=${getBoard.boardNum}'">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="button" value="글삭제"
-            onclick="window.location='comm_deletePro.do?boardNum=${getBoard.boardNum}'">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="button" value="글목록" onclick="window.location='comm_myPage.do'">
-          </c:if>
-          <c:if test="${loginNum != memberNum}">
-             <input type="button" value="뒤로가기" onclick="history.back()">
-          </c:if>
-         </td>
-      </tr>
-   </table>
 </div>
 <br>
 <div align="center">

@@ -350,7 +350,7 @@ a:hover,a:focus {
 }
 
 .site_information ul {
-    float: right;
+    float: left;
     width: 95%;
     padding: 21px 0;
 }
@@ -391,7 +391,7 @@ a.join_bt:focus {
 }
 
 .site_information ul li img {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .logo_section {
@@ -464,7 +464,7 @@ a.navbar-brand {
 .top-header .navbar .navbar-collapse ul li {
 	margin: 0 2px;
 }
-
+/*
 .top-header.fixed-menu {
 	width: 100%;
 	position: fixed;
@@ -478,7 +478,7 @@ a.navbar-brand {
 	background: #fff;
 	z-index: 20;
 }
-
+*/
 .header_bottom {
     float: left;
     width: 100%;
@@ -596,7 +596,7 @@ a.navbar-brand {
 .menu_orange_section {
     float: right;
     position: relative;
-    width: 70%;
+    width: 100%;
 }
 
 .menu_orange_section::after {

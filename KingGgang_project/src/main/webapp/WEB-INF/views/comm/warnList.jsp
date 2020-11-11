@@ -32,8 +32,8 @@
 		<tr bgcolor="orange" align="center">
 			<th><font color=brown>번호</font></th>
 			<th><font color=brown>게시물번호</font></th>
-			<th><font color=brown>작성자</font></th>
-			<th><font color=brown>게시글삭제</font></th>
+			<th><font color=brown>신고자</font></th>
+			<th><font color=brown>삭제</font></th>
 		</tr> 
 	<c:if test="${empty warnList}">		
 		<tr>
@@ -48,8 +48,8 @@
 			<td>
 				<a href="comm_otherContent.do?boardNum=${dto.boardNum}">${dto.boardNum}</a>
 			</td>
-			<td>${comm_nickname}</td>
-			<td><input type="button" value="글삭제" onclick="window.location='warn_deletePro.do?warnNum=${dto.warnNum}&boardNum=${dto.boardNum}'"></td>
+			<td>${dto.wname}</td>
+			<td><input type="button" value="삭제" onclick="window.location='warn_deletePro.do?warnNum=${dto.warnNum}&boardNum=${dto.boardNum}'"></td>
 		</tr>		
 	</c:forEach>	
 	</table>

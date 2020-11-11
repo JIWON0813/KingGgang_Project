@@ -83,7 +83,4 @@ public class Comm_MemberMapper {
 		return res;
 	}
 	
-	
-	
-	
 }

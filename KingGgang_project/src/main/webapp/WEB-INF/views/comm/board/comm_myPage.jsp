@@ -27,6 +27,7 @@
 <table>
    <tr>
 	  	 <td width="120" height="120">
+
 	  	 	<c:if test="${comm_profilename eq 'basic.jpg'}">
 					<img src="${pageContext.request.contextPath}/resources/img/basic.jpg" width="180" height="180">
 			</c:if>

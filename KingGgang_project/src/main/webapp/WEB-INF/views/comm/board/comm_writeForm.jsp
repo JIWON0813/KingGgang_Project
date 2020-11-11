@@ -6,6 +6,7 @@
 	설	   명 : 글쓰기폼
  -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
+
 <script type="text/javascript">
 	function check(){
 		if (f.file_name.value==""){
@@ -18,14 +19,34 @@
 			f.content.focus()
 			return false
 		}
-		if (!$("input:checked[name='look']").is(":checked")){ 
-			alert("공개범위를 선택해주세요."); 
-			$("#look").focus(); 
-			return false; 
+		if (f.look.checked == false){
+			alert("공개범위를 선택해주세요!!")
+			f.look.focus()
+			return false
+
 		}
 		return true
 }
 </script>
+
+<style>
+
+	#input_group input {
+		border:1px solid red;
+		background-color:rgba(0,0,0,0);
+		color:red;
+		padding:5px;
+		
+		border-radius:5px;
+	}
+	
+	#input_group input:hover{
+		color:white;
+		background-color:red;
+	}
+
+</style>
+
 <footer class="footer-box">
 		<div class="container">
 			<div class="row">
@@ -68,8 +89,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="글쓰기">
+				<td colspan="2" align="center" id="input_group">
+					<input type="submit" value="글쓰기" >
+
 					<input type="reset" value="다시작성">	
 					<input type="button" value="뒤로가기" onclick="window.location='comm_myPage.do'">
 				</td>

@@ -39,29 +39,35 @@
 			alert("이전 날짜는 예약할 수 없습니다.")
 			return false;
 		}
-
 		return true;
 	}
 </script>
+<%@ include file="../top.jsp"%>
 <h1 align="center">방 상세정보</h1>
-<div align="center">
+<div class="session layout_padding" align="center">
 	<form name="f" action="show_regiroom.hotel" method='post'
 		onSubmit='return check();'>
 		<input type="hidden" name="id" value="${roomdto.id}" />
-		<table border="1" width="1000">
+		<table style="width : 1000px ; text-align : center; border-collapse: separate; border-spacing: 0 10px;">
 			<tr>
-				<td colspan="2"><img
-					src="http://localhost:8080/img/${roomdto.filename}" width="250"
+				<td><img src="http://192.168.0.184:8080/img/${roomdto.filename}" width="250"
 					height="250">
-				<td width="15%">방 이름
-				<td>${roomdto.name}
+				<td width="15%" >방 이름
+				<td colspan="2" style="font-size : 50px;">${roomdto.name}
 			</tr>
 			<tr>
 				<td>인원
 				<td>${roomdto.maxpersons}
-				<td>방 설명
+				<td width="15%">방 설명
 				<td>${roomdto.content}
 			</tr>
+			<tr>
+				<td>주중가
+				<td>${roomdto.dayprice}
+				<td>주말가
+				<td>${roomdto.endprice}
+			</tr>
+			<tr>
 			<tr>
 				<td>예약날짜
 				<td><input type="date" id="room_in" name="startdate">
@@ -74,4 +80,8 @@
 			</tr>
 		</table>
 	</form>
+	<div align="center">
+	<button type="button" onclick="location.href='javascript:history.go(-1)'">돌아가기</button>
+	</div>
 </div>
+<%@ include file="../bottom.jsp"%>

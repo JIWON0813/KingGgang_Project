@@ -22,7 +22,7 @@ function check(){
 	<input type="hidden" name="price" value="${dto.totalprice}" />
 	<table border="1" width="1000">
 				<tr>
-					<td colspan="2"><img src="http://localhost:8080/img/${roomdto.filename}"
+					<td colspan="2"><img src="http://192.168.0.184:8080/img/${roomdto.filename}"
 						width="250" height="250">
 					<td width="15%">방 이름
 					<td>${roomdto.name}

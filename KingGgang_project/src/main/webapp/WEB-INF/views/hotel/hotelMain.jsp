@@ -15,7 +15,7 @@
 </div>
 <div class="category" align="center">
 	<table class="categorytable" width="1000" height="100">
-		<tr>
+		<tr align="center">
 			<td width="20%" class="catetd"><a href="main.hotel?cate=all">전체</a></td>
 			<td width="20%" class="catetd"><a href="main.hotel?cate=hotel">호텔</a></td>
 			<td width="20%" class="catetd"><a href="main.hotel?cate=motel">모텔</a></td>
@@ -39,11 +39,11 @@
 				<c:if test="${not empty dto.filename}">
 					<td rowspan="6" width="20%">
 					<a href="hotelDetail.hotel?no=${dto.no}">
-					<img src="http://localhost:8080/img/${dto.filename}" width="200" height="200">
+					<img src="http://192.168.0.184:8080/img/${dto.filename}" width="200" height="200">
 					</a>
 				</c:if>
 				<c:if test="${empty dto.filename}">
-					<td rowspan="6" width="200"	height="200">이미지가 존재하지 않습니다.</td>
+					<td rowspan="6" width="200"	height="200"><a href="hotelDetail.hotel?no=${dto.no}">이미지가 존재하지 않습니다.</a></td>
 				</c:if>
 
 				<td width="70%">${dto.name}

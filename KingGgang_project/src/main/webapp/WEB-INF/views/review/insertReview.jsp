@@ -6,12 +6,6 @@
 <script type="text/javascript">
 	function check()
 	{
-		if (f.writer.value=="")
-		{
-			alert("이름을 입력하세요!!")
-			f.writer.focus()
-			return false
-		}
 		if (f.subject.value=="")
 		{
 			alert("제목을 입력하세요!!")
@@ -24,18 +18,12 @@
 			f.content.focus()
 			return false
 		}
-		if (f.passwd.value=="")
-		{
-			alert("비밀번호를 입력하세요!!")
-			f.passwd.focus()
-			return false
-		}
-		return true
+		f.document.submit();
 	}
 </script>
 <c:if test="${empty mbId}">		
 		<script type="text/javascript">
-			alert("관리자만 사용가능합니다.")
+			alert("로그인을 해주세요")
 			location.href="login.log";
 		</script>
 </c:if>	
@@ -44,10 +32,17 @@
 <%@ include file="../top.jsp" %>
 <div class="section layout_padding"></div>
 <div align="center" class="container">
-	<form name="f" action="write.notice" method="post" onsubmit="return check()">
+	<form name="f" action="insertReviewPro.re" method="post" onsubmit="return check()">
 		<table class="table table-bordered">
 			<tr>
-				<td align="center" colspan="2">글 쓰 기</td>
+			<c:choose>
+				<c:when test="${type==1 }">
+					<td align="center" colspan="2">호텔 후기</td>
+				</c:when>
+				<c:otherwise>
+					<td align="center" colspan="2">렌트카 후기</td>
+				</c:otherwise>
+			</c:choose>
 			</tr>
 			<tr align="center">
 				<th width="20%">제 목</th>
@@ -61,8 +56,11 @@
 				<td colspan="2" align="center">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">
-					<input type="button" value="목록보기" onclick="window.location='list.notice'">
-					<input type="hidden" name="name" value="${mbId}">				
+					<input type="button" value="목록보기" onclick="window.location='listReview.re'">
+					<input type="hidden" name="type" value="${type }">
+					<input type="hidden" name="t_id" value="${t_id }">
+					<input type="hidden" name="name" value="${r_name }">
+					<input type="hidden" name="filename" value="${filename }">
 				</td>
 			</tr>
 		</table>
@@ -70,19 +68,3 @@
 </div>
 <div class="section layout_padding"></div>
 <%@ include file="../bottom.jsp" %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

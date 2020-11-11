@@ -43,6 +43,10 @@ public class LoginMapper {
 	public MemberDTO getMemberid(String id){
 		return sqlSession.selectOne("getMemberid",id);
 	}
+	
+	public String getMemberProfile(String id){
+		return sqlSession.selectOne("getMemberProfile",id);
+	}
 	public void logout(HttpSession session){
 		session.invalidate();
 	}

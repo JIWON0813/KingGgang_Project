@@ -55,73 +55,37 @@ public class WishController {
 	@Autowired
 	private WishlistMapper wishlistmapper;
 	
-	@Autowired
-	private HotelMapper hotelmapper;
-	
-	@RequestMapping("/main.wish")
-	public String mypageMain(HttpServletRequest req) {
-		//상품번호 호텔 = 1; 회원번호 memberNum = 1 ; 
-		int m_no = 1;
-		int no = 3;
-		int type = 1;
-	
-		WishlistDTO dto = new WishlistDTO();
-		dto.setM_no(m_no);
-		dto.setF_no(no);
-		dto.setType(type);
-		
-		/*List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
-		int check1 = 1;
-		for(WishlistDTO check : noCheck) {
-			System.out.println(check.getF_no());
-			if(check.getF_no()!=no) {
-				continue;
-			}else if(check.getF_no()==no) {
-				check1 = 2;
-			}
-		}
-		*/
-			
-		//req.setAttribute("noCheck", noCheck);
-		//req.setAttribute("check1", check1);
-		req.setAttribute("m_no", m_no);
-		req.setAttribute("f_no", no);
-		req.setAttribute("type", type);
-		
-		return "payment/wishins";
-		
-	}
 	
 	@ResponseBody 
 	@RequestMapping(value = "/insDelwish", method = RequestMethod.POST) 
-	public HashMap<String, Object> init(@RequestBody HashMap<String, Object> map) {
+	public HashMap<String, Object> init(@RequestBody HashMap<String, Object> map,HttpSession session) {
 		
-		System.out.println(map); // {no=${dto.no} 출력 }
 		
 		int f_no = Integer.parseInt(map.get("no").toString());
 		//로그인세션
-		int m_no = 1;
+		int m_no = (int)session.getAttribute("memberNum");
 		int type = 1;
-		System.out.println(f_no);
+		
 		WishlistDTO dto = new WishlistDTO();
 		dto.setF_no(f_no);
 		dto.setM_no(m_no);
 		dto.setType(type);
 		boolean check1 = true;
-		WishlistDTO noCheck = wishlistmapper.getNolist(dto);
-		if(noCheck ==null) {
+		List<WishlistDTO> wlist = wishlistmapper.getNolist(dto);
+		
+		for(WishlistDTO checkdto : wlist) {
+			
+		if(checkdto == null) {
 			check1 = true;
 		} else {
-		
-			if(noCheck.getF_no()!=f_no) {
-				check1 = true;
-			}else if(noCheck.getF_no()==f_no) {
+			if(checkdto.getF_no()!=f_no) {
+				continue;
+			}else if(checkdto.getF_no()==f_no) {
 				check1 = false;
 			}
 		}
-		
-		System.out.println(check1);
-		
+	}
+	
 		if(check1) {
 			int res = wishlistmapper.insertWish(dto);
 			map.put("wstatus", 1);
@@ -131,55 +95,16 @@ public class WishController {
 			map.put("wstatus", 2);
 		}
 		
-		
-		System.out.println(map); //{"no"= ${dto.no}, "wstatus"=1}
-		
 		return map;
 	}
 	
-	@RequestMapping("/insert.wish")
-	public String myPayment(HttpServletRequest req,@ModelAttribute WishlistDTO dto) {
-		/*
-		int f_no = Integer.parseInt(req.getParameter("f_no"));
-		List<WishlistDTO> noCheck = wishlistmapper.getNolist(dto);
-		boolean check1 =true;
-		for(WishlistDTO check : noCheck) {
-			System.out.println(check.getF_no());
-			if(check.getF_no()!=f_no) {
-				continue;
-			}else if(check.getF_no()==f_no) {
-				check1 = false;
-			}
-		}
-		
-		System.out.println(check1);
-		String msg=null,url=null;
-		
-		if(check1) {
-		int res = wishlistmapper.insertWish(dto);
-		if(res>0){
-			msg = "관심상품 등록 성공!! ";
-			url = "main.wish";
-		}else{
-			msg = "관심상품 등록 실패!!";
-			url = "main.wish";
-		}
-	}else{
-		msg ="이미 관심상품에 등록된 상품입니다. 상품리스트로 돌아갑니다.";
-		url ="main.wish";
-	}
-		req.setAttribute("msg", msg);
-		req.setAttribute("url", url);*/
-		return "message";
-}
 	@RequestMapping("/list.wish")
 	public String wishList(HttpServletRequest req,HttpSession session,@ModelAttribute WishlistDTO dto)
 	throws IOException{
-		//session.getAttribute("id"); 로그인 세션에서 받음 
-		//
-		int m_no = 1;
+		
+		int m_no = (int)session.getAttribute("memberNum");
 		dto.setNo(m_no);
-		//
+		
 		List<HotelDTO> hlist = new ArrayList<HotelDTO> ();
 		List<RentcarDTO> rlist = new ArrayList<RentcarDTO> ();
 		List<WishlistDTO> Wlist = wishlistmapper.getWishlist(m_no);
@@ -205,21 +130,16 @@ public class WishController {
 	@RequestMapping("/delete.wish")
 	public String deleteWish(HttpServletRequest req,HttpSession session,@ModelAttribute WishlistDTO dto) {
 		int f_no = Integer.parseInt(req.getParameter("f_no"));
+		int m_no = (int)session.getAttribute("memberNum");
+		
 		dto.setF_no(f_no);
-		System.out.println(f_no);
-		
-		//session.getAttribute("id"); 로그인 세션에서 받음 
-		
-		//
-		int m_no = 4;
 		dto.setNo(m_no);
-		//
-		
+				
 		int res = wishlistmapper.deleteWish(dto);
 		String msg=null,url=null;
 		if(res>0){
-			msg = "관심상품 삭제 성공!!,마이페이지로 이동합니다. ";
-			url = "main.my";
+			msg = "관심상품 삭제 성공!!,관심리스트로 이동합니다. ";
+			url = "list.wish";
 		}else{
 			msg = "관심상품 등록 실패!!,관심리스트로 이동합니다.";
 			url = "list.wish";
@@ -229,6 +149,7 @@ public class WishController {
 		return "message";
 		
 	}
+
 	
 }
 

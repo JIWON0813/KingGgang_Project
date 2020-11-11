@@ -50,7 +50,8 @@
 			<td>${dto.comm_nickname}</td>
 			<td>${dto.comm_birth }</td>
 			<td>${dto.comm_intro }</td>
-			<td><a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum}">삭제</a></td>
+			<td><a href="comm_member_delete.do?comm_memberNum=${dto.comm_memberNum }">삭제</a></td>
+
 		</tr>		
 	</c:forEach>
 	</table>

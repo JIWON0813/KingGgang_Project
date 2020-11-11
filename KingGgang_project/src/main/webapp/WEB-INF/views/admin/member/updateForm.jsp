@@ -1,4 +1,12 @@
-<%@ include file="../admintop.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:choose>
+	<c:when test="${mbId == 'admin'}">
+	<%@ include file="../admintop.jsp"%>
+	</c:when>
+	<c:otherwise>
+	<%@ include file="../../top.jsp" %>
+	</c:otherwise>
+</c:choose>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	
@@ -48,13 +56,16 @@
 	
 	</script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/adminmember.css">
-<body>
+<c:if test="${mbId != 'admin' }">
+<div class="section layout_padding">
+</c:if>
 <form name="e" action="updatePro.mem" method="post" enctype="multipart/form-data" >
 		<input type="hidden" name="memberNum" value="${getMember.memberNum }">
 	    <div class="wrap wd668">
             <div class="container">
                 <div class="form_txtInput">
-                    <h2 class="sub_tit_txt">회원수정 페이지</h2>
+                <img class="d-block mx-auto mb-4" src="${pageContext.request.contextPath}/resources/main/images/logo.png" alt="">
+                    <h2 class="sub_tit_txt">회원수정</h2>
                     <div class="join_form">
                         <table>
                             <colgroup>
@@ -63,30 +74,30 @@
                             </colgroup>
                             <tbody>
                                 <tr>
-                                    <th><span>아이디</span></th>
+                                    <th><font color="red">* </font><span>아이디</span></th>
                                     <td><input type="text" name="id" value="${getMember.id }" readonly></td> 
                                 </tr>
                                 <tr>
-                                    <th><span>이름</span></th>
+                                    <th><font color="red">* </font><span>이름</span></th>
                                     <td><input type="text" name="name" value="${getMember.name }" readonly></td>
                                 </tr>
                                 <tr>
-                                    <th><span>연락처</span></th>
-                                    <td><input type="text" name="hp1" size="3" maxlength="3" value="${getMember.hp1}">-
-                                    	<input type="text" name="hp2" size="4" maxlength="4" value="${getMember.hp2}">-
-                                    	<input type="text" name="hp3" size="4" maxlength="4" value="${getMember.hp3}">
+                                    <th><font color="red">* </font><span>연락처</span></th>
+                                    <td><input type="text" name="hp1" size="3" maxlength="3" value="${getMember.hp1}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">-
+                                    	<input type="text" name="hp2" size="4" maxlength="4" value="${getMember.hp2}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">-
+                                    	<input type="text" name="hp3" size="4" maxlength="4" value="${getMember.hp3}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th><span>비밀번호</span></th>
+                                    <th><font color="red">* </font><span>비밀번호</span></th>
                                     <td><input type="password" name="passwd" value="${getMember.passwd}"></td>
                                 </tr>
                                 <tr>
-                                    <th><span>비밀번호 확인</span></th>
+                                    <th><font color="red">* </font><span>비밀번호 확인</span></th>
                                     <td><input type="password" name="checkpw" placeholder="비밀번호를 확인하세요"></td>
                                 </tr>
                                 <tr>
-                                    <th><span>이메일</span></th>
+                                    <th><font color="red">* </font><span>이메일</span></th>
                                     <td><input type="text" name="email" value="${getMember.email}"></td>
                                 </tr>                           
                                 <tr>
@@ -98,19 +109,22 @@
                                     <th><span>프로필 사진</span></th>
                                     <td>
                                     <c:if test="${getMember.profile_size>0 }">
-                                    <img src="${upLoadPath}//${getMember.profile_name}" width="30" height="30">
+                                    <img src="http://localhost:8080/img/${getMember.profile_name}" width="30" height="30">
                                     </c:if>
                                     <input type="file" name="profile_name" accept="image/*">
                                     <input type="hidden" name="filename2" value="${getMember.profile_name}">
                                     <input type="hidden" name="filesize2" value="${getMember.profile_size}">
                                     </td>
                                 </tr>                              
-                                <tr>
+                                <%-- <tr>
                                     <th><span>포인트</span></th>
                                     <td><input type="text" name="point" value="${getMember.point }"></td>
-                                </tr>                           
+                                </tr>     --%>                       
                             </tbody> 
                         </table>
+                        <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <font color="red">*</font> 표시는 반드시 입력해 주세요.
                     <div class="btn_wrap">
                         <a href="javascript:checkUp()">수정하기</a>
                     </div>
@@ -121,4 +135,7 @@
             </div><!-- content E-->
         </div> <!-- container E -->
     </form>
+    <c:if test="${mbId != 'admin' }">
+    </div>
+    </c:if>
 <%@ include file="../adminbottom.jsp"%>
